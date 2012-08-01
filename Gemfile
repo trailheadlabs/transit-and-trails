@@ -6,7 +6,13 @@ gem 'rails', '3.2.7'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
-
+gem 'devise'
+gem 'haml-rails'
+gem 'hpricot'
+gem 'ruby_parser'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -25,6 +31,7 @@ gem 'jquery-rails'
 group :test, :development do
   gem "rspec-rails", "~> 2.0"
   gem "capybara"
+  gem "launchy"
 end
 
 # To use ActiveModel has_secure_password
