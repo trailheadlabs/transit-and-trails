@@ -11,4 +11,5 @@ describe "home page" do
     page.should_not have_selector('.alert')
   end
 
+
 end
