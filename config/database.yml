@@ -53,3 +53,8 @@ production:
   pool: 5
   username: transitandtrails
   password:
+
+postgres:
+  adapter: postgresql
+  database: transitandtrails_test
+  username: postgres

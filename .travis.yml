@@ -1,0 +1,3 @@
+# .travis.yml
+before_script:
+  - psql -c 'create database transitandtrails_test;' -U postgres
