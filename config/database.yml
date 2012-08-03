@@ -54,6 +54,12 @@ production:
   username: transitandtrails
   password:
 
+postgresql: &postgresql
+  adapter: postgresql
+  username: postgres
+  password:
+  database: transitandtrails_test
+
 postgres:
   adapter: postgresql
   database: transitandtrails_test

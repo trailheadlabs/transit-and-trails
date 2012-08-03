@@ -27,4 +27,13 @@ describe "login page" do
     User.find_by_username('djangouser').encrypted_password.should_not be_blank
   end
 
+  it "doesn't log in bad users" do
+    visit '/users/sign_in'
+    fill_in 'Login', with: 'noway'
+    fill_in 'Password', with: 'password'
+    click_on 'Sign in'
+    page.should have_content 'Invalid'
+    page.should_not have_content 'noway'
+  end
+
 end
