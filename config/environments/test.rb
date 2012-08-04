@@ -36,4 +36,6 @@ Transitandtrails::Application.configure do
   config.active_support.deprecation = :stderr
 
   config.log_level = :debug
+
+  config.action_mailer.default_url_options = { :host => 'rails.transitandtrails.org' }
 end
