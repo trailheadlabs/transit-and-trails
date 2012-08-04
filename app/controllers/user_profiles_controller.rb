@@ -1,4 +1,6 @@
 class UserProfilesController < ApplicationController
+  before_filter :authenticate_user!
+
   # GET /user_profiles
   # GET /user_profiles.json
   def index
@@ -24,8 +26,7 @@ class UserProfilesController < ApplicationController
   # GET /user_profiles/new
   # GET /user_profiles/new.json
   def new
-    @user_profile = UserProfile.new
-
+    @user_profile = UserProfile.new(:user_id = current_user.id)
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @user_profile }
