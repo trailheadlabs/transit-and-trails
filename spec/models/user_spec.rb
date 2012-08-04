@@ -13,4 +13,10 @@ describe User do
     u.encrypted_password.should_not be_blank
     u.valid_password?('password').should be_true
   end
+
+  it "should find by email" do
+    u = FactoryGirl.create(:user)
+    conditions = {:email => u.email}
+    u.should eq User.find_first_by_auth_conditions(conditions)
+  end
 end

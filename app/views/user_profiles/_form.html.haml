@@ -1,0 +1,22 @@
+= form_for @user_profile do |f|
+  -if @user_profile.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@user_profile.errors.count, "error")} prohibited this user_profile from being saved:"
+      %ul
+        - @user_profile.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :firstname
+    = f.text_field :firstname
+  .field
+    = f.label :lastname
+    = f.text_field :lastname
+  .field
+    = f.label :url
+    = f.text_field :url
+  .field
+    = f.label :bio
+    = f.text_area :bio
+  .actions
+    = f.submit 'Save'

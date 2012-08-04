@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
                   :username, :login, :django_password
   # attr_accessible :title, :body
 
+  has_one :user_profile
+
   alias :devise_valid_password? :valid_password?
 
   def valid_password?(password)

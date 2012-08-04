@@ -1,0 +1,25 @@
+%h1 Listing user_profiles
+
+%table
+  %tr
+    %th Firstname
+    %th Lastname
+    %th Url
+    %th Bio
+    %th
+    %th
+    %th
+
+  - @user_profiles.each do |user_profile|
+    %tr
+      %td= user_profile.firstname
+      %td= user_profile.lastname
+      %td= user_profile.url
+      %td= user_profile.bio
+      %td= link_to 'Show', user_profile
+      %td= link_to 'Edit', edit_user_profile_path(user_profile)
+      %td= link_to 'Destroy', user_profile, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New User profile', new_user_profile_path

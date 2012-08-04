@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Firstname:
+  = @user_profile.firstname
+%p
+  %b Lastname:
+  = @user_profile.lastname
+%p
+  %b Url:
+  = @user_profile.url
+%p
+  %b Bio:
+  = @user_profile.bio
+
+= link_to 'Edit', edit_user_profile_path(@user_profile)
+\|
+= link_to 'Back', user_profiles_path
