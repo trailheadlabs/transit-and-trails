@@ -12,7 +12,6 @@ describe "UserProfiles" do
       click_button "Sign in"
       page.should have_content user.username
       visit user_profiles_path
-      save_and_open_page
       page.should have_content "User Profiles"
       current_path.should == user_profiles_path
     end
