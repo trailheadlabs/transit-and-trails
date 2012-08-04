@@ -24,7 +24,7 @@ describe UserProfilesController do
   # UserProfile. As you add validations to UserProfile, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {firstname: 'John',lastname: 'Doe',url: 'http://example.com',bio:'The best user ever.'}
+    {}
   end
 
   # This should return the minimal set of values that should be in the session
