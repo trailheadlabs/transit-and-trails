@@ -19,5 +19,5 @@ Coming soon :
 
 Project Info:
 
-[Test Coverage](http://rails.transitandtrails.org/coverage/)
-[Continuous Integration](http://rails.transitandtrails.org/coverage/)
+Test Coverage : http://rails.transitandtrails.org/coverage
+Continuous Integration : http://travis-ci.org/#!/TransitAndTrails/transitandtrails
