@@ -19,6 +19,11 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe UserProfilesController do
+  before(:each) do
+    @user = FactoryGirl.create(:user)
+    sign_in :user, @user
+    controller.user_signed_in?.should be_true
+  end
 
   # This should return the minimal set of attributes required to create a valid
   # UserProfile. As you add validations to UserProfile, be sure to
@@ -66,7 +71,9 @@ describe UserProfilesController do
   end
 
   describe "POST create" do
+
     describe "with valid params" do
+
       it "creates a new UserProfile" do
         expect {
           post :create, {:user_profile => valid_attributes}, valid_session
