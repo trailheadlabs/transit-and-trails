@@ -37,5 +37,5 @@ Transitandtrails::Application.configure do
 
   config.log_level = :debug
 
-  config.action_mailer.default_url_options = { :host => 'rails.transitandtrails.org' }
+  config.action_mailer.default_url_options = { :host => 'localhost' }
 end
