@@ -17,3 +17,7 @@ Coming soon :
 
 * Responsive mobile optimized web application
 
+Project Info:
+
+[Test Coverage](http://rails.transitandtrails.org/coverage/)
+[Continuous Integration](http://rails.transitandtrails.org/coverage/)
