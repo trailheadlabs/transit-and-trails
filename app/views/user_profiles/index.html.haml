@@ -18,7 +18,7 @@
       %td= user_profile.bio
       %td= link_to 'Show', user_profile
       %td= link_to 'Edit', edit_user_profile_path(user_profile)
-      %td= link_to 'Destroy', user_profile, :confirm => 'Are you sure?', :method => :delete
+      %td= link_to 'Destroy', user_profile, :data => { :confirm => 'Are you sure?' }, :method => :delete
 
 %br
 

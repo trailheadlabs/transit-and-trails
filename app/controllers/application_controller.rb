@@ -5,9 +5,10 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_admin!
-    unless user_signed_in? && current_user.admin?
+    authenticate_user!
+    unless current_user.admin?
       flash[:error] = "Admin user required."
-      redirect_to '/users/sign_in' # halts request cycle
+      redirect_to '/' # halts request cycle
     end
   end
 end

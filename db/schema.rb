@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120808225509) do
+ActiveRecord::Schema.define(:version => 20120820212533) do
 
   create_table "rails_admin_histories", :force => true do |t|
     t.text     "message"
@@ -31,8 +31,8 @@ ActiveRecord::Schema.define(:version => 20120808225509) do
     t.string   "lastname"
     t.string   "url"
     t.text     "bio"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
     t.integer  "user_id"
     t.string   "avatar"
     t.string   "address1"
@@ -40,6 +40,13 @@ ActiveRecord::Schema.define(:version => 20120808225509) do
     t.string   "city"
     t.string   "state"
     t.string   "zip"
+    t.string   "api_key"
+    t.string   "api_secret"
+    t.string   "organization_name"
+    t.string   "organization_url"
+    t.string   "organization_avatar"
+    t.string   "signup_source"
+    t.string   "website_address"
   end
 
   create_table "users", :force => true do |t|

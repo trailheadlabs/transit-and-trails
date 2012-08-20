@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class UserProfileAvatarUploader < CarrierWave::Uploader::Base
+class UserProfileOrganizationAvatarUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   include CarrierWave::RMagick
@@ -11,8 +11,8 @@ class UserProfileAvatarUploader < CarrierWave::Uploader::Base
   # include Sprockets::Helpers::IsolatedHelper
 
   # Choose what kind of storage to use for this uploader:
-  # storage :file
   storage :fog
+  # storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:

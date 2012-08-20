@@ -16,6 +16,7 @@ gem 'omniauth-twitter'
 gem 'rails_admin'
 gem 'fog'
 gem 'carrierwave'
+gem 'rmagick'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -33,9 +34,12 @@ gem 'jquery-rails'
 
 group :test, :development do
   gem "rspec-rails", "~> 2.0"
+  gem "factory_girl_rails"
+end
+
+group :test do
   gem "capybara"
   gem "launchy"
-  gem "factory_girl_rails"
 end
 
 gem 'simplecov', :require => false, :group => :test

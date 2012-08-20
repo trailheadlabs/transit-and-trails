@@ -1,0 +1,1420 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"list-style",
+				"list-style-type"
+			],
+			[
+				"orga",
+				"organization_avatar_thumbnail_url"
+			],
+			[
+				"organ",
+				"organization_avatar"
+			],
+			[
+				"bay_nature",
+				"bay_nature_trip_editor"
+			],
+			[
+				"tran",
+				"transit-router"
+			],
+			[
+				"attr",
+				"attribute_categories"
+			],
+			[
+				"cate",
+				"categorized_attributes"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "Gemfile",
+			"settings":
+			{
+				"buffer_size": 1126,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "spec/spec_helper.rb",
+			"settings":
+			{
+				"buffer_size": 1589,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "Searching 1466 files for \"RAILS_ENV\" (regex)\n\n0 matches across 0 files\n\n\nSearching 215 files for \"RAILS_ENV\" (regex)\n\n/Users/jerememonteau/git/jmoe/transitandtrails/.travis.yml:\n    5    - DB=postgresql\n    6  script:\n    7:   - RAILS_ENV=test bundle exec rake --trace db:migrate spec\n    8  before_script:\n    9    - psql -c 'create user transitandtrails' -U postgres\n\n/Users/jerememonteau/git/jmoe/transitandtrails/spec/spec_helper.rb:\n    5  \n    6  # This file is copied to spec/ when you run 'rails generate rspec:install'\n    7: puts \"RAILS_ENV = \" + ENV[\"RAILS_ENV\"]\n    8: ENV[\"RAILS_ENV\"] ||= 'test'\n    9  require File.expand_path(\"../../config/environment\", __FILE__)\n   10  require 'rspec/rails'\n\n/Users/jerememonteau/git/jmoe/transitandtrails/test/test_helper.rb:\n    1: ENV[\"RAILS_ENV\"] = \"test\"\n    2  require File.expand_path('../../config/environment', __FILE__)\n    3  require 'rails/test_help'\n\n5 matches across 3 files\n",
+			"settings":
+			{
+				"buffer_size": 939,
+				"line_ending": "Unix",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "test/test_helper.rb",
+			"settings":
+			{
+				"buffer_size": 454,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/models/user.rb",
+			"settings":
+			{
+				"buffer_size": 1094,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/util/data_import.rb",
+			"settings":
+			{
+				"buffer_size": 1404,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/uploaders/user_profile_avatar_uploader.rb",
+			"settings":
+			{
+				"buffer_size": 1654,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "config/initializers/fog.rb",
+			"settings":
+			{
+				"buffer_size": 341,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/tasks/import.rake",
+			"settings":
+			{
+				"buffer_size": 1187,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "config/initializers/carrier_wave.rb",
+			"settings":
+			{
+				"buffer_size": 466,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"git",
+				"Git: Blame"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"In",
+				"Package Control: Install Package"
+			],
+			[
+				"html",
+				"Tidy HTML"
+			],
+			[
+				"tid",
+				"Tidy HTML"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"json",
+				"Pretty JSON: Reformat (Pretty Print) JSON"
+			],
+			[
+				"josn",
+				"Pretty JSON: Reformat (Pretty Print) JSON"
+			],
+			[
+				"gitk",
+				"Git: Gitk"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"j",
+				"Pretty JSON: Reformat (Pretty Print) JSON"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 136.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": true,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/jerememonteau/git/transitandtrails/tntsite/data/datamodels.py",
+		"/Users/jerememonteau/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/jerememonteau/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/tnt.sublime-project",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/tnt/management/commands/importdata.py",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/tnt/views/views.py",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/media/css/embed_plan.css",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/tnt/trip_detail/trip_details.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/embed/plan.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/media/js/pointmap.js",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/tnt/templatetags/truncate_smart.py",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/tnt/trip_detail.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/tnt/trailhead_detail.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/urls.py",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/tnt/models.py",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/tnt/san_jose_meeting_notes.txt",
+		"/Users/jerememonteau/Desktop/maps_and_apps_meeting_notes.txt",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/data/dataload.py",
+		"/Users/jerememonteau/Library/Application Support/Sublime Text 2/Packages/Git/Git.sublime-settings",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/settings.py",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/tnt/middleware/AllowThirdPartyCookiesMiddleware.py",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/tnt/trip_form.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/tnt/trip_form_fields.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/tnt/trip_detail/trip_photos_map.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/tnt/trailhead_form.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/challenge.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/tnt/models.txt",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/tnt/context_processors.py",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/tnt/admin.py",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/plan.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/media/css/plan.css",
+		"/Users/jerememonteau/Desktop/ggnpc_mobile_meeting_notes.txt",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/prod_settings.py",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/tnt/middleware/ProfileMiddleware.py",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/registration/login_embed.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/media/css/trip.css",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/tnt/embed_trip_form_scripts.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/tnt/embed_trip_form_photos.html",
+		"/Users/jerememonteau/Desktop/yt_upload.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/trailhead_photo.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/profiles/views.py",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/registration/views.py",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/media/css/common.css",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/media/css/style.css",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/tnt/trip_detail/trip_stories.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/media/css/challenge.css",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/registration/forms.py",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/registration/registration_form_embed.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/registration/bay_nature_approved_email.txt",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/registration/urls.py",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/base/base.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/media/css/trailhead_detail.css",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/tnt/trip_story_form.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/tnt/forms.py",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/tnt/trailhead_stories.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/media/css/trip_story_form.css",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/about.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/find.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/registration/signup_embed_thanks.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/tnt/campground_detail.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/tnt/embed_trip_form.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/tnt/embed_trip_form_details.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/tnt/park_detail.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/media/js/ckeditor/_samples/stylesheetparser.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/media/js/trip_story_form.js",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/registration/admin.py",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/base/disqus.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/media/js/tripmap.js",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/tnt/trip_form_scripts.html",
+		"/Users/jerememonteau/Desktop/06052012_TNT_NOTES.txt",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/media/css/park.css",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/media/css/triple-threat.css",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/media/css/lato.css",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/base/embed.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/base/base_embed.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/tnt/trip_form_attributes.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/media/js/plan.js",
+		"/Users/jerememonteau/git/transitandtrails/conf/tnt_prod_baosc.conf",
+		"/Users/jerememonteau/git/transitandtrails/.gitignore",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/profiles/edit_profile.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/profiles/profile_detail.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/registration/login.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/requirements.txt",
+		"/Users/jerememonteau/Desktop/qt_preuser_emails.csv",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/tnt/migrations/0066_auto__add_tripstory__add_field_userprofile_signup_source.py",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/form.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/tech.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/registration/models.py",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/registration/activation_email.txt",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/registration/embed_activation_email.txt",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/registration/activate.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/registration/embed_activate.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/tnt/trip_form_map.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/tnt/templatetags/__init__.py~3eb43622f42dd67074727eb825a2e8b4571eb158",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/registration/bay_nature_activated_subject.txt",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/registration/bay_nature_activated_email.txt",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/media/css/embed.css",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/bay_nature_approved.html",
+		"/Users/jerememonteau/Desktop/Bay Nature Signup Workflow.txt",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/tnt/embed_trip_form_fields.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/tnt/migrations/0064_auto__add_field_userprofile_organization_avatar__add_field_userprofile.py",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/registration/login_embed_thanks.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/bay_nature_denied.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/tnt/embed_trip_form_detail_fields.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/base/static_embed.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/tnt/management/commands/populatetrips.py",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/tnt/management/commands/populategeo.py",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/trips/editor_point_info_window.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/tnt/campground_form.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/trailheads/trailhead_detail.json",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/api.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/404.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/media/js/find.js",
+		"/Users/jerememonteau/Desktop/list_trailhead_response.json",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/tnt/management/commands/importcpad.py",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/trailheads/info_window.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/trips/trip_list_widget.html",
+		"/Users/jerememonteau/git/transitandtrails/access_report.rb",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/base/tracking.html",
+		"/Users/jerememonteau/Desktop/steve_notes.txt",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/campgrounds/campground_list_widget.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/trailheads/trailhead_list_widget.html",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/access_report.rb",
+		"/Users/jerememonteau/Desktop/May 30th Call with Ryno Notes.txt",
+		"/Users/jerememonteau/codility.rb",
+		"/Users/jerememonteau/Desktop/codility.txt",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/trips/trip_detail.json",
+		"/Users/jerememonteau/git/transitandtrails/tntsite/templates/trips/trip_list.json"
+	],
+	"find":
+	{
+		"height": 33.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/Users/jerememonteau/git/jmoe/transitandtrails",
+			"/Users/jerememonteau/git/transitandtrails/tntsite",
+			"/Users/jerememonteau/git/transitandtrails/tntsite, *.py",
+			"/Users/jerememonteau/git/transitandtrails/tntsite/views.py",
+			"/Users/jerememonteau/git/transitandtrails/tntsite/",
+			"/Users/jerememonteau/git/transitandtrails/tntsite/, *.py, *.js",
+			"/Users/jerememonteau/git/transitandtrails/tntsite/, *.py",
+			"/Users/jerememonteau/git/transitandtrails/tntsite/",
+			"/Users/jerememonteau/git/transitandtrails/tntsite/templates",
+			"/Users/jerememonteau/git/transitandtrails/tntsite/tnt",
+			"/Users/jerememonteau/git/transitandtrails/tntsite/tnt,-.*migrations/*",
+			"/Users/jerememonteau/git/transitandtrails/tntsite/tnt,-migrations/*",
+			"-/Users/jerememonteau/git/transitandtrails/tntsite/tnt/migrations",
+			"/Users/jerememonteau/git/transitandtrails/tntsite, -/Users/jerememonteau/git/transitandtrails/tntsite/tnt/migrations",
+			"/Users/jerememonteau/git/transitandtrails/tntsite /Users/jerememonteau/git/transitandtrails/tntsite/tnt/migrations",
+			"/Users/jerememonteau/git/transitandtrails/tntsite, -/Users/jerememonteau/git/transitandtrails/tntsite/media/js",
+			"/Users/jerememonteau/git/transitandtrails/tntsite",
+			"/Users/jerememonteau/git/transitandtrails/tntsite,-/Users/jerememonteau/git/transitandtrails/tntsite/media/js/ckeditor/*, *.css",
+			"/Users/jerememonteau/git/transitandtrails/tntsite,-/Users/jerememonteau/git/transitandtrails/tntsite/media/js/ckeditor/*, *.html",
+			"/Users/jerememonteau/git/transitandtrails/tntsite,-/Users/jerememonteau/git/transitandtrails/tntsite/media/js/ckeditor/*",
+			"/Users/jerememonteau/git/transitandtrails/tntsite,-/Users/jerememonteau/git/transitandtrails/tntsite/media/js/ckeditor",
+			"/Users/jerememonteau/git/transitandtrails/tntsite",
+			"*",
+			"*.js",
+			"*.html",
+			"/Users/jerememonteau/git/transitandtrails/tntsite",
+			"/Users/jerememonteau/git/transitandtrails/tntsite/templates",
+			"/Users/jerememonteau/git/transitandtrails/tntsite/",
+			"/Users/jerememonteau/git/transitandtrails/tntsite/templates",
+			"",
+			"*.html",
+			"*.html *.js *.py",
+			"*.html",
+			"*.html *.py",
+			"*.html",
+			"*",
+			"*.html",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"RAILS_ENV",
+			"class Trailhead",
+			"Flat=",
+			"importdata",
+			"ids",
+			"class Trailhead",
+			"NonProfit",
+			"class Park",
+			"class Trailhead",
+			"description",
+			"more",
+			"descr",
+			"descript",
+			"trail-details",
+			"trail-details-overlay",
+			"#trail-details",
+			"trail-details-overlay",
+			"\\n",
+			"upload",
+			"trailhead_photo",
+			"add_trailhead_photo",
+			"trip_photo",
+			"csrf",
+			"agency",
+			"\\n",
+			"class Trailhead",
+			"class Park",
+			"carbon-cost",
+			"carbon",
+			"get_profile",
+			"class Trailhead",
+			"attributecate",
+			"approved",
+			"TrailheadForm",
+			"approved",
+			"def trailhead",
+			"trailhead",
+			"api",
+			"UserProfile",
+			"organization",
+			"CPAD",
+			"Attribute",
+			"TransitAgency",
+			"class",
+			"svn_revision",
+			"get_svn_rev",
+			"get_campgrounds_near_xml",
+			"closest_campgrounds",
+			"get_closest_campgrounds",
+			"get_trips_near",
+			"get_closest_trips",
+			"get_trip_kml",
+			"get_trip_json",
+			"trailhead_info_html",
+			"trailhead_xml",
+			"get_objects_near_html",
+			"get_trips_in",
+			"get_trailheads_in",
+			"get_park_by_unit_county",
+			"get_trailheads_near",
+			"get_closest_trailheads",
+			"get_trailheads_near_json",
+			"get_trailheads_near_list",
+			"trailhead_json",
+			"transit_routers_for_trailhead_json",
+			"mobile_trip_map",
+			"trailhead_create_at",
+			"author",
+			"galleria",
+			"login",
+			"login_embed",
+			"embed",
+			"embed_",
+			"appro",
+			"rideshare",
+			"trailhead(",
+			"trailhead",
+			"flickr_id",
+			"class Trailhead(",
+			"class Trip",
+			"class Trailhead",
+			"trailhead",
+			"trip",
+			"organization",
+			"trip",
+			" .",
+			"trip",
+			"photo",
+			"trailhead",
+			"/media/img/",
+			"/img/",
+			"img/",
+			"user",
+			"user =",
+			"create",
+			"author",
+			"File",
+			"galleria",
+			"Photos",
+			"contri",
+			"website_address",
+			"TNT.EntityType.TRAILHEAD",
+			"findAddress",
+			"font-family",
+			"font-famil",
+			"button-fram",
+			"date",
+			"scale_image",
+			"#edit-organization-picture",
+			"UserProfile",
+			"form-error",
+			"showTripDrivingRoutes",
+			"startDirections",
+			"tripDirections",
+			"onTripDirectionsLoad",
+			"endDirections",
+			"onEndDirectionsLoad",
+			"alert",
+			"setEnd",
+			"loadTrailheadIntoPlan",
+			"initializeTrailhead",
+			"embed",
+			"trailheads",
+			"approved",
+			"TrailheadAdmin",
+			"get_park_by_unit_county",
+			"get_agency_by_slug",
+			"agency"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			",",
+			"/media/images/",
+			"Contents",
+			"$\"",
+			",",
+			"TNT.tripmap",
+			"",
+			"updatePartyBanner",
+			"@current_user_name",
+			"SF.livePlayer.debugMessage",
+			"@syncTolerance"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 9,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "Gemfile",
+					"settings":
+					{
+						"buffer_size": 1126,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								756,
+								756
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/Ruby on Rails.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 276.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "spec/spec_helper.rb",
+					"settings":
+					{
+						"buffer_size": 1589,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								351,
+								351
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/RSpec/RSpec.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"settings":
+					{
+						"buffer_size": 939,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										229,
+										238
+									],
+									[
+										541,
+										550
+									],
+									[
+										562,
+										571
+									],
+									[
+										586,
+										595
+									],
+									[
+										789,
+										798
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								797,
+								797
+							]
+						],
+						"settings":
+						{
+							"detect_indentation": false,
+							"output_tag": 2,
+							"result_base_dir": "",
+							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "test/test_helper.rb",
+					"settings":
+					{
+						"buffer_size": 454,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/Ruby on Rails.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/models/user.rb",
+					"settings":
+					{
+						"buffer_size": 1094,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								609,
+								609
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/Ruby on Rails.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "lib/util/data_import.rb",
+					"settings":
+					{
+						"buffer_size": 1404,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1393,
+								1393
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/Ruby on Rails.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "app/uploaders/user_profile_avatar_uploader.rb",
+					"settings":
+					{
+						"buffer_size": 1654,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								658,
+								658
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/Ruby on Rails.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 208.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "config/initializers/fog.rb",
+					"settings":
+					{
+						"buffer_size": 341,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/Ruby on Rails.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "lib/tasks/import.rake",
+					"settings":
+					{
+						"buffer_size": 1187,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								320,
+								320
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/Ruby on Rails.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "config/initializers/carrier_wave.rb",
+					"settings":
+					{
+						"buffer_size": 466,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								392,
+								392
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/Ruby on Rails.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 30.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.jsconsole_view":
+	{
+		"height": 0.0
+	},
+	"output.jshint_view":
+	{
+		"height": 0.0
+	},
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"carr",
+				"config/initializers/carrier_wave.rb"
+			],
+			[
+				"impo",
+				"lib/tasks/import.rake"
+			],
+			[
+				"fog",
+				"config/initializers/fog.rb"
+			],
+			[
+				"avatar",
+				"app/uploaders/user_profile_avatar_uploader.rb"
+			],
+			[
+				"data",
+				"lib/util/data_import.rb"
+			],
+			[
+				"user",
+				"app/models/user.rb"
+			],
+			[
+				"gemfile",
+				"Gemfile"
+			],
+			[
+				"gm",
+				"Gemfile"
+			],
+			[
+				"models",
+				"tntsite/tnt/models.py"
+			],
+			[
+				"views",
+				"tntsite/tnt/views/views.py"
+			],
+			[
+				"importdata",
+				"tntsite/tnt/management/commands/importdata.py"
+			],
+			[
+				"models.py",
+				"tntsite/tnt/models.py"
+			],
+			[
+				"plan",
+				"tntsite/templates/embed/plan.html"
+			],
+			[
+				"embed_pl",
+				"tntsite/media/css/embed_plan.css"
+			],
+			[
+				"trip_deta",
+				"tntsite/templates/tnt/trip_detail/trip_details.html"
+			],
+			[
+				"trailhead",
+				"tntsite/templates/tnt/trailhead_detail.html"
+			],
+			[
+				"trailhead_de",
+				"tntsite/templates/tnt/trailhead_detail.html"
+			],
+			[
+				"model",
+				"tntsite/tnt/models.py"
+			],
+			[
+				"trip_form",
+				"tntsite/templates/tnt/trip_form_fields.html"
+			],
+			[
+				"trip_",
+				"tntsite/templates/tnt/trip_form.html"
+			],
+			[
+				"all",
+				"tntsite/tnt/middleware/AllowThirdPartyCookiesMiddleware.py"
+			],
+			[
+				"setting",
+				"tntsite/settings.py"
+			],
+			[
+				"trip_ph",
+				"tntsite/templates/tnt/trip_detail/trip_photos_map.html"
+			],
+			[
+				"trip_fr",
+				"tntsite/templates/tnt/trip_form.html"
+			],
+			[
+				"urls",
+				"tntsite/urls.py"
+			],
+			[
+				"trip_pho",
+				"tntsite/templates/tnt/trip_detail/trip_photos_map.html"
+			],
+			[
+				"trailhead_",
+				"tntsite/templates/tnt/trailhead_detail.html"
+			],
+			[
+				"pointmap",
+				"tntsite/media/js/pointmap.js"
+			],
+			[
+				"trailhead_detail",
+				"tntsite/templates/tnt/trailhead_detail.html"
+			],
+			[
+				"trip",
+				"tntsite/templates/tnt/trip_detail.html"
+			],
+			[
+				"view",
+				"tntsite/tnt/views/views.py"
+			],
+			[
+				"plan.c",
+				"tntsite/media/css/plan.css"
+			],
+			[
+				"pla",
+				"tntsite/templates/plan.html"
+			],
+			[
+				"embed",
+				"tntsite/media/css/embed_plan.css"
+			],
+			[
+				"settings",
+				"tntsite/settings.py"
+			],
+			[
+				"mode",
+				"tntsite/tnt/models.py"
+			],
+			[
+				"url",
+				"tntsite/urls.py"
+			],
+			[
+				"trailhead_form",
+				"tntsite/templates/tnt/trailhead_form.html"
+			],
+			[
+				"trip_details",
+				"tntsite/templates/tnt/trip_detail/trip_details.html"
+			],
+			[
+				"trip_det",
+				"tntsite/templates/tnt/trip_detail.html"
+			],
+			[
+				"cha",
+				"tntsite/templates/challenge.html"
+			],
+			[
+				"trip_photo",
+				"tntsite/templates/tnt/trip_detail/trip_photos_map.html"
+			],
+			[
+				"admin",
+				"tntsite/tnt/admin.py"
+			],
+			[
+				"trip_form_fie",
+				"tntsite/templates/tnt/trip_form_fields.html"
+			],
+			[
+				"trailhead_det",
+				"tntsite/templates/tnt/trailhead_detail.html"
+			],
+			[
+				"trip_po",
+				"tntsite/templates/tnt/trip_detail/trip_photos_map.html"
+			],
+			[
+				"trip_de",
+				"tntsite/templates/tnt/trip_detail/trip_details.html"
+			],
+			[
+				"trip_photos_map",
+				"tntsite/templates/tnt/trip_detail/trip_photos_map.html"
+			],
+			[
+				"login_em",
+				"tntsite/templates/registration/login_embed.html"
+			],
+			[
+				"trip.css",
+				"tntsite/media/css/trip.css"
+			],
+			[
+				"embed_tri",
+				"tntsite/templates/tnt/embed_trip_form_scripts.html"
+			],
+			[
+				"embed_",
+				"tntsite/templates/tnt/embed_trip_form_photos.html"
+			],
+			[
+				"challe",
+				"tntsite/templates/challenge.html"
+			],
+			[
+				"ch",
+				"tntsite/templates/challenge.html"
+			],
+			[
+				"views.py",
+				"tntsite/tnt/views/views.py"
+			],
+			[
+				"regi",
+				"tntsite/templates/registration/registration_form_embed.html"
+			],
+			[
+				"forms",
+				"tntsite/registration/forms.py"
+			],
+			[
+				"ur",
+				"tntsite/urls.py"
+			],
+			[
+				"regist",
+				"tntsite/templates/registration/registration_form_embed.html"
+			],
+			[
+				"style",
+				"tntsite/media/css/style.css"
+			],
+			[
+				"base",
+				"tntsite/templates/base/base.html"
+			],
+			[
+				"challenge",
+				"tntsite/media/css/challenge.css"
+			],
+			[
+				"chall",
+				"tntsite/templates/challenge.html"
+			],
+			[
+				"comm",
+				"tntsite/media/css/common.css"
+			],
+			[
+				"trip_sto",
+				"tntsite/templates/tnt/trip_detail/trip_stories.html"
+			],
+			[
+				"trai",
+				"tntsite/templates/tnt/trailhead_detail.html"
+			],
+			[
+				"trailhead_detai",
+				"tntsite/templates/tnt/trailhead_detail.html"
+			],
+			[
+				"trip_stor",
+				"tntsite/templates/tnt/trip_detail/trip_stories.html"
+			],
+			[
+				"forms.p",
+				"tntsite/tnt/forms.py"
+			],
+			[
+				"trip_s",
+				"tntsite/templates/tnt/trip_story_form.html"
+			],
+			[
+				"trailhed_de",
+				"tntsite/templates/tnt/trailhead_detail.html"
+			],
+			[
+				"trailhead_d",
+				"tntsite/templates/tnt/trailhead_detail.html"
+			],
+			[
+				"style.css",
+				"tntsite/media/css/style.css"
+			],
+			[
+				"trip_photos",
+				"tntsite/templates/tnt/trip_detail/trip_photos_map.html"
+			],
+			[
+				"trail",
+				"tntsite/templates/tnt/trailhead_detail.html"
+			],
+			[
+				"chal",
+				"tntsite/media/css/challenge.css"
+			],
+			[
+				"trip.",
+				"tntsite/media/css/trip.css"
+			],
+			[
+				"trip_st",
+				"tntsite/media/css/trip_story_form.css"
+			],
+			[
+				"trip_story",
+				"tntsite/templates/tnt/trip_story_form.html"
+			],
+			[
+				"trip_storm",
+				"tntsite/media/js/trip_story_form.js"
+			],
+			[
+				"trip_stories",
+				"tntsite/templates/tnt/trip_detail/trip_stories.html"
+			],
+			[
+				"trip_p",
+				"tntsite/templates/tnt/trip_detail/trip_photos_map.html"
+			],
+			[
+				"styl",
+				"tntsite/media/css/style.css"
+			],
+			[
+				"styles",
+				"tntsite/media/js/ckeditor/_samples/stylesheetparser.html"
+			],
+			[
+				"challeng",
+				"tntsite/media/css/challenge.css"
+			],
+			[
+				"pointm",
+				"tntsite/media/js/pointmap.js"
+			],
+			[
+				"trip_form_s",
+				"tntsite/templates/tnt/trip_form_scripts.html"
+			],
+			[
+				"tripm",
+				"tntsite/media/js/tripmap.js"
+			],
+			[
+				"trailhead_for",
+				"tntsite/templates/tnt/trailhead_form.html"
+			],
+			[
+				"lato",
+				"tntsite/media/css/lato.css"
+			],
+			[
+				"style.",
+				"tntsite/media/css/style.css"
+			],
+			[
+				"dis",
+				"tntsite/templates/base/disqus.html"
+			],
+			[
+				"common",
+				"tntsite/media/css/common.css"
+			],
+			[
+				"trips",
+				"tntsite/media/css/trip_story_form.css"
+			],
+			[
+				"trip_form_",
+				"tntsite/templates/tnt/trip_form_attributes.html"
+			],
+			[
+				"trip_fo",
+				"tntsite/templates/tnt/trip_form.html"
+			],
+			[
+				"plan.",
+				"tntsite/media/js/plan.js"
+			],
+			[
+				"",
+				"conf/tnt_prod_baosc.conf"
+			],
+			[
+				"sett",
+				"tntsite/settings.py"
+			],
+			[
+				"requi",
+				"tntsite/requirements.txt"
+			],
+			[
+				"login",
+				"tntsite/templates/registration/login.html"
+			],
+			[
+				"profile",
+				"tntsite/templates/profiles/profile_detail.html"
+			],
+			[
+				"edit_pr",
+				"tntsite/templates/profiles/edit_profile.html"
+			],
+			[
+				"plan.css",
+				"tntsite/media/css/plan.css"
+			],
+			[
+				"plan.js",
+				"tntsite/media/js/plan.js"
+			],
+			[
+				"trip_form_scripts",
+				"tntsite/templates/tnt/trip_form_scripts.html"
+			],
+			[
+				"trip_detail",
+				"tntsite/templates/tnt/trip_detail.html"
+			],
+			[
+				"trailhead_f",
+				"tntsite/templates/tnt/trailhead_form.html"
+			],
+			[
+				"views.",
+				"tntsite/tnt/views/views.py"
+			],
+			[
+				"vies",
+				"tntsite/profiles/views.py"
+			],
+			[
+				"about",
+				"tntsite/templates/about.html"
+			],
+			[
+				"cam",
+				"tntsite/templates/tnt/campground_detail.html"
+			],
+			[
+				"base.",
+				"tntsite/templates/base/base.html"
+			],
+			[
+				"acti",
+				"tntsite/templates/registration/activation_email.txt"
+			],
+			[
+				"re",
+				"tntsite/templates/registration/registration_form_embed.html"
+			],
+			[
+				"active",
+				"tntsite/templates/registration/activate.html"
+			],
+			[
+				"urs",
+				"tntsite/urls.py"
+			],
+			[
+				"trip_form_sc",
+				"tntsite/templates/tnt/trip_form_scripts.html"
+			],
+			[
+				"embed_trip",
+				"tntsite/templates/tnt/embed_trip_form.html"
+			],
+			[
+				"tripmap",
+				"tntsite/media/js/tripmap.js"
+			],
+			[
+				"trip_form_map",
+				"tntsite/templates/tnt/trip_form_map.html"
+			],
+			[
+				"rip_form_de",
+				"tntsite/templates/tnt/embed_trip_form_details.html"
+			],
+			[
+				"trip_form_fiel",
+				"tntsite/templates/tnt/trip_form_fields.html"
+			],
+			[
+				"trun",
+				"tntsite/tnt/templatetags/truncate_smart.py"
+			],
+			[
+				"signup_",
+				"tntsite/templates/registration/signup_embed_thanks.html"
+			],
+			[
+				"activ",
+				"tntsite/templates/registration/activation_email.txt"
+			],
+			[
+				"rgiest",
+				"tntsite/templates/registration/registration_form_embed.html"
+			],
+			[
+				"login_",
+				"tntsite/templates/registration/login_embed.html"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 329.0,
+	"status_bar_visible": true
+}
