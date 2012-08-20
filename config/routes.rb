@@ -1,5 +1,5 @@
 Transitandtrails::Application.routes.draw do
-  match 'user_profiles/edit' => 'user_profiles#edit'
+  match 'profiles/edit' => 'user_profiles#edit'
 
   resources :user_profiles
 
