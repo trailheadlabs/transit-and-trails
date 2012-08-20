@@ -17,6 +17,7 @@ gem 'rails_admin'
 gem 'fog'
 gem 'carrierwave'
 gem 'rmagick'
+gem 'simple_form'
 
 # Gems used only for assets and not required
 # in production environments by default.

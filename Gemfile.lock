@@ -217,6 +217,9 @@ GEM
       multi_json (~> 1.0)
       rubyzip
     sexp_processor (3.2.0)
+    simple_form (2.0.2)
+      actionpack (~> 3.0)
+      activemodel (~> 3.0)
     simplecov (0.6.4)
       multi_json (~> 1.0)
       simplecov-html (~> 0.5.3)
@@ -263,5 +266,6 @@ DEPENDENCIES
   rspec-rails (~> 2.0)
   ruby_parser
   sass-rails (~> 3.2.3)
+  simple_form
   simplecov
   uglifier (>= 1.0.3)
