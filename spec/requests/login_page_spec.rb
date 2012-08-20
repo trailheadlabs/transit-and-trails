@@ -9,7 +9,7 @@ describe "login page" do
   it "logs users in" do
     user = FactoryGirl.create(:user)
     visit '/users/sign_in'
-    fill_in 'Login', with: user.username
+    fill_in 'Username', with: user.username
     fill_in 'Password', with: 'please'
     click_on 'Sign in'
     page.should have_content user.username
@@ -20,7 +20,7 @@ describe "login page" do
     user.save(validate: false)
     user.encrypted_password.should be_blank
     visit '/users/sign_in'
-    fill_in 'Login', with: user.username
+    fill_in 'Username', with: user.username
     fill_in 'Password', with: 'password'
     click_on 'Sign in'
     page.should have_content user.username
@@ -29,7 +29,7 @@ describe "login page" do
 
   it "doesn't log in bad users" do
     visit '/users/sign_in'
-    fill_in 'Login', with: 'noway'
+    fill_in 'Username', with: 'noway'
     fill_in 'Password', with: 'password'
     click_on 'Sign in'
     page.should have_content 'Invalid'

@@ -18,5 +18,15 @@
   .field
     = f.label :bio
     = f.text_area :bio
+  %p
+    %label My Avatar
+    = image_tag(@user_profile.avatar_url) if @user_profile.avatar?
+    = f.file_field :avatar
+    = f.label :remote_avatar_url
+    = f.text_field :remote_avatar_url
+    = f.hidden_field :avatar_cache
+
+  = f.hidden_field :user_id
+
   .actions
     = f.submit 'Save'

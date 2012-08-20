@@ -7,7 +7,7 @@ describe "UserProfiles" do
       user = FactoryGirl.create(:user)
       user.username.should_not be_nil
       visit "/users/sign_in"
-      fill_in "Login", with: user.username
+      fill_in "Username", with: user.username
       fill_in "Password", with: "please"
       click_button "Sign in"
       page.should have_content user.username

@@ -1,9 +1,9 @@
 %h2 Sign in
 = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
   %div
-    = f.label :login
+    = f.label :username
     %br/
-    = f.text_field :login
+    = f.text_field :username
   %div
     = f.label :password
     %br/

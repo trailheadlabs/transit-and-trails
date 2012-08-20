@@ -18,6 +18,7 @@ describe "user_profiles/new" do
       assert_select "input#user_profile_firstname", :name => "user_profile[firstname]"
       assert_select "input#user_profile_lastname", :name => "user_profile[lastname]"
       assert_select "input#user_profile_url", :name => "user_profile[url]"
+      assert_select "input#user_profile_user_id", :name => "user_profile[user_id]"
       assert_select "textarea#user_profile_bio", :name => "user_profile[bio]"
     end
   end

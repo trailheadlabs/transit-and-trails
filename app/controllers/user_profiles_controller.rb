@@ -26,7 +26,7 @@ class UserProfilesController < ApplicationController
   # GET /user_profiles/new
   # GET /user_profiles/new.json
   def new
-    @user_profile = UserProfile.new
+    @user_profile = current_user.build_user_profile
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @user_profile }
@@ -35,7 +35,11 @@ class UserProfilesController < ApplicationController
 
   # GET /user_profiles/1/edit
   def edit
-    @user_profile = UserProfile.find(params[:id])
+    if(params[:id])
+      @user_profile = UserProfile.find(params[:id])
+    else
+      @user_profile = current_user.user_profile
+    end
   end
 
   # POST /user_profiles

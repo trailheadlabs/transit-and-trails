@@ -10,7 +10,7 @@ describe "rails admin" do
     user = FactoryGirl.create(:admin)
     user.admin.should be_true
     visit '/admin'
-    fill_in 'Login', with: user.username
+    fill_in 'Username', with: user.username
     fill_in 'Password', with: 'please'
     click_on 'Sign in'
     page.should_not have_content 'Sign in'
