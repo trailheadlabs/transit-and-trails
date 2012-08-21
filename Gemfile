@@ -19,6 +19,8 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'simple_form'
 gem 'rabl'
+gem 'yajl-ruby'
+gem 'multi_json'
 
 # Gems used only for assets and not required
 # in production environments by default.

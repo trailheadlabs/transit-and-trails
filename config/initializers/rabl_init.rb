@@ -1,3 +1,25 @@
+
+class PrettyRabl
+  ParseError = ::JSON::ParserError
+  def self.load(string, options={})
+        string = string.read if string.respond_to?(:read)
+        ::JSON.parse(string, :symbolize_names => options[:symbolize_keys])
+  end
+  def self.dump(object, options={})
+    JSON.pretty_generate(object, {:indent => "  "})
+  end
+
+  protected
+
+    def process_options(options={})
+      return options if options.empty?
+      opts = {}
+      opts.merge!(JSON::PRETTY_STATE_PROTOTYPE.to_h) if options.delete(:pretty)
+      opts.merge!(options)
+    end
+
+end
+
 # config/initializers/rabl_init.rb
 Rabl.configure do |config|
   # Commented as these are defaults
@@ -5,7 +27,7 @@ Rabl.configure do |config|
   # config.cache_sources = Rails.env != 'development' # Defaults to false
   # config.cache_engine = Rabl::CacheEngine.new # Defaults to Rails cache
   # config.escape_all_output = false
-  # config.json_engine = nil # Any multi\_json engines
+  config.json_engine = PrettyRabl # Any multi\_json engines
   # config.msgpack_engine = nil # Defaults to ::MessagePack
   # config.bson_engine = nil # Defaults to ::BSON
   # config.plist_engine = nil # Defaults to ::Plist::Emit

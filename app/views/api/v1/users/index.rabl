@@ -1,2 +1,2 @@
 collection @users
-attributes :id, :username
+extends "api/v1/users/show"
