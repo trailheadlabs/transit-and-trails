@@ -1,4 +1,3 @@
-
 class PrettyRabl
   ParseError = ::JSON::ParserError
   def self.load(string, options={})
@@ -6,6 +5,10 @@ class PrettyRabl
         ::JSON.parse(string, :symbolize_names => options[:symbolize_keys])
   end
   def self.dump(object, options={})
+    if object.is_a?(Hash)
+      object = Hash[object.sort]
+    end
+
     JSON.pretty_generate(object, {:indent => "  "})
   end
 
