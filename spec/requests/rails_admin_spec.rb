@@ -16,4 +16,14 @@ describe "rails admin" do
     page.should_not have_content 'Sign in'
   end
 
+  it "doesn't let non admin users in" do
+    user = FactoryGirl.create(:user)
+    user.admin.should be_false
+    visit '/admin'
+    fill_in 'Username', with: user.username
+    fill_in 'Password', with: 'please'
+    click_on 'Sign in'
+    page.should_not have_content 'Sign in'
+  end
+
 end

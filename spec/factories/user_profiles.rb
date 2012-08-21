@@ -7,4 +7,6 @@ FactoryGirl.define do
     url "MyString"
     bio "MyText"
   end
+
+
 end

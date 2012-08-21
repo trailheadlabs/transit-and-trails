@@ -12,6 +12,14 @@ describe ApplicationController do
       get :index
       response.should redirect_to("/users/sign_in")
     end
+
+    it "redirects to the root for a regular user" do
+      @user = FactoryGirl.create(:user)
+      sign_in :user, @user
+      controller.user_signed_in?.should be_true
+      get :index
+      response.should redirect_to("/")
+    end
   end
 
 end
