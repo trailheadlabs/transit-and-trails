@@ -60,6 +60,21 @@
         1,
         null
       ],
+      "/Users/jerememonteau/git/jmoe/transitandtrails/app/controllers/api/v1/users_controller.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null
+      ],
       "/Users/jerememonteau/git/jmoe/transitandtrails/app/controllers/user_profiles_controller.rb": [
         1,
         1,
@@ -318,11 +333,6 @@
         2,
         2,
         2,
-        2,
-        null,
-        0,
-        null,
-        2,
         null,
         1,
         null,
@@ -371,6 +381,6 @@
         null
       ]
     },
-    "timestamp": 1345503784
+    "timestamp": 1345568076
   }
 }

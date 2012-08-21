@@ -146,6 +146,9 @@ GEM
     orm_adapter (0.4.0)
     pg (0.14.0)
     polyglot (0.3.3)
+    rabl (0.7.1)
+      activesupport (>= 2.3.14)
+      multi_json (~> 1.0)
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -260,6 +263,7 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-twitter
   pg
+  rabl
   rails (= 3.2.7)
   rails_admin
   rmagick
