@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120822214544) do
+ActiveRecord::Schema.define(:version => 20120822215943) do
 
   create_table "agencies", :force => true do |t|
     t.string   "name"
@@ -88,6 +88,10 @@ ActiveRecord::Schema.define(:version => 20120822214544) do
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
     t.string   "link"
+    t.float    "min_longitude"
+    t.float    "max_longitude"
+    t.float    "min_latitude"
+    t.float    "max_latitude"
   end
 
   add_index "parks", ["agency_id"], :name => "index_parks_on_agency_id"

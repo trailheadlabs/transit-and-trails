@@ -2,6 +2,17 @@ class Park < ActiveRecord::Base
   belongs_to :agency
   belongs_to :non_profit_partner
   attr_accessible :acres, :bounds, :county, :county_slug, :description, :name, :slug, :link
+  after_update :update_bounds_min_max
+
+  def update_bounds_min_max
+    if self.bounds_changed?
+      sides = sides_of_bounds
+      min_longitude = sides[0]
+      max_longitude = sides[1]
+      min_latitude = sides[2]
+      max_latitude = sides[3]
+    end
+  end
 
   def bounds_as_array
     self.bounds.gsub(/[A-Za-z]|\(|\)/,"").strip.split(',').collect{|c| c.split(" ").collect{|d| Float(d)}}

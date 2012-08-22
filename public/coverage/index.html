@@ -14,7 +14,7 @@
     <link href='./assets/0.5.3/highlight.css' media='screen, projection, print' rel='stylesheet' type='text/css'>
     <link href='./assets/0.5.3/fancybox/jquery.fancybox-1.3.1.css' media='screen, projection, print' rel='stylesheet' type='text/css'>
     <link href='./assets/0.5.3/smoothness/jquery-ui-1.8.4.custom.css' media='screen, projection, print' rel='stylesheet' type='text/css'>    
-    <link rel="shortcut icon" type="image/png" href="./assets/0.5.3/favicon_yellow.png" />
+    <link rel="shortcut icon" type="image/png" href="./assets/0.5.3/favicon_green.png" />
     <link rel="icon" type="image/png" href="./assets/0.5.3/favicon.png" />
   </head>
   
@@ -23,27 +23,27 @@
       <img src="./assets/0.5.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2012-08-22T14:48:24-07:00">2012-08-22T14:48:24-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2012-08-22T15:07:17-07:00">2012-08-22T15:07:17-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="yellow">89.81%</span></span>
+    (<span class="covered_percent"><span class="green">92.14%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.13
+         1.37
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>44</b> files in total.
-    <b>412</b> relevant lines. 
-    <span class="green"><b>370</b> lines covered</span> and
-    <span class="red"><b>42</b> lines missed </span>
+    <b>420</b> relevant lines. 
+    <span class="green"><b>387</b> lines covered</span> and
+    <span class="red"><b>33</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -351,12 +351,12 @@
       
       <tr>
         <td class="strong"><a href="#4a7fa6310de91b01811b633bfd1bf907b33ea68e" class="src_link" title="app/models/park.rb">app/models/park.rb</a></td>
-        <td class="red strong">38.89 %</td>
-        <td>25</td>
-        <td>18</td>
-        <td>7</td>
-        <td>11</td>
-        <td>0.4</td>
+        <td class="green strong">92.31 %</td>
+        <td>36</td>
+        <td>26</td>
+        <td>24</td>
+        <td>2</td>
+        <td>11.3</td>
       </tr>
       
       <tr>
@@ -675,20 +675,20 @@
           <div class="file_list_container" id="Models">
   <h2>
     <span class="group_name">Models</span>
-    (<span class="covered_percent"><span class="yellow">84.29%</span></span>
+    (<span class="covered_percent"><span class="green">97.44%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.05
+         2.04
        </span>
     </span> hits/line)
   </h2>
   <a name="Models"></a>
   <div>
     <b>11</b> files in total.
-    <b>70</b> relevant lines. 
-    <span class="green"><b>59</b> lines covered</span> and
-    <span class="red"><b>11</b> lines missed </span>
+    <b>78</b> relevant lines. 
+    <span class="green"><b>76</b> lines covered</span> and
+    <span class="red"><b>2</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -756,12 +756,12 @@
       
       <tr>
         <td class="strong"><a href="#4a7fa6310de91b01811b633bfd1bf907b33ea68e" class="src_link" title="app/models/park.rb">app/models/park.rb</a></td>
-        <td class="red strong">38.89 %</td>
-        <td>25</td>
-        <td>18</td>
-        <td>7</td>
-        <td>11</td>
-        <td>0.4</td>
+        <td class="green strong">92.31 %</td>
+        <td>36</td>
+        <td>26</td>
+        <td>24</td>
+        <td>2</td>
+        <td>11.3</td>
       </tr>
       
       <tr>
@@ -3389,11 +3389,11 @@
         <div class="source_table" id="4a7fa6310de91b01811b633bfd1bf907b33ea68e">
   <div class="header">
     <h3>app/models/park.rb</h3>
-    <h4><span class="red">38.89 %</span> covered</h4>
+    <h4><span class="green">92.31 %</span> covered</h4>
     <div>
-      <b>18</b> relevant lines. 
-      <span class="green"><b>7</b> lines covered</span> and
-      <span class="red"><b>11</b> lines missed.</span>
+      <b>26</b> relevant lines. 
+      <span class="green"><b>24</b> lines covered</span> and
+      <span class="red"><b>2</b> lines missed.</span>
     </div>
   </div>
   
@@ -3424,88 +3424,88 @@
           <code class="ruby">  attr_accessible :acres, :bounds, :county, :county_slug, :description, :name, :slug, :link</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="5">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="6">
+        <li class="covered" data-hits="1" data-linenumber="5">
           <span class="hits">1</span>
           
-          <code class="ruby">  def bounds_as_array</code>
+          <code class="ruby">  after_update :update_bounds_min_max</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="7">
-          
-          
-          <code class="ruby">    self.bounds.gsub(/[A-Za-z]|\(|\)/,&quot;&quot;).strip.split(',').collect{|c| c.split(&quot; &quot;).collect{|d| Float(d)}}</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="8">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="9">
+        <li class="never" data-hits="" data-linenumber="6">
           
           
           <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="7">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def update_bounds_min_max</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="8">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    if self.bounds_changed?</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="9">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      sides = sides_of_bounds</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="10">
           <span class="hits">1</span>
           
-          <code class="ruby">  def sides_of_bounds</code>
+          <code class="ruby">      min_longitude = sides[0]</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="11">
+        <li class="covered" data-hits="1" data-linenumber="11">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">    b_a = bounds_as_array</code>
+          <code class="ruby">      max_longitude = sides[1]</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="12">
+        <li class="covered" data-hits="1" data-linenumber="12">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">    longs = b_a.collect{|c| c[0]}.sort</code>
+          <code class="ruby">      min_latitude = sides[2]</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="13">
+        <li class="covered" data-hits="1" data-linenumber="13">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">    lats = b_a.collect{|c| c[1]}.sort</code>
+          <code class="ruby">      max_latitude = sides[3]</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="14">
+        <li class="never" data-hits="" data-linenumber="14">
           
           
-          <code class="ruby">    min_long = longs[0]</code>
+          <code class="ruby">    end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="15">
+        <li class="never" data-hits="" data-linenumber="15">
           
           
-          <code class="ruby">    max_long = longs[-1]</code>
+          <code class="ruby">  end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="16">
+        <li class="never" data-hits="" data-linenumber="16">
           
           
-          <code class="ruby">    min_lat = lats[0]</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="17">
+        <li class="covered" data-hits="1" data-linenumber="17">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">    max_lat = lats[-1]</code>
+          <code class="ruby">  def bounds_as_array</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="18">
+        <li class="covered" data-hits="163" data-linenumber="18">
+          <span class="hits">163</span>
           
-          
-          <code class="ruby">    [min_long,max_long,min_lat,max_lat]</code>
+          <code class="ruby">    self.bounds.gsub(/[A-Za-z]|\(|\)/,&quot;&quot;).strip.split(',').collect{|c| c.split(&quot; &quot;).collect{|d| Float(d)}}</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="19">
@@ -3523,28 +3523,94 @@
         <li class="covered" data-hits="1" data-linenumber="21">
           <span class="hits">1</span>
           
-          <code class="ruby">  def polys</code>
+          <code class="ruby">  def sides_of_bounds</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="22">
+        <li class="covered" data-hits="1" data-linenumber="22">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">    tmp = bounds.gsub(/[A-Za-z]|\)/,&quot;&quot;).strip.split('(').select{|c| !c.blank?}</code>
+          <code class="ruby">    b_a = bounds_as_array</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="23">
+        <li class="covered" data-hits="55" data-linenumber="23">
+          <span class="hits">55</span>
           
-          
-          <code class="ruby">    tmp.collect!{ |c|c.strip.split(',').collect{|e| e.split(&quot; &quot;).collect{|d| Float(d)}} }</code>
+          <code class="ruby">    longs = b_a.collect{|c| c[0]}.sort</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="24">
+        <li class="covered" data-hits="55" data-linenumber="24">
+          <span class="hits">55</span>
+          
+          <code class="ruby">    lats = b_a.collect{|c| c[1]}.sort</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="25">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    min_long = longs[0]</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="26">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    max_long = longs[-1]</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="27">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    min_lat = lats[0]</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="28">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    max_lat = lats[-1]</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="29">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    [min_long,max_long,min_lat,max_lat]</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="30">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="25">
+        <li class="never" data-hits="" data-linenumber="31">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="32">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def polys</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="33">
+          
+          
+          <code class="ruby">    tmp = bounds.gsub(/[A-Za-z]|\)/,&quot;&quot;).strip.split('(').select{|c| !c.blank?}</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="34">
+          
+          
+          <code class="ruby">    tmp.collect!{ |c|c.strip.split(',').collect{|e| e.split(&quot; &quot;).collect{|d| Float(d)}} }</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="35">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="36">
           
           
           <code class="ruby">end</code>

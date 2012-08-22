@@ -24,7 +24,7 @@
       %td= trailhead.zimride_url
       %td= link_to 'Show', trailhead
       %td= link_to 'Edit', edit_trailhead_path(trailhead)
-      %td= link_to 'Destroy', trailhead, :confirm => 'Are you sure?', :method => :delete
+      %td= link_to 'Destroy', trailhead, :data => { :confirm => 'Are you sure?' }, :method => :delete
 
 %br
 
