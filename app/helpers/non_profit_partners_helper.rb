@@ -1,0 +1,2 @@
+module NonProfitPartnersHelper
+end

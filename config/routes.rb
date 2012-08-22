@@ -1,4 +1,12 @@
 Transitandtrails::Application.routes.draw do
+  resources :agencies
+
+  resources :parks
+
+  resources :non_profit_partners
+
+  resources :trailheads
+
   get "attribute_category/index"
 
   get "attribute_category/show"

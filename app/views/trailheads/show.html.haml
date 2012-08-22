@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @trailhead.name
+%p
+  %b Description:
+  = @trailhead.description
+%p
+  %b Latitude:
+  = @trailhead.latitude
+%p
+  %b Longitude:
+  = @trailhead.longitude
+%p
+  %b User:
+  = @trailhead.user
+%p
+  %b Rideshare:
+  = @trailhead.rideshare
+%p
+  %b Zimride url:
+  = @trailhead.zimride_url
+
+= link_to 'Edit', edit_trailhead_path(@trailhead)
+\|
+= link_to 'Back', trailheads_path

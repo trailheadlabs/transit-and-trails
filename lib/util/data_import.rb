@@ -33,6 +33,76 @@ module Util
       latest_objects_for('baosc-productiondatadump.tnt.campgroundfeature')
     end
 
+    def self.latest_trailhead_objects
+      latest_objects_for('baosc-productiondatadump.tnt.trailhead')
+    end
+
+    def self.latest_park_objects
+      latest_objects_for('baosc-productiondatadump.tnt.park')
+    end
+
+    def self.latest_non_profit_partner_objects
+      latest_objects_for('baosc-productiondatadump.tnt.nonprofitpartner')
+    end
+
+    def self.latest_agency_objects
+      latest_objects_for('baosc-productiondatadump.tnt.agency')
+    end
+
+    def self.import_agency(item)
+      new_record = Agency.find_or_create_by_id(Integer(item['pk']))
+      fields = item['fields']
+      new_record.name = fields['name']
+      new_record.description = fields['description']
+      new_record.link = fields['link']
+
+      begin
+        unless fields['logo'].blank?
+          new_record.remote_logo_url = "http://transitandtrails.org/media/" + fields['logo']
+          new_record.logo.store!
+        end
+      rescue Exception => e
+        puts "Could not set logo for non profit partner #{new_record.name}"
+        puts fields['logo']
+        puts e.message
+      end
+      new_record.save
+    end
+
+    def self.import_non_profit_partner(item)
+      new_record = NonProfitPartner.find_or_create_by_id(Integer(item['pk']))
+      fields = item['fields']
+      new_record.name = fields['name']
+      new_record.description = fields['description']
+      new_record.link = fields['link']
+
+      begin
+        unless fields['logo'].blank?
+          new_record.remote_logo_url = "http://transitandtrails.org/media/" + fields['logo']
+          new_record.logo.store!
+        end
+      rescue Exception => e
+        puts "Could not set logo for non profit partner #{new_record.name}"
+        puts fields['logo']
+        puts e.message
+      end
+      new_record.save
+    end
+
+    def self.import_park(item)
+      new_record = Park.find_or_create_by_id(Integer(item['pk']))
+      fields = item['fields']
+      new_record.name = fields['name']
+      new_record.description = fields['description']
+      new_record.agency_id = fields['agency']
+      new_record.acres = fields['acres']
+      new_record.county = fields['county']
+      new_record.county_slug = fields['county_slug']
+      new_record.slug = fields['slug']
+      new_record.link = fields['link']
+      new_record.bounds = fields['geom']
+      new_record.save
+    end
 
     def self.import_attribute_category(item)
       new_record = Category.find_or_create_by_id(Integer(item['pk']))
@@ -42,6 +112,20 @@ module Util
       new_record.rank = fields['rank']
       new_record.visible = fields['visible']
       new_record.save
+    end
+
+    def self.import_trailhead(item)
+      new_record = Trailhead.find_or_create_by_id(Integer(item['pk']))
+      fields = item['fields']
+      new_record.name = fields['name']
+      new_record.description = fields['description']
+      new_record.rideshare = fields['rideshare']
+      new_record.latitude = fields['latitude']
+      new_record.longitude = fields['longitude']
+      new_record.zimride_url = fields['zimride_url']
+      new_record.user_id = fields['author']
+      new_record.approved = fields['approved']
+      new_record.save && new_record.trailhead_features = TrailheadFeature.where(id: fields['features'])
     end
 
     def self.import_feature(item)

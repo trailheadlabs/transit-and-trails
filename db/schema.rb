@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120822054205) do
+ActiveRecord::Schema.define(:version => 20120822214544) do
+
+  create_table "agencies", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.text     "link"
+    t.string   "logo"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "attribute_categories", :force => true do |t|
     t.string   "name"
@@ -57,6 +66,33 @@ ActiveRecord::Schema.define(:version => 20120822054205) do
 
   add_index "features", ["category_id"], :name => "index_features_on_category_id"
 
+  create_table "non_profit_partners", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "link"
+    t.string   "logo"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "parks", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "agency_id"
+    t.integer  "acres"
+    t.string   "county"
+    t.string   "county_slug"
+    t.integer  "non_profit_partner_id"
+    t.text     "bounds"
+    t.text     "slug"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+    t.string   "link"
+  end
+
+  add_index "parks", ["agency_id"], :name => "index_parks_on_agency_id"
+  add_index "parks", ["non_profit_partner_id"], :name => "index_parks_on_non_profit_partner_id"
+
   create_table "rails_admin_histories", :force => true do |t|
     t.text     "message"
     t.string   "username"
@@ -82,6 +118,26 @@ ActiveRecord::Schema.define(:version => 20120822054205) do
   end
 
   add_index "trailhead_features", ["category_id"], :name => "index_trailhead_features_on_category_id"
+
+  create_table "trailhead_features_trailheads", :id => false, :force => true do |t|
+    t.integer "trailhead_id"
+    t.integer "trailhead_feature_id"
+  end
+
+  create_table "trailheads", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.integer  "user_id"
+    t.boolean  "rideshare"
+    t.string   "zimride_url"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.boolean  "approved"
+  end
+
+  add_index "trailheads", ["user_id"], :name => "index_trailheads_on_user_id"
 
   create_table "trip_features", :force => true do |t|
     t.string   "name"

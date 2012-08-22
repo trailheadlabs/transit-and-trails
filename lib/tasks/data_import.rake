@@ -131,4 +131,60 @@ namespace :import do
 
   end
 
+  desc "Import trailheads from the S3 backup"
+  task :trailheads => :environment do
+
+    puts "importing trailheads"
+    # download file from S3
+    json = Util::DataImport::latest_trailhead_objects
+    # for each item in list
+    json.each do |item|
+      puts JSON.pretty_generate item, :indent => "  "
+      puts Util::DataImport::import_trailhead item
+    end
+
+  end
+
+  desc "Import parks from the S3 backup"
+  task :parks => :environment do
+
+    puts "importing parks"
+    # download file from S3
+    json = Util::DataImport::latest_park_objects
+    # for each item in list
+    json.each do |item|
+      puts JSON.pretty_generate item, :indent => "  "
+      puts Util::DataImport::import_park item
+    end
+
+  end
+
+  desc "Import non profit partners from the S3 backup"
+  task :non_profit_partners => :environment do
+
+    puts "importing non profit partners"
+    # download file from S3
+    json = Util::DataImport::latest_non_profit_partner_objects
+    # for each item in list
+    json.each do |item|
+      puts JSON.pretty_generate item, :indent => "  "
+      puts Util::DataImport::import_non_profit_partner item
+    end
+
+  end
+
+  desc "Import agencies from the S3 backup"
+  task :agencies => :environment do
+
+    puts "importing agencies"
+    # download file from S3
+    json = Util::DataImport::latest_agency_objects
+    # for each item in list
+    json.each do |item|
+      puts JSON.pretty_generate item, :indent => "  "
+      puts Util::DataImport::import_agency item
+    end
+
+  end
+
 end

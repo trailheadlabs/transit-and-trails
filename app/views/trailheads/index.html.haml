@@ -1,0 +1,31 @@
+%h1 Listing trailheads
+
+%table
+  %tr
+    %th Name
+    %th Description
+    %th Latitude
+    %th Longitude
+    %th User
+    %th Rideshare
+    %th Zimride url
+    %th
+    %th
+    %th
+
+  - @trailheads.each do |trailhead|
+    %tr
+      %td= trailhead.name
+      %td= trailhead.description
+      %td= trailhead.latitude
+      %td= trailhead.longitude
+      %td= trailhead.user
+      %td= trailhead.rideshare
+      %td= trailhead.zimride_url
+      %td= link_to 'Show', trailhead
+      %td= link_to 'Edit', edit_trailhead_path(trailhead)
+      %td= link_to 'Destroy', trailhead, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Trailhead', new_trailhead_path

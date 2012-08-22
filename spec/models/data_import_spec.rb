@@ -2,33 +2,9 @@ require 'spec_helper'
 require 'util/data_import'
 
 describe "DataImport" do
-  it "downloads the latest users" do
-    json = Util::DataImport::latest_user_objects
-    json.count.should be > 0
-  end
-
-  it "downloads the latest user profiles" do
-    json = Util::DataImport::latest_user_profile_objects
-    json.count.should be > 0
-  end
 
   it "downloads the latest attribute categories" do
     json = Util::DataImport::latest_attribute_category_objects
-    json.count.should be > 0
-  end
-
-  it "downloads the latest trip features" do
-    json = Util::DataImport::latest_trip_feature_objects
-    json.count.should be > 0
-  end
-
-  it "downloads the latest trailhead features" do
-    json = Util::DataImport::latest_trailhead_feature_objects
-    json.count.should be > 0
-  end
-
-  it "downloads the latest campground features" do
-    json = Util::DataImport::latest_campground_feature_objects
     json.count.should be > 0
   end
 
@@ -37,16 +13,150 @@ describe "DataImport" do
     Util::DataImport::import_attribute_category item
     fields = item['fields']
     new_record = Category.find(item['pk'])
-    new_record.id.should eq item['pk']
     new_record.should_not be nil
+    new_record.id.should eq item['pk']
     new_record.name.should eq fields['name']
     new_record.description.should eq fields['description']
     new_record.rank.should eq fields['rank']
     new_record.visible.should eq fields['visible']
   end
 
+  it "imports agencies correctly" do
+    item = JSON::parse('
+      {
+        "pk": 4,
+        "model": "tnt.agency",
+        "fields": {
+          "logo": "baosc.png",
+          "cpad_agency_layer": "Joint",
+          "link": "http://www.parks.ca.gov/",
+          "name": "California Department of Parks and Recreation",
+          "description": null
+        }
+      }')
+    Util::DataImport::import_agency item
+    fields = item['fields']
+    new_record = Agency.find(item['pk'])
+    new_record.should_not be nil
+    new_record.id.should eq item['pk']
+    new_record.name.should eq fields['name']
+    new_record.description.should eq fields['description']
+    new_record.link.should eq fields['link']
+    unless fields['logo'].blank?
+      new_record.logo.should_not be_blank
+    end
+
+  end
+
+  it "imports parks correctly" do
+    item = JSON::parse(
+      '{
+        "pk": 13780,
+        "model": "tnt.park",
+        "fields": {
+          "imported": true,
+          "cpad_holding_id": null,
+          "cpad_unit_id": 373,
+          "description": null,
+          "agency": 681,
+          "acres": 6,
+          "county": "San Luis Obispo",
+          "county_slug": "san-luis-obispo",
+          "link": null,
+          "non_profit_partner": null,
+          "geom": "MULTIPOLYGON (((-120.6778337542494057 35.2459292901028647, -120.6780587797285165 35.2455394597726865, -120.6781060805927126 35.2455575880658145, -120.6782062709410610 35.2455965322667240, -120.6784503063460505 35.2454531255531194, -120.6787287126712300 35.2452683901590547, -120.6789640835467168 35.2450282384723650, -120.6793177851364476 35.2446660246116892, -120.6793642855875390 35.2446171014201894, -120.6793464429058531 35.2445329616935012, -120.6796308414623269 35.2445329343717262, -120.6796025397616177 35.2445921705404501, -120.6793032711659777 35.2452338536991903, -120.6789077449800232 35.2453236541850927, -120.6782303478097162 35.2456608192093910, -120.6778731180333608 35.2462107823197854, -120.6780045043952185 35.2467872538395142, -120.6779312080270756 35.2468993140781848, -120.6778139841454163 35.2473087712361135, -120.6776706469406122 35.2472532876808486, -120.6776983571663919 35.2470486756741934, -120.6777443415295892 35.2466875483271522, -120.6777514154527609 35.2464400032953407, -120.6777570361281988 35.2462324767514374, -120.6776514457544778 35.2461541804962764, -120.6776768255789278 35.2461316617893701, -120.6777020696749929 35.2461051879824936, -120.6777245657579982 35.2460787671738771, -120.6777510915468952 35.2460494456821181, -120.6777735509465828 35.2460213465487300, -120.6777958943298330 35.2459904169229503, -120.6778141664326967 35.2459612824042381, -120.6778337542494057 35.2459292901028647)), ((-120.6719873109352790 35.2706286870222172, -120.6721585587450818 35.2698437120528681, -120.6725403578562776 35.2698845496693778, -120.6724678034735518 35.2701458295363111, -120.6723935728494865 35.2703924853165773, -120.6721979230370465 35.2710194550338514, -120.6716535110438571 35.2722810340306978, -120.6714543276050620 35.2727889903635017, -120.6714871058772758 35.2729463842230047, -120.6714802205418948 35.2729602122739578, -120.6714732494002504 35.2729740417222217, -120.6706077533082180 35.2725229061236973, -120.6706372029641585 35.2724355286917302, -120.6706558655912005 35.2723801546110352, -120.6706890008679522 35.2722818393025364, -120.6709964518066300 35.2718939780310379, -120.6710499761307176 35.2718266947706738, -120.6712920408255343 35.2715213801583829, -120.6713016051748895 35.2715092240767163, -120.6719825152759569 35.2706506640636306, -120.6719873109352790 35.2706286870222172)))",
+          "slug": "san-luis-creek-open-space",
+          "name": "San Luis Creek Open Space"
+        }
+      }')
+    Util::DataImport::import_park item
+    fields = item['fields']
+    new_record = Park.find(item['pk'])
+    new_record.should_not be nil
+    new_record.id.should eq item['pk']
+    new_record.name.should eq fields['name']
+    new_record.agency_id.should eq fields['agency']
+    new_record.acres.should eq fields['acres']
+    new_record.county.should eq fields['county']
+    new_record.county_slug.should eq fields['county_slug']
+    new_record.slug.should eq fields['slug']
+    new_record.link.should eq fields['link']
+  end
+
+  it "imports nonprofit partners correctly" do
+    item = JSON::parse(
+      '{
+        "pk": 1,
+        "model": "tnt.nonprofitpartner",
+        "fields": {
+          "logo": "baosc.png",
+          "link": "http://www.parksconservancy.org/",
+          "name": "Golden Gate National Parks Conservancy",
+          "description": ""
+        }
+      }')
+    Util::DataImport::import_non_profit_partner item
+    fields = item['fields']
+    new_record = NonProfitPartner.find(item['pk'])
+    new_record.should_not be nil
+    new_record.id.should eq item['pk']
+    new_record.name.should eq fields['name']
+    new_record.description.should eq fields['description']
+    new_record.link.should eq fields['link']
+    unless fields['logo'].blank?
+      new_record.logo.should_not be_blank
+    end
+
+  end
+
+
+  it "imports trailheads correctly" do
+    FactoryGirl.create(:trailhead_feature,:id=>4)
+    FactoryGirl.create(:trailhead_feature,:id=>5)
+    FactoryGirl.create(:trailhead_feature,:id=>6)
+    item = JSON::parse(
+      '{
+        "pk": 48,
+        "model": "tnt.trailhead",
+        "fields": {
+          "name": "West Winton Avenue Park Entrance",
+          "author": 1,
+          "agency": null,
+          "park": null,
+          "longitude": -122.145099,
+          "cpad_park_name": "",
+          "rideshare": null,
+          "features": [
+            4,
+            5,
+            6
+          ],
+          "location": "POINT (-122.1450990000000019 37.6473949995000012)",
+          "latitude": 37.6473949995,
+          "zimride_url": null,
+          "approved": null,
+          "description": ""
+        }
+      }')
+    Util::DataImport::import_trailhead item
+    fields = item['fields']
+    new_record = Trailhead.find(item['pk'])
+    new_record.should_not be nil
+    new_record.id.should eq item['pk']
+    new_record.name.should eq fields['name']
+    new_record.description.should eq fields['description']
+    new_record.rideshare.should eq fields['rideshare']
+    new_record.latitude.should eq fields['latitude']
+    new_record.longitude.should eq fields['longitude']
+    new_record.approved.should eq fields['approved']
+    new_record.user_id.should eq fields['author']
+    if fields['features']
+      new_record.trailhead_features.collect{|c| c.id}.sort.should eq fields['features'].sort
+    end
+  end
+
   it "imports features correctly" do
-    item = JSON::parse('{"pk": 38, "model": "tnt.tripfeature", "fields": {"category": 3, "name": "Walking", "description": "Walking is the preferred means of transportation here. Check the trips info to find some cool trails and other places to check out. ", "rank": 1, "quantity": 0, "link_url": "http://nps.gov", "icon": ""}}')
+    item = JSON::parse('{"pk": 38, "model": "tnt.tripfeature", "fields": {"category": 3, "name": "Walking", "description": "Walking is the preferred means of transportation here. Check the trips info to find some cool trails and other places to check out. ", "rank": 1, "quantity": 0, "link_url": "http://nps.gov", "marker_icon": "baosc.png"}}')
     Util::DataImport::import_feature item
     fields = item['fields']
     new_record = Feature.find_by_name(fields['name'])
@@ -57,12 +167,12 @@ describe "DataImport" do
     new_record.link_url.should eq fields['link_url']
     new_record.category_id.should eq fields['category']
     unless fields['marker_icon'].blank?
-      new_record.marker_con.should_not be_blank
+      new_record.marker_icon.should_not be_blank
     end
   end
 
 it "imports campground features correctly" do
-    item = JSON::parse('{"pk": 38, "model": "tnt.tripfeature", "fields": {"category": 3, "name": "Walking", "description": "Walking is the preferred means of transportation here. Check the trips info to find some cool trails and other places to check out. ", "rank": 1, "quantity": 0, "link_url": "http://nps.gov", "icon": ""}}')
+    item = JSON::parse('{"pk": 38, "model": "tnt.tripfeature", "fields": {"category": 3, "name": "Walking", "description": "Walking is the preferred means of transportation here. Check the trips info to find some cool trails and other places to check out. ", "rank": 1, "quantity": 0, "link_url": "http://nps.gov", "marker_icon": "baosc.png"}}')
     Util::DataImport::import_campground_feature item
     fields = item['fields']
     new_record = CampgroundFeature.find_by_name(fields['name'])
@@ -73,12 +183,12 @@ it "imports campground features correctly" do
     new_record.link_url.should eq fields['link_url']
     new_record.category_id.should eq fields['category']
     unless fields['marker_icon'].blank?
-      new_record.marker_con.should_not be_blank
+      new_record.marker_icon.should_not be_blank
     end
   end
 
 it "imports trailhead features correctly" do
-    item = JSON::parse('{"pk": 38, "model": "tnt.tripfeature", "fields": {"category": 3, "name": "Walking", "description": "Walking is the preferred means of transportation here. Check the trips info to find some cool trails and other places to check out. ", "rank": 1, "quantity": 0, "link_url": "http://nps.gov", "icon": ""}}')
+    item = JSON::parse('{"pk": 38, "model": "tnt.tripfeature", "fields": {"category": 3, "name": "Walking", "description": "Walking is the preferred means of transportation here. Check the trips info to find some cool trails and other places to check out. ", "rank": 1, "quantity": 0, "link_url": "http://nps.gov", "marker_icon": "baosc.png"}}')
     Util::DataImport::import_trailhead_feature item
     fields = item['fields']
     new_record = TrailheadFeature.find_by_name(fields['name'])
@@ -89,12 +199,12 @@ it "imports trailhead features correctly" do
     new_record.link_url.should eq fields['link_url']
     new_record.category_id.should eq fields['category']
     unless fields['marker_icon'].blank?
-      new_record.marker_con.should_not be_blank
+      new_record.marker_icon.should_not be_blank
     end
   end
 
 it "imports trip features correctly" do
-    item = JSON::parse('{"pk": 38, "model": "tnt.tripfeature", "fields": {"category": 3, "name": "Walking", "description": "Walking is the preferred means of transportation here. Check the trips info to find some cool trails and other places to check out. ", "rank": 1, "quantity": 0, "link_url": "http://nps.gov", "icon": ""}}')
+    item = JSON::parse('{"pk": 38, "model": "tnt.tripfeature", "fields": {"category": 3, "name": "Walking", "description": "Walking is the preferred means of transportation here. Check the trips info to find some cool trails and other places to check out. ", "rank": 1, "quantity": 0, "link_url": "http://nps.gov", "marker_icon": "baosc.png"}}')
     Util::DataImport::import_trip_feature item
     fields = item['fields']
     new_record = TripFeature.find_by_name(fields['name'])
@@ -105,7 +215,7 @@ it "imports trip features correctly" do
     new_record.link_url.should eq fields['link_url']
     new_record.category_id.should eq fields['category']
     unless fields['marker_icon'].blank?
-      new_record.marker_con.should_not be_blank
+      new_record.marker_icon.should_not be_blank
     end
   end
 

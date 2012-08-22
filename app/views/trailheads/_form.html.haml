@@ -1,0 +1,31 @@
+= form_for @trailhead do |f|
+  -if @trailhead.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@trailhead.errors.count, "error")} prohibited this trailhead from being saved:"
+      %ul
+        - @trailhead.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :description
+    = f.text_area :description
+  .field
+    = f.label :latitude
+    = f.text_field :latitude
+  .field
+    = f.label :longitude
+    = f.text_field :longitude
+  .field
+    = f.label :user
+    = f.text_field :user
+  .field
+    = f.label :rideshare
+    = f.check_box :rideshare
+  .field
+    = f.label :zimride_url
+    = f.text_field :zimride_url
+  .actions
+    = f.submit 'Save'
