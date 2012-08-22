@@ -1,7 +1,8 @@
 class Park < ActiveRecord::Base
   belongs_to :agency
   belongs_to :non_profit_partner
-  attr_accessible :acres, :bounds, :county, :county_slug, :description, :name, :slug, :link
+  attr_accessible :acres, :bounds, :county, :county_slug, :description, :name, :slug, :link,
+    :min_longitude, :max_longitude, :min_latitude, :max_latitude
   after_update :update_bounds_min_max
 
   def update_bounds_min_max
