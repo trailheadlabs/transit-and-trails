@@ -11,7 +11,51 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120820212533) do
+ActiveRecord::Schema.define(:version => 20120822052319) do
+
+  create_table "attribute_categories", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "visible"
+    t.integer  "rank"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "campground_features", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "marker_icon"
+    t.integer  "rank"
+    t.string   "link_url"
+    t.integer  "category_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "campground_features", ["category_id"], :name => "index_campground_features_on_category_id"
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "visible"
+    t.integer  "rank"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "features", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.text     "link_url"
+    t.integer  "rank"
+    t.integer  "category_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "marker_icon"
+  end
+
+  add_index "features", ["category_id"], :name => "index_features_on_category_id"
 
   create_table "rails_admin_histories", :force => true do |t|
     t.text     "message"

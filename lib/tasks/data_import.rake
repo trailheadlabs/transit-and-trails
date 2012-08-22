@@ -52,6 +52,45 @@ namespace :import do
         puts Util::DataImport::import_user_profile item
       end
     end
+  end
+
+  desc "Import attribute_categories from the S3 backup"
+  task :categories => :environment do
+    # download file from S3
+    json = Util::DataImport::latest_attribute_category_objects
+    # for each item in list
+    json.each do |item|
+      puts Util::DataImport::import_attribute_category item
+    end
+  end
+
+  desc "Import features from the S3 backup"
+  task :features => :environment do
+    puts "importing trip features"
+    # download file from S3
+    json = Util::DataImport::latest_trip_feature_objects
+    # for each item in list
+    json.each do |item|
+      puts Util::DataImport::import_feature item
+    end
+
+    puts "importing trailhead features"
+    # download file from S3
+    json = Util::DataImport::latest_trailhead_feature_objects
+    # for each item in list
+    json.each do |item|
+      puts Util::DataImport::import_feature item
+    end
+
+    puts "importing campground features"
+    # download file from S3
+    json = Util::DataImport::latest_campground_feature_objects
+    # for each item in list
+    json.each do |item|
+      puts Util::DataImport::import_feature item
+    end
 
   end
+
+
 end

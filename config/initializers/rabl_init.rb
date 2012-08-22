@@ -30,7 +30,7 @@ Rabl.configure do |config|
   # config.cache_sources = Rails.env != 'development' # Defaults to false
   # config.cache_engine = Rabl::CacheEngine.new # Defaults to Rails cache
   # config.escape_all_output = false
-  config.json_engine = PrettyRabl # Any multi\_json engines
+  # config.json_engine = PrettyRabl # Any multi\_json engines
   # config.msgpack_engine = nil # Defaults to ::MessagePack
   # config.bson_engine = nil # Defaults to ::BSON
   # config.plist_engine = nil # Defaults to ::Plist::Emit

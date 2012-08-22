@@ -12,6 +12,57 @@ describe "DataImport" do
     json.count.should be > 0
   end
 
+  it "downloads the latest attribute categories" do
+    json = Util::DataImport::latest_attribute_category_objects
+    json.count.should be > 0
+  end
+
+  it "downloads the latest trip features" do
+    json = Util::DataImport::latest_trip_feature_objects
+    json.count.should be > 0
+  end
+
+  it "downloads the latest trailhead features" do
+    json = Util::DataImport::latest_trailhead_feature_objects
+    json.count.should be > 0
+  end
+
+  it "downloads the latest campground features" do
+    json = Util::DataImport::latest_campground_feature_objects
+    json.count.should be > 0
+  end
+
+  it "imports attribute categories correctly" do
+    item = JSON::parse('{"pk": 8, "model": "tnt.attributecategory", "fields": {"visible": true, "name": "Trip Route", "rank": 1, "description": "What is the trip route - loop, out and back, one-way?"}}')
+    Util::DataImport::import_attribute_category item
+    fields = item['fields']
+    new_record = Category.find(item['pk'])
+    new_record.id.should eq item['pk']
+    new_record.should_not be nil
+    new_record.name.should eq fields['name']
+    new_record.description.should eq fields['description']
+    new_record.rank.should eq fields['rank']
+    new_record.visible.should eq fields['visible']
+  end
+
+  it "imports features correctly" do
+    item = JSON::parse('{"pk": 38, "model": "tnt.tripfeature", "fields": {"category": 3, "name": "Walking", "description": "Walking is the preferred means of transportation here. Check the trips info to find some cool trails and other places to check out. ", "rank": 1, "quantity": 0, "link_url": "http://nps.gov", "icon": ""}}')
+    Util::DataImport::import_feature item
+    fields = item['fields']
+    new_record = Feature.find_by_name(fields['name'])
+    new_record.should_not be nil
+    new_record.name.should eq fields['name']
+    new_record.description.should eq fields['description']
+    new_record.rank.should eq fields['rank']
+    new_record.link_url.should eq fields['link_url']
+    new_record.category_id.should eq fields['category']
+    unless fields['marker_icon'].blank?
+      new_record.marker_con.should_not be_blank
+    end
+
+  end
+
+
   it "imports users properly" do
     item = JSON::parse('{"pk":18,"model":"auth.user","fields":{"username":"jereme","first_name":"Jereme","last_name":"Monteau","is_active":true,"is_superuser":false,"is_staff":false,"last_login":"2012-08-03 16:39:36","groups":[1],"user_permissions":[],"password":"sha1$a3f08$d62f324e83384347d6cb1499c152f81b6cb6cc9f","email":"me@jmoe.com","date_joined":"2009-03-24 09:03:01"}}')
     Util::DataImport::import_user item

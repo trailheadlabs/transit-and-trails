@@ -1,7 +1,7 @@
 module Util
   module DataImport
-    def self.latest_user_objects
-      remote_file = BAOSC_S3.directories.get('baosc-productiondatadump.auth.user').files.last
+    def self.latest_objects_for(bucket)
+      remote_file = BAOSC_S3.directories.get(bucket).files.last
       local_file = File.open('/tmp/' + remote_file.key,'wb')
       local_file.write(remote_file.body)
       local_file.close
@@ -9,13 +9,90 @@ module Util
       json = JSON.parse(reader.read)
     end
 
+    def self.latest_user_objects
+      latest_objects_for('baosc-productiondatadump.auth.user')
+    end
+
     def self.latest_user_profile_objects
-      remote_file = BAOSC_S3.directories.get('baosc-productiondatadump.tnt.userprofile').files.last
-      local_file = File.open('/tmp/' + remote_file.key,'wb')
-      local_file.write(remote_file.body)
-      local_file.close
-      reader = Zlib::GzipReader.new(open('/tmp/' + remote_file.key,'r'))
-      json = JSON.parse(reader.read)
+      latest_objects_for('baosc-productiondatadump.tnt.userprofile')
+    end
+
+    def self.latest_attribute_category_objects
+      latest_objects_for('baosc-productiondatadump.tnt.attributecategory')
+    end
+
+    def self.latest_trip_feature_objects
+      latest_objects_for('baosc-productiondatadump.tnt.tripfeature')
+    end
+
+    def self.latest_trailhead_feature_objects
+      latest_objects_for('baosc-productiondatadump.tnt.trailheadfeature')
+    end
+
+    def self.latest_campground_feature_objects
+      latest_objects_for('baosc-productiondatadump.tnt.campgroundfeature')
+    end
+
+
+    def self.import_attribute_category(item)
+      new_record = Category.find_or_create_by_id(Integer(item['pk']))
+      fields = item['fields']
+      new_record.name = fields['name']
+      new_record.description = fields['description']
+      new_record.rank = fields['rank']
+      new_record.visible = fields['visible']
+      new_record.save
+    end
+
+    def self.import_feature(item)
+      fields = item['fields']
+      new_record = Feature.where(:name=>fields['name']).first_or_create
+      new_record.description = fields['description']
+      if new_record.rank
+        new_record.rank = fields['rank'] if fields['rank'] > new_record.rank
+      else
+        new_record.rank = fields['rank']
+      end
+      new_record.category_id = fields['category']
+      new_record.link_url = fields['link_url']
+      begin
+        unless fields['marker_icon'].blank?
+          new_record.remote_marker_icon_url = "http://transitandtrails.org/media/" + fields['marker_icon']
+          new_record.marker_icon.store!
+        end
+      rescue Exception => e
+        puts "Could not set marker icon for feature #{new_record.name}"
+        puts fields['marker_icon']
+        puts e.message
+      end
+
+      new_record.save
+    end
+
+    def self.import_campground_feature(item)
+      fields = item['fields']
+      new_record = CampgroundFeature.find_or_create_by_id(item['pk'])
+      new_record.name = fields['name']
+      new_record.description = fields['description']
+      if new_record.rank
+        new_record.rank = fields['rank'] if fields['rank'] > new_record.rank
+      else
+        new_record.rank = fields['rank']
+      end
+      new_record.category_id = fields['category']
+      new_record.link_url = fields['link_url']
+      begin
+        unless fields['marker_icon'].blank?
+          new_record.remote_marker_icon_url = "http://transitandtrails.org/media/" + fields['marker_icon']
+          new_record.marker_icon.store!
+        end
+      rescue Exception => e
+        puts "Could not set marker icon for feature #{new_record.name}"
+        puts fields['marker_icon']
+        puts e.message
+      end
+
+      new_record.save
     end
 
     def self.import_user(item)

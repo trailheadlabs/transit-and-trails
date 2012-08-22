@@ -1,4 +1,10 @@
 Transitandtrails::Application.routes.draw do
+  resources :campground_features
+
+  resources :features
+
+  resources :categories
+
   namespace :api, :defaults => {:format => :json} do
     namespace :v1 do
       resources :users, :only => [:show, :index]
