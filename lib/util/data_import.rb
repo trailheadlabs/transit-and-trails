@@ -72,6 +72,25 @@ module Util
     def self.import_campground_feature(item)
       fields = item['fields']
       new_record = CampgroundFeature.find_or_create_by_id(item['pk'])
+      populate_feature(new_record,fields)
+      new_record.save
+    end
+
+    def self.import_trip_feature(item)
+      fields = item['fields']
+      new_record = TripFeature.find_or_create_by_id(item['pk'])
+      populate_feature(new_record,fields)
+      new_record.save
+    end
+
+    def self.import_trailhead_feature(item)
+      fields = item['fields']
+      new_record = TrailheadFeature.find_or_create_by_id(item['pk'])
+      populate_feature(new_record,fields)
+      new_record.save
+    end
+
+    def self.populate_feature(new_record,fields)
       new_record.name = fields['name']
       new_record.description = fields['description']
       if new_record.rank
@@ -92,7 +111,6 @@ module Util
         puts e.message
       end
 
-      new_record.save
     end
 
     def self.import_user(item)

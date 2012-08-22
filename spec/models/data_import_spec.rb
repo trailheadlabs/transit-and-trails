@@ -59,7 +59,54 @@ describe "DataImport" do
     unless fields['marker_icon'].blank?
       new_record.marker_con.should_not be_blank
     end
+  end
 
+it "imports campground features correctly" do
+    item = JSON::parse('{"pk": 38, "model": "tnt.tripfeature", "fields": {"category": 3, "name": "Walking", "description": "Walking is the preferred means of transportation here. Check the trips info to find some cool trails and other places to check out. ", "rank": 1, "quantity": 0, "link_url": "http://nps.gov", "icon": ""}}')
+    Util::DataImport::import_campground_feature item
+    fields = item['fields']
+    new_record = CampgroundFeature.find_by_name(fields['name'])
+    new_record.should_not be nil
+    new_record.name.should eq fields['name']
+    new_record.description.should eq fields['description']
+    new_record.rank.should eq fields['rank']
+    new_record.link_url.should eq fields['link_url']
+    new_record.category_id.should eq fields['category']
+    unless fields['marker_icon'].blank?
+      new_record.marker_con.should_not be_blank
+    end
+  end
+
+it "imports trailhead features correctly" do
+    item = JSON::parse('{"pk": 38, "model": "tnt.tripfeature", "fields": {"category": 3, "name": "Walking", "description": "Walking is the preferred means of transportation here. Check the trips info to find some cool trails and other places to check out. ", "rank": 1, "quantity": 0, "link_url": "http://nps.gov", "icon": ""}}')
+    Util::DataImport::import_trailhead_feature item
+    fields = item['fields']
+    new_record = TrailheadFeature.find_by_name(fields['name'])
+    new_record.should_not be nil
+    new_record.name.should eq fields['name']
+    new_record.description.should eq fields['description']
+    new_record.rank.should eq fields['rank']
+    new_record.link_url.should eq fields['link_url']
+    new_record.category_id.should eq fields['category']
+    unless fields['marker_icon'].blank?
+      new_record.marker_con.should_not be_blank
+    end
+  end
+
+it "imports trip features correctly" do
+    item = JSON::parse('{"pk": 38, "model": "tnt.tripfeature", "fields": {"category": 3, "name": "Walking", "description": "Walking is the preferred means of transportation here. Check the trips info to find some cool trails and other places to check out. ", "rank": 1, "quantity": 0, "link_url": "http://nps.gov", "icon": ""}}')
+    Util::DataImport::import_trip_feature item
+    fields = item['fields']
+    new_record = TripFeature.find_by_name(fields['name'])
+    new_record.should_not be nil
+    new_record.name.should eq fields['name']
+    new_record.description.should eq fields['description']
+    new_record.rank.should eq fields['rank']
+    new_record.link_url.should eq fields['link_url']
+    new_record.category_id.should eq fields['category']
+    unless fields['marker_icon'].blank?
+      new_record.marker_con.should_not be_blank
+    end
   end
 
 

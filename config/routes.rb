@@ -1,4 +1,12 @@
 Transitandtrails::Application.routes.draw do
+  get "attribute_category/index"
+
+  get "attribute_category/show"
+
+  resources :trailhead_features
+
+  resources :trip_features
+
   resources :campground_features
 
   resources :features
@@ -8,6 +16,7 @@ Transitandtrails::Application.routes.draw do
   namespace :api, :defaults => {:format => :json} do
     namespace :v1 do
       resources :users, :only => [:show, :index]
+      resources :attribute_categories, :only => [:show, :index]
     end
   end
 

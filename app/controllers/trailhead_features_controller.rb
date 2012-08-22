@@ -1,0 +1,2 @@
+class TrailheadFeaturesController < ApplicationController
+end

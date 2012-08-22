@@ -1,0 +1,2 @@
+class TripFeaturesController < ApplicationController
+end

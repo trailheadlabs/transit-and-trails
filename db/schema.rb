@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120822052319) do
+ActiveRecord::Schema.define(:version => 20120822054205) do
 
   create_table "attribute_categories", :force => true do |t|
     t.string   "name"
@@ -69,6 +69,32 @@ ActiveRecord::Schema.define(:version => 20120822052319) do
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
+
+  create_table "trailhead_features", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "marker_icon"
+    t.integer  "rank"
+    t.string   "link_url"
+    t.integer  "category_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "trailhead_features", ["category_id"], :name => "index_trailhead_features_on_category_id"
+
+  create_table "trip_features", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "marker_icon"
+    t.integer  "rank"
+    t.string   "link_url"
+    t.integer  "category_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "trip_features", ["category_id"], :name => "index_trip_features_on_category_id"
 
   create_table "user_profiles", :force => true do |t|
     t.string   "firstname"

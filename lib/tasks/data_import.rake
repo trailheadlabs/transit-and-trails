@@ -92,5 +92,43 @@ namespace :import do
 
   end
 
+  desc "Import campground features from the S3 backup"
+  task :campground_features => :environment do
+
+    puts "importing campground features"
+    # download file from S3
+    json = Util::DataImport::latest_campground_feature_objects
+    # for each item in list
+    json.each do |item|
+      puts Util::DataImport::import_campground_feature item
+    end
+
+  end
+
+  desc "Import trailhead features from the S3 backup"
+  task :trailhead_features => :environment do
+
+    puts "importing trailhead features"
+    # download file from S3
+    json = Util::DataImport::latest_trailhead_feature_objects
+    # for each item in list
+    json.each do |item|
+      puts Util::DataImport::import_trailhead_feature item
+    end
+
+  end
+
+  desc "Import trip features from the S3 backup"
+  task :trip_features => :environment do
+
+    puts "importing trip features"
+    # download file from S3
+    json = Util::DataImport::latest_trip_feature_objects
+    # for each item in list
+    json.each do |item|
+      puts Util::DataImport::import_trip_feature item
+    end
+
+  end
 
 end

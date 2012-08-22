@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class CampgroundFeatureMarkerIconUploader < CarrierWave::Uploader::Base
+class TrailheadFeatureMarkerIconUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
