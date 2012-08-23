@@ -3,4 +3,6 @@ class TripFeature < ActiveRecord::Base
   attr_accessible :description, :link_url, :marker_icon, :name, :rank, :marker_icon_cache, :remote_marker_icon_url
 
   mount_uploader :marker_icon, TripFeatureMarkerIconUploader
+
+  has_paper_trail
 end

@@ -9,4 +9,5 @@ class UserProfile < ActiveRecord::Base
 
   mount_uploader :avatar, UserProfileAvatarUploader
   mount_uploader :organization_avatar, UserProfileOrganizationAvatarUploader
+  has_paper_trail
 end

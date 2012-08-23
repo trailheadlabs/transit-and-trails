@@ -49,6 +49,30 @@ module Util
       latest_objects_for('baosc-productiondatadump.tnt.agency')
     end
 
+    def self.latest_partner_objects
+      latest_objects_for('baosc-productiondatadump.tnt.partner')
+    end
+
+    def self.import_partner(item)
+      new_record = Partner.find_or_create_by_id(Integer(item['pk']))
+      fields = item['fields']
+      new_record.name = fields['name']
+      new_record.description = fields['description']
+      new_record.link = fields['link']
+
+      begin
+        unless fields['logo'].blank?
+          new_record.remote_logo_url = "http://transitandtrails.org/media/" + fields['logo']
+          new_record.logo.store!
+        end
+      rescue Exception => e
+        puts "Could not set logo for partner #{new_record.name}"
+        puts fields['logo']
+        puts e.message
+      end
+      new_record.save
+    end
+
     def self.import_agency(item)
       new_record = Agency.find_or_create_by_id(Integer(item['pk']))
       fields = item['fields']

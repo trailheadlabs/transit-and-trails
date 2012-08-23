@@ -187,4 +187,18 @@ namespace :import do
 
   end
 
+  desc "Import partners from the S3 backup"
+  task :partners => :environment do
+
+    puts "importing partners"
+    # download file from S3
+    json = Util::DataImport::latest_partner_objects
+    # for each item in list
+    json.each do |item|
+      puts JSON.pretty_generate item, :indent => "  "
+      puts Util::DataImport::import_partner item
+    end
+
+  end
+
 end

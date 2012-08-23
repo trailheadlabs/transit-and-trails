@@ -3,15 +3,17 @@ class Park < ActiveRecord::Base
   belongs_to :non_profit_partner
   attr_accessible :acres, :bounds, :county, :county_slug, :description, :name, :slug, :link,
     :min_longitude, :max_longitude, :min_latitude, :max_latitude
-  after_update :update_bounds_min_max
+  before_update :update_bounds_min_max
+
+  has_paper_trail
 
   def update_bounds_min_max
-    if self.bounds_changed?
+    if !bounds.blank? && (self.bounds_changed? || min_longitude.nil?)
       sides = sides_of_bounds
-      min_longitude = sides[0]
-      max_longitude = sides[1]
-      min_latitude = sides[2]
-      max_latitude = sides[3]
+      self.min_longitude = sides[0]
+      self.max_longitude = sides[1]
+      self.min_latitude = sides[2]
+      self.max_latitude = sides[3]
     end
   end
 

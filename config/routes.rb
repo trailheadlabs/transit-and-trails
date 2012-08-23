@@ -1,4 +1,6 @@
 Transitandtrails::Application.routes.draw do
+  resources :partners
+
   resources :agencies
 
   resources :parks

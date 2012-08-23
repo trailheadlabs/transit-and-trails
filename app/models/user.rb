@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
 
   has_one :user_profile
 
+  has_paper_trail
+
   alias :devise_valid_password? :valid_password?
 
   def valid_password?(password)

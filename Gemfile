@@ -24,6 +24,7 @@ gem 'yajl-ruby'
 gem 'flickraw'
 gem 'geocoder'
 gem 'rgeo'
+gem 'paper_trail', '~> 2'
 
 # Gems used only for assets and not required
 # in production environments by default.
