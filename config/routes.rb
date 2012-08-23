@@ -1,4 +1,6 @@
 Transitandtrails::Application.routes.draw do
+  resources :maps
+
   resources :campgrounds
 
   resources :recent_activities

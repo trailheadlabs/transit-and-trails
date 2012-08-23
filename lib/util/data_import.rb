@@ -61,6 +61,14 @@ module Util
       latest_objects_for('baosc-productiondatadump.tnt.campground')
     end
 
+    def self.latest_campground_map_objects
+      latest_objects_for('baosc-productiondatadump.tnt.campgroundmap')
+    end
+
+    def self.latest_trailhead_map_objects
+      latest_objects_for('baosc-productiondatadump.tnt.trailheadmap')
+    end
+
 
     def self.import_recent_activity(item)
       new_record = RecentActivity.find_or_create_by_id(Integer(item['pk']))
@@ -207,6 +215,73 @@ module Util
       new_record.campground_features = CampgroundFeature.where(id: fields['features'])
       new_record.save
     end
+
+    def self.import_campground_map(item)
+      new_record = Map.new
+      fields = item['fields']
+      new_record.name = fields['name']
+      new_record.description = fields['description']
+      new_record.user_id = fields['user']
+      new_record.url = fields['url']
+      new_record.mapable_id = fields['campground']
+      new_record.mapable_type = "Campground"
+      begin
+        unless fields['map'].blank?
+          new_record.remote_map_url = "http://transitandtrails.org/media/" + fields['map']
+          new_record.map.store!
+        end
+      rescue Exception => e
+        puts "Could not set map for campground #{new_record.name}"
+        puts fields['map']
+        puts e.message
+      end
+      new_record.save
+    end
+
+    def self.import_trailhead_map(item)
+      new_record = Map.new
+      fields = item['fields']
+      new_record.name = fields['name']
+      new_record.description = fields['description']
+      new_record.user_id = fields['user']
+      new_record.url = fields['url']
+      new_record.mapable_id = fields['trailhead']
+      new_record.mapable_type = "Trailhead"
+      begin
+        unless fields['map'].blank?
+          new_record.remote_map_url = "http://transitandtrails.org/media/" + fields['map']
+          new_record.map.store!
+        end
+      rescue Exception => e
+        puts "Could not set map for trailhead #{new_record.name}"
+        puts fields['map']
+        puts e.message
+      end
+      new_record.save
+    end
+
+    def self.import_campground_map(item)
+      new_record = Map.new
+      fields = item['fields']
+      new_record.name = fields['name']
+      new_record.description = fields['description']
+      new_record.user_id = fields['user']
+      new_record.url = fields['url']
+      new_record.mapable_id = fields['campground']
+      new_record.mapable_type = "Campground"
+      begin
+        unless fields['map'].blank?
+          new_record.remote_map_url = "http://transitandtrails.org/media/" + fields['map']
+          new_record.map.store!
+        end
+      rescue Exception => e
+        puts "Could not set map for campground #{new_record.name}"
+        puts fields['map']
+        puts e.message
+      end
+      new_record.save
+    end
+
 
     def self.import_feature(item)
       fields = item['fields']

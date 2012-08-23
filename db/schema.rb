@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120823015421) do
+ActiveRecord::Schema.define(:version => 20120823150437) do
 
   create_table "agencies", :force => true do |t|
     t.string   "name"
@@ -76,6 +76,20 @@ ActiveRecord::Schema.define(:version => 20120823015421) do
   end
 
   add_index "features", ["category_id"], :name => "index_features_on_category_id"
+
+  create_table "maps", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "mapable_id"
+    t.string   "mapable_type"
+    t.string   "url"
+    t.integer  "user_id"
+    t.string   "map"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "maps", ["user_id"], :name => "index_maps_on_user_id"
 
   create_table "non_profit_partners", :force => true do |t|
     t.string   "name"

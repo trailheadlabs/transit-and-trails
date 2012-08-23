@@ -255,6 +255,37 @@ describe "DataImport" do
     end
   end
 
+  it "imports campground maps correctly" do
+    FactoryGirl.create(:campground_feature,:id=>4)
+    FactoryGirl.create(:campground_feature,:id=>5)
+    FactoryGirl.create(:campground_feature,:id=>6)
+    item = JSON::parse(
+      '{
+        "pk": 2,
+        "model": "tnt.campground",
+        "fields": {
+          "name": "Del Valle Regional Park",
+          "user": 1,
+          "campground": 6,
+          "description": "Test"
+          "map": "baosc.png"
+          "url": "http://transitandtrails.org"
+        }
+      }')
+    Util::DataImport::import_campground item
+    fields = item['fields']
+    new_record.should_not be nil
+    new_record.id.should eq item['pk']
+    new_record.name.should eq fields['name']
+    new_record.description.should eq fields['description']
+    new_record.url.should eq fields['url']
+    new_record.user_id.should eq fields['user']
+    unless fields['map'].blank?
+      new_record.map.should_not be_blank
+    end
+
+  end
+
   it "imports features correctly" do
     item = JSON::parse('{"pk": 38, "model": "tnt.tripfeature", "fields": {"category": 3, "name": "Walking", "description": "Walking is the preferred means of transportation here. Check the trips info to find some cool trails and other places to check out. ", "rank": 1, "quantity": 0, "link_url": "http://nps.gov", "marker_icon": "baosc.png"}}')
     Util::DataImport::import_feature item

@@ -235,7 +235,32 @@ namespace :import do
       puts JSON.pretty_generate item, :indent => "  "
       puts Util::DataImport::import_campground item
     end
+  end
 
+  desc "Import campground maps from the S3 backup"
+  task :campground_maps => :environment do
+
+    puts "importing campground maps"
+    # download file from S3
+    json = Util::DataImport::latest_campground_map_objects
+    # for each item in list
+    json.each do |item|
+      puts JSON.pretty_generate item, :indent => "  "
+      puts Util::DataImport::import_campground_map item
+    end
+  end
+
+  desc "Import trailhead maps from the S3 backup"
+  task :trailhead_maps => :environment do
+
+    puts "importing trailhead maps"
+    # download file from S3
+    json = Util::DataImport::latest_trailhead_map_objects
+    # for each item in list
+    json.each do |item|
+      puts JSON.pretty_generate item, :indent => "  "
+      puts Util::DataImport::import_trailhead_map item
+    end
   end
 
   desc "Turn off paper trail"
@@ -246,6 +271,7 @@ namespace :import do
   desc "Import all objects from the S3 backup"
   task :all => ["paper_trail_off", "users:accounts", "users:profiles", "categories",
    "campground_features", "trailhead_features", "trip_features", "trailheads",
-   "non_profit_partners", "agencies", "partners", "recent_activity", "parks"]
+   "non_profit_partners", "agencies", "partners", "recent_activity", "campgrounds",
+   "parks"]
 
 end

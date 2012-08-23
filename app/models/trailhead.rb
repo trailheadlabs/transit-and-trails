@@ -2,6 +2,8 @@ class Trailhead < ActiveRecord::Base
   belongs_to :user
   belongs_to :park
   has_and_belongs_to_many :trailhead_features
+  has_many :maps, :as => :mapable
+
   has_paper_trail
   attr_accessible :description, :latitude, :longitude, :name, :rideshare, :zimride_url
   reverse_geocoded_by :latitude, :longitude
