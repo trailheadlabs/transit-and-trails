@@ -1,0 +1,2 @@
+class RecentActivitiesController < ApplicationController
+end

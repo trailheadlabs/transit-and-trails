@@ -21,6 +21,63 @@ describe "DataImport" do
     new_record.visible.should eq fields['visible']
   end
 
+  it "imports recent activity correctly" do
+    item = JSON::parse('{
+      "pk": 1,
+      "model": "tnt.recentactivity",
+      "fields": {
+        "favorites_link1": "http://transitandtrails.org/trips/55/",
+        "favorites_link3_text": "Sutro Secret (Weekend Sherpa)",
+        "favorites_link3": "http://transitandtrails.org/trips/42/",
+        "favorites_link2": "http://transitandtrails.org/trips/21/",
+        "favorites_link5": "http://transitandtrails.org/trailheads/970/",
+        "name": "Recent Activity",
+        "favorites_type1": "trip-type",
+        "recent_news_text": "Brand new video! <a href=\"http://www.youtube.com/watch?v=RuUB6Bo2StA&feature=player_embedded\" target=\"_blank\">\"What\'s Around You?\"</a>.\r\n\r\nA whole new way of exploring the natural world around you. The adventure starts when you walk out the door.\r\n",
+        "favorites_type3": "trip-type",
+        "favorites_type2": "trip-type",
+        "favorites_type5": "trailhead-type",
+        "favorites_type4": "trip-type",
+        "favorites_link4": "http://transitandtrails.org/trips/17/",
+        "highlighted": true,
+        "favorites_link4_text": "Wildcat to Orinda (Transit to Ridge)",
+        "favorites_link2_text": "Sausalito to Muir Woods (video)",
+        "favorites_link1_text": "Overnight at Hawk",
+        "favorites_link5_text": "Muir Woods Visitor Center",
+        "description": "Not necessary"
+      }
+    }')
+    Util::DataImport::import_recent_activity item
+    fields = item['fields']
+    new_record = RecentActivity.find(item['pk'])
+    new_record.should_not be nil
+    new_record.id.should eq item['pk']
+    new_record.name.should eq fields['name']
+    new_record.description.should eq fields['description']
+    new_record.highlighted.should eq fields['highlighted']
+    new_record.recent_news_text.should eq fields['recent_news_text']
+
+    new_record.favorites_link1.should eq fields['favorites_link1']
+    new_record.favorites_type1.should eq fields['favorites_type1']
+    new_record.favorites_link1_text.should eq fields['favorites_link1_text']
+
+    new_record.favorites_link2.should eq fields['favorites_link2']
+    new_record.favorites_type2.should eq fields['favorites_type2']
+    new_record.favorites_link2_text.should eq fields['favorites_link2_text']
+
+    new_record.favorites_link3.should eq fields['favorites_link3']
+    new_record.favorites_type3.should eq fields['favorites_type3']
+    new_record.favorites_link3_text.should eq fields['favorites_link3_text']
+
+    new_record.favorites_link4.should eq fields['favorites_link4']
+    new_record.favorites_type4.should eq fields['favorites_type4']
+    new_record.favorites_link4_text.should eq fields['favorites_link4_text']
+
+    new_record.favorites_link5.should eq fields['favorites_link5']
+    new_record.favorites_type5.should eq fields['favorites_type5']
+    new_record.favorites_link5_text.should eq fields['favorites_link5_text']
+  end
+
   it "imports agencies correctly" do
     item = JSON::parse('
       {
@@ -150,8 +207,51 @@ describe "DataImport" do
     new_record.longitude.should eq fields['longitude']
     new_record.approved.should eq fields['approved']
     new_record.user_id.should eq fields['author']
+    new_record.park_id.should eq fields['park']
     if fields['features']
       new_record.trailhead_features.collect{|c| c.id}.sort.should eq fields['features'].sort
+    end
+  end
+
+  it "imports campgrounds correctly" do
+    FactoryGirl.create(:campground_feature,:id=>4)
+    FactoryGirl.create(:campground_feature,:id=>5)
+    FactoryGirl.create(:campground_feature,:id=>6)
+    item = JSON::parse(
+      '{
+        "pk": 2,
+        "model": "tnt.campground",
+        "fields": {
+          "name": "Del Valle Regional Park",
+          "author": 1,
+          "agency": 3,
+          "park": 6,
+          "longitude": -121.686678007,
+          "features": [
+            4,
+            5,
+            6
+          ],
+          "location": "POINT (-121.6866780069999976 37.5674622490000019)",
+          "latitude": 37.567462249,
+          "approved": true,
+          "description": ""
+        }
+}')
+    Util::DataImport::import_campground item
+    fields = item['fields']
+    new_record = Campground.find(item['pk'])
+    new_record.should_not be nil
+    new_record.id.should eq item['pk']
+    new_record.name.should eq fields['name']
+    new_record.description.should eq fields['description']
+    new_record.latitude.should eq fields['latitude']
+    new_record.longitude.should eq fields['longitude']
+    new_record.approved.should eq fields['approved']
+    new_record.user_id.should eq fields['author']
+    new_record.park_id.should eq fields['park']
+    if fields['features']
+      new_record.campground_features.collect{|c| c.id}.sort.should eq fields['features'].sort
     end
   end
 

@@ -53,6 +53,46 @@ module Util
       latest_objects_for('baosc-productiondatadump.tnt.partner')
     end
 
+    def self.latest_recent_activity_objects
+      latest_objects_for('baosc-productiondatadump.tnt.recentactivity')
+    end
+
+    def self.latest_campground_objects
+      latest_objects_for('baosc-productiondatadump.tnt.campground')
+    end
+
+
+    def self.import_recent_activity(item)
+      new_record = RecentActivity.find_or_create_by_id(Integer(item['pk']))
+      fields = item['fields']
+      new_record.name = fields['name']
+      new_record.description = fields['description']
+      new_record.highlighted = fields['highlighted']
+      new_record.recent_news_text = fields['recent_news_text']
+
+      new_record.favorites_link1 = fields['favorites_link1']
+      new_record.favorites_type1 = fields['favorites_type1']
+      new_record.favorites_link1_text = fields['favorites_link1_text']
+
+      new_record.favorites_link2 = fields['favorites_link2']
+      new_record.favorites_type2 = fields['favorites_type2']
+      new_record.favorites_link2_text = fields['favorites_link2_text']
+
+      new_record.favorites_link3 = fields['favorites_link3']
+      new_record.favorites_type3 = fields['favorites_type3']
+      new_record.favorites_link3_text = fields['favorites_link3_text']
+
+      new_record.favorites_link4 = fields['favorites_link4']
+      new_record.favorites_type4 = fields['favorites_type4']
+      new_record.favorites_link4_text = fields['favorites_link4_text']
+
+      new_record.favorites_link5 = fields['favorites_link5']
+      new_record.favorites_type5 = fields['favorites_type5']
+      new_record.favorites_link5_text = fields['favorites_link5_text']
+
+      new_record.save
+    end
+
     def self.import_partner(item)
       new_record = Partner.find_or_create_by_id(Integer(item['pk']))
       fields = item['fields']
@@ -149,7 +189,21 @@ module Util
       new_record.zimride_url = fields['zimride_url']
       new_record.user_id = fields['author']
       new_record.approved = fields['approved']
+      new_record.park_id = fields['park']
       new_record.save && new_record.trailhead_features = TrailheadFeature.where(id: fields['features'])
+    end
+
+    def self.import_campground(item)
+      new_record = Campground.find_or_create_by_id(Integer(item['pk']))
+      fields = item['fields']
+      new_record.name = fields['name']
+      new_record.description = fields['description']
+      new_record.latitude = fields['latitude']
+      new_record.longitude = fields['longitude']
+      new_record.user_id = fields['author']
+      new_record.approved = fields['approved']
+      new_record.park_id = fields['park']
+      new_record.save && new_record.campground_features = CampgroundFeature.where(id: fields['features'])
     end
 
     def self.import_feature(item)

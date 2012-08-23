@@ -11,22 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120822235412) do
+ActiveRecord::Schema.define(:version => 20120823015421) do
 
   create_table "agencies", :force => true do |t|
     t.string   "name"
     t.text     "description"
     t.text     "link"
     t.string   "logo"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
-  create_table "attribute_categories", :force => true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.boolean  "visible"
-    t.integer  "rank"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
@@ -43,6 +34,26 @@ ActiveRecord::Schema.define(:version => 20120822235412) do
   end
 
   add_index "campground_features", ["category_id"], :name => "index_campground_features_on_category_id"
+
+  create_table "campground_features_campgrounds", :id => false, :force => true do |t|
+    t.integer "campground_id"
+    t.integer "campground_feature_id"
+  end
+
+  create_table "campgrounds", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.integer  "user_id"
+    t.integer  "park_id"
+    t.boolean  "approved"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "campgrounds", ["park_id"], :name => "index_campgrounds_on_park_id"
+  add_index "campgrounds", ["user_id"], :name => "index_campgrounds_on_user_id"
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -119,6 +130,30 @@ ActiveRecord::Schema.define(:version => 20120822235412) do
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
 
+  create_table "recent_activities", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "highlighted"
+    t.text     "recent_news_text"
+    t.string   "favorites_link1"
+    t.string   "favorites_type1"
+    t.string   "favorites_link2"
+    t.string   "favorites_type2"
+    t.string   "favorites_link3"
+    t.string   "favorites_type3"
+    t.string   "favorites_link4"
+    t.string   "favorites_type4"
+    t.string   "favorites_link5"
+    t.string   "favorites_type5"
+    t.text     "favorites_link1_text"
+    t.text     "favorites_link2_text"
+    t.text     "favorites_link3_text"
+    t.text     "favorites_link4_text"
+    t.text     "favorites_link5_text"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+  end
+
   create_table "trailhead_features", :force => true do |t|
     t.string   "name"
     t.text     "description"
@@ -148,6 +183,7 @@ ActiveRecord::Schema.define(:version => 20120822235412) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.boolean  "approved"
+    t.integer  "park_id"
   end
 
   add_index "trailheads", ["user_id"], :name => "index_trailheads_on_user_id"

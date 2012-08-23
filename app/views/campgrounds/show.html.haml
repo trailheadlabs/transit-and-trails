@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @campground.name
+%p
+  %b Description:
+  = @campground.description
+%p
+  %b Latitude:
+  = @campground.latitude
+%p
+  %b Longitude:
+  = @campground.longitude
+%p
+  %b User:
+  = @campground.user
+%p
+  %b Park:
+  = @campground.park
+%p
+  %b Approved:
+  = @campground.approved
+
+= link_to 'Edit', edit_campground_path(@campground)
+\|
+= link_to 'Back', campgrounds_path

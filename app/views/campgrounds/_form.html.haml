@@ -1,0 +1,31 @@
+= form_for @campground do |f|
+  -if @campground.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@campground.errors.count, "error")} prohibited this campground from being saved:"
+      %ul
+        - @campground.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :description
+    = f.text_area :description
+  .field
+    = f.label :latitude
+    = f.text_field :latitude
+  .field
+    = f.label :longitude
+    = f.text_field :longitude
+  .field
+    = f.label :user
+    = f.text_field :user
+  .field
+    = f.label :park
+    = f.text_field :park
+  .field
+    = f.label :approved
+    = f.check_box :approved
+  .actions
+    = f.submit 'Save'

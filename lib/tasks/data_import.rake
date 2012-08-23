@@ -9,6 +9,7 @@ namespace :import do
       # parse json
       # for each item in list
       json.each do |item|
+        puts JSON.pretty_generate item, :indent => "  "
         puts Util::DataImport::import_user item
       end
 
@@ -22,6 +23,7 @@ namespace :import do
       user = json.select {|v| v['fields']['username'] == args[:username] }
       puts user[0].to_json
       if user
+        puts JSON.pretty_generate item, :indent => "  "
         puts Util::DataImport::import_user user[0]
       else
         puts "User #{:username} not found"
@@ -35,7 +37,6 @@ namespace :import do
       # download file from S3
       json = Util::DataImport::latest_user_profile_objects
       profile = json.select {|v| v['fields']['user'] == Integer(args[:id]) }
-      puts profile[0].to_json
       if profile[0]
         puts Util::DataImport::import_user_profile profile[0]
       else
@@ -49,6 +50,7 @@ namespace :import do
       json = Util::DataImport::latest_user_profile_objects
       # for each item in list
       json.each do |item|
+        puts JSON.pretty_generate item, :indent => "  "
         puts Util::DataImport::import_user_profile item
       end
     end
@@ -60,6 +62,7 @@ namespace :import do
     json = Util::DataImport::latest_attribute_category_objects
     # for each item in list
     json.each do |item|
+      puts JSON.pretty_generate item, :indent => "  "
       puts Util::DataImport::import_attribute_category item
     end
   end
@@ -71,6 +74,7 @@ namespace :import do
     json = Util::DataImport::latest_trip_feature_objects
     # for each item in list
     json.each do |item|
+      puts JSON.pretty_generate item, :indent => "  "
       puts Util::DataImport::import_feature item
     end
 
@@ -79,6 +83,7 @@ namespace :import do
     json = Util::DataImport::latest_trailhead_feature_objects
     # for each item in list
     json.each do |item|
+      puts JSON.pretty_generate item, :indent => "  "
       puts Util::DataImport::import_feature item
     end
 
@@ -87,6 +92,7 @@ namespace :import do
     json = Util::DataImport::latest_campground_feature_objects
     # for each item in list
     json.each do |item|
+      puts JSON.pretty_generate item, :indent => "  "
       puts Util::DataImport::import_feature item
     end
 
@@ -100,6 +106,7 @@ namespace :import do
     json = Util::DataImport::latest_campground_feature_objects
     # for each item in list
     json.each do |item|
+      puts JSON.pretty_generate item, :indent => "  "
       puts Util::DataImport::import_campground_feature item
     end
 
@@ -113,6 +120,7 @@ namespace :import do
     json = Util::DataImport::latest_trailhead_feature_objects
     # for each item in list
     json.each do |item|
+      puts JSON.pretty_generate item, :indent => "  "
       puts Util::DataImport::import_trailhead_feature item
     end
 
@@ -126,6 +134,7 @@ namespace :import do
     json = Util::DataImport::latest_trip_feature_objects
     # for each item in list
     json.each do |item|
+      puts JSON.pretty_generate item, :indent => "  "
       puts Util::DataImport::import_trip_feature item
     end
 
@@ -200,5 +209,38 @@ namespace :import do
     end
 
   end
+
+  desc "Import recent activity from the S3 backup"
+  task :recent_activity => :environment do
+
+    puts "importing recent activity"
+    # download file from S3
+    json = Util::DataImport::latest_recent_activity_objects
+    # for each item in list
+    json.each do |item|
+      puts JSON.pretty_generate item, :indent => "  "
+      puts Util::DataImport::import_recent_activity item
+    end
+
+  end
+
+  desc "Import campgrounds from the S3 backup"
+  task :campgrounds => :environment do
+
+    puts "importing campgrounds"
+    # download file from S3
+    json = Util::DataImport::latest_campground_objects
+    # for each item in list
+    json.each do |item|
+      puts JSON.pretty_generate item, :indent => "  "
+      puts Util::DataImport::import_campground item
+    end
+
+  end
+
+  desc "Import all objects from the S3 backup"
+  task :all => ["users:accounts", "users:profiles", "categories",
+   "campground_features", "trailhead_features", "trip_features", "trailheads",
+   "non_profit_partners", "agencies", "partners", "recent_activity", "parks"]
 
 end

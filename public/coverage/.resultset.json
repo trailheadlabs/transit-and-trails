@@ -472,6 +472,8 @@
         1,
         null,
         1,
+        null,
+        1,
         7,
         2,
         2,
@@ -515,6 +517,10 @@
         1,
         null
       ],
+      "/Users/jerememonteau/git/jmoe/transitandtrails/app/helpers/campgrounds_helper.rb": [
+        1,
+        null
+      ],
       "/Users/jerememonteau/git/jmoe/transitandtrails/app/helpers/categories_helper.rb": [
         1,
         null
@@ -528,6 +534,14 @@
         null
       ],
       "/Users/jerememonteau/git/jmoe/transitandtrails/app/helpers/parks_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/jerememonteau/git/jmoe/transitandtrails/app/helpers/partners_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/jerememonteau/git/jmoe/transitandtrails/app/helpers/recent_activities_helper.rb": [
         1,
         null
       ],
@@ -552,6 +566,7 @@
         null
       ],
       "/Users/jerememonteau/git/jmoe/transitandtrails/app/models/agency.rb": [
+        1,
         1,
         1,
         1,
@@ -653,6 +668,8 @@
         1,
         1,
         1,
+        1,
+        1,
         null
       ],
       "/Users/jerememonteau/git/jmoe/transitandtrails/app/uploaders/campground_feature_marker_icon_uploader.rb": [
@@ -712,12 +729,26 @@
         null,
         null
       ],
+      "/Users/jerememonteau/git/jmoe/transitandtrails/app/controllers/campgrounds_controller.rb": [
+        1,
+        null
+      ],
+      "/Users/jerememonteau/git/jmoe/transitandtrails/app/models/campground.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        null
+      ],
       "/Users/jerememonteau/git/jmoe/transitandtrails/app/controllers/categories_controller.rb": [
         1,
         null
       ],
       "/Users/jerememonteau/git/jmoe/transitandtrails/app/models/category.rb": [
         1,
+        1,
+        null,
         1,
         null,
         1,
@@ -802,6 +833,7 @@
         1,
         1,
         1,
+        1,
         null
       ],
       "/Users/jerememonteau/git/jmoe/transitandtrails/app/uploaders/non_profit_partner_logo_uploader.rb": [
@@ -870,6 +902,9 @@
         1,
         1,
         1,
+        null,
+        1,
+        null,
         1,
         null,
         1,
@@ -903,6 +938,83 @@
         null,
         null
       ],
+      "/Users/jerememonteau/git/jmoe/transitandtrails/app/controllers/partners_controller.rb": [
+        1,
+        null
+      ],
+      "/Users/jerememonteau/git/jmoe/transitandtrails/app/models/partner.rb": [
+        1,
+        1,
+        null,
+        1,
+        null
+      ],
+      "/Users/jerememonteau/git/jmoe/transitandtrails/app/uploaders/partner_logo_uploader.rb": [
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/jerememonteau/git/jmoe/transitandtrails/app/controllers/recent_activities_controller.rb": [
+        1,
+        null
+      ],
+      "/Users/jerememonteau/git/jmoe/transitandtrails/app/models/recent_activity.rb": [
+        1,
+        1,
+        null
+      ],
       "/Users/jerememonteau/git/jmoe/transitandtrails/app/controllers/trailhead_features_controller.rb": [
         1,
         null
@@ -913,6 +1025,7 @@
         1,
         1,
         null,
+        1,
         1,
         null
       ],
@@ -1062,9 +1175,16 @@
         1,
         1,
         1,
+        1,
+        1,
+        1,
+        1,
         null,
         1,
-        1,
+        0,
+        null,
+        null,
+        null,
         null
       ],
       "/Users/jerememonteau/git/jmoe/transitandtrails/app/controllers/trip_features_controller.rb": [
@@ -1074,6 +1194,8 @@
       "/Users/jerememonteau/git/jmoe/transitandtrails/app/models/trip_feature.rb": [
         1,
         1,
+        1,
+        null,
         1,
         null,
         1,
@@ -1236,6 +1358,7 @@
         null,
         1,
         null,
+        1,
         1,
         1,
         null
@@ -1415,6 +1538,70 @@
         null,
         null,
         1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
+        0,
+        0,
+        0,
+        0,
+        null,
+        null,
+        0,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        1,
         1,
         1,
         1,
@@ -1480,6 +1667,20 @@
         null,
         null,
         1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
         1,
         1,
         1,
@@ -1621,6 +1822,6 @@
         null
       ]
     },
-    "timestamp": 1345673237
+    "timestamp": 1345686679
   }
 }

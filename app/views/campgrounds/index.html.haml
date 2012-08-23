@@ -1,0 +1,31 @@
+%h1 Listing campgrounds
+
+%table
+  %tr
+    %th Name
+    %th Description
+    %th Latitude
+    %th Longitude
+    %th User
+    %th Park
+    %th Approved
+    %th
+    %th
+    %th
+
+  - @campgrounds.each do |campground|
+    %tr
+      %td= campground.name
+      %td= campground.description
+      %td= campground.latitude
+      %td= campground.longitude
+      %td= campground.user
+      %td= campground.park
+      %td= campground.approved
+      %td= link_to 'Show', campground
+      %td= link_to 'Edit', edit_campground_path(campground)
+      %td= link_to 'Destroy', campground, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Campground', new_campground_path
