@@ -190,7 +190,8 @@ module Util
       new_record.user_id = fields['author']
       new_record.approved = fields['approved']
       new_record.park_id = fields['park']
-      new_record.save && new_record.trailhead_features = TrailheadFeature.where(id: fields['features'])
+      new_record.trailhead_features = TrailheadFeature.where(id: fields['features'])
+      new_record.save
     end
 
     def self.import_campground(item)
@@ -203,7 +204,8 @@ module Util
       new_record.user_id = fields['author']
       new_record.approved = fields['approved']
       new_record.park_id = fields['park']
-      new_record.save && new_record.campground_features = CampgroundFeature.where(id: fields['features'])
+      new_record.campground_features = CampgroundFeature.where(id: fields['features'])
+      new_record.save
     end
 
     def self.import_feature(item)
