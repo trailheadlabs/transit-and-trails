@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120823150437) do
+ActiveRecord::Schema.define(:version => 20120823221509) do
 
   create_table "agencies", :force => true do |t|
     t.string   "name"
@@ -64,18 +64,19 @@ ActiveRecord::Schema.define(:version => 20120823150437) do
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "features", :force => true do |t|
+  create_table "durations", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.text     "link_url"
-    t.integer  "rank"
-    t.integer  "category_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-    t.string   "marker_icon"
   end
 
-  add_index "features", ["category_id"], :name => "index_features_on_category_id"
+  create_table "intensities", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "maps", :force => true do |t|
     t.string   "name"
@@ -168,6 +169,20 @@ ActiveRecord::Schema.define(:version => 20120823150437) do
     t.datetime "updated_at",           :null => false
   end
 
+  create_table "stories", :force => true do |t|
+    t.integer  "storytellable_id"
+    t.string   "storytellable_type"
+    t.integer  "user_id"
+    t.text     "story"
+    t.datetime "happened_at"
+    t.integer  "to_travel_mode_id"
+    t.integer  "from_travel_mode_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
+  add_index "stories", ["user_id"], :name => "index_stories_on_user_id"
+
   create_table "trailhead_features", :force => true do |t|
     t.string   "name"
     t.text     "description"
@@ -202,6 +217,13 @@ ActiveRecord::Schema.define(:version => 20120823150437) do
 
   add_index "trailheads", ["user_id"], :name => "index_trailheads_on_user_id"
 
+  create_table "travel_modes", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "trip_features", :force => true do |t|
     t.string   "name"
     t.text     "description"
@@ -214,6 +236,28 @@ ActiveRecord::Schema.define(:version => 20120823150437) do
   end
 
   add_index "trip_features", ["category_id"], :name => "index_trip_features_on_category_id"
+
+  create_table "trip_features_trips", :id => false, :force => true do |t|
+    t.integer "trip_id"
+    t.integer "trip_feature_id"
+  end
+
+  create_table "trips", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "user_id"
+    t.integer  "intensity_id"
+    t.integer  "duration_id"
+    t.integer  "starting_trailhead_id"
+    t.integer  "ending_trailhead_id"
+    t.text     "route"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
+
+  add_index "trips", ["duration_id"], :name => "index_trips_on_duration_id"
+  add_index "trips", ["intensity_id"], :name => "index_trips_on_intensity_id"
+  add_index "trips", ["user_id"], :name => "index_trips_on_user_id"
 
   create_table "user_profiles", :force => true do |t|
     t.string   "firstname"

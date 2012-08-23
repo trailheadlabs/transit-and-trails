@@ -1,0 +1,33 @@
+%h1 Listing trips
+
+%table
+  %tr
+    %th Name
+    %th Description
+    %th User
+    %th Intensity
+    %th Duration
+    %th Starting trailhead
+    %th Ending trailhead
+    %th Route
+    %th
+    %th
+    %th
+
+  - @trips.each do |trip|
+    %tr
+      %td= trip.name
+      %td= trip.description
+      %td= trip.user
+      %td= trip.intensity
+      %td= trip.duration
+      %td= trip.starting_trailhead_id
+      %td= trip.ending_trailhead_id
+      %td= trip.route
+      %td= link_to 'Show', trip
+      %td= link_to 'Edit', edit_trip_path(trip)
+      %td= link_to 'Destroy', trip, :data => { :confirm => 'Are you sure?' }, :method => :delete
+
+%br
+
+= link_to 'New Trip', new_trip_path

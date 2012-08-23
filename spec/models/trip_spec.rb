@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe RecentActivity do
+describe Trip do
 
 end

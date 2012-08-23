@@ -24,7 +24,7 @@
       %td= campground.approved
       %td= link_to 'Show', campground
       %td= link_to 'Edit', edit_campground_path(campground)
-      %td= link_to 'Destroy', campground, :confirm => 'Are you sure?', :method => :delete
+      %td= link_to 'Destroy', campground, :data => { :confirm => 'Are you sure?' }, :method => :delete
 
 %br
 

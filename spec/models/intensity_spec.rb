@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Feature do
+describe Intensity do
 
 end

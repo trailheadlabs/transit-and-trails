@@ -69,6 +69,47 @@ module Util
       latest_objects_for('baosc-productiondatadump.tnt.trailheadmap')
     end
 
+    def self.latest_trip_map_objects
+      latest_objects_for('baosc-productiondatadump.tnt.tripmap')
+    end
+
+    def self.latest_trip_objects
+      latest_objects_for('baosc-productiondatadump.tnt.trip')
+    end
+
+    def self.latest_story_objects
+      latest_objects_for('baosc-productiondatadump.tnt.story')
+    end
+
+    def self.import_story(item)
+      intensities = {1=>"Easy",2=>"Moderate",3=>"Strenous"}
+      new_record = Story.find_or_create_by_id(Integer(item['pk']))
+      fields = item['fields']
+      new_record.story = fields['story']
+      new_record.happened_at = fields['happened_at']
+      new_record.to_travel_mode = TravelMode.find_by_name(fields['travel_mode_to'].downcase.capitalize)
+      new_record.from_travel_mode = TravelMode.find_by_name(fields['travel_mode_from'].downcase.capitalize)
+      new_record.user_id = fields['author']
+      new_record.storytellable_id = fields['trip']
+      new_record.storytellable_type = "Trip"
+      new_record.save
+    end
+
+    def self.import_trip(item)
+      intensities = {1=>"Easy",2=>"Moderate",3=>"Strenous"}
+      new_record = Trip.find_or_create_by_id(Integer(item['pk']))
+      fields = item['fields']
+      new_record.name = fields['name']
+      new_record.description = fields['description']
+      new_record.intensity = Intensity.find_by_name(intensities[fields['intensity']])
+      new_record.duration = Duration.find_by_name(fields['duration'])
+      new_record.starting_trailhead_id = fields['starting_point']
+      new_record.ending_trailhead_id = fields['ending_point']
+      new_record.user_id = fields['author']
+      new_record.route = fields['route']
+      new_record.trip_features = TripFeature.where(id: fields['features'])
+      new_record.save
+    end
 
     def self.import_recent_activity(item)
       new_record = RecentActivity.find_or_create_by_id(Integer(item['pk']))
@@ -238,6 +279,28 @@ module Util
       new_record.save
     end
 
+    def self.import_trip_map(item)
+      new_record = Map.new
+      fields = item['fields']
+      new_record.name = fields['name']
+      new_record.description = fields['description']
+      new_record.user_id = fields['user']
+      new_record.url = fields['url']
+      new_record.mapable_id = fields['trip']
+      new_record.mapable_type = "Trip"
+      begin
+        unless fields['map'].blank?
+          new_record.remote_map_url = "http://transitandtrails.org/media/" + fields['map']
+          new_record.map.store!
+        end
+      rescue Exception => e
+        puts "Could not set map for trip #{new_record.name}"
+        puts fields['map']
+        puts e.message
+      end
+      new_record.save
+    end
+
     def self.import_trailhead_map(item)
       new_record = Map.new
       fields = item['fields']
@@ -279,32 +342,6 @@ module Util
         puts fields['map']
         puts e.message
       end
-      new_record.save
-    end
-
-
-    def self.import_feature(item)
-      fields = item['fields']
-      new_record = Feature.where(:name=>fields['name']).first_or_create
-      new_record.description = fields['description']
-      if new_record.rank
-        new_record.rank = fields['rank'] if fields['rank'] > new_record.rank
-      else
-        new_record.rank = fields['rank']
-      end
-      new_record.category_id = fields['category']
-      new_record.link_url = fields['link_url']
-      begin
-        unless fields['marker_icon'].blank?
-          new_record.remote_marker_icon_url = "http://transitandtrails.org/media/" + fields['marker_icon']
-          new_record.marker_icon.store!
-        end
-      rescue Exception => e
-        puts "Could not set marker icon for feature #{new_record.name}"
-        puts fields['marker_icon']
-        puts e.message
-      end
-
       new_record.save
     end
 

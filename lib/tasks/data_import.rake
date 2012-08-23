@@ -263,6 +263,45 @@ namespace :import do
     end
   end
 
+  desc "Import trip maps from the S3 backup"
+  task :trip_maps => :environment do
+
+    puts "importing trip maps"
+    # download file from S3
+    json = Util::DataImport::latest_trip_map_objects
+    # for each item in list
+    json.each do |item|
+      puts JSON.pretty_generate item, :indent => "  "
+      puts Util::DataImport::import_trip_map item
+    end
+  end
+
+  desc "Import trips from the S3 backup"
+  task :trips => :environment do
+
+    puts "importing trips"
+    # download file from S3
+    json = Util::DataImport::latest_trip_objects
+    # for each item in list
+    json.each do |item|
+      puts JSON.pretty_generate item, :indent => "  "
+      puts Util::DataImport::import_trip item
+    end
+  end
+
+  desc "Import stories from the S3 backup"
+  task :stories => :environment do
+
+    puts "importing stories"
+    # download file from S3
+    json = Util::DataImport::latest_story_objects
+    # for each item in list
+    json.each do |item|
+      puts JSON.pretty_generate item, :indent => "  "
+      puts Util::DataImport::import_story item
+    end
+  end
+
   desc "Turn off paper trail"
   task :paper_trail_off => :environment do
     PaperTrail.enabled = false
@@ -272,6 +311,6 @@ namespace :import do
   task :all => ["paper_trail_off", "users:accounts", "users:profiles", "categories",
    "campground_features", "trailhead_features", "trip_features", "trailheads",
    "non_profit_partners", "agencies", "partners", "recent_activity", "campgrounds",
-   "parks"]
+   "parks, campground_maps, trailhead_maps", "trip_maps"]
 
 end

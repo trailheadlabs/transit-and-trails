@@ -1,0 +1,2 @@
+class IntensitiesController < ApplicationController
+end

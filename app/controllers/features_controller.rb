@@ -1,2 +1,0 @@
-class FeaturesController < ApplicationController
-end

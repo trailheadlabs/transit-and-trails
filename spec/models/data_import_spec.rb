@@ -21,6 +21,34 @@ describe "DataImport" do
     new_record.visible.should eq fields['visible']
   end
 
+  it "imports stories correctly" do
+    item = JSON::parse('
+      {
+        "pk": 2,
+        "model": "tnt.story",
+        "fields": {
+          "story": "<p>\r\n\t&nbsp;</p>\r\n<p class=\"p1\">\r\n\t<strong>The Night Refuge</strong></p>\r\n<p class=\"p1\">\r\n\t4am. &nbsp;Thick fog. &nbsp;Winding roads. &nbsp;Pitch black. &nbsp;Deer on our right, scared us half to death. &nbsp;Hooting owl on the left, we scared it half to death. &nbsp;Foxes running stupidly in front of our car. &nbsp;A coyote pack too smart to be seen except the glows of their eyes.</p>\r\n<p class=\"p1\">\r\n\tThat is how our journey to the Tule Elk Range in Point Reyes began. &nbsp;We left extremely early to ensure we saw something alive. &nbsp;Now, going in the middle of the night, the only predators to survive when humans are sleeping, were abound!</p>\r\n<p class=\"p1\">\r\n\tAfter hiking just 15 minutes, my friend whispers loudly to my brother and I in front &quot;Guys.. look up&quot;. &nbsp;I saw nothing. &nbsp;Through the fog, I just saw bushes, spiky bushes, spiky bushes that happened to be 10 elk right in the path of our trail!</p>\r\n<p class=\"p1\">\r\n\t<a href=\"http://imgur.com/FifWK,74zcj,tqJWL#2\">http://imgur.com/FifWK,74zcj,tqJWL#2</a></p>\r\n<p class=\"p1\">\r\n\tWe got closer, and before we knew it, we had separated a herd of 60 elk between the trail. &nbsp;Apparently we woke them before the early morning and thier young were still asleep and not able to join their mothers in the hustle. &nbsp;We respectfully backed up and let the mothers call for their young, and for the young to call to their mothers:</p>\r\n<p class=\"p1\">\r\n\t<a href=\"http://www.facebook.com/photo.php?v=10101229698072061\" target=\"_blank\">http://www.facebook.com/photo.php?v=10101229698072061</a></p>\r\n<p class=\"p1\">\r\n\tThe fog was so thick as we walked a long that we startled the elk as much as they startled us. &nbsp;We passed hundreds of elk. &nbsp;Them staring at us. &nbsp;Us staring at them. &nbsp;The deeper we went, the thinner the groups became. &nbsp;Before the elks traveled in herims of 40, now groups of 4 bachelors watched us upon every hill</p>\r\n<p class=\"p1\">\r\n\t<a href=\"http://imgur.com/FifWK,74zcj,tqJWL#1\">http://imgur.com/FifWK,74zcj,tqJWL#1</a></p>\r\n<p class=\"p1\">\r\n\tThese bulls with their razor sharp horns, seemed to be guarding something, on alert for any intruders. &nbsp;However they failed in stopping us, because we arrived unscathed into their protected lands.. the bull horn training grounds.</p>\r\n<p class=\"p1\">\r\n\t<a href=\"http://imgur.com/FifWK,74zcj,tqJWL#0\">http://imgur.com/FifWK,74zcj,tqJWL#0</a></p>\r\n<p class=\"p1\">\r\n\tOver 50 bachelor elks surrounded the watering hole, all &quot;fighting&quot; with each other. &nbsp;One elk would put their horns down, and immediately a battle ensued. &nbsp;Endlessly training for their shot of being the dominant bull next season. &nbsp;Respect.</p>\r\n<p class=\"p1\">\r\n\tAfter hiking 5 miles through the Tule Elk Range, we reached the end, the sun shone brightly, however the fog was still thick as ever. &nbsp;On our journey back, we saw no elk. &nbsp;Just humans, at least 50 of them, loud as ever.</p>\r\n",
+          "travel_mode_from": "DRIVE",
+          "author": 2301,
+          "created_at": "2012-08-20",
+          "object_id": 369,
+          "happened_at": "2012-08-11",
+          "travel_mode_to": "DRIVE",
+          "content_type": 27
+        }
+      }')
+    Util::DataImport::import_story item
+    fields = item['fields']
+    new_record = Story.find(item['pk'])
+    new_record.should_not be nil
+    new_record.id.should eq item['pk']
+    new_record.to_travel_mode.should eq TravelMode.find_by_name(fields['travel_mode_to'].downcase.capitalize)
+    new_record.from_travel_mode.should eq TravelMode.find_by_name(fields['travel_mode_from'].downcase.capitalize)
+    new_record.user_id.should eq fields['author']
+    new_record.happened_at.should eq fields['happened_at']
+    new_record.story.should eq fields['story']
+  end
+
   it "imports recent activity correctly" do
     item = JSON::parse('{
       "pk": 1,
@@ -140,6 +168,57 @@ describe "DataImport" do
     new_record.link.should eq fields['link']
   end
 
+  it "imports trips correctly" do
+    FactoryGirl.create(:trip_feature,:id=>2)
+    FactoryGirl.create(:trip_feature,:id=>3)
+    FactoryGirl.create(:trip_feature,:id=>4)
+    item = JSON::parse(
+      '{
+  "pk": 4,
+  "model": "tnt.trip",
+  "fields": {
+    "flickr_set_url": "",
+    "name": "Joe Rodota and West County Trails",
+    "end_date": null,
+    "author": 16,
+    "route": "[[38.4370291503125,-122.72460427862802],[38.4370291503125,-122.72460427862802],[38.4370291503125,-122.72460427862802],[38.4370291503125,-122.72460427862802],[38.4370291503125,-122.72460427862802],[38.4370291503125,-122.72460427862802]]",
+    "ending_point": 492,
+    "people": [
+
+    ],
+    "intensity": 1,
+    "geom": "LINESTRING (-122.7246042786280213 38.4370291503124974, -122.7246042786280213 38.4370291503124974, -122.7246042786280213 38.4370291503124974, -122.7246042786280213 38.4370291503124974, -122.7246042786280213 38.4370291503124974)",
+    "features": [
+      2,
+      3,
+      4    ],
+    "activity": null,
+    "duration": "Day Trip",
+    "starting_point": 493,
+    "start_date": null,
+    "description": "<p>\r\n\tTwo connected level paved trails (biking, running, hiking) from Santa Rosa to Sebastopol to Forestville, with access to Laguna de Santa Rosa Wetlands Preserve for good birding.</p>\r\n"
+  }
+}
+')
+    Util::DataImport::import_trip item
+    fields = item['fields']
+    new_record = Trip.find(item['pk'])
+    new_record.should_not be nil
+    new_record.id.should eq item['pk']
+    new_record.name.should eq fields['name']
+    new_record.description.should eq fields['description']
+    intensities = {1=>"Easy",2=>"Moderate",3=>"Strenous"}
+    new_record.intensity.should eq Intensity.find_by_name(intensities[fields['intensity']])
+    new_record.duration.should eq Duration.find_by_name(fields['duration'])
+    new_record.starting_trailhead_id.should eq fields['starting_point']
+    new_record.ending_trailhead_id.should eq fields['ending_point']
+    new_record.user_id.should eq fields['author']
+    new_record.route.should eq fields['route']
+    if fields['features']
+      new_record.trip_features.collect{|c| c.id}.sort.should eq fields['features'].sort
+    end
+  end
+
   it "imports nonprofit partners correctly" do
     item = JSON::parse(
       '{
@@ -237,7 +316,7 @@ describe "DataImport" do
           "approved": true,
           "description": ""
         }
-}')
+      }')
     Util::DataImport::import_campground item
     fields = item['fields']
     new_record = Campground.find(item['pk'])
@@ -256,9 +335,6 @@ describe "DataImport" do
   end
 
   it "imports campground maps correctly" do
-    FactoryGirl.create(:campground_feature,:id=>4)
-    FactoryGirl.create(:campground_feature,:id=>5)
-    FactoryGirl.create(:campground_feature,:id=>6)
     item = JSON::parse(
       '{
         "pk": 2,
@@ -267,15 +343,15 @@ describe "DataImport" do
           "name": "Del Valle Regional Park",
           "user": 1,
           "campground": 6,
-          "description": "Test"
-          "map": "baosc.png"
+          "description": "Test",
+          "map": "baosc.png",
           "url": "http://transitandtrails.org"
         }
       }')
-    Util::DataImport::import_campground item
+    Util::DataImport::import_campground_map item
     fields = item['fields']
+    new_record = Map.last
     new_record.should_not be nil
-    new_record.id.should eq item['pk']
     new_record.name.should eq fields['name']
     new_record.description.should eq fields['description']
     new_record.url.should eq fields['url']
@@ -283,26 +359,38 @@ describe "DataImport" do
     unless fields['map'].blank?
       new_record.map.should_not be_blank
     end
-
   end
 
-  it "imports features correctly" do
-    item = JSON::parse('{"pk": 38, "model": "tnt.tripfeature", "fields": {"category": 3, "name": "Walking", "description": "Walking is the preferred means of transportation here. Check the trips info to find some cool trails and other places to check out. ", "rank": 1, "quantity": 0, "link_url": "http://nps.gov", "marker_icon": "baosc.png"}}')
-    Util::DataImport::import_feature item
+
+  it "imports trip maps correctly" do
+    item = JSON::parse(
+      '{
+        "pk": 2,
+        "model": "tnt.tripmap",
+        "fields": {
+          "name": "Del Valle Regional Park",
+          "user": 1,
+          "campground": 6,
+          "description": "Test",
+          "map": "baosc.png",
+          "url": "http://transitandtrails.org"
+        }
+      }')
+    Util::DataImport::import_trip_map item
     fields = item['fields']
-    new_record = Feature.find_by_name(fields['name'])
+    new_record = Map.last
     new_record.should_not be nil
     new_record.name.should eq fields['name']
     new_record.description.should eq fields['description']
-    new_record.rank.should eq fields['rank']
-    new_record.link_url.should eq fields['link_url']
-    new_record.category_id.should eq fields['category']
-    unless fields['marker_icon'].blank?
-      new_record.marker_icon.should_not be_blank
+    new_record.url.should eq fields['url']
+    new_record.user_id.should eq fields['user']
+    unless fields['map'].blank?
+      new_record.map.should_not be_blank
     end
   end
 
-it "imports campground features correctly" do
+
+  it "imports campground features correctly" do
     item = JSON::parse('{"pk": 38, "model": "tnt.tripfeature", "fields": {"category": 3, "name": "Walking", "description": "Walking is the preferred means of transportation here. Check the trips info to find some cool trails and other places to check out. ", "rank": 1, "quantity": 0, "link_url": "http://nps.gov", "marker_icon": "baosc.png"}}')
     Util::DataImport::import_campground_feature item
     fields = item['fields']
@@ -318,7 +406,7 @@ it "imports campground features correctly" do
     end
   end
 
-it "imports trailhead features correctly" do
+  it "imports trailhead features correctly" do
     item = JSON::parse('{"pk": 38, "model": "tnt.tripfeature", "fields": {"category": 3, "name": "Walking", "description": "Walking is the preferred means of transportation here. Check the trips info to find some cool trails and other places to check out. ", "rank": 1, "quantity": 0, "link_url": "http://nps.gov", "marker_icon": "baosc.png"}}')
     Util::DataImport::import_trailhead_feature item
     fields = item['fields']
@@ -334,7 +422,7 @@ it "imports trailhead features correctly" do
     end
   end
 
-it "imports trip features correctly" do
+  it "imports trip features correctly" do
     item = JSON::parse('{"pk": 38, "model": "tnt.tripfeature", "fields": {"category": 3, "name": "Walking", "description": "Walking is the preferred means of transportation here. Check the trips info to find some cool trails and other places to check out. ", "rank": 1, "quantity": 0, "link_url": "http://nps.gov", "marker_icon": "baosc.png"}}')
     Util::DataImport::import_trip_feature item
     fields = item['fields']

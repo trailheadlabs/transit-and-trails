@@ -1,4 +1,14 @@
 Transitandtrails::Application.routes.draw do
+  resources :travel_modes
+
+  resources :stories
+
+  resources :trips
+
+  resources :durations
+
+  resources :intensities
+
   resources :maps
 
   resources :campgrounds
@@ -24,8 +34,6 @@ Transitandtrails::Application.routes.draw do
   resources :trip_features
 
   resources :campground_features
-
-  resources :features
 
   resources :categories
 

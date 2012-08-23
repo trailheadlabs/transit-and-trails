@@ -1,0 +1,2 @@
+class DurationsController < ApplicationController
+end
