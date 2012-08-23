@@ -238,8 +238,13 @@ namespace :import do
 
   end
 
+  desc "Turn off paper trail"
+  task :paper_trail_off => :environment do
+    PaperTrail.enabled = false
+  end
+
   desc "Import all objects from the S3 backup"
-  task :all => ["users:accounts", "users:profiles", "categories",
+  task :all => ["paper_trail_off", "users:accounts", "users:profiles", "categories",
    "campground_features", "trailhead_features", "trip_features", "trailheads",
    "non_profit_partners", "agencies", "partners", "recent_activity", "parks"]
 
