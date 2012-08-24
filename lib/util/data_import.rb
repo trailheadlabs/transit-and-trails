@@ -81,6 +81,66 @@ module Util
       latest_objects_for('baosc-productiondatadump.tnt.story')
     end
 
+    def self.latest_regional_landing_page_objects
+      latest_objects_for('baosc-productiondatadump.tnt.regionallandingpage')
+    end
+
+    def self.latest_campground_photo_objects
+      latest_objects_for('baosc-productiondatadump.tnt.campgroundphoto')
+    end
+
+    def self.latest_trailhead_photo_objects
+      latest_objects_for('baosc-productiondatadump.tnt.trailheadphoto')
+    end
+
+    def self.latest_trip_photo_objects
+      latest_objects_for('baosc-productiondatadump.tnt.tripphoto')
+      response = HTTParty.get('http://transitandtrails.org/api/v1/trip_photos')
+      JSON.parse(response.body)
+    end
+
+    def self.latest_featured_tab_objects
+      latest_objects_for('baosc-productiondatadump.tnt.featuredtab')
+    end
+
+    def self.latest_transit_agency_objects
+      latest_objects_for('baosc-productiondatadump.tnt.transitagency')
+    end
+
+    def self.latest_transit_router_objects
+      latest_objects_for('baosc-productiondatadump.tnt.transitrouter')
+    end
+
+    def self.import_regional_landing_page(item)
+      new_record = RegionalLandingPage.find_or_create_by_id(Integer(item['pk']))
+      fields = item['fields']
+      new_record.name = fields['name']
+      new_record.description = fields['description']
+      new_record.path = fields['path']
+      map_center = fields['map_center'].gsub(/[A-Za-z]|\(|\)/,"").strip.split(',').collect{|c| c.split(" ").collect{|d| Float(d)}}
+      new_record.longitude = map_center[0][0]
+      new_record.latitude = map_center[0][1]
+      new_record.save
+    end
+
+    def self.import_transit_agency(item)
+      new_record = TransitAgency.find_or_create_by_id(Integer(item['pk']))
+      fields = item['fields']
+      new_record.name = fields['agency']
+      new_record.web = fields['web']
+      new_record.geometry = fields['geom']
+      new_record.save
+    end
+
+    def self.import_transit_router(item)
+      new_record = TransitRouter.find_or_create_by_id(Integer(item['pk']))
+      fields = item['fields']
+      new_record.name = fields['name']
+      new_record.description = fields['description']
+      new_record.transit_agencies = TransitAgency.where(id: fields['agencies'])
+      new_record.save
+    end
+
     def self.import_story(item)
       intensities = {1=>"Easy",2=>"Moderate",3=>"Strenous"}
       new_record = Story.find_or_create_by_id(Integer(item['pk']))
@@ -141,6 +201,46 @@ module Util
 
       new_record.save
     end
+
+    def self.import_featured_tab(item)
+      new_record = FeaturedTab.find_or_create_by_id(Integer(item['pk']))
+      fields = item['fields']
+      new_record.header = fields['header']
+      new_record.highlighted = fields['highlighted']
+      new_record.text1 = fields['text1']
+      new_record.text2 = fields['text2']
+      new_record.text3 = fields['text3']
+
+      begin
+        unless fields['image'].blank?
+          new_record.remote_image_url = "http://transitandtrails.org/media/" + fields['image']
+          new_record.image.store!
+        end
+      rescue Exception => e
+        puts "Could not set image for partner #{new_record.header}"
+        puts fields['image']
+        puts e.message
+      end
+
+      new_record.image_link
+
+      new_record.link1 = fields['link1']
+      new_record.link1_text = fields['link1_text']
+
+      new_record.link2 = fields['link2']
+      new_record.link2_text = fields['link2_text']
+
+      new_record.link3 = fields['link3']
+      new_record.link3_text = fields['link3_text']
+
+      new_record.link4 = fields['link4']
+      new_record.link4_text = fields['link4_text']
+
+      new_record.link5 = fields['link5']
+      new_record.link5_text = fields['link5_text']
+      new_record.save
+  end
+
 
     def self.import_partner(item)
       new_record = Partner.find_or_create_by_id(Integer(item['pk']))
@@ -276,6 +376,69 @@ module Util
         puts fields['map']
         puts e.message
       end
+      new_record.save
+    end
+
+    def self.import_campground_photo(item)
+      new_record = Photo.new
+      fields = item['fields']
+      new_record.flickr_id = fields['flickr_id']
+      new_record.uploaded_to_flickr = fields['uploaded_to_flickr']
+      new_record.user_id = fields['user']
+      new_record.photoable_id = fields['campground']
+      new_record.photoable_type = "Campground"
+      # begin
+      #   unless fields['map'].blank?
+      #     new_record.remote_map_url = "http://transitandtrails.org/media/" + fields['map']
+      #     new_record.map.store!
+      #   end
+      # rescue Exception => e
+      #   puts "Could not set map for campground #{new_record.name}"
+      #   puts fields['map']
+      #   puts e.message
+      # end
+      new_record.save
+    end
+
+    def self.import_trailhead_photo(item)
+      new_record = Photo.new
+      fields = item['fields']
+      new_record.flickr_id = fields['flickr_id']
+      new_record.uploaded_to_flickr = fields['uploaded_to_flickr']
+      new_record.user_id = fields['user']
+      new_record.photoable_id = fields['trailhead']
+      new_record.photoable_type = "Trailhead"
+      # begin
+      #   unless fields['map'].blank?
+      #     new_record.remote_map_url = "http://transitandtrails.org/media/" + fields['map']
+      #     new_record.map.store!
+      #   end
+      # rescue Exception => e
+      #   puts "Could not set map for campground #{new_record.name}"
+      #   puts fields['map']
+      #   puts e.message
+      # end
+      new_record.save
+    end
+
+    def self.import_trip_photo(item)
+      new_record = Photo.new
+      fields = item
+      new_record.flickr_id = fields['flickr_id']
+      new_record.uploaded_to_flickr = fields['uploaded_to_flickr']
+      new_record.user_id = fields['user']
+      new_record.photoable_id = fields['trip']
+      new_record.photoable_type = "Trip"
+      # begin
+      #   unless fields['map'].blank?
+      #     new_record.remote_map_url = "http://transitandtrails.org/media/" + fields['map']
+      #     new_record.map.store!
+      #   end
+      # rescue Exception => e
+      #   puts "Could not set map for campground #{new_record.name}"
+      #   puts fields['map']
+      #   puts e.message
+      # end
       new_record.save
     end
 

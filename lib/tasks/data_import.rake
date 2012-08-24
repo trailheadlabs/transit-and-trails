@@ -302,6 +302,98 @@ namespace :import do
     end
   end
 
+  desc "Import regional landing pages from the S3 backup"
+  task :regional_landing_pages => :environment do
+
+    puts "importing regional landing pages"
+    # download file from S3
+    json = Util::DataImport::latest_regional_landing_page_objects
+    # for each item in list
+    json.each do |item|
+      puts JSON.pretty_generate item, :indent => "  "
+      puts Util::DataImport::import_regional_landing_page item
+    end
+  end
+
+  desc "Import campground photos from the S3 backup"
+  task :campground_photos => :environment do
+
+    puts "importing campground photos"
+    # download file from S3
+    json = Util::DataImport::latest_campground_photo_objects
+    # for each item in list
+    json.each do |item|
+      puts JSON.pretty_generate item, :indent => "  "
+      puts Util::DataImport::import_campground_photo item
+    end
+  end
+
+  desc "Import trailhead photos from the S3 backup"
+  task :trailhead_photos => :environment do
+
+    puts "importing trailhead photos"
+    # download file from S3
+    json = Util::DataImport::latest_trailhead_photo_objects
+    # for each item in list
+    json.each do |item|
+      puts JSON.pretty_generate item, :indent => "  "
+      puts Util::DataImport::import_trailhead_photo item
+    end
+  end
+
+  desc "Import trip photos from the S3 backup"
+  task :trip_photos => :environment do
+
+    puts "importing trip photos"
+    # download file from S3
+    json = Util::DataImport::latest_trip_photo_objects
+    # for each item in list
+    json.each do |item|
+      puts JSON.pretty_generate item, :indent => "  "
+      puts Util::DataImport::import_trip_photo item
+    end
+  end
+
+
+  desc "Import feature tabs from the S3 backup"
+  task :featured_tabs => :environment do
+
+    puts "importing featured tabs"
+    # download file from S3
+    json = Util::DataImport::latest_featured_tab_objects
+    # for each item in list
+    json.each do |item|
+      puts JSON.pretty_generate item, :indent => "  "
+      puts Util::DataImport::import_featured_tab item
+    end
+  end
+
+  desc "Import transit agencies from the S3 backup"
+  task :transit_agencies => :environment do
+
+    puts "importing transit agencies"
+    # download file from S3
+    json = Util::DataImport::latest_transit_agency_objects
+    # for each item in list
+    json.each do |item|
+      puts JSON.pretty_generate item, :indent => "  "
+      puts Util::DataImport::import_transit_agency item
+    end
+  end
+
+  desc "Import transit routers from the S3 backup"
+  task :transit_routers => :environment do
+
+    puts "importing transit routers"
+    # download file from S3
+    json = Util::DataImport::latest_transit_router_objects
+    # for each item in list
+    json.each do |item|
+      puts JSON.pretty_generate item, :indent => "  "
+      puts Util::DataImport::import_transit_router item
+    end
+  end
+
   desc "Turn off paper trail"
   task :paper_trail_off => :environment do
     PaperTrail.enabled = false
@@ -311,6 +403,7 @@ namespace :import do
   task :all => ["paper_trail_off", "users:accounts", "users:profiles", "categories",
    "campground_features", "trailhead_features", "trip_features", "trailheads",
    "non_profit_partners", "agencies", "partners", "recent_activity", "campgrounds",
-   "parks, campground_maps, trailhead_maps", "trip_maps", "stories"]
+   "parks, campground_maps, trailhead_maps", "trip_maps", "stories", "campground_photos",
+  "trailhead_photos", "trip_photos", "featured_tabs", "transit_agencies", "transit_routers"]
 
 end

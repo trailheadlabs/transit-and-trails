@@ -21,6 +21,63 @@ describe "DataImport" do
     new_record.visible.should eq fields['visible']
   end
 
+  it "imports transit agencies correctly" do
+    item = JSON::parse('
+      {
+        "pk": 33,
+        "model": "tnt.transitagency",
+        "fields": {
+          "web": "http://www.westcat.org/",
+          "agency": "WestCAT",
+          "_511": "http://transit.511.org/schedules/index.aspx",
+          "geom": "MULTIPOLYGON (((-122.2431490217469729 38.0581689552289220, -122.2424359499600257 38.0581000117468875)))",
+          "agncy_id": "WC",
+          "type": "Bus"
+        }
+      }
+      ')
+    Util::DataImport::import_transit_agency item
+    fields = item['fields']
+    new_record = TransitAgency.find(item['pk'])
+    new_record.should_not be nil
+    new_record.id.should eq item['pk']
+    new_record.name.should eq fields['agency']
+    new_record.geometry.should eq fields['geom']
+    new_record.web.should eq fields['web']
+  end
+
+  it "imports transit routers correctly" do
+    FactoryGirl.create(:transit_agency,:id=>4)
+    FactoryGirl.create(:transit_agency,:id=>7)
+    FactoryGirl.create(:transit_agency,:id=>8)
+    item = JSON::parse('
+      {
+        "pk": 1,
+        "model": "tnt.transitrouter",
+        "fields": {
+          "agencies": [
+            4,
+            7,
+            8
+          ],
+          "name": "Google Transit",
+          "description": ""
+        }
+      }
+      ')
+    Util::DataImport::import_transit_router item
+    fields = item['fields']
+    new_record = TransitRouter.find(item['pk'])
+    new_record.should_not be nil
+    new_record.id.should eq item['pk']
+    new_record.name.should eq fields['name']
+    new_record.description.should eq fields['description']
+    if fields['agencies']
+      new_record.transit_agencies.collect{|c| c.id}.sort.should eq fields['agencies'].sort
+    end
+
+  end
+
   it "imports stories correctly" do
     item = JSON::parse('
       {
@@ -106,6 +163,68 @@ describe "DataImport" do
     new_record.favorites_link5_text.should eq fields['favorites_link5_text']
   end
 
+  it "imports featured tab correctly" do
+    item = JSON::parse('
+      {
+        "pk": 1,
+        "model": "tnt.featuredtab",
+        "fields": {
+          "link5": "",
+          "text2": "Try something new!",
+          "link4_text": "",
+          "link1": "http://transitandtrails.org/challenge/",
+          "name": "Featured Tab",
+          "link3": "",
+          "text3": "Get outside and get moving!",
+          "image": "featured/featured-tab/417418_10150550121088404_264884664_n.jpg",
+          "link2": "http://blog.transitandtrails.org/2012/07/what-parks-and-trails-are-around-you/",
+          "link2_text": "On the blog",
+          "highlighted": false,
+          "header": "TAKE THE CHALLENGE!",
+          "link4": "",
+          "text1": "Go for a walk, hike, run or ride in a whole new way.",
+          "image_link": "http://transitandtrails.org/challenge/",
+          "link5_text": "",
+          "link3_text": "",
+          "link1_text": "Challenge",
+          "description": "Not necessary"
+        }
+      }
+      ')
+    Util::DataImport::import_featured_tab item
+    fields = item['fields']
+    new_record = FeaturedTab.find(item['pk'])
+    new_record.should_not be nil
+    new_record.id.should eq item['pk']
+    new_record.header.should eq fields['header']
+    new_record.highlighted.should eq fields['highlighted']
+    new_record.text1.should eq fields['text1']
+    new_record.text2.should eq fields['text2']
+    new_record.text3.should eq fields['text3']
+
+    unless new_record.image.blank?
+      new_record.image.should_not be_blank
+    end
+
+    new_record.image_link
+
+    new_record.link1.should eq fields['link1']
+    new_record.link1_text.should eq fields['link1_text']
+
+    new_record.link2.should eq fields['link2']
+    new_record.link2_text.should eq fields['link2_text']
+
+    new_record.link3.should eq fields['link3']
+    new_record.link3_text.should eq fields['link3_text']
+
+    new_record.link4.should eq fields['link4']
+    new_record.link4_text.should eq fields['link4_text']
+
+    new_record.link5.should eq fields['link5']
+    new_record.link5_text.should eq fields['link5_text']
+
+  end
+
   it "imports agencies correctly" do
     item = JSON::parse('
       {
@@ -131,6 +250,30 @@ describe "DataImport" do
       new_record.logo.should_not be_blank
     end
 
+  end
+
+  it "imports regional landing pages correctly" do
+    item = JSON::parse('
+      {
+        "pk": 7,
+        "model": "tnt.regionallandingpage",
+        "fields": {
+          "map_center": "POINT (-93.2649544231687031 44.9790773054617006)",
+          "path": "TC",
+          "name": "Minneapolis",
+          "description": ""
+        }
+      }')
+    Util::DataImport::import_regional_landing_page item
+    fields = item['fields']
+    new_record = RegionalLandingPage.find(item['pk'])
+    new_record.should_not be nil
+    new_record.id.should eq item['pk']
+    new_record.name.should eq fields['name']
+    new_record.description.should eq fields['description']
+    new_record.path.should eq fields['path']
+    new_record.longitude.should eq -93.2649544231687031
+    new_record.latitude.should eq 44.9790773054617006
   end
 
   it "imports parks correctly" do
@@ -359,6 +502,32 @@ describe "DataImport" do
     unless fields['map'].blank?
       new_record.map.should_not be_blank
     end
+  end
+
+  it "imports campground photos correctly" do
+    item = JSON::parse(
+      '{
+        "pk": 2,
+        "model": "tnt.campgroundphoto",
+        "fields": {
+          "flickr_id": "34243255435",
+          "user": 1,
+          "campground": 6,
+          "description": "Test",
+          "map": "baosc.png",
+          "url": "http://transitandtrails.org"
+        }
+      }')
+    Util::DataImport::import_campground_photo item
+    fields = item['fields']
+    new_record = Photo.last
+    new_record.should_not be nil
+    new_record.flickr_id.should eq fields['flickr_id']
+    new_record.uploaded_to_flickr.should eq fields['uploaded_to_flickr']
+    new_record.user_id.should eq fields['user']
+    # unless fields['image'].blank?
+    #   new_record.image.should_not be_blank
+    # end
   end
 
 

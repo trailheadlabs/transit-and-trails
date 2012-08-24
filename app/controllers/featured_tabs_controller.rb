@@ -1,0 +1,2 @@
+class FeaturedTabsController < ApplicationController
+end

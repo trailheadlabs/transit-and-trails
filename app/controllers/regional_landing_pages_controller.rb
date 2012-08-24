@@ -1,0 +1,2 @@
+class RegionalLandingPagesController < ApplicationController
+end

@@ -1,0 +1,2 @@
+class TransitRoutersController < ApplicationController
+end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120823221509) do
+ActiveRecord::Schema.define(:version => 20120824044246) do
 
   create_table "agencies", :force => true do |t|
     t.string   "name"
@@ -67,6 +67,28 @@ ActiveRecord::Schema.define(:version => 20120823221509) do
   create_table "durations", :force => true do |t|
     t.string   "name"
     t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "featured_tabs", :force => true do |t|
+    t.boolean  "highlighted"
+    t.string   "header"
+    t.text     "text1"
+    t.text     "text2"
+    t.text     "text3"
+    t.string   "image"
+    t.string   "image_link"
+    t.string   "link1"
+    t.text     "link1_text"
+    t.string   "link2"
+    t.text     "link2_text"
+    t.string   "link3"
+    t.text     "link3_text"
+    t.string   "link4"
+    t.text     "link4_text"
+    t.string   "link5"
+    t.text     "link5_text"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
@@ -132,6 +154,19 @@ ActiveRecord::Schema.define(:version => 20120823221509) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "photos", :force => true do |t|
+    t.integer  "photoable_id"
+    t.string   "photoable_type"
+    t.string   "flickr_id"
+    t.integer  "user_id"
+    t.boolean  "uploaded_to_flickr"
+    t.string   "image"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "photos", ["user_id"], :name => "index_photos_on_user_id"
+
   create_table "rails_admin_histories", :force => true do |t|
     t.text     "message"
     t.string   "username"
@@ -167,6 +202,16 @@ ActiveRecord::Schema.define(:version => 20120823221509) do
     t.text     "favorites_link5_text"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
+  end
+
+  create_table "regional_landing_pages", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "path"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "stories", :force => true do |t|
@@ -216,6 +261,26 @@ ActiveRecord::Schema.define(:version => 20120823221509) do
   end
 
   add_index "trailheads", ["user_id"], :name => "index_trailheads_on_user_id"
+
+  create_table "transit_agencies", :force => true do |t|
+    t.string   "name"
+    t.string   "web"
+    t.text     "geometry"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "transit_agencies_transit_routers", :id => false, :force => true do |t|
+    t.integer "transit_agency_id"
+    t.integer "transit_router_id"
+  end
+
+  create_table "transit_routers", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "travel_modes", :force => true do |t|
     t.string   "name"

@@ -1,4 +1,14 @@
 Transitandtrails::Application.routes.draw do
+  resources :transit_routers
+
+  resources :transit_agencies
+
+  resources :featured_tabs
+
+  resources :photos
+
+  resources :regional_landing_pages
+
   resources :travel_modes
 
   resources :stories

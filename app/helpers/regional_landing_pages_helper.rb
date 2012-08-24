@@ -1,0 +1,2 @@
+module RegionalLandingPagesHelper
+end

@@ -8,6 +8,7 @@ gem 'rails', '3.2.7'
 gem 'pg'
 gem 'devise'
 gem 'haml-rails'
+gem "httparty"
 gem 'hpricot'
 gem 'ruby_parser'
 gem 'omniauth'
