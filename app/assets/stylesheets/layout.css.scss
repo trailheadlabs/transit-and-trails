@@ -1,0 +1,33 @@
+@import "bourbon";
+
+body{
+  background-color:#514B43;
+  margin:0px;
+  padding:0px;
+}
+.main{
+  background-color:white;
+  min-height:400px;
+  margin: 0 auto;
+  width:980px;
+  border-left:solid 1px black;
+  border-right:solid 1px black;
+  border-bottom:solid 1px black;
+  @include border-radius(0px 0px 30px 30px);
+}
+.header{
+  height:160px;
+  background-image:url(header.png);
+  position:relative;
+
+}
+.content{
+  padding:20px 20px 30px 20px;
+}
+
+#user-nav{
+  position: absolute;
+  top: 12px;
+  left: 16px;
+  color: #39A0D7;
+}
