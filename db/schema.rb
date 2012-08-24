@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120824044246) do
+ActiveRecord::Schema.define(:version => 20120824161930) do
 
   create_table "agencies", :force => true do |t|
     t.string   "name"
@@ -143,6 +143,8 @@ ActiveRecord::Schema.define(:version => 20120824044246) do
   end
 
   add_index "parks", ["agency_id"], :name => "index_parks_on_agency_id"
+  add_index "parks", ["min_latitude", "max_latitude", "min_longitude", "max_longitude"], :name => "bounds_min_max_index"
+  add_index "parks", ["name"], :name => "index_parks_on_name"
   add_index "parks", ["non_profit_partner_id"], :name => "index_parks_on_non_profit_partner_id"
 
   create_table "partners", :force => true do |t|

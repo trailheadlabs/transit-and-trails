@@ -1,4 +1,12 @@
 Transitandtrails::Application.routes.draw do
+  namespace :api, :defaults => {:format => :json} do
+    namespace :v1 do
+      resources :users, :only => [:show, :index]
+      resources :attribute_categories, :only => [:show, :index]
+      resources :trailheads, :only => [:show, :index]
+    end
+  end
+
   resources :transit_routers
 
   resources :transit_agencies
@@ -33,11 +41,7 @@ Transitandtrails::Application.routes.draw do
 
   resources :non_profit_partners
 
-  resources :trailheads
-
-  get "attribute_category/index"
-
-  get "attribute_category/show"
+  # resources :trailheads
 
   resources :trailhead_features
 
@@ -46,13 +50,6 @@ Transitandtrails::Application.routes.draw do
   resources :campground_features
 
   resources :categories
-
-  namespace :api, :defaults => {:format => :json} do
-    namespace :v1 do
-      resources :users, :only => [:show, :index]
-      resources :attribute_categories, :only => [:show, :index]
-    end
-  end
 
   match 'profiles/edit' => 'user_profiles#edit'
 

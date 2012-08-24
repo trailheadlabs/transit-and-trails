@@ -129,6 +129,7 @@ GEM
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-ssh (2.5.2)
+    newrelic_rpm (3.4.1)
     nokogiri (1.5.5)
     oauth (0.4.6)
     oauth2 (0.8.0)
@@ -277,6 +278,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   multi_json
+  newrelic_rpm
   omniauth
   omniauth-facebook
   omniauth-twitter
