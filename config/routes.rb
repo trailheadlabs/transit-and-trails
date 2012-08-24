@@ -3,7 +3,13 @@ Transitandtrails::Application.routes.draw do
     namespace :v1 do
       resources :users, :only => [:show, :index]
       resources :attribute_categories, :only => [:show, :index]
-      resources :trailheads, :only => [:show, :index]
+      resources :trailheads, :only => [:show, :index] do
+        member do
+          get 'photos'
+          get 'attributes'
+        end
+      end
+      resources :trailhead_attributes, :only => [:show, :index]
     end
   end
 

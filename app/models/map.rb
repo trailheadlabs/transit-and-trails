@@ -4,4 +4,5 @@ class Map < ActiveRecord::Base
   attr_accessible :description, :map, :mapable_id, :mapable_type, :name, :url,
     :map_cache, :remote_map_url
   mount_uploader :map, MapUploader
+
 end
