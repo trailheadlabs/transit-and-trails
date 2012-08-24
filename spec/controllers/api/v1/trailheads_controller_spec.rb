@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Api::V1::TrailheadsControllerController do
+describe Api::V1::TrailheadsController do
 
   describe "GET 'index'" do
     it "returns http success" do
