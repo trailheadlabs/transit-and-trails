@@ -26,6 +26,9 @@ gem 'flickraw'
 gem 'geocoder'
 gem 'rgeo'
 gem 'paper_trail', '~> 2'
+gem 'jquery-rails'
+gem 'bourbon'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -38,8 +41,6 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
 end
-
-gem 'jquery-rails'
 
 group :test, :development do
   gem "rspec-rails", "~> 2.0"

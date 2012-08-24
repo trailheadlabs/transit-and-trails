@@ -142,7 +142,7 @@ module Util
     end
 
     def self.import_story(item)
-      intensities = {1=>"Easy",2=>"Moderate",3=>"Strenous"}
+      intensities = {1=>"Easy",2=>"Moderate",3=>"Strenuous"}
       new_record = Story.find_or_create_by_id(Integer(item['pk']))
       fields = item['fields']
       new_record.story = fields['story']
@@ -156,7 +156,7 @@ module Util
     end
 
     def self.import_trip(item)
-      intensities = {1=>"Easy",2=>"Moderate",3=>"Strenous"}
+      intensities = {1=>"Easy",2=>"Moderate",3=>"Strenuous"}
       new_record = Trip.find_or_create_by_id(Integer(item['pk']))
       fields = item['fields']
       new_record.name = fields['name']

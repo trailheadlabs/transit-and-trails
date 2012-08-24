@@ -350,7 +350,7 @@ describe "DataImport" do
     new_record.id.should eq item['pk']
     new_record.name.should eq fields['name']
     new_record.description.should eq fields['description']
-    intensities = {1=>"Easy",2=>"Moderate",3=>"Strenous"}
+    intensities = {1=>"Easy",2=>"Moderate",3=>"Strenuous"}
     new_record.intensity.should eq Intensity.find_by_name(intensities[fields['intensity']])
     new_record.duration.should eq Duration.find_by_name(fields['duration'])
     new_record.starting_trailhead_id.should eq fields['starting_point']

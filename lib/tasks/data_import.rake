@@ -403,7 +403,8 @@ namespace :import do
   task :all => ["paper_trail_off", "users:accounts", "users:profiles", "categories",
    "campground_features", "trailhead_features", "trip_features", "trailheads",
    "non_profit_partners", "agencies", "partners", "recent_activity", "campgrounds",
-   "parks", "campground_maps", "trailhead_maps", "trip_maps", "stories", "campground_photos",
-  "trailhead_photos", "trip_photos", "featured_tabs", "transit_agencies", "transit_routers"]
+   "parks", "campground_maps", "trailhead_maps", "trips", "trip_maps", "stories", "campground_photos",
+  "trailhead_photos", "trip_photos", "featured_tabs", "transit_agencies", "transit_routers",
+  "regional_landing_pages"]
 
 end

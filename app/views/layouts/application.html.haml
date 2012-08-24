@@ -6,20 +6,23 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    #user_nav
-      - if user_signed_in?
-        Logged in as
-        = succeed "." do
-          %strong= current_user.username
-        = link_to 'Edit profile', edit_user_registration_path
-        |
-        \#{link_to "Logout", destroy_user_session_path, method: :delete}
-      - else
-        = link_to "Sign up", new_user_registration_path
-        |
-        \#{link_to "Login", new_user_session_path}
+    .main
+      .header
+        #user-nav
+          - if user_signed_in?
+            Logged in as
+            = succeed "." do
+              %strong= current_user.username
+            = link_to 'Edit profile', edit_user_registration_path
+            |
+            \#{link_to "Logout", destroy_user_session_path, method: :delete}
+          - else
+            = link_to "Sign up", new_user_registration_path
+            |
+            \#{link_to "Login", new_user_session_path}
+      .content
 
-    .notice= notice
-    .alert= alert
-    .error= flash[:error]
-    #{yield}
+        .notice= notice
+        .alert= alert
+        .error= flash[:error]
+        #{yield}
