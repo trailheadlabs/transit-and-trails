@@ -2,6 +2,9 @@ require 'spec_helper'
 require 'util/data_import'
 
 describe "DataImport" do
+  before(:each) do
+    Fog.mock!
+  end
 
   it "downloads the latest attribute categories" do
     json = Util::DataImport::latest_attribute_category_objects
