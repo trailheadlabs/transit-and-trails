@@ -6,11 +6,6 @@ describe "DataImport" do
     Fog.mock!
   end
 
-  it "downloads the latest attribute categories" do
-    json = Util::DataImport::latest_attribute_category_objects
-    json.count.should be > 0
-  end
-
   it "imports attribute categories correctly" do
     item = JSON::parse('{"pk": 8, "model": "tnt.attributecategory", "fields": {"visible": true, "name": "Trip Route", "rank": 1, "description": "What is the trip route - loop, out and back, one-way?"}}')
     Util::DataImport::import_attribute_category item

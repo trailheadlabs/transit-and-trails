@@ -23,14 +23,14 @@
       <img src="./assets/0.5.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2012-08-25T09:52:27-07:00">2012-08-25T09:52:27-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2012-08-25T10:14:11-07:00">2012-08-25T10:14:11-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="yellow">85.2%</span></span>
+    (<span class="covered_percent"><span class="yellow">84.62%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
@@ -42,8 +42,8 @@
   <div>
     <b>91</b> files in total.
     <b>865</b> relevant lines. 
-    <span class="green"><b>737</b> lines covered</span> and
-    <span class="red"><b>128</b> lines missed </span>
+    <span class="green"><b>732</b> lines covered</span> and
+    <span class="red"><b>133</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -961,11 +961,11 @@
       
       <tr>
         <td class="strong"><a href="#0c93f24d8bbebcf5092c3ca80b7d59302e63390f" class="src_link" title="lib/util/data_import.rb">lib/util/data_import.rb</a></td>
-        <td class="red strong">73.44 %</td>
+        <td class="red strong">72.25 %</td>
         <td>611</td>
         <td>418</td>
-        <td>307</td>
-        <td>111</td>
+        <td>302</td>
+        <td>116</td>
         <td>0.8</td>
       </tr>
       
@@ -1906,7 +1906,7 @@
           <div class="file_list_container" id="Libraries">
   <h2>
     <span class="group_name">Libraries</span>
-    (<span class="covered_percent"><span class="red">73.44%</span></span>
+    (<span class="covered_percent"><span class="red">72.25%</span></span>
      covered at
      <span class="covered_strength">
        <span class="red">
@@ -1918,8 +1918,8 @@
   <div>
     <b>1</b> files in total.
     <b>418</b> relevant lines. 
-    <span class="green"><b>307</b> lines covered</span> and
-    <span class="red"><b>111</b> lines missed </span>
+    <span class="green"><b>302</b> lines covered</span> and
+    <span class="red"><b>116</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -1937,11 +1937,11 @@
       
       <tr>
         <td class="strong"><a href="#0c93f24d8bbebcf5092c3ca80b7d59302e63390f" class="src_link" title="lib/util/data_import.rb">lib/util/data_import.rb</a></td>
-        <td class="red strong">73.44 %</td>
+        <td class="red strong">72.25 %</td>
         <td>611</td>
         <td>418</td>
-        <td>307</td>
-        <td>111</td>
+        <td>302</td>
+        <td>116</td>
         <td>0.8</td>
       </tr>
       
@@ -12255,11 +12255,11 @@
         <div class="source_table" id="0c93f24d8bbebcf5092c3ca80b7d59302e63390f">
   <div class="header">
     <h3>lib/util/data_import.rb</h3>
-    <h4><span class="red">73.44 %</span> covered</h4>
+    <h4><span class="red">72.25 %</span> covered</h4>
     <div>
       <b>418</b> relevant lines. 
-      <span class="green"><b>307</b> lines covered</span> and
-      <span class="red"><b>111</b> lines missed.</span>
+      <span class="green"><b>302</b> lines covered</span> and
+      <span class="red"><b>116</b> lines missed.</span>
     </div>
   </div>
   
@@ -12290,32 +12290,32 @@
           <code class="ruby">      remote_file = BAOSC_S3.directories.get(bucket).files.last</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="5">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="5">
+          
           
           <code class="ruby">      local_file = File.open('/tmp/' + remote_file.key,'wb')</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="6">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="6">
+          
           
           <code class="ruby">      local_file.write(remote_file.body)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="7">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="7">
+          
           
           <code class="ruby">      local_file.close</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="8">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="8">
+          
           
           <code class="ruby">      reader = Zlib::GzipReader.new(open('/tmp/' + remote_file.key,'r'))</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="9">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="9">
+          
           
           <code class="ruby">      json = JSON.parse(reader.read)</code>
         </li>
