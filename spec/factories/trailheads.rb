@@ -5,7 +5,7 @@ FactoryGirl.define do
     name "MyString"
     description "MyText"
     latitude 1.5
-    longitude 1.5
+    longitude 2.5
     user nil
     rideshare false
     zimride_url "MyString"

@@ -7,55 +7,18 @@ Transitandtrails::Application.routes.draw do
         member do
           get 'photos'
           get 'attributes'
+          get 'maps'
         end
       end
       resources :trailhead_attributes, :only => [:show, :index]
     end
   end
 
-  resources :transit_routers
-
-  resources :transit_agencies
-
-  resources :featured_tabs
-
-  resources :photos
-
-  resources :regional_landing_pages
-
-  resources :travel_modes
-
-  resources :stories
-
   resources :trips
-
-  resources :durations
-
-  resources :intensities
-
-  resources :maps
 
   resources :campgrounds
 
-  resources :recent_activities
-
-  resources :partners
-
-  resources :agencies
-
-  resources :parks
-
-  resources :non_profit_partners
-
-  # resources :trailheads
-
-  resources :trailhead_features
-
-  resources :trip_features
-
-  resources :campground_features
-
-  resources :categories
+  resources :trailheads
 
   match 'profiles/edit' => 'user_profiles#edit'
 
