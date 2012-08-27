@@ -11,8 +11,6 @@ class PhotoUploader < CarrierWave::Uploader::Base
     model.save
   end
 
-  def delete_from_flickr
-
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
