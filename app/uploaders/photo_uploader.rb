@@ -6,8 +6,12 @@ class PhotoUploader < CarrierWave::Uploader::Base
   def upload_to_flickr(file)
     Rails.logger.info "Uploading to flickr"
     title = eval "#{model.photoable_type}.find(#{model.photoable_id}).name"
-    flickr.upload_photo file.path, :title => title
+    result = flickr.upload_photo file.path, :title => title
+    model.flickr_id = result
+    model.save
   end
+
+  def delete_from_flickr
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
