@@ -1,6 +1,13 @@
 # encoding: utf-8
 
 class PhotoUploader < CarrierWave::Uploader::Base
+  after :cache, :upload_to_flickr
+
+  def upload_to_flickr(file)
+    Rails.logger.info "Uploading to flickr"
+    title = eval "#{model.photoable_type}.find(#{model.photoable_id}).name"
+    flickr.upload_photo file.path, :title => title
+  end
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
