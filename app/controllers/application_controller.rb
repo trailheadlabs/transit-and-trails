@@ -11,4 +11,15 @@ class ApplicationController < ActionController::Base
       redirect_to '/' # halts request cycle
     end
   end
+
+  def apply_limit_and_offset(params,records)
+    if params[:limit]
+      records = records.limit(Integer(params[:limit]))
+    end
+    if params[:offset]
+      records = records.offset(Integer(params[:offset]))
+    end
+    return records
+  end
+
 end

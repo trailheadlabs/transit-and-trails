@@ -2,7 +2,7 @@ module Api
   module V1
     class AttributeCategoriesController < ApplicationController
       def index
-        @attribute_categories = Category.order("id desc")
+        @attribute_categories = apply_limit_and_offset(params,Category.order("id desc"))
       end
 
       def show

@@ -10,6 +10,21 @@ Transitandtrails::Application.routes.draw do
           get 'maps'
         end
       end
+      resources :campgrounds, :only => [:show, :index] do
+        member do
+          get 'photos'
+          get 'attributes'
+          get 'maps'
+        end
+      end
+      resources :trips, :only => [:show, :index] do
+        member do
+          get 'photos'
+          get 'attributes'
+          get 'maps'
+          get 'route'
+        end
+      end
       resources :trailhead_attributes, :only => [:show, :index]
     end
   end

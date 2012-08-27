@@ -167,6 +167,7 @@ module Util
       new_record.ending_trailhead_id = fields['ending_point']
       new_record.user_id = fields['author']
       new_record.route = fields['route']
+      new_record.geometry = fields['geom']
       new_record.trip_features = TripFeature.where(id: fields['features'])
       new_record.save
     end

@@ -2,7 +2,7 @@ module Api
   module V1
     class TrailheadsController < ApplicationController
       def index
-        @trailheads = Trailhead.order("id desc")
+        @trailheads = apply_limit_and_offset(params,Trailhead.order("id"))
       end
 
       def show

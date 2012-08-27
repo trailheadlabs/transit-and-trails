@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe Api::V1::TrailheadsController do
+describe Api::V1::CampgroundsController do
   render_views
 
   describe "GET 'index'" do
     it "returns http success" do
       10.times do
-        FactoryGirl.create(:trailhead)
+        FactoryGirl.create(:campground)
       end
       get :index
       response.should be_success
@@ -19,29 +19,29 @@ describe Api::V1::TrailheadsController do
   describe "GET 'show'" do
     it "returns http success" do
       user = FactoryGirl.create(:user)
-      trailhead = FactoryGirl.create(:trailhead, :user => user)
+      campground = FactoryGirl.create(:campground, :user => user)
       park = FactoryGirl.create(:park)
-      Trailhead.any_instance.should_receive(:park_by_bounds).any_number_of_times.and_return(park)
-      get :show, {:id=>trailhead.id}
+      Campground.any_instance.should_receive(:park_by_bounds).any_number_of_times.and_return(park)
+      get :show, {:id=>campground.id}
       response.should be_success
       object = JSON.parse(response.body)
-      object['id'].should eq trailhead.id
+      object['id'].should eq campground.id
       object['author_id'].should eq user.id
-      object['name'].should eq trailhead.name
-      object['description'].should eq trailhead.description
-      object['latitude'].should eq trailhead.latitude
-      object['longitude'].should eq trailhead.longitude
+      object['name'].should eq campground.name
+      object['description'].should eq campground.description
+      object['latitude'].should eq campground.latitude
+      object['longitude'].should eq campground.longitude
       object['park_name'].should eq park.name
     end
   end
 
   describe "GET 'maps" do
-    it "returns trailhead maps" do
-      trailhead = FactoryGirl.create(:trailhead)
+    it "returns campground maps" do
+      campground = FactoryGirl.create(:campground)
       3.times do
-        FactoryGirl.create(:map,:mapable_type=>'Trailhead',:mapable_id=>trailhead.id)
+        FactoryGirl.create(:map,:mapable_type=>'Campground',:mapable_id=>campground.id)
       end
-      get :maps, {:id=>trailhead.id}
+      get :maps, {:id=>campground.id}
       response.should be_success
       object = JSON.parse(response.body)
       object.class.should eq Array
@@ -50,14 +50,14 @@ describe Api::V1::TrailheadsController do
   end
 
   describe "GET 'attributes" do
-    it "returns trailhead attributes" do
-      trailhead = FactoryGirl.create(:trailhead)
+    it "returns campground attributes" do
+      campground = FactoryGirl.create(:campground)
       category = FactoryGirl.create(:category, :name=>'Test')
       3.times do
-        attribute = FactoryGirl.create(:trailhead_feature,:category=>category)
-        trailhead.trailhead_features << attribute
+        attribute = FactoryGirl.create(:campground_feature,:category=>category)
+        campground.campground_features << attribute
       end
-      get :attributes, {:id=>trailhead.id}
+      get :attributes, {:id=>campground.id}
       response.should be_success
       object = JSON.parse(response.body)
       object.class.should eq Array
@@ -70,12 +70,12 @@ describe Api::V1::TrailheadsController do
   end
 
   describe "GET 'photos" do
-    it "returns trailhead photos" do
-      trailhead = FactoryGirl.create(:trailhead)
+    it "returns campground photos" do
+      campground = FactoryGirl.create(:campground)
       3.times do
-        FactoryGirl.create(:photo,:photoable_type=>'Trailhead',:photoable_id=>trailhead.id)
+        FactoryGirl.create(:photo,:photoable_type=>'Campground',:photoable_id=>campground.id)
       end
-      get :photos, {:id=>trailhead.id}
+      get :photos, {:id=>campground.id}
       response.should be_success
       object = JSON.parse(response.body)
       object.class.should eq Array

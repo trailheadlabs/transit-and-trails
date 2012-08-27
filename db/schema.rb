@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120824161930) do
+ActiveRecord::Schema.define(:version => 20120827172252) do
 
   create_table "agencies", :force => true do |t|
     t.string   "name"
@@ -320,6 +320,7 @@ ActiveRecord::Schema.define(:version => 20120824161930) do
     t.text     "route"
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
+    t.text     "geometry"
   end
 
   add_index "trips", ["duration_id"], :name => "index_trips_on_duration_id"
