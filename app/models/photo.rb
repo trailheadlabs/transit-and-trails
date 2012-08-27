@@ -5,6 +5,10 @@ class Photo < ActiveRecord::Base
   after_destroy :delete_from_flickr
 
   def delete_from_flickr
-    flickr.photos.delete self.flickr_id
+    begin
+      flickr.photos.delete :photo_id => self.flickr_id
+    rescue Exception => e
+      Rails.logger.error e
+    end
   end
 end
