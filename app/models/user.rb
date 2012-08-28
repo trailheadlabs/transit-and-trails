@@ -32,4 +32,8 @@ class User < ActiveRecord::Base
     end
   end
 
+  def trailblazer?
+    return self.admin
+  end
+
 end

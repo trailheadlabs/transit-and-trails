@@ -50,115 +50,122 @@ describe CampgroundsController do
     end
   end
 
-  describe "GET new" do
-    it "assigns a new campground as @campground" do
-      get :new, {}, valid_session
-      assigns(:campground).should be_a_new(Campground)
-    end
-  end
-
-  describe "GET edit" do
-    it "assigns the requested campground as @campground" do
-      campground = Campground.create! valid_attributes
-      get :edit, {:id => campground.to_param}, valid_session
-      assigns(:campground).should eq(campground)
-    end
-  end
-
-  describe "POST create" do
-    describe "with valid params" do
-      it "creates a new Campground" do
-        expect {
-          post :create, {:campground => valid_attributes}, valid_session
-        }.to change(Campground, :count).by(1)
-      end
-
-      it "assigns a newly created campground as @campground" do
-        post :create, {:campground => valid_attributes}, valid_session
-        assigns(:campground).should be_a(Campground)
-        assigns(:campground).should be_persisted
-      end
-
-      it "redirects to the created campground" do
-        post :create, {:campground => valid_attributes}, valid_session
-        response.should redirect_to(Campground.last)
-      end
+  context "logged in" do
+    before(:each) do
+      @user = FactoryGirl.create(:user)
+      sign_in :user, @user
+      controller.user_signed_in?.should be_true
     end
 
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved campground as @campground" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Campground.any_instance.stub(:save).and_return(false)
-        post :create, {:campground => {}}, valid_session
+    describe "GET new" do
+      it "assigns a new campground as @campground" do
+        get :new, {}, valid_session
         assigns(:campground).should be_a_new(Campground)
       end
-
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Campground.any_instance.stub(:save).and_return(false)
-        post :create, {:campground => {}}, valid_session
-        response.should render_template("new")
-      end
     end
-  end
 
-  describe "PUT update" do
-    describe "with valid params" do
-      it "updates the requested campground" do
-        campground = Campground.create! valid_attributes
-        # Assuming there are no other campgrounds in the database, this
-        # specifies that the Campground created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        Campground.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, {:id => campground.to_param, :campground => {'these' => 'params'}}, valid_session
-      end
-
+    describe "GET edit" do
       it "assigns the requested campground as @campground" do
         campground = Campground.create! valid_attributes
-        put :update, {:id => campground.to_param, :campground => valid_attributes}, valid_session
+        get :edit, {:id => campground.to_param}, valid_session
         assigns(:campground).should eq(campground)
-      end
-
-      it "redirects to the campground" do
-        campground = Campground.create! valid_attributes
-        put :update, {:id => campground.to_param, :campground => valid_attributes}, valid_session
-        response.should redirect_to(campground)
       end
     end
 
-    describe "with invalid params" do
-      it "assigns the campground as @campground" do
-        campground = Campground.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Campground.any_instance.stub(:save).and_return(false)
-        put :update, {:id => campground.to_param, :campground => {}}, valid_session
-        assigns(:campground).should eq(campground)
+    describe "POST create" do
+      describe "with valid params" do
+        it "creates a new Campground" do
+          expect {
+            post :create, {:campground => valid_attributes}, valid_session
+          }.to change(Campground, :count).by(1)
+        end
+
+        it "assigns a newly created campground as @campground" do
+          post :create, {:campground => valid_attributes}, valid_session
+          assigns(:campground).should be_a(Campground)
+          assigns(:campground).should be_persisted
+        end
+
+        it "redirects to the created campground" do
+          post :create, {:campground => valid_attributes}, valid_session
+          response.should redirect_to(Campground.last)
+        end
       end
 
-      it "re-renders the 'edit' template" do
-        campground = Campground.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Campground.any_instance.stub(:save).and_return(false)
-        put :update, {:id => campground.to_param, :campground => {}}, valid_session
-        response.should render_template("edit")
+      describe "with invalid params" do
+        it "assigns a newly created but unsaved campground as @campground" do
+          # Trigger the behavior that occurs when invalid params are submitted
+          Campground.any_instance.stub(:save).and_return(false)
+          post :create, {:campground => {}}, valid_session
+          assigns(:campground).should be_a_new(Campground)
+        end
+
+        it "re-renders the 'new' template" do
+          # Trigger the behavior that occurs when invalid params are submitted
+          Campground.any_instance.stub(:save).and_return(false)
+          post :create, {:campground => {}}, valid_session
+          response.should render_template("new")
+        end
       end
     end
-  end
 
-  describe "DELETE destroy" do
-    it "destroys the requested campground" do
-      campground = Campground.create! valid_attributes
-      expect {
+    describe "PUT update" do
+      describe "with valid params" do
+        it "updates the requested campground" do
+          campground = Campground.create! valid_attributes
+          # Assuming there are no other campgrounds in the database, this
+          # specifies that the Campground created on the previous line
+          # receives the :update_attributes message with whatever params are
+          # submitted in the request.
+          Campground.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
+          put :update, {:id => campground.to_param, :campground => {'these' => 'params'}}, valid_session
+        end
+
+        it "assigns the requested campground as @campground" do
+          campground = Campground.create! valid_attributes
+          put :update, {:id => campground.to_param, :campground => valid_attributes}, valid_session
+          assigns(:campground).should eq(campground)
+        end
+
+        it "redirects to the campground" do
+          campground = Campground.create! valid_attributes
+          put :update, {:id => campground.to_param, :campground => valid_attributes}, valid_session
+          response.should redirect_to(campground)
+        end
+      end
+
+      describe "with invalid params" do
+        it "assigns the campground as @campground" do
+          campground = Campground.create! valid_attributes
+          # Trigger the behavior that occurs when invalid params are submitted
+          Campground.any_instance.stub(:save).and_return(false)
+          put :update, {:id => campground.to_param, :campground => {}}, valid_session
+          assigns(:campground).should eq(campground)
+        end
+
+        it "re-renders the 'edit' template" do
+          campground = Campground.create! valid_attributes
+          # Trigger the behavior that occurs when invalid params are submitted
+          Campground.any_instance.stub(:save).and_return(false)
+          put :update, {:id => campground.to_param, :campground => {}}, valid_session
+          response.should render_template("edit")
+        end
+      end
+    end
+
+    describe "DELETE destroy" do
+      it "destroys the requested campground" do
+        campground = Campground.create! valid_attributes
+        expect {
+          delete :destroy, {:id => campground.to_param}, valid_session
+        }.to change(Campground, :count).by(-1)
+      end
+
+      it "redirects to the campgrounds list" do
+        campground = Campground.create! valid_attributes
         delete :destroy, {:id => campground.to_param}, valid_session
-      }.to change(Campground, :count).by(-1)
-    end
-
-    it "redirects to the campgrounds list" do
-      campground = Campground.create! valid_attributes
-      delete :destroy, {:id => campground.to_param}, valid_session
-      response.should redirect_to(campgrounds_url)
+        response.should redirect_to(campgrounds_url)
+      end
     end
   end
-
 end

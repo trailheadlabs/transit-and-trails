@@ -1,4 +1,6 @@
 class TrailheadsController < ApplicationController
+  before_filter :authenticate_user!, :except => [:index,:show]
+
   # GET /trailheads
   # GET /trailheads.json
   def index

@@ -2285,6 +2285,10 @@
         null,
         null,
         null,
+        1,
+        0,
+        null,
+        null,
         null
       ],
       "/Users/jerememonteau/git/jmoe/transitandtrails/app/controllers/application_controller.rb": [
@@ -2733,6 +2737,8 @@
       ],
       "/Users/jerememonteau/git/jmoe/transitandtrails/app/controllers/campgrounds_controller.rb": [
         1,
+        1,
+        null,
         null,
         null,
         1,
@@ -3406,6 +3412,8 @@
       ],
       "/Users/jerememonteau/git/jmoe/transitandtrails/app/controllers/trailheads_controller.rb": [
         1,
+        1,
+        null,
         null,
         null,
         1,
@@ -3591,6 +3599,7 @@
         null
       ],
       "/Users/jerememonteau/git/jmoe/transitandtrails/app/controllers/trips_controller.rb": [
+        1,
         1,
         null,
         null,
@@ -4495,6 +4504,6 @@
         null
       ]
     },
-    "timestamp": 1346189145
+    "timestamp": 1346193260
   }
 }
