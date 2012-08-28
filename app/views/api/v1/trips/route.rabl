@@ -1,0 +1,2 @@
+object @trip
+attributes :route

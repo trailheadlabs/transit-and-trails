@@ -250,6 +250,32 @@ describe "DataImport" do
 
   end
 
+  it "imports parnters correctly" do
+    item = JSON::parse('
+      {
+        "pk": 4,
+        "model": "tnt.partner",
+        "fields": {
+          "logo": "baosc.png",
+          "link": "http://www.parks.ca.gov/",
+          "name": "California Department of Parks and Recreation",
+          "description": null
+        }
+      }')
+    Util::DataImport::import_partner item
+    fields = item['fields']
+    new_record = Partner.find(item['pk'])
+    new_record.should_not be nil
+    new_record.id.should eq item['pk']
+    new_record.name.should eq fields['name']
+    new_record.description.should eq fields['description']
+    new_record.link.should eq fields['link']
+    unless fields['logo'].blank?
+      new_record.logo.should_not be_blank
+    end
+
+  end
+
   it "imports regional landing pages correctly" do
     item = JSON::parse('
       {
@@ -528,6 +554,54 @@ describe "DataImport" do
     # end
   end
 
+  it "imports trailhead photos correctly" do
+    item = JSON::parse(
+      '{
+        "pk": 2,
+        "model": "tnt.trailheadphoto",
+        "fields": {
+          "flickr_id": "34243255435",
+          "user": 1,
+          "campground": 6,
+          "description": "Test",
+          "map": "baosc.png",
+          "url": "http://transitandtrails.org"
+        }
+      }')
+    Util::DataImport::import_trailhead_photo item
+    fields = item['fields']
+    new_record = Photo.last
+    new_record.should_not be nil
+    new_record.flickr_id.should eq fields['flickr_id']
+    new_record.uploaded_to_flickr.should eq fields['uploaded_to_flickr']
+    new_record.user_id.should eq fields['user']
+    # unless fields['image'].blank?
+    #   new_record.image.should_not be_blank
+    # end
+  end
+
+  it "imports trip photos correctly" do
+    item = JSON::parse(
+      '{
+          "flickr_id": "34243255435",
+          "user": 1,
+          "trip": 6,
+          "description": "Test",
+          "map": "baosc.png",
+          "url": "http://transitandtrails.org"
+      }')
+    Util::DataImport::import_trip_photo item
+    fields = item
+    new_record = Photo.last
+    new_record.should_not be nil
+    new_record.flickr_id.should eq fields['flickr_id']
+    new_record.uploaded_to_flickr.should eq fields['uploaded_to_flickr']
+    new_record.user_id.should eq fields['user']
+    # unless fields['image'].blank?
+    #   new_record.image.should_not be_blank
+    # end
+  end
+
 
   it "imports trip maps correctly" do
     item = JSON::parse(
@@ -537,13 +611,67 @@ describe "DataImport" do
         "fields": {
           "name": "Del Valle Regional Park",
           "user": 1,
-          "campground": 6,
+          "trip": 6,
           "description": "Test",
           "map": "baosc.png",
           "url": "http://transitandtrails.org"
         }
       }')
     Util::DataImport::import_trip_map item
+    fields = item['fields']
+    new_record = Map.last
+    new_record.should_not be nil
+    new_record.name.should eq fields['name']
+    new_record.description.should eq fields['description']
+    new_record.url.should eq fields['url']
+    new_record.user_id.should eq fields['user']
+    unless fields['map'].blank?
+      new_record.map.should_not be_blank
+    end
+  end
+
+  it "imports campground maps correctly" do
+    item = JSON::parse(
+      '{
+        "pk": 2,
+        "model": "tnt.campgroundmap",
+        "fields": {
+          "name": "Del Valle Regional Park",
+          "user": 1,
+          "campground": 6,
+          "description": "Test",
+          "map": "baosc.png",
+          "url": "http://transitandtrails.org"
+        }
+      }')
+    Util::DataImport::import_campground_map item
+    fields = item['fields']
+    new_record = Map.last
+    new_record.should_not be nil
+    new_record.name.should eq fields['name']
+    new_record.description.should eq fields['description']
+    new_record.url.should eq fields['url']
+    new_record.user_id.should eq fields['user']
+    unless fields['map'].blank?
+      new_record.map.should_not be_blank
+    end
+  end
+
+  it "imports trailhead maps correctly" do
+    item = JSON::parse(
+      '{
+        "pk": 2,
+        "model": "tnt.trailheadmap",
+        "fields": {
+          "name": "Del Valle Regional Park",
+          "user": 1,
+          "trailhead": 6,
+          "description": "Test",
+          "map": "baosc.png",
+          "url": "http://transitandtrails.org"
+        }
+      }')
+    Util::DataImport::import_trailhead_map item
     fields = item['fields']
     new_record = Map.last
     new_record.should_not be nil

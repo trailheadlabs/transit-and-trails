@@ -74,6 +74,8 @@ GEM
       multipart-post (~> 1.1)
     ffi (1.1.5)
     flickraw (0.9.6)
+    flickraw-cached (20120701)
+      flickraw (>= 0.9)
     fog (1.5.0)
       builder
       excon (~> 0.14)
@@ -269,7 +271,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise
   factory_girl_rails
-  flickraw
+  flickraw-cached
   fog
   geocoder
   haml-rails

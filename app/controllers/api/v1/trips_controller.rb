@@ -22,7 +22,7 @@ module Api
       end
 
       def route
-        @route = Trip.find(params[:id]).route
+        @trip = Trip.find(params[:id])
       end
 
     end

@@ -4,7 +4,7 @@ describe Api::V1::TripsController do
   render_views
 
   describe "GET 'index'" do
-    it "returns http success" do
+    it "returns a list of trips" do
       10.times do
         FactoryGirl.create(:trip)
       end
@@ -17,7 +17,7 @@ describe Api::V1::TripsController do
   end
 
   describe "GET 'show'" do
-    it "returns http success" do
+    it "returns a trip with the right fields" do
       user = FactoryGirl.create(:user)
       duration = FactoryGirl.create(:duration,:name => "LongTime")
       intensity = FactoryGirl.create(:intensity,:name => "Slog")
@@ -37,11 +37,11 @@ describe Api::V1::TripsController do
       object['intensity'].should eq trip.intensity.name
       object['ending_trailhead_id'].should eq ending_trailhead.id
       object['starting_trailhead_id'].should eq starting_trailhead.id
-      object['length_miles'].should eq 0.0
+      object['length_miles'].round(1).should eq 2.2
     end
   end
 
-  describe "GET 'maps" do
+  describe "GET 'maps'" do
     it "returns trip maps" do
       trip = FactoryGirl.create(:trip)
       3.times do
@@ -55,7 +55,7 @@ describe Api::V1::TripsController do
     end
   end
 
-  describe "GET 'attributes" do
+  describe "GET 'attributes'" do
     it "returns trip attributes" do
       trip = FactoryGirl.create(:trip)
       category = FactoryGirl.create(:category, :name=>'Test')
@@ -75,7 +75,7 @@ describe Api::V1::TripsController do
     end
   end
 
-  describe "GET 'photos" do
+  describe "GET 'photos'" do
     it "returns trip photos" do
       trip = FactoryGirl.create(:trip)
       3.times do
@@ -85,6 +85,16 @@ describe Api::V1::TripsController do
       response.should be_success
       object = JSON.parse(response.body)
       object.class.should eq Array
+    end
+  end
+
+  describe "GET 'route'" do
+    it "returns trip route" do
+      trip = FactoryGirl.create(:trip)
+      get :route, {:id=>trip.id}
+      response.should be_success
+      object = JSON.parse(response.body)
+      object['route'].should eq trip.route
     end
   end
 

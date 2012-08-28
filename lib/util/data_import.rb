@@ -487,28 +487,6 @@ module Util
       new_record.save
     end
 
-    def self.import_campground_map(item)
-      new_record = Map.new
-      fields = item['fields']
-      new_record.name = fields['name']
-      new_record.description = fields['description']
-      new_record.user_id = fields['user']
-      new_record.url = fields['url']
-      new_record.mapable_id = fields['campground']
-      new_record.mapable_type = "Campground"
-      begin
-        unless fields['map'].blank?
-          new_record.remote_map_url = "http://transitandtrails.org/media/" + fields['map']
-          new_record.map.store!
-        end
-      rescue Exception => e
-        puts "Could not set map for campground #{new_record.name}"
-        puts fields['map']
-        puts e.message
-      end
-      new_record.save
-    end
-
     def self.import_campground_feature(item)
       fields = item['fields']
       new_record = CampgroundFeature.find_or_create_by_id(item['pk'])

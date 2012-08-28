@@ -4,7 +4,7 @@ describe Api::V1::TrailheadsController do
   render_views
 
   describe "GET 'index'" do
-    it "returns http success" do
+    it "returns a list of trailheads" do
       10.times do
         FactoryGirl.create(:trailhead)
       end
@@ -16,8 +16,22 @@ describe Api::V1::TrailheadsController do
     end
   end
 
+
+  describe "GET 'index'" do
+    it "returns a sublist of trailheads" do
+      10.times do
+        FactoryGirl.create(:trailhead)
+      end
+      get :index, {:limit=>3}
+      response.should be_success
+      list = JSON.parse(response.body)
+      list.class.should eq Array
+      list.length.should eq 3
+    end
+  end
+
   describe "GET 'show'" do
-    it "returns http success" do
+    it "returns a trailhead with the right fields" do
       user = FactoryGirl.create(:user)
       trailhead = FactoryGirl.create(:trailhead, :user => user)
       park = FactoryGirl.create(:park)
