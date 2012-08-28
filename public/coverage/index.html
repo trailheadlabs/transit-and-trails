@@ -23,27 +23,27 @@
       <img src="./assets/0.5.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2012-08-27T15:45:02-07:00">2012-08-27T15:45:02-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2012-08-27T18:07:15-07:00">2012-08-27T18:07:15-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="yellow">84.73%</span></span>
+    (<span class="covered_percent"><span class="yellow">84.79%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.24
+         1.29
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>91</b> files in total.
-    <b>904</b> relevant lines. 
-    <span class="green"><b>766</b> lines covered</span> and
-    <span class="red"><b>138</b> lines missed </span>
+    <b>927</b> relevant lines. 
+    <span class="green"><b>786</b> lines covered</span> and
+    <span class="red"><b>141</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -711,12 +711,12 @@
       
       <tr>
         <td class="strong"><a href="#e4b1664a87a2116bde86cba77698e5d1ece2bd2d" class="src_link" title="app/models/photo.rb">app/models/photo.rb</a></td>
-        <td class="yellow strong">85.71 %</td>
-        <td>10</td>
-        <td>7</td>
-        <td>6</td>
-        <td>1</td>
-        <td>0.9</td>
+        <td class="yellow strong">86.67 %</td>
+        <td>57</td>
+        <td>30</td>
+        <td>26</td>
+        <td>4</td>
+        <td>5.5</td>
       </tr>
       
       <tr>
@@ -1305,20 +1305,20 @@
           <div class="file_list_container" id="Models">
   <h2>
     <span class="group_name">Models</span>
-    (<span class="covered_percent"><span class="green">96.25%</span></span>
+    (<span class="covered_percent"><span class="green">95.08%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.57
+         1.76
        </span>
     </span> hits/line)
   </h2>
   <a name="Models"></a>
   <div>
     <b>24</b> files in total.
-    <b>160</b> relevant lines. 
-    <span class="green"><b>154</b> lines covered</span> and
-    <span class="red"><b>6</b> lines missed </span>
+    <b>183</b> relevant lines. 
+    <span class="green"><b>174</b> lines covered</span> and
+    <span class="red"><b>9</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -1446,12 +1446,12 @@
       
       <tr>
         <td class="strong"><a href="#e4b1664a87a2116bde86cba77698e5d1ece2bd2d" class="src_link" title="app/models/photo.rb">app/models/photo.rb</a></td>
-        <td class="yellow strong">85.71 %</td>
-        <td>10</td>
-        <td>7</td>
-        <td>6</td>
-        <td>1</td>
-        <td>0.9</td>
+        <td class="yellow strong">86.67 %</td>
+        <td>57</td>
+        <td>30</td>
+        <td>26</td>
+        <td>4</td>
+        <td>5.5</td>
       </tr>
       
       <tr>
@@ -7329,11 +7329,11 @@
         <div class="source_table" id="e4b1664a87a2116bde86cba77698e5d1ece2bd2d">
   <div class="header">
     <h3>app/models/photo.rb</h3>
-    <h4><span class="yellow">85.71 %</span> covered</h4>
+    <h4><span class="yellow">86.67 %</span> covered</h4>
     <div>
-      <b>7</b> relevant lines. 
-      <span class="green"><b>6</b> lines covered</span> and
-      <span class="red"><b>1</b> lines missed.</span>
+      <b>30</b> relevant lines. 
+      <span class="green"><b>26</b> lines covered</span> and
+      <span class="red"><b>4</b> lines missed.</span>
     </div>
   </div>
   
@@ -7385,16 +7385,298 @@
         <li class="missed" data-hits="0" data-linenumber="8">
           
           
-          <code class="ruby">    flickr.photos.delete self.flickr_id</code>
+          <code class="ruby">    begin</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="9">
+        <li class="missed" data-hits="0" data-linenumber="9">
+          
+          
+          <code class="ruby">      flickr.photos.delete :photo_id =&gt; self.flickr_id</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="10">
+          
+          
+          <code class="ruby">    rescue Exception =&gt; e</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="11">
+          
+          
+          <code class="ruby">      Rails.logger.error e</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="12">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="13">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="10">
+        <li class="never" data-hits="" data-linenumber="14">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="15">
+          
+          
+          <code class="ruby">  # http://www.flickr.com/services/api/misc.urls.html</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="16">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def flickr_info</code>
+        </li>
+      
+        <li class="covered" data-hits="45" data-linenumber="17">
+          <span class="hits">45</span>
+          
+          <code class="ruby">    flickr.photos.getInfo :photo_id =&gt; self.flickr_id</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="18">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="19">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="20">
+          
+          
+          <code class="ruby">  # eventually we should just cache all of these on the model</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="21">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def flickr_url</code>
+        </li>
+      
+        <li class="covered" data-hits="9" data-linenumber="22">
+          <span class="hits">9</span>
+          
+          <code class="ruby">    &quot;http://flickr.com/#{flickr.test.login.username}/#{flickr_id}&quot;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="23">
+          
+          
+          <code class="ruby">  rescue</code>
+        </li>
+      
+        <li class="covered" data-hits="9" data-linenumber="24">
+          <span class="hits">9</span>
+          
+          <code class="ruby">    nil</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="25">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="26">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="27">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def flickr_thumbnail_url</code>
+        </li>
+      
+        <li class="covered" data-hits="9" data-linenumber="28">
+          <span class="hits">9</span>
+          
+          <code class="ruby">    FlickRaw.url_t(flickr_info)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="29">
+          
+          
+          <code class="ruby">  rescue</code>
+        </li>
+      
+        <li class="covered" data-hits="9" data-linenumber="30">
+          <span class="hits">9</span>
+          
+          <code class="ruby">    nil</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="31">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="32">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="33">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def flickr_square_url</code>
+        </li>
+      
+        <li class="covered" data-hits="9" data-linenumber="34">
+          <span class="hits">9</span>
+          
+          <code class="ruby">    FlickRaw.url_s(flickr_info)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="35">
+          
+          
+          <code class="ruby">  rescue</code>
+        </li>
+      
+        <li class="covered" data-hits="9" data-linenumber="36">
+          <span class="hits">9</span>
+          
+          <code class="ruby">    nil</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="37">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="38">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="39">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def flickr_medium_url</code>
+        </li>
+      
+        <li class="covered" data-hits="9" data-linenumber="40">
+          <span class="hits">9</span>
+          
+          <code class="ruby">    FlickRaw.url_z(flickr_info)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="41">
+          
+          
+          <code class="ruby">  rescue</code>
+        </li>
+      
+        <li class="covered" data-hits="9" data-linenumber="42">
+          <span class="hits">9</span>
+          
+          <code class="ruby">    nil</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="43">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="44">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="45">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def flickr_original_url</code>
+        </li>
+      
+        <li class="covered" data-hits="9" data-linenumber="46">
+          <span class="hits">9</span>
+          
+          <code class="ruby">    FlickRaw.url_o(flickr_info)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="47">
+          
+          
+          <code class="ruby">  rescue</code>
+        </li>
+      
+        <li class="covered" data-hits="9" data-linenumber="48">
+          <span class="hits">9</span>
+          
+          <code class="ruby">    nil</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="49">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="50">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="51">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def flickr_large_url</code>
+        </li>
+      
+        <li class="covered" data-hits="9" data-linenumber="52">
+          <span class="hits">9</span>
+          
+          <code class="ruby">    FlickRaw.url_b(flickr_info)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="53">
+          
+          
+          <code class="ruby">  rescue</code>
+        </li>
+      
+        <li class="covered" data-hits="9" data-linenumber="54">
+          <span class="hits">9</span>
+          
+          <code class="ruby">    nil</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="55">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="56">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="57">
           
           
           <code class="ruby">end</code>
