@@ -3,7 +3,7 @@ class Park < ActiveRecord::Base
   belongs_to :non_profit_partner
   attr_accessible :acres, :bounds, :county, :county_slug, :description, :name, :slug, :link,
     :min_longitude, :max_longitude, :min_latitude, :max_latitude
-  before_update :update_bounds_min_max
+  before_save :update_bounds_min_max
 
   has_paper_trail
 

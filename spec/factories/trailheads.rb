@@ -4,8 +4,8 @@ FactoryGirl.define do
   factory :trailhead do
     name "MyString"
     description "MyText"
-    latitude 1.5
-    longitude 2.5
+    latitude 37.832217364500003
+    longitude -122.212514877
     user nil
     rideshare false
     zimride_url "MyString"
