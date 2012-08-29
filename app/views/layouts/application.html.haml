@@ -12,11 +12,13 @@
         .header
           #user-nav
             - if user_signed_in?
-              Logged in as
-              = succeed "." do
-                %strong= current_user.username
-              = link_to 'Edit profile', edit_user_registration_path
+              = current_user.username
               |
+              = link_to 'Profile', edit_user_registration_path
+              |
+              - if current_user.admin?
+                = link_to 'Admin', rails_admin_path
+                |
               \#{link_to "Logout", destroy_user_session_path, method: :delete}
             - else
               Welcome
@@ -48,6 +50,10 @@
               .android-app.image-link
       .footer
         .left
-          About | Partners | Contact | Blog
+          = link_to 'About', static_path(:id=>:about)
+          |
+          = link_to 'Partners', partners_path
+          |
+          = link_to 'Contact', "mailto:contact@transitandtrails.org?subject=This site rocks!", :target => :blank
         .right
-          Terms | Tech
+          = link_to 'Terms'

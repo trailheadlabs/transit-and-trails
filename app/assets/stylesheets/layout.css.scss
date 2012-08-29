@@ -75,6 +75,15 @@ body{
   .right{
     float:right;
   }
+  a {
+  color: #FFEECF;
+  text-decoration:none;
+  &:visited {
+    color: #FFEECF; }
+  &:hover {
+    color: #FFEECF;
+    text-decoration:underline; } }
+
 }
 .header{
   height:160px;

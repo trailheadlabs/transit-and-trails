@@ -1,0 +1,10 @@
+%h1 Partners
+- @partners.each do |p|
+  .partner
+    .logo
+      = image_tag p.logo
+    .name
+      %strong
+        = p.name
+    .description
+      = p.description

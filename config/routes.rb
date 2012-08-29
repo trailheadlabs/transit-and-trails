@@ -35,6 +35,8 @@ Transitandtrails::Application.routes.draw do
 
   resources :trailheads
 
+  resources :partners, :only => [:index]
+
   match 'profiles/edit' => 'user_profiles#edit'
 
   resources :user_profiles
@@ -44,6 +46,9 @@ Transitandtrails::Application.routes.draw do
   devise_for :users
 
   root :to => "application#index"
+
+  match '/:id' => 'high_voltage/pages#show', :as => :static, :via => :get
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
