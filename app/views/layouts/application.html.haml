@@ -3,26 +3,51 @@
   %head
     %title Transit & Trails
     = stylesheet_link_tag    "application", :media => "all"
+    = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    .main
-      .header
-        #user-nav
-          - if user_signed_in?
-            Logged in as
-            = succeed "." do
-              %strong= current_user.username
-            = link_to 'Edit profile', edit_user_registration_path
-            |
-            \#{link_to "Logout", destroy_user_session_path, method: :delete}
-          - else
-            = link_to "Sign up", new_user_registration_path
-            |
-            \#{link_to "Login", new_user_session_path}
-      .content
-
-        .notice= notice
-        .alert= alert
-        .error= flash[:error]
-        #{yield}
+    .middle
+      .main
+        .header
+          #user-nav
+            - if user_signed_in?
+              Logged in as
+              = succeed "." do
+                %strong= current_user.username
+              = link_to 'Edit profile', edit_user_registration_path
+              |
+              \#{link_to "Logout", destroy_user_session_path, method: :delete}
+            - else
+              Welcome
+              |
+              = link_to "Sign Up", new_user_registration_path
+              |
+              \#{link_to "Login", new_user_session_path}
+        .content
+          .notice= notice
+          .alert= alert
+          .error= flash[:error]
+          #{yield}
+        .content-footer
+          .left
+            %a(href="http://openspacecouncil.org")
+              .openspacecouncil-logo.image-link
+          .right
+            %a(href="http://twitter.com/transitandtrail")
+              .twitter.image-link
+            %a(href="http://facebook.com/transitandtrails")
+              .facebook.image-link
+            %a(href="http://openspacecouncil.us1.list-manage1.com/subscribe?u=d3b34e2adeb625081e6ae8d44&id=63f0ca458a")
+              .newsletter.image-link
+            %a(href="http://blog.transitandtrails.org/")
+              .blog.image-link
+            %a(href="http://itunes.apple.com/us/app/transit-trails-find-plan-share/id415996890?mt=8&ign-mpt=uo%3D4")
+              .ios-app.image-link
+            %a(href="https://market.android.com/details?id=com.openspacecouncil.tnt&feature=search_result#?t=W251bGwsMSwxLDEsImNvbS5vcGVuc3BhY2Vjb3VuY2lsLnRudCJd")
+              .android-app.image-link
+      .footer
+        .left
+          About | Partners | Contact | Blog
+        .right
+          Terms | Tech

@@ -1,3 +1,11 @@
 @import "bourbon";
 @import "layout";
 @import "scaffolds";
+
+body{
+  font-family: 'Open Sans', sans-serif;
+}
+
+div {
+  @include clearfix;
+}

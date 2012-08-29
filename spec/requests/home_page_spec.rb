@@ -6,10 +6,8 @@ describe "home page" do
     page.should have_content("Transit & Trails")
   end
 
-  it "should not display notice or alert" do
-    page.should_not have_selector('.notice')
-    page.should_not have_selector('.alert')
+  it "should have a link to the open space council" do
+    visit "/"
+    page.should have_selector ".openspacecouncil-logo"
   end
-
-
 end
