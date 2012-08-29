@@ -16,6 +16,32 @@ body{
   @include border-radius(0px 0px 30px 30px);
   @include box-shadow(0 4px 15px rgba(0, 0, 0, .7));
 }
+
+#user-nav{
+  position: absolute;
+  top: 8px;
+  left: 16px;
+}
+
+#home-link{
+  position: absolute;
+  right:0px;
+  bottom:0px;
+  height:140px;
+  width:300px;
+}
+
+.header{
+  height:160px;
+  background-image:url(application_layout_sprite.png);
+  position:relative;
+  @include box-shadow(0 0 15px rgba(0, 0, 0, .5));
+}
+.content{
+  padding:20px 30px 30px 30px;
+  min-height:400px;
+}
+
 .content-footer{
   padding:20px;
   .image-link{
@@ -76,29 +102,13 @@ body{
     float:right;
   }
   a {
-  color: #FFEECF;
-  text-decoration:none;
-  &:visited {
-    color: #FFEECF; }
-  &:hover {
     color: #FFEECF;
-    text-decoration:underline; } }
-
-}
-.header{
-  height:160px;
-  background-image:url(application_layout_sprite.png);
-  position:relative;
-  @include box-shadow(0 0 15px rgba(0, 0, 0, .5));
-}
-.content{
-  padding:20px 20px 30px 20px;
-  min-height:400px;
-}
-
-#user-nav{
-  position: absolute;
-  top: 8px;
-  left: 16px;
-  color: #39A0D7;
+    text-decoration:none;
+    &:visited {
+      color: #FFEECF; }
+    &:hover {
+      color: #FFEECF;
+      text-decoration:underline;
+    }
+  }
 }

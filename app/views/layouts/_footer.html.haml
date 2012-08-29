@@ -1,0 +1,8 @@
+.left
+  = link_to 'About', static_path(:id=>:about)
+  |
+  = link_to 'Partners', partners_path
+  |
+  = link_to 'Contact', "mailto:contact@transitandtrails.org?subject=This site rocks!", :target => :blank
+.right
+  = link_to 'Terms', static_path(:id=>:terms)

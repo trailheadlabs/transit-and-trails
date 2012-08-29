@@ -1,0 +1,24 @@
+.col{
+  width:400px;
+}
+
+
+ul.alumni{
+  list-style-type:none;
+}
+
+ul.people{
+  list-style-type:none;
+  li{
+    list-style-type:none;
+    div{
+      margin-left:140px;
+    }
+  }
+  img{
+    float:left;
+    margin:20px;
+    border:2px solid #CCC;
+    @include border-radius(3px);
+  }
+}

@@ -1,6 +1,9 @@
+@import "variables";
 @import "bourbon";
 @import "layout";
 @import "scaffolds";
+@import "partners";
+@import "about";
 
 body{
   font-family: 'Open Sans', sans-serif;
@@ -8,4 +11,25 @@ body{
 
 div {
   @include clearfix;
+}
+
+h1, h2, h3, h4, h5{
+  color: #514B42;
+  text-shadow: 0px -1px #eee;
+  font-weight:500;
+}
+
+h3{
+  font-weight:600;
+}
+
+a {
+  color: $aqua;
+  text-decoration:none;
+  &:visited {
+    color: $aqua; }
+  &:hover {
+    color: $aqua;
+    text-decoration:underline;
+  }
 }

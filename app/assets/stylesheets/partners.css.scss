@@ -1,3 +1,46 @@
 // Place all the styles related to the Partners controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.partners{
+  width:950px;
+  a {
+    color: $aqua;
+    text-decoration:none;
+    &:visited {
+      color: $aqua; }
+    &:hover {
+      color: $aqua;
+      text-decoration:underline;
+    }
+  }
+
+}
+.partner{
+  width:400px;
+  margin:25px 25px 0 0;
+  padding:20px;
+  float:left;
+  min-height:150px;
+  height:200px;
+  border:1px solid #c7c7c7;
+  @include border-radius(0.25em);
+  .logo{
+    position:relative;
+    float:left;
+    margin-right:20px;
+    width:100px;
+  }
+  .details{
+    position:relative;
+    float:left;
+    .name{
+      font-weight:bold;
+      color: $aqua;
+      margin-bottom:10px;
+    }
+    .description{
+      float:left;
+      width:265px;
+    }
+  }
+}

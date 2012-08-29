@@ -1,5 +1,5 @@
 class PartnersController < ApplicationController
   def index
-    @partners = Partner.all
+    @partners = Partner.order('name')
   end
 end
