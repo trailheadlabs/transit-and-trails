@@ -1,0 +1,1084 @@
+#api-docs.entry
+  %h1 API
+  %p#contents
+    %h3 Contents
+  %p
+    %ul
+      %li
+        %a{:href => "#introduction"} Introduction
+      %li
+        %a{:href => "#trailheads"} Trailheads
+      %ul
+        %li
+          %a{:href => "#trailhead_object"} Trailhead Object
+        %li
+          %a{:href => "#list_trailheads"} List Trailheads
+        %li
+          %a{:href => "#get_trailhead"} Get Trailhead
+        %li
+          %a{:href => "#get_trailhead_attributes"} Get Attributes For Trailhead
+        %li
+          %a{:href => "#get_trailhead_photos"} Get Photos For Trailhead
+        %li
+          %a{:href => "#get_trailhead_maps"} Get Maps For Trailhead
+        %li
+          %a{:href => "#list_trailhead_attributes"} List Trailhead Attributes
+      %li
+        %a{:href => "#campgrounds"} Campgrounds
+      %ul
+        %li
+          %a{:href => "#campground_object"} Campground Object
+        %li
+          %a{:href => "#list_campgrounds"} List Campgrounds
+        %li
+          %a{:href => "#get_campground"} Get Campground
+        %li
+          %a{:href => "#get_campground_attributes"} Get Attributes For Campground
+        %li
+          %a{:href => "#get_campground_photos"} Get Photos For Campground
+        %li
+          %a{:href => "#get_campground_maps"} Get Maps For Campground
+        %li
+          %a{:href => "#list_campground_attributes"} List Campground Attributes
+      %li
+        %a{:href => "#trips"} Trips
+      %ul
+        %li
+          %a{:href => "#trip_object"} Trip Object
+        %li
+          %a{:href => "#list_trips"} List Trips
+        %li
+          %a{:href => "#get_trip"} Get Trip
+        %li
+          %a{:href => "#get_trip_route"} Get Route For Trip
+        %li
+          %a{:href => "#get_trip_attributes"} Get Attributes For Trip
+        %li
+          %a{:href => "#get_trip_photos"} Get Photos For Trip
+        %li
+          %a{:href => "#get_trip_maps"} Get Maps For Trip
+        %li
+          %a{:href => "#list_trip_attributes"} List Trip Attributes
+      %li
+        %a{:href => "#users"} Users
+      %ul
+        %li
+          %a{:href => "#user_object"} User Object
+        %li
+          %a{:href => "#list_users"} List Users
+        %li
+          %a{:href => "#get_user"} Get User
+      %li
+        %a{:href => "#attribute_categories"} Attribute Categories
+      %ul
+        %li
+          %a{:href => "#list_attribute_categories"} List Attribute Categories
+  %br/
+  %br/
+  %h3#introduction Introduction
+  %ul
+    %li The API is currently read-only, the only accepted HTTP method is GET.
+    %li The API is currently open, meaning there is no authentication.
+    %li All responses are in JSON format. No other formats are currently supported.
+    %li Error handling is limited. Get Trailhead, Trip, Campground and User will return 404 response codes when an invalid ID is specified. Beware of 500 response codes. This will get better, we promise.
+  %h5
+    [
+    %a{:href => "#contents"} Contents
+    ]
+  %br/
+  %br/
+  %h3#trailheads Trailheads
+  %p#trailhead_object
+    %h4 Trailhead Object
+    %table
+      %tr
+        %th Property Name
+        %th Description
+        %th Optional
+      %tr
+        %td author_id
+        %td ID of the user object that created this object
+        %td
+      %tr
+        %td description
+        %td Text description, may contain HTML
+        %td True
+      %tr
+        %td id
+        %td Integer ID of this object
+        %td
+      %tr
+        %td latitude
+        %td Latitude component of the location of this object
+        %td
+      %tr
+        %td longitude
+        %td Longitude component of the location of this object
+        %td
+      %tr
+        %td name
+        %td Display name for this object
+        %td
+      %tr
+        %td park_name
+        %td Display name for the park this object is associated with
+        %td True
+    %p
+      %u Example
+    %pre
+      :preserve
+
+        {
+            &quot;author_id&quot;: 1,
+            &quot;description&quot;: &quot;&lt;p&gt;\r\n\tTennessee Valley is an amazing offshoot of the Marin Headlands, with hiking trails that suit the whole family. The Tennessee Valley Trail is mostly level; it begins at the parking area and travels 1.7 miles to Tennessee Beach. For the more adventurous hiker, there are a number of other trails leading into the hills above Tennessee Valley.&lt;/p&gt;\r\n&lt;div&gt;\r\n\tWith it&amp;#39;s many trails, Tennessee Valley is well suited for the whole family. The area contains a bevy of wildlife; from mighty raptors to common swallows, the birds of the valley will keep your eyes on the skies. The skies are not the only place to view wildlife; the valley is teeming with deer, coyote, and on an occasion you might even see a bobcat.&lt;/div&gt;\r\n&lt;div&gt;\r\n\t&amp;nbsp;&lt;/div&gt;\r\n&lt;div&gt;\r\n\tFor more information please contact the Marin Headlands Visitor Center at (415) 331-1540&lt;/div&gt;\r\n&lt;div&gt;\r\n\t&amp;nbsp;&lt;/div&gt;\r\n&lt;div&gt;\r\n\tMore information from the National Park Service &lt;a href=\&quot;http://www.nps.gov/goga/planyourvisit/tennessee_valley.htm\&quot; target=\&quot;_blank\&quot;&gt;here&lt;/a&gt;.&amp;nbsp;&lt;/div&gt;\r\n&quot;,
+            "id": 292,
+            "latitude": 37.860541771999998,
+            "longitude": -122.53585919699999,
+            "name": "Marin Headlands: Tennessee Valley",
+            "park_name": "Golden Gate National Recreation Area"
+        }
+  %h5
+    [
+    %a{:href => "#contents"} Contents
+    ]
+  %p#list_trailheads
+    %h4 List Trailheads
+    %p
+      %u Path
+    %p
+      %a{:href => "/api/v1/trailheads"} /api/v1/trailheads
+    %p
+      %u Optional Parameters
+    %p
+      %b limit
+      \- Maximum number of items to return.
+      %b offset
+      \- Starting index of items to return.
+    %p
+      %u Example Response
+    %pre
+      :preserve
+
+        [
+            {
+                "author_id": 1,
+                "id": 1,
+                "latitude": 37.910347725000001,
+                "longitude": 37.910347725000001,
+                "name": "Dornan Drive Parking Lot (South)",
+                "park_name": "Miller Knox Regional Shoreline"
+            },
+            {
+                "author_id": 1,
+                "id": 2,
+                "latitude": 37.9107932422,
+                "longitude": 37.9107932422,
+                "name": "Seacliff Drive Walk-In Entrance",
+                "park_name": "Miller Knox Regional Shoreline"
+            },
+            {
+                "author_id": 1,
+                "id": 3,
+                "latitude": 37.914033621400002,
+                "longitude": 37.914033621400002,
+                "name": "Dornan Drive Parking Lot (Picnic Area 2)",
+                "park_name": "Miller Knox Regional Shoreline"
+            }
+        ]
+  %h5
+    [
+    %a{:href => "#contents"} Contents
+    ]
+  %p#get_trailhead
+    %h4 Get Trailhead
+    %p
+      %u Path
+    %p
+      %a{:href => "/api/v1/trailheads/1"} /api/v1/trailheads/[id]
+    %p
+      %u Example Response
+    %pre
+      :preserve
+
+        {
+            "author_id": 1,
+            "id": 1,
+            "latitude": 37.910347725000001,
+            "longitude": 37.910347725000001,
+            "name": "Dornan Drive Parking Lot (South)",
+            "park_name": "Miller Knox Regional Shoreline"
+        }
+  %h5
+    [
+    %a{:href => "#contents"} Contents
+    ]
+  %p#get_trailhead_attributes
+    %h4 Get Attributes For Trailhead
+    %p
+      %u Path
+    %p
+      %a{:href => "/api/v1/trailheads/1/attributes"} /api/v1/trailheads/[id]/attributes
+    %p
+      %u Example Response
+    %pre
+      :preserve
+
+        [
+            {
+                "category": 5,
+                "category_name": "Barrier Free Access",
+                "id": 6,
+                "name": "Accessible Restrooms"
+            },
+            {
+                "category": 2,
+                "category_name": "Amenities",
+                "id": 2,
+                "name": "Restrooms"
+            },
+            {
+                "category": 3,
+                "category_name": "Activities",
+                "id": 11,
+                "name": "Hiking"
+            }
+        ]
+  %h5
+    [
+    %a{:href => "#contents"} Contents
+    ]
+  %p#get_trailhead_photos
+    %h4 Get Photos For Trailhead
+    %p
+      %u Path
+    %p
+      %a{:href => "/api/v1/trailheads/1/photos"} /api/v1/trailheads/[id]/photos
+    %p
+      %u Example Response
+    %pre
+      :preserve
+
+        [
+            {
+                "medium": "http://farm6.staticflickr.com/5052/5404512081_fb85a087d3.jpg",
+                "square": "http://farm6.staticflickr.com/5052/5404512081_fb85a087d3_s.jpg"
+            },
+            {
+                "medium": "http://farm6.staticflickr.com/5013/5404513177_d0e6c30a0c.jpg",
+                "square": "http://farm6.staticflickr.com/5013/5404513177_d0e6c30a0c_s.jpg"
+            },
+            {
+                "medium": "http://farm6.staticflickr.com/5137/5405119116_daee0d8a73.jpg",
+                "square": "http://farm6.staticflickr.com/5137/5405119116_daee0d8a73_s.jpg"
+            }
+        ]
+  %h5
+    [
+    %a{:href => "#contents"} Contents
+    ]
+  %p#get_trailhead_maps
+    %h4 Get Maps For Trailhead
+    %p
+      %u Path
+    %p
+      %a{:href => "/api/v1/trailheads/1/maps"} /api/v1/trailheads/[id]/maps
+    %p
+      %u Example Response
+    %pre
+      :preserve
+
+        [
+            {
+                "url": "http://transitandtrails.org/media/trailheads/292/map/2008-0910-mahe-map-web.pdf"
+            },
+            {
+                "url": "http://www.nps.gov/goga/upload/2008-0910-mahe-map-web.pdf"
+            }
+        ]
+  %h5
+    [
+    %a{:href => "#contents"} Contents
+    ]
+  %p#list_trailhead_attributes
+    %h4 List Trailhead Attributes
+    %p
+      %u Path
+    %p
+      %a{:href => "/api/v1/trailhead_attributes"} /api/v1/trailhead_attributes
+    %p
+      %u Optional Parameters
+    %p
+      %b limit
+      \- Maximum number of items to return.
+      %b offset
+      \- Starting index of items to return.
+    %p
+      %u Example Response
+    %pre
+      :preserve
+
+        [
+            {
+                "category": 2,
+                "description": "Drinking water is available at this trailhead.",
+                "id": 1,
+                "name": "Drinking Water"
+            },
+            {
+                "category": 2,
+                "description": "There are restrooms at this trailhead.",
+                "id": 2,
+                "name": "Restrooms"
+            },
+            {
+                "category": 2,
+                "description": "There is a visitor center at this trailhead.",
+                "id": 3,
+                "name": "Visitor Center"
+            }
+        ]
+  %h5
+    [
+    %a{:href => "#contents"} Contents
+    ]
+  %br/
+  %br/
+  %h3#campgrounds Campgrounds
+  %p#campground_object
+    %h4 Campground Object
+    %table
+      %tr
+        %th Property Name
+        %th Description
+        %th Optional
+      %tr
+        %td author_id
+        %td ID of the user object that created this object
+        %td
+      %tr
+        %td description
+        %td Text description, may contain HTML
+        %td True
+      %tr
+        %td id
+        %td Integer ID of this object
+        %td
+      %tr
+        %td latitude
+        %td Latitude component of the location of this object
+        %td
+      %tr
+        %td longitude
+        %td Longitude component of the location of this object
+        %td
+      %tr
+        %td name
+        %td Display name for this object
+        %td
+      %tr
+        %td park_name
+        %td Display name for the park this object is associated with
+        %td True
+    %p
+      %u Example
+    %pre
+      :preserve
+
+        {
+            "author_id": 1,
+            "description": "&lt;p&gt;\r\n\tGreat spot for an overnight on Tam.&amp;nbsp;All campsites are first-come first-served. We suggest calling the ranger station ahead of time to see if sites are available (415-388-2070). The office is open 9- 5 p.m.&lt;/p&gt;\r\n&lt;p&gt;\r\n\tSee here for the Mt. Tamalpais State Park &lt;a href=\&quot;http://www.parks.ca.gov/pages/471/files/MtTamalpaisBrochure.pdf\&quot; target=\&quot;_blank\&quot;&gt;brochure&lt;/a&gt;&lt;/p&gt;\r\n&lt;p&gt;\r\n\tVisit &lt;a href=\&quot;http://www.parks.ca.gov/?page_id=471\&quot; target=\&quot;_blank\&quot;&gt;Mount Tamalpais State Park&amp;#39;s Web site&lt;/a&gt; for more information. &amp;nbsp;&lt;a href=\&quot;http://mttam.net/\&quot; target=\&quot;_blank\&quot;&gt;MtTam.net &lt;/a&gt;also has some great info on activities in the park.&amp;nbsp;&lt;/p&gt;\r\n",
+            "id": 32,
+            "latitude": 37.904576239699999,
+            "longitude": -122.604040704,
+            "name": "Mt. Tamalpias State Park: Pantoll"
+        }
+  %h5
+    [
+    %a{:href => "#contents"} Contents
+    ]
+  %p#list_campgrounds
+    %h4 List Campgrounds
+    %p
+      %u Path
+    %p
+      %a{:href => "/api/v1/campgrounds"} /api/v1/campgrounds
+    %p
+      %u Optional Parameters
+    %p
+      %b limit
+      \- Maximum number of items to return.
+      %b offset
+      \- Starting index of items to return.
+    %p
+      %u Example Response
+    %pre
+      :preserve
+
+        [
+            {
+                "author_id": 1,
+                "description": null,
+                "id": 1,
+                "latitude": 37.865806456999998,
+                "longitude": -122.425133335,
+                "name": "Angel Island State Park",
+                "park_name": null
+            },
+            {
+                "author_id": 1,
+                "description": null,
+                "id": 2,
+                "latitude": 37.567462249000002,
+                "longitude": -121.686678007,
+                "name": "Del Valle Regional Park",
+                "park_name": null
+            },
+            {
+                "author_id": 1,
+                "description": null,
+                "id": 3,
+                "latitude": 37.516941077299997,
+                "longitude": -121.837131441,
+                "name": "Sunol Regional Wilderness",
+                "park_name": null
+            }
+        ]
+  %h5
+    [
+    %a{:href => "#contents"} Contents
+    ]
+  %p#get_campground
+    %h4 Get Campground
+    %p
+      %u Path
+    %p
+      %a{:href => "/api/v1/campgrounds/1"} /api/v1/campgrounds/[id]
+    %p
+      %u Example Response
+    %pre
+      :preserve
+
+        {
+            "author_id": 1,
+            "description": null,
+            "id": 3,
+            "latitude": 37.516941077299997,
+            "longitude": -121.837131441,
+            "name": "Sunol Regional Wilderness",
+            "park_name": null
+        }
+  %h5
+    [
+    %a{:href => "#contents"} Contents
+    ]
+  %p#get_campground_attributes
+    %h4 Get Attributes For campground
+    %p
+      %u Path
+    %p
+      %a{:href => "/api/v1/campgrounds/1/attributes"} /api/v1/campgrounds/[id]/attributes
+    %p
+      %u Example Response
+    %pre
+      :preserve
+
+        [
+            {
+                "category": 5,
+                "category_name": "Barrier Free Access",
+                "id": 6,
+                "name": "Accessible Restrooms"
+            },
+            {
+                "category": 2,
+                "category_name": "Amenities",
+                "id": 2,
+                "name": "Restrooms"
+            },
+            {
+                "category": 3,
+                "category_name": "Activities",
+                "id": 11,
+                "name": "Hiking"
+            }
+        ]
+  %h5
+    [
+    %a{:href => "#contents"} Contents
+    ]
+  %p#get_campground_photos
+    %h4 Get Photos For Campground
+    %p
+      %u Path
+    %p
+      %a{:href => "/api/v1/campgrounds/1/photos"} /api/v1/campgrounds/[id]/photos
+    %p
+      %u Example Response
+    %pre
+      :preserve
+
+        [
+            {
+                "medium": "http://farm6.staticflickr.com/5052/5404512081_fb85a087d3.jpg",
+                "square": "http://farm6.staticflickr.com/5052/5404512081_fb85a087d3_s.jpg"
+            },
+            {
+                "medium": "http://farm6.staticflickr.com/5013/5404513177_d0e6c30a0c.jpg",
+                "square": "http://farm6.staticflickr.com/5013/5404513177_d0e6c30a0c_s.jpg"
+            },
+            {
+                "medium": "http://farm6.staticflickr.com/5137/5405119116_daee0d8a73.jpg",
+                "square": "http://farm6.staticflickr.com/5137/5405119116_daee0d8a73_s.jpg"
+            }
+        ]
+  %h5
+    [
+    %a{:href => "#contents"} Contents
+    ]
+  %p#get_campground_maps
+    %h4 Get Maps For Campground
+    %p
+      %u Path
+    %p
+      %a{:href => "/api/v1/campgrounds/1/maps"} /api/v1/campgrounds/[id]/maps
+    %p
+      %u Example Response
+    %pre
+      :preserve
+
+        [
+            {
+                "url": "http://transitandtrails.org/media/campgrounds/292/map/2008-0910-mahe-map-web.pdf"
+            },
+            {
+                "url": "http://www.nps.gov/goga/upload/2008-0910-mahe-map-web.pdf"
+            }
+        ]
+  %h5
+    [
+    %a{:href => "#contents"} Contents
+    ]
+  %p#list_campground_attributes
+    %h4 List Campground Attributes
+    %p
+      %u Path
+    %p
+      %a{:href => "/api/v1/campground_attributes"} /api/v1/campground_attributes
+    %p
+      %u Optional Parameters
+    %p
+      %b limit
+      \- Maximum number of items to return.
+      %b offset
+      \- Starting index of items to return.
+    %p
+      %u Example Response
+    %pre
+      :preserve
+
+        [
+            {
+                "category": 2,
+                "description": "This campground has tent sites.",
+                "id": 2,
+                "name": "Tent Sites"
+            },
+            {
+                "category": 6,
+                "description": "This campground has car accessible camping.",
+                "id": 3,
+                "name": "Car (Drive up)"
+            },
+            {
+                "category": 2,
+                "description": "This campground has running water.",
+                "id": 5,
+                "name": "Drinking Water"
+            }
+        ]
+  %h5
+    [
+    %a{:href => "#contents"} Contents
+    ]
+  %br/
+  %br/
+  %h3#trips Trips
+  %p#trip_object
+    %h4 Trip Object
+    %table
+      %tr
+        %th Property Name
+        %th Description
+        %th Optional
+      %tr
+        %td author_id
+        %td ID of the user object that created this object
+        %td
+      %tr
+        %td description
+        %td Text description, may contain HTML
+        %td True
+      %tr
+        %td duration
+        %td Text description of the trip duration. Half Day, Day Trip, Overnight or 3 Days
+        %td
+      %tr
+        %td ending_trailhead_id
+        %td Integer ID of the trailhead this trip ends at.
+        %td
+      %tr
+        %td id
+        %td Integer ID of this object
+        %td
+      %tr
+        %td intensity
+        %td Text description of the intesity of the trip. Easy, Moderate, or Strenuous
+        %td
+      %tr
+        %td length_miles
+        %td Lengh of the trip route in miles.
+        %td
+      %tr
+        %td name
+        %td Display name for this object
+        %td
+      %tr
+        %td starting_trailhead_id
+        %td Integer ID of the trailhead this trip ends at.
+        %td
+    %p
+      %u Example
+    %pre
+      {
+      "author_id": 16,
+      "description": "Loop trail (hiking and biking) through oak woodland and grasslands, with volcanic rock outcrops.
+      %br
+        <span style=\"font-size: 10pt; font-family: ClearfaceGothicLTStd-Black; color: rgb(35, 31, 32);\">
+        ",
+        "duration": "Halfday",
+        "ending_trailhead_id": 490,
+        "id": 1,
+        "intensity": "Easy",
+        "length_miles": 4.8327701861360461,
+        "name": "Rockville Hills Regional Park Loop",
+        "starting_trailhead_id": 490
+        }
+  %h5
+    [
+    %a{:href => "#contents"} Contents
+    ]
+  %p#list_trips
+    %h4 List Trips
+    %p
+      %u Path
+    %p
+      %a{:href => "/api/v1/trips"} /api/v1/trips
+    %p
+      %u Optional Parameters
+    %p
+      %b limit
+      \- Maximum number of items to return.
+      %b offset
+      \- Starting index of items to return.
+    %p
+      %u Example Response
+    %pre
+      [
+      {
+      "author_id": 16,
+      "description": "Loop trail (hiking and biking) through oak woodland and grasslands, with volcanic rock outcrops.
+      %br
+        <span style=\"font-size: 10pt; font-family: ClearfaceGothicLTStd-Black; color: rgb(35, 31, 32);\">
+        ",
+        "duration": "Halfday",
+        "ending_trailhead_id": 490,
+        "id": 1,
+        "intensity": "Easy",
+        "length_miles": 4.8327701861360461,
+        "name": "Rockville Hills Regional Park Loop",
+        "starting_trailhead_id": 490
+        },
+        {
+        "author_id": 16,
+        "description": "Several loop trails for hiking or biking through oak woodland and chaparral to Lake Marie or up to Sugarloaf Peak.
+        %br
+          <span style=\"font-size: 10pt; font-family: ClearfaceGothicLTStd-Black; color: rgb(35, 31, 32);\">
+          ",
+          "duration": "Halfday",
+          "ending_trailhead_id": 416,
+          "id": 2,
+          "intensity": "Moderate",
+          "length_miles": 6.3464375682385485,
+          "name": "Skyline Wilderness Park Loop",
+          "starting_trailhead_id": 416
+          },
+          {
+          "author_id": 16,
+          "description": "Hike or bike from Mountain View Transit Center to Bay at mouth of Stevens Creek, continuing on Bay Trail to Shoreline Park and Palo Alto Baylands for great birding.<span style=\"font-size: 10pt; font-family: ClearfaceGothicLTStd-Black; color: rgb(35, 31, 32);\">
+          ",
+          "duration": "Day Trip",
+          "ending_trailhead_id": 285,
+          "id": 3,
+          "intensity": "Moderate",
+          "length_miles": 12.476621801910158,
+          "name": "Stevens Creek to Bay Trail",
+          "starting_trailhead_id_id": 498
+          }
+          ]
+  %h5
+    [
+    %a{:href => "#contents"} Contents
+    ]
+  %p#get_trip
+    %h4 Get Trip
+    %p
+      %u Path
+    %p
+      %a{:href => "/api/v1/trips/1"} /api/v1/trips/[id]
+    %p
+      %u Example Response
+    %pre
+      {
+      "author_id": 16,
+      "description": "Hike or bike from Mountain View Transit Center to Bay at mouth of Stevens Creek, continuing on Bay Trail to Shoreline Park and Palo Alto Baylands for great birding.<span style=\"font-size: 10pt; font-family: ClearfaceGothicLTStd-Black; color: rgb(35, 31, 32);\">
+      ",
+      "duration": "Day Trip",
+      "ending_trailhead": 285,
+      "id": 3,
+      "intensity": "Moderate",
+      "name": "Stevens Creek to Bay Trail",
+      "starting_trailhead_id": 498
+      }
+  %h5
+    [
+    %a{:href => "#contents"} Contents
+    ]
+  %p#get_trip_route
+    %h4 Get Route For Trip
+    %p
+      %u Path
+    %p
+      %a{:href => "/api/v1/trips/1/route"} /api/v1/trips/[id]/route
+    %p
+      %u Example Response
+    %pre
+      :preserve
+
+        {
+            "route": "[[38.2267818353, -122.147127986], [38.2267818353, -122.147127986], [38.2267818353, -122.147127986], [38.2267818353, -122.147127986], [38.2267818353, -122.147127986], [38.2267818353, -122.147127986], [38.2267818353, -122.147127986], [38.2267818352716, -122.147127985954], [38.2267818353, -122.147127986], [38.22721167360604, -122.14729428291321], [38.227451876274834, -122.14708507061005], [38.22764572346427, -122.14692413806915], [38.22787749659963, -122.14693486690521], [38.22799970395546, -122.14686512947083], [38.2281176970697, -122.14674711227417], [38.228248332080064, -122.14670419692993]]"
+        }
+  %h5
+    [
+    %a{:href => "#contents"} Contents
+    ]
+  %p#get_trip_attributes
+    %h4 Get Attributes For Trip
+    %p
+      %u Path
+    %p
+      %a{:href => "/api/v1/trips/1/attributes"} /api/v1/trips/[id]/attributes
+    %p
+      %u Example Response
+    %pre
+      :preserve
+
+        [
+            {
+                "category": 5,
+                "category_name": "Barrier Free Access",
+                "id": 6,
+                "name": "Accessible Restrooms"
+            },
+            {
+                "category": 2,
+                "category_name": "Amenities",
+                "id": 2,
+                "name": "Restrooms"
+            },
+            {
+                "category": 3,
+                "category_name": "Activities",
+                "id": 11,
+                "name": "Hiking"
+            }
+        ]
+  %h5
+    [
+    %a{:href => "#contents"} Contents
+    ]
+  %p#get_trip_photos
+    %h4 Get Photos For Trip
+    %p
+      %u Path
+    %p
+      %a{:href => "/api/v1/trips/1/photos"} /api/v1/trips/[id]/photos
+    %p
+      %u Example Response
+    %pre
+      :preserve
+
+        [
+            {
+                "medium": "http://farm6.staticflickr.com/5052/5404512081_fb85a087d3.jpg",
+                "square": "http://farm6.staticflickr.com/5052/5404512081_fb85a087d3_s.jpg"
+            },
+            {
+                "medium": "http://farm6.staticflickr.com/5013/5404513177_d0e6c30a0c.jpg",
+                "square": "http://farm6.staticflickr.com/5013/5404513177_d0e6c30a0c_s.jpg"
+            },
+            {
+                "medium": "http://farm6.staticflickr.com/5137/5405119116_daee0d8a73.jpg",
+                "square": "http://farm6.staticflickr.com/5137/5405119116_daee0d8a73_s.jpg"
+            }
+        ]
+  %h5
+    [
+    %a{:href => "#contents"} Contents
+    ]
+  %p#get_trip_maps
+    %h4 Get Maps For Trip
+    %p
+      %u Path
+    %p
+      %a{:href => "/api/v1/trips/1/maps"} /api/v1/trips/[id]/maps
+    %p
+      %u Example Response
+    %pre
+      :preserve
+
+        [
+            {
+                "url": "http://transitandtrails.org/media/trailheads/292/map/2008-0910-mahe-map-web.pdf"
+            },
+            {
+                "url": "http://www.nps.gov/goga/upload/2008-0910-mahe-map-web.pdf"
+            }
+        ]
+  %h5
+    [
+    %a{:href => "#contents"} Contents
+    ]
+  %p#list_trip_attributes
+    %h4 List Trip Attributes
+    %p
+      %u Path
+    %p
+      %a{:href => "/api/v1/trip_attributes"} /api/v1/trip_attributes
+    %p
+      %u Optional Parameters
+    %p
+      %b limit
+      \- Maximum number of items to return.
+      %b offset
+      \- Starting index of items to return.
+    %p
+      %u Example Response
+    %pre
+      :preserve
+
+        [
+            {
+                "category": 8,
+                "description": "This trip starts and finishes at different trailheads.",
+                "id": 2,
+                "name": "One Way"
+            },
+            {
+                "category": 7,
+                "description": "",
+                "id": 7,
+                "name": "Trail Hiking"
+            },
+            {
+                "category": 7,
+                "description": "",
+                "id": 8,
+                "name": "Road Biking"
+            }
+        ]
+  %h5
+    [
+    %a{:href => "#contents"} Contents
+    ]
+  %br/
+  %br/
+  %h3#users Users
+  %p#user_object
+    %h4 User Object
+    %table
+      %tr
+        %th Property Name
+        %th Description
+        %th Optional
+      %tr
+        %td avatar_thumbnail_url
+        %td URL for the user uploaded profile image thumbnail
+        %td True
+      %tr
+        %td avatar_url
+        %td URL for the user uploaded profile image
+        %td True
+      %tr
+        %td first_name
+        %td User's first name
+        %td True
+      %tr
+        %td id
+        %td Integer ID of this object
+        %td
+      %tr
+        %td last_name
+        %td User's last name
+        %td True
+      %tr
+        %td organization_name
+        %td User's organization name
+        %td True
+      %tr
+        %td username
+        %td User's login name
+        %td
+      %tr
+        %td website_url
+        %td User's website URL
+        %td True
+    %p
+      %u Example
+    %pre
+      :preserve
+
+        {
+            "avatar_thumbnail_url": "http://transitandtrails.org/media/user_profiles_avatars/admin/f635bc6c-ae5f-11e1-bfe5-7c6d628e0086.jpg",
+            "avatar_url": "http://transitandtrails.org/media/user_profiles_avatars/admin/avatar.png",
+            "first_name": "Jereme",
+            "id": 1,
+            "last_name": "Monteau",
+            "organization_name": "Transit & Trails",
+            "username": "admin",
+            "website_url": "http://transitandtrails.org"
+        }
+  %h5
+    [
+    %a{:href => "#contents"} Contents
+    ]
+  %p#list_users
+    %h4 List Users
+    %p
+      %u Path
+    %p
+      %a{:href => "/api/v1/users"} /api/v1/users
+    %p
+      %u Optional Parameters
+    %p
+      %b limit
+      \- Maximum number of items to return.
+      %b offset
+      \- Starting index of items to return.
+    %p
+      %u Example Response
+    %pre
+      :preserve
+
+        [
+            {
+                "avatar_thumbnail_url": null,
+                "avatar_url": null,
+                "first_name": "SignUp",
+                "id": 1661,
+                "last_name": "Embed",
+                "organization_name": "SignupEmbed",
+                "username": "signupembed",
+                "website_url": null
+            },
+            {
+                "avatar_thumbnail_url": "http://localhost:8000/media/user_profiles_avatars/admin/f635bc6c-ae5f-11e1-bfe5-7c6d628e0086.jpg",
+                "avatar_url": "http://localhost:8000/media/user_profiles_avatars/admin/avatar.png",
+                "first_name": "Jereme",
+                "id": 1,
+                "last_name": "Monteau",
+                "organization_name": "Transit & Trails",
+                "username": "admin",
+                "website_url": "http://transitandtrails.org"
+            },
+            {
+                "avatar_thumbnail_url": null,
+                "avatar_url": null,
+                "first_name": null,
+                "id": 81,
+                "last_name": null,
+                "organization_name": null,
+                "username": "hema",
+                "website_url": null
+            }
+        ]
+  %h5
+    [
+    %a{:href => "#contents"} Contents
+    ]
+  %p#get_user
+    %h4 Get User
+    %p
+      %u Path
+    %p
+      %a{:href => "/api/v1/users/1"} /api/v1/users/[id]
+    %p
+      %u Example Response
+    %pre
+      :preserve
+
+        {
+            "avatar_thumbnail_url": "http://transitandtrails.org/media/user_profiles_avatars/admin/f635bc6c-ae5f-11e1-bfe5-7c6d628e0086.jpg",
+            "avatar_url": "http://transitandtrails.org/media/user_profiles_avatars/admin/avatar.png",
+            "first_name": "Jereme",
+            "id": 1,
+            "last_name": "Monteau",
+            "organization_name": "Transit & Trails",
+            "username": "admin",
+            "website_url": "http://transitandtrails.org"
+        }
+  %h5
+    [
+    %a{:href => "#contents"} Contents
+    ]
+  %br/
+  %br/
+  %h3#attribute_categories Attribute Categories
+  %p#list_attribute_categories
+    %h4 List Attribute Categories
+    %p
+      %u Path
+    %p
+      %a{:href => "/api/v1/attribute_categories"} /api/v1/attribute_categories
+    %p
+      %u Optional Parameters
+    %p
+      %b limit
+      \- Maximum number of items to return.
+      %b offset
+      \- Starting index of items to return.
+    %p
+      %u Example Response
+    %pre
+      :preserve
+
+        [
+            {
+                "description": "What amenities are available at a particular feature (Trailhead, Campground) or are available on par of a Trip?",
+                "id": 2,
+                "name": "Amenities"
+            },
+            {
+                "description": "What activities are available at the feature (Trailhead, Trip, Campground).",
+                "id": 3,
+                "name": "Activities"
+            },
+            {
+                "description": "What trail surfaces are accessible from this Trailhead and cover most of the Trip. Dirt, gravel, sand, or paved.",
+                "id": 4,
+                "name": "Surface"
+            }
+        ]
+  %h5
+    [
+    %a{:href => "#contents"} Contents
+    ]
