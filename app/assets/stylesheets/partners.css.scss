@@ -29,6 +29,10 @@
     float:left;
     margin-right:14px;
     img{
+      padding:2px;
+      border:1px solid #CCC;
+      @include border-radius(3px);
+
       width:90px;
     }
   }
