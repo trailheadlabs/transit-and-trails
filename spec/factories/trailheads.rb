@@ -9,6 +9,6 @@ FactoryGirl.define do
     user nil
     rideshare false
     zimride_url "MyString"
-    approved true
+    approved false
   end
 end

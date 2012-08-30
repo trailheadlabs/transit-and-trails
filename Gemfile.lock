@@ -55,6 +55,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.3.3)
+    database_cleaner (0.8.0)
     devise (2.1.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -87,6 +88,8 @@ GEM
       nokogiri (~> 1.5.0)
       ruby-hmac
     formatador (0.2.3)
+    formtastic (2.2.1)
+      actionpack (>= 3.0)
     geocoder (1.1.2)
     haml (3.1.7)
     haml-rails (0.3.4)
@@ -270,10 +273,12 @@ DEPENDENCIES
   capybara
   carrierwave
   coffee-rails (~> 3.2.1)
+  database_cleaner
   devise
   factory_girl_rails
   flickraw-cached
   fog
+  formtastic
   geocoder
   haml-rails
   high_voltage

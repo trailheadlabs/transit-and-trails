@@ -14,9 +14,9 @@
             = render :partial => "/layouts/user_navigation"
           %a(href="/" id="home-link")
         .content
-          .notice= notice
-          .alert= alert
-          .error= flash[:error]
+          #notice= notice
+          #alert= alert
+          #error= flash[:error]
           #{yield}
         .content-footer
           = render :partial => "/layouts/social_footer"

@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   def index
+    @trailheads = Trailhead.approved.near("5692 Cabot Drive, Oakland CA").limit(10)
+    @location = request.location
   end
 
   def authenticate_admin!

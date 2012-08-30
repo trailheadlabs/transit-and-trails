@@ -37,7 +37,7 @@ Transitandtrails::Application.routes.draw do
 
   resources :partners, :only => [:index]
 
-  match 'profiles/edit' => 'user_profiles#edit'
+  match 'profile' => 'user_profiles#edit', :as => :profile
 
   resources :user_profiles
 

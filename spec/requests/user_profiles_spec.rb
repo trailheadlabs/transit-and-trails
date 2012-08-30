@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "UserProfiles" do
-  describe "GET /user_profiles" do
+  describe "GET /profile" do
     it "works! (now write some real specs)" do
       # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
       user = FactoryGirl.create(:user)
@@ -11,9 +11,8 @@ describe "UserProfiles" do
       fill_in "Password", with: "please"
       click_button "Sign in"
       page.should have_content user.username
-      visit user_profiles_path
-      page.should have_content "User Profiles"
-      current_path.should == user_profiles_path
+      visit profile_path
+      current_path.should == profile_path
     end
   end
 end

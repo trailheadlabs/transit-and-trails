@@ -35,11 +35,7 @@ class UserProfilesController < ApplicationController
 
   # GET /user_profiles/1/edit
   def edit
-    if(params[:id])
-      @user_profile = UserProfile.find(params[:id])
-    else
-      @user_profile = current_user.user_profile
-    end
+    @user_profile = current_user.user_profile
   end
 
   # POST /user_profiles
@@ -61,7 +57,8 @@ class UserProfilesController < ApplicationController
   # PUT /user_profiles/1
   # PUT /user_profiles/1.json
   def update
-    @user_profile = UserProfile.find(params[:id])
+    # @user_profile = UserProfile.find(params[:id])
+    @user_profile = current_user.user_profile
 
     respond_to do |format|
       if @user_profile.update_attributes(params[:user_profile])

@@ -30,6 +30,8 @@ gem 'jquery-rails'
 gem 'bourbon'
 gem 'newrelic_rpm'
 gem 'high_voltage'
+gem 'formtastic'
+gem 'database_cleaner'
 
 # Gems used only for assets and not required
 # in production environments by default.

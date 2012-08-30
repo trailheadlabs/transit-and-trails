@@ -4,3 +4,10 @@
   We're not quite ready for you over here!
 %p
   = link_to "Are you looking for this?", "http://transitandtrails.org"
+%p
+  You're IP is near
+  = @location.address
+%p
+  - @trailheads.each do |t|
+    .trailhead
+      #{t.name} is #{Float(t.distance).round(2)} miles away

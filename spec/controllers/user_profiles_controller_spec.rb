@@ -43,7 +43,7 @@ describe UserProfilesController do
     it "assigns all user_profiles as @user_profiles" do
       user_profile = UserProfile.create! valid_attributes
       get :index, {}, valid_session
-      assigns(:user_profiles).should eq([user_profile])
+      assigns(:user_profiles).should eq([@user.user_profile,user_profile])
     end
   end
 
@@ -63,10 +63,10 @@ describe UserProfilesController do
   end
 
   describe "GET edit" do
-    it "assigns the requested user_profile as @user_profile" do
+    it "assigns the current user_profile as @user_profile" do
       user_profile = UserProfile.create! valid_attributes
       get :edit, {:id => user_profile.to_param}, valid_session
-      assigns(:user_profile).should eq(user_profile)
+      assigns(:user_profile).should eq(@user.user_profile)
     end
   end
 
@@ -124,13 +124,13 @@ describe UserProfilesController do
       it "assigns the requested user_profile as @user_profile" do
         user_profile = UserProfile.create! valid_attributes
         put :update, {:id => user_profile.to_param, :user_profile => valid_attributes}, valid_session
-        assigns(:user_profile).should eq(user_profile)
+        assigns(:user_profile).should eq(@user.user_profile)
       end
 
-      it "redirects to the user_profile" do
+      it "redirects to the current user user_profile" do
         user_profile = UserProfile.create! valid_attributes
         put :update, {:id => user_profile.to_param, :user_profile => valid_attributes}, valid_session
-        response.should redirect_to(user_profile)
+        response.should redirect_to(@user.user_profile)
       end
     end
 
@@ -140,7 +140,7 @@ describe UserProfilesController do
         # Trigger the behavior that occurs when invalid params are submitted
         UserProfile.any_instance.stub(:save).and_return(false)
         put :update, {:id => user_profile.to_param, :user_profile => {}}, valid_session
-        assigns(:user_profile).should eq(user_profile)
+        assigns(:user_profile).should eq(@user.user_profile)
       end
 
       it "re-renders the 'edit' template" do

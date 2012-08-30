@@ -1,32 +1,21 @@
-= form_for @user_profile do |f|
-  -if @user_profile.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@user_profile.errors.count, "error")} prohibited this user_profile from being saved:"
-      %ul
-        - @user_profile.errors.full_messages.each do |msg|
-          %li= msg
+= semantic_form_for @user_profile do |f|
+  = f.inputs do
+    -if @user_profile.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@user_profile.errors.count, "error")} prohibited this user_profile from being saved:"
+        %ul
+          - @user_profile.errors.full_messages.each do |msg|
+            %li= msg
 
-  .field
-    = f.label :firstname
-    = f.text_field :firstname
-  .field
-    = f.label :lastname
-    = f.text_field :lastname
-  .field
-    = f.label :url
-    = f.text_field :url
-  .field
-    = f.label :bio
-    = f.text_area :bio
-  %p
-    %label My Avatar
-    = image_tag(@user_profile.avatar_url) if @user_profile.avatar?
-    = f.file_field :avatar
-    = f.label :remote_avatar_url
-    = f.text_field :remote_avatar_url
-    = f.hidden_field :avatar_cache
+    = f.input :firstname, :required => false
+    = f.input :lastname, :required => false
+    = f.input :url, :required => false
+    = f.input :bio, :required => false
+    = f.input :avatar, :required => false
+    = f.input :organization_name, :required => false
+    = f.input :organization_avatar, :required => false
+    = f.hidden_field :user_id
 
-  = f.hidden_field :user_id
+  = f.actions do
+    = f.action :submit, :label => "Save", :button_html => { :disable_with => "Wait" }
 
-  .actions
-    = f.submit 'Save'

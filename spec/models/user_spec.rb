@@ -19,4 +19,9 @@ describe User do
     conditions = {:email => u.email}
     u.should eq User.find_first_by_auth_conditions(conditions)
   end
+
+  it "should create a user profile" do
+    u = FactoryGirl.create(:user)
+    u.user_profile.should_not be_nil
+  end
 end

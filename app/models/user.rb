@@ -9,12 +9,16 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-                  :username, :django_password
+                  :username, :django_password, :user_profile_attributes
   # attr_accessible :title, :body
 
   has_one :user_profile
 
   has_paper_trail
+
+  after_create :create_user_profile
+
+  accepts_nested_attributes_for :user_profile
 
   alias :devise_valid_password? :valid_password?
 
