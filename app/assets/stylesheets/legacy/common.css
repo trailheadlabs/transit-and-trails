@@ -643,21 +643,6 @@ a.disabled {
 .profile-details label  { display: inline-block; width: 130px; text-align: right; }
 .profile-details .profile-detail { color: #8ABB71; }
 
-<!--[if lt IE 7]>
-	<style>
-	div.overlay {
-		background-image:url(http://static.flowplayer.org/tools/img/overlay/overlay_IE6.gif);
-		color:#fff;
-	}
-
-	/* default close button positioned on upper right corner */
-	div.overlay div.close {
-		background-image:url(http://static.flowplayer.org/tools/img/overlay/overlay_close_IE6.gif);
-
-	}
-	</style>
-	<![endif]-->
-
 /* black version of the overlay. simply uses a different background image */
 	div.overlay.black {
 		background-image:url(http://static.flowplayer.org/tools/img/overlay/transparent.png);
