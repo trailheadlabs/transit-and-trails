@@ -1,0 +1,154 @@
+body,html{
+	margin:0px;
+	padding:0px;
+	font-size:14px;
+	line-height:1.6em;
+	color:#333333;
+}
+#main{
+	margin:0 auto;
+	width:1260px;
+	padding-bottom:100px;
+}
+
+#copy{
+	margin:0 auto;
+	width:960px;
+	padding-top:20px;
+}
+
+#left{
+	float:left;
+	width:560px;
+}
+
+#right{
+	float:right;
+	width:310px;
+}
+
+#register{
+	border: solid 1px #BFBFBF;
+	font-size:38px;
+	font-weight:600;
+	color:#5965c3;
+	padding:30px;
+	text-align:center;
+	white-space:nowrap;
+}
+
+#pdf-links{
+//	margin-top:50px;
+}
+
+#other-links{
+	margin-top:100px;
+}
+
+#sponsors-sidebar, #partners-sidebar{
+	margin-top:40px;
+}
+
+#date-image{
+	padding:14px;
+	float:left;
+	vertical-align:top;
+}
+#bottom{
+	padding-top:30px;
+	padding-bottom:100px;
+	margin:0 auto;
+	clear:both;
+	display:block;
+}
+
+.purple{
+	color:#5965c3;
+}
+
+a{
+	color:#5965c3;
+	text-decoration:none;
+}
+
+a:hover{
+	text-decoration:underline;
+}
+
+hr{
+	border:0;
+	height:1px;
+	background-color:#CCCCCC;;
+}
+
+.partner-logo{
+	display:inline-block;
+	float:left;
+	margin-right:20px;
+	margin-bottom:20px;
+	width:296px;
+	height:220px;
+	border: solid 1px #CCCCCC;
+	background-image: url(/media/images/triple-threat/partner-logos.png);
+}
+
+#rei{
+	background-position: -323px -3px;
+}
+
+#baosc{
+	background-position: -3px -3px;
+}
+
+#tnt{
+	background-position: -643px -247px;
+}
+
+#state-parks{
+	background-position: -643px -3px;
+}
+
+#rails-to-trails{
+	background-position: -3px -247px;
+}
+
+#save-mount-diablo{
+	background-position: -323px -247px;
+}
+
+#sf-parks-trust{
+	background-position: -3px -494px;
+}
+
+#sc-county-parks{
+	background-position: -643px -494px;
+}
+
+#ggnpc{
+	background-position: -323px -494px;
+}
+
+#transform{
+	background-position: -3px -738px;
+}
+
+#chipotle{
+	background-position: -323px -738px;
+}
+
+#alameda{
+	background-position: -643px -738px;
+}
+
+#sponsors,#partners,#bottom{
+	display:block;
+	float:left;
+}
+#sponsors {
+	margin-top:30px;
+	margin-bottom:30px;
+}
+
+.partner-logo:hover{
+	border: solid 1px #5965c3;
+}

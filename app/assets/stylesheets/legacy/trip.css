@@ -1,0 +1,104 @@
+.trail-details-overlay {
+  text-align:left;
+
+}
+
+.description ul {
+	list-style-type:disc;
+	padding:8px;
+	margin:8px;
+}
+
+body{
+}
+
+input[type=text]
+{
+  width:300px;
+}
+
+.button-links{
+  line-height:40px;
+  padding:20px;
+}
+
+.green-link-button .selected {
+  background-color:#4a6c26;
+}
+
+.plan{
+  position:relative;
+}
+
+#map-upload-form{
+  margin:10px;
+}
+
+#map-upload-form .green-map-button{
+  margin-top:10px;
+}
+
+#map-upload-form input[type="text"]{
+  margin-bottom:10px;
+}
+
+#map-upload-form input[type="file"]{
+
+  height:27px;
+}
+#trip-stories{
+  float:left;
+  clear:left;
+  margin-top:20px;
+}
+
+#trip-story-items{
+  width:400px;
+  min-height:200px;
+  border: 1px solid #cacbcd;
+  -webkit-border-radius: 0 8px 0px 0px;
+  -moz-border-radius: 0 8px 0px 0px;
+  -o-border-radius: 0 8px 0px 0px;
+  border-radius: 0 8px 0px 0px;
+  background: #f6f7fc;
+  padding:10px;
+}
+
+.trip-photo-admin{
+  border: 1px solid #cacbcd;
+  -webkit-border-radius: 0 8px 0px 0px;
+  -moz-border-radius: 0 8px 0px 0px;
+  -o-border-radius: 0 8px 0px 0px;
+  border-radius: 0 8px 0px 0px;
+  background: #f6f7fc;
+  padding:10px;
+  margin-bottom:20px;
+}
+
+.trip-story-button{
+  display:block;
+  text-align: center;
+  margin: 10px 0;
+  clear:both;
+}
+
+.trip-story-item{
+  padding:10px 0px;
+  border-top:1px solid #cacbcd;
+  margin:10px 0px;
+}
+
+.trip-story-text{
+  margin:12px 6px;
+}
+.trip-story-author{
+  margin-bottom:6px;
+}
+
+.trip-story-travel-modes{
+  margin-bottom:6px;
+}
+
+#page{
+  padding-bottom:20px;
+}

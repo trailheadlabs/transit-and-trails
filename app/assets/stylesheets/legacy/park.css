@@ -1,0 +1,36 @@
+#find-map{
+  min-height: 584px;
+}
+
+#park{
+	float: left;
+	width: 377px;
+	overflow: hidden;
+	border-right: 1px solid #bbb;
+	min-height: 240px;
+	padding-top: 16px;
+	position: relative;
+}
+
+
+#trail-list{
+  width:377px;
+  height:300px;
+}
+
+#trail-list ul {
+position: relative;
+overflow: auto;
+height: 300px;
+}
+
+#park > h2{
+	font-size: 16px;
+	text-transform: uppercase;
+	padding: 15px 0 0 70px;
+	height: 51px;
+	background: #fff;
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 15px;
+}

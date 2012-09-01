@@ -1,0 +1,57 @@
+.trip_story_form{
+  padding:20px;
+  padding:25px;
+  border:solid 1px #DEDEDD;
+  background-color:#F5F6FB;
+  -webkit-border-radius: 0 8px 8px 8px;
+  -moz-border-radius: 0 8px 8px 8px;
+  -o-border-radius: 0 8px 8px 8px;
+  border-radius: 0 8px 8px 8px;
+}
+
+select, input[type=text]
+{
+  font-size:12px;
+  height:25px;
+  padding:3px 5px;
+  border: solid 1px #C2D4E7;
+  background: -moz-linear-gradient(top, #ECEEEE 0%, #FFFFFF 45%, #FFFFFF 100%); /* firefox */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ECEEEE), color-stop(45%,#FFFFFF), color-stop(100%,#FFFFFF)); /* webkit */
+}
+#id_happened_at{
+
+padding: 0 25px 0 4px;
+height: 23px;
+line-height: 23px;
+color: hsl(36, 10%, 29%);
+width: 100px;
+margin-left: 4px;
+background-image: url(/media/images/cal.jpg);
+background-position: 100px 4px;
+background-repeat: no-repeat;
+background-color: -moz-linear-gradient(top, #ECEEEE 0%, #FFFFFF 45%, #FFFFFF 100%); /* firefox */
+background-color: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ECEEEE), color-stop(45%,#FFFFFF), color-stop(100%,#FFFFFF)); /* webkit */
+
+border: 1px solid hsl(212, 44%, 83%);
+}
+
+.form-left{
+  float:left;
+  margin-right:20px;
+}
+.form-right{
+  float:left;
+}
+.buttons{
+  position:absolute;
+  clear:both;
+  text-align:center;
+  bottom:10px;
+  padding:20px;
+}
+
+#id_story{
+  float:left;
+  width:500px;
+}
+

@@ -1,0 +1,75 @@
+- content_for :head do
+  = stylesheet_link_tag    "challenge", :media => "all"
+.challenge_top
+  .challenge_title_text
+    Take the Challenge!
+  .challenge_subtext
+    Go for a walk, hike, run or ride in a whole new way.
+  .challenge_subtext_date
+    The 2012 Challenge runs from July 19 - September 30
+%hr.challenge_hr/
+.challenge_content
+  .challenge_content_left
+    %h3 Why Take The Challenge
+    .why.doing
+      .icon
+      .text
+        .header
+          You want to try something new
+        .description
+          Whether it’s taking the bus or starting on an unfamiliar trail, here is an opportunity to explore new places and discover new ways of getting there.
+    .why.exploring
+      .icon
+      .text
+        .header
+          You want to get outside and get moving
+        .description
+          Short walks or epic bike rides are welcome on the Challenge. Over a million acres of Bay Area parks and trails await you regardless of your ability and interests.
+    .why.friends
+      .icon
+      .text
+        .header
+          You want to talk to your friends
+        .description
+          If you're not driving, you can talk, text, email, or simply enjoy the view out the window. You also won't have to deal with parking or traffic.
+  / challenge_content_left
+  .challenge_content_right
+    %h3 How it works
+    %ol
+      %li
+        %a{:href => "#{new_user_session_path}"} Login
+        or
+        %a{:href => "#{new_user_registration_path}"} Register
+      %li
+        %a{:href => "/find"} Find a trip or trailhead to explore.
+      %li Plan your adventure using transit, biking, walking or driving.
+      %li Share your story by clicking the Add a Story button on the trip or trailhead page. Tell us when you went, how you got there, and what you did!
+    Tips, stories, prizes and more can be found on the
+    = succeed "." do
+      %a{:href => "http://blog.transitandtrails.org"} Transit & Trails Blog
+    .clearfix
+  .clearfix
+  #sponsors
+    %h3 Sponsors
+    %a{:href => "http://www.mtc.ca.gov"}
+      %img.logo{:src => "/assets/challenge/logos/mtc.png"}/
+    %a{:href => "http://www.parksconservancy.org"}
+      %img.logo{:src => "/assets/challenge/logos/ggnpc.png"}/
+    .clearfix
+  #partners
+    %h3 Partners
+    %a{:href => "http://www.sparetheair.org"}
+      %img.logo{:src => "/assets/challenge/logos/spare_the_air.png"}/
+    %a{:href => "http://www.rei.com"}
+      %img.logo{:src => "/assets/challenge/logos/REI.jpg"}/
+    %a{:href => "http://transformca.org/"}
+      %img.logo{:src => "/assets/challenge/logos/transform.png"}/
+    .clearfix
+  #interested
+    %h4
+      Interested in joining the Challenge as a Sponsor or Partner?
+    %a{:href => "/media/challenge/challenge_sponsors_partners.pdf"} Click here for more information
+    or
+    = succeed "." do
+      %a{:href => "mailto:annie@openspacecouncil.org"} email us
+  .clearfix

@@ -1,0 +1,202 @@
+/*#head{
+  background: url(/media/images/challenge_banner.jpg) top left no-repeat;
+  height:380px;
+}*/
+
+body{
+  text-align:left;
+}
+
+#sponsors img.logo{
+  max-height:80px;
+}
+
+img.logo{
+  max-height:60px;
+  padding:10px 20px;
+  text-align:left;
+  max-width:300px;
+}
+
+
+.challenge_top{
+  text-align:center;
+  width:680px;
+  margin:0 auto;
+}
+
+.challenge_title_text{
+  font-size:50px;
+  color:#1881AB;
+  margin-top:20px;
+  font-weight:600;
+    text-shadow:0px -1px 0px #ddd;
+
+}
+
+.challenge_subtext{
+  line-height:1.3em;
+  margin-top:20px;
+  color:#514C42;
+  font-size:18px;
+  font-weight:300;
+  text-shadow:0px -1px 0px #ddd;
+}
+
+.challenge_subtext_date{
+  margin-top:20px;
+  color:#1881AB;
+  font-size:18px;
+  font-style: italic;
+  margin-bottom:20px;
+  font-weight:300;
+    text-shadow:0px -1px 0px #ddd;
+
+}
+
+.challenge_hr{
+  .width:100%;
+  border:none;
+  border-top:solid 1px #E0E5E9;
+  height:1px;
+  background-color:#F7F9F9;
+  margin-top:40px;
+
+}
+
+.funding {
+  margin-top:60px;
+  text-align:left;
+  font-size:12px;
+}
+
+.challenge_content{
+  padding:30px;
+  margin-bottom:100px;
+}
+
+.challenge_content_left{
+  text-shadow:0px -1px 0px #ddd;
+  float:left;
+  text-align:left;
+  width:530px;
+}
+
+#sponsors{
+  margin-top:20px;
+}
+
+#partners{
+  margin-top:20px;
+}
+
+#interested{
+  margin-top:20px;
+}
+
+h3 {
+  text-transform:uppercase;
+  color:#1881AB;
+  font-weight:bold;
+  font-size:14px;
+  margin-bottom:20px;
+}
+
+h4{
+  font-size:13px;
+  font-weight:600;
+  margin-bottom:8px;
+}
+.why{
+  clear:left;
+  margin-bottom:20px;
+}
+.why .icon{
+  float:left;
+  background-image:url(/assets/challenge/challenge_sprite.png);
+  background-repeat:none;
+  height:70px;
+  width:70px;
+  margin-right:18px;
+}
+
+.goals .icon{
+  background-position:0px -75px;
+}
+
+.exploring .icon{
+  background-position:0px -150px;
+}
+
+.friends .icon{
+  background-position:0px -225px;
+}
+
+.why .text .header{
+  font-size:18px;
+  color:#1881AB;
+  margin-bottom:8px;
+
+}
+
+.why .text{
+  float:left;
+  width:440px;
+}
+
+.why .text .description{
+  font-size:14px;
+  color:#514C42;
+  font-weight:300;
+  text-shadow:0px -1px 0px #ddd;
+}
+
+.challenge_content_right{
+  float:right;
+  text-align:left;
+  width:360px;
+  font-size:14px;
+  font-weight:300;
+  margin-left:20px;
+  line-height:1.3em;
+  text-shadow:0px -1px 0px #ddd;
+}
+
+.tab_header{
+  font-size:12px;
+  position:relative;
+  float: left;
+  line-height: 20px;
+  height: 20px;
+  padding: 0 36px 0 20px;
+  color: #fff;
+  text-transform: uppercase;
+  text-decoration: none;
+  margin-right: 100px;
+  background: url(/assets/tab.png) bottom right no-repeat;
+}
+
+.note{
+  color:#1881AB;
+  font-style:italic;
+
+}
+ol{
+  list-style-type: decimal;
+}
+
+.challenge_content li{
+  margin-left:16px;
+  margin-bottom:10px;
+}
+
+.challenge_content_right .content{
+  float:left;
+  padding:25px;
+  border:solid 1px #DEDEDD;
+  background-color:#F5F6FB;
+  -webkit-border-radius: 0 8px 8px 8px;
+  -moz-border-radius: 0 8px 8px 8px;
+  -o-border-radius: 0 8px 8px 8px;
+  border-radius: 0 8px 8px 8px;
+}

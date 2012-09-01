@@ -52,6 +52,8 @@ Transitandtrails::Application.routes.draw do
 
   root :to => "application#index"
 
+  match 'find' => "application#index"
+
   match '/:id' => 'high_voltage/pages#show', :as => :static, :via => :get
 
   match 'geo/coordinates' => "geo#coordinates"
