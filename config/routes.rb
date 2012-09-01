@@ -33,7 +33,12 @@ Transitandtrails::Application.routes.draw do
 
   resources :campgrounds
 
-  resources :trailheads
+  resources :trailheads do
+    collection do
+      get 'near_address'
+      get 'near_coordinates'
+    end
+  end
 
   resources :partners, :only => [:index]
 
@@ -48,6 +53,10 @@ Transitandtrails::Application.routes.draw do
   root :to => "application#index"
 
   match '/:id' => 'high_voltage/pages#show', :as => :static, :via => :get
+
+  match 'geo/coordinates' => "geo#coordinates"
+
+  match 'geo/distance_between' => "geo#distance_between"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

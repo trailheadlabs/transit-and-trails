@@ -1,16 +1,9 @@
-%h2 Sign in
-= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-  %div
-    = f.label :username
-    %br/
-    = f.text_field :username
-  %div
-    = f.label :password
-    %br/
-    = f.password_field :password
+%h2.page-header Sign In
+= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+  = f.input :username, :input_html => {:autofocus => true}
+  = f.input :password
   - if devise_mapping.rememberable?
-    %div
-      = f.check_box :remember_me
-      = f.label :remember_me
-  %div= f.submit "Sign in"
+    = f.input :remember_me, :as => :boolean
+  = f.button :submit, :value => "Sign In", :button_html => { :disable_with => "Wait" }
+
 = render "devise/shared/links"

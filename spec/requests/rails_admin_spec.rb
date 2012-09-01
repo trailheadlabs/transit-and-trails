@@ -3,7 +3,7 @@ require "spec_helper"
 describe "rails admin" do
   it "displays the login form" do
     visit '/admin'
-    page.should have_content("Sign in")
+    page.should have_content("Sign In")
   end
 
   it "let's admin users in" do
@@ -12,7 +12,7 @@ describe "rails admin" do
     visit '/admin'
     fill_in 'Username', with: user.username
     fill_in 'Password', with: 'please'
-    click_on 'Sign in'
+    click_on 'Sign In'
     page.should_not have_content 'Sign in'
   end
 
@@ -22,7 +22,7 @@ describe "rails admin" do
     visit '/admin'
     fill_in 'Username', with: user.username
     fill_in 'Password', with: 'please'
-    click_on 'Sign in'
+    click_on 'Sign In'
     page.should_not have_content 'Sign in'
   end
 

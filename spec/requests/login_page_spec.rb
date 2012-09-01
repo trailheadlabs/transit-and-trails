@@ -3,7 +3,7 @@ require "spec_helper"
 describe "login page" do
   it "displays the login form" do
     visit '/users/sign_in'
-    page.should have_content("Sign in")
+    page.should have_content("Sign In")
   end
 
   it "logs users in" do
@@ -11,7 +11,9 @@ describe "login page" do
     visit '/users/sign_in'
     fill_in 'Username', with: user.username
     fill_in 'Password', with: 'please'
-    click_on 'Sign in'
+    within("form") do
+      click_on 'Sign In'
+    end
     page.should have_content user.username
   end
 
@@ -22,7 +24,9 @@ describe "login page" do
     visit '/users/sign_in'
     fill_in 'Username', with: user.username
     fill_in 'Password', with: 'password'
-    click_on 'Sign in'
+    within("form") do
+      click_on 'Sign In'
+    end
     page.should have_content user.username
     User.find_by_username('djangouser').encrypted_password.should_not be_blank
   end
@@ -31,7 +35,9 @@ describe "login page" do
     visit '/users/sign_in'
     fill_in 'Username', with: 'noway'
     fill_in 'Password', with: 'password'
-    click_on 'Sign in'
+    within("form") do
+      click_on 'Sign In'
+    end
     page.should have_content 'Invalid'
     page.should_not have_content 'noway'
   end

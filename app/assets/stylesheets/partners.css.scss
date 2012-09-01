@@ -15,24 +15,23 @@
 
 }
 .partner{
+  width:800px;
   background-color:$super-light-blue;
-  width:400px;
   margin:15px 15px 0 0;
   padding:20px;
   float:left;
-  min-height:150px;
-  height:200px;
+  min-height:100px;
   border:1px solid #c7c7c7;
   @include border-radius(0.25em);
   .logo{
     position:relative;
     float:left;
-    margin-right:14px;
+    margin-right:20px;
+    width:100px;
     img{
       padding:2px;
       border:1px solid #CCC;
       @include border-radius(3px);
-
       width:90px;
     }
   }
@@ -46,7 +45,7 @@
     }
     .description{
       float:left;
-      width:265px;
+      width:600px;
     }
   }
 }

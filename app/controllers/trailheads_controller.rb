@@ -1,11 +1,41 @@
 class TrailheadsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index,:show]
+  before_filter :authenticate_user!, :except => [:index,:show,:near_address,:near_coordinates]
 
   # GET /trailheads
   # GET /trailheads.json
   def index
     @trailheads = Trailhead.all
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @trailheads }
+    end
+  end
 
+  # GET /trailheads
+  # GET /trailheads.json
+  def near_address
+    address = params[:address] || "San Francisco, CA"
+    distance = params[:distance] || 10
+    limit = 20 || params[:limit]
+    offset = 0 || params[:offset]
+    approved = true || params[:approved]
+    @trailheads = Trailhead.where(:approved => approved).near(address,distance).limit(limit).offset(offset)
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @trailheads }
+    end
+  end
+
+  # GET /trailheads
+  # GET /trailheads.json
+  def near_coordinates
+    latitude = params[:latitude] || 37.7749295
+    longitude = params[:longitude] || -122.4194155
+    distance = params[:distance] || 10
+    limit = 20 || params[:limit]
+    offset = 0 || params[:offset]
+    approved = true || params[:approved]
+    @trailheads = Trailhead.where(:approved => approved).near([latitude,longitude],distance).limit(limit).offset(offset)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @trailheads }

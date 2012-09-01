@@ -1,11 +1,14 @@
-%h1 Partners
-.partners
+%h2.page-header Partners
+.partners.content
+  Developing the site has taken a lot of hard work and collaboration with other groups in the region. From beta testing to providing data to design review many, groups have chipped in. We would say thank you to the following partners for their help and support :
   - @partners.each do |p|
     .partner
-      - unless p.logo.url.blank?
-        .logo
+      .logo
+        - unless p.logo.url.blank?
           %a(href="#{p.link}")
             = image_tag p.logo
+        - else
+          &nbsp;
       .details
         .name
           %a(href="#{p.link}")

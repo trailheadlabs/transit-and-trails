@@ -1,17 +1,93 @@
-@import "formtastic";
 @import "variables";
 @import "bourbon";
-@import "layout";
-@import "scaffolds";
 @import "partners";
 @import "about";
+@import "simple_form";
 
-body{
+body {
+  font-size: 14px;
+  line-height: 18px;
+  background-color:#514B43;
+  margin:0px;
+  padding:0px;
   font-family: 'Open Sans', sans-serif;
 }
 
+.page-header{
+  border-top: solid 1px #C7C7C7;
+  border-bottom:  solid 1px #C7C7C7;
+  background-color: $super-light-blue;
+  padding:14px 40px;
+}
+
+p, ol, ul, td {
+  font-size: 14px;
+  line-height: 20px; }
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+  overflow: auto;
+  border:1px solid #aaa;
+  @include border-radius(4px);
+}
+
+ul.devise-links{
+  margin-left:20px;
+}
+
+.simple_form {
+  input[type="url"], input[type="text"], input[type="password"], input[type="email"], textarea{
+    font-size:14px;
+    padding:6px;
+    border: solid 1px #C2D4E7;
+    @include linear-gradient(top, #ECEEEE 0%, #FFFFFF 45%, #FFFFFF 100%);
+    margin-top:1px;
+    width:400px;
+    float:left;
+    clear:both;
+  }
+  input[type="file"] {
+    float:left;
+    clear:both;
+
+  }
+}
+
+#notice {
+  color: green; }
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px;
+    margin-bottom: 0px;
+    background-color: #c00;
+    color: #fff; }
+  ul li {
+    font-size: 12px;
+    list-style: square; } }
+
+input[type="submit"]{
+  @include button(#74AB4C);
+  text-shadow: 0 -1px 1px #001E00;
+  font-weight:600;
+  font-size:14px;
+}
 div {
   @include clearfix;
+  &.field, &.actions {
+    margin-bottom: 10px; }
 }
 
 h1, h2, h3, h4, h5{
@@ -32,5 +108,116 @@ a {
   &:hover {
     color: $aqua;
     text-decoration:underline;
+  }
+}
+
+.middle{
+  margin: 0 auto;
+  width:980px;
+}
+.main{
+  background-color:white;
+  border-left:solid 1px black;
+  border-right:solid 1px black;
+  border-bottom:solid 1px black;
+  @include border-radius(0px 0px 30px 30px);
+  @include box-shadow(0 4px 15px rgba(0, 0, 0, .7));
+}
+
+#user-nav{
+  position: absolute;
+  top: 8px;
+  left: 16px;
+}
+
+#home-link{
+  position: absolute;
+  right:0px;
+  bottom:0px;
+  height:130px;
+  width:100%;
+}
+
+.header{
+  height:160px;
+  background-image:url(application_layout_sprite.png);
+  position:relative;
+  margin-bottom:10px;
+  @include box-shadow(0 0 15px rgba(0, 0, 0, .5));
+}
+.content{
+  padding:10px 40px 10px 40px;
+}
+
+.content-footer{
+  clear:both;
+  margin-top:40px;
+  padding:20px;
+  .image-link{
+    background-image:url(application_layout_sprite.png);
+    height:40px;
+    float:left;
+    margin-right:20px;
+  }
+  .left{
+    float:left;
+  }
+  .right{
+    float:right;
+  }
+  .openspacecouncil-logo{
+    background-position: -600px -160px;
+    height:40px;
+    width:280px;
+  }
+  .twitter{
+    background-position: -0px -160px;
+    width:40px;
+  }
+  .facebook{
+    background-position: -40px -160px;
+    width:45px;
+  }
+  .newsletter{
+    background-position: -100px -160px;
+    width:60px;
+  }
+  .blog{
+    background-position: -160px -160px;
+    width:40px;
+  }
+  .ios-app{
+    background-position: -200px -160px;
+    width:110px;
+  }
+  .android-app{
+    background-position: -320px -160px;
+    width:110px;
+    margin-right:0px;
+  }
+}
+
+
+.footer{
+  position: relative;
+  padding: 20px;
+  color: #FFEECF;
+  font-size: 14px;
+  text-shadow: 0px -1px black;
+  .left{
+    float:left;
+  }
+  .right{
+    float:right;
+  }
+  a {
+    color: #FFEECF;
+    text-decoration:none;
+    &:visited {
+      color: #FFEECF; }
+    &:hover {
+      color: #FFEECF;
+      text-decoration:underline;
+    }
   }
 }

@@ -9,7 +9,7 @@ describe "UserProfiles" do
       visit "/users/sign_in"
       fill_in "Username", with: user.username
       fill_in "Password", with: "please"
-      click_button "Sign in"
+      click_button "Sign In"
       page.should have_content user.username
       visit profile_path
       current_path.should == profile_path

@@ -22,6 +22,9 @@ class User < ActiveRecord::Base
 
   alias :devise_valid_password? :valid_password?
 
+  validates :username, :email, :presence => true;
+  validates :username, :uniqueness => true;
+
   def valid_password?(password)
     if(encrypted_password.blank?)
       salt = django_password.split('$')[1]

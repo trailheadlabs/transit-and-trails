@@ -130,7 +130,7 @@ describe UserProfilesController do
       it "redirects to the current user user_profile" do
         user_profile = UserProfile.create! valid_attributes
         put :update, {:id => user_profile.to_param, :user_profile => valid_attributes}, valid_session
-        response.should redirect_to(@user.user_profile)
+        response.should redirect_to(profile_path)
       end
     end
 

@@ -1,21 +1,21 @@
-= semantic_form_for @user_profile do |f|
-  = f.inputs do
-    -if @user_profile.errors.any?
-      #error_explanation
-        %h2= "#{pluralize(@user_profile.errors.count, "error")} prohibited this user_profile from being saved:"
-        %ul
-          - @user_profile.errors.full_messages.each do |msg|
-            %li= msg
+= simple_form_for @user_profile, :html=>{:class => "formtastic"} do |f|
+  -if @user_profile.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@user_profile.errors.count, "error")} prohibited this user_profile from being saved:"
+      %ul
+        - @user_profile.errors.full_messages.each do |msg|
+          %li= msg
 
-    = f.input :firstname, :required => false
-    = f.input :lastname, :required => false
-    = f.input :url, :required => false
-    = f.input :bio, :required => false
-    = f.input :avatar, :required => false
-    = f.input :organization_name, :required => false
-    = f.input :organization_avatar, :required => false
-    = f.hidden_field :user_id
+  = f.input :firstname, :required => false, :input_html => {:autofocus => true}
+  = f.input :lastname, :required => false
+  = f.input :url, :required => false
+  = f.input :bio, :required => false, :input_html=>{:rows=>10}
+  = f.input :avatar, :required => false,:as => :image_preview, input_html: {preview_version: :thumbnail}
+  = f.hidden_field :avatar_cache
+  = f.input :organization_name, :required => false
+  = f.input :organization_avatar,  :as => :image_preview, input_html: {preview_version: :thumbnail}
+  = f.hidden_field :organization_avatar_cache
+  = f.hidden_field :user_id
 
-  = f.actions do
-    = f.action :submit, :label => "Save", :button_html => { :disable_with => "Wait" }
+  = f.button :submit, :value => "Save", :button_html => { :disable_with => "Wait" }
 

@@ -42,6 +42,30 @@ describe TrailheadsController do
     end
   end
 
+  describe "GET near_address" do
+    it "assigns all trailheads as @trailheads" do
+      3.times do
+        FactoryGirl.create(:trailhead)
+      end
+      Trailhead.count.should eq 3
+      get :near_address, {:address=>"5692 Cabot Drive, Oakland CA",:format=>:json}, valid_session
+      response.status.should eq(200)
+      assigns(:trailheads).should_not be_nil
+    end
+  end
+
+  describe "GET near_coordinates" do
+    it "assigns all trailheads as @trailheads" do
+      3.times do
+        FactoryGirl.create(:trailhead)
+      end
+      Trailhead.count.should eq 3
+      get :near_coordinates, {:latitude=>37.8322173645,:longitude=>-122.212514877,:format=>:json}, valid_session
+      response.status.should eq(200)
+      assigns(:trailheads).should_not be_nil
+    end
+  end
+
   describe "GET show" do
     it "assigns the requested trailhead as @trailhead" do
       trailhead = Trailhead.create! valid_attributes

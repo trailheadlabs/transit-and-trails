@@ -1,14 +1,12 @@
-%h2
-  Edit #{resource_name.to_s.humanize}
-= semantic_form_for resource, :url => registration_path(resource_name) do |f|
-  = f.inputs do
-    = f.input :email, :input_html => {:autofocus => true}
-    = f.input :password, :required => false, :input_html => {:autocomplete => "off"}, :hint => "(Leave blank if you don't want to change it)"
-    = f.input :password_confirmation, :required => false
-    = f.input :current_password, :hint => "(Required to change password)"
+%h2.page-header
+  Account
+= simple_form_for resource, :url => registration_path(resource_name) do |f|
 
-  = f.actions do
-    = f.action :submit, :label => "Save", :button_html => { :disable_with => "Wait" }
+  = f.input :email, :input_html => {:autofocus => true}
+  = f.input :password, :required => false, :input_html => {:autocomplete => "off"}, :hint => "(Leave blank if you don't want to change it)"
+  = f.input :password_confirmation, :required => false
+  = f.input :current_password, :hint => "(Required to change password)"
+  = f.button :submit, :value => "Save", :button_html => { :disable_with => "Wait" }
 
 
 / = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
