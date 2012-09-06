@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  helper TextHelper
 
   def index
     @trailheads = Trailhead.approved.near("5692 Cabot Drive, Oakland CA").limit(10)
@@ -22,6 +23,15 @@ class ApplicationController < ActionController::Base
       records = records.offset(Integer(params[:offset]))
     end
     return records
+  end
+
+  def loadkv
+    render :text => session[params[:key]] || ''
+  end
+
+  def savekv
+    session[params[:key]] = params[:value]
+    render :ok
   end
 
 end

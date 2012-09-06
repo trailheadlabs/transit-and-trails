@@ -3,7 +3,7 @@
   / = devise_error_messages!
   = f.input :username, :required => true, :input_html => {:autofocus=>true}
   = f.input :email
-  = f.input :password
+  = f.input :password, :required => true
   = f.input :password_confirmation, :required => true
   = f.button :submit, :value => "Sign Up",:button_html => { :disable_with => "Wait" }
   / %div

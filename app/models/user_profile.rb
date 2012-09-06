@@ -10,4 +10,12 @@ class UserProfile < ActiveRecord::Base
   mount_uploader :avatar, UserProfileAvatarUploader
   mount_uploader :organization_avatar, UserProfileOrganizationAvatarUploader
   has_paper_trail
+
+  before_create :generate_api_key
+
+  def generate_api_key
+    self.api_key = Digest::SHA256.hexdigest(SecureRandom::random_bytes)
+    self.api_secret = Digest::SHA256.hexdigest(SecureRandom::random_bytes)
+  end
+
 end

@@ -76,7 +76,7 @@ describe TrailheadsController do
 
   context "logged in" do
     before(:each) do
-      @user = FactoryGirl.create(:user)
+      @user = FactoryGirl.create(:admin)
       sign_in :user, @user
       controller.user_signed_in?.should be_true
     end

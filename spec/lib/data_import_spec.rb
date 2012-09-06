@@ -660,25 +660,19 @@ describe "DataImport" do
   it "imports trailhead maps correctly" do
     item = JSON::parse(
       '{
-        "pk": 2,
+        "pk": 80,
         "model": "tnt.trailheadmap",
         "fields": {
-          "name": "Del Valle Regional Park",
-          "user": 1,
-          "trailhead": 6,
-          "description": "Test",
-          "map": "baosc.png",
-          "url": "http://transitandtrails.org"
+          "map": "",
+          "trailhead": 292,
+          "map_url": "http://www.nps.gov/goga/upload/2008-0910-mahe-map-web.pdf"
         }
       }')
     Util::DataImport::import_trailhead_map item
     fields = item['fields']
     new_record = Map.last
     new_record.should_not be nil
-    new_record.name.should eq fields['name']
-    new_record.description.should eq fields['description']
-    new_record.url.should eq fields['url']
-    new_record.user_id.should eq fields['user']
+    new_record.url.should eq fields['map_url']
     unless fields['map'].blank?
       new_record.map.should_not be_blank
     end

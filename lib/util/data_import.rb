@@ -370,7 +370,6 @@ module Util
       begin
         unless fields['map'].blank?
           new_record.remote_map_url = "http://transitandtrails.org/media/" + fields['map']
-          new_record.map.store!
         end
       rescue Exception => e
         puts "Could not set map for campground #{new_record.name}"
@@ -455,7 +454,6 @@ module Util
       begin
         unless fields['map'].blank?
           new_record.remote_map_url = "http://transitandtrails.org/media/" + fields['map']
-          new_record.map.store!
         end
       rescue Exception => e
         puts "Could not set map for trip #{new_record.name}"
@@ -468,16 +466,12 @@ module Util
     def self.import_trailhead_map(item)
       new_record = Map.new
       fields = item['fields']
-      new_record.name = fields['name']
-      new_record.description = fields['description']
-      new_record.user_id = fields['user']
-      new_record.url = fields['url']
+      new_record.url = fields['map_url']
       new_record.mapable_id = fields['trailhead']
       new_record.mapable_type = "Trailhead"
       begin
         unless fields['map'].blank?
           new_record.remote_map_url = "http://transitandtrails.org/media/" + fields['map']
-          new_record.map.store!
         end
       rescue Exception => e
         puts "Could not set map for trailhead #{new_record.name}"

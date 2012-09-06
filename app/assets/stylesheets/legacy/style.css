@@ -47,7 +47,7 @@ body {
     position: relative;
     height: 160px;
     z-index: 1;
-    background: url(/media/images/header.png) top left no-repeat;
+    background: url(/assets/legacy/header.png) top left no-repeat;
     -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, .7);
 }
 
@@ -70,7 +70,7 @@ body {
 #show {
     position: relative;
     height: 44px;
-    background: url(/media/images/show-bg.png) top left;
+    background: url(/assets/legacy/show-bg.png) top left;
     border-bottom: 1px solid #ccc;
     border-top: 1px solid #333;
     -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, .3);
@@ -126,7 +126,7 @@ body {
     width: 94px;
     border: 0;
     text-indent: -9999em;
-    background: url(/media/images/fond.png) top left no-repeat;
+    background: url(/assets/legacy/fond.png) top left no-repeat;
     margin: 6px 0 0 12px;
 }
 
@@ -179,7 +179,7 @@ body {
 }
 
 .entry.titleright {
-    background: url(/media/images/item-title2.png);
+    background: url(/assets/legacy/item-title2.png);
     background-position: -190px top;
     height: 20px;
 }
@@ -262,7 +262,7 @@ body {
     margin: 0 -40px;
     padding-left: 40px;
     margin-bottom: 24px;
-    background: url(/media/images/item-title2.png) top left;
+    background: url(/assets/legacy/item-title2.png) top left;
 }
 
 .entry.static h2 {
@@ -271,7 +271,7 @@ body {
 }
 
 .entry.alt h2 {
-    background: url(/media/images/item-title1.jpg) top left;
+    background: url(/assets/legacy/item-title1.jpg) top left;
 }
 
 .entry h3 {
@@ -387,7 +387,7 @@ ul.people li h3 {
     text-transform: uppercase;
     text-decoration: none;
     margin-right: 100px;
-    background: url(/media/images/tab.png) bottom right no-repeat;
+    background: url(/assets/legacy/tab.png) bottom right no-repeat;
 }
 
 #page-head a, .section-head a {
@@ -396,7 +396,7 @@ ul.people li h3 {
     line-height: 20px;
     padding-left: 14px;
     text-transform: uppercase;
-    background: url(/media/images/crumb.jpg) left center no-repeat;
+    background: url(/assets/legacy/crumb.jpg) left center no-repeat;
 }
 
 #plan {
@@ -759,13 +759,13 @@ a.back-to-details {
     left: 0;
     width: 9px;
     height: 27px;
-    background: url(/media/images/l.jpg) top left no-repeat;
+    background: url(/assets/legacy/l.jpg) top left no-repeat;
 }
 
 a.gal-right {
     right: 0;
     left: auto;
-    background: url(/media/images/r.jpg) top left no-repeat;
+    background: url(/assets/legacy/r.jpg) top left no-repeat;
 }
 
 .tour-time {
@@ -840,11 +840,11 @@ a.gal-right {
 }
 
 .from {
-    background: url(/media/images/start.jpg) left center no-repeat;
+    background: url(/assets/legacy/start.jpg) left center no-repeat;
 }
 
 .to {
-    background: url(/media/images/end.jpg) left center no-repeat;
+    background: url(/assets/legacy/end.jpg) left center no-repeat;
 }
 
 .tagged {
@@ -869,7 +869,7 @@ a.gal-right {
     height: 36px;
     width: 158px;
     text-indent: -9999em;
-    background: url(/media/images/do-trip.jpg) top left;
+    background: url(/assets/legacy/do-trip.jpg) top left;
 }
 
 #the-plan {
@@ -932,51 +932,51 @@ a.gal-right {
 }
 
 .pt1 {
-    background: url(/media/images/direction_mode_sprite.png) 2px 0px no-repeat;
+    background: url(/assets/legacy/direction_mode_sprite.png) 2px 0px no-repeat;
 }
 
 .pt1.active, .pt1:hover {
-    background: url(/media/images/direction_mode_sprite.png) 2px -144px no-repeat;
+    background: url(/assets/legacy/direction_mode_sprite.png) 2px -144px no-repeat;
 }
 
 .pt2 {
-    background: url(/media/images/direction_mode_sprite.png) -58px 0px no-repeat;
+    background: url(/assets/legacy/direction_mode_sprite.png) -58px 0px no-repeat;
 }
 
 .pt2.active, .pt2:hover {
-    background: url(/media/images/direction_mode_sprite.png) -58px -144px no-repeat;
+    background: url(/assets/legacy/direction_mode_sprite.png) -58px -144px no-repeat;
 }
 
 .pt3 {
-    background: url(/media/images/direction_mode_sprite.png) -117px 0px no-repeat;
+    background: url(/assets/legacy/direction_mode_sprite.png) -117px 0px no-repeat;
 }
 
 .pt3.active, .pt3:hover {
-    background: url(/media/images/direction_mode_sprite.png) -117px -144px no-repeat;
+    background: url(/assets/legacy/direction_mode_sprite.png) -117px -144px no-repeat;
 }
 
 .pt4 {
-    background: url(/media/images/direction_mode_sprite.png) -178px 0px no-repeat;
+    background: url(/assets/legacy/direction_mode_sprite.png) -178px 0px no-repeat;
 }
 
 .pt4.active, .pt4:hover {
-    background: url(/media/images/direction_mode_sprite.png) -178px -144px no-repeat;
+    background: url(/assets/legacy/direction_mode_sprite.png) -178px -144px no-repeat;
 }
 
 .pt5 {
-    background: url(/media/images/direction_mode_sprite.png) 2px 0px no-repeat;
+    background: url(/assets/legacy/direction_mode_sprite.png) 2px 0px no-repeat;
 }
 
 .pt5:hover {
-    background: url(/media/images/direction_mode_sprite.png) 2px -144px no-repeat;
+    background: url(/assets/legacy/direction_mode_sprite.png) 2px -144px no-repeat;
 }
 
 .rideshare {
-    background: url(/media/images/direction_mode_sprite.png) -237px 0px no-repeat;
+    background: url(/assets/legacy/direction_mode_sprite.png) -237px 0px no-repeat;
 }
 
 .rideshare.active, .rideshare:hover {
-    background: url(/media/images/direction_mode_sprite.png) -237px -144px no-repeat;
+    background: url(/assets/legacy/direction_mode_sprite.png) -237px -144px no-repeat;
 }
 
 a.gear {
@@ -985,7 +985,7 @@ a.gear {
     right: 10px;
     height: 10px;
     width: 10px;
-    background: url(/media/images/gear.jpg) top left no-repeat;
+    background: url(/assets/legacy/gear.jpg) top left no-repeat;
 }
 
 #the-plan p {
@@ -1017,7 +1017,7 @@ a.gear {
     width: 58px;
     text-indent: -9999em;
     border: 0;
-    background: url(/media/images/set.jpg) top left no-repeat;
+    background: url(/assets/legacy/set.jpg) top left no-repeat;
 }
 
 #the-plan .date, #the-plan .time {
@@ -1028,14 +1028,14 @@ a.gear {
     color: #514b42;
     width: 80px;
     margin-left: 10px;
-    background-image: url(/media/images/cal.jpg);
+    background-image: url(/assets/legacy/cal.jpg);
     background-position: 80px 4px;
     background-repeat: no-repeat;
     border: 1px solid #c1d3e7;
 }
 
 #the-plan .time {
-    background-image: url(/media/images/tick.jpg);
+    background-image: url(/assets/legacy/tick.jpg);
     background-position: 84px 7px;
 }
 
@@ -1168,7 +1168,7 @@ a.gear {
     height: 30px;
     width: 148px;
     text-indent: -9999em;
-    background: url(/media/images/add-trail.png) bottom left no-repeat;
+    background: url(/assets/legacy/add-trail.png) bottom left no-repeat;
     border: 1px solid rgba(0, 0, 0, .2);
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
@@ -1208,15 +1208,15 @@ a.gear {
 }
 
 #trail-list li.trail-type-trip {
-    background-image: url(/media/images/icon1.png);
+    background-image: url(/assets/legacy/icon1.png);
 }
 
 #trail-list li.trail-type-trailhead {
-    background-image: url(/media/images/icon2.png);
+    background-image: url(/assets/legacy/icon2.png);
 }
 
 #trail-list li.trail-type-campground {
-    background-image: url(/media/images/icon3.png);
+    background-image: url(/assets/legacy/icon3.png);
 }
 
 #trail-list h2 {
@@ -1279,7 +1279,7 @@ a.gear {
     text-transform: uppercase;
     font-weight: bold;
     text-decoration: none;
-    background: url(/media/images/tab.png) top right no-repeat;
+    background: url(/assets/legacy/tab.png) top right no-repeat;
 }
 
 .tabs li a:hover, .tabs li a.active {
@@ -1388,23 +1388,23 @@ a.gear {
 }
 
 a.social1 {
-    background: url(/media/images/s1.png) top center no-repeat;
+    background: url(/assets/legacy/s1.png) top center no-repeat;
 }
 
 a.social2 {
-    background: url(/media/images/s2.png) top center no-repeat;
+    background: url(/assets/legacy/s2.png) top center no-repeat;
 }
 
 a.social3 {
-    background: url(/media/images/s3.png) top center no-repeat;
+    background: url(/assets/legacy/s3.png) top center no-repeat;
 }
 
 a.social4 {
-    background: url(/media/images/s4.png) top center no-repeat;
+    background: url(/assets/legacy/s4.png) top center no-repeat;
 }
 
 a.social5 {
-    background: url(/media/images/s5.png) top center no-repeat;
+    background: url(/assets/legacy/s5.png) top center no-repeat;
 }
 
 #social li a:hover {
@@ -1449,7 +1449,7 @@ a.social5 {
     border: 0;
     margin-top: -2px;
     text-indent: -9999em;
-    background: url(/media/images/signup.png) top left;
+    background: url(/assets/legacy/signup.png) top left;
 }
 
 #sign-up label.alt {
@@ -1555,7 +1555,7 @@ a.social5 {
     right: 80px;
     height: 10px;
     width: 16px;
-    background: url(/media/images/d.gif) top left no-repeat;
+    background: url(/assets/legacy/d.gif) top left no-repeat;
 }
 
 .new-items {
@@ -1584,15 +1584,15 @@ a.social5 {
 }
 
 .new-items .trail-type1, .new-items .trailhead-type {
-    background: url(/media/images/bull1.png) left center no-repeat;
+    background: url(/assets/legacy/bull1.png) left center no-repeat;
 }
 
 .new-items .trail-type2, .new-items .campground-type {
-    background: url(/media/images/bull2.png) left center no-repeat;
+    background: url(/assets/legacy/bull2.png) left center no-repeat;
 }
 
 .new-items .trail-type3, .new-items .trip-type {
-    background: url(/media/images/bull3.png) left center no-repeat;
+    background: url(/assets/legacy/bull3.png) left center no-repeat;
 }
 
 #cap {
@@ -1608,7 +1608,7 @@ a.social5 {
     width: 262px;
     height: 35px;
     text-indent: -9999em;
-    background: url(/media/images/foot-logo.png) top left no-repeat;
+    background: url(/assets/legacy/foot-logo.png) top left no-repeat;
 }
 
 #cap ul {
@@ -1625,7 +1625,7 @@ a.social5 {
     float: left;
     height: 40px;
     text-indent: -9999em;
-    background-image: url(/media/images/social_button_sprite.png);
+    background-image: url(/assets/legacy/social_button_sprite.png);
     background-repeat: no-repeat;
 }
 
@@ -1827,7 +1827,7 @@ input[type="submit"] {
     line-height: 20px;
     padding-left: 14px;
     text-transform: uppercase;
-    background: url(/media/images/crumb.jpg) left center no-repeat;
+    background: url(/assets/legacy/crumb.jpg) left center no-repeat;
 }
 
 div.entry.titleright > #back-to-map-link {
@@ -1913,7 +1913,7 @@ span.required {
 #trailhead-maps .map { margin:20px 15px; clear: left; height: 26px;}
 #trailhead-maps .map a.get-map { height: 30px; }
 #trailhead-maps .map a.get-map .download-icon {
-    background: url(/media/images/download-map.gif) 0 0 no-repeat transparent;
+    background: url(/assets/legacy/download-map.gif) 0 0 no-repeat transparent;
     height:26px;
     width: 37px;
     display:block;
@@ -1974,7 +1974,7 @@ a.trail-details-modal { display:block; color:#1B80AE; margin:20px 0 0 0; cursor:
 .trip-details .map { margin:20px 0; clear: left; height: 26px;}
 .trip-details #maps .map a.get-map { height: 30px; background: none; padding: 0; }
 .trip-details .map a.get-map .download-icon {
-    background: url(/media/images/download-map.gif) 0 0 no-repeat transparent;
+    background: url(/assets/legacy/download-map.gif) 0 0 no-repeat transparent;
     height:26px;
     width: 37px;
     display:block;

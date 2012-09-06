@@ -344,7 +344,7 @@ label.text-attr-label{
 }
 
 #maps .map a.get-map {
-	background: url(/media/images/icon_map.png) 0 -3px no-repeat transparent;
+	background: url(/assets/legacy/icon_map.png) 0 -3px no-repeat transparent;
 	margin: 10px 0 0px;
 	padding-left:40px;
 	height:25px;
@@ -558,7 +558,7 @@ div.agency div.name {
 
 /* prev, next, prevPage and nextPage buttons */
 a.browse {
-	/*background:url(/media/images/hori_large.png) no-repeat;*/
+	/*background:url(/assets/legacy/hori_large.png) no-repeat;*/
 	display:block;
 	width:20px;
 	height:20px;
@@ -569,11 +569,11 @@ a.browse {
 }
 
 a.browse.right, a.browse.right:hover {
-	background:url(/media/images/right_20.png) no-repeat;
+	background:url(/assets/legacy/right_20.png) no-repeat;
 }
 
 a.browse.left, a.browse.left:hover {
-	background:url(/media/images/left_20.png) no-repeat;
+	background:url(/assets/legacy/left_20.png) no-repeat;
 }
 
 /* right */
@@ -596,7 +596,7 @@ a.disabled {
 .overlay {
 	display:none;
 	z-index:10000;
-	/*background-image:url(/media/images/bp.png);*/
+	/*background-image:url(/assets/legacy/bp.png);*/
 	font-size:11px;
 	-moz-box-shadow: 10px 10px 5px #333;
 	-webkit-box-shadow: 10px 10px 5px #333;
@@ -605,7 +605,7 @@ a.disabled {
 
 /* default close button positioned on upper right corner */
 .close, .overlay .close {
-	background-image:url(/media/images/close.png);
+	background-image:url(/assets/legacy/close.png);
 	position:absolute;
 	right:5px;
 	top:5px;

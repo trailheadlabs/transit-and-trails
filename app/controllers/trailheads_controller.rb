@@ -1,15 +1,7 @@
 class TrailheadsController < ApplicationController
+  check_authorization :except => [:near_address,:near_coordinates,:index]
+  load_and_authorize_resource :except => [:near_address,:near_coordinates,:index]
   before_filter :authenticate_user!, :except => [:index,:show,:near_address,:near_coordinates]
-
-  # GET /trailheads
-  # GET /trailheads.json
-  def index
-    @trailheads = Trailhead.all
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @trailheads }
-    end
-  end
 
   # GET /trailheads
   # GET /trailheads.json
@@ -36,6 +28,16 @@ class TrailheadsController < ApplicationController
     offset = 0 || params[:offset]
     approved = true || params[:approved]
     @trailheads = Trailhead.where(:approved => approved).near([latitude,longitude],distance).limit(limit).offset(offset)
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @trailheads }
+    end
+  end
+
+  # GET /trailheads
+  # GET /trailheads.json
+  def index
+    @trailheads = Trailhead.all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @trailheads }

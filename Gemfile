@@ -33,6 +33,8 @@ gem 'high_voltage'
 gem 'simple_form_fancy_uploads'
 gem 'simple_form'
 gem 'database_cleaner'
+gem 'cancan'
+gem 'truncate_html'
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -29,16 +29,37 @@ Transitandtrails::Application.routes.draw do
     end
   end
 
-  resources :trips
-
-  resources :campgrounds
-
-  resources :trailheads do
+  resources :trips do
+    resources :maps
+    resources :photos
+    resources :stories
     collection do
       get 'near_address'
       get 'near_coordinates'
     end
   end
+
+  resources :campgrounds do
+    resources :maps
+    resources :photos
+    resources :stories
+    collection do
+      get 'near_address'
+      get 'near_coordinates'
+    end
+  end
+
+  resources :trailheads do
+    resources :maps
+    resources :photos
+    resources :stories
+    collection do
+      get 'near_address'
+      get 'near_coordinates'
+    end
+  end
+
+  resources :parks, :only => [:show]
 
   resources :partners, :only => [:index]
 
@@ -59,6 +80,9 @@ Transitandtrails::Application.routes.draw do
   match 'geo/coordinates' => "geo#coordinates"
 
   match 'geo/distance_between' => "geo#distance_between"
+
+  match 'session/loadkv' => "application#loadkv"
+  match 'session/savekv' => "application#savekv"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
