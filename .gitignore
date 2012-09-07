@@ -16,3 +16,4 @@
 /config/initializers/0_env.rb
 /public/uploads
 .DS_Store
+*~
