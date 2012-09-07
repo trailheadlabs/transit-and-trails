@@ -43,11 +43,12 @@
         / end share widgets
         .header
           %h2 #{@trip.name}
-          / %img.type-flag{:alt => "", :src => "/assets/legacy/trip.png"}/
+          %img.type-flag{:alt => "", :src => "/assets/legacy/trip.png"}/
           / - if @trip.default_park
           /   %em
           /   %a{:href => "#{park_path(@trip.default_park)}"} #{@trip.default_park.name}
         / b:details
+        = render :partial => "/shared/partials/contributor", :locals => {:object=>@trip}
         #trailhead-details
           - if @trip.description
             .description
