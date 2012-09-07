@@ -150,7 +150,7 @@ module Util
       new_record.to_travel_mode = TravelMode.find_by_name(fields['travel_mode_to'].downcase.capitalize)
       new_record.from_travel_mode = TravelMode.find_by_name(fields['travel_mode_from'].downcase.capitalize)
       new_record.user_id = fields['author']
-      new_record.storytellable_id = fields['trip']
+      new_record.storytellable_id = fields['object_id']
       new_record.storytellable_type = "Trip"
       new_record.save
     end
