@@ -1,27 +1,157 @@
-%p#notice= notice
+- content_for :head do
+  %meta{:content => "Transit & Trails : #{@campground.name}", :property => "og:title"}/
+  %script{:src => "http://www.google.com/jsapi?key=ABQIAAAAO7OoKKBX03U3SrObYGQy0xTR3gcj-N9Qq4sdgfDbE45YeC9R7BTliGpItl3amRLTjNsmtJj-_SOQkw", :type => "text/javascript"}
+  :javascript
+    google.load("maps", "2.x");
+  %script{:src => "http://gmaps-utility-library.googlecode.com/svn/trunk/markermanager/release/src/markermanager.js"}
+  / load Galleria
+  %script{:src => "/assets/legacy/galleria/galleria-1.2.7.min.js"}
+  %script{:src => "/assets/legacy/gzoom.js", :type => "text/javascript"}
+  = javascript_include_tag "legacy/common"
+  = stylesheet_link_tag "legacy/reset"
+  = stylesheet_link_tag "legacy/common"
+  = stylesheet_link_tag "legacy/style"
+  = stylesheet_link_tag "legacy/campground_detail"
 
-%p
-  %b Name:
-  = @campground.name
-%p
-  %b Description:
-  = @campground.description
-%p
-  %b Latitude:
-  = @campground.latitude
-%p
-  %b Longitude:
-  = @campground.longitude
-%p
-  %b User:
-  = @campground.user
-%p
-  %b Park:
-  = @campground.park
-%p
-  %b Approved:
-  = @campground.approved
+/ begin lightboxed images
+- @campground.photos.each_with_index do |photo,i|
+  .overlay{:id => "photo#{i}"}
+    %div
+      %a{:href => "http://flickr.com/photos/transitandtrails/#{photo.flickr_id}", :target => "_blank"}
+        %img.thumbnail{:src => "#{photo.flickr_medium_url}"}/
+/ end lightboxed images
 
-= link_to 'Edit', edit_campground_path(@campground)
-\|
-= link_to 'Back', campgrounds_path
+#page.trip-details
+
+  #trail-details.trail-details-overlay
+    != @campground.description
+
+  #details-section
+    #plan.alt.trailhead
+      #page-head
+        %h2 Campground
+        %a{:href => "/"} Back to Map
+      / e: page head
+      #trip-meta
+        / begin share widgets
+        .trailhead-social-buttons
+          .share-widget
+            %a.twitter-share-button{"data-count" => "none", "data-url" => "#{campground_path(@campground)}", "data-via" => "transitandtrail", :href => "https://twitter.com/share"} Tweet
+            %script{:src => "//platform.twitter.com/widgets.js", :type => "text/javascript"}
+          .share-widget
+            %iframe{:allowTransparency => "true", :frameborder => "0", :scrolling => "no", :src => "//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.transitandtrails.org%2Fcampgrounds%2F#{@campground.id}&send=false&layout=button_count&width=450&show_faces=false&action=like&colorscheme=light&font&height=80&appId=173296509398219", :style => "border:none; overflow:hidden; width:52px; height:21px;"}
+        / end share widgets
+        .header
+          %h2 #{@campground.name}
+          %img.type-flag{:alt => "", :src => "/assets/legacy/campground.png"}/
+          - if @campground.default_park
+            %em
+            %a{:href => "#{park_path(@campground.default_park)}"} #{@campground.default_park.name}
+        / b:details
+        #trailhead-details
+          - if @campground.description
+            .description
+              != truncate_html(@campground.description, :length=> 300,  :omission => '...<br/><a class="trail-details-modal modal" rel="#trail-details" >Read more...</a>')
+            / e: entry
+          - else
+            %div{:style => "height:10px"}
+
+          = render :partial => "/shared/partials/features", :locals => {:object=>@campground}
+
+          .button-frame
+
+            %a.green-button.padded-sides{:href => "/plan/campground/#{@campground.id}"}
+              Plan Trip to Here
+
+          - if can?(:edit,:campground)
+            .button-frame
+              %a.green-button{:href => "#{edit_campground_path(@campground)}"} Edit Campground
+
+          - if can?(:destroy,:campground)
+            .button-frame
+              = link_to("Delete Campground", @campground, :method => :delete, :confirm => "Are you sure?", :class=>"green-button")
+
+          = render :partial => "/shared/partials/object_maps", :locals => {:object=>@campground}
+
+        = render :partial => "/shared/partials/agency", :locals => {:object=>@campground}
+
+        / - regional_trails = @campground.campground_features.where(:category_id=>Category.where(:name=>"Regional Trail"))
+        / - regional_trails.each do |feature|
+        /   - klass = feature == regional_trails.last ? "agency last" : "agency"
+        /   .if.endif{:class => "#{klass}"}
+        /     .logo
+        /       - if feature.marker_icon
+        /         - if feature.link_url
+        /           %a{:href => "#{feature.link_url}", :target => "_blank"}
+        /             %img{:src => "#{feature.marker_icon.url}"}/
+        /         - else
+        /           %img{:src => "#{feature.marker_icon.url}"}/
+        /     .text
+        /       This trail is part of the
+        /       .name
+        /         - if feature.link_url
+        /           %a{:href => "#{feature.link_url}", :target => "_blank"}
+        /             #{ feature.name }
+        /         - else
+        /           #{feature.name}
+
+      = render :partial => "/shared/partials/non_profit_partner", :locals => {:object=>@campground}
+
+    / e:plan
+    = render :partial => "/shared/partials/object_stories", :locals => {:object=>@campground}
+
+  #trailhead-photos-map
+    = render :partial => "/shared/partials/object_photos", :locals => {:object=>@campground}
+    .section-head
+      %h2 Map
+    #plan-map.trailhead-details-map
+    #trailhead-comments
+      .section-head
+        %h2 Comments
+      / e: page head
+      .comments
+        = render :partial => "/shared/partials/disqus"
+    / e: comments
+  .clearfix  
+
+%script{:src => "/assets/legacy/pointmap.js", :type => "text/javascript"}
+%script{:src => "/assets/legacy/jquery/js/jquery.tools.min.js", :type => "text/javascript"}
+
+:javascript
+  $(document).ready(function(){
+      $(".scrollable").scrollable({circular:false});
+      $(".photo img[rel]").overlay();
+
+      if ($('#galleria').get(0)) {
+          Galleria.loadTheme('/assets/legacy/galleria/galleria.classic.min.js');
+          // Initialize Galleria
+          Galleria.configure({thumbnails:false, imageMargin:0, imageCrop:true});
+          Galleria.run('#galleria');
+
+          Galleria.ready(function(){
+
+          });
+      }
+
+      $("a.modal").overlay();
+      $('thumbnail a[rel]').overlay();
+
+      initCampgroundDetails(#{@campground.id}, false);
+
+      $(window).unload(function () {
+          GUnload();
+      });
+
+      $('input:radio[name=map-select]').click(function () {
+          if ($('input:radio[name=map-select]:checked').val() == "url") {
+              $('#map-save-button').attr('value', "Save");
+              $('#map_url').show();
+              $('#map').hide();
+          } else if ($('input:radio[name=map-select]:checked').val() == "file") {
+              $('#map-save-button').attr('value', "Upload");
+              $('#map_url').hide();
+              $('#map').show();
+          }
+      });
+  });
+

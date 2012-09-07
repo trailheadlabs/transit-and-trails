@@ -1,0 +1,21 @@
+#trailhead-stories
+  .section-head
+    %h2 Stories
+  / e: page head
+  #story-items
+    .story-button
+      %a.green-button{:href => "#{polymorphic_path([:new,object,:story])}"} Add Your Story
+      .clearfix  
+    - object.stories.each do |story|
+      .story-item
+        .story-author
+          %b #{ story.user.username }
+        .story-text
+          #{ story.story }
+        .story-travel-modes
+          %b #{ story.happened_at }
+          via
+          %b #{ story.to_travel_mode.name }
+          - if story.from_travel_mode != story.to_travel_mode
+            and
+            %b #{ story.from_travel_mode.name }

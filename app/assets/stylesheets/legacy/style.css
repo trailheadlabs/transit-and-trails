@@ -477,10 +477,6 @@ ul.people li h3 {
 
 #plan.alt.trailhead #plan-map.trip-details-map, #plan.alt.trailhead #plan-map.trailhead-details-map {
     border: 1px solid hsl(220, 3%, 80%);
-    border-radius: 0 0 8px 8px;
-    -webkit-border-radius: 0 0 8px 8px;
-    -moz-border-radius: 0 0 8px 8px;
-    -o-border-radius: 0 0 8px 8px;
     min-height: 0;
     height: 336px;
     width: 500px;
@@ -493,13 +489,9 @@ ul.people li h3 {
 }
 #plan-map.trip-details-map, #plan-map.trailhead-details-map {
     border: 1px solid hsl(220, 3%, 80%);
-    border-radius: 0 0 8px 8px;
-    -webkit-border-radius: 0 0 8px 8px;
-    -moz-border-radius: 0 0 8px 8px;
-    -o-border-radius: 0 0 8px 8px;
     min-height: 0;
     height: 336px;
-    width: 517px;
+    width: 515px;
     float: right;
     margin: 0;
 }
@@ -614,30 +606,6 @@ a.back-to-details {
 
 #trailhead-meta input#id_start_address {
     width: 300px;
-}
-
-#plan.trailhead #trip-meta a.green-link-button, #plan.trailhead #trip-meta a.gray-link-button, #plan.trailhead #trip-meta input[type=submit] {
-    padding: 5px 10px;
-    margin: 0 5px;
-    position: relative;
-    font-size: 16px;
-    text-align: center;
-    width: 130px;
-}
-
-#trailhead-meta a.green-link-button {
-    font-size: 12px;
-    margin: 0 5px;
-    padding: 5px 10px;
-    position: relative;
-}
-
-#trailhead-meta a.green-link-button .caret {
-    font-size: 10px;
-    color: #517A35;
-    position: absolute;
-    top: 8px;
-    right: 2px;
 }
 
 #trailhead-meta label.address {
@@ -1895,10 +1863,20 @@ span.required {
 #galleria { height:320px; margin: 0px; }
 #galleria .photo { }
 #trip-photos-map { float: right; position: relative; }
-#trip-photos-map .powered-by { position: absolute; top: 325px; left: 190px; z-index: 1001; }
+#trailhead-photos-map .powered-by {
+    font-size:10px;
+    font-weight:400;
+    text-transform: uppercase;
+    text-align:right;
+
+}
+
+.trip-photo-admin{
+    margin-bottom:20px;
+}
 #trip-photos-map #photo-upload { clear: both; }
 .trail-details-overlay {
-    box-shadow: 10px 10px 5px #333333;
+    box-shadow: 0 0 90px 5px #000;
     display: none;
     border: solid 1px;
     z-index: 10002;
@@ -1906,8 +1884,7 @@ span.required {
     line-height: 1.4em;
     font-size: 1em;
     padding: 30px;
-    width: 600px;
-    overflow: auto;
+    width: 400px;
     text-align: left;
 }
 #trailhead-maps .map { margin:20px 15px; clear: left; height: 26px;}
@@ -2021,7 +1998,7 @@ div.agency .logo img { width: 20px;  }
 #trip-meta .parks .text { margin: 0 0 20px 25px;  }
 #trip-meta .parks .name { font-weight: 600; }
 #trip-meta .parks a { color: #999; }
-#plan .agency { width: 400px; clear: both;  border: 1px solid #CACBCD; border-top:none; height: 25px; margin:0; }
+#plan .agency { width: 400px; clear: both; border-top:none; height: 25px; margin:0; }
 #plan .agency .text { display: inline-block; float: left; padding: 6px 0 0 0;}
 #trip-meta .agency {
     border-bottom: medium none;
@@ -2036,7 +2013,6 @@ div.agency .logo img { width: 20px;  }
     border-radius: 0 0 20px 20px;
 }
 
-#plan.trailhead #trip-meta #trailhead-details form input[type='submit'] { padding: 0; }
 #trailhead-details .description,
 #trailhead-details .common-attributes{ border-bottom: 1px solid #CACBCD; }
 #trailhead-details a.green-link-button { display: block; }

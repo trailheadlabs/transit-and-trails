@@ -1,0 +1,16 @@
+- if object.agency
+  .agency
+    .logo
+      - if object.agency.logo && object.agency.link
+        %a{:href => "#{object.agency.link}", :target => "_blank"}
+          %img{:src => "#{object.agency.logo}"}/
+      - elsif object.agency.logo
+        %img{:src => "#{object.agency.logo}"}/
+    .text
+      Managed by
+      .name
+        - if object.agency.link
+          %a{:href => "#{object.agency.link}", :target => "_blank"}
+            #{object.agency.name}
+        - else
+          #{object.agency.name}

@@ -13,9 +13,6 @@
   = stylesheet_link_tag "legacy/style"
   = stylesheet_link_tag "legacy/trailhead_detail"
 
-#trail-details.trail-details-overlay
-  != @trailhead.description
-
 / begin lightboxed images
 - @trailhead.photos.each_with_index do |photo,i|
   .overlay{:id => "photo#{i}"}
@@ -25,6 +22,10 @@
 / end lightboxed images
 
 #page.trip-details
+
+  #trail-details.trail-details-overlay
+    != @trailhead.description
+
   #details-section
     #plan.alt.trailhead
       #page-head
@@ -50,7 +51,7 @@
         #trailhead-details
           - if @trailhead.description
             .description
-              != truncate_html(@trailhead.description, :length=> 300,  :omission => '...<br/><a class="trail-details-modal" rel="#trail-details" >Read more...</a>')
+              != truncate_html(@trailhead.description, :length=> 300,  :omission => '...<br/><a class="trail-details-modal modal" rel="#trail-details" >Read more...</a>')
             / e: entry
           - else
             %div{:style => "height:10px"}
@@ -58,69 +59,21 @@
           = render :partial => "/shared/partials/features", :locals => {:object=>@trailhead}
 
           .button-frame
-            - if can?(:edit,:trailhead)
-              %a.gray-link-button.left{:href => "#{edit_trailhead_path(@trailhead)}"} Edit Trailhead
 
-            %a.green-link-button.right.padded-sides{:href => "/plan/trailhead/#{@trailhead.id}"}
+            %a.green-button.padded-sides{:href => "/plan/trailhead/#{@trailhead.id}"}
               Plan Trip to Here
+
+          - if can?(:edit,:trailhead)
+            .button-frame
+              %a.green-button{:href => "#{edit_trailhead_path(@trailhead)}"} Edit Trailhead
 
           - if can?(:destroy,:trailhead)
             .button-frame
-              = link_to("Delete Trailhead", @trailhead, :method => :delete, :confirm => "Are you sure?", :class=>"green-link-button right padded")
+              = link_to("Delete Trailhead", @trailhead, :method => :delete, :confirm => "Are you sure?", :class=>"green-button")
 
-          - if @trailhead.maps.count > 0
-            %div{:style => "clear:both"}
-            #download-maps
-              - @trailhead.maps.each do |map|
-                .map
-                  - if map.map
-                    %a.get-map{:href => "#{map.map}", :target => "_blank"}
-                      .download-icon
-                      .download-text
-                        Download Map
-                        %span.down-caret ▼
-                  - elsif map.map_url
-                    %a.get-map{:href => "#{map.map_url}", :target => "_blank"}
-                      .download-icon
-                      .download-text
-                        Download Map
-                        %span.down-caret ▼
-                  - if can?(:destroy, :map)
-                    %a.delete{:href => "/trailheads/delete_map/#{map.id}/"} [Delete Map]
+          = render :partial => "/shared/partials/object_maps", :locals => {:object=>@trailhead}
 
-          - if can?(:create, :map)
-            %label.text-attr-label
-              Add Map
-            %form
-              %input{:checked => "checked", :name => "map-select", :type => "radio", :value => "file"}>/
-              File
-              %br/
-              %input{:name => "map-select", :type => "radio", :value => "url"}/
-              Map
-              %br/
-            %form#map-file-form{:action => "/trailheads/map_upload/", :enctype => "multipart/form-data", :method => "POST"}
-              %input#map{:name => "map", :type => "file"}/
-              %input#map_url{:name => "url", :style => "display:none;", :type => "text"}/
-              %input{:name => "mapable_id", :type => "hidden", :value => "#{@trailhead.id}"}/
-              %input{:name => "mapable_type", :type => "hidden", :value => "Trailhead"}/
-              %input#map-save-button.green-link-button{:type => "submit", :value => "Upload"}/
-
-        - if @trailhead.agency
-          .agency
-            .logo
-              - if @trailhead.agency.logo && @trailhead.agency.link
-                %a{:href => "#{@trailhead.agency.link}", :target => "_blank"}
-                  %img{:src => "#{@trailhead.agency.logo}"}/
-              - elsif @trailhead.agency.logo
-                %img{:src => "#{@trailhead.agency.logo}"}/
-            .text
-              Managed by
-              .name
-                - if @trailhead.agency.link
-                  %a{:href => "#{@trailhead.agency.link}", :target => "_blank"}
-                    #{@trailhead.agency.name}
-                - else
-                  #{@trailhead.agency.name}
+        = render :partial => "/shared/partials/agency", :locals => {:object=>@trailhead}
 
         - regional_trails = @trailhead.trailhead_features.where(:category_id=>Category.where(:name=>"Regional Trail"))
         - regional_trails.each do |feature|
@@ -142,123 +95,45 @@
                 - else
                   #{feature.name}
 
-      / end Regional Trails
-      / begin Non-profit Partner
-      - if @trailhead.default_park && @trailhead.default_park.non_profit_partner
-        .agency.non-profit-partner
-          .logo
-            - if @trailhead.default_park.non_profit_partner.logo
-              - if @trailhead.default_park.non_profit_partner.link
-                %a{:href => "#{@trailhead.default_park.non_profit_partner.link}", :target => "_blank"}
-                  %img{:src => "#{@trailhead.default_park.non_profit_partner.logo }"}/
-              - else
-                %img{:src => "#{@trailhead.default_park.non_profit_partner.logo }"}/
-          .text
-            NONPROFIT PARTNER: 
-            .name
-              - if @trailhead.default_park.non_profit_partner.link
-                %a{:href => "#{@trailhead.default_park.non_profit_partner.link}", :target => "_blank"}
-                  #{@trailhead.default_park.non_profit_partner}
-              - else
-                #{@trailhead.default_park.non_profit_partner }
-        / end Non-profit Partner
-    / e:plan
-    #trailhead-stories
-      .section-head
-        %h2 Stories
-      / e: page head
-      #story-items
-        .story-button
-          %a.green-link-button{:href => "#{polymorphic_path([:new,@trailhead,:story])}"} Add Your Story
-          .clearfix  
-        - @trailhead.stories.each do |story|
-          .story-item
-            .story-author
-              %b #{ story.author.username }
-            .story-text
-              #{ story.story }
-            .story-travel-modes
-              %b #{ story.happened_at }
-              via
-              %b #{ story.travel_mode_to.name }}
-              - if story.travel_mode_from != story.travel_mode_to
-                and
-                %b #{ story.travel_mode_from.name }
-  #trailhead-photos-map
-    - if can?(:create,:trailhead_photo)
-      .section-head
-        %h2 Photos
-      .trailhead-photo-admin
-        %a.prev.browse.left
-        #photos.scrollable
-          .items
-            - @trailhead.photos.each_with_index do |photo,i|
-              .photo
-                = link_to('', photo, :method => :delete, :class=>'close')
-                = image_tag(photo.flickr_square_url, :rel => "#photo#{i}", :class=>"thumbnail")
-        %a.next.browse.right
-        - if @trailhead.photos.count > 5
-          %div{:style => "clear:both"}
-          %div{:style => "text-align:right;display:inline-block;float:right;position:relative;top:-20px;"}
-            %a{:href => "http://flickr.com/photos/transitandtrails/tags/trailheadid#{@trailhead.id}/"} More...
-        #photo-upload
-          %label.text-attr-label
-            Add Photo
-          %form{:action => "/trailheads/#{@trailhead.id}/photos", :enctype => "multipart/form-data", :method => "POST"}
-            %input{:name => "photo", :type => "file"}/
-            %input{:name => "imageable_id", :type => "hidden", :value => "#{@trailhead.id}"}/
-            %input{:name => "imageable_type", :type => "hidden", :value => "Trailhead"}/
-            %input.green-map-button{:type => "submit", :value => "Upload"}/
-    - else
+      = render :partial => "/shared/partials/non_profit_partner", :locals => {:object=>@trailhead}
 
-      - if @trailhead.photos.count > 0
-        .section-head
-          %h2 Photos
-        .trip-photo-admin
-          #galleria
-            - @trailhead.photos.each do |photo|
-              %a{:href => "#{photo.flickr_medium_url}"}
-                %img.photo{:src => "#{photo.flickr_medium_url}"}/
-          .powered-by powered by flickr
+    / e:plan
+    = render :partial => "/shared/partials/object_stories", :locals => {:object=>@trailhead}
+
+  #trailhead-photos-map
+    = render :partial => "/shared/partials/object_photos", :locals => {:object=>@trailhead}
     .section-head
       %h2 Map
     #plan-map.trailhead-details-map
-    / #trailhead-comments
-    /   .section-head
-    /     %h2 Comments
-    /   / e: page head
-    /   .comments
-    /     {% include "base/disqus.html" %}
+    #trailhead-comments
+      .section-head
+        %h2 Comments
+      / e: page head
+      .comments
+        = render :partial => "/shared/partials/disqus"
     / e: comments
   .clearfix  
 
 %script{:src => "/assets/legacy/pointmap.js", :type => "text/javascript"}
 %script{:src => "/assets/legacy/jquery/js/jquery.tools.min.js", :type => "text/javascript"}
-- if can?(:create,:photo)
-  %script
-    var can_create_photos = true;
--else
-  %script
-    var can_create_photos = false;
 
 :javascript
   $(document).ready(function(){
-      if(can_create_photos){
-        $(".scrollable").scrollable({circular:false});
-        $(".photo img[rel]").overlay();
-      } else {
-        if ($('#galleria').get(0)) {
-            Galleria.loadTheme('/assets/legacy/galleria/galleria.classic.min.js');
-            // Initialize Galleria
-            Galleria.configure({thumbnails:false, imageMargin:0, imageCrop:true});
-            Galleria.run('#galleria');
+      $(".scrollable").scrollable({circular:false});
+      $(".photo img[rel]").overlay();
 
-            Galleria.ready(function(){
+      if ($('#galleria').get(0)) {
+          Galleria.loadTheme('/assets/legacy/galleria/galleria.classic.min.js');
+          // Initialize Galleria
+          Galleria.configure({thumbnails:false, imageMargin:0, imageCrop:true});
+          Galleria.run('#galleria');
 
-            });
-        }
+          Galleria.ready(function(){
+
+          });
       }
 
+      $("a.modal").overlay();
       $('thumbnail a[rel]').overlay();
 
       initTrailheadDetails(#{@trailhead.id}, false);

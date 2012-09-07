@@ -7,7 +7,7 @@
   - if object.transit_agencies
     .common-attribute
       %label Transit:
-      - @trailhead.transit_agencies.order("name").each_with_index do |item,index|
+      - object.transit_agencies.order("name").each_with_index do |item,index|
         %a{:href => "#{item.web}", :target => "_blank"} #{item.name}
-        - unless index == @trailhead.transit_agencies.count - 1
+        - unless index == object.transit_agencies.count - 1
           ,

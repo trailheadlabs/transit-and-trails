@@ -1,7 +1,39 @@
+#details-section { float: left; }
+#trailhead-photos-map { float: right; }
+
+#trailhead-stories{
+    clear: left;
+    padding-top: 20px;
+}
+
+#trailhead-stories-and-comments{
+  margin: 20px 0;
+}
+
+#trailhead-comments{
+    clear: both;
+    padding-top: 20px;
+}
+div.agency div.logo {
+    display: inline-block;
+    float: left;
+    margin: 2px 10px;
+    width: 20px;
+}
+#plan.trailhead div.agency div.logo img { margin: 0; }
+
+div.non-profit-partner div.logo {
+    display: inline-block;
+    float: left;
+    margin: 2px 10px;
+    width:0;
+}
+
 .button-frame {
   clear:both;
   height:36px;
   margin: 20px 10px;
+  text-align:center;
 }
 
 .button-frame .left {
@@ -576,17 +608,6 @@ a.browse.left, a.browse.left:hover {
 	background:url(/assets/legacy/left_20.png) no-repeat;
 }
 
-/* right */
-a.right 				{ background-position: 0 -30px; clear:right; margin-right: 10px;}
-a.right:hover 		{ background-position:-30px -30px; }
-a.right:active 	{ background-position:-60px -30px; }
-
-
-/* left */
-a.left				{ margin-left: 20px; }
-a.left:hover  		{ background-position:-30px 0; }
-a.left:active  	{ background-position:-60px 0; }
-
 /* disabled navigational button */
 a.disabled {
 	visibility:hidden !important;
@@ -607,8 +628,8 @@ a.disabled {
 .close, .overlay .close {
 	background-image:url(/assets/legacy/close.png);
 	position:absolute;
-	right:5px;
-	top:5px;
+	right:-15px;
+	top:-15px;
 	cursor:pointer;
 	height:35px;
 	width:35px;

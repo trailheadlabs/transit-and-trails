@@ -1,0 +1,35 @@
+- if can?(:create,object)
+  .section-head
+    %h2 Photos
+  .trailhead-photo-admin
+    %a.prev.browse.left
+    #photos.scrollable
+      .items
+        - object.photos.each_with_index do |photo,i|
+          .photo
+            = link_to('', polymorphic_path([object,photo]), :method => :delete, :class=>'close')
+            = image_tag(photo.flickr_square_url, :rel => "#photo#{i}", :class=>"thumbnail")
+    %a.next.browse.right
+    - if object.photos.count > 5
+      %div{:style => "clear:both"}
+      %div{:style => "text-align:right;display:inline-block;float:right;position:relative;top:-20px;"}
+        %a{:href => "http://flickr.com/photos/transitandtrails/tags/#{object.class.name.downcase}id#{object.id}/"} More...
+    #photo-upload
+      %label.text-attr-label
+        Add Photo
+      %form{:action => "#{polymorphic_path([object,:photos])}", :enctype => "multipart/form-data", :method => "POST"}
+        = token_tag form_authenticity_token
+        %input{:name => "photo[photoable_id]", :type => "hidden", :value => "#{object.id}"}/
+        %input{:name => "photo[photoable_type]", :type => "hidden", :value => "#{object.class.name}"}/
+        %input{:name => "photo[image]", :type => "file"}/
+        %input.green-map-button{:type => "submit", :value => "Upload"}/
+- else
+  - if object.photos.count > 0
+    .section-head
+      %h2 Photos
+      .powered-by powered by flickr
+    .trip-photo-admin
+      #galleria
+        - object.photos.each do |photo|
+          %a{:href => "#{photo.flickr_medium_url}"}
+            %img.photo{:src => "#{photo.flickr_medium_url}"}/

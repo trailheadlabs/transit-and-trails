@@ -1,4 +1,4 @@
-= simple_form_for @user_profile, :html=>{:class => "formtastic"} do |f|
+= simple_form_for @user_profile do |f|
   -if @user_profile.errors.any?
     #error_explanation
       %h2= "#{pluralize(@user_profile.errors.count, "error")} prohibited this user_profile from being saved:"
@@ -8,8 +8,8 @@
 
   = f.input :firstname, :required => false, :input_html => {:autofocus => true}
   = f.input :lastname, :required => false
-  = f.input :url, :required => false
-  = f.input :bio, :required => false, :input_html=>{:rows=>10}
+  = f.input :url, :required => false, :hint => "Where can people find your in the web?"
+  = f.input :bio, :required => false, :input_html=>{:rows=>10}, :hint => "Tell us a little about yourself!"
   = f.input :avatar, :required => false,:as => :image_preview, input_html: {preview_version: :thumbnail}
   = f.hidden_field :avatar_cache
   = f.input :organization_name, :required => false

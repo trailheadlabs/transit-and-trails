@@ -1,0 +1,38 @@
+- if object.maps.count > 0
+  %div{:style => "clear:both"}
+  #download-maps
+    - object.maps.each do |map|
+      .map
+        - if map.map
+          %a.get-map{:href => "#{map.map}", :target => "_blank"}
+            .download-icon
+            .download-text
+              Download Map
+              %span.down-caret ▼
+        - elsif map.map_url
+          %a.get-map{:href => "#{map.map_url}", :target => "_blank"}
+            .download-icon
+            .download-text
+              Download Map
+              %span.down-caret ▼
+        - if can?(:destroy, :map)
+          = link_to("Delete", polymorphic_path([object,map]), :method => :delete, :confirm => "Are you sure?", :class=>"green-button right padded")
+
+- if can?(:create, object)
+  %label.text-attr-label
+    Add Map
+  %form
+    %input{:checked => "checked", :name => "map-select", :type => "radio", :value => "file"}>/
+    File
+    %br/
+    %input{:name => "map-select", :type => "radio", :value => "url"}/
+    URL
+    %br/
+  %form#map-file-form{:action => "#{polymorphic_path([object,:maps])}", :enctype => "multipart/form-data", :method => "POST"}
+    = token_tag form_authenticity_token
+    %input{:name => "map[mapable_id]", :type => "hidden", :value => "#{object.id}"}/
+    %input{:name => "map[mapable_type]", :type => "hidden", :value => "#{object.class.name}"}/
+    %input#map{:name => "map[map]", :type => "file"}/
+    %input#map_url{:name => "map[url]", :style => "display:none;", :type => "text"}/
+    %input#map-save-button.green-button{:type => "submit", :value => "Upload"}/
+

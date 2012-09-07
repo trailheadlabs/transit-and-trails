@@ -112,6 +112,24 @@ h3{
   font-weight:600;
 }
 
+.green-button{
+  @include button(#74AB4C);
+  text-shadow: 0 -1px 1px #001E00;
+  font-weight:600;
+  font-size:14px;
+}
+
+a.green-button {
+    color: white;
+    text-decoration:none;
+    &:visited {
+      color: white; }
+    &:hover {
+      color: white;
+      text-decoration:none;
+    }
+  }
+
 a {
   color: $aqua;
   text-decoration:none;

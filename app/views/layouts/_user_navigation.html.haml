@@ -2,11 +2,11 @@
   = link_to current_user.username, edit_user_registration_path
   |
   = link_to 'Profile', profile_path
-  |
   - if current_user.admin?
-    = link_to 'Admin', rails_admin_path
     |
-    = link_to "Sign Out", destroy_user_session_path, method: :delete
+    = link_to 'Admin', rails_admin_path
+  |
+  = link_to "Sign Out", destroy_user_session_path, method: :delete
 - else
   Welcome
   |

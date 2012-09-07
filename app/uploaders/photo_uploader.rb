@@ -5,7 +5,9 @@ class PhotoUploader < CarrierWave::Uploader::Base
 
   def upload_to_flickr(file)
     Rails.logger.info "Uploading to flickr"
+    Rails.logger.info model.to_json
     title = eval "#{model.photoable_type}.find(#{model.photoable_id}).name"
+    description = "More info at http://transitandtrails.org/#{model.class.name.pluralize.downcase}/#{model.id}"
     result = flickr.upload_photo file.path, :title => title
     model.flickr_id = result
     model.save

@@ -216,7 +216,7 @@ TNT.pointmap = {
 
     loadCampground: function(id) {
         var self = this;
-        url = "/json/Campground/" + id;
+        url = "/campgrounds/" + id + ".json";
         GDownloadUrl(url,
         function(data) {
             var object = $.parseJSON(data);

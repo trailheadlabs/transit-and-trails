@@ -59,6 +59,8 @@ Transitandtrails::Application.routes.draw do
     end
   end
 
+  resources :stories
+
   resources :parks, :only => [:show]
 
   resources :partners, :only => [:index]
