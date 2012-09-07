@@ -25,7 +25,7 @@ class PhotosController < ApplicationController
     @photo.destroy
 
     respond_to do |format|
-      format.html { redirect_to @photo.photoable }
+      format.html { redirect_to @photo.photoable, notice: 'Photo removed!' }
       format.json { head :no_content }
     end
   end

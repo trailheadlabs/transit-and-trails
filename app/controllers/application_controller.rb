@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   def authenticate_admin!
     authenticate_user!
     unless current_user.admin?
-      flash[:error] = "Admin user required."
+      flash[:alert] = "Admin user required."
       redirect_to '/' # halts request cycle
     end
   end

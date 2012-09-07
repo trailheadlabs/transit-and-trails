@@ -39,38 +39,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "app/uploaders/photo_uploader.rb",
-			"settings":
-			{
-				"buffer_size": 2132,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/trailheads/show.html.haml",
-			"settings":
-			{
-				"buffer_size": 7354,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/shared/partials/_object_stories.html.haml",
-			"settings":
-			{
-				"buffer_size": 620,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/shared/partials/_agency.html.haml",
-			"settings":
-			{
-				"buffer_size": 506,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -152,48 +120,59 @@
 	},
 	"file_history":
 	[
-		"/Users/jerememonteau/git/jmoe/transitandtrails/app/views/shared/partials/_object_photos.html.haml",
+		"/Users/jerememonteau/git/jmoe/transitandtrails/lib/tasks/data_import.rake",
+		"/Users/jerememonteau/git/jmoe/transitandtrails/app/views/shared/partials/_agency.html.haml",
+		"/Users/jerememonteau/git/jmoe/transitandtrails/app/views/shared/partials/_non_profit_partner.html.haml",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/app/views/shared/partials/_object_maps.html.haml",
+		"/Users/jerememonteau/git/jmoe/transitandtrails/app/views/shared/partials/_object_photos.html.haml",
+		"/Users/jerememonteau/git/jmoe/transitandtrails/app/views/shared/partials/_object_stories.html.haml",
+		"/Users/jerememonteau/git/jmoe/transitandtrails/app/views/shared/partials/_features.html.haml",
+		"/Users/jerememonteau/git/jmoe/transitandtrails/lib/point_of_interest.rb",
+		"/Users/jerememonteau/git/jmoe/transitandtrails/app/models/trailhead.rb",
+		"/Users/jerememonteau/git/jmoe/transitandtrails/app/models/campground.rb",
+		"/Users/jerememonteau/git/jmoe/transitandtrails/app/assets/stylesheets/legacy/trailhead_detail.css",
+		"/Users/jerememonteau/git/jmoe/transitandtrails/app/assets/stylesheets/legacy/common.css",
+		"/Users/jerememonteau/git/jmoe/transitandtrails/app/views/layouts/application.html.haml",
+		"/Users/jerememonteau/git/jmoe/transitandtrails/app/assets/javascripts/legacy/pointmap.js",
+		"/Users/jerememonteau/git/jmoe/transitandtrails/app/views/campgrounds/show.html.haml",
+		"/Users/jerememonteau/git/jmoe/transitandtrails/app/assets/stylesheets/legacy/style.css",
+		"/Users/jerememonteau/git/jmoe/transitandtrails/lib/util/data_import.rb",
+		"/Users/jerememonteau/git/jmoe/transitandtrails/app/uploaders/photo_uploader.rb",
+		"/Users/jerememonteau/git/jmoe/transitandtrails/spec/lib/data_import_spec.rb",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/app/views/trailheads/show.html.haml",
+		"/Users/jerememonteau/git/jmoe/transitandtrails/spec/views/trailheads/show.html.haml_spec.rb",
+		"/Users/jerememonteau/git/jmoe/transitandtrails/app/models/story.rb",
+		"/Users/jerememonteau/git/jmoe/transitandtrails/spec/views/campgrounds/show.html.haml_spec.rb",
+		"/Users/jerememonteau/git/jmoe/transitandtrails/lib/PointOfInterest",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/app/controllers/maps_controller.rb",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/app/controllers/application_controller.rb",
-		"/Users/jerememonteau/git/jmoe/transitandtrails/app/uploaders/photo_uploader.rb",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/app/controllers/photos_controller.rb",
-		"/Users/jerememonteau/git/jmoe/transitandtrails/app/assets/stylesheets/legacy/common.css",
-		"/Users/jerememonteau/git/jmoe/transitandtrails/app/assets/stylesheets/legacy/style.css",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/app/assets/stylesheets/application.css.scss",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/app/models/photo.rb",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/app/assets/javascripts/application.js",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/config/routes.rb",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/app/views/user_profiles/_form.html.haml",
-		"/Users/jerememonteau/git/jmoe/transitandtrails/app/models/story.rb",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/app/controllers/trailheads_controller.rb",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/app/views/stories/new.html.haml",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/app/controllers/stories_controller.rb",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/app/views/layouts/_user_navigation.html.haml",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/app/views/shared/partials/_disqus.html.haml",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/app/uploaders/map_uploader.rb",
-		"/Users/jerememonteau/git/jmoe/transitandtrails/lib/util/data_import.rb",
 		"/Users/jerememonteau/Desktop/ggnpc_12052012.txt",
-		"/Users/jerememonteau/git/jmoe/transitandtrails/spec/lib/data_import_spec.rb",
 		"/Users/jerememonteau/Desktop/baosc_meeting_09052012.txt",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/spec/requests/user_profiles_spec.rb",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/spec/models/user_profile_spec.rb",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/app/models/user_profile.rb",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/Gemfile",
-		"/Users/jerememonteau/git/jmoe/transitandtrails/app/views/shared/partials/_features.html.haml",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/spec/controllers/trailheads_controller_spec.rb",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/config/initializers/devise.rb",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/spec/spec_helper.rb",
-		"/Users/jerememonteau/git/jmoe/transitandtrails/lib/tasks/data_import.rake",
 		"/Users/jerememonteau/Desktop/running_365.txt",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/app/views/api/v1/trailheads/maps.rabl",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/app/helpers/text_helper.rb",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/app/assets/javascripts/legacy/common.js",
-		"/Users/jerememonteau/git/jmoe/transitandtrails/app/assets/javascripts/legacy/pointmap.js",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/app/models/transit_agency.rb",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/app/models/park.rb",
-		"/Users/jerememonteau/git/jmoe/transitandtrails/app/models/trailhead.rb",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/app/models/map.rb",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/app/assets/stylesheets/legacy/challenge.css",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/config/environments/production.rb",
@@ -201,7 +180,6 @@
 		"/Users/jerememonteau/git/jmoe/transitandtrails/public/assets/0.5.3/stylesheet.css",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/app/views/pages/challenge.html.haml",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/app/views/pages/about.html.haml",
-		"/Users/jerememonteau/git/jmoe/transitandtrails/app/views/layouts/application.html.haml",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/app/views/devise/registrations/new.html.haml",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/app/views/devise/passwords/new.html.haml",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/config/locales/devise.en.yml",
@@ -269,17 +247,7 @@
 		"/Users/jerememonteau/git/jmoe/transitandtrails/app/views/api/v1/trips/route.rabl",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/app/controllers/api/v1/trips_controller.rb",
 		"/Users/jerememonteau/git/jmoe/transitandtrails/spec/models/photo_spec.rb",
-		"/Users/jerememonteau/git/jmoe/transitandtrails/spec/factories/parks.rb",
-		"/Users/jerememonteau/git/jmoe/transitandtrails/spec/controllers/api/v1/attribute_categories_controller_spec.rb",
-		"/Users/jerememonteau/git/jmoe/transitandtrails/spec/factories/trips.rb",
-		"/Users/jerememonteau/git/jmoe/transitandtrails/app/models/trip.rb",
-		"/Users/jerememonteau/git/jmoe/transitandtrails/spec/models/trip_spec.rb",
-		"/Users/jerememonteau/git/jmoe/transitandtrails/spec/controllers/api/v1/trips_controller_spec.rb",
-		"/Users/jerememonteau/git/jmoe/transitandtrails/spec/controllers/api/v1/trailheads_controller_spec.rb",
-		"/Users/jerememonteau/git/jmoe/transitandtrails/app/uploaders/feature_marker_icon_uploader.rb",
-		"/Users/jerememonteau/git/jmoe/transitandtrails/config/environments/development.rb",
-		"/Users/jerememonteau/git/jmoe/transitandtrails/app/models/campground.rb",
-		"/Users/jerememonteau/git/jmoe/transitandtrails/app/views/api/v1/trailheads/show.rabl"
+		"/Users/jerememonteau/git/jmoe/transitandtrails/spec/factories/parks.rb"
 	],
 	"find":
 	{
@@ -335,6 +303,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"agency",
+			"Trailhead",
+			"campground",
+			":trailhead",
+			"trailhead",
+			"@trailhead",
+			"trailhead",
 			"@trailhead",
 			"@object",
 			"trailhead",
@@ -455,14 +430,7 @@
 			":avatar",
 			" =",
 			"puts",
-			"RAILS_ENV",
-			"class Trailhead",
-			"Flat=",
-			"importdata",
-			"ids",
-			"class Trailhead",
-			"NonProfit",
-			"class Park"
+			"RAILS_ENV"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -495,165 +463,8 @@
 	"groups":
 	[
 		{
-			"selected": 3,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "app/uploaders/photo_uploader.rb",
-					"settings":
-					{
-						"buffer_size": 2132,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								321,
-								321
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Rails/Ruby on Rails.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "app/views/trailheads/show.html.haml",
-					"settings":
-					{
-						"buffer_size": 7354,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5654,
-								5654
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Rails/Ruby Haml.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "app/views/shared/partials/_object_stories.html.haml",
-					"settings":
-					{
-						"buffer_size": 620,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								164,
-								164
-							],
-							[
-								222,
-								222
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Rails/Ruby Haml.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "app/views/shared/partials/_agency.html.haml",
-					"settings":
-					{
-						"buffer_size": 506,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								11,
-								11
-							],
-							[
-								56,
-								56
-							],
-							[
-								78,
-								78
-							],
-							[
-								120,
-								120
-							],
-							[
-								189,
-								189
-							],
-							[
-								226,
-								226
-							],
-							[
-								269,
-								269
-							],
-							[
-								344,
-								344
-							],
-							[
-								388,
-								388
-							],
-							[
-								445,
-								445
-							],
-							[
-								492,
-								492
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Rails/Ruby Haml.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -711,8 +522,76 @@
 		"selected_items":
 		[
 			[
+				"show.",
+				"spec/views/campgrounds/show.html.haml_spec.rb"
+			],
+			[
+				"story",
+				"app/models/story.rb"
+			],
+			[
+				"show.h",
+				"spec/views/campgrounds/show.html.haml_spec.rb"
+			],
+			[
 				"show",
 				"app/views/trailheads/show.html.haml"
+			],
+			[
+				"data_import",
+				"lib/util/data_import.rb"
+			],
+			[
+				"data_import_sp",
+				"spec/lib/data_import_spec.rb"
+			],
+			[
+				"style.css",
+				"app/assets/stylesheets/legacy/style.css"
+			],
+			[
+				"pointm",
+				"app/assets/javascripts/legacy/pointmap.js"
+			],
+			[
+				"appl",
+				"app/views/layouts/application.html.haml"
+			],
+			[
+				"common",
+				"app/assets/stylesheets/legacy/common.css"
+			],
+			[
+				"trailhead_detail",
+				"app/assets/stylesheets/legacy/trailhead_detail.css"
+			],
+			[
+				"campground",
+				"app/models/campground.rb"
+			],
+			[
+				"camp",
+				"app/models/campground.rb"
+			],
+			[
+				"trail",
+				"app/models/trailhead.rb"
+			],
+			[
+				"point",
+				"lib/point_of_interest.rb"
+			],
+			[
+				"data_imp",
+				"lib/tasks/data_import.rake"
+			],
+			[
+				"trailhead",
+				"app/models/trailhead.rb"
+			],
+			[
+				"campgr",
+				"app/models/campground.rb"
 			],
 			[
 				"photo",
@@ -759,14 +638,6 @@
 				"app/controllers/application_controller.rb"
 			],
 			[
-				"common",
-				"app/assets/stylesheets/legacy/common.css"
-			],
-			[
-				"trailhead",
-				"app/controllers/trailheads_controller.rb"
-			],
-			[
 				"routes",
 				"config/routes.rb"
 			],
@@ -787,10 +658,6 @@
 				"app/assets/stylesheets/legacy/style.css"
 			],
 			[
-				"appl",
-				"app/assets/stylesheets/application.css.scss"
-			],
-			[
 				"sto",
 				"app/controllers/stories_controller.rb"
 			],
@@ -803,20 +670,12 @@
 				"app/controllers/trailheads_controller.rb"
 			],
 			[
-				"trail",
-				"app/controllers/trailheads_controller.rb"
-			],
-			[
 				"stories",
 				"app/controllers/stories_controller.rb"
 			],
 			[
 				"form",
 				"app/views/user_profiles/_form.html.haml"
-			],
-			[
-				"story",
-				"app/models/story.rb"
 			],
 			[
 				"trailheads_",
@@ -883,10 +742,6 @@
 				"app/uploaders/map_uploader.rb"
 			],
 			[
-				"data_import",
-				"spec/lib/data_import_spec.rb"
-			],
-			[
 				"maps.ra",
 				"app/views/api/v1/trailheads/maps.rabl"
 			],
@@ -899,10 +754,6 @@
 				"app/models/trailhead.rb"
 			],
 			[
-				"pointm",
-				"app/assets/javascripts/legacy/pointmap.js"
-			],
-			[
 				"common.js",
 				"app/assets/javascripts/legacy/common.js"
 			],
@@ -913,10 +764,6 @@
 			[
 				"pointma",
 				"app/assets/javascripts/legacy/pointmap.js"
-			],
-			[
-				"style.css",
-				"app/assets/stylesheets/legacy/style.css"
 			],
 			[
 				"trailhead.",
@@ -1185,42 +1032,6 @@
 			[
 				"edit.",
 				"app/views/devise/registrations/edit.html.haml"
-			],
-			[
-				"application.css",
-				"app/assets/stylesheets/application.css.scss"
-			],
-			[
-				"about.cs",
-				"app/assets/stylesheets/about.css.scss"
-			],
-			[
-				"about.",
-				"app/views/pages/about.html.haml"
-			],
-			[
-				"var",
-				"app/assets/stylesheets/variables.css.scss"
-			],
-			[
-				"index.",
-				"app/views/application/index.html.haml"
-			],
-			[
-				"abou",
-				"app/views/pages/about.html.haml"
-			],
-			[
-				"applic",
-				"app/views/layouts/application.html.haml"
-			],
-			[
-				"layou",
-				"app/assets/stylesheets/layout.css.scss"
-			],
-			[
-				"scaff",
-				"app/assets/stylesheets/scaffolds.css.scss"
 			]
 		],
 		"width": 0.0

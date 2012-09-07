@@ -24,7 +24,7 @@ class MapsController < ApplicationController
     @map.destroy
 
     respond_to do |format|
-      format.html { redirect_to @map.mapable }
+      format.html { redirect_to @map.mapable, notice: 'Map removed!' }
       format.json { head :no_content }
     end
   end

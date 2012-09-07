@@ -14,13 +14,12 @@
           #user-nav
             = render :partial => "/layouts/user_navigation"
           %a(href="/" id="home-link")
-        .content
-          - if notice
-            #notice= notice
-          - if alert
-            #alert= alert
-          - if flash[:error]
-            #error= flash[:error]
+        - if notice
+          #notice= notice
+        - if alert
+          #alert= alert
+        - if flash[:error]
+          #error= flash[:error]
         #{yield}
         .content-footer
           = render :partial => "/layouts/social_footer"

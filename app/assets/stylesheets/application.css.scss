@@ -58,17 +58,17 @@ ul.devise-links{
 #notice {
   color: green;
   background-color: rgba(0, 255, 0, 0.1);
-  padding:10px;
-  border:1px solid green;
-  @include border-radius(4px);
+  padding:10px 40px;
+  border-top:1px solid green;
+  border-bottom:1px solid green;
 }
 
 #alert {
   color: red;
   background-color: rgba(255, 0, 0, 0.1);
-  padding:10px;
-  border:1px solid red;
-  @include border-radius(4px);
+  padding:10px 40px;
+  border-top:1px solid red;
+  border-bottom:1px solid red;
 }
 
 #error_explanation {

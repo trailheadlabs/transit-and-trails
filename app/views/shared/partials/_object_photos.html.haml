@@ -7,7 +7,7 @@
       .items
         - object.photos.each_with_index do |photo,i|
           .photo
-            = link_to('', polymorphic_path([object,photo]), :method => :delete, :class=>'close')
+            = link_to('', polymorphic_path([object,photo]), :method => :delete, :class=>'close', :data=> {:confirm => "Are you sure?"})
             = image_tag(photo.flickr_square_url, :rel => "#photo#{i}", :class=>"thumbnail")
     %a.next.browse.right
     - if object.photos.count > 5

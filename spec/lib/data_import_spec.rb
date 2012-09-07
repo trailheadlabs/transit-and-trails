@@ -696,7 +696,20 @@ describe "DataImport" do
   end
 
   it "imports trailhead features correctly" do
-    item = JSON::parse('{"pk": 38, "model": "tnt.tripfeature", "fields": {"category": 3, "name": "Walking", "description": "Walking is the preferred means of transportation here. Check the trips info to find some cool trails and other places to check out. ", "rank": 1, "quantity": 0, "link_url": "http://nps.gov", "marker_icon": "baosc.png"}}')
+    item = JSON::parse('
+      {
+        "pk": 33,
+        "model": "tnt.trailheadfeature",
+        "fields": {
+          "category": 10,
+          "name": "San Francisco Bay Trail",
+          "link_url": "http://www.baytrail.org/",
+          "rank": 3,
+          "marker_icon": "trailhead_marker_icons/bay_trail.JPG",
+          "description": "This trailhead is along the San Francisco Bay Trail. The San Francisco Bay Trail is a bicycle and pedestrian trail that will eventually allow continuous travel around the shoreline of San Francisco Bay. As of 2012, approximately 325 miles (523 km) of trail have been completed. When finished, the Bay Trail will extend over 500 miles (805 km) to link the shoreline of nine counties, passing through 47 cities and crossing seven toll bridges. It is a project of the Association of Bay Area Governments. Read more at http://www.baytrail.org/"
+        }
+      }
+      ')
     Util::DataImport::import_trailhead_feature item
     fields = item['fields']
     new_record = TrailheadFeature.find_by_name(fields['name'])

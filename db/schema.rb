@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120904205227) do
+ActiveRecord::Schema.define(:version => 20120907180947) do
 
   create_table "agencies", :force => true do |t|
     t.string   "name"
@@ -48,8 +48,9 @@ ActiveRecord::Schema.define(:version => 20120904205227) do
     t.integer  "user_id"
     t.integer  "park_id"
     t.boolean  "approved"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+    t.integer  "cached_park_by_bounds_id"
   end
 
   add_index "campgrounds", ["park_id"], :name => "index_campgrounds_on_park_id"
@@ -256,10 +257,11 @@ ActiveRecord::Schema.define(:version => 20120904205227) do
     t.integer  "user_id"
     t.boolean  "rideshare"
     t.string   "zimride_url"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
     t.boolean  "approved"
     t.integer  "park_id"
+    t.integer  "cached_park_by_bounds_id"
   end
 
   add_index "trailheads", ["user_id"], :name => "index_trailheads_on_user_id"

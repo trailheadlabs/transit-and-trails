@@ -2,6 +2,12 @@ require 'spec_helper'
 
 describe "trips/show" do
   before(:each) do
+    @user = FactoryGirl.create(:admin)
+    @ability = Ability.new(@user)
+    assign(:current_ability, @ability)
+    controller.stub(:current_user, @user)
+    view.stub(:current_user, @user)
+
     @trip = assign(:trip, stub_model(Trip,
       :name => "Name",
       :description => "MyText",

@@ -1,6 +1,6 @@
 / end Regional Trails
 / begin Non-profit Partner
-- if object.default_park && object.default_park.non_profit_partner
+- if object.has_attribute?(:default_park) && object.default_park && object.default_park.non_profit_partner
   .agency.non-profit-partner
     .logo
       - if object.default_park.non_profit_partner.logo
@@ -14,7 +14,7 @@
       .name
         - if object.default_park.non_profit_partner.link
           %a{:href => "#{object.default_park.non_profit_partner.link}", :target => "_blank"}
-            #{object.default_park.non_profit_partner}
+            #{object.default_park.non_profit_partner.name}
         - else
-          #{object.default_park.non_profit_partner }
+          #{object.default_park.non_profit_partner.name}
   / end Non-profit Partner

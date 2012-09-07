@@ -4,7 +4,7 @@
       .common-attribute
         %label #{category}:
         = attributes.collect{|c|c.name}.join(', ')
-  - if object.transit_agencies
+  - if object.has_attribute?(:transit_agencies) && object.transit_agencies
     .common-attribute
       %label Transit:
       - object.transit_agencies.order("name").each_with_index do |item,index|

@@ -20,4 +20,16 @@ class Trip < ActiveRecord::Base
       return obj.length / 1609.344
     end
   end
+
+  def categorized_attributes
+    result = {}
+    Category.all.each do |category|
+      features = self.trip_features.where(:category_id=>category.id).order("id")
+      if features.count > 0
+        result[category.name] = features
+      end
+    end
+    result
+  end
+
 end

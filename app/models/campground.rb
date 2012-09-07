@@ -5,6 +5,7 @@ class Campground < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :park
+  belongs_to :cached_park_by_bounds, :class_name => "Park", :foreign_key => "cached_park_by_bounds_id"
   has_many :maps, :as => :mapable, :dependent => :destroy
   has_many :photos, :as => :photoable, :dependent => :destroy
   has_many :stories, :as => :storytellable, :dependent => :destroy
