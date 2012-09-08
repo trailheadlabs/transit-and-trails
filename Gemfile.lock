@@ -81,6 +81,10 @@ GEM
     faraday (0.8.4)
       multipart-post (~> 1.1)
     ffi (1.1.5)
+    ffi-geos (0.0.6)
+      ffi (>= 1.0.0)
+      rake (~> 0.9)
+      rdoc
     flickraw (0.9.6)
     flickraw-cached (20120701)
       flickraw (>= 0.9)
@@ -287,6 +291,7 @@ DEPENDENCIES
   database_cleaner
   devise
   factory_girl_rails
+  ffi-geos
   flickraw-cached
   fog
   geocoder
