@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/TransitAndTrails/rgeo.git
+  revision: 1568d934d5e5b4fcbef38e112bd48e4517a346b6
+  specs:
+    rgeo (0.3.18.nonrelease)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -301,6 +307,7 @@ DEPENDENCIES
   rabl
   rails (= 3.2.8)
   rails_admin
+  rgeo!
   rspec-rails (~> 2.0)
   ruby_parser
   sass-rails (~> 3.2.3)

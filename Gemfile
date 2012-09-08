@@ -24,7 +24,7 @@ gem 'multi_json'
 gem 'yajl-ruby'
 gem 'flickraw-cached'
 gem 'geocoder'
-# gem 'rgeo', :git => "git://github.com/TransitAndTrails/rgeo.git"
+gem 'rgeo', :git => "git://github.com/TransitAndTrails/rgeo.git"
 gem 'paper_trail', '~> 2'
 gem 'jquery-rails'
 gem 'bourbon'
