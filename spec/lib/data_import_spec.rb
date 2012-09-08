@@ -768,7 +768,7 @@ describe "DataImport" do
 
     item = JSON::parse('{"pk":1,"model":"tnt.userprofile","fields":{"last_name":"Monteau","facebook_photo_url":null,"organization_avatar_thumbnail_url":"organizations_avatars/jereme/604e28c6-dcc0-11e1-8cda-1231380b3501.jpg","organization_avatar":"organizations_avatars/transit-trails/avatar_2.jpg","city":"Berkeley","first_name":"Jereme","zip":"94708","organization_name":"Transit & Trails","state":"CA","facebook_profile":null,"address1":"2794 Shasta Road","api_key":"e73f44a17ae5b1b9d6d129e818023ed8b0c6acd9b238c1bb88cba13c86065bfb","api_secret":"5cf75dfc79804e008d135df93da15317a67368d29cae84f1b93ba7a33d28d287","address2":"","website_address":"http://jmoe.com","beta":false,"facebook_profile_url":null,"user":18,"signup_source":"","avatar_thumbnail_url":"user_profiles_avatars/jereme/604e004e-dcc0-11e1-8cda-1231380b3501.jpg","avatar":"user_profiles_avatars/jereme/avatar.png","facebook":false}}')
     Util::DataImport::import_user_profile item
-    new_profile = UserProfile.find(item['pk'])
+    new_profile = UserProfile.last
     new_profile.user_id.should eq item['fields']['user']
     unless item['fields']['first_name'].blank?
       new_profile.firstname.should eq item['fields']['first_name']

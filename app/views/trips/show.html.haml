@@ -1,17 +1,15 @@
 - content_for :head do
   %meta{:content => "Transit & Trails : #{@trip.name}", :property => "og:title"}/
-  %script{:src => "http://www.google.com/jsapi?key=ABQIAAAAO7OoKKBX03U3SrObYGQy0xTR3gcj-N9Qq4sdgfDbE45YeC9R7BTliGpItl3amRLTjNsmtJj-_SOQkw", :type => "text/javascript"}
-  :javascript
-    google.load("maps", "2.x");
-  %script{:src => "http://gmaps-utility-library.googlecode.com/svn/trunk/markermanager/release/src/markermanager.js"}
-  / load Galleria
+
+  %script(src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCcUhpQftpOwXVSLJqHrvwYCqnhTy3bchE&sensor=false&libraries=drawing,geometry")
   %script{:src => "/assets/legacy/galleria/galleria-1.2.7.min.js"}
-  %script{:src => "/assets/legacy/gzoom.js", :type => "text/javascript"}
+  %script{:src => "/assets/legacy/jquery/js/jquery.tools.min.js", :type => "text/javascript"}
   = javascript_include_tag "legacy/common"
   = stylesheet_link_tag "legacy/reset"
   = stylesheet_link_tag "legacy/common"
   = stylesheet_link_tag "legacy/style"
   = stylesheet_link_tag "legacy/trailhead_detail"
+  = stylesheet_link_tag "trips"
 
 / begin lightboxed images
 - @trip.photos.each_with_index do |photo,i|
@@ -21,10 +19,25 @@
         %img.thumbnail{:src => "#{photo.flickr_medium_url}"}/
 / end lightboxed images
 
+%script
+  trip_route = #{@trip.route};
+
+/ Hidden form fields
+%input#id_route{:type => "hidden", :value => ""}/
+- if @trip.starting_trailhead
+  %input#id_starting_point{:type => "hidden", :value => "#{@trip.starting_trailhead.id}"}/
+  %input#starting_point_latitude{:type => "hidden", :value => "#{@trip.starting_trailhead.latitude}"}/
+  %input#starting_point_longitude{:type => "hidden", :value => "#{@trip.starting_trailhead.longitude}"}/
+- if @trip.ending_trailhead
+  %input#id_ending_point{:type => "hidden", :value => "#{@trip.ending_trailhead.id}"}/
+  %input#ending_point_latitude{:type => "hidden", :value => "#{@trip.ending_trailhead.latitude}"}/
+  %input#ending_point_longitude{:type => "hidden", :value => "#{@trip.ending_trailhead.longitude}"}/
+
 #page.trip-details
 
   #trail-details.trail-details-overlay
-    != @trip.description
+    .description
+      != @trip.description
 
   #details-section
     #plan.alt.trailhead
@@ -36,10 +49,10 @@
         / begin share widgets
         .trailhead-social-buttons
           .share-widget
-            %a.twitter-share-button{"data-count" => "none", "data-url" => "#{trailhead_path(@trip)}", "data-via" => "transitandtrail", :href => "https://twitter.com/share"} Tweet
+            %a.twitter-share-button{"data-count" => "none", "data-url" => "#{trip_path(@trip)}", "data-via" => "transitandtrail", :href => "https://twitter.com/share"} Tweet
             %script{:src => "//platform.twitter.com/widgets.js", :type => "text/javascript"}
           .share-widget
-            %iframe{:allowTransparency => "true", :frameborder => "0", :scrolling => "no", :src => "//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.transitandtrails.org%2Ftrailheads%2F#{@trip.id}&send=false&layout=button_count&width=450&show_faces=false&action=like&colorscheme=light&font&height=80&appId=173296509398219", :style => "border:none; overflow:hidden; width:52px; height:21px;"}
+            %iframe{:allowTransparency => "true", :frameborder => "0", :scrolling => "no", :src => "//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.transitandtrails.org%trips%2F#{@trip.id}&send=false&layout=button_count&width=450&show_faces=false&action=like&colorscheme=light&font&height=80&appId=173296509398219", :style => "border:none; overflow:hidden; width:52px; height:21px;"}
         / end share widgets
         .header
           %h2 #{@trip.name}
@@ -58,6 +71,27 @@
             %div{:style => "height:10px"}
 
           = render :partial => "/shared/partials/features", :locals => {:object=>@trip}
+
+          %div(style="padding:20px")
+            .attributes
+              %ul.tour-time
+                %li
+                  %strong Duration
+                  %em #{ @trip.duration.name }
+                %li
+                  %strong Intensity
+                  %em #{ @trip.intensity.name }
+                %li
+                  %strong Length
+                  %em#distance #{ @trip.length_miles.round(2) } Miles
+              / e: tour time
+              .to-from
+                %p.from
+                  %strong Start
+                  %a{:href => "/trailheads/#{ @trip.starting_trailhead.id }"} #{ @trip.starting_trailhead.name }
+                %p.to
+                  %strong End
+                  %a{:href => "/trailheads/#{ @trip.ending_trailhead.id }"} #{ @trip.ending_trailhead.name }
 
           .button-frame
 
@@ -115,8 +149,7 @@
     / e: comments
   .clearfix  
 
-%script{:src => "/assets/legacy/pointmap.js", :type => "text/javascript"}
-%script{:src => "/assets/legacy/jquery/js/jquery.tools.min.js", :type => "text/javascript"}
+%script{:src => "/assets/legacy/tripmap.js", :type => "text/javascript"}
 
 :javascript
   $(document).ready(function(){
@@ -134,10 +167,10 @@
           });
       }
 
+      TNT.tripmap.init(TNT.EditMode.READONLY);
+
       $("a.modal").overlay();
       $('thumbnail a[rel]').overlay();
-
-      initTrailheadDetails(#{@trip.id}, false);
 
       $(window).unload(function () {
           GUnload();
@@ -154,5 +187,16 @@
               $('#map').show();
           }
       });
+
+      function resizeOverlay() {
+          var overlayHeight = $('.trail-details-overlay').height();
+          var windowHeight = 0.5 * $(window).height();
+          if (overlayHeight > windowHeight) {
+              $('.trail-details-overlay').height(windowHeight);
+          }
+          else if (windowHeight > originalOverlayHeight) {
+              $('.trail-details-overlay').height(originalOverlayHeight);
+          }
+      }
   });
 

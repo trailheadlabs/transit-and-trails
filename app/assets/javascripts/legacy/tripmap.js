@@ -25,17 +25,17 @@ TNT.tripmap = {
             this.startPosition = TNT.tripmap.centerOn;
 
         this.trailheadIcon = new google.maps.MarkerImage();
-        this.trailheadIcon.url = "/media/images/map/trailhead.png";
+        this.trailheadIcon.url = "/assets/legacy/map/trailhead.png";
         this.trailheadIcon.size = new google.maps.Size(38, 38);
         this.trailheadIcon.anchor = new google.maps.Point(11, 37);
 
         this.tripStartIcon = new google.maps.MarkerImage();
-        this.tripStartIcon.url = "/media/images/map/trip-start.png";
+        this.tripStartIcon.url = "/assets/legacy/map/trip-start.png";
         this.tripStartIcon.size = new google.maps.Size(38, 38);
         this.tripStartIcon.anchor = new google.maps.Point(11, 37);
 
         this.tripEndIcon = new google.maps.MarkerImage();
-        this.tripEndIcon.url = "/media/images/map/trip-end.png";
+        this.tripEndIcon.url = "/assets/legacy/map/trip-end.png";
         this.tripEndIcon.size = new google.maps.Size(38, 38);
         this.tripEndIcon.anchor = new google.maps.Point(11, 37);
 
@@ -46,7 +46,7 @@ TNT.tripmap = {
         // Initialize the map
         this.trailheadMarkers = [];
 
-        this.currentTrailheadsById = {}; 
+        this.currentTrailheadsById = {};
 
         var mapTypeIds = ["terrain", "OSM"]
         for(var type in google.maps.MapTypeId) {
@@ -65,7 +65,7 @@ TNT.tripmap = {
             scaleControl: true,
             streetViewControl: true,
             overviewMapControl: true,
-            
+
         }
         if(this.editMode != TNT.EditMode.READONLY){
             mapOptions.draggableCursor = 'crosshair';
@@ -165,7 +165,7 @@ TNT.tripmap = {
         }
     },
 
-    outAndBack: function(){              
+    outAndBack: function(){
         for(var j=TNT.tripmap.tripLine.getPath().getLength() - 1; j >= 0;j--){
             var value = TNT.tripmap.tripLine.getPath().getAt(j);
             if (value)
@@ -173,13 +173,13 @@ TNT.tripmap = {
         };
         TNT.tripmap.ending_trailhead_id = TNT.tripmap.starting_trailhead_id;
         this.makeTripEnd(TNT.tripmap.ending_trailhead_id);
-        this.updateDistanceDiv();        
+        this.updateDistanceDiv();
     },
 
-    addPointToTrip: function(point){   
+    addPointToTrip: function(point){
         if(TNT.tripmap.lastAddedIndices.length < 1){
             TNT.tripmap.lastAddedIndices.push(1);
-        }         
+        }
         if(!this.follow_paths) {
             this.tripLine.getPath().push(point);
             TNT.tripmap.updateDistanceDiv();
@@ -250,7 +250,7 @@ TNT.tripmap = {
         var ne_lat = ne.lat();
         var ne_long = ne.lng();
 
-        var url = "/trailheads/find_in_bounds/?sw_lat=" + sw_lat + "&sw_long=" + sw_long +
+        var url = "/trailheads/within_bounds/?sw_lat=" + sw_lat + "&sw_long=" + sw_long +
         "&ne_lat=" +
         ne_lat +
         "&ne_long=" +
@@ -258,7 +258,7 @@ TNT.tripmap = {
 
         $.get(url, function(data){
             var trailheads = data;
-            var currentTrailheads = [];                     
+            var currentTrailheads = [];
             for (i in trailheads) {
                 var pointId = trailheads[i].id;
                   var pointTitle = trailheads[i].name;
@@ -267,7 +267,7 @@ TNT.tripmap = {
                     var newMarker = TNT.tripmap.createMarker(pointId, latlng, pointTitle);
                     TNT.tripmap.currentTrailheadsById[pointId] = newMarker;
                     currentTrailheads[pointId] = newMarker;
-                    newMarker.setMap(TNT.tripmap.map);                    
+                    newMarker.setMap(TNT.tripmap.map);
                   }
             }
 
@@ -281,7 +281,7 @@ TNT.tripmap = {
             trailheadIcon = TNT.tripmap.tripStartIcon;
         } else if(id == TNT.tripmap.ending_trailhead_id) {
             trailheadIcon = TNT.tripmap.tripEndIcon;
-        } 
+        }
         var pointMarkerOptions = {
             icon: trailheadIcon,
             position:latlng,
@@ -314,10 +314,10 @@ TNT.tripmap = {
         TNT.tripmap.starting_trailhead_id = id;
         var startLatLng = TNT.tripmap.currentTrailheadsById[id].getPosition();
         $("#starting-trailhead-name").text(TNT.tripmap.currentTrailheadsById[id].title);
-        $('#id_starting_point').val(id); 
-        $('#trip-editor-step-instruction').text("Now draw your trip. Click the ending trailhead when you are done.");               
+        $('#id_starting_point').val(id);
+        $('#trip-editor-step-instruction').text("Now draw your trip. Click the ending trailhead when you are done.");
         TNT.tripmap.currentInfoWindow.close();
-        TNT.tripmap.currentTrailheadsById[id].setIcon(TNT.tripmap.tripStartIcon);        
+        TNT.tripmap.currentTrailheadsById[id].setIcon(TNT.tripmap.tripStartIcon);
         if (TNT.tripmap.tripLine == null) {
             points = new Array();
             points.push(startLatLng);
@@ -334,7 +334,7 @@ TNT.tripmap = {
 
     },
 
-    makeTripEnd : function(id){        
+    makeTripEnd : function(id){
         if(TNT.tripmap.ending_trailhead_id && TNT.tripmap.currentTrailheadsById[TNT.tripmap.ending_trailhead_id]){
             TNT.tripmap.currentTrailheadsById[TNT.tripmap.ending_trailhead_id].setIcon(TNT.tripmap.trailheadIcon);
         }
@@ -346,20 +346,20 @@ TNT.tripmap = {
         $('#id_ending_point').val(id);
         $("#ending-trailhead-name").text(TNT.tripmap.currentTrailheadsById[id].title);
         TNT.tripmap.currentInfoWindow.close();
-        var markerLatLng = TNT.tripmap.currentTrailheadsById[id].getPosition();        
-        TNT.tripmap.currentTrailheadsById[id].setIcon(TNT.tripmap.tripEndIcon);        
-        this.addPointToTrip(markerLatLng);                        
+        var markerLatLng = TNT.tripmap.currentTrailheadsById[id].getPosition();
+        TNT.tripmap.currentTrailheadsById[id].setIcon(TNT.tripmap.tripEndIcon);
+        this.addPointToTrip(markerLatLng);
     },
 
     clearWayPoints : function(){
         var clearConfirm = confirm("Are you sure you want to clear this trip route?");
-        if (clearConfirm == true) {            
+        if (clearConfirm == true) {
             this.tripLine.setMap(null);
             points = new Array();
             this.tripLine = new google.maps.Polyline(points)
             this.tripLine.setMap(this.map);
             if(TNT.tripmap.starting_trailhead_id){
-                TNT.tripmap.currentTrailheadsById[TNT.tripmap.starting_trailhead_id].setIcon(TNT.tripmap.trailheadIcon);                
+                TNT.tripmap.currentTrailheadsById[TNT.tripmap.starting_trailhead_id].setIcon(TNT.tripmap.trailheadIcon);
                 TNT.tripmap.starting_trailhead_id = null;
                 $('#starting-trailhead-name').text('Click a trailhead to set as start.');
             }
@@ -375,7 +375,7 @@ TNT.tripmap = {
 
     },
 
-    eraseFromEnd : function(){        
+    eraseFromEnd : function(){
         if(TNT.tripmap.lastAddedIndices.length > 1){
             var popCount = TNT.tripmap.lastAddedIndices.pop() - TNT.tripmap.lastAddedIndices[TNT.tripmap.lastAddedIndices.length-1];
             for(var i = 0; i < popCount; i++){
@@ -390,7 +390,7 @@ TNT.tripmap = {
             TNT.tripmap.ending_trailhead_id = null;
             $('#ending-trailhead-name').text('Click a trailhead to set as end.');
         }
-        this.updateDistanceDiv();        
+        this.updateDistanceDiv();
 
     },
 
@@ -419,13 +419,13 @@ TNT.tripmap = {
                 bounds.extend(newVertex);
             }
             TNT.tripmap.tripLine.setMap(TNT.tripmap.map);
-            if ($('#id_starting_point').val() != '') {                
+            if ($('#id_starting_point').val() != '') {
                 TNT.tripmap.starting_trailhead_id = $('#id_starting_point').val();
                 var latlng = new google.maps.LatLng(parseFloat($('#starting_point_latitude').val()),
-                    parseFloat($('#starting_point_longitude').val()));                
+                    parseFloat($('#starting_point_longitude').val()));
                 var pointMarkerOptions = {
                     icon: TNT.tripmap.tripStartIcon,
-                    position:latlng,                    
+                    position:latlng,
                     draggable: false
                 };
 
@@ -436,10 +436,10 @@ TNT.tripmap = {
             if ($('#id_ending_point').val() != '') {
                 TNT.tripmap.ending_trailhead_id = $('#id_ending_point').val();
                 var latlng = new google.maps.LatLng(parseFloat($('#ending_point_latitude').val()),
-                    parseFloat($('#ending_point_longitude').val()));                
+                    parseFloat($('#ending_point_longitude').val()));
                 var pointMarkerOptions = {
                     icon: TNT.tripmap.tripEndIcon,
-                    position:latlng,                    
+                    position:latlng,
                     draggable: false
                 };
 
@@ -447,7 +447,7 @@ TNT.tripmap = {
                 newMarker.setMap(TNT.tripmap.map);
 
             }
-            
+
             if(route.length > 0) {
                 TNT.tripmap.map.fitBounds(bounds);
                 TNT.tripmap.updateDistanceDiv();

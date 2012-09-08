@@ -9,6 +9,12 @@ class StoriesController < ApplicationController
     if params[:trailhead_id]
       @story.storytellable_id = params[:trailhead_id]
       @story.storytellable_type = "Trailhead"
+    elsif params[:campground_id]
+      @story.storytellable_id = params[:campground_id]
+      @story.storytellable_type = "Trip"
+    elsif params[:trip_id]
+      @story.storytellable_id = params[:trip_id]
+      @story.storytellable_type = "Trip"
     end
 
     respond_to do |format|
@@ -26,7 +32,7 @@ class StoriesController < ApplicationController
 
     respond_to do |format|
       if @story.save
-        format.html { redirect_to @story.storytellable, notice: 'story was successfully created.' }
+        format.html { redirect_to @story.storytellable, notice: 'Story added!' }
         format.json { render json: @story, status: :created, location: @story }
       else
         format.html { render action: "new" }

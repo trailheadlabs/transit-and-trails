@@ -1,24 +1,25 @@
 / Trailblazer Organization
-- if object.user.user_profile.organization_name
-  #organization
-    .cell
-      .content
-        Contributed by:
-        - if object.user.user_profile.website_address
-          %a{:href => "http://#{object.user.user_profile.website_address}", :target => "_blank"} #{object.user.user_profile.organization_name}
-        - else
-          #{object.user.user_profile.organization_name}
-      - if object.user.user_profile.organization_avatar.url(:thumbnail)
-        %img#organization-image{:src => "#{object.user.user_profile.organization_avatar.url(:thumbnail)}"}
-- else
-  #organization
-    .cell
-      .content
-        Contributed by:
-        - if object.user.user_profile.website_address
-          %a{:href => "http://#{object.user.user_profile.website_address}", :target => "_blank"} #{object.user.username}
-        - else
-          #{object.user.username}
-      - if object.user.user_profile.avatar.url(:thumbnail)
-        %img#organization-image{:src => "#{object.user.user_profile.avatar_thumbnail_url}"}
-/ end Trailblazer Organization
+- if object.user
+  - if object.user.user_profile.organization_name
+    #organization
+      .cell
+        .content
+          Contributed by:
+          - if object.user.user_profile.website_address
+            %a{:href => "http://#{object.user.user_profile.website_address}", :target => "_blank"} #{object.user.user_profile.organization_name}
+          - else
+            #{object.user.user_profile.organization_name}
+        - if object.user.user_profile.organization_avatar.url(:thumbnail)
+          %img#organization-image{:src => "#{object.user.user_profile.organization_avatar.url(:thumbnail)}"}
+  - else
+    #organization
+      .cell
+        .content
+          Contributed by:
+          - if object.user.user_profile.website_address
+            %a{:href => "http://#{object.user.user_profile.website_address}", :target => "_blank"} #{object.user.username}
+          - else
+            #{object.user.username}
+        - if object.user.user_profile.avatar.url(:thumbnail)
+          %img#organization-image{:src => "#{object.user.user_profile.avatar_thumbnail_url}"}
+  / end Trailblazer Organization

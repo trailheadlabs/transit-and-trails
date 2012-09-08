@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
 
   has_paper_trail
 
-  after_create :create_user_profile
+  after_create :populate_user_profile
 
   accepts_nested_attributes_for :user_profile
 
@@ -24,6 +24,10 @@ class User < ActiveRecord::Base
 
   validates :username, :email, :presence => true;
   validates :username, :uniqueness => true;
+
+  def populate_user_profile
+    UserProfile.create(:user_id=>self.id)
+  end
 
   def valid_password?(password)
     if(encrypted_password.blank?)

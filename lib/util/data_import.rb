@@ -215,7 +215,7 @@ module Util
       begin
         unless fields['image'].blank?
           new_record.remote_image_url = "http://transitandtrails.org/media/" + fields['image']
-          new_record.image.store!
+          # new_record.image.store!
         end
       rescue Exception => e
         puts "Could not set image for partner #{new_record.header}"
@@ -253,7 +253,7 @@ module Util
       begin
         unless fields['logo'].blank?
           new_record.remote_logo_url = "http://transitandtrails.org/media/" + fields['logo']
-          new_record.logo.store!
+          # new_record.logo.store!
         end
       rescue Exception => e
         puts "Could not set logo for partner #{new_record.name}"
@@ -273,7 +273,7 @@ module Util
       begin
         unless fields['logo'].blank?
           new_record.remote_logo_url = "http://transitandtrails.org/media/" + fields['logo']
-          new_record.logo.store!
+          # new_record.logo.store!
         end
       rescue Exception => e
         puts "Could not set logo for non profit partner #{new_record.name}"
@@ -293,7 +293,7 @@ module Util
       begin
         unless fields['logo'].blank?
           new_record.remote_logo_url = "http://transitandtrails.org/media/" + fields['logo']
-          new_record.logo.store!
+          # new_record.logo.store!
         end
       rescue Exception => e
         puts "Could not set logo for non profit partner #{new_record.name}"
@@ -515,7 +515,7 @@ module Util
       begin
         unless fields['marker_icon'].blank?
           new_record.remote_marker_icon_url = "http://transitandtrails.org/media/" + fields['marker_icon']
-          new_record.marker_icon.store!
+          # new_record.marker_icon.store!
         end
       rescue Exception => e
         puts "Could not set marker icon for feature #{new_record.name}"
@@ -542,8 +542,8 @@ module Util
     end
 
     def self.import_user_profile(item)
-      if User.exists? item['fields']['user']
-        new_profile = UserProfile.find_or_create_by_id(item['pk'])
+      if User.exists? Integer(item['fields']['user'])
+        new_profile = User.find(Integer(item['fields']['user'])).user_profile || UserProfile.new
         new_profile.user_id = item['fields']['user']
         new_profile.firstname = item['fields']['first_name']
         new_profile.lastname = item['fields']['last_name']
@@ -560,7 +560,7 @@ module Util
         begin
           unless item['fields']['avatar'].blank?
             new_profile.remote_avatar_url = "http://transitandtrails.org/media/" + item['fields']['avatar']
-            new_profile.avatar.store!
+            # new_profile.avatar.store!
           end
         rescue Exception => e
           puts "Could not set avatar for user #{new_profile.user_id}"
@@ -569,7 +569,7 @@ module Util
         begin
           unless item['fields']['organization_avatar'].blank?
             new_profile.remote_organization_avatar_url = "http://transitandtrails.org/media/" + item['fields']['organization_avatar']
-            new_profile.organization_avatar.store!
+            # new_profile.organization_avatar.store!
           end
         rescue Exception => e
           puts "Could not set organization avatar for user #{new_profile.user_id}"

@@ -7,15 +7,16 @@ describe "trips/show" do
     assign(:current_ability, @ability)
     controller.stub(:current_user, @user)
     view.stub(:current_user, @user)
+    starting_trailhead = FactoryGirl.create(:trailhead)
 
     @trip = assign(:trip, stub_model(Trip,
       :name => "Name",
       :description => "MyText",
-      :user => nil,
-      :intensity => nil,
-      :duration => nil,
-      :starting_trailhead_id => 1,
-      :ending_trailhead_id => 2,
+      :user => @user,
+      :intensity => FactoryGirl.create(:intensity),
+      :duration => FactoryGirl.create(:duration),
+      :starting_trailhead => starting_trailhead,
+      :ending_trailhead => starting_trailhead,
       :route => "MyText"
     ))
   end
@@ -25,11 +26,6 @@ describe "trips/show" do
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     rendered.should match(/Name/)
     rendered.should match(/MyText/)
-    rendered.should match(//)
-    rendered.should match(//)
-    rendered.should match(//)
-    rendered.should match(/1/)
-    rendered.should match(/2/)
-    rendered.should match(/MyText/)
+
   end
 end

@@ -3,8 +3,8 @@ class TrailheadsController < ApplicationController
   load_and_authorize_resource :except => [:near_address,:near_coordinates,:index]
   before_filter :authenticate_user!, :except => [:index,:show,:near_address,:near_coordinates]
 
-  # GET /trailheads
-  # GET /trailheads.json
+  # GET /trailheads/near_address
+  # GET /trailheads/near_address.json
   def near_address
     address = params[:address] || "San Francisco, CA"
     distance = params[:distance] || 10
@@ -18,8 +18,8 @@ class TrailheadsController < ApplicationController
     end
   end
 
-  # GET /trailheads
-  # GET /trailheads.json
+  # GET /trailheads/near_coordinates
+  # GET /trailheads/near_coordinates.json
   def near_coordinates
     latitude = params[:latitude] || 37.7749295
     longitude = params[:longitude] || -122.4194155
@@ -28,6 +28,24 @@ class TrailheadsController < ApplicationController
     offset = 0 || params[:offset]
     approved = true || params[:approved]
     @trailheads = Trailhead.where(:approved => approved).near([latitude,longitude],distance).limit(limit).offset(offset)
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @trailheads }
+    end
+  end
+
+  # GET /trailheads/within_bounds
+  # GET /trailheads/within_bounds.json
+  def within_bounds
+    min_latitude = params[:sw_latitude]
+    max_latitude = params[:ne_latitude]
+    min_longitude = params[:sw_longitude]
+    max_longitude = params[:sw_longitude]
+    limit = 20 || params[:limit]
+    offset = 0 || params[:offset]
+    approved = true || params[:approved]
+    @trailheads = Trailhead.where("latitude > :min_latitude AND latitude < :max_latitude AND longitude > :min_longitude AND longitude < :max_longitude",
+      :min_latitude => min_latitude, :min_longitude => min_longitude, :max_latitude => max_latitude, :max_longitude => max_longitude)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @trailheads }
