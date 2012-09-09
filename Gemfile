@@ -29,7 +29,7 @@ gem 'rgeo', :git => "git://github.com/TransitAndTrails/rgeo.git"
 gem 'paper_trail', '~> 2'
 gem 'jquery-rails'
 gem 'bourbon'
-gem 'newrelic_rpm'
+# gem 'newrelic_rpm', '~> 3.4.1'
 gem 'high_voltage'
 gem 'simple_form_fancy_uploads'
 gem 'simple_form'

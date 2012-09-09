@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/TransitAndTrails/rgeo.git
-  revision: 0d536a5297430c7b8d2f4ff84a5ddead2ab192cf
+  revision: 153d445bb3ba9cc7423ad1b59771698a5ed1c938
   specs:
-    rgeo (0.3.19.nonrelease)
+    rgeo (0.3.19.1.nonrelease)
 
 GEM
   remote: https://rubygems.org/
@@ -141,7 +141,6 @@ GEM
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-ssh (2.5.2)
-    newrelic_rpm (3.4.2)
     nokogiri (1.5.5)
     oauth (0.4.7)
     oauth2 (0.8.0)
@@ -298,7 +297,6 @@ DEPENDENCIES
   launchy
   mini_magick
   multi_json
-  newrelic_rpm
   omniauth
   omniauth-facebook
   omniauth-twitter
