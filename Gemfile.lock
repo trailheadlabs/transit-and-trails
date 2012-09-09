@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/TransitAndTrails/rgeo.git
-  revision: 153d445bb3ba9cc7423ad1b59771698a5ed1c938
+  revision: f00c2b69f625bb56ff1948b1145db9f9fcc9c050
   specs:
-    rgeo (0.3.19.1.nonrelease)
+    rgeo (0.3.19.2.nonrelease)
 
 GEM
   remote: https://rubygems.org/
