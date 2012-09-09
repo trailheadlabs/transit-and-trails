@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/TransitAndTrails/rgeo.git
-  revision: 1568d934d5e5b4fcbef38e112bd48e4517a346b6
+  revision: 0d536a5297430c7b8d2f4ff84a5ddead2ab192cf
   specs:
-    rgeo (0.3.18.nonrelease)
+    rgeo (0.3.19.nonrelease)
 
 GEM
   remote: https://rubygems.org/
@@ -41,7 +41,7 @@ GEM
     bootstrap-sass (2.1.0.0)
     bourbon (2.1.1)
       sass (>= 3.1)
-    builder (3.0.2)
+    builder (3.0.3)
     cancan (1.6.8)
     capybara (1.1.2)
       mime-types (>= 1.16)
