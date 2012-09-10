@@ -13,6 +13,7 @@
   = f.input :avatar, :required => false,:as => :image_preview, input_html: {preview_version: :thumbnail}
   = f.hidden_field :avatar_cache
   = f.input :organization_name, :required => false
+  = f.input :organization_url, :required => false
   = f.input :organization_avatar,  :as => :image_preview, input_html: {preview_version: :thumbnail}
   = f.hidden_field :organization_avatar_cache
   = f.hidden_field :user_id
