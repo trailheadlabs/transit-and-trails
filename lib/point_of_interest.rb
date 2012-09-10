@@ -8,6 +8,7 @@ module PointOfInterest
   def park_by_bounds
     parks = Park.where(":latitude > min_latitude AND :latitude < max_latitude AND :longitude > min_longitude AND :longitude < max_longitude",
       :latitude => self.latitude, :longitude => self.longitude)
+    # if false
     if RGeo::Geos::supported?
       factory = ::RGeo::Geographic.simple_mercator_factory()
       parks.select do |p|
@@ -15,7 +16,12 @@ module PointOfInterest
         point_obj = factory.point(self.longitude,self.latitude)
         park_obj.contains? point_obj
       end
+    else
+      parks.select do |p|
+        p.contains_trailhead? self
+      end
     end
+
     self.cached_park_by_bounds = parks.first
     self.save
     return parks.first
