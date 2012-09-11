@@ -42,6 +42,15 @@ describe TrailheadsController do
     end
   end
 
+  describe "GET index with park_id" do
+    it "assigns park trailheads as @trailheads" do
+      park = FactoryGirl.create(:park)
+      trailhead = FactoryGirl.create(:trailhead)
+      get :index, {:park_id=>park.id}
+      assigns(:trailheads).first.should == park.trailheads.first
+    end
+  end
+
   describe "GET near_address" do
     it "assigns all trailheads as @trailheads" do
       3.times do

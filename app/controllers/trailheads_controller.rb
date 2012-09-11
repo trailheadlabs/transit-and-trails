@@ -1,7 +1,7 @@
 class TrailheadsController < ApplicationController
   check_authorization :except => [:near_address,:near_coordinates,:index]
   load_and_authorize_resource :except => [:near_address,:near_coordinates,:index]
-  before_filter :authenticate_user!, :except => [:index,:show,:near_address,:near_coordinates]
+  before_filter :authenticate_user!, :except => [:index,:show,:near_address,:near_coordinates,:within_bounds]
 
   # GET /trailheads/near_address
   # GET /trailheads/near_address.json
@@ -55,7 +55,11 @@ class TrailheadsController < ApplicationController
   # GET /trailheads
   # GET /trailheads.json
   def index
-    @trailheads = Trailhead.all
+    if(params[:park_id])
+      @trailheads = Park.find(params[:park_id]).trailheads
+    else
+      @trailheads = Trailhead.all
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @trailheads }

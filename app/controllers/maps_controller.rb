@@ -1,4 +1,6 @@
 class MapsController < ApplicationController
+  before_filter :authenticate_user!
+
   # POST /maps
   # POST /maps.json
   def create
@@ -11,7 +13,7 @@ class MapsController < ApplicationController
         format.html { redirect_to @map.mapable, notice: 'Map added!' }
         format.json { render json: @map, status: :created, location: @map }
       else
-        format.html { render action: "new" }
+        format.html { redirect_to :back }
         format.json { render json: @map.errors, status: :unprocessable_entity }
       end
     end

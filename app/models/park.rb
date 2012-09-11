@@ -17,6 +17,44 @@ class Park < ActiveRecord::Base
     end
   end
 
+  def trailheads
+    trailheads_in_bounds
+  end
+
+  def trailheads_in_bounds
+    trailheads = Trailhead.where("latitude > :min_latitude AND latitude < :max_latitude AND longitude > :min_longitude AND longitude < :max_longitude",
+      :min_latitude => self.min_latitude, :min_longitude => self.min_longitude, :max_latitude => self.max_latitude,
+        :max_longitude => self.max_longitude )
+
+    trailheads.select do |t|
+      self.contains_trailhead? t
+    end
+    return trailheads
+  end
+
+  def campgrounds_in_bounds
+    campgrounds = Campground.where("latitude > :min_latitude AND latitude < :max_latitude AND longitude > :min_longitude AND longitude < :max_longitude",
+      :min_latitude => self.min_latitude, :min_longitude => self.min_longitude, :max_latitude => self.max_latitude,
+        :max_longitude => self.max_longitude )
+
+    campgrounds.select do |t|
+      self.contains_trailhead? t
+    end
+    return campgrounds
+  end
+
+  def trips
+    trips_starting_in_bounds + trips_ending_in_bounds
+  end
+
+  def trips_starting_in_bounds
+    Trip.where(:starting_trailhead_id => trailheads_in_bounds)
+  end
+
+  def trips_ending_in_bounds
+    Trip.where(:ending_trailhead_id => trailheads_in_bounds)
+  end
+
   def bounds_as_array
     self.bounds.gsub(/[A-Za-z]|\(|\)/,"").strip.split(',').collect{|c| c.split(" ").collect{|d| Float(d)}}
   end

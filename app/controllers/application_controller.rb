@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  helper TextHelper
   before_filter :store_location
 
   def index

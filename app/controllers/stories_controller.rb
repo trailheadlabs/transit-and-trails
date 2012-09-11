@@ -35,7 +35,7 @@ class StoriesController < ApplicationController
         format.html { redirect_to @story.storytellable, notice: 'Story added!' }
         format.json { render json: @story, status: :created, location: @story }
       else
-        format.html { render action: "new" }
+        format.html { redirect_to :back }
         format.json { render json: @story.errors, status: :unprocessable_entity }
       end
     end

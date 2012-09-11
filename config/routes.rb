@@ -59,6 +59,13 @@ Transitandtrails::Application.routes.draw do
     end
   end
 
+  resources :parks do
+    resources :maps, :only => [:index]
+    resources :photos, :only => [:index]
+    resources :trailheads, :only => [:index]
+    resources :campgrounds, :only => [:index]
+  end
+
   resources :stories
 
   resources :parks, :only => [:show]
