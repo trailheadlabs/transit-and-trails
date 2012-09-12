@@ -10,7 +10,7 @@
         %i #{ @point.default_park.county }
   - if @point.description
     %p.trailhead-info-window-description
-      != truncate_html(@point.description, :limit => 60, :omission => "...")
+      != truncate_html(@point.description, :limit => 200, :omission => "...")
 
   - if @feature_names
     %p

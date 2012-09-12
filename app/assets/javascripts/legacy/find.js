@@ -174,15 +174,15 @@ function initialize(starting_lat,starting_lng) {
         TNT.find.chooseStart(starting_lat,starting_lng);
         loadKeyFromSession('showTrips', function(data){
 
-          if(!data.value){
+          if(data.value == false){
             $('#show-trips-checkbox').removeAttr('checked');
           }
           loadKeyFromSession('showTrailheads', function(data){
-            if(!data.value){
+            if(data.value == false){
               $('#show-trailheads-checkbox').removeAttr('checked');
             }
             loadKeyFromSession('showCampgrounds', function(data){
-              if(!data.value){
+              if(data.value == false){
                 $('#show-campgrounds-checkbox').removeAttr('checked');
               }
               collapseObjectSelect();
@@ -252,7 +252,7 @@ TNT.find = {
         this.startLatLng = new GLatLng(37.7750, -122.4190);
         this.endLatLng = new GLatLng(37.7750, -122.4190);
 
-        this.map.setCenter(this.startLatLng, 15);
+        this.map.setCenter(this.startLatLng, 11);
 
         this.trailheadMarkerManager = new MarkerManager(this.map);
         this.tripMarkerManager = new MarkerManager(this.map);

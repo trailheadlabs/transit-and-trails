@@ -35,7 +35,7 @@
           %p
             %b Description
             %p
-              != truncate_html(@trip.description, :length=> 60,  :omission => '...')
+              != truncate_html(@trip.description, :length=> 200,  :omission => '...')
 
   %p
     .trailhead-info-window-buttons
