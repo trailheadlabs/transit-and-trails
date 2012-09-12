@@ -1,10 +1,26 @@
 class TripsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index,:show,:info_window]
+  before_filter :authenticate_user!, :except => [:index,:show,:info_window,:near_coordinates]
   # GET /trips
   # GET /trips.json
   def index
     @trips = Trip.all
 
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @trips }
+    end
+  end
+
+  # GET /trips/near_coordinates
+  # GET /trips/near_coordinates.json
+  def near_coordinates
+    latitude = params[:latitude] || 37.7749295
+    longitude = params[:longitude] || -122.4194155
+    distance = params[:distance] || 10
+    limit = 20 || params[:limit]
+    offset = 0 || params[:offset]
+    approved = true || params[:approved]
+    @trips = Trailhead.where(:approved => approved).near([latitude,longitude],distance,:select => "trailheads.*, trips.*").joins(:trips_starting_at).limit(limit).offset(offset)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @trips }

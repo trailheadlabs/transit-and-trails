@@ -1,16 +1,14 @@
 function saveLocationToSession(address){
-    var url = '/location/save';
-    $.get(url,{location:address});
+    saveKeyValueToSession('last_location',address);
 }
 
 function loadLocationFromSession(callback) {
-    var that = this;
-    $.get('/location/last',callback);
+    loadKeyFromSession('last_location',callback);
 }
 
 
 function saveKeyValueToSession(key, value){
-    var url = '/session/savekv?' + encodeURIComponent(key) + '=' + encodeURIComponent(value);
+    var url = '/session/savekv?key=' + encodeURIComponent(key) + '&value=' + encodeURIComponent(value);
     $.get(url);
 }
 

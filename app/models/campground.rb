@@ -12,6 +12,7 @@ class Campground < ActiveRecord::Base
 
   has_and_belongs_to_many :campground_features
   attr_accessible :approved, :description, :latitude, :longitude, :name
+  reverse_geocoded_by :latitude, :longitude
 
   def categorized_attributes
     result = {}

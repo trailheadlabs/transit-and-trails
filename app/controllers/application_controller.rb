@@ -27,12 +27,12 @@ class ApplicationController < ActionController::Base
   end
 
   def loadkv
-    render :text => session[params[:key]] || ''
+    render :json => {:key=>params[:key],:value=>session[params[:key]] || nil}
   end
 
   def savekv
     session[params[:key]] = params[:value]
-    render :nothing => true
+    render :json => {:key=>params[:key],:value=>params[:value]}
   end
 
   def store_location
@@ -56,5 +56,30 @@ class ApplicationController < ActionController::Base
 
   def not_found
     raise ActionController::RoutingError.new('Not Found')
+  end
+
+  def objects_near
+    latitude = params[:lat]
+    longitude = params[:long]
+    distance = params[:distance]
+    approved = true
+    limit = 100
+    offset = 0
+    @trailheads = Trailhead.where(:approved => approved).near([latitude,longitude],distance).limit(limit).offset(offset).collect do |t|
+      t['class_name'] = 'Trailhead'
+      t
+    end
+    @campgrounds = Campground.where(:approved => approved).near([latitude,longitude],distance).limit(limit).offset(offset).collect do |c|
+      c['class_name'] = 'Campground'
+      c
+    end
+    # trip_ids = Trailhead.where(:approved => approved).near([latitude,longitude],distance,:select => "trailheads.*, trips.*").joins(:trips_starting_at).limit(limit).offset(offset).collect(&:id)
+    @trips = Trailhead.where(:approved => approved).near([latitude,longitude],distance,:select => "trailheads.*, trips.*").joins(:trips_starting_at).limit(limit).offset(offset).collect do |t|
+      t['class_name'] = 'Trip'
+      t
+    end
+    @allpoints = @trailheads + @campgrounds + @trips
+    @allpoints.sort! { |a,b| a.distance <=> b.distance }
+    render :layout => false
   end
 end

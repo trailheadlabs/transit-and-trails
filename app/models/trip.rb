@@ -9,13 +9,29 @@ class Trip < ActiveRecord::Base
   has_many :photos, :as => :photoable, :dependent => :destroy
   has_many :maps, :as => :mapable, :dependent => :destroy
 
-  attr_accessible :description, :ending_trailhead_id, :name, :route, :starting_trailhead_id
+  attr_accessible :description, :ending_trailhead_id, :name, :route, :starting_trailhead_id, :latitude, :longitude
 
   before_save :update_bounds_min_max
   after_save :refind_parks
 
+  reverse_geocoded_by :latitude, :longitude
+
   def parks
     @parks || find_parks
+  end
+
+  def latitude
+    starting_trailhead.latitude
+  end
+
+  def longitude
+    starting_trailhead.longitude
+  end
+
+  def latitude=
+  end
+
+  def longitude=
   end
 
   def refind_parks

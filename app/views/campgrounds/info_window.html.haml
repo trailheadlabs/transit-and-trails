@@ -17,25 +17,23 @@
       %b Features
       \:
       #{ @feature_names }
-      - unless @trips.empty?
-        %h4 Trips
-        %ul
-          - @trips.each do |trip|
-            %li
-              %a{:href => "/trips/#{ trip.id }"}
-                #{ trip.name }
+      / - unless @trips.empty?
+      /   %h4 Trips
+      /   %ul
+      /     - @trips.each do |trip|
+      /       %li
+      /         %a{:href => "/trips/#{ trip.id }"}
+      /           #{ trip.name }
   %p
     .trailhead-info-window-buttons
-      %a.trailhead-info-window-button{:href => "/trailheads/#{ @point.id }"} More Info
-      %a.trailhead-info-window-button{:href => "/plan/trailhead/#{ @point.id }"} Plan a Trip Here
+      %a.trailhead-info-window-button{:href => "/campgrounds/#{ @point.id }"} More Info
+      %a.trailhead-info-window-button{:href => "/plan/camogrounds/#{ @point.id }"} Plan a Trip Here
 
   - if current_user && current_user.admin?
     %p
       %b Actions
       %ul
         %li
-          %a{:href => "/trips/create/?start_id=#{@point.id}"} Add a trip from here
+          %a{:href => "#{edit_trailhead_path(@point)}"} Edit
         %li
-          %a{:href => "#{edit_trailhead_path(@point)}"} Edit trailhead
-        %li
-          = link_to("Delete Trailhead", @point, :method => :delete, :confirm => "Are you sure?")
+          = link_to("Delete", @point, :method => :delete, :confirm => "Are you sure?")

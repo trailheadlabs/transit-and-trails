@@ -1,0 +1,9 @@
+%ul
+  - @allpoints.each do |i|
+    %li{:class => "trail-type-#{ i.class_name.downcase }"}
+      %h2.details-link{:rel => "#{ i.id }"} #{ i.name }
+      %p
+        %a{:href => "/#{ i.class_name.downcase }s/#{ i.id }"} Details
+        |
+        %a{:href => "/plan/#{ i.class_name.downcase }/#{ i.id }"} Plan
+      %span #{ Float(i.distance).round(2) }

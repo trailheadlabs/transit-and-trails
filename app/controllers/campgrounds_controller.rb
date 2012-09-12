@@ -1,5 +1,5 @@
 class CampgroundsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index,:show]
+  before_filter :authenticate_user!, :except => [:index,:show,:near_coordinates,:info_window]
 
   # GET /campgrounds
   # GET /campgrounds.json
@@ -11,6 +11,31 @@ class CampgroundsController < ApplicationController
       format.json { render json: @campgrounds }
     end
   end
+
+  # GET /campgrounds/near_coordinates
+  # GET /campgrounds/near_coordinates.json
+  def near_coordinates
+    latitude = params[:latitude] || 37.7749295
+    longitude = params[:longitude] || -122.4194155
+    distance = params[:distance] || 10
+    limit = 20 || params[:limit]
+    offset = 0 || params[:offset]
+    approved = true || params[:approved]
+    @campgrounds = Campground.where(:approved => approved).near([latitude,longitude],distance).limit(limit).offset(offset)
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @campgrounds }
+    end
+  end
+
+  def info_window
+    @point = Campground.find(params[:id])
+    @feature_names = @point.campground_features.collect{|f| f.name}.join(",  ")
+    respond_to do |format|
+      format.html { render :layout => false} # show.html.erb
+    end
+  end
+
 
   # GET /campgrounds/1
   # GET /campgrounds/1.json

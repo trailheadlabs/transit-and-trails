@@ -86,27 +86,27 @@ $(function() {
       var newLabel = '';
       if ($('#show-trips-checkbox').is(':checked')) {
           newLabel += "trips";
-          saveKeyValueToSession('showTrips','true');
+          saveKeyValueToSession('showTrips',true);
       } else {
-        saveKeyValueToSession('showTrips','false');
+        saveKeyValueToSession('showTrips',false);
       }
       if ($('#show-trailheads-checkbox').is(':checked')) {
           if (newLabel != '') {
               newLabel += ', ';
           }
           newLabel += 'trailheads';
-          saveKeyValueToSession('showTrailheads','true');
+          saveKeyValueToSession('showTrailheads',true);
       } else {
-        saveKeyValueToSession('showTrailheads','false');
+        saveKeyValueToSession('showTrailheads',false);
       }
       if ($('#show-campgrounds-checkbox').is(':checked')) {
           if (newLabel != '') {
               newLabel += ', ';
           }
           newLabel += 'campgrounds';
-          saveKeyValueToSession('showCampgrounds','true');
+          saveKeyValueToSession('showCampgrounds',true);
       } else {
-        saveKeyValueToSession('showCampgrounds','false');
+        saveKeyValueToSession('showCampgrounds',false);
       }
       if(newLabel == '')
       {
@@ -173,15 +173,16 @@ function initialize(starting_lat,starting_lng) {
         TNT.find.init();
         TNT.find.chooseStart(starting_lat,starting_lng);
         loadKeyFromSession('showTrips', function(data){
-          if(data == 'false'){
+
+          if(!data.value){
             $('#show-trips-checkbox').removeAttr('checked');
           }
           loadKeyFromSession('showTrailheads', function(data){
-            if(data == 'false'){
+            if(!data.value){
               $('#show-trailheads-checkbox').removeAttr('checked');
             }
             loadKeyFromSession('showCampgrounds', function(data){
-              if(data == 'false'){
+              if(!data.value){
                 $('#show-campgrounds-checkbox').removeAttr('checked');
               }
               collapseObjectSelect();
@@ -251,7 +252,7 @@ TNT.find = {
         this.startLatLng = new GLatLng(37.7750, -122.4190);
         this.endLatLng = new GLatLng(37.7750, -122.4190);
 
-        this.map.setCenter(this.startLatLng, 11);
+        this.map.setCenter(this.startLatLng, 15);
 
         this.trailheadMarkerManager = new MarkerManager(this.map);
         this.tripMarkerManager = new MarkerManager(this.map);
@@ -347,9 +348,8 @@ TNT.find = {
         this.geocoder = new GClientGeocoder();
 
         loadKeyFromSession('map.zoom',function(data){
-          if( data.match(/NOT_FOUND/) == null && !TNT.find.park_page ){
-            var newZoom = Number(data);
-            TNT.find.map.setZoom(newZoom);
+          if( data.value && !TNT.find.park_page ){
+            TNT.find.map.setZoom(Number(data.value));
           }
         })
     },
@@ -363,7 +363,8 @@ TNT.find = {
         } else {
             loadLocationFromSession(
               function(data) {
-                  if (data && data != 'undefined') {
+                    data = data.value
+                  if (data) {
                       $('#address').val(data);
                       TNT.find.showAddress(data);
                   }
@@ -403,21 +404,21 @@ TNT.find = {
 
     findTrips: function() {
         var that = this;
-        downloadurl = "/trips/near/xml?lat=" + this.startmarker.getLatLng().lat() +
-        "&lng=" +
+        downloadurl = "/trips/near_coordinates.json?latitude=" + this.startmarker.getLatLng().lat() +
+        "&longitude=" +
         +this.startmarker.getLatLng().lng() +
         "&distance=" +
         $('#radius').val();
         GDownloadUrl(downloadurl,
         function(data) {
-            var xml = GXml.parse(data);
-            var markers = xml.documentElement.getElementsByTagName("trip");
+            var xml = $.parseJSON(data);
+            var markers = xml;
             that.currentTrips = []
             that.tripMarkerManager.clearMarkers();
             for (var i = 0; i < markers.length; i++) {
-                var latlng = new GLatLng(parseFloat(markers[i].getAttribute("lat")), parseFloat(markers[i].getAttribute("lng")));
-                var tripTitle = markers[i].getAttribute("name");
-                var tripId = new Number(markers[i].getAttribute("id"));
+                var latlng = new GLatLng(parseFloat(markers[i]["latitude"]), parseFloat(markers[i]["longitude"]));
+                var tripTitle = markers[i]["name"];
+                var tripId = new Number(markers[i]["id"]);
                 var newMarker = that.createTripMarker(tripId, tripTitle, latlng);
                 that.currentTrips[tripId] = newMarker;
                 if (that.showTrips) {
@@ -460,23 +461,23 @@ TNT.find = {
     findCampgrounds: function() {
         var that = this;
         //this.removeCurrentCampgrounds();
-        downloadurl = "/campgrounds/near/xml?lat=" +
+        downloadurl = "/campgrounds/near_coordinates.json?latitude=" +
         this.startmarker.getLatLng().lat() +
-        "&long=" +
+        "&longitude=" +
         +this.startmarker.getLatLng().lng() +
         "&distance=" +
         $('#radius').val();
         GDownloadUrl(downloadurl,
         function(data) {
-            var xml = GXml.parse(data);
-            var markers = xml.documentElement.getElementsByTagName("campground");
+            var xml = $.parseJSON(data);
+            var markers = xml;
             that.currentCampgrounds = []
             that.campgroundMarkerManager.clearMarkers();
             for (var i = 0; i < markers.length; i++) {
-                var latlng = new GLatLng(parseFloat(markers[i].getAttribute("lat")), parseFloat(markers[i].getAttribute("lng")));
-                var distance = new Number(markers[i].getAttribute("distance")).toPrecision(2);
-                var pointTitle = markers[i].getAttribute("name");
-                var pointId = new Number(markers[i].getAttribute("id"));
+                var latlng = new GLatLng(parseFloat(markers[i]["latitude"]), parseFloat(markers[i]["longitude"]));
+                var distance = new Number(markers[i]["distance"]).toPrecision(2);
+                var pointTitle = markers[i]["name"];
+                var pointId = new Number(markers[i]["id"]);
                 var pointIndex = new Number(i);
                 var newMarker = that.createCampgroundMarker(pointId, pointTitle, latlng);
                 that.currentCampgrounds[pointId] = newMarker;
@@ -515,9 +516,9 @@ TNT.find = {
     findTrailheads: function() {
         var that = this;
         //that.removeCurrentTrailheads();
-        downloadurl = "/trailheads/near/xml?lat=" +
+        downloadurl = "/trailheads/near_coordinates.json?latitude=" +
         that.startmarker.getLatLng().lat() +
-        "&long=" +
+        "&longitude=" +
         that.startmarker.getLatLng().lng() +
         "&distance=" +
         $('#radius').val();
@@ -529,15 +530,15 @@ TNT.find = {
 
     loadTrailheads: function(data) {
         var that = this;
-        var xml = GXml.parse(data);
-        var markers = xml.documentElement.getElementsByTagName("trailhead");
+        var xml = $.parseJSON(data);
+        var markers = xml;
         that.currentTrailheads = []
         that.trailheadMarkerManager.clearMarkers();
         $(markers).each(function(index,item) {
-            var latlng = new GLatLng(parseFloat(item.getAttribute("lat")), parseFloat(item.getAttribute("lng")));
-            var distance = new Number(item.getAttribute("distance")).toPrecision(2);
-            var pointTitle = item.getAttribute("name");
-            var pointId = new Number(item.getAttribute("id"));
+            var latlng = new GLatLng(parseFloat(item["latitude"]), parseFloat(item["longitude"]));
+            var distance = new Number(item["distance"]).toPrecision(2);
+            var pointTitle = item["name"];
+            var pointId = new Number(item["id"]);
             var pointIndex = new Number(index);
             var newMarker = that.createTrailheadMarker(pointId, pointTitle, latlng);
             that.currentTrailheads[pointId] = newMarker;
@@ -810,6 +811,7 @@ TNT.find = {
     showTrailheadInfoWindow: function(id) {
         var that = this;
         var url = '/trailheads/' + id + '/info_window';
+
         GDownloadUrl(url,
         function(data) {
             that.currentTrailheads[id].openInfoWindowHtml(data);
@@ -818,7 +820,7 @@ TNT.find = {
 
     showCampgroundInfoWindow: function(id) {
         var that = this;
-        var url = '/campgrounds/info?id=' + id;
+        var url = '/campgrounds/' + id + '/info_window';
         GDownloadUrl(url,
         function(data) {
             that.currentCampgrounds[id].openInfoWindowHtml(data);
