@@ -23,5 +23,5 @@
           - else
             #{object.user.username}
         - if object.user.user_profile.avatar.url(:thumbnail)
-          %img#organization-image{:src => "#{object.user.user_profile.avatar_thumbnail_url}"}
+          %img#organization-image{:src => "#{object.user.user_profile.avatar_url(:thumbnail)}"}
   / end Trailblazer Organization

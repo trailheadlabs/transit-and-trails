@@ -1,7 +1,7 @@
 class TrailheadsController < ApplicationController
-  check_authorization :except => [:near_address,:near_coordinates,:index]
-  load_and_authorize_resource :except => [:near_address,:near_coordinates,:index]
-  before_filter :authenticate_user!, :except => [:index,:show,:near_address,:near_coordinates,:within_bounds]
+  check_authorization :except => [:near_address,:near_coordinates,:index,:info_window]
+  load_and_authorize_resource :except => [:near_address,:near_coordinates,:index,:info_window]
+  before_filter :authenticate_user!, :except => [:index,:show,:near_address,:near_coordinates,:within_bounds,:info_window]
 
   # GET /trailheads/near_address
   # GET /trailheads/near_address.json
@@ -74,6 +74,15 @@ class TrailheadsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @trailhead }
+    end
+  end
+
+  def info_window
+    @point = Trailhead.find(params[:id])
+    @trips = Trip.where(:starting_trailhead_id=>@point.id)
+    @feature_names = @point.trailhead_features.collect{|f| f.name}.join(",  ")
+    respond_to do |format|
+      format.html { render :layout => false} # show.html.erb
     end
   end
 

@@ -81,7 +81,7 @@ $(function() {
     $('#object-select, #object-select-box').mouseleave(function() {
             collapseObjectSelect();
     });
-    
+
     $("#show-trips-checkbox, #show-trailheads-checkbox, #show-campgrounds-checkbox").click(function(){
       var newLabel = '';
       if ($('#show-trips-checkbox').is(':checked')) {
@@ -155,7 +155,7 @@ function collapseObjectSelect() {
         {
           newLabel = "please select"
         }
-        
+
         $('#object-select-label').text(newLabel);
     });
     updateObjectDisplay();
@@ -184,10 +184,10 @@ function initialize(starting_lat,starting_lng) {
               if(data == 'false'){
                 $('#show-campgrounds-checkbox').removeAttr('checked');
               }
-              collapseObjectSelect();          
-            })            
-          })          
-        });  
+              collapseObjectSelect();
+            })
+          })
+        });
     }
 }
 
@@ -259,7 +259,7 @@ TNT.find = {
 
         // Create our start marker icon
         var startIcon = new GIcon(G_DEFAULT_ICON);
-        startIcon.image = "/media/images/map/pin_s_home.png";
+        startIcon.image = "/assets/legacy/map/pin_s_home.png";
         startIcon.iconSize = new GSize(34, 36);
         startIcon.shadowSize = new GSize(38, 36);
         startIcon.iconAnchor = new GPoint(14, 30);
@@ -274,7 +274,7 @@ TNT.find = {
 
         // Create our "tiny" marker icon
         var startFromIcon = new GIcon(G_DEFAULT_ICON);
-        startFromIcon.image = "/media/images/map/trip-start.png";
+        startFromIcon.image = "/assets/legacy/map/trip-start.png";
         startFromIcon.iconSize = new GSize(26, 26);
         startFromIcon.shadowSize = new GSize(0, 0);
         startFromIcon.iconAnchor = new GPoint(10, 26);
@@ -324,8 +324,8 @@ TNT.find = {
         },
         /* second set of options is for everything else */
         {
-            sButtonHTML: "<img src='/media/images/zoom-button.gif' />",
-            sButtonZoomingHTML: "<img src='/media/images/zoom-button-activated.gif' />",
+            sButtonHTML: "<img src='/assets/legacy/zoom-button.gif' />",
+            sButtonZoomingHTML: "<img src='/assets/legacy/zoom-button-activated.gif' />",
             oButtonStartingStyle: {
                 width: '24px',
                 height: '24px'
@@ -345,7 +345,7 @@ TNT.find = {
         GEvent.bind(this.map, "dblclick", this, this.saveMap);
         GEvent.bind(this.map, "zoomend", this, this.saveMap);
         this.geocoder = new GClientGeocoder();
-        
+
         loadKeyFromSession('map.zoom',function(data){
           if( data.match(/NOT_FOUND/) == null && !TNT.find.park_page ){
             var newZoom = Number(data);
@@ -354,12 +354,12 @@ TNT.find = {
         })
     },
 
-    chooseStart: function(starting_lat,starting_lng) {        
+    chooseStart: function(starting_lat,starting_lng) {
         // If there is a start location saved in the session then use it
         if(typeof(starting_lat) != 'undefined' && typeof(starting_lng) != 'undefined'){
           TNT.find.startLatLng = new GLatLng(starting_lat, starting_lng);
           TNT.find.getStartReverseGeocode(TNT.find.startLatLng);
-          TNT.find.showLatLng(TNT.find.startLatLng);            
+          TNT.find.showLatLng(TNT.find.startLatLng);
         } else {
             loadLocationFromSession(
               function(data) {
@@ -439,7 +439,7 @@ TNT.find = {
             var newMarker = this.createTripMarker(tripId, tripTitle, latlng);
             newHtml = newHtml + '<li class="trail-type-trip">' +
     					'<h2 id="h2_'+ tripId + '" class="details-link" rel="'+ tripId +'">'+ tripTitle + '</h2>' +
-    					'<p><a href="/trips/' + tripId + '" >Details</a> | <a href="/plan/trip/' + tripId + 
+    					'<p><a href="/trips/' + tripId + '" >Details</a> | <a href="/plan/trip/' + tripId +
     					'">Plan</a></p></li>';
             this.currentTrips[tripId] = newMarker;
         }
@@ -451,7 +451,7 @@ TNT.find = {
                 tripsArray.push(value);
             }
         });
-        
+
         this.tripMarkerManager.addMarkers(tripsArray, 0);
         this.tripMarkerManager.refresh();
 
@@ -491,7 +491,7 @@ TNT.find = {
     createTrailheadMarker: function(pointId, pointTitle, latlng) {
         var that = this;
         var tinyIcon = new GIcon();
-        tinyIcon.image = "/media/images/map/pin_s_trailhead.png";
+        tinyIcon.image = "/assets/legacy/map/pin_s_trailhead.png";
         tinyIcon.iconSize = new GSize(34, 36);
         tinyIcon.shadowSize = new GSize(38, 36);
         tinyIcon.iconAnchor = new GPoint(14, 30);
@@ -543,7 +543,7 @@ TNT.find = {
             that.currentTrailheads[pointId] = newMarker;
             if (that.showTrailheads) {
                 that.trailheadMarkerManager.addMarker(newMarker, 0);
-            }    				
+            }
         });
 
         that.trailheadMarkerManager.refresh();
@@ -559,12 +559,12 @@ TNT.find = {
             var newMarker = this.createTrailheadMarker(pointId, trailhead.pointTitle, trailhead.latlng);
             newHtml = newHtml + '<li class="trail-type-trailhead">' +
     					'<h2 id="h2_'+ pointId + '" class="details-link" rel="'+ pointId +'">'+ trailhead.pointTitle + '</h2>' +
-    					'<p><a href="/trailheads/' + pointId + '" >Details</a> | <a href="/plan/trailhead/' + pointId + 
+    					'<p><a href="/trailheads/' + pointId + '" >Details</a> | <a href="/plan/trailhead/' + pointId +
     					'">Plan</a></p></li>';
             this.currentTrailheads[pointId] = newMarker;
         }
         $("#trail-list > ul").append(newHtml);
-        
+
         this.trailheadMarkerManager.clearMarkers();
         if (this.showTrailheads) {
             var trailheadsArray = [];
@@ -581,7 +581,7 @@ TNT.find = {
     createCampgroundMarker: function(pointId, pointTitle, latlng) {
         var that = this;
         var tinyIcon = new GIcon();
-        tinyIcon.image = "/media/images/map/pin_s_campground.png";
+        tinyIcon.image = "/assets/legacy/map/pin_s_campground.png";
         tinyIcon.iconSize = new GSize(34, 36);
         tinyIcon.shadowSize = new GSize(38, 36);
         tinyIcon.iconAnchor = new GPoint(14, 30);
@@ -606,7 +606,7 @@ TNT.find = {
     createTripMarker: function(tripId, tripTitle, latlng) {
         var that = this;
         var tinyIcon = new GIcon();
-        tinyIcon.image = "/media/images/map/pin_s_tripstart.png";
+        tinyIcon.image = "/assets/legacy/map/pin_s_tripstart.png";
         tinyIcon.iconSize = new GSize(34, 36);
         tinyIcon.shadowSize = new GSize(38, 36);
         tinyIcon.iconAnchor = new GPoint(14, 30);
@@ -709,7 +709,7 @@ TNT.find = {
         function() {
             $('#trail-list ul').jScrollPane();
             updateObjectDisplay();
-            
+
         });
         saveLocationToSession($("#address").val());
         TNT.find.saveMap();
@@ -735,7 +735,7 @@ TNT.find = {
             self.trailheadMarkerManager.clearMarkers();
             self.trailheadMarkerManager.refresh();
             $(".trail-type-trailhead").slideUp(200);
-        }        
+        }
     },
 
     toggleCampgrounds: function(checked) {
@@ -781,35 +781,35 @@ TNT.find = {
     },
 
     highlightTripMarker: function(index) {
-        this.currentTrips[index].setImage('/media/images/map/pin_s_tripstart_active.png');
+        this.currentTrips[index].setImage('/assets/legacy/map/pin_s_tripstart_active.png');
 
     },
 
     unhighlightTripMarker: function(index) {
-        this.currentTrips[index].setImage('/media/images/map/pin_s_tripstart.png');
+        this.currentTrips[index].setImage('/assets/legacy/map/pin_s_tripstart.png');
     },
 
     highlightTrailheadMarker: function(id) {
         var marker = this.currentTrailheads[id];
-        marker.setImage('/media/images/map/pin_s_trailhead_active.png');
+        marker.setImage('/assets/legacy/map/pin_s_trailhead_active.png');
     },
 
     unhighlightTrailheadMarker: function(id) {
-        this.currentTrailheads[id].setImage('/media/images/map/pin_s_trailhead.png');
+        this.currentTrailheads[id].setImage('/assets/legacy/map/pin_s_trailhead.png');
     },
 
     highlightCampgroundMarker: function(index) {
         var marker = this.currentCampgrounds[index];
-        marker.setImage('/media/images/map/pin_s_campground_active.png');
+        marker.setImage('/assets/legacy/map/pin_s_campground_active.png');
     },
 
     unhighlightCampgroundMarker: function(index) {
-        this.currentCampgrounds[index].setImage('/media/images/map/pin_s_campground.png');
+        this.currentCampgrounds[index].setImage('/assets/legacy/map/pin_s_campground.png');
     },
 
     showTrailheadInfoWindow: function(id) {
         var that = this;
-        var url = '/trailheads/info?id=' + id;
+        var url = '/trailheads/' + id + '/info_window';
         GDownloadUrl(url,
         function(data) {
             that.currentTrailheads[id].openInfoWindowHtml(data);
@@ -831,7 +831,7 @@ TNT.find = {
 
     showTripInfoWindow: function(id) {
         var that = this;
-        var url = '/trips/getinfowindow?id=' + id;
+        var url = '/trips/' + id + '/info_window';
         GDownloadUrl(url,
         function(data) {
             that.currentTrips[id].openInfoWindowHtml(data);

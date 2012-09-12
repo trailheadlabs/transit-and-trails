@@ -37,6 +37,9 @@ Transitandtrails::Application.routes.draw do
       get 'near_address'
       get 'near_coordinates'
     end
+    member do
+      get 'info_window'
+    end
   end
 
   resources :campgrounds do
@@ -46,6 +49,9 @@ Transitandtrails::Application.routes.draw do
     collection do
       get 'near_address'
       get 'near_coordinates'
+    end
+    member do
+      get 'info_window'
     end
   end
 
@@ -57,7 +63,12 @@ Transitandtrails::Application.routes.draw do
       get 'near_address'
       get 'near_coordinates'
     end
+    member do
+      get 'info_window'
+    end
   end
+
+  match 'parks(/:slug(/:county_slug))' => "parks#show"
 
   resources :parks do
     resources :maps, :only => [:index]

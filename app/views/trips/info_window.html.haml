@@ -1,0 +1,53 @@
+.trailhead-info-window{:style => "padding-bottom: 10px; max-width:400px;"}
+  %table
+    %tr
+      %td
+        .trailhead-info-window-title #{ @trip.name }
+    %tr
+      %td
+        %div{:style => "display:inline;float:left;padding:10px"}
+          %b Duration
+          %br/
+          #{ @trip.duration.name }
+        %div{:style => "display:inline;float:left;padding:10px"}
+          %b
+            Intensity
+            %br/
+          #{ @trip.intensity.name }
+        %div{:style => "display:inline;float:left;padding:10px"}
+          %b
+            Length
+            %br/
+          #{ @trip.length_miles.round(2) } miles
+    %tr
+      %td
+        %b Start
+        \:
+        #{ @trip.starting_trailhead.name }
+    %tr
+      %td
+        %b End
+        \:
+        #{ @trip.ending_trailhead.name }
+    - if @trip.description
+      %tr
+        %td{:width => "400"}
+          %p
+            %b Description
+            %p
+              != truncate_html(@trip.description, :length=> 60,  :omission => '...')
+
+  %p
+    .trailhead-info-window-buttons
+      %a.trailhead-info-window-button{:href => "/trips/#{ @trip.id }"} More Info
+      %a.trailhead-info-window-button{:href => "/plan/#{ @trip.id }/"} Plan a Trip Here
+  - if can? :delete, @trip
+    %p
+      %b Actions
+      %ul
+        %li
+          %a{:href => "#{edit_trip_path(@trip)}"} Edit Trip
+        %li
+          = link_to("Delete Trip", @trip, :method => :delete, :confirm => "Are you sure?")
+
+

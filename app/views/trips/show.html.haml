@@ -20,7 +20,7 @@
 / end lightboxed images
 
 %script
-  trip_route = #{@trip.route};
+  trip_route = #{@trip.geometry_as_route};
 
 / Hidden form fields
 %input#id_route{:type => "hidden", :value => ""}/

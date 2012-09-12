@@ -3,8 +3,9 @@ class ApplicationController < ActionController::Base
   before_filter :store_location
 
   def index
-    @trailheads = Trailhead.approved.near("5692 Cabot Drive, Oakland CA").limit(10)
-    @location = request.location
+    @latest_photos = Photo.order('id desc').limit(6)
+    @featuredtab = FeaturedTab.last
+    @recentactivity = RecentActivity.last
   end
 
   def authenticate_admin!
@@ -31,7 +32,7 @@ class ApplicationController < ActionController::Base
 
   def savekv
     session[params[:key]] = params[:value]
-    render :ok
+    render :nothing => true
   end
 
   def store_location
@@ -53,4 +54,7 @@ class ApplicationController < ActionController::Base
     stored_location_for(resource) || root_path
   end
 
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
+  end
 end

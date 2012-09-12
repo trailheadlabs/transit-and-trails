@@ -26,10 +26,14 @@ class Park < ActiveRecord::Base
       :min_latitude => self.min_latitude, :min_longitude => self.min_longitude, :max_latitude => self.max_latitude,
         :max_longitude => self.max_longitude )
 
-    trailheads.select do |t|
+    trailheads.select! do |t|
       self.contains_trailhead? t
     end
     return trailheads
+  end
+
+  def campgrounds
+    campgrounds_in_bounds
   end
 
   def campgrounds_in_bounds
@@ -37,22 +41,28 @@ class Park < ActiveRecord::Base
       :min_latitude => self.min_latitude, :min_longitude => self.min_longitude, :max_latitude => self.max_latitude,
         :max_longitude => self.max_longitude )
 
-    campgrounds.select do |t|
+    campgrounds.select! do |t|
       self.contains_trailhead? t
     end
     return campgrounds
   end
 
   def trips
-    trips_starting_in_bounds + trips_ending_in_bounds
+    trailheads.collect{|t| t.trips_starting_at + t.trips_ending_at }.flatten
   end
 
   def trips_starting_in_bounds
-    Trip.where(:starting_trailhead_id => trailheads_in_bounds)
+    trips = Trip.where(:starting_trailhead_id => trailheads_in_bounds)
+    trips.select! do |t|
+      self.contains_trailhead? t.starting_trailhead
+    end
   end
 
   def trips_ending_in_bounds
     Trip.where(:ending_trailhead_id => trailheads_in_bounds)
+    trips.select! do |t|
+      self.contains_trailhead? t.ending_trailhead
+    end
   end
 
   def bounds_as_array
@@ -80,8 +90,54 @@ class Park < ActiveRecord::Base
     polys.each do |p|
       if contains_point?(p,[trailhead.longitude,trailhead.latitude])
         result = true
+        break
       end
     end
+    return result
+  end
+
+  def intersects_trip?(trip)
+    result = false
+    4.downto(4).each do |step|
+      if result
+        break
+      end
+      # puts "step = #{step}"
+      trip.bounds_as_array.each_with_index do |point,index|
+        if result
+          break
+        end
+        if index % step == 0
+          # puts "index = #{index}"
+          if contains_coordinate?(point[1],point[0])
+            result = true
+            # puts "FOUND!"
+            break
+          end
+        end
+      end
+    end
+    return result
+  end
+
+  def contains_coordinate?(latitude, longitude)
+    result = false
+    polys.each do |p|
+      if polygon_bounds_point?(p,[longitude,latitude]) && contains_point?(p,[longitude,latitude])
+        result = true
+      end
+    end
+    return result
+  end
+
+  def polygon_bounds_point?(polygon,point)
+    lats = polygon.collect{|p|p[1]}.sort
+    @min_lat ||= lats[0]
+    @max_lat ||= lats[-1]
+    longs = polygon.collect{|p|p[0]}.sort
+    @min_long = longs[0]
+    @max_long = longs[-1]
+    (point[0] > @min_long && point[0] < @max_long) && (point[1] > @min_lat && point[0] < @max_lat)
   end
 
   def contains_point?(polygon, point)

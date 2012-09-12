@@ -1,5 +1,5 @@
 class TripsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index,:show]
+  before_filter :authenticate_user!, :except => [:index,:show,:info_window]
   # GET /trips
   # GET /trips.json
   def index
@@ -18,6 +18,15 @@ class TripsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
+      format.json { render json: @trip }
+    end
+  end
+
+  def info_window
+    @trip = Trip.find(params[:id])
+
+    respond_to do |format|
+      format.html { render :layout => false } # show.html.erb
       format.json { render json: @trip }
     end
   end

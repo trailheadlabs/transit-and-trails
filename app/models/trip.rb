@@ -11,8 +11,73 @@ class Trip < ActiveRecord::Base
 
   attr_accessible :description, :ending_trailhead_id, :name, :route, :starting_trailhead_id
 
+  before_save :update_bounds_min_max
+  after_save :refind_parks
+
+  def parks
+    @parks || find_parks
+  end
+
+  def refind_parks
+    Rails.cache.delete("trip:#{id}:park_ids")
+    find_parks
+  end
+
+  def find_parks
+    cached_ids = Rails.cache.read("trip:#{id}:park_ids")
+    if(cached_ids)
+      @parks = Park.where(:id=>cached_ids)
+    else
+      # is left = min_longitude < park.max_longitude
+      # is right = max_longitude > park.min_longitude
+      # is above = max_latiude > park.min_latitude
+      # is below = min_latitude < park.max_latitude
+      @parks = Park.where("max_longitude > :min_longitude AND min_longitude < :max_longitude" +
+        " AND min_latitude < :max_latitude AND max_latitude > :min_latitude",
+        {:min_longitude => min_longitude, :max_longitude => max_longitude, :min_latitude=>min_latitude, :max_latitude => max_latitude})
+      @parks.select! do |p|
+        p.intersects_trip? self
+      end
+      Rails.cache.write("trip:#{id}:park_ids",@parks.collect{|p| p.id})
+    end
+    return @parks
+  end
+
+  def geometry_as_route
+    result = "["
+
+    result += bounds_as_array.collect {|coord| "[#{coord[1]},#{coord[0]}]"}.join(",")
+
+    result += "]"
+  end
+
+  def bounds_as_array
+    self.geometry.gsub(/[A-Za-z]|\(|\)/,"").strip.split(',').collect{|c| c.split(" ").collect{|d| Float(d)}}
+  end
+
+  def update_bounds_min_max
+    if !geometry.blank? && (self.geometry_changed? || min_longitude.nil?)
+      sides = sides_of_bounds
+      self.min_longitude = sides[0]
+      self.max_longitude = sides[1]
+      self.min_latitude = sides[2]
+      self.max_latitude = sides[3]
+    end
+  end
+
+  def sides_of_bounds
+    b_a = bounds_as_array
+    longs = b_a.collect{|c| c[0]}.sort
+    lats = b_a.collect{|c| c[1]}.sort
+    min_long = longs[0]
+    max_long = longs[-1]
+    min_lat = lats[0]
+    max_lat = lats[-1]
+    [min_long,max_long,min_lat,max_lat]
+  end
+
   def length_miles
-    if geometry.nil?
+    if route.nil?
       return 0.0
     else
       factory = ::RGeo::Geographic.spherical_factory()
