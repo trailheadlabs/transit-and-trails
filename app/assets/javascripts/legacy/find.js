@@ -13,63 +13,63 @@ $(function() {
 
     $('.trail-type-trailhead .details-link').live('click',
     function(event) {
-        id = new Number($(event.target).attr('rel'));
+        id = parseInt($(event.target).attr('rel'));
         TNT.find.showTrailhead(id)
         event.preventDefault();
     });
 
     $('.trail-type-trailhead .details-link').live('mouseenter',
     function(event) {
-        id = new Number($(event.target).attr('rel'));
+        id = parseInt($(event.target).attr('rel'));
         TNT.find.highlightTrailheadMarker(id)
         event.preventDefault();
     });
 
     $('.trail-type-trailhead .details-link').live('mouseleave',
     function(event) {
-        id = new Number($(event.target).attr('rel'));
+        id = parseInt($(event.target).attr('rel'));
         TNT.find.unhighlightTrailheadMarker(id)
         event.preventDefault();
     });
 
     $('.trail-type-trip .details-link').live('mouseenter',
     function(event) {
-        id = new Number($(event.target).attr('rel'));
+        id = parseInt($(event.target).attr('rel'));
         TNT.find.highlightTripMarker(id)
         event.preventDefault();
     });
 
     $('.trail-type-trip .details-link').live('mouseleave',
     function(event) {
-        id = new Number($(event.target).attr('rel'));
+        id = parseInt($(event.target).attr('rel'));
         TNT.find.unhighlightTripMarker(id)
         event.preventDefault();
     });
 
     $('.trail-type-campground .details-link').live('mouseenter',
     function(event) {
-        id = new Number($(event.target).attr('rel'));
+        id = parseInt($(event.target).attr('rel'));
         TNT.find.highlightCampgroundMarker(id)
         event.preventDefault();
     });
 
     $('.trail-type-campground .details-link').live('mouseleave',
     function(event) {
-        id = new Number($(event.target).attr('rel'));
+        id = parseInt($(event.target).attr('rel'));
         TNT.find.unhighlightCampgroundMarker(id)
         event.preventDefault();
     });
 
     $('.trail-type-trip .details-link').live('click',
     function(event) {
-        id = new Number($(event.target).attr('rel'));
+        id = parseInt($(event.target).attr('rel'));
         TNT.find.showTrip(id)
         event.preventDefault();
     });
 
     $('.trail-type-campground .details-link').live('click',
     function(event) {
-        id = new Number($(event.target).attr('rel'));
+        id = parseInt($(event.target).attr('rel'));
         TNT.find.showCampground(id)
         event.preventDefault();
     });
@@ -477,8 +477,7 @@ TNT.find = {
                 var latlng = new GLatLng(parseFloat(markers[i]["latitude"]), parseFloat(markers[i]["longitude"]));
                 var distance = new Number(markers[i]["distance"]).toPrecision(2);
                 var pointTitle = markers[i]["name"];
-                var pointId = new Number(markers[i]["id"]);
-                var pointIndex = new Number(i);
+                var pointId = parseInt(markers[i]["id"]);
                 var newMarker = that.createCampgroundMarker(pointId, pointTitle, latlng);
                 that.currentCampgrounds[pointId] = newMarker;
                 if (that.showCampgrounds) {
@@ -539,7 +538,6 @@ TNT.find = {
             var distance = new Number(item["distance"]).toPrecision(2);
             var pointTitle = item["name"];
             var pointId = new Number(item["id"]);
-            var pointIndex = new Number(index);
             var newMarker = that.createTrailheadMarker(pointId, pointTitle, latlng);
             that.currentTrailheads[pointId] = newMarker;
             if (that.showTrailheads) {
@@ -556,7 +554,6 @@ TNT.find = {
         for (var i = 0; i < inlineData.length; i++) {
             var trailhead = inlineData[i];
             var pointId = trailhead.pointId;
-            var pointIndex = new Number(i);
             var newMarker = this.createTrailheadMarker(pointId, trailhead.pointTitle, trailhead.latlng);
             newHtml = newHtml + '<li class="trail-type-trailhead">' +
     					'<h2 id="h2_'+ pointId + '" class="details-link" rel="'+ pointId +'">'+ trailhead.pointTitle + '</h2>' +

@@ -79,7 +79,7 @@ class ApplicationController < ActionController::Base
       t
     end
     @allpoints = @trailheads + @campgrounds + @trips
-    @allpoints.sort! { |a,b| a.distance <=> b.distance }
+    @allpoints.sort! { |a,b| Float(a.distance) <=> Float(b.distance) }
     render :layout => false
   end
 end
