@@ -56,13 +56,15 @@ class Park < ActiveRecord::Base
     trips.select! do |t|
       self.contains_trailhead? t.starting_trailhead
     end
+    return trips
   end
 
   def trips_ending_in_bounds
-    Trip.where(:ending_trailhead_id => trailheads_in_bounds)
+    trips = Trip.where(:ending_trailhead_id => trailheads_in_bounds)
     trips.select! do |t|
       self.contains_trailhead? t.ending_trailhead
     end
+    return trips
   end
 
   def bounds_as_array

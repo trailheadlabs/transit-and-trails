@@ -25,7 +25,8 @@ gem 'yajl-ruby'
 gem 'flickraw-cached'
 gem 'geocoder'
 # gem 'ffi-geos'
-gem 'rgeo', :git => "git://github.com/TransitAndTrails/rgeo.git"
+# gem 'rgeo', :git => "git://github.com/TransitAndTrails/rgeo.git"
+gem 'rgeo'
 gem 'paper_trail', '~> 2'
 gem 'jquery-rails'
 gem 'bourbon'

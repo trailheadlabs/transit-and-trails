@@ -8,10 +8,22 @@ describe Park do
     park.trailheads.first.should eq trailhead
   end
 
+  it "returns if a trails is contained in it's bounds" do
+    park = FactoryGirl.create(:park)
+    trailhead = FactoryGirl.create(:trailhead)
+    park.contains_trailhead?(trailhead).should be true
+    park.trailheads_in_bounds.should include trailhead
+  end
+
   it "returns trips starting in bounds" do
     park = FactoryGirl.create(:park)
     trailhead = FactoryGirl.create(:trailhead)
     trip = FactoryGirl.create(:trip,:starting_trailhead_id=>trailhead.id)
+    park.contains_trailhead?(trailhead).should be true
+    park.trailheads_in_bounds.should include trailhead
+    trip.starting_trailhead_id.should eq trailhead.id
+    park.trips_starting_in_bounds.should_not be_nil
+    trip.starting_trailhead_id.should eq trailhead.id
     park.trips_starting_in_bounds.first.should eq trip
   end
 

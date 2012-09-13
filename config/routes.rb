@@ -92,7 +92,7 @@ Transitandtrails::Application.routes.draw do
 
   devise_for :users
 
-  root :to => "application#index"
+  root :to => "application#find"
 
   match 'objects/near/html' => 'application#objects_near'
   match 'find' => "application#index"

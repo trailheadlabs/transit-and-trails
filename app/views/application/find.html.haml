@@ -10,25 +10,26 @@
   %script{:src => "http://gmaps-utility-library.googlecode.com/svn/trunk/markermanager/release/src/markermanager.js"}
   %script{:src => "/assets/legacy/gzoom.js", :type => "text/javascript"}
 
-%form#show{:action => "", :method => "post"}
-  %p
-    %label Show
-    #object-select
-      #object-select-label trips, trailheads, and campgrounds
-      #expand-button v
-      #object-select-box
-        %input#show-trips-checkbox{:checked => "checked", :type => "checkbox"} trips
-        %br/
-        %input#show-trailheads-checkbox{:checked => "checked", :type => "checkbox"} trailheads
-        %br/
-        %input#show-campgrounds-checkbox{:checked => "checked", :type => "checkbox"} campgrounds
-        %br/
-    %label within
-    %input#radius.text.ofmiles{:name => "radius", :type => "text", :value => "10"}/
-    %label miles of
-    %input#address.text.ofplace{:name => "address", :type => "text", :value => "San Francisco, CA"}/
-    %input.submit{:type => "submit", :value => "Find"}/
-/ e: show
+.location-form
+  %form#show{:action => "", :method => "post"}
+    %p
+      %label Show
+      #object-select
+        #object-select-label trips, trailheads, and campgrounds
+        #expand-button v
+        #object-select-box
+          %input#show-trips-checkbox{:checked => "checked", :type => "checkbox"} trips
+          %br/
+          %input#show-trailheads-checkbox{:checked => "checked", :type => "checkbox"} trailheads
+          %br/
+          %input#show-campgrounds-checkbox{:checked => "checked", :type => "checkbox"} campgrounds
+          %br/
+      %label within
+      %input#radius.text.ofmiles{:name => "radius", :type => "text", :value => "10"}/
+      %label miles of
+      %input#address.text.ofplace{:name => "address", :type => "text", :value => "San Francisco, CA"}/
+      %input.submit{:type => "submit", :value => "Find"}/
+  / e: show
 #trails
   #the-trails
     #find-map
@@ -136,7 +137,7 @@
   / e: account
   #activity
     %ul.tabs
-      - if @recentactivity.highlighted
+      - if @recentactivity && @recentactivity.highlighted
         %li.active
           %a.active(href="#" rel="recent")
             Recent Activity
@@ -144,7 +145,7 @@
         %li
           %a(href="#" rel="recent")
             Recent Activity
-      - if @featuredtab.highlighted
+      - if @featuredtab && @featuredtab.highlighted
         %li.active
           %a#featured-tab.active(href="#" rel="featured")
             Featured
@@ -154,7 +155,7 @@
             Featured
 
     .front-box
-      - style = @featuredtab.highlighted ? "display:none;" : ""
+      - style = @featuredtab && @featuredtab.highlighted ? "display:none;" : ""
       .tab-box#recent(style="#{style}")
         %ul.recent
           - @latest_photos.each do |photo|
@@ -167,74 +168,76 @@
             <li><a href="#"><img src="/assets/legacy/recent.png" alt="" /></a></li>
             <li><a href="#"><img src="/assets/legacy/recent.png" alt="" /></a></li>
             <li><a href="#"><img src="/assets/legacy/recent.png" alt="" /></a></li>
-        .recent-comments
-          %h3 Recent News
-          %blockquote
+        - if @recentactivity
+          .recent-comments
+            %h3 Recent News
+            %blockquote
+              %p
+                != @recentactivity && @recentactivity.recent_news_text
             %p
-              != @recentactivity.recent_news_text
-          %p
-            %cite
-              %a{:href => "/about"} Transit & Trails Team
-        / e: recent
-        .new-items
-          %h3 Some of Our Favorites
-          %ul
-            - if @recentactivity.favorites_link1
-              %li{:class => "#{ @recentactivity.favorites_type1 }"}
-                %a{:href => "#{ @recentactivity.favorites_link1 }"} #{ @recentactivity.favorites_link1_text }
-            - if @recentactivity.favorites_link2
-              %li{:class => "#{ @recentactivity.favorites_type2 }"}
-                %a{:href => "#{ @recentactivity.favorites_link2 }"} #{ @recentactivity.favorites_link2_text }
-            - if @recentactivity.favorites_link3
-              %li{:class => "#{ @recentactivity.favorites_type3 }"}
-                %a{:href => "#{ @recentactivity.favorites_link3 }"} #{ @recentactivity.favorites_link3_text }
-            - if @recentactivity.favorites_link4
-              %li{:class => "#{ @recentactivity.favorites_type4 }"}
-                %a{:href => "#{ @recentactivity.favorites_link4 }"} #{ @recentactivity.favorites_link4_text }
-            - if @recentactivity.favorites_link5
-              %li{:class => "#{ @recentactivity.favorites_type5 }"}
-                %a{:href => "#{ @recentactivity.favorites_link5 }"} #{ @recentactivity.favorites_link5_text }
+              %cite
+                %a{:href => "/about"} Transit & Trails Team
+          / e: recent
+          .new-items
+            %h3 Some of Our Favorites
+            %ul
+              - if @recentactivity.favorites_link1
+                %li{:class => "#{ @recentactivity.favorites_type1 }"}
+                  %a{:href => "#{ @recentactivity.favorites_link1 }"} #{ @recentactivity.favorites_link1_text }
+              - if @recentactivity.favorites_link2
+                %li{:class => "#{ @recentactivity.favorites_type2 }"}
+                  %a{:href => "#{ @recentactivity.favorites_link2 }"} #{ @recentactivity.favorites_link2_text }
+              - if @recentactivity.favorites_link3
+                %li{:class => "#{ @recentactivity.favorites_type3 }"}
+                  %a{:href => "#{ @recentactivity.favorites_link3 }"} #{ @recentactivity.favorites_link3_text }
+              - if @recentactivity.favorites_link4
+                %li{:class => "#{ @recentactivity.favorites_type4 }"}
+                  %a{:href => "#{ @recentactivity.favorites_link4 }"} #{ @recentactivity.favorites_link4_text }
+              - if @recentactivity.favorites_link5
+                %li{:class => "#{ @recentactivity.favorites_type5 }"}
+                  %a{:href => "#{ @recentactivity.favorites_link5 }"} #{ @recentactivity.favorites_link5_text }
 
-      - style = @featuredtab.highlighted ? "display:block;" : "display:none;"
+      - style = @featuredtab && @featuredtab.highlighted ? "display:block;" : "display:none;"
       .tab-box#featured(style="#{style}")
         #featured-content
-          #featured-content-title
-            #{ @featuredtab.header }
-          - if @featuredtab.image
-            %a{:href => "#{ @featuredtab.image_link }", :target => "_blank"}
-              %img#featured-content-image{:src => "#{ @featuredtab.image }"}/
-          #featured-content-text
-            - if @featuredtab.text1
+          -if @featuredtab
+            #featured-content-title
+              #{ @featuredtab.header }
+            - if @featuredtab.image
+              %a{:href => "#{ @featuredtab.image_link }", :target => "_blank"}
+                %img#featured-content-image{:src => "#{ @featuredtab.image }"}/
+            #featured-content-text
+              - if @featuredtab.text1
+                %p
+                  =h @featuredtab.text1
+                %br/
+              - if @featuredtab.text2
+                %p
+                  =h @featuredtab.text2
+                %br/
+              - if @featuredtab.text3
+                %p
+                  =h @featuredtab.text3
+                %br/
               %p
-                =h @featuredtab.text1
-              %br/
-            - if @featuredtab.text2
-              %p
-                =h @featuredtab.text2
-              %br/
-            - if @featuredtab.text3
-              %p
-                =h @featuredtab.text3
-              %br/
-            %p
-              - if @featuredtab.link1
-                Here are some follow-up links:
-                %a{:href => "#{ @featuredtab.link1 }", :target => "_blank"} #{ @featuredtab.link1_text }
+                - if @featuredtab.link1
+                  Here are some follow-up links:
+                  %a{:href => "#{ @featuredtab.link1 }", :target => "_blank"} #{ @featuredtab.link1_text }
 
-              - if @featuredtab.link2
-                \-
-                %a{:href => "#{ @featuredtab.link2 }", :target => "_blank"} #{ @featuredtab.link2_text }
-              - if @featuredtab.link3
-                \-
-                %a{:href => "#{ @featuredtab.link3 }", :target => "_blank"} #{ @featuredtab.link3_text }
-              - if @featuredtab.link4
-                \-
-                %a{:href => "#{ @featuredtab.link4 }", :target => "_blank"} #{ @featuredtab.link4_text }
-              - if @featuredtab.link5
-                \-
-                %a{:href => "#{ @featuredtab.link5 }", :target => "_blank"} #{ @featuredtab.link5_text }
-          / e: featured-content-text
-        / e: featured-content
+                - if @featuredtab.link2
+                  \-
+                  %a{:href => "#{ @featuredtab.link2 }", :target => "_blank"} #{ @featuredtab.link2_text }
+                - if @featuredtab.link3
+                  \-
+                  %a{:href => "#{ @featuredtab.link3 }", :target => "_blank"} #{ @featuredtab.link3_text }
+                - if @featuredtab.link4
+                  \-
+                  %a{:href => "#{ @featuredtab.link4 }", :target => "_blank"} #{ @featuredtab.link4_text }
+                - if @featuredtab.link5
+                  \-
+                  %a{:href => "#{ @featuredtab.link5 }", :target => "_blank"} #{ @featuredtab.link5_text }
+            / e: featured-content-text
+          / e: featured-content
   %div
 / e: front-box
 / e: activity

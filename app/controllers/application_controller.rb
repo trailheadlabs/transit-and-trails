@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :store_location
 
-  def index
+  def find
     @latest_photos = Photo.order('id desc').limit(6)
     @featuredtab = FeaturedTab.last
     @recentactivity = RecentActivity.last
