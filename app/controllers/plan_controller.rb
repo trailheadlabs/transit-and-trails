@@ -10,13 +10,13 @@ class PlanController < ApplicationController
   end
 
   def campground
-    @trip = Trip.find(params[:campground_id])
+    @campground = Campground.find(params[:campground_id])
     render "plan"
   end
 
   def coordinates
-    @latitude = Trip.find(params[:latitude])
-    @longitude = Trip.find(params[:longitude])
+    @latitude = params[:latitude]
+    @longitude = params[:longitude]
     render "plan"
   end
 

@@ -476,7 +476,7 @@ TNT.plan = {
 
 		loadTripIntoPlan: function(id) {
 		  var self = this;
-  		url = "/trips/" + id + "/json/";
+  		url = "/trips/" + id + ".json/";
   		GDownloadUrl(url, function(data) {
   			self.trip = $.parseJSON(data);
   			$('#name-title').text(self.trip.name);
@@ -488,8 +488,8 @@ TNT.plan = {
   					parseFloat(self.trip.end_lat), parseFloat(self.trip.end_lng)));
   			self.loadJSONRoute(self.trip.route);
   			self.centerOnTrip();
-  			self.loadStartTrailheadRouters(self.trip.start_id);
-  			self.loadEndTrailheadRouters(self.trip.end_id);
+  			self.loadStartTrailheadRouters(self.trip.starting_trailhead_id);
+  			self.loadEndTrailheadRouters(self.trip.ending_trailhead_id);
   			self.tripStartMarker.show();
   			self.tripEndMarker.show();
   		});

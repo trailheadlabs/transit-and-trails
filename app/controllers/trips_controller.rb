@@ -34,7 +34,13 @@ class TripsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @trip }
+      format.json do
+        @trip['start_lat'] = @trip.starting_trailhead.latitude
+        @trip['start_lng'] = @trip.starting_trailhead.longitude
+        @trip['end_lat'] = @trip.ending_trailhead.latitude
+        @trip['end_lng'] = @trip.ending_trailhead.longitude
+       render json: @trip
+      end
     end
   end
 
