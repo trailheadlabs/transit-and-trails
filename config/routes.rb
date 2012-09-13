@@ -65,6 +65,7 @@ Transitandtrails::Application.routes.draw do
     end
     member do
       get 'info_window'
+      get 'transit_routers'
     end
   end
 
@@ -104,6 +105,10 @@ Transitandtrails::Application.routes.draw do
 
   match 'session/loadkv' => "application#loadkv"
   match 'session/savekv' => "application#savekv"
+
+  match 'plan/trailhead/:trailhead_id' => "plan#trailhead"
+  match 'plan/trip/:trip_id' => "plan#trip"
+  match 'plan/campground/:campground_id' => "plan#campground"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

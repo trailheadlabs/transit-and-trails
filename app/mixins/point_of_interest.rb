@@ -33,7 +33,7 @@ module PointOfInterest
   end
 
   def transit_routers
-    TransitRouter.where(:id=>transit_agencies.collect{|c|c.id})
+    transit_agencies.collect{|c|c.transit_routers}.uniq.select{|c|!c.empty?}.flatten
   end
 
   def default_park

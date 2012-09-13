@@ -33,13 +33,13 @@
   #the-trails
     #find-map
     - if can? :create, :trip
-      %a#add-trips.map-add-trip-button{:href => "/trips/create"}
+      %a#add-trips.map-add-trip-button{:href => "#{new_trip_path}"}
         %span.big-plus +
         %span.add-trip-text Add Trip
-    %a#add-campgrounds.map-add-campground-button{:href => "/campgrounds/create"}
+    %a#add-campgrounds.map-add-campground-button{:href => "#{new_campground_path}"}
       %span.big-plus +
       %span.add-trip-text Add Campground
-    %a#add-trails{:href => "/trailheads/create"} Add Trailhead
+    %a#add-trails{:href => "#{new_trailhead_path}"} Add Trailhead
   / e: trails map
   #trail-list
     .trail-list-progress

@@ -1,0 +1,125 @@
+- content_for :head do
+  %meta{:content => "Transit & Trails : ", :property => "og:title"}/
+  %script{:src => "http://www.google.com/jsapi?key=ABQIAAAAO7OoKKBX03U3SrObYGQy0xTR3gcj-N9Qq4sdgfDbE45YeC9R7BTliGpItl3amRLTjNsmtJj-_SOQkw", :type => "text/javascript"}
+  %script
+    google.load("maps", "2.x");
+  %script{:src => "http://gmaps-utility-library.googlecode.com/svn/trunk/markermanager/release/src/markermanager.js"}
+  %script{:src => "/assets/legacy/gzoom.js", :type => "text/javascript"}
+  = stylesheet_link_tag "legacy/reset"
+  = stylesheet_link_tag "legacy/common"
+  = stylesheet_link_tag "legacy/style"
+  = stylesheet_link_tag "legacy/plan"
+  %link{:href => "/assets/legacy/jquery/css/ui-lightness/jquery-ui-1.7.2.custom.css", :rel => "stylesheet", :type => "text/css"}
+  %script{:src => "/assets/legacy/jquery/js/jquery-ui-1.7.2.custom.min.js", :type => "text/javascript"}
+
+%input#trip_start_lat{:name => "trip_start_lat", :type => "hidden"}/
+%input#trip_start_lng{:name => "trip_start_lng", :type => "hidden"}/
+%input#trip_end_lat{:name => "trip_end_lat", :type => "hidden"}/
+%input#trip_end_lng{:name => "trip_end_lng", :type => "hidden"}/
+%input#trailhead_lat{:name => "trailhead_lat", :type => "hidden"}/
+%input#trailhead_lng{:name => "trailhead_lng", :type => "hidden"}/
+%input#start_from_lat{:name => "start_from_lat", :type => "hidden"}/
+%input#start_from_lng{:name => "start_from_lng", :type => "hidden"}/
+
+- if @trailhead
+  - if @trailhead.rideshare
+    %input#rideshare{:type => "hidden", :value => "true"}/
+    %input#zimride_url{:type => "hidden", :value => ""}/
+  - else
+    %input#rideshare{:type => "hidden", :value => "false"}/
+
+#page
+  #page-head
+    %h2 Plan your Trip
+    %a{:href => "/"} Back to Map
+    - if @trailhead
+      %a.back-to-details{:href => "/trailheads//"} Back to Details
+    - elsif @trip
+      %a.back-to-details{:href => "/trips//"} Back to Details
+    - elsif @campground
+      %a.back-to-details{:href => "/campgrounds//"} Back to Details
+  / e: page head
+  #plan
+    #plan-map
+    %form#the-plan
+      %label#returning-from-label Going To
+      %h3#name-title
+        - if @trip
+          = @trip.name
+      .plan-type
+        %ul
+          %li
+            %a#transit-mode.pt1.active{:href => "#"} Transit
+          %li
+            %a#biking-mode.pt2{:href => "#"} Biking
+          %li
+            %a#walking-mode.pt3{:href => "#"} Walking
+          %li
+            %a#driving-mode.pt4{:href => "#"} Driving
+          - if @trailhead && @trailhead.rideshare
+            %li
+              %a#rideshare-mode.rideshare{:href => "#"} Rideshare
+      / e: plan type
+      %p
+        %label#starting-point-label Starting Point
+        %input#start-from-address.text.address{:type => "text", :value => "street address or intersection"}/
+        %input#set-address-button.submit.set{:type => "submit", :value => "Set"}/
+      %p
+        %label When?
+        %select#trip_dep_arr.select
+          %option{:value => "dep"} Depart
+          %option{:value => "arr"} Arrive
+          %input#trip_date.text.date{:name => "trip_date", :type => "text", :value => ""}/
+        %input#trip_hour{:name => "trip_hour", :onkeyup => "numbersOnly(this,2);lessThan(this,12);", :type => "text", :value => "00"}
+          \:
+          %input#trip_minutes{:name => "trip_minutes", :onkeyup => "numbersOnly(this,2);lessThan(this,59);", :type => "text", :value => "00"}
+            %select#trip_ampm{:name => "trip_ampm", :style => "width:50px"}
+              %option#am_option{:value => "am"} AM
+              %option#pm_option{:value => "pm"} PM
+      %p
+        %label Site
+        %select#transit-router.select
+          %option{:value => "511"} 511.org
+          %option{:value => "google"} Google
+        %select#zimride-router.select{:style => "display:none;width:100px;"}
+          %option{:value => "Zimride"} Zimride
+      %ul.numbers
+        %li
+          %strong Driving
+          %em
+            %span#driving-miles -
+            miles
+        %li
+          %strong Gas Saved
+          %em
+            %span#driving-gas -
+            gal @ 21 mpg
+        %li
+          %strong Money Saved
+          %em
+            $
+            %span#driving-money -.-
+            @ $4/gal
+      #carbon-cost
+        Carbon savings :
+        %span#driving-carbon -
+        pounds
+      %p
+        %input#return-trip-button.plan-return.green-link-button.blue{:type => "submit", :value => "Map Trip Back"}/
+        %input#get-directions-button.get-directions.green-link-button{:type => "submit", :value => "Map Trip There"}/
+    / e: the-plan
+  / e: plan
+/ e: page
+/ Application Script
+%script{:src => "/assets/legacy/plan.js"}
+%script
+  $(new function(){
+  - if @trailhead
+    initializeTrailhead(#{@trailhead.id});
+  - elsif @trip
+    initializeTrip(#{@trip.id});
+  - elsif @campground
+    initializeCampground(#{@campground.id});
+  - else
+    initializePoint(#{@latitude},#{longitude});
+  });

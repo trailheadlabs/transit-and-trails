@@ -224,7 +224,7 @@ TNT.plan = {
 		var mapIcon = new GIcon();
 		mapIcon.iconSize = iconSize;
 		mapIcon.iconAnchor = iconAnchor;
-		mapIcon.image = "/media/images/map/pin_s_tripstart.png";
+		mapIcon.image = "/assets/legacy/map/pin_s_tripstart.png";
 
 		// Set up our GMarkerOptions object
 		var markerOptions = {
@@ -239,7 +239,7 @@ TNT.plan = {
 		var mapIcon = new GIcon();
 		mapIcon.iconSize = iconSize;
 		mapIcon.iconAnchor = iconAnchor;
-		mapIcon.image = "/media/images/map/pin_s_tripend.png";
+		mapIcon.image = "/assets/legacy/map/pin_s_tripend.png";
 
 		// Set up our GMarkerOptions object
 		var endMarkerOptions = {
@@ -251,7 +251,7 @@ TNT.plan = {
 		var mapIcon = new GIcon();
 		mapIcon.iconSize = iconSize;
 		mapIcon.iconAnchor = iconAnchor;
-		mapIcon.image = "/media/images/map/pin_s_home.png";
+		mapIcon.image = "/assets/legacy/map/pin_s_home.png";
 
 		markerOptions = {
 			icon :mapIcon,
@@ -263,7 +263,7 @@ TNT.plan = {
  		var mapIcon = new GIcon();
  		mapIcon.iconSize = iconSize;
  		mapIcon.iconAnchor = iconAnchor;
-		mapIcon.image = "/media/images/map/pin_s_tripend.png";
+		mapIcon.image = "/assets/legacy/map/pin_s_tripend.png";
 
 		var endMarkerOptions = {
 			icon :mapIcon,
@@ -273,7 +273,7 @@ TNT.plan = {
 		var mapIcon = new GIcon();
 		mapIcon.iconSize = iconSize;
 		mapIcon.iconAnchor = iconAnchor;
-		mapIcon.image = "/media/images/map/pin_s_trailhead.png";
+		mapIcon.image = "/assets/legacy/map/pin_s_trailhead.png";
 		mapIcon.infoWindowAnchor = new GPoint(14, 10);
 
 		var trailheadMarkerOptions = {
@@ -287,7 +287,7 @@ TNT.plan = {
     var mapIcon = new GIcon();
 		mapIcon.iconSize = iconSize;
 		mapIcon.iconAnchor = iconAnchor;
-		mapIcon.image = "/media/images/map/pin_s_campground.png";
+		mapIcon.image = "/assets/legacy/map/pin_s_campground.png";
 		mapIcon.infoWindowAnchor = new GPoint(14, 10);
 
 		var campgroundMarkerOptions = {
@@ -441,7 +441,7 @@ TNT.plan = {
 		var endLatLng = null;
     loadLocationFromSession(function(data){
 			if (data) {
-				self.showAddress(data);
+				self.showAddress(data.value);
 			}
 			else {
         self.showAddress("San Francisco, CA");
@@ -497,7 +497,7 @@ TNT.plan = {
 
   	loadTrailheadIntoPlan: function(id) {
   	  var self = this;
-  		var url = "/json/Trailhead/" + id;
+  		var url = "/trailheads/" + id + ".json";
   		GDownloadUrl(url, function(data) {
   			self.trailhead = $.parseJSON(data)
   			self.end_lat = self.trailhead.latitude;
@@ -514,7 +514,7 @@ TNT.plan = {
 
   	loadCampgroundIntoPlan: function(id) {
   	  var self = this;
-  		var url = "/json/Campground/" + id;
+  		var url = "/campgrounds/" + id + ".json";
   		GDownloadUrl(url, function(data) {
   			self.campground = $.parseJSON(data)
   			self.end_lat = self.campground.latitude;
@@ -532,16 +532,16 @@ TNT.plan = {
   	},
 
   	loadStartTrailheadRouters: function(id) {
-  		var url = "/trailheads/transit_routers/json/" + id;
+  		var url = "/trailheads/" + id + "/transit_routers.json";
   		GDownloadUrl(url, function(data) {
   			var routers = $.parseJSON(data);
   			var google_router = false;
   			var fiveoneone_router = false;
   			var count = routers.length;
   			for(var router_i = 0;router_i<count;router_i++){
-  				if(routers[router_i].fields.name == 'Google Transit'){
+  				if(routers[router_i].name == 'Google Transit'){
   					this.google_router = true;
-  				} else if(routers[router_i].fields.name == '511.org') {
+  				} else if(routers[router_i].name == '511.org') {
   					this.fiveoneone_router = true;
   				}
   			}
@@ -549,16 +549,16 @@ TNT.plan = {
   	},
 
   	loadEndTrailheadRouters: function(id) {
-  		var url = "/trailheads/transit_routers/json/" + id;
+  		var url = "/trailheads/" + id + "/transit_routers.json";
   		GDownloadUrl(url, function(data) {
   			var routers = $.parseJSON(data);
   			var google_router = false;
   			var fiveoneone_router = false;
   			var count = routers.length;
   			for(var router_i = 0;router_i<count;router_i++){
-  				if(routers[router_i].fields.name == 'Google Transit'){
+  				if(routers[router_i].name == 'Google Transit'){
   					this.google_router = true;
-  				} else if(routers[router_i].fields.name == '511.org') {
+  				} else if(routers[router_i].name == '511.org') {
   					this.fiveoneone_router = true;
   				}
   			}

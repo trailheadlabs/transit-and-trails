@@ -868,9 +868,9 @@ TNT.find = {
 
     loadLastLocation: function() {
         loadLocationFromSession(
-        function(transport) {
-            $('#address').val(transport.responseText);
-            that.showAddress(transport.responseText);
+        function(data) {
+            $('#address').val(data.value);
+            that.showAddress(data.value);
         });
     }
 };

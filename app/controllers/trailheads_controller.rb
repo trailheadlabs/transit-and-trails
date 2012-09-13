@@ -1,7 +1,13 @@
 class TrailheadsController < ApplicationController
-  check_authorization :except => [:near_address,:near_coordinates,:index,:info_window]
-  load_and_authorize_resource :except => [:near_address,:near_coordinates,:index,:info_window]
-  before_filter :authenticate_user!, :except => [:index,:show,:near_address,:near_coordinates,:within_bounds,:info_window]
+  before_filter :authenticate_user!, :except => [:index,:show,:near_address,
+    :near_coordinates,:within_bounds,:info_window, :transit_routers]
+  check_authorization :except => [:near_address,:near_coordinates,:index,:info_window,:transit_routers]
+  load_and_authorize_resource :except => [:near_address,:near_coordinates,:index,:info_window,:transit_routers]
+
+  def transit_routers
+    @transit_routers = Trailhead.find(params[:id]).transit_routers
+    render :json => @transit_routers
+  end
 
   # GET /trailheads/near_address
   # GET /trailheads/near_address.json
