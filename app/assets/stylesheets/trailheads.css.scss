@@ -1,3 +1,20 @@
 // Place all the styles related to the Trailheads controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.simple_form {
+  ul{
+    li{
+      padding:4px;
+    }
+    label{
+      width:inherit;
+      float:none;
+      padding:6px;
+    }
+    input[type="checkbox"]{
+      float:left;
+      margin-right:6px;
+    }
+  }
+}

@@ -1,10 +1,11 @@
 %h2.page-header
   New Story
-= simple_form_for @story do |f|
-  = f.input :happened_at
-  = f.association :to_travel_mode, :required => true, :include_blank => false
-  = f.association :from_travel_mode, :include_blank => false
-  = f.input :story
-  = f.input :storytellable_id, :as => :hidden
-  = f.input :storytellable_type, :as => :hidden
-  = f.button :submit
+.content
+  = simple_form_for @story do |f|
+    = f.input :happened_at
+    = f.association :to_travel_mode, :required => true, :include_blank => false
+    = f.association :from_travel_mode, :include_blank => false
+    = f.input :story
+    = f.input :storytellable_id, :as => :hidden
+    = f.input :storytellable_type, :as => :hidden
+    = f.button :submit

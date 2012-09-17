@@ -1,6 +1,7 @@
 %h2.page-header Resend unlock instructions
-= simple_form_for(resource, :as => resource_name, :url => unlock_path(resource_name), :html => { :method => :post }) do |f|
-  = f.input :username
-  = f.button :submit, :value => "Resend Instructions"
+.content
+  = simple_form_for(resource, :as => resource_name, :url => unlock_path(resource_name), :html => { :method => :post }) do |f|
+    = f.input :username
+    = f.button :submit, :value => "Resend Instructions"
 
-= render "devise/shared/links"
+  = render "devise/shared/links"

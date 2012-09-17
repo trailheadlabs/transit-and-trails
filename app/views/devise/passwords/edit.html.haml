@@ -1,9 +1,10 @@
 %h2.page-header Change your password
-= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
-  / = devise_error_messages!
-  = f.hidden_field :reset_password_token
-  = f.input :password
-  = f.input :password_confirmation
-  = f.button :submit, :value => "Change Password"
+.content
+  = simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
+    / = devise_error_messages!
+    = f.hidden_field :reset_password_token
+    = f.input :password
+    = f.input :password_confirmation
+    = f.button :submit, :value => "Change Password"
 
-= render "devise/shared/links"
+  = render "devise/shared/links"

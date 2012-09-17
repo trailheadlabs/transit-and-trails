@@ -1,8 +1,27 @@
 .simple_form {
-  margin-left: 40px;
+  input[type="url"], input[type="text"], input[type="password"], input[type="email"], textarea{
+    font-size:14px;
+    padding:6px;
+    border: solid 1px #C2D4E7;
+    @include linear-gradient(top, #ECEEEE 0%, #FFFFFF 45%, #FFFFFF 100%);
+    margin-top:1px;
+    width:400px;
+    float:left;
+    clear:both;
+  }
+  input[type="file"] {
+    float:left;
+    clear:both;
+
+  }
 
   div.input{
     margin-bottom: 10px;
+    clear: both;
+  }
+
+  div.input.hidden{
+    margin-bottom:0px;
     clear: both;
   }
 

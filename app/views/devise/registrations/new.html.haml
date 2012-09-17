@@ -1,26 +1,11 @@
 %h2.page-header Sign Up
-= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
-  / = devise_error_messages!
-  = f.input :username, :required => true, :input_html => {:autofocus=>true}
-  = f.input :email
-  = f.input :password, :required => true
-  = f.input :password_confirmation, :required => true
-  = f.button :submit, :value => "Sign Up",:button_html => { :disable_with => "Wait" }
-  / %div
-  /   = f.label :email
-  /   %br/
-  /   = f.email_field :email
-  / %div
-  /   = f.label :username
-  /   %br/
-  /   = f.text_field :username
-  / %div
-  /   = f.label :password
-  /   %br/
-  /   = f.password_field :password
-  / %div
-  /   = f.label :password_confirmation
-  /   %br/
-  /   = f.password_field :password_confirmation
-  / %div= f.submit "Sign up"
-= render "devise/shared/links"
+.content
+  = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+    / = devise_error_messages!
+    = f.input :username, :required => true, :input_html => {:autofocus=>true}
+    = f.input :email
+    = f.input :password, :required => true
+    = f.input :password_confirmation, :required => true
+    = f.button :submit, :value => "Sign Up",:button_html => { :disable_with => "Wait" }
+
+  = render "devise/shared/links"

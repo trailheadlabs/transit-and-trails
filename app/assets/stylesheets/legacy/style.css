@@ -611,6 +611,7 @@ a.back-to-details {
 #trailhead-meta label.address {
     color: #1b80ae;
     font-size: 13px;
+    width:inherit;
 }
 
 #trailhead-meta .list { float: left; margin: 0 10px 0 0; }

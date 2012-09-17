@@ -94,10 +94,11 @@ TNT.pointmap = {
         //GEvent.bind(this.map, "dragend", this, this.map.addOverlay(this.startmarker));
 
         GEvent.bind(this.map, "dblclick", this, this.saveMap);
+        GEvent.bind(this.map, "zoomend", this, this.saveMap);
 		this.trailheadMarkerManager = new MarkerManager(this.map);
 		loadKeyFromSession('map.zoom',function(data){
-          if( data.match(/NOT_FOUND/) == null ){
-            var newZoom = Number(data);
+          if( data.value){
+            var newZoom = Number(data.value);
             TNT.pointmap.map.setZoom(newZoom);
           }
         });
@@ -135,9 +136,9 @@ TNT.pointmap = {
             this.startmarker.setLatLng(latlng);
             this.updateLatLngInputs(latlng);
         }
-		downloadurl = "/trailheads/near/xml?lat=" +
+		downloadurl = "/trailheads/near_coordinates.json?latitude=" +
         this.startmarker.getLatLng().lat() +
-        "&long=" +
+        "&longitude=" +
         this.startmarker.getLatLng().lng() +
         "&distance=100";
         GDownloadUrl(downloadurl,
@@ -147,8 +148,8 @@ TNT.pointmap = {
     },
 
     updateLatLngInputs: function(latlng) {
-        $('#id_latitude').val(latlng.lat());
-        $('#id_longitude').val(latlng.lng());
+        $('#trailhead_latitude').val(latlng.lat());
+        $('#trailhead_longitude').val(latlng.lng());
     },
 
     getStartingAddress: function() {
@@ -194,16 +195,15 @@ TNT.pointmap = {
     },
 
     loadTrailheads: function(data) {
-        var xml = GXml.parse(data);
-        var markers = xml.documentElement.getElementsByTagName("trailhead");
+        var markers = $.parseJSON(data);
         this.currentTrailheads = []
         this.trailheadMarkerManager.clearMarkers();
         $(markers).each(function(index,item) {
-            var latlng = new GLatLng(parseFloat(item.getAttribute("lat")), parseFloat(item.getAttribute("lng")));
-            var distance = new Number(item.getAttribute("distance")).toPrecision(2);
-            var pointTitle = item.getAttribute("name");
-            var pointId = new Number(item.getAttribute("id"));
-            var pointIndex = new Number(index);
+            var latlng = new GLatLng(parseFloat(item["latitude"]), parseFloat(item['longitude']));
+            var distance = parseFloat(item["distance"]);
+            var pointTitle = item["name"];
+            var pointId = item["id"];
+            var pointIndex = index;
             var newMarker = TNT.pointmap.createTrailheadMarker(pointId, pointTitle, latlng);
             TNT.pointmap.currentTrailheads[pointId] = newMarker;
             //if (this.showTrailheads) {
@@ -235,8 +235,8 @@ TNT.pointmap = {
             geocoder.getLatLng(address,
             function(point) {
                 if (point) {
-                    this.startmarker.setLatLng(point);
-                    this.updateLatLngInputs(point);
+                    TNT.pointmap.startmarker.setLatLng(point);
+                    TNT.pointmap.updateLatLngInputs(point);
                 }
             })
         }
@@ -247,8 +247,8 @@ TNT.pointmap = {
       // If there is a start location saved in the session then use it
       loadLocationFromSession(
         function(data) {
-            if (data && data != 'undefined') {
-                TNT.pointmap.decodeAddress(data);
+            if (data.value) {
+                TNT.pointmap.decodeAddress(data.value);
             }
             else {
                 var start = new GLatLng(37.887771, -122.256452);
@@ -302,16 +302,16 @@ function initEditing(entityType, editMode) {
         TNT.pointmap.startmarker.enableDragging();
 
         if (editMode == TNT.EditMode.UPDATE) {
-            TNT.pointmap.startmarker.setLatLng(new GLatLng(parseFloat($('#id_latitude').val()), parseFloat($('#id_longitude').val())));
+            TNT.pointmap.startmarker.setLatLng(new GLatLng(parseFloat($('#trailhead_latitude').val()), parseFloat($('#trailhead_longitude').val())));
             TNT.pointmap.map.panTo(TNT.pointmap.startmarker.getLatLng());
         }
         else {
-            centerUrl = '/session/loadkv/map.center';
+            centerUrl = '/session/loadkv?key=map.center';
 
             GDownloadUrl(centerUrl,
             function(data) {
-                if (data.match(/NOT_FOUND/) == null) {
-                    latlngarray = data.split(",");
+                if (data.value) {
+                    latlngarray = data.value.split(",");
                     lat = parseFloat(latlngarray[0]);
                     lng = parseFloat(latlngarray[1]);
                     var newCenter = new GLatLng(lat, lng);
@@ -324,27 +324,27 @@ function initEditing(entityType, editMode) {
                 }
             });
 
-            zoomUrl = '/session/loadkv/map.zoom';
+            zoomUrl = '/session/loadkv?key=map.zoom';
             GDownloadUrl(zoomUrl,
             function(data) {
-                if (data.match(/NOT_FOUND/) == null) {
-                    newZoom = parseInt(data, 10);
+                if (data.value) {
+                    newZoom = parseInt(data.value);
                     //alert(newZoom);
                     TNT.pointmap.map.setZoom(newZoom);
                 }
             });
 
 			// begin adding peripheral trailheads for user knowledge
-			downloadurl = "/trailheads/near/xml?lat=" +
+			downloadurl = "/trailheads/near_coordinates.json?latitude=" +
 	        "37.887771" +
-	        "&long=" +
+	        "&longitude=" +
 	        "-122.256452" +
 	        "&distance=100";
 	        GDownloadUrl(downloadurl,
 	        function(data) {
 	            TNT.pointmap.loadTrailheads(data);
 	        });
-			// end adding peripheral trailheads for user knowledge
+			// // end adding peripheral trailheads for user knowledge
         }
 
     }
@@ -359,9 +359,9 @@ function findAddress(editMode) {
             function(point) {
                 if (point) {
                     TNT.pointmap.init(TNT.EntityType.TRAILHEAD, editMode, point);
-                    var downloadurl = "/trailheads/near/xml?lat=" +
+                    var downloadurl = "/trailheads/near_coordinates.json?latitude=" +
                         point.lat() +
-                        "&long=" +
+                        "&longitude=" +
                         point.lng() +
                         "&distance=100";
                     GDownloadUrl(downloadurl,

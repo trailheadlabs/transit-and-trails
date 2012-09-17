@@ -1,5 +1,26 @@
-%h1 New campground
+- content_for :head do
+  %script{:src => "http://www.google.com/jsapi?key=ABQIAAAAO7OoKKBX03U3SrObYGQy0xTR3gcj-N9Qq4sdgfDbE45YeC9R7BTliGpItl3amRLTjNsmtJj-_SOQkw", :type => "text/javascript"}
+  :javascript
+    google.load("maps", "2.x");
+  %script{:src => "http://gmaps-utility-library.googlecode.com/svn/trunk/markermanager/release/src/markermanager.js"}
+  / load Galleria
+  %script{:src => "/assets/legacy/galleria/galleria-1.2.7.min.js"}
+  %script{:src => "/assets/legacy/gzoom.js", :type => "text/javascript"}
+  = javascript_include_tag "legacy/ckeditor/ckeditor"
+  = javascript_include_tag "legacy/ckeditor/adapters/jquery"
 
-= render 'form'
+  = javascript_include_tag "legacy/common"
+  = stylesheet_link_tag "legacy/reset"
+  = stylesheet_link_tag "legacy/common"
+  = stylesheet_link_tag "legacy/style"
+  = stylesheet_link_tag "trailheads"
 
-= link_to 'Back', campgrounds_path
+#page
+  #page-head
+    %h2
+      New Campground
+    %a{:href => "/"} Back to Map
+  / e: page head
+  #plan.alt.trailhead
+
+    = render 'form'

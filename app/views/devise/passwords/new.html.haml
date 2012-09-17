@@ -1,8 +1,9 @@
 %h2.page-header Forgot your password?
-= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
-  / = devise_error_messages!
-  = f.input :username
+.content
+  = simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
+    / = devise_error_messages!
+    = f.input :username
 
-  = f.button :submit, :value => "Send Instructions"
+    = f.button :submit, :value => "Send Instructions"
 
-= render "devise/shared/links"
+  = render "devise/shared/links"

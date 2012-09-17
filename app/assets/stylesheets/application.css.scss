@@ -37,24 +37,6 @@ ul.devise-links{
   margin-left:20px;
 }
 
-.simple_form {
-  input[type="url"], input[type="text"], input[type="password"], input[type="email"], textarea{
-    font-size:14px;
-    padding:6px;
-    border: solid 1px #C2D4E7;
-    @include linear-gradient(top, #ECEEEE 0%, #FFFFFF 45%, #FFFFFF 100%);
-    margin-top:1px;
-    width:400px;
-    float:left;
-    clear:both;
-  }
-  input[type="file"] {
-    float:left;
-    clear:both;
-
-  }
-}
-
 .flash{
   padding:10px 40px;
   margin-bottom:10px;
@@ -113,6 +95,9 @@ div {
     margin-bottom: 10px; }
 }
 
+.editor{
+  clear:both;
+}
 h1, h2, h3, h4, h5{
   color: #514B42;
   font-weight:500;

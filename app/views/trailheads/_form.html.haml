@@ -1,31 +1,111 @@
-= form_for @trailhead do |f|
-  -if @trailhead.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@trailhead.errors.count, "error")} prohibited this trailhead from being saved:"
-      %ul
-        - @trailhead.errors.full_messages.each do |msg|
-          %li= msg
+= simple_form_for @trailhead do |f|
+  = f.input :latitude, :as => :hidden
+  = f.input :longitude, :as => :hidden
+  #trailhead-meta
+    -if @trailhead.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@trailhead.errors.count, "error")} prohibited this trailhead from being saved:"
+        %ul
+          - @trailhead.errors.full_messages.each do |msg|
+            %li= msg
+    %label.text-attr-label.address{:for => "id_start_address"}
+      Reposition the map by entering an address or location here:
+    %input#id_start_address{:placeholder => "Address or location", :type => "text"}/
+    %a#find_address.green-button.right{:href => "#"}
+      Go  
+    %label.text-attr-label
+      Name the trailhead
+    %input#id_name{:name => "trailhead[name]", :placeholder => "Simple and descriptive", :type => "text", :value => "#{@trailhead.name}"}/
+    %label.text-attr-label Description
+    .editor
+      %textarea(name="trailhead[description]" id="trailhead_description" rows="10" cols="40")
+        #{@trailhead.description}
+  / e: tour
+  #plan-map-instructions Click on the map to place your trailhead. You can reposition your pin by dragging it or clicking in a new location. Gray pins show existing trailheads.
+  #plan-map
+  .attributes
+    #trailhead-features
+      Attributes available at this trailhead:
+    / = f.association :trailhead_features, :as => :check_boxes
+    %ul.outer-list
+      - Category.order('rank').each do |category|
+        - unless category.trailhead_features.empty?
+          %li
+            %label.text-attr-label
+              #{ category.name }
+            %ul
+              - category.trailhead_features.each_with_index do |attribute,index|
+                - if index >= 5
+                  - extra_class = "hidden"
+                %li(class="#{extra_class}")
+                  %label{:for => "trailhead[traillhead_features[#{attribute.id}]"}
+                    - if @trailhead.trailhead_features.include? attribute
+                      %input(type="checkbox" name="trailhead[trailhead_feature_ids][]"
+                        id="trailhead_trailhead_feature_ids_#{attribute.id}"
+                        value="#{attribute.id}"
+                        checked="checked")
+                    - else
+                      %input(type="checkbox" name="trailhead[trailhead_feature_ids][]"
+                        id="trailhead_trailhead_feature_ids_#{attribute.id}"
+                        value="#{attribute.id}")
+                    #{ attribute.name }
+              - if category.trailhead_features.count >= 5
+                %a.show-more{:href => "#"} + show more..
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :description
-    = f.text_area :description
-  .field
-    = f.label :latitude
-    = f.text_field :latitude
-  .field
-    = f.label :longitude
-    = f.text_field :longitude
-  .field
-    = f.label :user
-    = f.text_field :user
-  .field
-    = f.label :rideshare
-    = f.check_box :rideshare
-  .field
-    = f.label :zimride_url
-    = f.text_field :zimride_url
-  .actions
-    = f.submit 'Save'
+      - if current_user.admin?
+        %li
+          = f.input :approved
+      %li
+        %input.green-link-button{:type => "submit", :value => "Save Trailhead"}
+      %li
+        %input#cancel-button.dark-gray-link-button{"data-url" => "/", :type => "button", :value => "Cancel"}
+
+      / attributes
+  / e: plan
+/ e: page
+%script{:src => "/assets/legacy/pointmap.js", :type => "text/javascript"}
+:javascript
+  $(function() {
+      editMode = #{  @trailhead.new_record? ? "TNT.EditMode.NEW;" : "TNT.EditMode.UPDATE;" }
+      CKEDITOR.replace('trailhead_description',
+              {
+                  toolbar:'Basic'
+              });
+
+      $('a.show-more').toggle(function(e) {
+          e.preventDefault();
+          $(this).parent().find('li.hidden').show().slideDown();
+          $(this).text('- show less');
+      },function(e) {
+          e.preventDefault();
+          $(this).parent().find('li.hidden').hide().slideUp();
+          $(this).text('+ show more');
+      });
+
+      initEditing(TNT.EntityType.TRAILHEAD, editMode);
+
+      $(window).unload(function () {
+          GUnload();
+      });
+
+      $('#find_address').click(function(e){
+          e.preventDefault();
+          findAddress(editMode);
+      });
+
+      $('#id_start_address').bind('keypress',function(e){
+          var code = (e.keyCode ? e.keyCode : e.which);
+          if(code == 13) { //Enter keycode
+              //Do something
+              e.preventDefault();
+              findAddress(editMode);
+          }
+      });
+
+      $('ul.outer-list ul li:odd').css({backgroundColor: '#F6F7FC'});
+
+      $('#cancel-button').click(function(e){
+          e.preventDefault();
+          window.location.href = $(this).data('url');
+      });
+  });

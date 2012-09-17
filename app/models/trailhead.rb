@@ -14,8 +14,10 @@ class Trailhead < ActiveRecord::Base
   has_many :trips_ending_at, :class_name => "Trip", :foreign_key => "ending_trailhead_id"
   scope :approved, where(:approved => true)
   has_paper_trail
-  attr_accessible :description, :latitude, :longitude, :name, :rideshare, :zimride_url
+  attr_accessible :description, :latitude, :longitude, :name, :rideshare, :zimride_url, :approved, :trailhead_feature_ids
   reverse_geocoded_by :latitude, :longitude
+
+  accepts_nested_attributes_for :trailhead_features
 
   before_create :auto_approve
 
