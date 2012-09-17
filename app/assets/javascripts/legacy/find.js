@@ -678,6 +678,7 @@ TNT.find = {
     saveMap: function() {
         saveKeyValueToSession('map.center', this.map.getCenter().toUrlValue());
         saveKeyValueToSession('map.zoom', this.map.getZoom());
+        saveKeyValueToSession('map.location', [this.map.getCenter().toUrlValue(),this.map.getZoom()]);
     },
 
     showAddress: function(address) {

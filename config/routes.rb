@@ -62,9 +62,11 @@ Transitandtrails::Application.routes.draw do
     collection do
       get 'near_address'
       get 'near_coordinates'
+      get 'within_bounds'
     end
     member do
       get 'info_window'
+      get 'trip_editor_info_window'
       get 'transit_routers'
     end
   end

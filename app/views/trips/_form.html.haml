@@ -1,34 +1,108 @@
-= form_for @trip do |f|
-  -if @trip.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@trip.errors.count, "error")} prohibited this trip from being saved:"
-      %ul
-        - @trip.errors.full_messages.each do |msg|
-          %li= msg
+= simple_form_for @trip do |f|
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :description
-    = f.text_area :description
-  .field
-    = f.label :user
-    = f.text_field :user
-  .field
-    = f.label :intensity
-    = f.text_field :intensity
-  .field
-    = f.label :duration
-    = f.text_field :duration
-  .field
-    = f.label :starting_trailhead_id
-    = f.number_field :starting_trailhead_id
-  .field
-    = f.label :ending_trailhead_id
-    = f.number_field :ending_trailhead_id
-  .field
-    = f.label :route
-    = f.text_area :route
-  .actions
-    = f.submit 'Save'
+  %input#id_route{:name => "route", :type => "hidden", :value => ""}/
+
+  #trailhead-meta
+    -if @trip.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@trailhead.errors.count, "error")} prohibited this trip from being saved:"
+        %ul
+          - @trailhead.errors.full_messages.each do |msg|
+            %li= msg
+    %label.text-attr-label
+      Name your trip
+    = f.input :name
+
+    %label.text-attr-label Description
+
+    .list
+      = f.association :duration, :include_blank => false
+
+    .list
+      = f.association :intensity, :include_blank => false
+
+    .list
+      %label.text-attr-label Distance
+      #distance
+        \-
+  / map
+  #map-container
+    #plan-map-instructions
+      %label.text-attr-label.address{:for => "id_start_address"}
+        Reposition the map by entering an address or location here:
+      %input#id_start_address{:name => "id_start_address", :placeholder => "Address or location", :type => "text"}/
+      %a#find_address.green-button.right{:href => "#"}
+        Go  
+      %label#trip-editor-step-instruction.text-attr-label
+        Get started by clicking on the trailhead where your trip starts.
+    #plan-map.trip-editor-map
+    .trip-map-buttons
+      %a#out-and-back-button.green-map-button{:href => "javascript:TNT.tripmap.outAndBack();", :name => "out-and-back-button"} And Back
+      %a.green-map-button{:href => "javascript:TNT.tripmap.clearWayPoints();"} Clear
+      %a.green-map-button{:href => "javascript:TNT.tripmap.eraseFromEnd()"} Undo
+      %a#follow-paths-button.green-map-button{:href => "javascript:TNT.tripmap.toggleSnap();", :name => "follow-paths-button"} Unsnap
+      %a#follow-paths-button.green-map-button{:href => "javascript:TNT.tripmap.toggleEdit();", :name => "follow-paths-button"} Edit
+  / e: plan
+
+:javascript
+  trip_route = #{@trip.route || "[]"};
+
+= javascript_include_tag "legacy/tripmap"
+
+:javascript
+  $(function () {
+      $('#trip_description').ckeditor({height: '130px'});
+
+      editMode = #{  @trip.new_record? ? "TNT.EditMode.NEW;" : "TNT.EditMode.UPDATE;" }
+
+      TNT.tripmap.init(editMode);
+
+      $('a.show-more').toggle(function(e) {
+          e.preventDefault();
+          $(this).parent().find('li.hidden').show().slideDown();
+          $(this).text('- show less');
+      },function(e) {
+          e.preventDefault();
+          $(this).parent().find('li.hidden').hide().slideUp();
+          $(this).text('+ show more');
+      });
+
+      $('#find_address').click(function(e){
+          e.preventDefault();
+          TNT.tripmap.findAddress(editMode);
+      });
+
+      $('#id_start_address').bind('keypress',function(e){
+          var code = (e.keyCode ? e.keyCode : e.which);
+          if(code == 13) { //Enter keycode
+              //Do something
+              e.preventDefault();
+              TNT.tripmap.findAddress(editMode);
+          }
+      });
+
+      $('ul.outer-list ul li:odd').css({backgroundColor: '#F6F7FC'});
+
+      $('#cancel-button').click(function(e){
+          e.preventDefault();
+          window.location.href = $(this).data('url');
+      });
+
+      $('form').submit(function(){
+        TNT.tripmap.getWayPointHtml();
+        return true;
+      })
+  });
+
+- if @start_id
+  :javascript
+    $(function(){
+      TNT.tripmap.selectStartOption(#{ @start_id });
+    });
+
+- if @center_latitude && @center_longitude
+  :javascript
+    $(function(){
+      TNT.tripmap.setCenterOn(#{@center_latitude},#{@center_longitude});
+    });
+

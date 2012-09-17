@@ -57,6 +57,9 @@ class TripsController < ApplicationController
   # GET /trips/new.json
   def new
     @trip = Trip.new
+    @start_id = params[:start_id]
+    @center_latitude = params[:center_latitude]
+    @center_longitude = params[:center_longitude]
 
     respond_to do |format|
       format.html # new.html.erb

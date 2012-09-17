@@ -3,6 +3,10 @@
 
 }
 
+.simple_form label{
+  width:inherit;
+}
+
 .description ul {
 	list-style-type:disc;
 	padding:8px;

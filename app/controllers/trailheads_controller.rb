@@ -43,15 +43,15 @@ class TrailheadsController < ApplicationController
   # GET /trailheads/within_bounds
   # GET /trailheads/within_bounds.json
   def within_bounds
-    min_latitude = params[:sw_latitude]
-    max_latitude = params[:ne_latitude]
-    min_longitude = params[:sw_longitude]
-    max_longitude = params[:sw_longitude]
+    min_latitude = Float(params[:sw_latitude])
+    max_latitude = Float(params[:ne_latitude])
+    min_longitude = Float(params[:sw_longitude])
+    max_longitude = Float(params[:ne_longitude])
     limit = 100 || params[:limit]
     offset = 0 || params[:offset]
     approved = true || params[:approved]
     @trailheads = Trailhead.where("latitude > :min_latitude AND latitude < :max_latitude AND longitude > :min_longitude AND longitude < :max_longitude",
-      :min_latitude => min_latitude, :min_longitude => min_longitude, :max_latitude => max_latitude, :max_longitude => max_longitude)
+      :min_latitude => min_latitude, :min_longitude => min_longitude, :max_latitude => max_latitude, :max_longitude => max_longitude).limit(limit).offset(offset).approved
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @trailheads }
@@ -84,6 +84,15 @@ class TrailheadsController < ApplicationController
   end
 
   def info_window
+    @point = Trailhead.find(params[:id])
+    @trips = Trip.where(:starting_trailhead_id=>@point.id)
+    @feature_names = @point.trailhead_features.collect{|f| f.name}.join(",  ")
+    respond_to do |format|
+      format.html { render :layout => false} # show.html.erb
+    end
+  end
+
+  def trip_editor_info_window
     @point = Trailhead.find(params[:id])
     @trips = Trip.where(:starting_trailhead_id=>@point.id)
     @feature_names = @point.trailhead_features.collect{|f| f.name}.join(",  ")

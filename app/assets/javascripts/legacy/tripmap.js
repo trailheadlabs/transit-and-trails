@@ -88,29 +88,23 @@ TNT.tripmap = {
         TNT.tripmap.tripLine = new google.maps.Polyline();
         TNT.tripmap.tripLine.setMap(this.map);
 
+        TNT.tripmap.map.setCenter(this.startPosition, 12);
+
         // center the map based on the previous map view position on 'create' action
         if (editMode === TNT.EditMode.NEW  && !searchPosition && !TNT.tripmap.centerOn) {
-            var centerUrl = '/session/loadkv/map.center';
+            var centerUrl = '/session/loadkv?key=map.location';
             $.get(centerUrl, function (data) {
-                if (data.match(/NOT_FOUND/) == null) {
-                    latlngarray = data.split(",");
+                if (data.value) {
+                    latlngarray = data.value.split(",");
                     lat = parseFloat(latlngarray[0]);
                     lng = parseFloat(latlngarray[1]);
+                    zoom = parseInt(latlngarray[2]);
                     var newCenter = new google.maps.LatLng(lat, lng);
                     TNT.tripmap.map.setCenter(newCenter);
-                }
-                else {
-                    TNT.tripmap.map.setCenter(this.startPosition, 12);
-                }
-            });
-            var zoomUrl = '/session/loadkv/map.zoom';
-            $.get(zoomUrl, function (data) {
-                if (data.match(/NOT_FOUND/) == null) {
-                    zoom = parseInt(data);
                     TNT.tripmap.map.setZoom(zoom);
                 }
                 else {
-                    TNT.tripmap.map.setZoom(12);
+                    TNT.tripmap.map.setCenter(this.startPosition, 12);
                 }
             });
         }
@@ -237,7 +231,9 @@ TNT.tripmap = {
 
     onMoveEnd : function(){
         if (TNT.tripmap.editMode !== TNT.EditMode.READONLY) {
-            TNT.tripmap.showTrailheads();
+            if(TNT.tripmap.map.getBounds()){
+                TNT.tripmap.showTrailheads();
+            }
         }
     },
 
@@ -250,10 +246,10 @@ TNT.tripmap = {
         var ne_lat = ne.lat();
         var ne_long = ne.lng();
 
-        var url = "/trailheads/within_bounds/?sw_lat=" + sw_lat + "&sw_long=" + sw_long +
-        "&ne_lat=" +
+        var url = "/trailheads/within_bounds.json?sw_latitude=" + sw_lat + "&sw_longitude=" + sw_long +
+        "&ne_latitude=" +
         ne_lat +
-        "&ne_long=" +
+        "&ne_longitude=" +
         ne_long;
 
         $.get(url, function(data){
@@ -262,7 +258,7 @@ TNT.tripmap = {
             for (i in trailheads) {
                 var pointId = trailheads[i].id;
                   var pointTitle = trailheads[i].name;
-                  var latlng = new google.maps.LatLng(parseFloat(trailheads[i].lat), parseFloat(trailheads[i].lng));
+                  var latlng = new google.maps.LatLng(parseFloat(trailheads[i].latitude), parseFloat(trailheads[i].longitude));
                   if(typeof(TNT.tripmap.currentTrailheadsById[pointId]) == 'undefined'){
                     var newMarker = TNT.tripmap.createMarker(pointId, latlng, pointTitle);
                     TNT.tripmap.currentTrailheadsById[pointId] = newMarker;
@@ -292,7 +288,7 @@ TNT.tripmap = {
         var newMarker = new google.maps.Marker(pointMarkerOptions);
         newMarker.value = "" + id;
         google.maps.event.addListener(newMarker, "click", function(){
-            var url = "/trips/editor/getinfowindow/?id=" + id;
+            var url = "/trailheads/" + id + "/trip_editor_info_window";
             $.get(url, function(data){
                 if(TNT.tripmap.currentInfoWindow){
                     TNT.tripmap.currentInfoWindow.close();

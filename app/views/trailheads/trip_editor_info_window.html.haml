@@ -1,0 +1,14 @@
+/ the point variable here is a Trailhead object
+.trailhead-info-window
+  .trailhead-info-window-title #{ @point.name }
+  - if @point.default_park
+    .trailhead-info-window-park
+      %i #{ @point.default_park.name }
+      - if @point.default_park.county
+        \-
+        %i #{ @point.default_park.county }
+  %p
+  %p
+    %p
+      %a.green-map-button{:href => "javascript:TNT.tripmap.makeTripStart(#{@point.id});"} Start my trip here!
+      %a.green-map-button{:href => "javascript:TNT.tripmap.makeTripEnd(#{@point.id});"} End my trip here!
