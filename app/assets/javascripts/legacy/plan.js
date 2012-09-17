@@ -108,8 +108,7 @@ function initializeTrailheadList() {
 function setEndLatLng(latlng){
   var lat = parseFloat(latlng.split(",")[0]);
   var lng = parseFloat(latlng.split(",")[1]);
-  TNT.plan.end_lat=lat;
-  TNT.plan.end_lng=lng;
+  TNT.plan.trailhead_latlng = new GLatLng(lat,lng);
   showTripDrivingRoutes();
 }
 
@@ -618,92 +617,98 @@ TNT.plan = {
 
 	// These are all of the trip routing supper functions
 
-	showDirections: function(isReturnTrip) {
-	  var router = $('#transit-router').val();
+  showDirections: function(isReturnTrip) {
+    var router = $('#transit-router').val();
 
-	  if(!isReturnTrip) {
-	    // Need to update the display
-  	  if(this.mode == 'trip') {
-  	    this.end_lat = this.trip.start_lat;
-  	    this.end_lng = this.trip.start_lng;
-	  	} else if(this.trailhead) {
-	  	  this.end_lat = this.trailhead.latitude;
-	  	  this.end_lng = this.trailhead.longitude;
-	  	}
-	  	else if(this.campground){
-	  	  this.end_lat = this.campground.latitude;
-	  	  this.end_lng = this.campground.longitude;
-	  	}
+    if(!isReturnTrip) {
+      // Need to update the display
+      if(this.mode == 'trip') {
+        this.end_lat = this.trip.start_lat;
+        this.end_lng = this.trip.start_lng;
+      } else if(this.trailhead) {
+        this.end_lat = this.trailhead.latitude;
+        this.end_lng = this.trailhead.longitude;
+      }
+      else if(this.campground){
+        this.end_lat = this.campground.latitude;
+        this.end_lng = this.campground.longitude;
+      }
       else if(this.mode == 'trailhead'){
+        this.end_lat = this.trailhead_latlng.lat();
+        this.end_lng = this.trailhead_latlng.lng();
       }
       else{
         this.end_lat = this.point_latlng.lat();
         this.end_lng = this.point_latlng.lng();
       }
 
-  	  this.start_lat = this.start_latlng.lat();
-	    this.start_lng = this.start_latlng.lng();
-	  }
-	  else
-	  {
+      this.start_lat = this.start_latlng.lat();
+      this.start_lng = this.start_latlng.lng();
+    }
+    else
+    {
 
-	  	if(this.mode == 'trip') {
-	      this.start_lat = this.trip.end_lat;
-	      this.start_lng = this.trip.end_lng;
-	    }
-	    else if(this.trailhead){
-	      this.start_lat = this.trailhead.latitude;
-	      this.start_lng = this.trailhead.longitude;
-	  	}  else if(this.campground){
-	  	  this.start_lat = this.campground.latitude;
-	      this.start_lng = this.campground.longitude;
-	  	}
+      if(this.mode == 'trip') {
+        this.start_lat = this.trip.end_lat;
+        this.start_lng = this.trip.end_lng;
+      }
+      else if(this.trailhead){
+        this.start_lat = this.trailhead.latitude;
+        this.start_lng = this.trailhead.longitude;
+      }  else if(this.campground){
+        this.start_lat = this.campground.latitude;
+        this.start_lng = this.campground.longitude;
+      }
+      else if(this.mode == 'trailhead'){
+        this.start_lat = this.trailhead_latlng.lat();
+        this.start_lng = this.trailhead_latlng.lng();
+      }
       else{
         this.start_lat = this.point_latlng.lat();
         this.start_lng = this.point_latlng.lng();
       }
 
-  	  this.end_lat = this.start_latlng.lat();
-	    this.end_lng = this.start_latlng.lng();
-	  }
+      this.end_lat = this.start_latlng.lat();
+      this.end_lng = this.start_latlng.lng();
+    }
 
-	  if(this.directionMode == 'transit')
-	  {
-  	  if(router == '511'){
-    	  if(isReturnTrip) {
-    	    this.showEndTransit511NewWindow();
-    	  } else {
-    	    this.showStartTransit511NewWindow();
-    	  }
-    	} else {
-    	  if(isReturnTrip) {
-    	    this.showEndTransitGoogleNewWindow();
-    	  } else {
-    	    this.showStartTransitGoogleNewWindow();
-    	  }
-    	}
-	  }
-	  else if(this.directionMode == 'biking') {
-	    if(isReturnTrip) {
-	      this.showEndBikingNewWindow();
-	    } else {
-	      this.showStartBikingNewWindow();
-	    }
-	  }
-	  else if(this.directionMode == 'walking') {
-	    if(isReturnTrip) {
-	      this.showEndWalkingNewWindow();
-	    } else {
-	      this.showStartWalkingNewWindow();
-	    }
-	  }
-	  else if(this.directionMode == 'driving') {
-	    if(isReturnTrip) {
-	      this.showEndDrivingNewWindow();
-	    } else {
-	      this.showStartDrivingNewWindow();
-	    }
-	  }
+    if(this.directionMode == 'transit')
+    {
+      if(router == '511'){
+        if(isReturnTrip) {
+          this.showEndTransit511NewWindow();
+        } else {
+          this.showStartTransit511NewWindow();
+        }
+      } else {
+        if(isReturnTrip) {
+          this.showEndTransitGoogleNewWindow();
+        } else {
+          this.showStartTransitGoogleNewWindow();
+        }
+      }
+    }
+    else if(this.directionMode == 'biking') {
+      if(isReturnTrip) {
+        this.showEndBikingNewWindow();
+      } else {
+        this.showStartBikingNewWindow();
+      }
+    }
+    else if(this.directionMode == 'walking') {
+      if(isReturnTrip) {
+        this.showEndWalkingNewWindow();
+      } else {
+        this.showStartWalkingNewWindow();
+      }
+    }
+    else if(this.directionMode == 'driving') {
+      if(isReturnTrip) {
+        this.showEndDrivingNewWindow();
+      } else {
+        this.showStartDrivingNewWindow();
+      }
+    }
     else if(this.directionMode == 'rideshare') {
       if(isReturnTrip) {
         this.showEndRideshareNewWindow();
@@ -711,7 +716,7 @@ TNT.plan = {
         this.showStartRideshareNewWindow();
       }
     }
-	},
+  },
 
   showStartRideshareNewWindow: function() {
     raw_trip_date = $('#trip_date').val();
