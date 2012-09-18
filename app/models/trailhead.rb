@@ -21,8 +21,7 @@ class Trailhead < ActiveRecord::Base
 
   before_create :auto_approve
 
-  # validates :name, :presence => true
-  # validates :name, :uniqueness => true
+  validates :name, :presence => true, :uniqueness => true
 
   def categorized_attributes
     result = {}

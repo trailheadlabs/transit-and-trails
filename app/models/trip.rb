@@ -15,6 +15,8 @@ class Trip < ActiveRecord::Base
   before_save :update_bounds_min_max, :update_geometry
   after_save :refind_parks
 
+  validates :name, :presence => true, :uniqueness => true
+
   reverse_geocoded_by :latitude, :longitude
 
   def update_geometry
