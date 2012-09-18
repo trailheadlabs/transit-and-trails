@@ -1,6 +1,5 @@
 class CampgroundsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index,:show,:near_coordinates,:info_window]
-  before_filter :store_location
 
   # GET /campgrounds
   # GET /campgrounds.json

@@ -1,7 +1,7 @@
 class TrailheadsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index,:show,:near_address,
     :near_coordinates,:within_bounds,:info_window, :transit_routers]
-  before_filter :store_location
+
   check_authorization :except => [:near_address,:near_coordinates,:index,:info_window,:transit_routers]
   load_and_authorize_resource :except => [:near_address,:near_coordinates,:index,:info_window,:transit_routers]
 

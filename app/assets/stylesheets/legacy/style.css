@@ -72,14 +72,12 @@ body {
     height: 44px;
     background: url(/assets/legacy/show-bg.png) top left;
     border-bottom: 1px solid #ccc;
-    border-top: 1px solid #333;
-    -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, .3);
-    -moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, .3);
-    -o-box-shadow: 0 0 10px 0 rgba(0, 0, 0, .3);
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, .3);
+    -webkit-box-shadow: 0 1 10px 0 rgba(0, 0, 0, .3);
+    -moz-box-shadow: 0 1 10px 0 rgba(0, 0, 0, .3);
+    -o-box-shadow: 0 1 10px 0 rgba(0, 0, 0, .3);
+    box-shadow: 0 1 10px 0 rgba(0, 0, 0, .3);
     padding-left: 25px;
     z-index: 2;
-    margin-top: -15px;
 }
 
 #show label {

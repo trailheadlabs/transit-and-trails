@@ -1,6 +1,5 @@
 class TripsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index,:show,:info_window,:near_coordinates]
-  before_filter :store_location
 
   # GET /trips
   # GET /trips.json

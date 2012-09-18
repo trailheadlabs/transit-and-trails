@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  before_filter :store_location
 
   def find
     store_location
@@ -36,7 +37,7 @@ class ApplicationController < ActionController::Base
   end
 
   def store_location
-    unless params[:controller] == "devise/sessions"
+    unless params[:controller].match /devise/
       url = request.referrer
       session[:user_return_to] = url
     end
