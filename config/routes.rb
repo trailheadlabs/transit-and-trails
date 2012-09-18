@@ -94,10 +94,19 @@ Transitandtrails::Application.routes.draw do
 
   devise_for :users
 
-  root :to => "application#find"
+  root :to => "find#find"
 
-  match 'objects/near/html' => 'application#objects_near'
-  match 'find' => "application#index"
+  match 'objects/near/html' => 'find#objects_near'
+
+  match 'find' => "find#find"
+
+  match 'marinstage' => "find#marinstage"
+
+  match 'find/marinstage' => "find#marinstage"
+
+  match 'find/sanjosetrails' => "find#sanjosetrails"
+
+  match 'find(/:region)' => "find#regional_landing_page"
 
   match '/:id' => 'high_voltage/pages#show', :as => :static, :via => :get
 
