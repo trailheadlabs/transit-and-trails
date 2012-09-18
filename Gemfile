@@ -30,7 +30,7 @@ gem 'rgeo'
 gem 'paper_trail', '~> 2'
 gem 'jquery-rails'
 gem 'bourbon'
-# gem 'newrelic_rpm', '~> 3.4.1'
+gem 'newrelic_rpm'
 gem 'high_voltage'
 gem 'simple_form_fancy_uploads'
 gem 'simple_form'
@@ -45,7 +45,7 @@ group :assets do
   gem 'coffee-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
+  gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
 end
