@@ -3,16 +3,9 @@
   :javascript
     google.load("maps", "2.x");
   %script{:src => "http://gmaps-utility-library.googlecode.com/svn/trunk/markermanager/release/src/markermanager.js"}
-  / load Galleria
-  %script{:src => "/assets/legacy/galleria/galleria-1.2.7.min.js"}
-  %script{:src => "/assets/legacy/gzoom.js", :type => "text/javascript"}
-  = javascript_include_tag "legacy/ckeditor/ckeditor"
-  = javascript_include_tag "legacy/ckeditor/adapters/jquery"
 
-  = javascript_include_tag "legacy/common"
-  = stylesheet_link_tag "legacy/reset"
-  = stylesheet_link_tag "legacy/common"
-  = stylesheet_link_tag "legacy/style"
+  = render :partial => "/shared/partials/legacy_head"
+
   = stylesheet_link_tag "editors"
 
 #page
