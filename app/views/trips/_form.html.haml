@@ -1,28 +1,25 @@
 = simple_form_for @trip do |f|
 
-  %input#id_route{:name => "route", :type => "hidden", :value => ""}/
+  %input#id_route{:name => "trip[route]", :type => "hidden", :value => ""}/
+  = f.input :starting_trailhead_id, :as => :hidden
+  = f.input :ending_trailhead_id, :as => :hidden
 
   #trailhead-meta
-    -if @trip.errors.any?
-      #error_explanation
-        %h2= "#{pluralize(@trailhead.errors.count, "error")} prohibited this trip from being saved:"
-        %ul
-          - @trailhead.errors.full_messages.each do |msg|
-            %li= msg
-    %label.text-attr-label
-      Name your trip
-    = f.input :name
+    = f.input :name, :label => "Name your trip"
 
     %label.text-attr-label Description
+    .editor
+      %textarea(name="trip[description]" id="trip_description" rows="10" cols="40")
+        #{@trip.description}
 
     .list
-      = f.association :duration, :include_blank => false
+      = f.association :duration, :as => :radio_buttons, :include_blank => false
 
     .list
-      = f.association :intensity, :include_blank => false
+      = f.association :intensity, :as => :radio_buttons, :include_blank => false
 
     .list
-      %label.text-attr-label Distance
+      %label.control-label Distance
       #distance
         \-
   / map
@@ -43,6 +40,40 @@
       %a#follow-paths-button.green-map-button{:href => "javascript:TNT.tripmap.toggleSnap();", :name => "follow-paths-button"} Unsnap
       %a#follow-paths-button.green-map-button{:href => "javascript:TNT.tripmap.toggleEdit();", :name => "follow-paths-button"} Edit
   / e: plan
+  .attributes
+    #trailhead-features
+      Attributes available for this trip:
+    / = f.association :trailhead_features, :as => :check_boxes
+    %ul.outer-list
+      - Category.order('rank').each do |category|
+        - unless category.trip_features.empty?
+          %li
+            %label.text-attr-label
+              #{ category.name }
+            %ul
+              - category.trip_features.each_with_index do |attribute,index|
+                - if index >= 5
+                  - extra_class = "hidden"
+                %li(class="#{extra_class}")
+                  %label{:for => "trip[trip_features[#{attribute.id}]"}
+                    - if @trip.trip_features.include? attribute
+                      %input(type="checkbox" name="trip[trip_feature_ids][]"
+                        id="trip_trip_feature_ids_#{attribute.id}"
+                        value="#{attribute.id}"
+                        checked="checked")
+                    - else
+                      %input(type="checkbox" name="trip[trip_feature_ids][]"
+                        id="trip_trip_feature_ids_#{attribute.id}"
+                        value="#{attribute.id}")
+                    #{ attribute.name }
+              - if category.trip_features.count >= 5
+                %a.show-more{:href => "#"} + show more..
+
+      %li
+        %input.green-link-button{:type => "submit", :value => "Save Trip"}
+      %li
+        %input#cancel-button.dark-gray-link-button{"data-url" => "/", :type => "button", :value => "Cancel"}
+
 
 :javascript
   trip_route = #{@trip.route || "[]"};

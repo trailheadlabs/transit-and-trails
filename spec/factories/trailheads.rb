@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :trailhead do
-    name "MyString"
+    sequence(:name) {|n| "Trailhead_#{n}" }
     description "MyText"
     latitude 37.8322173645
     longitude -122.212514877

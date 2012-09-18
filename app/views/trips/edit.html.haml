@@ -1,7 +1,22 @@
-%h1 Editing trip
+- content_for :head do
 
-= render 'form'
+  = javascript_include_tag "legacy/ckeditor/ckeditor"
+  = javascript_include_tag "legacy/ckeditor/adapters/jquery"
+  = javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyCcUhpQftpOwXVSLJqHrvwYCqnhTy3bchE&sensor=false&libraries=drawing,geometry"
 
-= link_to 'Show', @trip
-\|
-= link_to 'Back', trips_path
+  = javascript_include_tag "legacy/common"
+  = stylesheet_link_tag "legacy/reset"
+  = stylesheet_link_tag "legacy/common"
+  = stylesheet_link_tag "legacy/style"
+  = stylesheet_link_tag "legacy/trip"
+  = stylesheet_link_tag "editors"
+
+#page
+  #page-head
+    %h2
+      Edit Trip
+    %a{:href => "/"} Back to Map
+  / e: page head
+  #plan.alt.trailhead
+    = render "form"
+  / e: plan

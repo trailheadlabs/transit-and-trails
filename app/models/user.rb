@@ -22,8 +22,9 @@ class User < ActiveRecord::Base
 
   alias :devise_valid_password? :valid_password?
 
-  validates :username, :email, :presence => true;
-  validates :username, :uniqueness => true;
+  validates :username, :email, :presence => true
+
+  validates :username, :uniqueness => true
 
   def populate_user_profile
     UserProfile.create(:user_id=>self.id)

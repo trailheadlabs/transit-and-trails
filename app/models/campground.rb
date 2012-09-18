@@ -14,6 +14,9 @@ class Campground < ActiveRecord::Base
   attr_accessible :approved, :description, :latitude, :longitude, :name, :campground_feature_ids
   reverse_geocoded_by :latitude, :longitude
 
+  # validates :name, :presence => true
+  # validates :name, :uniqueness => true
+
   def categorized_attributes
     result = {}
     Category.all.each do |category|

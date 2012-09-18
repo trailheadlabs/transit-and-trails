@@ -9,12 +9,17 @@ class Trip < ActiveRecord::Base
   has_many :photos, :as => :photoable, :dependent => :destroy
   has_many :maps, :as => :mapable, :dependent => :destroy
 
-  attr_accessible :description, :ending_trailhead_id, :name, :route, :starting_trailhead_id, :latitude, :longitude
+  attr_accessible :description, :ending_trailhead_id, :name, :route, :starting_trailhead_id,
+    :latitude, :longitude, :intensity_id, :duration_id, :trip_feature_ids
 
-  before_save :update_bounds_min_max
+  before_save :update_bounds_min_max, :update_geometry
   after_save :refind_parks
 
   reverse_geocoded_by :latitude, :longitude
+
+  def update_geometry
+    self.geometry = route_as_geometry
+  end
 
   def parks
     @parks || find_parks
@@ -61,14 +66,32 @@ class Trip < ActiveRecord::Base
 
   def geometry_as_route
     result = "["
-
-    result += bounds_as_array.collect {|coord| "[#{coord[1]},#{coord[0]}]"}.join(",")
+    unless bounds_as_array.nil?
+      result += bounds_as_array.collect {|coord| "[#{coord[1]},#{coord[0]}]"}.join(",")
+    end
 
     result += "]"
   end
 
+  def route_as_geometry
+    if self.route
+      obj = JSON.parse(self.route)
+      obj.collect! do |value|
+        "#{value[1]} #{value[0]}"
+      end
+
+      return "LINESTRING (" + obj.join(", ") + ")"
+    else
+      return nil
+    end
+  end
+
   def bounds_as_array
-    self.geometry.gsub(/[A-Za-z]|\(|\)/,"").strip.split(',').collect{|c| c.split(" ").collect{|d| Float(d)}}
+    if self.geometry
+      return self.geometry.gsub(/[A-Za-z]|\(|\)/,"").strip.split(',').collect{|c| c.split(" ").collect{|d| Float(d)}}
+    else
+      return nil
+    end
   end
 
   def update_bounds_min_max
@@ -93,7 +116,7 @@ class Trip < ActiveRecord::Base
   end
 
   def length_miles
-    if route.nil?
+    if geometry.nil?
       return 0.0
     else
       factory = ::RGeo::Geographic.spherical_factory()

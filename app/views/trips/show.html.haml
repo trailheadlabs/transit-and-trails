@@ -25,11 +25,11 @@
 / Hidden form fields
 %input#id_route{:type => "hidden", :value => ""}/
 - if @trip.starting_trailhead
-  %input#id_starting_point{:type => "hidden", :value => "#{@trip.starting_trailhead.id}"}/
+  %input#trip_starting_trailhead_id{:type => "hidden", :value => "#{@trip.starting_trailhead.id}"}/
   %input#starting_point_latitude{:type => "hidden", :value => "#{@trip.starting_trailhead.latitude}"}/
   %input#starting_point_longitude{:type => "hidden", :value => "#{@trip.starting_trailhead.longitude}"}/
 - if @trip.ending_trailhead
-  %input#id_ending_point{:type => "hidden", :value => "#{@trip.ending_trailhead.id}"}/
+  %input#trip_ending_trailhead_id{:type => "hidden", :value => "#{@trip.ending_trailhead.id}"}/
   %input#ending_point_latitude{:type => "hidden", :value => "#{@trip.ending_trailhead.latitude}"}/
   %input#ending_point_longitude{:type => "hidden", :value => "#{@trip.ending_trailhead.longitude}"}/
 
@@ -100,7 +100,7 @@
 
           - if can?(:edit,@trip)
             .button-frame
-              %a.green-button{:href => "#{edit_trailhead_path(@trip)}"} Edit Trip
+              %a.green-button{:href => "#{edit_trip_path(@trip)}"} Edit Trip
 
           - if can?(:destroy,@trip)
             .button-frame

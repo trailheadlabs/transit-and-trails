@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :campground do
-    name "MyString"
+    sequence(:name) {|n| "Campground_#{n}" }
     description "MyText"
     latitude 1.5
     longitude 1.5

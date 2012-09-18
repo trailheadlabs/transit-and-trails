@@ -21,12 +21,10 @@ describe "trips/edit" do
     assert_select "form", :action => trips_path(@trip), :method => "post" do
       assert_select "input#trip_name", :name => "trip[name]"
       assert_select "textarea#trip_description", :name => "trip[description]"
-      assert_select "input#trip_user", :name => "trip[user]"
-      assert_select "input#trip_intensity", :name => "trip[intensity]"
-      assert_select "input#trip_duration", :name => "trip[duration]"
+      assert_select "input", :name => "trip[intensity_id]"
+      assert_select "input", :name => "trip[duration_id]"
       assert_select "input#trip_starting_trailhead_id", :name => "trip[starting_trailhead_id]"
       assert_select "input#trip_ending_trailhead_id", :name => "trip[ending_trailhead_id]"
-      assert_select "textarea#trip_route", :name => "trip[route]"
     end
   end
 end

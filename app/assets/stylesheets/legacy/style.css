@@ -1132,17 +1132,13 @@ a.gear {
 
 #add-trails {
     position: absolute;
-    bottom: 14px;
+    bottom: 15px;
     right: 14px;
-    height: 30px;
-    width: 148px;
-    text-indent: -9999em;
-    background: url(/assets/legacy/add-trail.png) bottom left no-repeat;
-    border: 1px solid rgba(0, 0, 0, .2);
-    -webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    -o-border-radius: 6px;
-    border-radius: 6px;
+    padding: 8px 12px;
+    color: white;
+    font-size: 13px;
+    height: 13px;
+    text-transform: uppercase;
 }
 
 #trail-list {
@@ -1804,7 +1800,7 @@ div.entry.titleright > #back-to-map-link {
 }
 
 .big-plus {
-    font-size: 26px;
+    font-size: 23px;
     line-height: 10px;
     top: 0px;
     position: relative;
@@ -1825,16 +1821,10 @@ div.entry.titleright > #back-to-map-link {
     right: 350px;
     padding: 8px 12px;
     color: white;
-    font-weight: 600;
-    font-size: 14px;
+    font-size: 13px;
     height: 13px;
     text-transform: uppercase;
-    text-shadow: 0px -1px 1px #aaaaaa;
-    background-color: #7CB141;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-    border-top: solid 1px #B5D68F;
+
 }
 
 .map-add-campground-button {
@@ -1843,16 +1833,9 @@ div.entry.titleright > #back-to-map-link {
     right: 170px;
     padding: 8px 12px;
     color: white;
-    font-weight: 600;
-    font-size: 14px;
+    font-size: 13px;
     height: 13px;
     text-transform: uppercase;
-    text-shadow: 0px -1px 1px #aaaaaa;
-    background-color: #F29A22;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-    border-top: solid 1px #FACD8F;
 }
 
 span.required {

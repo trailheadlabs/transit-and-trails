@@ -24,7 +24,10 @@ describe TripsController do
   # Trip. As you add validations to Trip, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    {
+      name: "Trip",
+      route: "[[37.8322173645,-122.21251487699999],[37.82038707077789,-122.20015992431638],[37.8318217249,-122.18518317400003]]"
+    }
   end
 
   # This should return the minimal set of values that should be in the session
@@ -44,7 +47,7 @@ describe TripsController do
 
   describe "GET show" do
     it "assigns the requested trip as @trip" do
-      trip = Trip.create! valid_attributes
+      trip = FactoryGirl.create(:trip)
       get :show, {:id => trip.to_param}, valid_session
       assigns(:trip).should eq(trip)
     end

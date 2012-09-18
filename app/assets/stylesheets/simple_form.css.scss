@@ -17,10 +17,12 @@
 
   div.input{
     margin-bottom: 10px;
+    padding-top: 10px;
     clear: both;
   }
 
   div.input.hidden{
+    display:none;
     margin-bottom:0px;
     clear: both;
   }

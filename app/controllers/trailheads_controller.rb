@@ -14,7 +14,7 @@ class TrailheadsController < ApplicationController
   def near_address
     address = params[:address] || "San Francisco, CA"
     distance = params[:distance] || 10
-    limit = 100 || params[:limit]
+    limit = 1000 || params[:limit]
     offset = 0 || params[:offset]
     approved = true || params[:approved]
     @trailheads = Trailhead.where(:approved => approved).near(address,distance).limit(limit).offset(offset)
@@ -30,7 +30,7 @@ class TrailheadsController < ApplicationController
     latitude = params[:latitude] || 37.7749295
     longitude = params[:longitude] || -122.4194155
     distance = params[:distance] || 10
-    limit = 100 || params[:limit]
+    limit = 1000 || params[:limit]
     offset = 0 || params[:offset]
     approved = true || params[:approved]
     @trailheads = Trailhead.where(:approved => approved).near([latitude,longitude],distance).limit(limit).offset(offset)
@@ -47,7 +47,7 @@ class TrailheadsController < ApplicationController
     max_latitude = Float(params[:ne_latitude])
     min_longitude = Float(params[:sw_longitude])
     max_longitude = Float(params[:ne_longitude])
-    limit = 100 || params[:limit]
+    limit = 1000 || params[:limit]
     offset = 0 || params[:offset]
     approved = true || params[:approved]
     @trailheads = Trailhead.where("latitude > :min_latitude AND latitude < :max_latitude AND longitude > :min_longitude AND longitude < :max_longitude",

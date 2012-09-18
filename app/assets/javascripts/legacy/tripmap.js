@@ -310,7 +310,7 @@ TNT.tripmap = {
         TNT.tripmap.starting_trailhead_id = id;
         var startLatLng = TNT.tripmap.currentTrailheadsById[id].getPosition();
         $("#starting-trailhead-name").text(TNT.tripmap.currentTrailheadsById[id].title);
-        $('#id_starting_point').val(id);
+        $('#trip_starting_trailhead_id').val(id);
         $('#trip-editor-step-instruction').text("Now draw your trip. Click the ending trailhead when you are done.");
         TNT.tripmap.currentInfoWindow.close();
         TNT.tripmap.currentTrailheadsById[id].setIcon(TNT.tripmap.tripStartIcon);
@@ -339,7 +339,7 @@ TNT.tripmap = {
           return false;
         }
         TNT.tripmap.ending_trailhead_id = id;
-        $('#id_ending_point').val(id);
+        $('#trip_ending_trailhead_id').val(id);
         $("#ending-trailhead-name").text(TNT.tripmap.currentTrailheadsById[id].title);
         TNT.tripmap.currentInfoWindow.close();
         var markerLatLng = TNT.tripmap.currentTrailheadsById[id].getPosition();
@@ -415,8 +415,8 @@ TNT.tripmap = {
                 bounds.extend(newVertex);
             }
             TNT.tripmap.tripLine.setMap(TNT.tripmap.map);
-            if ($('#id_starting_point').val() != '') {
-                TNT.tripmap.starting_trailhead_id = $('#id_starting_point').val();
+            if ($('#trip_starting_trailhead_id').val() != '') {
+                TNT.tripmap.starting_trailhead_id = $('#trip_starting_trailhead_id').val();
                 var latlng = new google.maps.LatLng(parseFloat($('#starting_point_latitude').val()),
                     parseFloat($('#starting_point_longitude').val()));
                 var pointMarkerOptions = {
@@ -429,8 +429,8 @@ TNT.tripmap = {
                 newMarker.setMap(TNT.tripmap.map);
             }
 
-            if ($('#id_ending_point').val() != '') {
-                TNT.tripmap.ending_trailhead_id = $('#id_ending_point').val();
+            if ($('#trip_ending_trailhead_id').val() != '') {
+                TNT.tripmap.ending_trailhead_id = $('#trip_ending_trailhead_id').val();
                 var latlng = new google.maps.LatLng(parseFloat($('#ending_point_latitude').val()),
                     parseFloat($('#ending_point_longitude').val()));
                 var pointMarkerOptions = {

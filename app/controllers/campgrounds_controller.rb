@@ -18,7 +18,7 @@ class CampgroundsController < ApplicationController
     latitude = params[:latitude] || 37.7749295
     longitude = params[:longitude] || -122.4194155
     distance = params[:distance] || 10
-    limit = 100 || params[:limit]
+    limit = 1000 || params[:limit]
     offset = 0 || params[:offset]
     approved = true || params[:approved]
     @campgrounds = Campground.where(:approved => approved).near([latitude,longitude],distance).limit(limit).offset(offset)

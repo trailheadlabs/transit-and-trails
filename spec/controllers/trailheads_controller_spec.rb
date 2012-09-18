@@ -24,7 +24,7 @@ describe TrailheadsController do
   # Trailhead. As you add validations to Trailhead, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    {:name=>"Trailhead"}
   end
 
   # This should return the minimal set of values that should be in the session

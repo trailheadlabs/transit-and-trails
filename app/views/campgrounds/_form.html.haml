@@ -2,20 +2,12 @@
   = f.input :latitude, :input_html=>{:id => 'trailhead_latitude'}, :as => :hidden
   = f.input :longitude, :input_html=>{:id => 'trailhead_longitude'}, :as => :hidden
   #trailhead-meta
-    -if @campground.errors.any?
-      #error_explanation
-        %h2= "#{pluralize(@campground.errors.count, "error")} prohibited this campground from being saved:"
-        %ul
-          - @campground.errors.full_messages.each do |msg|
-            %li= msg
     %label.text-attr-label.address{:for => "id_start_address"}
       Reposition the map by entering an address or location here:
     %input#id_start_address{:placeholder => "Address or location", :type => "text"}/
     %a#find_address.green-button.right{:href => "#"}
       Go  
-    %label.text-attr-label
-      Name the campround
-    %input#id_name{:name => "campground[name]", :placeholder => "Simple and descriptive", :type => "text", :value => "#{@campground.name}"}/
+    = f.input :name, :placeholder => "Simple and descriptive", :label => "Name the campground"
     %label.text-attr-label Description
     .editor
       %textarea(name="campground[description]" id="campground_description" rows="10" cols="40")

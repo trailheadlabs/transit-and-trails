@@ -19,7 +19,7 @@ describe "campgrounds/new" do
 
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     assert_select "form", :action => campgrounds_path, :method => "post" do
-      assert_select "input#id_name", :name => "campground[name]"
+      assert_select "input#campground_name", :name => "campground[name]"
       assert_select "textarea#campground_description", :name => "campground[description]"
       assert_select "input#trailhead_latitude", :name => "campground[latitude]"
       assert_select "input#trailhead_longitude", :name => "campground[longitude]"

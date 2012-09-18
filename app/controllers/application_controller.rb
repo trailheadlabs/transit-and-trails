@@ -63,7 +63,7 @@ class ApplicationController < ActionController::Base
     longitude = params[:long]
     distance = params[:distance]
     approved = true
-    limit = 100
+    limit = 1000
     offset = 0
     @trailheads = Trailhead.where(:approved => approved).near([latitude,longitude],distance).limit(limit).offset(offset).collect do |t|
       t['class_name'] = 'Trailhead'
