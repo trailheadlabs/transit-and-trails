@@ -1,4 +1,6 @@
 class PlanController < ApplicationController
+  before_filter :store_location
+
   def trailhead
     @trailhead = Trailhead.find(params[:trailhead_id])
     render "plan"
