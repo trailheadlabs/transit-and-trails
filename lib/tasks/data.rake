@@ -18,4 +18,26 @@ namespace :data do
     puts "Done"
   end
 
+  desc "Cache parks on trailheads"
+  task :cache_trailhead_parks => :environment do
+    count = Trailhead.count
+    Trailhead.all.each_with_index do |t,i|
+      t.default_park
+      puts "#{i+1}/#{count}"
+    end
+    puts "Done"
+  end
+
+
+  desc "Cache parks on campgrounds"
+  task :cache_campground_parks => :environment do
+    count = Campground.count
+    Campground.all.each_with_index do |t,i|
+      t.default_park
+      puts "#{i+1}/#{count}"
+    end
+    puts "Done"
+  end
+
+
 end

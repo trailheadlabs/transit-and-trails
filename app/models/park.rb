@@ -72,9 +72,12 @@ class Park < ActiveRecord::Base
   end
 
   def sides_of_bounds
-    b_a = bounds_as_array
-    longs = b_a.collect{|c| c[0]}.sort
-    lats = b_a.collect{|c| c[1]}.sort
+    sides_of_poly bounds_as_array
+  end
+
+  def sides_of_poly(poly)
+    longs = poly.collect{|c| c[0]}.sort
+    lats = poly.collect{|c| c[1]}.sort
     min_long = longs[0]
     max_long = longs[-1]
     min_lat = lats[0]
@@ -89,6 +92,11 @@ class Park < ActiveRecord::Base
 
   def contains_trailhead?(trailhead)
     result = false
+    polys.select! do |p|
+      sides = sides_of_poly(p)
+      trailhead.latitude > sides[2] && trailhead.latitude < sides[3] &&
+        trailhead.longitude > sides[0] && trailhead.longitude < sides[1]
+    end
     polys.each do |p|
       if contains_point?(p,[trailhead.longitude,trailhead.latitude])
         result = true
