@@ -2,5 +2,5 @@ object @campground
 attributes :id, :name, :description, :longitude, :latitude
 attributes :user_id => :author_id
 node :park_name do |t|
-  t.park_by_bounds ? t.park_by_bounds.name : nil
+  t.default_park ? t.default_park.name : nil
 end
