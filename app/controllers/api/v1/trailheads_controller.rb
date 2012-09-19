@@ -2,7 +2,7 @@ module Api
   module V1
     class TrailheadsController < ApplicationController
       def index
-        @trailheads = apply_limit_and_offset(params,Trailhead.order("id"))
+        @trailheads = apply_limit_and_offset(params,Trailhead.order("id")).includes(:cached_park_by_bounds)
       end
 
       def show
