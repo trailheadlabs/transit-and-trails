@@ -2,7 +2,7 @@ module Api
   module V1
     class CampgroundsController < ApplicationController
       def index
-        @campgrounds = apply_limit_and_offset(params, Campground.order("id"))
+        @campgrounds = apply_limit_and_offset(params, Campground.order("id").includes(:cached_park_by_bounds,:park))
       end
 
       def show
