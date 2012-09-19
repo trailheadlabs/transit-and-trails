@@ -1,6 +1,9 @@
 module Api
   module V1
     class CampgroundsController < ApplicationController
+
+      caches_action :index, :expires_in => 60
+
       def index
         @campgrounds = apply_limit_and_offset(params, Campground.order("id").includes(:cached_park_by_bounds,:park))
       end
