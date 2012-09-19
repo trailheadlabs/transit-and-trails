@@ -31,6 +31,17 @@ Transitandtrails::Application.routes.draw do
     end
   end
 
+  constraints :subdomain => (Rails.env.production? ? /embed\.rails|embed/ : /.*/) do
+    namespace :embed do
+      match "plan/location" => "plan#location"
+      match "plan/trailhead/:trailhead_id" => "plan#trailhead"
+      match "plan/campground/:campground_id" => "plan#campground"
+      match "plan/trip/:trip_id" => "plan#trip"
+      match "plan/trailhead_list" => "plan#trailhead_list"
+      match "plan/non_profit_partner_trailheads" => "plan#non_profit_partner_trailheads"
+    end
+  end
+
   resources :trips do
     resources :maps
     resources :photos

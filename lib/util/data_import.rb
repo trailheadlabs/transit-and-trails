@@ -315,6 +315,7 @@ module Util
       new_record.slug = fields['slug']
       new_record.link = fields['link']
       new_record.bounds = fields['geom']
+      new_record.non_profit_partner_id = fields['non_profit_partner']
       new_record.save
     end
 
