@@ -1,5 +1,5 @@
 Transitandtrails::Application.routes.draw do
-  constraint :subdomain => /api\.rails/ do
+  constraints :subdomain => /api\.rails/ do
     namespace :api, :defaults => {:format => :json} do
       namespace :v1 do
         resources :users, :only => [:show, :index]
