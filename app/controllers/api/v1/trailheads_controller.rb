@@ -1,7 +1,7 @@
 module Api
   module V1
     class TrailheadsController < ApplicationController
-      caches_action :index, :expires_in => 60
+      caches_action :index, :expires_in => 60, :cache_path => Proc.new { |c| c.params }
 
       def index
         @trailheads = apply_limit_and_offset(params,Trailhead.order("id").includes(:cached_park_by_bounds,:park))
