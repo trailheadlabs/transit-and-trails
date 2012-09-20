@@ -4,13 +4,8 @@
   %script
     google.load("maps", "2.x");
   %script{:src => "http://gmaps-utility-library.googlecode.com/svn/trunk/markermanager/release/src/markermanager.js"}
-  %script{:src => "/assets/legacy/gzoom.js", :type => "text/javascript"}
-  = stylesheet_link_tag "legacy/reset"
-  = stylesheet_link_tag "legacy/common"
-  = stylesheet_link_tag "legacy/style"
+  = render :partial => '/shared/partials/legacy_head'
   = stylesheet_link_tag "legacy/plan"
-  %link{:href => "/assets/legacy/jquery/css/ui-lightness/jquery-ui-1.7.2.custom.css", :rel => "stylesheet", :type => "text/css"}
-  %script{:src => "/assets/legacy/jquery/js/jquery-ui-1.7.2.custom.min.js", :type => "text/javascript"}
 
 %input#trip_start_lat{:name => "trip_start_lat", :type => "hidden"}/
 %input#trip_start_lng{:name => "trip_start_lng", :type => "hidden"}/

@@ -10,6 +10,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def embed_authenticate_user!
+    unless user_signed_in?
+      flash[:alert] = "Please login to access that page."
+      redirect_to '/embed/sessions/new' # halts request cycle
+    end
+  end
+
   def apply_limit_and_offset(params,records)
     if params[:limit]
       records = records.limit(Integer(params[:limit]))
@@ -31,8 +38,10 @@ class ApplicationController < ActionController::Base
 
   def store_location
     unless params[:controller].match /devise/
-      url = request.referrer
+      url = params[:next_url] || request.referrer
       session[:user_return_to] = url
+    else
+      session[:user_return_to] = params[:next_url]
     end
   end
 

@@ -1,0 +1,29 @@
+- content_for :page_title do
+  Login
+
+- content_for :page_content do
+  = simple_form_for @trip do |f|
+    .embed-header
+      .title
+        New Trip
+      .logo
+        BY
+        %a{:href => "http://transitandtrails.org", :target => "_blank"}
+          %img{:src => "/assets/legacy/plan/small-logo.png"}/
+    .entry.static
+      #django-form
+        = f.input :name
+        = f.input :description
+        %input{:name => "next_url", :type => "hidden", :value => "/embed/trips/new"}/
+      %div{:style => "width:490px;margin:0 auto;padding-bottom:20px"}
+        %ul
+          %li
+            %a{:href => "/embed/signup"} Click here to become a Trail Blazer
+          %li
+            %a{:href => "/accounts/password/reset", :target => "_blank"} Forgot your password?
+    .entry.bottom
+      #django-submit
+        %input.green-submit-button{:type => "submit", :value => "Submit"}
+          %a#django-cancel-link{:href => "/"} Cancel
+
+

@@ -33,6 +33,8 @@ Transitandtrails::Application.routes.draw do
 
   constraints :subdomain => (Rails.env.production? ? /embed\.rails|embed/ : /.*/) do
     namespace :embed do
+      resources :sessions
+      resources :trips
       match "plan/location" => "plan#location"
       match "plan/trailhead/:trailhead_id" => "plan#trailhead"
       match "plan/campground/:campground_id" => "plan#campground"
