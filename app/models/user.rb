@@ -9,14 +9,14 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-                  :username, :django_password, :user_profile_attributes
+                  :username, :django_password, :user_profile
   # attr_accessible :title, :body
 
   has_one :user_profile
 
   has_paper_trail
 
-  after_create :populate_user_profile
+  before_create :populate_user_profile
 
   accepts_nested_attributes_for :user_profile
 
@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   validates :username, :uniqueness => true
 
   def populate_user_profile
-    UserProfile.create(:user_id=>self.id)
+    build_user_profile unless user_profile
   end
 
   def valid_password?(password)

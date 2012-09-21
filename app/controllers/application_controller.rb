@@ -37,12 +37,14 @@ class ApplicationController < ActionController::Base
   end
 
   def store_location
-    unless params[:controller].match /devise/
+    unless params[:controller].match /devise|signup|signin/
       url = params[:next_url] || request.referrer
       session[:user_return_to] = url
     else
       session[:user_return_to] = params[:next_url]
     end
+    Rails.logger.info("session[:user_return_to] = #{session[:user_return_to]}")
+
   end
 
   def stored_location_for(resource_or_scope)
@@ -50,6 +52,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
+    Rails.logger.info("session[:user_return_to] = #{session[:user_return_to]}")
     stored_location_for(resource) || root_path
   end
 

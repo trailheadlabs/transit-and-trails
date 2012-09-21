@@ -1,4 +1,10 @@
 %p
   Welcome #{@resource.email}!
 %p You can confirm your account email through the link below:
-%p= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token)
+
+- if @resource.user_profile.signup_source == 'bay_nature_trip_editor'
+  %p= link_to 'Confirm my account', embed_confirm_url(:confirmation_token => @resource.confirmation_token)
+  %p
+    Once you have activated your account it will be reviewed by Bay Nature and you will receive a confirmation email once it has been approved.
+- else
+  %p= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token)

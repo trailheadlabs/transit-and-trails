@@ -1,15 +1,8 @@
 - content_for :page_title do
-  Login
+  New Trip
 
 - content_for :page_content do
   = simple_form_for @trip do |f|
-    .embed-header
-      .title
-        New Trip
-      .logo
-        BY
-        %a{:href => "http://transitandtrails.org", :target => "_blank"}
-          %img{:src => "/assets/legacy/plan/small-logo.png"}/
     .entry.static
       #django-form
         = f.input :name

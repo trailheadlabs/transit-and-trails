@@ -2,6 +2,8 @@
   %meta{:content => "Transit & Trails : #{@trip.name}", :property => "og:title"}/
 
   %script(src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCcUhpQftpOwXVSLJqHrvwYCqnhTy3bchE&sensor=false&libraries=drawing,geometry")
+  %script(src="/assets/legacy/gzoom.js")
+
   %script{:src => "/assets/legacy/galleria/galleria-1.2.7.min.js"}
   %script{:src => "/assets/legacy/jquery/js/jquery.tools.min.js", :type => "text/javascript"}
   = javascript_include_tag "legacy/common"

@@ -2,13 +2,18 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.simple_form{
+    #trailhead-meta .control-label{
+      font-weight : 600;
+    }
+  }
+
 .simple_form {
   .editor{
     margin-bottom:20px;
   }
   .control-label{
-
-    font-weight:600;
+    // font-weight:600;
   }
   ul{
     li{

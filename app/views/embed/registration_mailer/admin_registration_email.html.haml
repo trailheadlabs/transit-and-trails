@@ -1,0 +1,11 @@
+%p
+  A new Bay Naure Trail Blazer has signed up.
+
+%p
+  Username = #{@user.username}
+
+%p
+  Please use the link below to approve this account as a Bay Nature Trail Blazer :
+
+%p
+  #{embed_approve_url(:cofirmation_token=>@user.confirmation_token)}

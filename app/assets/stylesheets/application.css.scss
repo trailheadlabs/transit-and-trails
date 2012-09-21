@@ -4,6 +4,10 @@
 @import "about";
 @import "simple_form";
 
+abbr[title="required"] {
+  color:red;
+}
+
 body {
   font-size: 14px;
   line-height: 18px;

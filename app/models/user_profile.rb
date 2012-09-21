@@ -3,7 +3,7 @@ class UserProfile < ActiveRecord::Base
                   :avatar_cache, :remote_avatar_url, :organization_avatar,
                   :organization_avatar_cache, :remote_organization_avatar_url,
                   :city, :state, :zip, :address1, :address2, :organization_name,
-                  :organization_url, :website_address
+                  :organization_url, :website_address, :signup_source
 
   belongs_to :user
 

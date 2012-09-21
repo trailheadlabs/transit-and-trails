@@ -1,0 +1,19 @@
+- content_for :page_title do
+  Account Activated
+
+- content_for :page_content do
+  .entry.static
+    .embed-content
+      - if @user.errors.size > 0
+        %p
+          Sorry, we couldn't activate your account :
+        - @user.errors.full_messages.each do |error|
+          %p
+            = error
+      - else
+        %p
+          Your account has been activated!
+        %p
+          As soon as Bay Nature approves your account, you'll be ready to start adding trips. We'll send a confirmation email when that happens (very soon!)
+
+

@@ -3,13 +3,6 @@
 
 - content_for :page_content do
   = simple_form_for "user", :url => user_session_path do |f|
-    .embed-header
-      .title
-        Login
-      .logo
-        BY
-        %a{:href => "http://transitandtrails.org", :target => "_blank"}
-          %img{:src => "/assets/legacy/plan/small-logo.png"}/
     .entry.static
       #django-form
         = f.input :username

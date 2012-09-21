@@ -1,3 +1,24 @@
+span.error{
+  display: block;
+  margin-left: 200px;
+  color: red;
+}
+.input{
+  margin-bottom:14px;
+}
+
+.nav{
+  float:right;
+  color:#B5C9D7;
+  padding:14px;
+  text-transform: uppercase;
+  font-weight:600;
+  font-size:0.9em;
+}
+
+.nav a{
+  color:white;
+}
 .embed-content{
   margin:30px auto;
   width:600px;
@@ -26,7 +47,7 @@
 #trip-maps{
   display:block;
   float:left;
-  width:400px;  
+  width:400px;
   padding:0px 10px;
 }
 
@@ -38,11 +59,11 @@
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -o-border-radius: 4px;
-  border-radius: 4px;  
+  border-radius: 4px;
   border:solid 1px #bbb;
   padding:10px;
 }
-#map-container{  
+#map-container{
   padding-left:0px;
   float:left;
   border-right:solid 2px #87A9BC;
@@ -66,6 +87,7 @@
 }
 #content{
   padding: 0px;
+  padding-top: 0px;
 }
 
 #id_description{
@@ -80,7 +102,7 @@
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -o-border-radius: 4px;
-  border-radius: 4px;  
+  border-radius: 4px;
   border:solid 1px #bbb;
 
 }
@@ -89,7 +111,7 @@
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   -o-border-radius: 0px;
-  border-radius: 0px;  
+  border-radius: 0px;
   padding: 4px 20px;
 }
 
@@ -111,7 +133,7 @@
   right:20px;
   bottom:20px;
 }
-#wrap {    
+#wrap {
     position: relative;
     margin: auto;
     width: 970px;
@@ -137,7 +159,7 @@
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   -o-border-radius: 0px;
-  border-radius: 0px;  
+  border-radius: 0px;
 
 }
 #id_description{
@@ -148,7 +170,7 @@
   background:white;
   position:relative;
   overflow-y:auto;
-  width:inherit;  
+  width:inherit;
   float:left;
   height:440px;
   padding: 0px 10px;

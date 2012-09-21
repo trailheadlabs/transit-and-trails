@@ -1,0 +1,24 @@
+- content_for :page_title do
+  Sign Up
+
+- content_for :page_content do
+  = simple_form_for @user, :url => embed_registrations_path do |f|
+    .entry.static
+      #django-form
+        = f.input :username
+        = f.input :email
+        = f.input :password, :required => true
+        = f.input :password_confirmation, :label => "Confirm Password", :required => true
+        %input{:name => "next_url", :type => "hidden", :value => "/embed/registrations/thanks"}/
+        %input{:name => "signup_source", :type => "hidden", :value => "baynature"}/
+      %div{:style => "width:490px;margin:0 auto;padding-bottom:20px"}
+        %ul
+          %li
+            Have an account?
+            %a{:href => "/embed/signin"} Sign in here!
+    .entry.bottom
+      #django-submit
+        %input.green-submit-button{:type => "submit", :value => "Submit"}
+          %a#django-cancel-link{:href => "/"} Cancel
+
+
