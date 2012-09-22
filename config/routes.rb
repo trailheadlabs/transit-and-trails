@@ -1,5 +1,5 @@
 Transitandtrails::Application.routes.draw do
-  constraints :subdomain => (Rails.env.production? ? /api\.rails|api/ : /.*/) do
+  constraints :subdomain => (Rails.env.production? ? /api\.rails|api|rails/ : /.*/) do
     namespace :api, :defaults => {:format => :json} do
       namespace :v1 do
         resources :users, :only => [:show, :index]
@@ -31,7 +31,7 @@ Transitandtrails::Application.routes.draw do
     end
   end
 
-  constraints :subdomain => (Rails.env.production? ? /embed\.rails|embed/ : /.*/) do
+  constraints :subdomain => (Rails.env.production? ? /embed\.rails|embed|rails/ : /.*/) do
     namespace :embed do
       match "login" => "sessions#new", :as => :sigin
       match "signin" => "sessions#new"
