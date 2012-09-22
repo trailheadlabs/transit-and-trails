@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   end
 
   def embed_authenticate_admin!
-    unless user_signed_in? && current_user.trailblazer?
+    unless user_signed_in? && current_user.admin?
       flash[:alert] = "Please login as an admin to access that page."
       redirect_to '/embed/sessions/new' # halts request cycle
     end

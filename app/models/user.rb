@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
   end
 
   def trailblazer?
-    return self.admin
+    return self.admin || self.trailblazer
   end
 
 end
