@@ -284,8 +284,12 @@ namespace :import do
       json = Util::DataImport::latest_trip_objects
       # for each item in list
       json.each do |item|
-        puts JSON.pretty_generate item, :indent => "  "
-        puts Util::DataImport::import_trip item
+        begin
+          puts JSON.pretty_generate item, :indent => "  "
+          puts Util::DataImport::import_trip item
+        rescue Exception => e
+          puts e.message
+        end
       end
     rescue
     end
