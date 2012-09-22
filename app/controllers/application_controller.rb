@@ -10,9 +10,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def embed_authenticate_user!
-    unless user_signed_in?
-      flash[:alert] = "Please login to access that page."
+  def embed_authenticate_trailblazer!
+    unless user_signed_in? && current_user.trailblazer?
+      flash[:alert] = "Please login as a Trail Blazer to access that page."
       redirect_to '/embed/sessions/new' # halts request cycle
     end
   end

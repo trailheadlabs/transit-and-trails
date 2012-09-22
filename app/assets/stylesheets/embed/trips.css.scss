@@ -1,0 +1,53 @@
+@import "bourbon";
+
+#map_url {
+  width:260px;
+}
+
+
+#maps .map a.get-map{
+  float:left;
+}
+
+.delete-map-link{
+  margin-top:10px;
+  text-transform:uppercase;
+  color:red;
+}
+
+body{
+  font-size:13px;
+}
+
+#page{
+  height:478px;
+}
+
+#plan.alt.trailhead #plan-map {
+  height:415px;
+}
+#trip_attributes{
+  clear:both;
+  height:348px;
+}
+.list div {
+  clear:both;
+}
+
+#photo-upload{
+  clear:both;
+}
+#map-container{
+  @include border-radius(0);
+}
+#find_address{
+  padding: 3px 10px;
+  margin-left:6px;
+}
+
+span.error{
+  text-transform:uppercase;
+  font-weight:500;
+  margin-top:6px;
+  margin-left:0px;
+}

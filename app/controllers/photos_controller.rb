@@ -9,10 +9,10 @@ class PhotosController < ApplicationController
 
     respond_to do |format|
       if @photo.save
-        format.html { redirect_to @photo.photoable, notice: 'Photo added!' }
+        format.html { redirect_to request.env["HTTP_REFERER"] || @photo.photoable, notice: 'Photo added!' }
         format.json { render json: @photo, status: :created, location: @photo }
       else
-        format.html { redirect_to :back }
+        format.html { redirect_to request.env["HTTP_REFERER"] }
         format.json { render json: @photo.errors, status: :unprocessable_entity }
       end
     end
@@ -25,7 +25,7 @@ class PhotosController < ApplicationController
     @photo.destroy
 
     respond_to do |format|
-      format.html { redirect_to @photo.photoable, notice: 'Photo removed!' }
+      format.html { redirect_to request.env["HTTP_REFERER"] || @photo.photoable, notice: 'Photo removed!' }
       format.json { head :no_content }
     end
   end

@@ -1,0 +1,32 @@
+= f.input :route, :as => :hidden, :input_html => {:id => "id_route"}
+= f.input :starting_trailhead_id, :as => :hidden
+= f.input :ending_trailhead_id, :as => :hidden
+
+#trailhead-meta
+  / - if @trip.errors.size > 0
+  /   .errors
+  /     = @trip.errors.full_messages
+
+  = f.input :name, :label => "Name your trip", :input_html => { :class => "text-attr-label" }
+  .list
+    = f.association :duration, :as => :radio_buttons, :include_blank => false, :input_html => { :class => "list" }
+  .list
+    = f.association :intensity, :as => :radio_buttons, :include_blank => false, :input_html => { :class => "list" }
+  .list
+    %label.text-attr-label Distance
+    #distance
+      \-
+  %div{:style => "clear:both"}
+  .list
+    %label.text-attr-label Starting Trailhead
+    #starting-trailhead-name
+      Click a trailhead on the map to set as start.
+  %div{:style => "clear:both"}
+  .list
+    %label.text-attr-label Ending Trailhead
+    #ending-trailhead-name
+      Click a trailhead on the map to set as end.
+
+  = f.button :submit, :value => "Next", :id => "embed-next-button", :input_html => { :class => "green-button" }
+
+

@@ -41,7 +41,14 @@ Transitandtrails::Application.routes.draw do
       match "approve" => "registrations#approve", :as => :approve
       resources :sessions, :only => [:new]
       resources :registrations, :only => [:new,:create]
-      resources :trips, :only => [:new,:create,:update,:edit]
+      resources :trips, :only => [:new,:create,:update,:edit] do
+        member do
+          get 'edit_details'
+          get 'edit_photos'
+          put 'update_details'
+          put 'update_photos'
+        end
+      end
       match "plan/location" => "plan#location"
       match "plan/trailhead/:trailhead_id" => "plan#trailhead"
       match "plan/campground/:campground_id" => "plan#campground"

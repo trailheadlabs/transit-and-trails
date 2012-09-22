@@ -118,7 +118,14 @@ h3{
   font-size:14px;
 }
 
-a.green-map-button, a.green-button {
+.gray-button{
+  @include button(#666);
+  text-shadow: 0 -1px 1px #001E00;
+  font-weight:600;
+  font-size:14px;
+}
+
+a.green-map-button, a.green-button, a.gray-button {
     color: white;
     text-decoration:none;
     &:visited {

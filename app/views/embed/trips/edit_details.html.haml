@@ -1,0 +1,47 @@
+-content_for :head do
+  = stylesheet_link_tag "application"
+  = stylesheet_link_tag "legacy/trip"
+  = stylesheet_link_tag "embed/trips"
+- content_for :page_title do
+  Trip Details : #{truncate(@trip.name,:length=>40)}
+
+- content_for :page_content do
+
+  #page.embed-trip-editor-page
+    #plan.alt.trailhead
+      = simple_form_for @trip, :url => update_details_embed_trip_path do |f|
+        / fields
+        = render :partial => 'trip_form_detail_fields', :locals => { :f => f }
+        #trip-attribute-box
+          %label.text-attr-label Trip Attributes
+          #trip_attributes
+            %ul.outer-list
+              - Category.order('rank').each do |category|
+                - if not category.trip_features.empty?
+                  %li
+                    %label.text-attr-label
+                      = category.name
+                    %ul
+                      - category.trip_features.each do |attribute|
+                        %li
+                          %label{:for => "id_features"}
+                            - if @trip.trip_features.include? attribute
+                              %input(type="checkbox" name="trip[trip_feature_ids][]"
+                                id="trip_trip_feature_ids_#{attribute.id}"
+                                value="#{attribute.id}"
+                                checked="checked")
+                            - else
+                              %input(type="checkbox" name="trip[trip_feature_ids][]"
+                                id="trip_trip_feature_ids_#{attribute.id}"
+                                value="#{attribute.id}")
+                            #{ attribute.name }
+        #trip-detail-buttons
+          %a.gray-button(href="#{edit_embed_trip_path(@trip)}")
+            Back
+          %input.green-button{:type => "submit", :value => "Next"}
+    / e: plan
+  / e: page
+  :javascript
+    $(function(){
+      $('#id_description').ckeditor({width: '500px',height: '260px'});
+    });

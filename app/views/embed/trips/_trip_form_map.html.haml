@@ -1,0 +1,18 @@
+#map-container
+  #plan-map-instructions
+    %label.text-attr-label.address{:for => "id_start_address"}
+      Reposition the map by entering an address or location here:
+    %input#id_start_address{:name => "id_start_address", :placeholder => "Address or location", :type => "text"}/
+    %a#find_address.green-button{:href => "#"}
+      Go  
+      %span.caret ►
+    %br/
+    %label#trip-editor-step-instruction.text-attr-label
+      Get started by clicking on the trailhead where your trip starts.
+  #plan-map.trip-editor-map
+  .trip-map-buttons
+    %a#out-and-back-button.green-map-button{:href => "javascript:TNT.tripmap.outAndBack();", :name => "out-and-back-button"} And Back
+    %a.green-map-button{:href => "javascript:TNT.tripmap.clearWayPoints();"} Clear
+    %a.green-map-button{:href => "javascript:TNT.tripmap.eraseFromEnd()"} Undo
+    %a#follow-paths-button.green-map-button{:href => "javascript:TNT.tripmap.toggleSnap();", :name => "follow-paths-button"} Unsnap
+    %a#follow-paths-button.green-map-button{:href => "javascript:TNT.tripmap.toggleEdit();", :name => "follow-paths-button"} Edit

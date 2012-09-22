@@ -1,0 +1,125 @@
+-content_for :head do
+  = stylesheet_link_tag "application"
+  = stylesheet_link_tag "legacy/trip"
+  = stylesheet_link_tag "embed/trips"
+- content_for :page_title do
+  Trip Photos & Maps : #{truncate(@trip.name,:length=>40)}
+
+- content_for :page_content do
+  #page.embed-trip-editor-page
+    #plan.alt.trailhead
+
+      #trip-photos
+        %label.text-attr-label
+          Photos (Powered by Flickr)
+          .trip-photos-maps-content
+            .trailhead-photo-gallery
+              %a.prev.browse.left
+              #photos.scrollable
+                .items
+                  - @trip.photos.each_with_index do |photo,i|
+                    .photo
+                      = link_to('', polymorphic_path([@trip,photo]), :method => :delete, :class=>'close', :data=> {:confirm => "Are you sure?"})
+                      = image_tag(photo.flickr_square_url, :rel => "#photo#{i}", :class=>"thumbnail")
+              %a.next.browse.right
+              - if @trip.photos.count > 5
+                %div{:style => "clear:both"}
+                %div{:style => "text-align:right;display:inline-block;float:right;position:relative;top:-20px;"}
+                  %a{:href => "http://flickr.com/photos/transitandtrails/tags/#{@trip.class.name.downcase}id#{@trip.id}/"} More...
+              %br/
+              #photo-upload
+                %form{:action => "#{polymorphic_path([@trip,:photos])}", :enctype => "multipart/form-data", :method => "POST", :id=>"upload-photo-form"}
+                  = token_tag form_authenticity_token
+                  %input{:name => "photo[photoable_id]", :type => "hidden", :value => "#{@trip.id}"}/
+                  %input{:name => "photo[photoable_type]", :type => "hidden", :value => "#{@trip.class.name}"}/
+                  %input{:id=> "photo-file-input", :name => "photo[image]", :type => "file", :style=>"display:none"}/
+                  %input.green-map-button{:type => "submit", :value => "Upload a Photo", :id=>"upload-photo-button"}/
+
+      #trip-maps
+        %label.text-attr-label
+          Maps
+          .trip-photos-maps-content
+            - if @trip.maps.count > 0
+              %div{:style => "clear:both"}
+              #maps
+                - @trip.maps.each do |map|
+                  .map
+                    - if map.map
+                      %a.get-map{:href => "#{map.map}", :target => "_blank"}
+                        .download-icon
+                        .download-text
+                          View Map
+                    - elsif map.map_url
+                      %a.get-map{:href => "#{map.map_url}", :target => "_blank"}
+                        .download-icon
+                        .download-text
+                          View Map
+                    - if can?(:destroy, :map)
+                      = link_to("Delete Map", polymorphic_path([@trip,map]), :class=> "delete", :method => :delete, :confirm => "Are you sure?", :class=>"right delete-map-link")
+
+            - if can?(:create, @trip)
+              %label.text-attr-label
+                Add Map
+              %form
+                %input{:checked => "checked", :name => "map-select", :type => "radio", :value => "file"}>/
+                File
+                %input{:name => "map-select", :type => "radio", :value => "url"}/
+                URL
+                %br/
+              %form#map-upload-form{:action => "#{polymorphic_path([@trip,:maps])}", :enctype => "multipart/form-data", :method => "POST"}
+                = token_tag form_authenticity_token
+                %input{:name => "map[mapable_id]", :type => "hidden", :value => "#{@trip.id}"}/
+                %input{:name => "map[mapable_type]", :type => "hidden", :value => "#{@trip.class.name}"}/
+                %input#map{:name => "map[map]", :type => "file", :style => "display:none"}/
+                %input#map_url{:name => "map[url]", :style => "display:none;", :type => "text"}/
+                %input#map-save-button.green-button{:type => "submit", :value => "Upload a File"}/
+
+
+
+        #trip-detail-buttons
+          %a.gray-button(href="#{edit_details_embed_trip_path(@trip)}")
+            Back
+          %a.green-button(href="#{@post_save_redirect}")
+            Done
+
+        / e: plan
+      / e: page
+
+    :javascript
+      $(function (){
+
+        $("#photo-file-input").live('change',function(){
+            $('#upload-photo-button').val('Uploading...');
+            $('#upload-photo-button').attr('disabled','disabled');
+            $("#upload-photo-form").submit();
+        });
+
+        $("#upload-photo-button").click(function(){
+            $('#photo-file-input').click();
+            return false;
+        })
+
+        $("#map").live('change',function(){
+            $('#map-save-button').val('Uploading...');
+            $('#map-save-button').attr('disabled','disabled');
+            $("#map-upload-form").submit();
+        })
+
+        $("#map-save-button").click(function(){
+            if ($('input:radio[name=map-select]:checked').val() == "file") {
+                $('#map').click();
+                return false;
+            }
+        })
+
+        $('input:radio[name=map-select]').click(function() {
+            if ($('input:radio[name=map-select]:checked').val() == "url") {
+                $('#map-save-button').attr('value', "Save");
+                $('#map_url').show();
+            } else if ($('input:radio[name=map-select]:checked').val() == "file") {
+                $('#map-save-button').attr('value', "Upload a File");
+                $('#map_url').hide();
+            }
+        });
+      });
+

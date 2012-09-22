@@ -10,10 +10,10 @@ class MapsController < ApplicationController
 
     respond_to do |format|
       if @map.save
-        format.html { redirect_to @map.mapable, notice: 'Map added!' }
+        format.html { redirect_to request.env["HTTP_REFERER"] || @map.mapable, notice: 'Map added!' }
         format.json { render json: @map, status: :created, location: @map }
       else
-        format.html { redirect_to :back }
+        format.html { redirect_to request.env["HTTP_REFERER"] }
         format.json { render json: @map.errors, status: :unprocessable_entity }
       end
     end
@@ -26,7 +26,7 @@ class MapsController < ApplicationController
     @map.destroy
 
     respond_to do |format|
-      format.html { redirect_to @map.mapable, notice: 'Map removed!' }
+      format.html { redirect_to request.env["HTTP_REFERER"] || @map.mapable, notice: 'Map removed!' }
       format.json { head :no_content }
     end
   end

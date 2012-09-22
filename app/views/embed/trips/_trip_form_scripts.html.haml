@@ -1,0 +1,56 @@
+- if @trip && @trip.route
+    %script
+        trip_route = #{ @trip.route };
+- else
+    %script
+        trip_route = [];
+
+= javascript_include_tag "legacy/tripmap"
+
+%script
+    var editMode = TNT.EditMode.NEW;
+
+- if !@trip.new_record?
+    %script
+        editMode = TNT.EditMode.UPDATE;
+
+:javascript
+$(function () {
+    $('form').submit(function(){
+        TNT.tripmap.getWayPointHtml();return true;
+    });
+    $('#id_story').ckeditor({height: '300px'});
+
+    TNT.tripmap.init(editMode);
+
+    $('a.show-more').toggle(function(e) {
+        e.preventDefault();
+        $(this).parent().find('li.hidden').show().slideDown();
+        $(this).text('- show less');
+    },function(e) {
+        e.preventDefault();
+        $(this).parent().find('li.hidden').hide().slideUp();
+        $(this).text('+ show more');
+    });
+
+    $('#find_address').click(function(e){
+        e.preventDefault();
+        TNT.tripmap.findAddress(editMode);
+    });
+
+    $('#id_start_address').bind('keypress',function(e){
+        var code = (e.keyCode ? e.keyCode : e.which);
+        if(code == 13) { //Enter keycode
+            //Do something
+            e.preventDefault();
+            TNT.tripmap.findAddress(editMode);
+        }
+    });
+
+    $('ul.outer-list ul li:odd').css({backgroundColor: '#F6F7FC'});
+
+    $('#cancel-button').click(function(e){
+        e.preventDefault();
+        window.location.href = $(this).data('url');
+    });
+});

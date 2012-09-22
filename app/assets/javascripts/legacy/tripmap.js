@@ -54,7 +54,7 @@ TNT.tripmap = {
         }
 
         var mapOptions = {
-            zoom: 15,
+            zoom: 11,
             center: this.startPosition,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             mapTypeControlOptions: {
@@ -87,7 +87,8 @@ TNT.tripmap = {
         TNT.tripmap.tripLine = new google.maps.Polyline();
         TNT.tripmap.tripLine.setMap(this.map);
 
-        TNT.tripmap.map.setCenter(this.startPosition, 12);
+        TNT.tripmap.map.setCenter(this.startPosition);
+        TNT.tripmap.map.setZoom(11);
 
         // center the map based on the previous map view position on 'create' action
         if (editMode === TNT.EditMode.NEW  && !searchPosition && !TNT.tripmap.centerOn) {
@@ -102,14 +103,7 @@ TNT.tripmap = {
                     TNT.tripmap.map.setCenter(newCenter);
                     TNT.tripmap.map.setZoom(zoom);
                 }
-                else {
-                    TNT.tripmap.map.setCenter(this.startPosition, 12);
-                }
             });
-        }
-        else
-        {
-            TNT.tripmap.map.setCenter(this.startPosition, 12);
         }
 
         if (!searchPosition) {
