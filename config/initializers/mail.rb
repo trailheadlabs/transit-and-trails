@@ -8,7 +8,7 @@ if Rails.env.production?
     :domain         => 'heroku.com'
   }
   ActionMailer::Base.delivery_method = :smtp
-else
+elsif Rails.env.development?
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.perform_deliveries = true
   ActionMailer::Base.raise_delivery_errors = true
