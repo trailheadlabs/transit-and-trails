@@ -1,5 +1,7 @@
 module Embed
   class RegistrationsController < ApplicationController
+    before_filter :embed_authenticate_admin!, :only => [:approve]
+
     def new
       @user = User.new
       render :layout => 'static_embed'
@@ -34,7 +36,7 @@ module Embed
 
     def confirm
       @user = User.confirm_by_token(params[:confirmation_token])
-      if(@user.errors.size < 0)
+      if(@user.confirmed?)
         Embed::RegistrationMailer.admin_registration_email(@user).deliver
       end
       render :layout => "static_embed"

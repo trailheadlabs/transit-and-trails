@@ -10,9 +10,22 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def valid_api_key!
+    unless UserProfile.where(:api_key=>params[:key]).exists?
+      render :json => {:code=>401,:message=>"Unauthorized"}, :status => :unauthorized
+    end
+  end
+
   def embed_authenticate_trailblazer!
     unless user_signed_in? && current_user.trailblazer?
       flash[:alert] = "Please login as a Trail Blazer to access that page."
+      redirect_to '/embed/sessions/new' # halts request cycle
+    end
+  end
+
+  def embed_authenticate_admin!
+    unless user_signed_in? && current_user.trailblazer?
+      flash[:alert] = "Please login as an admin to access that page."
       redirect_to '/embed/sessions/new' # halts request cycle
     end
   end

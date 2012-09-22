@@ -2,13 +2,16 @@ require 'spec_helper'
 
 describe Api::V1::TrailheadsController do
   render_views
+  # let(:params)  { { :key=>FactoryGirl.create(:user_profile).api_key } }
+  let(:params) { { :key => 'test' } }
 
+  {:key=>FactoryGirl.create(:user_profile).api_key}
   describe "GET 'index'" do
     it "returns a list of trailheads" do
       10.times do
         FactoryGirl.create(:trailhead)
       end
-      get :index
+      get :index, params
       response.should be_success
       list = JSON.parse(response.body)
       list.class.should eq Array
@@ -22,7 +25,7 @@ describe Api::V1::TrailheadsController do
       10.times do
         FactoryGirl.create(:trailhead)
       end
-      get :index, {:limit=>3}
+      get :index, params.merge(:limit=>3)
       response.should be_success
       list = JSON.parse(response.body)
       list.class.should eq Array
@@ -36,7 +39,7 @@ describe Api::V1::TrailheadsController do
       trailhead = FactoryGirl.create(:trailhead, :user => user)
       park = FactoryGirl.create(:park)
       Trailhead.any_instance.should_receive(:park_by_bounds).any_number_of_times.and_return(park)
-      get :show, {:id=>trailhead.id}
+      get :show, params.merge(:id=>trailhead.id)
       response.should be_success
       object = JSON.parse(response.body)
       object['id'].should eq trailhead.id
@@ -55,7 +58,7 @@ describe Api::V1::TrailheadsController do
       3.times do
         FactoryGirl.create(:map,:mapable_type=>'Trailhead',:mapable_id=>trailhead.id)
       end
-      get :maps, {:id=>trailhead.id}
+      get :maps, params.merge(:id=>trailhead.id)
       response.should be_success
       object = JSON.parse(response.body)
       object.class.should eq Array
@@ -71,7 +74,7 @@ describe Api::V1::TrailheadsController do
         attribute = FactoryGirl.create(:trailhead_feature,:category=>category)
         trailhead.trailhead_features << attribute
       end
-      get :attributes, {:id=>trailhead.id}
+      get :attributes, params.merge(:id=>trailhead.id)
       response.should be_success
       object = JSON.parse(response.body)
       object.class.should eq Array
@@ -89,7 +92,7 @@ describe Api::V1::TrailheadsController do
       3.times do
         FactoryGirl.create(:photo,:photoable_type=>'Trailhead',:photoable_id=>trailhead.id)
       end
-      get :photos, {:id=>trailhead.id}
+      get :photos, params.merge(:id=>trailhead.id)
       response.should be_success
       object = JSON.parse(response.body)
       object.class.should eq Array

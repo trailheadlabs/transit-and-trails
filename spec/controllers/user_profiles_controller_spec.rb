@@ -43,7 +43,7 @@ describe UserProfilesController do
     it "assigns all user_profiles as @user_profiles" do
       user_profile = UserProfile.create! valid_attributes
       get :index, {}, valid_session
-      assigns(:user_profiles).should eq([@user.user_profile,user_profile])
+      assigns(:user_profiles).should include(user_profile)
     end
   end
 
