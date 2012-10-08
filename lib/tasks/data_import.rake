@@ -278,7 +278,6 @@ namespace :import do
 
   desc "Import trips from the S3 backup"
   task :trips => :environment do
-
     puts "importing trips"
     # download file from S3
     json = Util::DataImport::latest_trip_objects

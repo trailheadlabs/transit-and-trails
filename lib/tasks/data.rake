@@ -39,5 +39,10 @@ namespace :data do
     puts "Done"
   end
 
+  desc "Run all data tasks"
+  task :all => ["reset_all_autoincrements",
+                "approve_all_campgrounds",
+                "cache_trailhead_parks",
+                "cache_campground_parks"]
 
 end
