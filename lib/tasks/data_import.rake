@@ -279,24 +279,13 @@ namespace :import do
   desc "Import trips from the S3 backup"
   task :trips => :environment do
     puts "importing trips"
-    # download file from S3
-    json = Util::DataImport::latest_trip_objects
-    # for each item in list
-
-    Util::DataImport::import_items(json,"import_trip")
+    Util::DataImport::import_items(Util::DataImport::latest_trip_objects,"import_trip")
   end
 
   desc "Import stories from the S3 backup"
   task :stories => :environment do
-
     puts "importing stories"
-    # download file from S3
-    json = Util::DataImport::latest_story_objects
-    # for each item in list
-    json.each do |item|
-      puts JSON.pretty_generate item, :indent => "  "
-      puts Util::DataImport::import_story item
-    end
+    Util::DataImport::import_items(Util::DataImport::latest_story_objects,"import_story")
   end
 
   desc "Import regional landing pages from the S3 backup"

@@ -7,10 +7,11 @@ class ParksController < ApplicationController
   def show
     if params[:county_slug]
       @parks = Park.where(:slug=>params[:slug],:county_slug=>params[:county_slug])
-    elsif params[:slug]
+    elsif params[:slug]   
       @parks = Park.where(:slug=>params[:slug])
-    else
-      @parks = Park.where(:id=>params[:id])
+      if @parks.empty?
+         @parks = Park.where(:id=>params[:slug])
+      end
     end
 
     @polys = []

@@ -102,7 +102,7 @@ Transitandtrails::Application.routes.draw do
 
   match 'parks(/:slug(/:county_slug))' => "parks#show"
 
-  resources :parks do
+  resources :parks do 
     resources :maps, :only => [:index]
     resources :photos, :only => [:index]
     resources :trailheads, :only => [:index]
