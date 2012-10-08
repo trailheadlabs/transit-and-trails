@@ -283,10 +283,8 @@ namespace :import do
     # download file from S3
     json = Util::DataImport::latest_trip_objects
     # for each item in list
-    json.each do |item|
-      puts JSON.pretty_generate item, :indent => "  "
-      puts Util::DataImport::import_trip item
-    end
+
+    Util::DataImport::import_items(json,"import_trip")
   end
 
   desc "Import stories from the S3 backup"

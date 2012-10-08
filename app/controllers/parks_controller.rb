@@ -9,6 +9,8 @@ class ParksController < ApplicationController
       @parks = Park.where(:slug=>params[:slug],:county_slug=>params[:county_slug])
     elsif params[:slug]
       @parks = Park.where(:slug=>params[:slug])
+    else
+      @parks = Park.where(:id=>params[:id])
     end
 
     @polys = []

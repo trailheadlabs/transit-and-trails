@@ -76,7 +76,7 @@ class Trip < ActiveRecord::Base
   end
 
   def route_as_geometry
-    if self.route
+    if !self.route.blank?
       obj = JSON.parse(self.route)
       obj.collect! do |value|
         "#{value[1]} #{value[0]}"

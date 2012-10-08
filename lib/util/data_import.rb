@@ -93,6 +93,20 @@ module Util
       latest_objects_for('baosc-productiondatadump.tnt.trailheadphoto')
     end
 
+    def self.import_items(json,import_method_name)
+      json.each do |item|
+        begin
+        # puts JSON.pretty_generate item, :indent => "  "
+        puts self.send(import_method_name,item)
+        rescue Exception => e
+          puts "Could not import item :"
+          puts e.message
+          puts e.backtrace
+          puts JSON.pretty_generate item, :indent => "  "        
+        end
+      end
+    end
+
     def self.latest_trip_photo_objects
       latest_objects_for('baosc-productiondatadump.tnt.tripphoto')
       response = HTTParty.get('http://transitandtrails.org/api/v1/trip_photos')
