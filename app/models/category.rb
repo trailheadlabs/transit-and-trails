@@ -6,4 +6,8 @@ class Category < ActiveRecord::Base
   has_many :campground_features
 
   has_paper_trail
+
+  attr_accessible :trailhead_feature_ids
+  attr_accessible :trip_feature_ids
+  attr_accessible :campground_feature_ids
 end

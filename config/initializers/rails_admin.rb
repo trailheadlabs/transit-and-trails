@@ -2,7 +2,12 @@
 # See github.com/sferik/rails_admin for more informations
 
 RailsAdmin.config do |config|
-
+  config.model User do
+    object_label_method do
+      :username
+    end
+  end
+  
   config.authenticate_with do
     authenticate_admin!
   end

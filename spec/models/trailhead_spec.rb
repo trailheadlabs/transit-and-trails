@@ -25,4 +25,5 @@ describe Trailhead do
     good_result = {'CategoryOne'=>[feature_1,feature_2],'CategoryTwo'=>[feature_3]}
     trailhead.categorized_attributes.should eq good_result
   end
+
 end
