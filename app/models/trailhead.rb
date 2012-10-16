@@ -4,7 +4,7 @@ class Trailhead < ActiveRecord::Base
   include PointOfInterest
 
   belongs_to :user
-  belongs_to :park
+  belongs_to :park  
   belongs_to :cached_park_by_bounds, :class_name => "Park", :foreign_key => "cached_park_by_bounds_id"
   has_and_belongs_to_many :trailhead_features
   has_many :maps, :as => :mapable, :dependent => :destroy

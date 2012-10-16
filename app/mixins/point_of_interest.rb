@@ -11,13 +11,13 @@ module PointOfInterest
     # if false
     if RGeo::Geos::supported?
       factory = ::RGeo::Geographic.simple_mercator_factory()
-      parks.select do |p|
+      parks.select! do |p|
         park_obj = factory.parse_wkt(p.bounds)
         point_obj = factory.point(self.longitude,self.latitude)
         park_obj.contains? point_obj
       end
     else
-      parks.select do |p|
+      parks.select! do |p|
         p.contains_trailhead? self
       end
     end
