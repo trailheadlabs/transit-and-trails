@@ -4,15 +4,8 @@ namespace :import do
   namespace :users do
     desc "Import user accounts from the S3 backup"
     task :accounts => :environment do
-      # download file from S3
+      Util::DataImport::import_items(Util::DataImport::latest_user_objects,"latest_user_objects")
       json = Util::DataImport::latest_user_objects
-      # parse json
-      # for each item in list
-      json.each do |item|
-        puts JSON.pretty_generate item, :indent => "  "
-        puts Util::DataImport::import_user item
-      end
-
     end
 
     desc "Import a user account from the S3 backup"

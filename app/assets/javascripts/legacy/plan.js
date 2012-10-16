@@ -345,6 +345,8 @@ TNT.plan = {
 			maxDate: 21,
 			showButtonPanel: true
 		});
+
+    $('.ui-datepicker').hide()
 	},
 
 	dragMoveStartFrom: function(overlay, latlng) {

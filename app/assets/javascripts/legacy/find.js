@@ -317,28 +317,6 @@ TNT.find = {
         this.map.addMapType(G_SATELLITE_3D_MAP);
         this.map.setMapType(G_NORMAL_MAP);
         this.map.addControl(new GHierarchicalMapTypeControl());
-        this.map.addControl(new GZoomControl(
-        /* first set of options is for the visual overlay.*/
-        {
-            nOpacity: .2,
-            sBorder: "2px solid red"
-        },
-        /* second set of options is for everything else */
-        {
-            sButtonHTML: "<img src='/assets/legacy/zoom-button.gif' />",
-            sButtonZoomingHTML: "<img src='/assets/legacy/zoom-button-activated.gif' />",
-            oButtonStartingStyle: {
-                width: '24px',
-                height: '24px'
-            }
-        },
-        /* third set of options specifies callbacks */
-        {
-            //	buttonClick:function(){display("Looks like you activated GZoom!")},
-            //			dragStart:function(){display("Started to Drag . . .")},
-            //		dragging:function(x1,y1,x2,y2){display("Dragging, currently x="+x2+",y="+y2)},
-            //	dragEnd:function(nw,ne,se,sw,nwpx,nepx,sepx,swpx){display("Zoom! NE="+ne+";SW="+sw)},
-            }), new GControlPosition(G_ANCHOR_TOP_RIGHT, new GSize(24, 48)));
 
         this.map.addOverlay(this.startmarker);
 

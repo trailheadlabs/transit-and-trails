@@ -7,9 +7,8 @@
   %script{:src => "http://www.google.com/jsapi?key=ABQIAAAAO7OoKKBX03U3SrObYGQy0xTR3gcj-N9Qq4sdgfDbE45YeC9R7BTliGpItl3amRLTjNsmtJj-_SOQkw", :type => "text/javascript"}
   :javascript
     google.load("maps", "2.x");
-  %script{:src => "http://gmaps-utility-library.googlecode.com/svn/trunk/markermanager/release/src/markermanager.js"}
-  %script{:src => "/assets/legacy/gzoom.js", :type => "text/javascript"}
-
+  = javascript_include_tag "legacy/markermanager"
+  
 .location-form
   %form#show{:action => "", :method => "post"}
     %p
