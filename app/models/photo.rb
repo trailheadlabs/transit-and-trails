@@ -22,9 +22,15 @@ class Photo < ActiveRecord::Base
 
   def cache_flickr_urls
     if(flickr_id_changed? || flickr_urls.nil?)
-      [:thumbnail,:medium,:square,:original,:large].each do |size|
-        flickr_urls[size] = fetch_flickr_url(size)
-      end      
+      fetch_flickr_sizes
+    end    
+  end
+
+  def fetch_flickr_sizes
+    sizes = flickr.photos.getSizes(photo_id: flickr_id)    
+    sizes.each do |s|      
+      token = s[:label].parameterize.underscore.to_sym
+      flickr_urls[token] = s[:source]
     end
   end
 
@@ -37,23 +43,10 @@ class Photo < ActiveRecord::Base
 
   def flickr_image_url(size)
     if flickr_urls[size].nil?
-      flickr_urls[size] = fetch_flickr_url(size)
+      fetch_flickr_sizes      
       save
     end
     flickr_urls[size]
-  rescue
-    nil
-  end
-
-  def fetch_flickr_url(size)
-    size_to_methods = {
-      :thumbnail => "url_t",
-      :square => "url_s",
-      :medium => "url_z",
-      :original => "url_o",
-      :large => "url_b"
-    }
-    FlickRaw.send(size_to_methods[size],flickr_info)
   rescue
     nil
   end

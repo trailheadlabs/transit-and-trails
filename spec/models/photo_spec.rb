@@ -21,7 +21,7 @@ describe Photo do
   it "caches flickr urls" do
     p = FactoryGirl.create(:photo,:flickr_id => "12345678")    
     url_val = "http://someawesomeurl.com"
-    p.should_receive(:fetch_flickr_url).and_return(url_val)
+    p.should_receive(:flickr_image_url).and_return(url_val)    
     url = p.flickr_thumbnail_url    
     p.flickr_urls.should_not be_nil    
     p.flickr_urls[:thumbnail].should eq url_val

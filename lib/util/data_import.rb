@@ -94,10 +94,12 @@ module Util
     end
 
     def self.import_items(json,import_method_name)
-      json.each do |item|
+      count = json.count
+      json.each_with_index do |item,index|
         begin
         # puts JSON.pretty_generate item, :indent => "  "
         puts self.send(import_method_name,item)
+        puts "#{index+1}/#{count}"
         rescue Exception => e
           puts "Could not import item :"
           puts e.message
@@ -374,12 +376,16 @@ module Util
     end
 
     def self.import_campground_map(item)
+      if Map.exists?(:legacy_id=>Integer(item['pk']),:mapable_type=>'Campground')
+        return false
+      end
       new_record = Map.new
       fields = item['fields']
+      new_record.legacy_id = Integer(item['pk'])
       new_record.name = fields['name']
       new_record.description = fields['description']
       new_record.user_id = fields['user']
-      new_record.url = fields['url']
+      new_record.url = fields['map_url']
       new_record.mapable_id = fields['campground']
       new_record.mapable_type = "Campground"
       begin
@@ -390,13 +396,19 @@ module Util
         puts "Could not set map for campground #{new_record.name}"
         puts fields['map']
         puts e.message
+        puts e.backtrace
+        return false
       end
       new_record.save
     end
 
     def self.import_campground_photo(item)
+      if Photo.exists?(:legacy_id=>Integer(item['pk']),:photoable_type=>'Campground')
+        return false
+      end
       new_record = Photo.new
       fields = item['fields']
+      new_record.legacy_id =Integer(item['pk'])
       new_record.flickr_id = fields['flickr_id']
       new_record.uploaded_to_flickr = fields['uploaded_to_flickr']
       new_record.user_id = fields['user']
@@ -416,8 +428,12 @@ module Util
     end
 
     def self.import_trailhead_photo(item)
+      if Photo.exists?(:legacy_id=>Integer(item['pk']),:photoable_type=>'Trailhead')
+        return false
+      end
       new_record = Photo.new
       fields = item['fields']
+      new_record.legacy_id = Integer(item['pk'])
       new_record.flickr_id = fields['flickr_id']
       new_record.uploaded_to_flickr = fields['uploaded_to_flickr']
       new_record.user_id = fields['user']
@@ -437,9 +453,13 @@ module Util
     end
 
     def self.import_trip_photo(item)
+      if Photo.exists?(:legacy_id=>Integer(item['id']),:photoable_type=>'Trip')
+        return false
+      end
       new_record = Photo.new
       fields = item
       new_record.flickr_id = fields['flickr_id']
+      new_record.legacy_id = Integer(item['id'])
       new_record.uploaded_to_flickr = fields['uploaded_to_flickr']
       new_record.user_id = fields['user']
       new_record.photoable_id = fields['trip']
@@ -458,29 +478,39 @@ module Util
     end
 
     def self.import_trip_map(item)
+      if Map.exists?(:legacy_id=>Integer(item['pk']),:mapable_type=>'Trip')
+        return false
+      end
       new_record = Map.new
       fields = item['fields']
       new_record.name = fields['name']
-      new_record.description = fields['description']
+      new_record.legacy_id = Integer(item['pk'])
       new_record.user_id = fields['user']
-      new_record.url = fields['url']
+      new_record.url = fields['map_url']
       new_record.mapable_id = fields['trip']
       new_record.mapable_type = "Trip"
       begin
         unless fields['map'].blank?
-          new_record.remote_map_url = "http://transitandtrails.org/media/" + fields['map']
+          new_record.remote_map_url = "http://transitandtrails.org/media/#{fields['map']}"
         end
       rescue Exception => e
+        puts item.to_json
         puts "Could not set map for trip #{new_record.name}"
         puts fields['map']
         puts e.message
+        puts e.backtrace
+        return false
       end
       new_record.save
     end
 
     def self.import_trailhead_map(item)
+      if Map.exists?(:legacy_id=>Integer(item['pk']),:mapable_type=>'Trailhead')
+        return false
+      end
       new_record = Map.new
       fields = item['fields']
+      new_record.legacy_id = Integer(item['pk'])
       new_record.url = fields['map_url']
       new_record.mapable_id = fields['trailhead']
       new_record.mapable_type = "Trailhead"
@@ -490,8 +520,11 @@ module Util
         end
       rescue Exception => e
         puts "Could not set map for trailhead #{new_record.name}"
+        puts item.to_json
         puts fields['map']
         puts e.message
+        puts e.backtrace
+        return false
       end
       new_record.save
     end

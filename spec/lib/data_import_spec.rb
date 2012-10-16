@@ -513,7 +513,7 @@ describe "DataImport" do
           "campground": 6,
           "description": "Test",
           "map": "baosc.png",
-          "url": "http://transitandtrails.org"
+          "map_url": "http://transitandtrails.org"
         }
       }')
     Util::DataImport::import_campground_map item
@@ -522,7 +522,7 @@ describe "DataImport" do
     new_record.should_not be nil
     new_record.name.should eq fields['name']
     new_record.description.should eq fields['description']
-    new_record.url.should eq fields['url']
+    new_record.url.should eq fields['map_url']
     new_record.user_id.should eq fields['user']
     unless fields['map'].blank?
       new_record.map.should_not be_blank
@@ -584,12 +584,13 @@ describe "DataImport" do
   it "imports trip photos correctly" do
     item = JSON::parse(
       '{
+          "id": 342,
           "flickr_id": "34243255435",
           "user": 1,
           "trip": 6,
           "description": "Test",
           "map": "baosc.png",
-          "url": "http://transitandtrails.org"
+          "map_url": "http://transitandtrails.org"
       }')
     Util::DataImport::import_trip_photo item
     fields = item
@@ -615,16 +616,15 @@ describe "DataImport" do
           "trip": 6,
           "description": "Test",
           "map": "baosc.png",
-          "url": "http://transitandtrails.org"
+          "map_url": "http://transitandtrails.org"
         }
       }')
     Util::DataImport::import_trip_map item
     fields = item['fields']
     new_record = Map.last
     new_record.should_not be nil
-    new_record.name.should eq fields['name']
-    new_record.description.should eq fields['description']
-    new_record.url.should eq fields['url']
+    new_record.name.should eq fields['name']    
+    new_record.url.should eq fields['map_url']
     new_record.user_id.should eq fields['user']
     unless fields['map'].blank?
       new_record.map.should_not be_blank
@@ -642,7 +642,7 @@ describe "DataImport" do
           "campground": 6,
           "description": "Test",
           "map": "baosc.png",
-          "url": "http://transitandtrails.org"
+          "map_url": "http://transitandtrails.org"
         }
       }')
     Util::DataImport::import_campground_map item
@@ -651,7 +651,7 @@ describe "DataImport" do
     new_record.should_not be nil
     new_record.name.should eq fields['name']
     new_record.description.should eq fields['description']
-    new_record.url.should eq fields['url']
+    new_record.url.should eq fields['map_url']
     new_record.user_id.should eq fields['user']
     unless fields['map'].blank?
       new_record.map.should_not be_blank

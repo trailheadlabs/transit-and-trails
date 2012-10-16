@@ -2,10 +2,32 @@ namespace :data do
 
   desc "Reset autoincrements"
   task :reset_all_autoincrements, [:value] => [:environment] do |t, args|
-    [User,UserProfile,Trailhead,Trip,Campground,Park,Agency,NonProfitPartner,
-      Category,Duration,Intensity,Partner,RecentActivity,RegionalLandingPage,Story,
-      TransitAgency,TransitRouter,FeaturedTab].each do |m|
-      value = m.order('id').last.id + 1
+    [ 
+      Agency,
+      Campground,
+      CampgroundFeature,
+      Category,
+      Duration,
+      FeaturedTab,
+      Intensity,
+      Map,
+      NonProfitPartner,
+      Park,
+      Partner,
+      Photo,
+      RecentActivity,
+      RegionalLandingPage,
+      Story,
+      Trailhead,
+      TrailheadFeature,
+      TransitAgency,
+      TravelMode,
+      Trip,
+      TripFeature,
+      User,
+      UserProfile
+    ].each do |m|
+      value = m.order('id').last.id + 1000
       puts "Reseting #{m.name} to #{value}"
       m.reset_autoincrement(to: value)
     end

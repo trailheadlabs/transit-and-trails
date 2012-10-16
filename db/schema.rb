@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121010000030) do
+ActiveRecord::Schema.define(:version => 20121016063023) do
 
   create_table "agencies", :force => true do |t|
     t.string   "name"
@@ -111,6 +111,7 @@ ActiveRecord::Schema.define(:version => 20121010000030) do
     t.string   "map"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.integer  "legacy_id"
   end
 
   add_index "maps", ["user_id"], :name => "index_maps_on_user_id"
@@ -167,6 +168,7 @@ ActiveRecord::Schema.define(:version => 20121010000030) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.text     "flickr_urls"
+    t.integer  "legacy_id"
   end
 
   add_index "photos", ["user_id"], :name => "index_photos_on_user_id"

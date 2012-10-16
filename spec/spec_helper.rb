@@ -63,5 +63,11 @@ RSpec.configure do |config|
   # config.after(:each) do
   #   DatabaseCleaner.clean
   # end
+
+  config.before(:each) do
+    photos = double(:getSizes => [{:label=>'Thumbnail',:source => "http://someawesomeurl.com"}])
+    flickr.stub!(:photos).and_return(photos)
+  end
+
 end
 
