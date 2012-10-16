@@ -29,8 +29,8 @@ class Photo < ActiveRecord::Base
   def fetch_flickr_sizes
     sizes = flickr.photos.getSizes(photo_id: flickr_id)    
     sizes.each do |s|      
-      token = s[:label].parameterize.underscore.to_sym
-      flickr_urls[token] = s[:source]
+      token = s["label"].parameterize.underscore.to_sym
+      flickr_urls[token] = s["source"]
     end
   end
 

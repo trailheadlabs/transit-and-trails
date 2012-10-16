@@ -50,6 +50,12 @@ namespace :data do
     puts "Done"
   end
 
+  desc "Destroy all campground_photos"
+  task :destroy_campground_photos => :environment do
+    puts "Destroying all campground photos"
+    Photo.where(:photoable_type=>'Campground').destroy_all
+    puts "Done"
+  end
 
   desc "Cache parks on campgrounds"
   task :cache_campground_parks => :environment do

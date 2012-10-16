@@ -65,7 +65,7 @@ RSpec.configure do |config|
   # end
 
   config.before(:each) do
-    photos = double(:getSizes => [{:label=>'Thumbnail',:source => "http://someawesomeurl.com"}])
+    photos = double(:getSizes => [{"label"=>'Thumbnail',"source" => "http://someawesomeurl.com"}])
     flickr.stub!(:photos).and_return(photos)
   end
 
