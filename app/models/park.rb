@@ -17,6 +17,10 @@ class Park < ActiveRecord::Base
     end
   end
 
+  def cached_trailheads
+    Trailhead.where(cached_park_by_bounds_id: id)
+  end
+
   def trailheads
     trailheads_in_bounds
   end
@@ -30,6 +34,10 @@ class Park < ActiveRecord::Base
       self.contains_trailhead? t
     end
     return trailheads
+  end
+
+  def cached_campgrounds
+    Trailhead.where(cached_park_by_bounds_id: id)
   end
 
   def campgrounds
@@ -48,11 +56,11 @@ class Park < ActiveRecord::Base
   end
 
   def trips
-    trailheads.collect{|t| t.trips_starting_at + t.trips_ending_at }.flatten
+    cached_trailheads.collect{|t| t.trips_starting_at + t.trips_ending_at }.flatten
   end
 
   def trips_starting_in_bounds
-    trips = Trip.where(:starting_trailhead_id => trailheads_in_bounds)
+    trips = Trip.where(:starting_trailhead_id => cached_trailheads)
     trips.select! do |t|
       self.contains_trailhead? t.starting_trailhead
     end
@@ -60,7 +68,7 @@ class Park < ActiveRecord::Base
   end
 
   def trips_ending_in_bounds
-    trips = Trip.where(:ending_trailhead_id => trailheads_in_bounds)
+    trips = Trip.where(:ending_trailhead_id => cached_trailheads)
     trips.select! do |t|
       self.contains_trailhead? t.ending_trailhead
     end
