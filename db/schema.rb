@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121016063023) do
+ActiveRecord::Schema.define(:version => 20121017000334) do
 
   create_table "agencies", :force => true do |t|
     t.string   "name"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(:version => 20121016063023) do
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
     t.integer  "cached_park_by_bounds_id"
+    t.integer  "agency_id"
   end
 
   add_index "campgrounds", ["park_id"], :name => "index_campgrounds_on_park_id"
@@ -265,6 +266,7 @@ ActiveRecord::Schema.define(:version => 20121016063023) do
     t.boolean  "approved"
     t.integer  "park_id"
     t.integer  "cached_park_by_bounds_id"
+    t.integer  "agency_id"
   end
 
   add_index "trailheads", ["user_id"], :name => "index_trailheads_on_user_id"

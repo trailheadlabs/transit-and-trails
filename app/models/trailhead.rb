@@ -5,6 +5,7 @@ class Trailhead < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :park  
+  belongs_to :agency_override, :class_name => "Agency", :foreign_key => "agency_id"
   belongs_to :cached_park_by_bounds, :class_name => "Park", :foreign_key => "cached_park_by_bounds_id"
   has_and_belongs_to_many :trailhead_features
   has_many :maps, :as => :mapable, :dependent => :destroy
@@ -15,11 +16,10 @@ class Trailhead < ActiveRecord::Base
   scope :approved, where(:approved => true)
   has_paper_trail
   attr_accessible :description, :latitude, :longitude, :name, :rideshare, :zimride_url, :approved, 
-    :park_id, :user_id, :trips_ending_at_ids, :trips_starting_at_ids, :trailhead_feature_ids
+    :park_id, :user_id, :trips_ending_at_ids, :trips_starting_at_ids, :trailhead_feature_ids, :agency_id
   attr_accessible :maps_attributes, :allow_destroy => true
   reverse_geocoded_by :latitude, :longitude
  
-  accepts_nested_attributes_for :trailhead_features
   accepts_nested_attributes_for :maps, :allow_destroy => true
 
   before_create :auto_approve
