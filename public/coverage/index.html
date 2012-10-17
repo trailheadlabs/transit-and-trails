@@ -14,14 +14,14 @@
       <img src="./assets/0.7.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2012-10-16T11:24:04-07:00">2012-10-16T11:24:04-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2012-10-16T19:56:00-07:00">2012-10-16T19:56:00-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">77.88%</span></span>
+    (<span class="covered_percent"><span class="red">77.9%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
@@ -32,8 +32,8 @@
   <a name="AllFiles"></a>
   <div>
     <b>100</b> files in total.
-    <b>1587</b> relevant lines. 
-    <span class="green"><b>1236</b> lines covered</span> and
+    <b>1588</b> relevant lines. 
+    <span class="green"><b>1237</b> lines covered</span> and
     <span class="red"><b>351</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -673,7 +673,7 @@
       <tr>
         <td class="strong"><a href="#003305dadd6bf904c2c8e98dee52a108e4e75b2c" class="src_link" title="app/mixins/point_of_interest.rb">app/mixins/point_of_interest.rb</a></td>
         <td class="red strong">80.0 %</td>
-        <td>47</td>
+        <td>48</td>
         <td>25</td>
         <td>20</td>
         <td>5</td>
@@ -702,10 +702,10 @@
       
       <tr>
         <td class="strong"><a href="#2d81eacf824cf0a03c13efbf93c991ea5a6d216f" class="src_link" title="app/models/campground.rb">app/models/campground.rb</a></td>
-        <td class="yellow strong">85.0 %</td>
-        <td>30</td>
-        <td>20</td>
-        <td>17</td>
+        <td class="yellow strong">85.71 %</td>
+        <td>31</td>
+        <td>21</td>
+        <td>18</td>
         <td>3</td>
         <td>0.9</td>
       </tr>
@@ -1456,7 +1456,7 @@
           <div class="file_list_container" id="Models">
   <h2>
     <span class="group_name">Models</span>
-    (<span class="covered_percent"><span class="green">94.22%</span></span>
+    (<span class="covered_percent"><span class="green">94.23%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
@@ -1467,8 +1467,8 @@
   <a name="Models"></a>
   <div>
     <b>25</b> files in total.
-    <b>415</b> relevant lines. 
-    <span class="green"><b>391</b> lines covered</span> and
+    <b>416</b> relevant lines. 
+    <span class="green"><b>392</b> lines covered</span> and
     <span class="red"><b>24</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -1507,10 +1507,10 @@
       
       <tr>
         <td class="strong"><a href="#2d81eacf824cf0a03c13efbf93c991ea5a6d216f" class="src_link" title="app/models/campground.rb">app/models/campground.rb</a></td>
-        <td class="yellow strong">85.0 %</td>
-        <td>30</td>
-        <td>20</td>
-        <td>17</td>
+        <td class="yellow strong">85.71 %</td>
+        <td>31</td>
+        <td>21</td>
+        <td>18</td>
         <td>3</td>
         <td>0.9</td>
       </tr>
@@ -2193,7 +2193,7 @@
       <tr>
         <td class="strong"><a href="#003305dadd6bf904c2c8e98dee52a108e4e75b2c" class="src_link" title="app/mixins/point_of_interest.rb">app/mixins/point_of_interest.rb</a></td>
         <td class="red strong">80.0 %</td>
-        <td>47</td>
+        <td>48</td>
         <td>25</td>
         <td>20</td>
         <td>5</td>
@@ -10850,7 +10850,7 @@
         <li class="covered" data-hits="26" data-linenumber="14">
           <span class="hits">26</span>
           
-          <code class="ruby">      parks.select do |p|</code>
+          <code class="ruby">      parks.select! do |p|</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="15">
@@ -10886,7 +10886,7 @@
         <li class="missed" data-hits="0" data-linenumber="20">
           
           
-          <code class="ruby">      parks.select do |p|</code>
+          <code class="ruby">      parks.select! do |p|</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="21">
@@ -11021,31 +11021,37 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="43">
+        <li class="never" data-hits="" data-linenumber="43">
+          
+          
+          <code class="ruby">  </code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="44">
           <span class="hits">1</span>
           
           <code class="ruby">  def agency</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="44">
+        <li class="missed" data-hits="0" data-linenumber="45">
           
           
-          <code class="ruby">    default_park ? default_park.agency : nil</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="45">
-          
-          
-          <code class="ruby">  end</code>
+          <code class="ruby">    agency_override || default_park &amp;&amp; default_park.agency || nil</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="46">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="47">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="48">
           
           
           <code class="ruby">end</code>
@@ -11328,10 +11334,10 @@
         <div class="source_table" id="2d81eacf824cf0a03c13efbf93c991ea5a6d216f">
   <div class="header">
     <h3>app/models/campground.rb</h3>
-    <h4><span class="yellow">85.0 %</span> covered</h4>
+    <h4><span class="yellow">85.71 %</span> covered</h4>
     <div>
-      <b>20</b> relevant lines. 
-      <span class="green"><b>17</b> lines covered</span> and
+      <b>21</b> relevant lines. 
+      <span class="green"><b>18</b> lines covered</span> and
       <span class="red"><b>3</b> lines missed.</span>
     </div>
   </div>
@@ -11384,136 +11390,142 @@
         <li class="covered" data-hits="1" data-linenumber="8">
           <span class="hits">1</span>
           
-          <code class="ruby">  belongs_to :cached_park_by_bounds, :class_name =&gt; &quot;Park&quot;, :foreign_key =&gt; &quot;cached_park_by_bounds_id&quot;</code>
+          <code class="ruby">  belongs_to :agency_override, :class_name =&gt; &quot;Agency&quot;, :foreign_key =&gt; &quot;agency_id&quot;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="9">
           <span class="hits">1</span>
           
-          <code class="ruby">  has_many :maps, :as =&gt; :mapable, :dependent =&gt; :destroy</code>
+          <code class="ruby">  belongs_to :cached_park_by_bounds, :class_name =&gt; &quot;Park&quot;, :foreign_key =&gt; &quot;cached_park_by_bounds_id&quot;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="10">
           <span class="hits">1</span>
           
-          <code class="ruby">  has_many :photos, :as =&gt; :photoable, :dependent =&gt; :destroy</code>
+          <code class="ruby">  has_many :maps, :as =&gt; :mapable, :dependent =&gt; :destroy</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="11">
           <span class="hits">1</span>
           
+          <code class="ruby">  has_many :photos, :as =&gt; :photoable, :dependent =&gt; :destroy</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="12">
+          <span class="hits">1</span>
+          
           <code class="ruby">  has_many :stories, :as =&gt; :storytellable, :dependent =&gt; :destroy</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="12">
+        <li class="never" data-hits="" data-linenumber="13">
           
           
           <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="13">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  has_and_belongs_to_many :campground_features</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="14">
           <span class="hits">1</span>
           
-          <code class="ruby">  attr_accessible :approved, :description, :latitude, :longitude, :name, :campground_feature_ids</code>
+          <code class="ruby">  has_and_belongs_to_many :campground_features</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="15">
           <span class="hits">1</span>
           
+          <code class="ruby">  attr_accessible :approved, :description, :latitude, :longitude, :name, :campground_feature_ids, :agency_id</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="16">
+          <span class="hits">1</span>
+          
           <code class="ruby">  reverse_geocoded_by :latitude, :longitude</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="16">
+        <li class="never" data-hits="" data-linenumber="17">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="17">
+        <li class="covered" data-hits="1" data-linenumber="18">
           <span class="hits">1</span>
           
           <code class="ruby">  validates :name, :presence =&gt; true, :uniqueness =&gt; true</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="18">
+        <li class="never" data-hits="" data-linenumber="19">
           
           
           <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="19">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def categorized_attributes</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="20">
           <span class="hits">1</span>
           
-          <code class="ruby">    result = {}</code>
+          <code class="ruby">  def categorized_attributes</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="21">
           <span class="hits">1</span>
           
-          <code class="ruby">    Category.all.each do |category|</code>
+          <code class="ruby">    result = {}</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="22">
+        <li class="covered" data-hits="1" data-linenumber="22">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">      features = self.campground_features.where(:category_id=&gt;category.id).order(&quot;id&quot;)</code>
+          <code class="ruby">    Category.all.each do |category|</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="23">
           
           
-          <code class="ruby">      if features.count &gt; 0</code>
+          <code class="ruby">      features = self.campground_features.where(:category_id=&gt;category.id).order(&quot;id&quot;)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="24">
           
           
-          <code class="ruby">        result[category.name] = features</code>
+          <code class="ruby">      if features.count &gt; 0</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="25">
+        <li class="missed" data-hits="0" data-linenumber="25">
           
           
-          <code class="ruby">      end</code>
+          <code class="ruby">        result[category.name] = features</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="26">
           
           
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="27">
+          
+          
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="27">
+        <li class="covered" data-hits="1" data-linenumber="28">
           <span class="hits">1</span>
           
           <code class="ruby">    result</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="28">
+        <li class="never" data-hits="" data-linenumber="29">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="29">
+        <li class="never" data-hits="" data-linenumber="30">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="30">
+        <li class="never" data-hits="" data-linenumber="31">
           
           
           <code class="ruby">end</code>
@@ -13730,97 +13742,97 @@
         <li class="covered" data-hits="1" data-linenumber="7">
           <span class="hits">1</span>
           
-          <code class="ruby">  belongs_to :park</code>
+          <code class="ruby">  belongs_to :park  </code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="8">
           <span class="hits">1</span>
           
-          <code class="ruby">  belongs_to :cached_park_by_bounds, :class_name =&gt; &quot;Park&quot;, :foreign_key =&gt; &quot;cached_park_by_bounds_id&quot;</code>
+          <code class="ruby">  belongs_to :agency_override, :class_name =&gt; &quot;Agency&quot;, :foreign_key =&gt; &quot;agency_id&quot;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="9">
           <span class="hits">1</span>
           
-          <code class="ruby">  has_and_belongs_to_many :trailhead_features</code>
+          <code class="ruby">  belongs_to :cached_park_by_bounds, :class_name =&gt; &quot;Park&quot;, :foreign_key =&gt; &quot;cached_park_by_bounds_id&quot;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="10">
           <span class="hits">1</span>
           
-          <code class="ruby">  has_many :maps, :as =&gt; :mapable, :dependent =&gt; :destroy</code>
+          <code class="ruby">  has_and_belongs_to_many :trailhead_features</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="11">
           <span class="hits">1</span>
           
-          <code class="ruby">  has_many :stories, :as =&gt; :storytellable, :dependent =&gt; :destroy</code>
+          <code class="ruby">  has_many :maps, :as =&gt; :mapable, :dependent =&gt; :destroy</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="12">
           <span class="hits">1</span>
           
-          <code class="ruby">  has_many :photos, :as =&gt; :photoable, :dependent =&gt; :destroy</code>
+          <code class="ruby">  has_many :stories, :as =&gt; :storytellable, :dependent =&gt; :destroy</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="13">
           <span class="hits">1</span>
           
-          <code class="ruby">  has_many :trips_starting_at, :class_name =&gt; &quot;Trip&quot;, :foreign_key =&gt; &quot;starting_trailhead_id&quot;</code>
+          <code class="ruby">  has_many :photos, :as =&gt; :photoable, :dependent =&gt; :destroy</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="14">
           <span class="hits">1</span>
           
-          <code class="ruby">  has_many :trips_ending_at, :class_name =&gt; &quot;Trip&quot;, :foreign_key =&gt; &quot;ending_trailhead_id&quot;</code>
+          <code class="ruby">  has_many :trips_starting_at, :class_name =&gt; &quot;Trip&quot;, :foreign_key =&gt; &quot;starting_trailhead_id&quot;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="15">
           <span class="hits">1</span>
           
-          <code class="ruby">  scope :approved, where(:approved =&gt; true)</code>
+          <code class="ruby">  has_many :trips_ending_at, :class_name =&gt; &quot;Trip&quot;, :foreign_key =&gt; &quot;ending_trailhead_id&quot;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="16">
           <span class="hits">1</span>
           
-          <code class="ruby">  has_paper_trail</code>
+          <code class="ruby">  scope :approved, where(:approved =&gt; true)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="17">
           <span class="hits">1</span>
           
+          <code class="ruby">  has_paper_trail</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="18">
+          <span class="hits">1</span>
+          
           <code class="ruby">  attr_accessible :description, :latitude, :longitude, :name, :rideshare, :zimride_url, :approved, </code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="18">
+        <li class="never" data-hits="" data-linenumber="19">
           
           
-          <code class="ruby">    :park_id, :user_id, :trips_ending_at_ids, :trips_starting_at_ids, :trailhead_feature_ids</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="19">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  attr_accessible :maps_attributes, :allow_destroy =&gt; true</code>
+          <code class="ruby">    :park_id, :user_id, :trips_ending_at_ids, :trips_starting_at_ids, :trailhead_feature_ids, :agency_id</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="20">
           <span class="hits">1</span>
           
+          <code class="ruby">  attr_accessible :maps_attributes, :allow_destroy =&gt; true</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="21">
+          <span class="hits">1</span>
+          
           <code class="ruby">  reverse_geocoded_by :latitude, :longitude</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="21">
+        <li class="never" data-hits="" data-linenumber="22">
           
           
           <code class="ruby"> </code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="22">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  accepts_nested_attributes_for :trailhead_features</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="23">
