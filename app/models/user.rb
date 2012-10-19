@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
 
   has_one :user_profile
 
+  has_many :trailheads, :inverse_of => :user
+
   has_paper_trail
 
   before_create :populate_user_profile

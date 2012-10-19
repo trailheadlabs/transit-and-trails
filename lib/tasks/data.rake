@@ -40,6 +40,13 @@ namespace :data do
     puts "Done"
   end
 
+  desc "Approve all campgrounds"
+  task :approve_trailheads => :environment do
+    puts Trailhead.where(user_id: User.where(admin: true)).update_all(approved: true) 
+    puts Trailhead.where(user_id: User.where(trailblazer: true)).update_all(approved: true)    
+    puts "Done"
+  end
+
   desc "Cache parks on trailheads"
   task :cache_trailhead_parks => :environment do
     count = Trailhead.count

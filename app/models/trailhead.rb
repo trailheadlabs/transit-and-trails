@@ -3,8 +3,8 @@ require "point_of_interest"
 class Trailhead < ActiveRecord::Base
   include PointOfInterest
 
-  belongs_to :user
-  belongs_to :park  
+  belongs_to :user, :inverse_of => :trailheads
+  belongs_to :park, :inverse_of => :trailheads
   belongs_to :agency_override, :class_name => "Agency", :foreign_key => "agency_id"
   belongs_to :cached_park_by_bounds, :class_name => "Park", :foreign_key => "cached_park_by_bounds_id"
   has_and_belongs_to_many :trailhead_features
@@ -13,7 +13,7 @@ class Trailhead < ActiveRecord::Base
   has_many :photos, :as => :photoable, :dependent => :destroy
   has_many :trips_starting_at, :class_name => "Trip", :foreign_key => "starting_trailhead_id"
   has_many :trips_ending_at, :class_name => "Trip", :foreign_key => "ending_trailhead_id"
-  scope :approved, where(:approved => true)
+  scope :approved, where(:approved => true, :user_id => User.where(admin: true))
   has_paper_trail
   attr_accessible :description, :latitude, :longitude, :name, :rideshare, :zimride_url, :approved, 
     :park_id, :user_id, :trips_ending_at_ids, :trips_starting_at_ids, :trailhead_feature_ids, :agency_id

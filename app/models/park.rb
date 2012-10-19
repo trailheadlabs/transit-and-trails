@@ -1,11 +1,38 @@
 class Park < ActiveRecord::Base
-  belongs_to :agency
-  belongs_to :non_profit_partner
+  default_scope order('name')
+  belongs_to :agency, :inverse_of => :parks
+  belongs_to :non_profit_partner, :inverse_of => :parks
   attr_accessible :acres, :bounds, :county, :county_slug, :description, :name, :slug, :link,
-    :min_longitude, :max_longitude, :min_latitude, :max_latitude, :non_profit_partner_id
+    :min_longitude, :max_longitude, :min_latitude, :max_latitude, :non_profit_partner_id, :agency_id, :trailhead_ids
   before_save :update_bounds_min_max
+  has_many :trailheads, :inverse_of => :park
 
   has_paper_trail
+
+  rails_admin do        
+    field :name do 
+      searchable true
+    end
+    field :description do    
+      searchable false
+    end
+    field :county do    
+      searchable false
+    end
+    field :county_slug do
+      searchable false
+    end
+    field :bounds do    
+      searchable false
+    end
+    field :slug do    
+      searchable false
+    end    
+    field :link do    
+      searchable false
+    end
+    include_all_fields
+  end
 
   def update_bounds_min_max
     if !bounds.blank? && (self.bounds_changed? || min_longitude.nil?)
@@ -56,11 +83,12 @@ class Park < ActiveRecord::Base
   end
 
   def trips
-    cached_trailheads.collect{|t| t.trips_starting_at + t.trips_ending_at }.flatten
+    trailheads = cached_trailheads.empty? ? trailheads_in_bounds : cached_trailheads
+    trailheads.collect{|t| t.trips_starting_at + t.trips_ending_at }.flatten
   end
 
   def trips_starting_in_bounds
-    trips = Trip.where(:starting_trailhead_id => cached_trailheads)
+    trips = Trip.where(:starting_trailhead_id => (cached_trailheads.empty? ? trailheads_in_bounds : cached_trailheads))
     trips.select! do |t|
       self.contains_trailhead? t.starting_trailhead
     end
@@ -68,7 +96,7 @@ class Park < ActiveRecord::Base
   end
 
   def trips_ending_in_bounds
-    trips = Trip.where(:ending_trailhead_id => cached_trailheads)
+    trips = Trip.where(:ending_trailhead_id => (cached_trailheads.empty? ? trailheads_in_bounds : cached_trailheads))
     trips.select! do |t|
       self.contains_trailhead? t.ending_trailhead
     end

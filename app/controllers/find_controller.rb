@@ -1,6 +1,6 @@
 class FindController < ApplicationController
   def find
-    @latest_photos = Photo.order('id desc').limit(6)
+    @latest_photos = Photo.order('legacy_id desc, id desc').limit(6)
     @featuredtab = FeaturedTab.last
     @recentactivity = RecentActivity.last
   end
