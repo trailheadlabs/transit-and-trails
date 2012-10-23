@@ -82,4 +82,11 @@ class UserProfilesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def reset_api_key
+    @user_profile = current_user.user_profile
+    @user_profile.generate_api_key
+    render action: "edit"
+  end
+
 end

@@ -117,7 +117,13 @@ Transitandtrails::Application.routes.draw do
 
   match 'profile' => 'user_profiles#edit', :as => :profile
 
-  resources :user_profiles
+  resources :user_profiles do
+    member do
+      post 'reset_api_key'
+    end
+  end
+
+
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
