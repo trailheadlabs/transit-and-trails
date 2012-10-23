@@ -142,7 +142,7 @@
   - elsif @selected_trailheads
     initializeTrailheadList();
   - else
-    initializePoint(#{@latitude},#{longitude});
+    initializePoint(#{@latitude},#{@longitude});
 
   - if @initial_date
     TNT.plan.initTripDate(Date.parse('#{@initial_date}'));
