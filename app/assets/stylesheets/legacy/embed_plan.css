@@ -28,12 +28,6 @@
     height:35px;
     width:35px;
 }
-
-body{
-  background-color:white;
-  color:black;
-  text-align:left;
-}
 #plan-map{
   width:0px;
 }
@@ -64,34 +58,6 @@ body{
   clear:both;
   font-size:0.9em;
   color:#b3b3b3;
-}
-
-.embed-header{
-  background-color:#5B8BA6;
-  height:40px;
-  border-bottom:solid 2px #87A9BC;
-}
-
-.embed-header .title {
-  text-transform:uppercase;
-  font-size:18px;
-  font-weight:600;
-  color:white;
-  text-shadow:0 -1px 1px #222;
-  float:left;
-  padding:9px 12px;
-}
-
-.embed-header .logo {
-  float:right;
-  font-size:12px;
-  font-weight:bold;
-  color:#B5C9D7;
-  padding:4px;
-}
-
-.embed-header .logo img {
-  vertical-align:middle;
 }
 
 #the-plan h3{

@@ -1,5 +1,4 @@
 - content_for :head do
-  %meta{:content => "Transit & Trails : ", :property => "og:title"}/
   %script{:src => "http://www.google.com/jsapi?key=ABQIAAAAO7OoKKBX03U3SrObYGQy0xTR3gcj-N9Qq4sdgfDbE45YeC9R7BTliGpItl3amRLTjNsmtJj-_SOQkw", :type => "text/javascript"}
   :javascript
     google.load("maps", "2.x");
@@ -19,103 +18,101 @@
 
 #ggnpc-warning
   Many parks experience consistently heavy traffic congestion and parking problems during Saturdays and Sundays from 9am–4pm, in particular Muir Woods, Stinson Beach, the Presidio, and Crissy Field. At Muir Woods, parking can be as far away from the park entrance as a mile and a half during peak times. Please consider using public transit, visiting during off peak times or consider one of the private tour operators.
-#plan
-  #plan-map{:style => "display:none"}
-  %form#the-plan
-    .embed-header
-      .title
-        Trip Planner
-      .logo
-        BY
-        %a{:href => "http://transitandtrails.org", :target => "_blank"}
-          %img{:src => "/assets/legacy/plan/small-logo.png"}/
-    .clearfix
-      - if @selected_trailheads
-        %label#returning-from-label
-          Going to Trailhead
-        %select#trailhead-select
-          - @selected_trailheads.each do |trailhead|
-            %option{:value => "#{trailhead.latitude},#{trailhead.longitude}"}
-              = trailhead.name
-      - else
-        %label#returning-from-label
-          - if @selected_trip
-            Going on Trip
-          - elsif @selected_trailhead
-            Going to Trailhead
-          - elsif @selected_campground
-            Going to Campground
-          - else
-            Going to Location
-      %h3#name-title
-        - if @selected_trip
-          = @selected_trip.name
-    .plan-type
-      %ul
-        %li
-          %a#transit-mode.pt1.active{:href => "#"} Transit
-        %li
-          %a#biking-mode.pt2{:href => "#"} Biking
-        %li
-          %a#walking-mode.pt3{:href => "#"} Walking
-        %li
-          %a#driving-mode.pt4{:href => "#"} Driving
-        %li
-          %a#driving-mode.pt5{:href => "http://www.parksconservancy.org/visit/transportation/bus-tours.html", :target => "_blank"} Tour
-    / e: plan type
-    #starting-point-form
-      %label#starting-point-label Starting Point
-      %input#start-from-address.text.address{:type => "text", :value => "street address or intersection"}/
-      %input#set-address-button.submit.set{:type => "submit", :value => "Set"}/
-      %br
-        #starting-point-latlng
-        %div{:style => "height:0px;clear:both"}  
-    %p
-      %label When?
-      %select#trip_dep_arr.select
-        %option{:value => "dep"} Depart
-        %option{:value => "arr"} Arrive
 
-      %input#trip_date.text.date{:name => "trip_date", :type => "text", :value => ""}
-      &nbsp;
-      %input#trip_hour{:name => "trip_hour", :onkeyup => "numbersOnly(this,2);lessThan(this,12);", :type => "text", :value => "00"}
-        \:
-        %input#trip_minutes{:name => "trip_minutes", :onkeyup => "numbersOnly(this,2);lessThan(this,59);", :type => "text", :value => "00"}
-          %select#trip_ampm{:name => "trip_ampm", :style => "width:50px"}
-            %option#am_option{:value => "am"} AM
-            %option#pm_option{:value => "pm"} PM
-    %p
-      %label Transit Site
-      %select#transit-router.select
-        %option{:value => "511"} 511.org
-        %option{:value => "google"} Google
-      %br/
-    %p{:style => "font-size:12px;font-weight:bold"} Results open in a new page.
-    %ul.numbers
-      %li
-        %strong Driving
-        %em
-          %span#driving-miles -
-          miles
-      %li
-        %strong Gas Saved
-        %em
-          %span#driving-gas -
-          gal @ 21 mpg
-      %li
-        %strong Money Saved
-        %em
-          $
-          %span#driving-money -.-
-          @ $4/gal
-    #carbon-cost
-      Carbon savings :
-      %span#driving-carbon -
-      pounds
-    %p
-      %input#return-trip-button.plan-return.green-link-button.blue{:type => "submit", :value => "Map Trip Back"}/
-      %input#get-directions-button.get-directions.green-link-button{:type => "submit", :value => "Map Trip There"}/
-  / e: the-plan
+- content_for :page_title do
+  Trip Planner
+
+- content_for :page_content do
+  #plan
+    #plan-map{:style => "display:none"}
+    %form#the-plan
+      .clearfix
+        - if @selected_trailheads
+          %label#returning-from-label
+            Going to Trailhead
+          %select#trailhead-select
+            - @selected_trailheads.each do |trailhead|
+              %option{:value => "#{trailhead.latitude},#{trailhead.longitude}"}
+                = trailhead.name
+        - else
+          %label#returning-from-label
+            - if @selected_trip
+              Going on Trip
+            - elsif @selected_trailhead
+              Going to Trailhead
+            - elsif @selected_campground
+              Going to Campground
+            - else
+              Going to Location
+        %h3#name-title
+          - if @selected_trip
+            = @selected_trip.name
+      .plan-type
+        %ul
+          %li
+            %a#transit-mode.pt1.active{:href => "#"} Transit
+          %li
+            %a#biking-mode.pt2{:href => "#"} Biking
+          %li
+            %a#walking-mode.pt3{:href => "#"} Walking
+          %li
+            %a#driving-mode.pt4{:href => "#"} Driving
+          %li
+            %a#driving-mode.pt5{:href => "http://www.parksconservancy.org/visit/transportation/bus-tours.html", :target => "_blank"} Tour
+      / e: plan type
+      #starting-point-form
+        %label#starting-point-label Starting Point
+        %input#start-from-address.text.address{:type => "text", :value => "street address or intersection"}/
+        %input#set-address-button.submit.set{:type => "submit", :value => "Set"}/
+        %br
+          #starting-point-latlng
+          %div{:style => "height:0px;clear:both"}  
+      %p
+        %label When?
+        %select#trip_dep_arr.select
+          %option{:value => "dep"} Depart
+          %option{:value => "arr"} Arrive
+
+        %input#trip_date.text.date{:name => "trip_date", :type => "text", :value => ""}
+        &nbsp;
+        %input#trip_hour{:name => "trip_hour", :onkeyup => "numbersOnly(this,2);lessThan(this,12);", :type => "text", :value => "00"}
+          \:
+          %input#trip_minutes{:name => "trip_minutes", :onkeyup => "numbersOnly(this,2);lessThan(this,59);", :type => "text", :value => "00"}
+            %select#trip_ampm{:name => "trip_ampm", :style => "width:50px"}
+              %option#am_option{:value => "am"} AM
+              %option#pm_option{:value => "pm"} PM
+      %p
+        %label Transit Site
+        %select#transit-router.select
+          %option{:value => "511"} 511.org
+          %option{:value => "google"} Google
+        %br/
+      %p{:style => "font-size:12px;font-weight:bold"} Results open in a new page.
+      %ul.numbers
+        %li
+          %strong Driving
+          %em
+            %span#driving-miles -
+            miles
+        %li
+          %strong Gas Saved
+          %em
+            %span#driving-gas -
+            gal @ 21 mpg
+        %li
+          %strong Money Saved
+          %em
+            $
+            %span#driving-money -.-
+            @ $4/gal
+      #carbon-cost
+        Carbon savings :
+        %span#driving-carbon -
+        pounds
+      %p
+        %input#return-trip-button.plan-return.green-link-button.blue{:type => "submit", :value => "Map Trip Back"}/
+        %input#get-directions-button.get-directions.green-link-button{:type => "submit", :value => "Map Trip There"}/
+    / e: the-plan
 / e: plan
 / Application Script
 %script{:src => "/assets/legacy/plan.js"}
@@ -142,7 +139,7 @@
   - elsif @selected_trailheads
     initializeTrailheadList();
   - else
-    initializePoint(#{@latitude},#{@longitude});
+    initializePoint(#{@latitude},#{longitude});
 
   - if @initial_date
     TNT.plan.initTripDate(Date.parse('#{@initial_date}'));

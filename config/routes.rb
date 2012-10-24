@@ -32,13 +32,18 @@ Transitandtrails::Application.routes.draw do
   end
 
   constraints :subdomain => (Rails.env.production? ? /embed\.rails|embed|rails/ : /.*/) do
-    namespace :embed do
+    namespace :embed do      
       match "login" => "sessions#new", :as => :sigin
       match "signin" => "sessions#new"
       match "signout" => "sessions#destroy", :as => :signout
       match "signup" => "registrations#new", :as => :signup
       match "confirm" => "registrations#confirm", :as => :confirm
       match "approve" => "registrations#approve", :as => :approve
+      resources :trailheads do
+        member do
+          get 'details'
+        end
+      end
       resources :sessions, :only => [:new]
       resources :registrations, :only => [:new,:create]
       resources :trips, :only => [:new,:create,:update,:edit] do

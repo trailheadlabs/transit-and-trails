@@ -1,9 +1,47 @@
-body{
-  font-size:13px;
-}
+
 .hidden{
   display:none;
 }
+
+.embed{
+  float:left;
+}
+
+.embed-header{
+  background-color:#5B8BA6;
+  height:40px;
+  border-bottom:solid 2px #87A9BC;
+}
+
+.embed-header .title {
+  text-transform:uppercase;
+  font-size:18px;
+  font-weight:600;
+  color:white;
+  text-shadow:0 -1px 1px #222;
+  float:left;
+  padding:9px 12px;
+}
+
+.embed-header .logo {
+  float:right;
+  font-size:12px;
+  font-weight:bold;
+  color:#B5C9D7;
+  padding:4px;
+}
+
+.embed-header .logo img {
+  vertical-align:middle;
+}
+
+body{
+  font-size:13px;
+  background-color:white;
+  color:black;
+  text-align:left;
+}
+
 span.error{
   display: block;
   margin-left: 200px;
@@ -164,13 +202,7 @@ span.error{
   border-right: solid 2px #87A9BC;
   width:420px;
 }
-.embed-header{
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
-  -o-border-radius: 0px;
-  border-radius: 0px;
 
-}
 #id_description{
   height:400px;
 }
@@ -200,6 +232,9 @@ span.error{
   border-bottom:solid 2px #87A9BC;
 }
 
+.trail-details-overlay{
+  width:300px;
+}
 .embed-header .title {
   text-transform:uppercase;
   font-size:18px;
