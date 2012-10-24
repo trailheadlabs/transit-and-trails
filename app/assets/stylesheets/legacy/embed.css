@@ -42,6 +42,13 @@ body{
   text-align:left;
 }
 
+#trip-meta{
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -o-border-radius: 0px;
+  border-radius: 0px;
+}
+
 span.error{
   display: block;
   margin-left: 200px;

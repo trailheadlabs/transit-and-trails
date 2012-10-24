@@ -4460,6 +4460,21 @@
         null,
         null
       ],
+      "/Users/jereme/git/transitandtrails/app/controllers/embed/trailheads_controller.rb": [
+        1,
+        1,
+        1,
+        0,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null,
+        null
+      ],
       "/Users/jereme/git/transitandtrails/app/controllers/embed/trips_controller.rb": [
         1,
         1,
@@ -6063,6 +6078,13 @@
         2,
         null,
         null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        null,
         null
       ],
       "/Users/jereme/git/transitandtrails/app/models/user_profile.rb": [
@@ -6902,6 +6924,6 @@
         null
       ]
     },
-    "timestamp": 1350690956
+    "timestamp": 1351117225
   }
 }

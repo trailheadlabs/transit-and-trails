@@ -369,7 +369,7 @@ module Util
       new_record.latitude = fields['latitude']
       new_record.longitude = fields['longitude']
       new_record.user_id = fields['author']
-      new_record.approved = fields['approved']
+      new_record.approved = true
       new_record.park_id = fields['park']
       new_record.campground_features = CampgroundFeature.where(id: fields['features'])
       new_record.save
