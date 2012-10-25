@@ -45,7 +45,7 @@
 
             - if can?(:edit,:trailhead)
               .button-frame
-                %a.green-button{:href => "#{edit_trailhead_path(@trailhead)}"} Edit Trailhead
+                %a.green-button{:href => "#{edit_trailhead_path(@trailhead)}" :target=>"_blank"} Edit Trailhead
 
             - if can?(:destroy,:trailhead)
               .button-frame
