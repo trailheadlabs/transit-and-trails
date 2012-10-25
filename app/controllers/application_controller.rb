@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   def valid_api_key!
     if Rails.env.production?
-      unless UserProfile.where(:api_key=>params[:key]).exists?
+      unless UserProfile.where(:api_key=>params[:api_key]).exists?
         render :json => {:code=>401,:message=>"Unauthorized"}, :status => :unauthorized
       end
     end
@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
 
   def valid_admin_api_key!
     if Rails.env.production?
-      unless UserProfile.where(:api_key=>params[:key]).exists? && UserProfile.where(:api_key=>params[:key].user.is_admin?)
+      unless UserProfile.where(:api_key=>params[:api_key]).exists? && UserProfile.where(:api_key=>params[:key].user.is_admin?)
         render :json => {:code=>401,:message=>"Unauthorized"}, :status => :unauthorized
       end
     end

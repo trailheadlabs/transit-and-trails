@@ -16,7 +16,7 @@ module Api
           else
             @trailheads = Trailhead.where(id:trailhead_ids)
           end
-          @trailheads = apply_limit_and_offset(params,@selected_trailheads.order('name'))
+          @trailheads = apply_limit_and_offset(params,@trailheads.order('name'))
         else
           @trailheads = apply_limit_and_offset(params,Trailhead.order("id").includes(:cached_park_by_bounds,:park))
         end
