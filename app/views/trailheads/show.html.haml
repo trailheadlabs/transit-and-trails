@@ -47,7 +47,7 @@
             %em
             %a{:href => "#{park_path(@trailhead.default_park)}"} #{@trailhead.default_park.name}
         / b:details
-        = render :partial => "/shared/partials/contributor", :locals => {:object=>@trailhead}
+        / = render :partial => "/shared/partials/contributor", :locals => {:object=>@trailhead}
         #trailhead-details
           - if @trailhead.description
             .description
