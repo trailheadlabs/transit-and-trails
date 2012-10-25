@@ -6,38 +6,40 @@ Transitandtrails::Application.routes.draw do
     end 
   end 
   
-  constraints :subdomain => (Rails.env.production? ? /api\.rails|api|rails/ : /.*/), SslConstraint do
-    namespace :api, :defaults => {:format => :json} do
-      namespace :v1 do
-        resources :users, :only => [:show, :index]
-        resources :attribute_categories, :only => [:show, :index]
-        resources :trailheads, :only => [:show, :index] do
-          member do
-            get 'photos'
-            get 'attributes'
-            get 'maps'
+  constraints SslConstraint.new do
+    constraints :subdomain => (Rails.env.production? ? /api\.rails|api|rails/ : /.*/) do
+      namespace :api, :defaults => {:format => :json} do
+        namespace :v1 do
+          resources :users, :only => [:show, :index]
+          resources :attribute_categories, :only => [:show, :index]
+          resources :trailheads, :only => [:show, :index] do
+            member do
+              get 'photos'
+              get 'attributes'
+              get 'maps'
+            end
           end
-        end
-        resources :campgrounds, :only => [:show, :index] do
-          member do
-            get 'photos'
-            get 'attributes'
-            get 'maps'
+          resources :campgrounds, :only => [:show, :index] do
+            member do
+              get 'photos'
+              get 'attributes'
+              get 'maps'
+            end
           end
-        end
-        resources :trips, :only => [:show, :index] do
-          member do
-            get 'photos'
-            get 'attributes'
-            get 'maps'
-            get 'route'
+          resources :trips, :only => [:show, :index] do
+            member do
+              get 'photos'
+              get 'attributes'
+              get 'maps'
+              get 'route'
+            end
           end
+          resources :trailhead_attributes, :only => [:show, :index]
         end
-        resources :trailhead_attributes, :only => [:show, :index]
       end
     end
   end
-
+  
   constraints :subdomain => (Rails.env.production? ? /embed\.rails|embed|rails/ : /.*/) do
     namespace :embed do      
       match "login" => "sessions#new", :as => :sigin
