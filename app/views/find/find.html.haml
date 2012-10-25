@@ -162,8 +162,8 @@
         %ul.recent
           - @latest_photos.each do |photo|
             %li
-              %a{:href => "//flickr.com/photos/transitandtrails/#{ photo.flickr_id }", :target => "_blank"}
-                %img.thumbnail{:src => "#{ photo.flickr_square_url }"}/
+              %a{:href => "http://flickr.com/photos/transitandtrails/#{ photo.flickr_id }", :target => "_blank"}
+                %img.thumbnail{:src => "#{ photo.flickr_square_url.gsub('http:','') }"}/
           /
             <li><a href="#"><img src="/assets/legacy/recent.png" alt="" /></a></li>
             <li><a href="#"><img src="/assets/legacy/recent.png" alt="" /></a></li>
