@@ -1,4 +1,4 @@
-- if object.has_attribute?(:agency) && object.agency
+- if object.respond_to?(:agency) && object.agency
   .agency
     .logo
       - if object.agency.logo && object.agency.link
