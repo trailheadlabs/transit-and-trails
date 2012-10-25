@@ -88,7 +88,7 @@
             %input.check{:type => "checkbox"}/
 
       #twitter.tab-box
-        %script{:src => "http://widgets.twimg.com/j/2/widget.js"}
+        %script{:src => "//widgets.twimg.com/j/2/widget.js"}
         :javascript
           new TWTR.Widget({
             version: 2,
@@ -119,7 +119,7 @@
             }
           }).render().setUser('transitandtrail').start();
       #facebook.tab-box
-        %iframe{:allowTransparency => "true", :frameborder => "0", :scrolling => "no", :src => "http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Ftransitandtrails&width=336&colorscheme=light&show_faces=true&stream=false&header=false&height=250", :style => "border:none; overflow:hidden; width:336px; height:270px;"}
+        %iframe{:allowTransparency => "true", :frameborder => "0", :scrolling => "no", :src => "//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Ftransitandtrails&width=336&colorscheme=light&show_faces=true&stream=false&header=false&height=250", :style => "border:none; overflow:hidden; width:336px; height:270px;"}
       / e: #facebook.tab-box
       /
         <ul id="social">
