@@ -4,10 +4,10 @@ Transitandtrails::Application.routes.draw do
     def self.matches?(request) 
       !Rails.env.production? || request.ssl?
     end 
-  end 
+  end
   
-  constraints SslConstraint.new do
-    constraints :subdomain => (Rails.env.production? ? /api\.rails|api|rails/ : /.*/) do
+  constraints SslConstraint do
+    constraints :subdomain => (Rails.env.production? ? /api\.rails|api/ : /.*/) do
       namespace :api, :defaults => {:format => :json} do
         namespace :v1 do
           resources :users, :only => [:show, :index]
@@ -39,7 +39,7 @@ Transitandtrails::Application.routes.draw do
       end
     end
   end
-  
+
   constraints :subdomain => (Rails.env.production? ? /embed\.rails|embed|rails/ : /.*/) do
     namespace :embed do      
       match "login" => "sessions#new", :as => :sigin
