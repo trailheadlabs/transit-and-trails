@@ -80,8 +80,7 @@
   %ul
     %li The API is currently read-only, the only accepted HTTP method is GET.    
     %li The API is currently open, meaning there is no authentication.
-    %li The default response format is JSON. Responses can be formated as json by appending .xml to the request path. For example : https://api.transitandtrails.org/api/v1/trailheads.xml&api_key=valid_api_key
-
+    %li The default response format is JSON. Responses can be formated as json by appending .xml to the request path. For example : https://api.transitandtrails.org/api/v1/trailheads.xml?api_key=valid_api_key
     %li Error handling is limited. Get Trailhead, Trip, Campground and User will return 404 response codes when an invalid ID is specified. Beware of 500 response codes. This will get better, we promise.  
   %h5
     [

@@ -1,6 +1,6 @@
 module Api
   module V1
-    class UsersController < ApplicationController
+    class UsersController < Api::V1::ApiController
       def index
         @users = apply_limit_and_offset(params,User.order("id desc"))
       end

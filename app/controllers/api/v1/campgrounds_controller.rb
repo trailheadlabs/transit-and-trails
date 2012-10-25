@@ -1,6 +1,6 @@
 module Api
   module V1
-    class CampgroundsController < ApplicationController
+    class CampgroundsController < Api::V1::ApiController
 
       caches_action :index, :expires_in => 60, :cache_path => Proc.new { |c| c.params }
 

@@ -1,6 +1,6 @@
 module Api
   module V1
-    class TripsController < ApplicationController
+    class TripsController < Api::V1::ApiController
       def index
         @trips = apply_limit_and_offset(params,Trip.order("id"))
       end

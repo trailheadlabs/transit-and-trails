@@ -11,14 +11,18 @@ class ApplicationController < ActionController::Base
   end
 
   def valid_api_key!
-    unless UserProfile.where(:api_key=>params[:key]).exists?
-      render :json => {:code=>401,:message=>"Unauthorized"}, :status => :unauthorized
+    if Rails.env.production?
+      unless UserProfile.where(:api_key=>params[:key]).exists?
+        render :json => {:code=>401,:message=>"Unauthorized"}, :status => :unauthorized
+      end
     end
   end
 
   def valid_admin_api_key!
-    unless UserProfile.where(:api_key=>params[:key]).exists? && UserProfile.where(:api_key=>params[:key].user.is_admin?)
-      render :json => {:code=>401,:message=>"Unauthorized"}, :status => :unauthorized
+    if Rails.env.production?
+      unless UserProfile.where(:api_key=>params[:key]).exists? && UserProfile.where(:api_key=>params[:key].user.is_admin?)
+        render :json => {:code=>401,:message=>"Unauthorized"}, :status => :unauthorized
+      end
     end
   end
 

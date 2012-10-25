@@ -1,7 +1,6 @@
 module Api
   module V1
-    class TrailheadsController < ApplicationController
-      # before_filter :valid_api_key!
+    class TrailheadsController < Api::V1::ApiController
 
       caches_action :index, :expires_in => 60, :cache_path => Proc.new { |c| c.params }
 
