@@ -4,7 +4,7 @@ class Trailhead < ActiveRecord::Base
   include PointOfInterest
 
   belongs_to :user, :inverse_of => :trailheads
-  belongs_to :park, :inverse_of => :trailheads
+  belongs_to :park, :inverse_of => :trailhead_overrides
   belongs_to :agency_override, :class_name => "Agency", :foreign_key => "agency_id"
   belongs_to :cached_park_by_bounds, :class_name => "Park", :foreign_key => "cached_park_by_bounds_id"
   has_and_belongs_to_many :trailhead_features

@@ -1,0 +1,64 @@
+- content_for :head do  
+  = stylesheet_link_tag "application"
+  = javascript_include_tag "application"
+  = javascript_include_tag "legacy/common"
+  = stylesheet_link_tag "legacy/reset"
+  = stylesheet_link_tag "legacy/common"
+  = stylesheet_link_tag "legacy/style"
+  = stylesheet_link_tag "legacy/campground_detail"
+  %script{:src => "/assets/legacy/jquery/js/jquery.tools.min.js", :type => "text/javascript"}
+
+- content_for :page_title do
+  Campground Details
+
+- content_for :page_content do
+  #page.trip-details
+
+    #trail-details.trail-details-overlay
+      != @campground.description
+
+    #details-section
+      #plan.alt.trailhead
+        / e: page head
+        #trip-meta
+          .header
+            %h2 #{@campground.name}
+            %img.type-flag{:alt => "", :src => "/assets/legacy/campground.png"}/
+            - if @campground.default_park
+              %em
+              %a{:href => "#{park_path(@campground.default_park)}"} #{@campground.default_park.name}
+          / b:details
+          #trailhead-details
+            - if @campground.description
+              .description
+                != truncate_html(@campground.description, :length=> 300,  :omission => '...<br/><a class="trail-details-modal modal" rel="#trail-details" >Read more...</a>')
+              / e: entry
+            - else
+              %div{:style => "height:10px"}
+
+            = render :partial => "/shared/partials/features", :locals => {:object=>@campground}
+
+            .button-frame
+
+              %a.green-button.padded-sides{:href => "/embed/plan/campground/#{@campground.id}"}
+                Plan Trip to Here
+
+            - if can?(:edit,:campground)
+              .button-frame
+                %a.green-button{:href => "#{edit_campground_path(@campground)}"} Edit Campground
+
+            - if can?(:destroy,:campground)
+              .button-frame
+                = link_to("Delete Campground", @campground, :method => :delete, :confirm => "Are you sure?", :class=>"green-button")
+
+            = render :partial => "/shared/partials/object_maps", :locals => {:object=>@campground}
+
+          = render :partial => "/shared/partials/agency", :locals => {:object=>@campground}
+
+        = render :partial => "/shared/partials/non_profit_partner", :locals => {:object=>@campground}
+
+  :javascript
+    $(function(){
+      $("a.modal").overlay();
+    });
+

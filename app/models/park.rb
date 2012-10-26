@@ -5,7 +5,7 @@ class Park < ActiveRecord::Base
   attr_accessible :acres, :bounds, :county, :county_slug, :description, :name, :slug, :link,
     :min_longitude, :max_longitude, :min_latitude, :max_latitude, :non_profit_partner_id, :agency_id, :trailhead_ids
   before_save :update_bounds_min_max
-  has_many :trailheads, :inverse_of => :park
+  has_many :trailhead_overrides, :class_name => 'Trailhead', :inverse_of => :park
 
   has_paper_trail
 
@@ -49,7 +49,7 @@ class Park < ActiveRecord::Base
   end
 
   def trailheads
-    trailheads_in_bounds
+    ((!cached_trailheads.empty? && cached_trailheads) || trailheads_in_bounds) + trailhead_overrides
   end
 
   def trailheads_in_bounds
@@ -82,13 +82,12 @@ class Park < ActiveRecord::Base
     return campgrounds
   end
 
-  def trips
-    trailheads = cached_trailheads.empty? ? trailheads_in_bounds : cached_trailheads
+  def trips    
     trailheads.collect{|t| t.trips_starting_at + t.trips_ending_at }.flatten
   end
 
   def trips_starting_in_bounds
-    trips = Trip.where(:starting_trailhead_id => (cached_trailheads.empty? ? trailheads_in_bounds : cached_trailheads))
+    trips = Trip.where(:starting_trailhead_id => trailheads)
     trips.select! do |t|
       self.contains_trailhead? t.starting_trailhead
     end
@@ -96,7 +95,7 @@ class Park < ActiveRecord::Base
   end
 
   def trips_ending_in_bounds
-    trips = Trip.where(:ending_trailhead_id => (cached_trailheads.empty? ? trailheads_in_bounds : cached_trailheads))
+    trips = Trip.where(:ending_trailhead_id => trailheads)
     trips.select! do |t|
       self.contains_trailhead? t.ending_trailhead
     end

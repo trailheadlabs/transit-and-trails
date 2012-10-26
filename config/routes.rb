@@ -53,6 +53,11 @@ Transitandtrails::Application.routes.draw do
           get 'details'
         end
       end
+      resources :campgrounds do
+        member do
+          get 'details'
+        end
+      end
       resources :sessions, :only => [:new]
       resources :registrations, :only => [:new,:create]
       resources :trips, :only => [:new,:create,:update,:edit] do

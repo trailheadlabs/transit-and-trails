@@ -41,7 +41,7 @@ class ParksController < ApplicationController
       @campgrounds += park.campgrounds
       Rails.logger.info("campgrounds finished #{DateTime.now.to_f}")
       Rails.logger.info("trailheads started #{DateTime.now.to_f}")
-      @trailheads += park.cached_trailheads
+      @trailheads += park.trailheads
       Rails.logger.info("trailheads finished #{DateTime.now.to_f}")
     end
 

@@ -3896,6 +3896,7 @@
         null,
         1,
         2,
+        2,
         0,
         0,
         0,
@@ -3906,7 +3907,12 @@
         null,
         0,
         null,
+        null,
+        null,
+        2,
         0,
+        0,
+        null,
         null,
         2,
         null,
@@ -4381,6 +4387,16 @@
         1,
         null
       ],
+      "/Users/jereme/git/transitandtrails/app/controllers/embed/campgrounds_controller.rb": [
+        1,
+        1,
+        1,
+        0,
+        0,
+        null,
+        null,
+        null
+      ],
       "/Users/jereme/git/transitandtrails/app/controllers/embed/plan_controller.rb": [
         1,
         1,
@@ -4506,10 +4522,6 @@
         0,
         0,
         null,
-        null,
-        1,
-        0,
-        0,
         null,
         null,
         null
@@ -5022,11 +5034,11 @@
         null,
         null,
         1,
-        5,
+        9,
         null,
         null,
         1,
-        4,
+        9,
         null,
         null,
         1,
@@ -5060,7 +5072,6 @@
         null,
         null,
         1,
-        2,
         8,
         null,
         null,
@@ -6963,6 +6974,6 @@
         null
       ]
     },
-    "timestamp": 1351187711
+    "timestamp": 1351226146
   }
 }

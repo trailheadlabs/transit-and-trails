@@ -5,9 +5,5 @@ module Embed
       render "details", :layout => "embed"
     end
 
-    def destroy
-      sign_out
-      redirect_to embed_signin_path
-    end
   end
 end
