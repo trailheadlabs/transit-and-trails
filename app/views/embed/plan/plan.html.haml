@@ -112,39 +112,36 @@
       %p
         %input#return-trip-button.plan-return.green-link-button.blue{:type => "submit", :value => "Map Trip Back"}/
         %input#get-directions-button.get-directions.green-link-button{:type => "submit", :value => "Map Trip There"}/
-    / e: the-plan
-/ e: plan
-/ Application Script
-%script{:src => "/assets/legacy/plan.js"}
+  %script{:src => "/assets/legacy/plan.js"}
 
-- if @agency_id
-  :javascript
-    $(function(){
+  - if @agency_id
+    :javascript
+      $(function(){
 
-      $('#ggnpc-warning').overlay();
+        $('#ggnpc-warning').overlay();
 
-      $("#driving-mode").click(function(){
-        $('#ggnpc-warning').overlay().load();
-      });
-  });
+        $("#driving-mode").click(function(){
+          $('#ggnpc-warning').overlay().load();
+        });
+    });
 
-%script
-  $(new function(){
-  - if @selected_trailhead
-    initializeTrailhead(#{@selected_trailhead.id});
-  - elsif @selected_trip
-    initializeTrip(#{@selected_trip.id});
-  - elsif @selected_campground
-    initializeCampground(#{@selected_campground.id});
-  - elsif @selected_trailheads
-    initializeTrailheadList();
-  - else
-    initializePoint(#{@latitude},#{longitude});
+  %script
+    $(new function(){
+    - if @selected_trailhead
+      initializeTrailhead(#{@selected_trailhead.id});
+    - elsif @selected_trip
+      initializeTrip(#{@selected_trip.id});
+    - elsif @selected_campground
+      initializeCampground(#{@selected_campground.id});
+    - elsif @selected_trailheads
+      initializeTrailheadList();
+    - else
+      initializePoint(#{@latitude},#{longitude});
 
-  - if @initial_date
-    TNT.plan.initTripDate(Date.parse('#{@initial_date}'));
+    - if @initial_date
+      TNT.plan.initTripDate(Date.parse('#{@initial_date}'));
 
-  - if @arrive
-    $('#trip_dep_arr').val('arr');
+    - if @arrive
+      $('#trip_dep_arr').val('arr');
 
-  });
+    });
