@@ -64,11 +64,11 @@ class Park < ActiveRecord::Base
   end
 
   def cached_campgrounds
-    Trailhead.where(cached_park_by_bounds_id: id)
+    Campground.where(cached_park_by_bounds_id: id)
   end
 
   def campgrounds
-    campgrounds_in_bounds
+    ((!cached_campgrounds.empty? && cached_campgrounds) || campgrounds_in_bounds) 
   end
 
   def campgrounds_in_bounds
