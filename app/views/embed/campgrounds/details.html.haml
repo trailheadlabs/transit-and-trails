@@ -45,7 +45,7 @@
 
             - if can?(:edit,:campground)
               .button-frame
-                %a.green-button{:href => "#{edit_campground_path(@campground)}"} Edit Campground
+                %a.green-button{:href => "#{edit_campground_path(@campground)}" :target=>"_blank"} Edit Campground
 
             - if can?(:destroy,:campground)
               .button-frame
