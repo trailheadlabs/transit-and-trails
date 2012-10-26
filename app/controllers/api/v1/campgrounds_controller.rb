@@ -13,9 +13,9 @@ module Api
           
           attribute_id = params[:attribute_id]
           if attribute_id
-            @campgrounds = CampgroundFeature.find(attribute_id).campgrounds.where(id:campground_ids)
+            @campgrounds = CampgroundFeature.find(attribute_id).campgrounds.where(id:campground_ids).order("id")
           else
-            @campgrounds = Campground.where(id:campground_ids)
+            @campgrounds = Campground.where(id:campground_ids).order("id")
           end
         end
 

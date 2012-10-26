@@ -13,9 +13,9 @@ module Api
           
           attribute_id = params[:attribute_id]
           if attribute_id
-            @trailheads = TrailheadFeature.find(attribute_id).trailheads.where(id:trailhead_ids)
+            @trailheads = TrailheadFeature.find(attribute_id).trailheads.where(id:trailhead_ids).order("id")
           else
-            @trailheads = Trailhead.where(id:trailhead_ids)
+            @trailheads = Trailhead.where(id:trailhead_ids).order("id")
           end
         end
 
