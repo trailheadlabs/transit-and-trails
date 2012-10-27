@@ -17,6 +17,8 @@ class Campground < ActiveRecord::Base
 
   validates :name, :presence => true, :uniqueness => true
 
+  before_save :auto_approve, :park_by_bounds
+  
   def categorized_attributes
     result = {}
     Category.all.each do |category|

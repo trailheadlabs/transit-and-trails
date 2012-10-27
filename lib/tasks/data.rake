@@ -51,7 +51,7 @@ namespace :data do
   task :cache_trailhead_parks => :environment do
     count = Trailhead.count
     Trailhead.all.each_with_index do |t,i|
-      t.default_park
+      t.save
       puts "#{i+1}/#{count}"
     end
     puts "Done"
@@ -68,7 +68,7 @@ namespace :data do
   task :cache_campground_parks => :environment do
     count = Campground.count
     Campground.all.each_with_index do |t,i|
-      t.default_park
+      t.save
       puts "#{i+1}/#{count}"
     end
     puts "Done"

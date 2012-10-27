@@ -23,7 +23,7 @@ module PointOfInterest
     end
 
     self.cached_park_by_bounds = parks.first
-    self.save
+
     return parks.first
   end
 
