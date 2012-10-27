@@ -38,7 +38,7 @@ describe Api::V1::TrailheadsController do
       user = FactoryGirl.create(:user)
       trailhead = FactoryGirl.create(:trailhead, :user => user)
       park = FactoryGirl.create(:park)
-      Trailhead.any_instance.should_receive(:park_by_bounds).any_number_of_times.and_return(park)
+      Trailhead.any_instance.should_receive(:default_park).any_number_of_times.and_return(park)
       get :show, params.merge(:id=>trailhead.id)
       response.should be_success
       object = JSON.parse(response.body)

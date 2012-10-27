@@ -21,7 +21,7 @@ describe Api::V1::CampgroundsController do
       user = FactoryGirl.create(:user)
       campground = FactoryGirl.create(:campground, :user => user)
       park = FactoryGirl.create(:park)
-      Campground.any_instance.should_receive(:park_by_bounds).any_number_of_times.and_return(park)
+      Campground.any_instance.should_receive(:default_park).any_number_of_times.and_return(park)
       get :show, {:id=>campground.id}
       response.should be_success
       object = JSON.parse(response.body)
