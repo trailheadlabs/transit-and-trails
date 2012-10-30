@@ -1,8 +1,15 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :store_location
+
+  def authenticate_user!
+    url = params[:next_url] || request.fullpath
+    session[:user_return_to] = url
+    super
+  end
 
   def authenticate_admin!
+    url = params[:next_url] || request.fullpath
+    session[:user_return_to] = url
     authenticate_user!
     unless current_user.admin?
       flash[:alert] = "Admin user required."
@@ -27,6 +34,10 @@ class ApplicationController < ActionController::Base
   end
 
   def embed_authenticate_trailblazer!
+    Rails.logger.info("embed_authenticate_trailblazer!")
+    url = params[:next_url] || request.fullpath
+    session[:user_return_to] = url
+    Rails.logger.info("session[:user_return_to] = #{session[:user_return_to]}")
     unless user_signed_in? && current_user.trailblazer?
       flash[:alert] = "Please login as a Trail Blazer to access that page."
       redirect_to '/embed/sessions/new' # halts request cycle
@@ -34,6 +45,9 @@ class ApplicationController < ActionController::Base
   end
 
   def embed_authenticate_admin!
+    url = params[:next_url] || request.fullpath
+    session[:user_return_to] = url
+
     unless user_signed_in? && current_user.admin?
       flash[:alert] = "Please login as an admin to access that page."
       redirect_to '/embed/sessions/new' # halts request cycle
@@ -59,17 +73,6 @@ class ApplicationController < ActionController::Base
     render :json => {:key=>params[:key],:value=>params[:value]}
   end
 
-  def store_location
-    unless params[:controller].match /devise|signup|signin/
-      url = params[:next_url] || request.referrer
-      session[:user_return_to] = url
-    else
-      session[:user_return_to] = params[:next_url]
-    end
-    Rails.logger.info("session[:user_return_to] = #{session[:user_return_to]}")
-
-  end
-
   def stored_location_for(resource_or_scope)
     session[:user_return_to] || super
   end
@@ -80,6 +83,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_out_path_for(resource)
+    Rails.logger.info("session[:user_return_to] = #{session[:user_return_to]}")
     stored_location_for(resource) || root_path
   end
 
