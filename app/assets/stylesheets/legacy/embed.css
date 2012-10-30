@@ -5,6 +5,7 @@
 
 .embed{
   float:left;
+  font-size:0.88em;
 }
 
 .embed-header{
@@ -47,6 +48,11 @@ body{
   -moz-border-radius: 0px;
   -o-border-radius: 0px;
   border-radius: 0px;
+  width:377px;
+}
+
+div.agency{
+  font-size:11px;
 }
 
 span.error{
