@@ -44,9 +44,10 @@
               Going to Campground
             - else
               Going to Location
-        %h3#name-title
-          - if @selected_trip
-            = @selected_trip.name
+        - if not @selected_trailheads
+          %h3#name-title
+            - if @selected_trip
+              = @selected_trip.name
       .plan-type
         %ul
           %li
@@ -66,7 +67,6 @@
         %input#set-address-button.submit.set{:type => "submit", :value => "Set"}/
         %br
           #starting-point-latlng
-          %div{:style => "height:0px;clear:both"}  
       %p
         %label When?
         %select#trip_dep_arr.select
