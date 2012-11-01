@@ -104,7 +104,7 @@ module Util
           puts "Could not import item :"
           puts e.message
           puts e.backtrace
-          puts JSON.pretty_generate item, :indent => "  "        
+          puts JSON.pretty_generate item, :indent => "  "
         end
       end
     end
@@ -582,6 +582,9 @@ module Util
         new_user.admin = item['fields']['is_superuser'] || item['fields']['is_staff']
         new_user.last_sign_in_at = item['fields']['last_login']
         new_user.created_at = item['fields']['date_joined']
+        if !item['fields']['groups'].empty?
+          new_user.trailblazer = true
+        end
         new_user.confirm!
         return new_user.save(:validate => false)
       else
