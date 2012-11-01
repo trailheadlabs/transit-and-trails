@@ -441,7 +441,7 @@ TNT.plan = {
 		var self = this;
 		var endLatLng = null;
     loadLocationFromSession(function(data){
-			if (data) {
+			if (data && data.value != "null") {
 				self.showAddress(data.value);
 			}
 			else {
