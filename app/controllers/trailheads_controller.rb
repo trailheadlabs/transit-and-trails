@@ -34,7 +34,7 @@ class TrailheadsController < ApplicationController
     limit = 1000 || params[:limit]
     offset = 0 || params[:offset]
     approved = true || params[:approved]
-    @trailheads = Trailhead.where(:approved => approved).near([latitude,longitude],distance).limit(limit).offset(offset)
+    @trailheads = Trailhead.where(:approved => approved).near([latitude,longitude],distance,:select=>'id,latitude,longitude,name').limit(limit).offset(offset)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @trailheads }

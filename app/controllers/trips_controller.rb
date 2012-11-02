@@ -21,7 +21,7 @@ class TripsController < ApplicationController
     limit = 1000 || params[:limit]
     offset = 0 || params[:offset]
     approved = true || params[:approved]
-    @trips = Trailhead.where(:approved => approved).near([latitude,longitude],distance,:select => "trailheads.*, trips.*").joins(:trips_starting_at).limit(limit).offset(offset)
+    @trips = Trailhead.where(:approved => approved).near([latitude,longitude],distance,:select => "trailheads.id, trailheads.latitude, trailheads.longitude, trips.id, trips.name, trips.user_id, trips.intensity_id, trips.duration_id, trips.starting_trailhead_id, trips.ending_trailhead_id").joins(:trips_starting_at).limit(limit).offset(offset)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @trips }
