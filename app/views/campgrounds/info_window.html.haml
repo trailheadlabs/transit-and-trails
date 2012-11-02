@@ -1,4 +1,4 @@
-/ the point variable here is a Trailhead object
+/ the point variable here is a Campground object
 .trailhead-info-window
   .trailhead-info-window-title #{ @point.name }
   - if @point.default_park
@@ -34,6 +34,6 @@
       %b Actions
       %ul
         %li
-          %a{:href => "#{edit_trailhead_path(@point)}"} Edit
+          %a{:href => "#{edit_campground_path(@point)}"} Edit
         %li
           = link_to("Delete", @point, :method => :delete, :confirm => "Are you sure?")
