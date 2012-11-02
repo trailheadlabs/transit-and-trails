@@ -222,6 +222,7 @@ module Util
     def self.import_featured_tab(item)
       new_record = FeaturedTab.find_or_create_by_id(Integer(item['pk']))
       fields = item['fields']
+      new_record.name = fields['name']
       new_record.header = fields['header']
       new_record.highlighted = fields['highlighted']
       new_record.text1 = fields['text1']

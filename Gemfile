@@ -37,6 +37,7 @@ gem 'simple_form'
 gem 'database_cleaner'
 gem 'cancan'
 gem 'truncate_html'
+gem 'airbrake'
 
 # Gems used only for assets and not required
 # in production environments by default.
