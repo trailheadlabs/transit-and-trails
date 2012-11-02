@@ -14,14 +14,14 @@
       <img src="./assets/0.7.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2012-11-02T09:58:01-07:00">2012-11-02T09:58:01-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2012-11-02T13:56:12-07:00">2012-11-02T13:56:12-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">76.41%</span></span>
+    (<span class="covered_percent"><span class="red">76.43%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
@@ -32,8 +32,8 @@
   <a name="AllFiles"></a>
   <div>
     <b>103</b> files in total.
-    <b>1679</b> relevant lines. 
-    <span class="green"><b>1283</b> lines covered</span> and
+    <b>1680</b> relevant lines. 
+    <span class="green"><b>1284</b> lines covered</span> and
     <span class="red"><b>396</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -1072,10 +1072,10 @@
       
       <tr>
         <td class="strong"><a href="#3e704e7da12e1d6b3842f1ce2482444db5eece61" class="src_link" title="lib/util/data_import.rb">lib/util/data_import.rb</a></td>
-        <td class="red strong">79.63 %</td>
-        <td>635</td>
-        <td>427</td>
-        <td>340</td>
+        <td class="red strong">79.67 %</td>
+        <td>636</td>
+        <td>428</td>
+        <td>341</td>
         <td>87</td>
         <td>0.9</td>
       </tr>
@@ -2137,7 +2137,7 @@
           <div class="file_list_container" id="Libraries">
   <h2>
     <span class="group_name">Libraries</span>
-    (<span class="covered_percent"><span class="red">79.63%</span></span>
+    (<span class="covered_percent"><span class="red">79.67%</span></span>
      covered at
      <span class="covered_strength">
        <span class="red">
@@ -2148,8 +2148,8 @@
   <a name="Libraries"></a>
   <div>
     <b>1</b> files in total.
-    <b>427</b> relevant lines. 
-    <span class="green"><b>340</b> lines covered</span> and
+    <b>428</b> relevant lines. 
+    <span class="green"><b>341</b> lines covered</span> and
     <span class="red"><b>87</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -2168,10 +2168,10 @@
       
       <tr>
         <td class="strong"><a href="#3e704e7da12e1d6b3842f1ce2482444db5eece61" class="src_link" title="lib/util/data_import.rb">lib/util/data_import.rb</a></td>
-        <td class="red strong">79.63 %</td>
-        <td>635</td>
-        <td>427</td>
-        <td>340</td>
+        <td class="red strong">79.67 %</td>
+        <td>636</td>
+        <td>428</td>
+        <td>341</td>
         <td>87</td>
         <td>0.9</td>
       </tr>
@@ -3560,7 +3560,7 @@
         <li class="covered" data-hits="1" data-linenumber="4">
           <span class="hits">1</span>
           
-          <code class="ruby">  def authenticate_user!</code>
+          <code class="ruby">  def authenticate_user!(opts={})</code>
         </li>
       
         <li class="covered" data-hits="80" data-linenumber="5">
@@ -3578,7 +3578,7 @@
         <li class="covered" data-hits="80" data-linenumber="7">
           <span class="hits">80</span>
           
-          <code class="ruby">    super</code>
+          <code class="ruby">    super(opts)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="8">
@@ -8366,7 +8366,7 @@
         <li class="covered" data-hits="1" data-linenumber="37">
           <span class="hits">1</span>
           
-          <code class="ruby">    @trailheads = Trailhead.where(:approved =&gt; approved).near([latitude,longitude],distance).limit(limit).offset(offset)</code>
+          <code class="ruby">    @trailheads = Trailhead.where(:approved =&gt; approved).near([latitude,longitude],distance,:select=&gt;'id,latitude,longitude,name').limit(limit).offset(offset)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="38">
@@ -9410,7 +9410,7 @@
         <li class="missed" data-hits="0" data-linenumber="24">
           
           
-          <code class="ruby">    @trips = Trailhead.where(:approved =&gt; approved).near([latitude,longitude],distance,:select =&gt; &quot;trailheads.*, trips.*&quot;).joins(:trips_starting_at).limit(limit).offset(offset)</code>
+          <code class="ruby">    @trips = Trailhead.where(:approved =&gt; approved).near([latitude,longitude],distance,:select =&gt; &quot;trailheads.id, trailheads.latitude, trailheads.longitude, trips.id, trips.name, trips.user_id, trips.intensity_id, trips.duration_id, trips.starting_trailhead_id, trips.ending_trailhead_id&quot;).joins(:trips_starting_at).limit(limit).offset(offset)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="25">
@@ -16268,7 +16268,7 @@
         <li class="never" data-hits="" data-linenumber="12">
           
           
-          <code class="ruby">                  :username, :django_password, :user_profile</code>
+          <code class="ruby">                  :username, :django_password, :user_profile, :admin</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="13">
@@ -20610,10 +20610,10 @@
         <div class="source_table" id="3e704e7da12e1d6b3842f1ce2482444db5eece61">
   <div class="header">
     <h3>lib/util/data_import.rb</h3>
-    <h4><span class="red">79.63 %</span> covered</h4>
+    <h4><span class="red">79.67 %</span> covered</h4>
     <div>
-      <b>427</b> relevant lines. 
-      <span class="green"><b>340</b> lines covered</span> and
+      <b>428</b> relevant lines. 
+      <span class="green"><b>341</b> lines covered</span> and
       <span class="red"><b>87</b> lines missed.</span>
     </div>
   </div>
@@ -21968,217 +21968,217 @@
         <li class="covered" data-hits="1" data-linenumber="225">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.header = fields['header']</code>
+          <code class="ruby">      new_record.name = fields['name']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="226">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.highlighted = fields['highlighted']</code>
+          <code class="ruby">      new_record.header = fields['header']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="227">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.text1 = fields['text1']</code>
+          <code class="ruby">      new_record.highlighted = fields['highlighted']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="228">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.text2 = fields['text2']</code>
+          <code class="ruby">      new_record.text1 = fields['text1']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="229">
           <span class="hits">1</span>
           
+          <code class="ruby">      new_record.text2 = fields['text2']</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="230">
+          <span class="hits">1</span>
+          
           <code class="ruby">      new_record.text3 = fields['text3']</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="230">
+        <li class="never" data-hits="" data-linenumber="231">
           
           
           <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="231">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      begin</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="232">
           <span class="hits">1</span>
           
-          <code class="ruby">        unless fields['image'].blank?</code>
+          <code class="ruby">      begin</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="233">
           <span class="hits">1</span>
           
-          <code class="ruby">          new_record.remote_image_url = &quot;http://transitandtrails.org/media/&quot; + fields['image']</code>
+          <code class="ruby">        unless fields['image'].blank?</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="234">
+        <li class="covered" data-hits="1" data-linenumber="234">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">          # new_record.image.store!</code>
+          <code class="ruby">          new_record.remote_image_url = &quot;http://transitandtrails.org/media/&quot; + fields['image']</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="235">
           
           
-          <code class="ruby">        end</code>
+          <code class="ruby">          # new_record.image.store!</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="236">
           
           
-          <code class="ruby">      rescue Exception =&gt; e</code>
+          <code class="ruby">        end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="237">
+        <li class="never" data-hits="" data-linenumber="237">
           
           
-          <code class="ruby">        puts &quot;Could not set image for partner #{new_record.header}&quot;</code>
+          <code class="ruby">      rescue Exception =&gt; e</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="238">
           
           
-          <code class="ruby">        puts fields['image']</code>
+          <code class="ruby">        puts &quot;Could not set image for partner #{new_record.header}&quot;</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="239">
           
           
-          <code class="ruby">        puts e.message</code>
+          <code class="ruby">        puts fields['image']</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="240">
+        <li class="missed" data-hits="0" data-linenumber="240">
           
           
-          <code class="ruby">      end</code>
+          <code class="ruby">        puts e.message</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="241">
           
           
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="242">
+          
+          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="242">
+        <li class="covered" data-hits="1" data-linenumber="243">
           <span class="hits">1</span>
           
           <code class="ruby">      new_record.image_link</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="243">
+        <li class="never" data-hits="" data-linenumber="244">
           
           
           <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="244">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      new_record.link1 = fields['link1']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="245">
           <span class="hits">1</span>
           
+          <code class="ruby">      new_record.link1 = fields['link1']</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="246">
+          <span class="hits">1</span>
+          
           <code class="ruby">      new_record.link1_text = fields['link1_text']</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="246">
+        <li class="never" data-hits="" data-linenumber="247">
           
           
           <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="247">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      new_record.link2 = fields['link2']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="248">
           <span class="hits">1</span>
           
+          <code class="ruby">      new_record.link2 = fields['link2']</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="249">
+          <span class="hits">1</span>
+          
           <code class="ruby">      new_record.link2_text = fields['link2_text']</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="249">
+        <li class="never" data-hits="" data-linenumber="250">
           
           
           <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="250">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      new_record.link3 = fields['link3']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="251">
           <span class="hits">1</span>
           
+          <code class="ruby">      new_record.link3 = fields['link3']</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="252">
+          <span class="hits">1</span>
+          
           <code class="ruby">      new_record.link3_text = fields['link3_text']</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="252">
+        <li class="never" data-hits="" data-linenumber="253">
           
           
           <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="253">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      new_record.link4 = fields['link4']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="254">
           <span class="hits">1</span>
           
+          <code class="ruby">      new_record.link4 = fields['link4']</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="255">
+          <span class="hits">1</span>
+          
           <code class="ruby">      new_record.link4_text = fields['link4_text']</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="255">
+        <li class="never" data-hits="" data-linenumber="256">
           
           
           <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="256">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      new_record.link5 = fields['link5']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="257">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.link5_text = fields['link5_text']</code>
+          <code class="ruby">      new_record.link5 = fields['link5']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="258">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.save</code>
+          <code class="ruby">      new_record.link5_text = fields['link5_text']</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="259">
+        <li class="covered" data-hits="1" data-linenumber="259">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">  end</code>
+          <code class="ruby">      new_record.save</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="260">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="261">
@@ -22187,2245 +22187,2251 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="262">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="262">
           
-          <code class="ruby">    def self.import_partner(item)</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="263">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record = Partner.find_or_create_by_id(Integer(item['pk']))</code>
+          <code class="ruby">    def self.import_partner(item)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="264">
           <span class="hits">1</span>
           
-          <code class="ruby">      fields = item['fields']</code>
+          <code class="ruby">      new_record = Partner.find_or_create_by_id(Integer(item['pk']))</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="265">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.name = fields['name']</code>
+          <code class="ruby">      fields = item['fields']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="266">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.description = fields['description']</code>
+          <code class="ruby">      new_record.name = fields['name']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="267">
           <span class="hits">1</span>
           
+          <code class="ruby">      new_record.description = fields['description']</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="268">
+          <span class="hits">1</span>
+          
           <code class="ruby">      new_record.link = fields['link']</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="268">
+        <li class="never" data-hits="" data-linenumber="269">
           
           
           <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="269">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      begin</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="270">
           <span class="hits">1</span>
           
-          <code class="ruby">        unless fields['logo'].blank?</code>
+          <code class="ruby">      begin</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="271">
           <span class="hits">1</span>
           
-          <code class="ruby">          new_record.remote_logo_url = &quot;http://transitandtrails.org/media/&quot; + fields['logo']</code>
+          <code class="ruby">        unless fields['logo'].blank?</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="272">
+        <li class="covered" data-hits="1" data-linenumber="272">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">          # new_record.logo.store!</code>
+          <code class="ruby">          new_record.remote_logo_url = &quot;http://transitandtrails.org/media/&quot; + fields['logo']</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="273">
           
           
-          <code class="ruby">        end</code>
+          <code class="ruby">          # new_record.logo.store!</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="274">
           
           
-          <code class="ruby">      rescue Exception =&gt; e</code>
+          <code class="ruby">        end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="275">
+        <li class="never" data-hits="" data-linenumber="275">
           
           
-          <code class="ruby">        puts &quot;Could not set logo for partner #{new_record.name}&quot;</code>
+          <code class="ruby">      rescue Exception =&gt; e</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="276">
           
           
-          <code class="ruby">        puts fields['logo']</code>
+          <code class="ruby">        puts &quot;Could not set logo for partner #{new_record.name}&quot;</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="277">
           
           
+          <code class="ruby">        puts fields['logo']</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="278">
+          
+          
           <code class="ruby">        puts e.message</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="278">
+        <li class="never" data-hits="" data-linenumber="279">
           
           
           <code class="ruby">      end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="279">
+        <li class="covered" data-hits="1" data-linenumber="280">
           <span class="hits">1</span>
           
           <code class="ruby">      new_record.save</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="280">
-          
-          
-          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="281">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="282">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="282">
           
-          <code class="ruby">    def self.import_agency(item)</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="283">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record = Agency.find_or_create_by_id(Integer(item['pk']))</code>
+          <code class="ruby">    def self.import_agency(item)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="284">
           <span class="hits">1</span>
           
-          <code class="ruby">      fields = item['fields']</code>
+          <code class="ruby">      new_record = Agency.find_or_create_by_id(Integer(item['pk']))</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="285">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.name = fields['name']</code>
+          <code class="ruby">      fields = item['fields']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="286">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.description = fields['description']</code>
+          <code class="ruby">      new_record.name = fields['name']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="287">
           <span class="hits">1</span>
           
+          <code class="ruby">      new_record.description = fields['description']</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="288">
+          <span class="hits">1</span>
+          
           <code class="ruby">      new_record.link = fields['link']</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="288">
+        <li class="never" data-hits="" data-linenumber="289">
           
           
           <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="289">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      begin</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="290">
           <span class="hits">1</span>
           
-          <code class="ruby">        unless fields['logo'].blank?</code>
+          <code class="ruby">      begin</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="291">
           <span class="hits">1</span>
           
-          <code class="ruby">          new_record.remote_logo_url = &quot;http://transitandtrails.org/media/&quot; + fields['logo']</code>
+          <code class="ruby">        unless fields['logo'].blank?</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="292">
+        <li class="covered" data-hits="1" data-linenumber="292">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">          # new_record.logo.store!</code>
+          <code class="ruby">          new_record.remote_logo_url = &quot;http://transitandtrails.org/media/&quot; + fields['logo']</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="293">
           
           
-          <code class="ruby">        end</code>
+          <code class="ruby">          # new_record.logo.store!</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="294">
           
           
-          <code class="ruby">      rescue Exception =&gt; e</code>
+          <code class="ruby">        end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="295">
+        <li class="never" data-hits="" data-linenumber="295">
           
           
-          <code class="ruby">        puts &quot;Could not set logo for non profit partner #{new_record.name}&quot;</code>
+          <code class="ruby">      rescue Exception =&gt; e</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="296">
           
           
-          <code class="ruby">        puts fields['logo']</code>
+          <code class="ruby">        puts &quot;Could not set logo for non profit partner #{new_record.name}&quot;</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="297">
           
           
+          <code class="ruby">        puts fields['logo']</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="298">
+          
+          
           <code class="ruby">        puts e.message</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="298">
+        <li class="never" data-hits="" data-linenumber="299">
           
           
           <code class="ruby">      end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="299">
+        <li class="covered" data-hits="1" data-linenumber="300">
           <span class="hits">1</span>
           
           <code class="ruby">      new_record.save</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="300">
-          
-          
-          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="301">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="302">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="302">
           
-          <code class="ruby">    def self.import_non_profit_partner(item)</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="303">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record = NonProfitPartner.find_or_create_by_id(Integer(item['pk']))</code>
+          <code class="ruby">    def self.import_non_profit_partner(item)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="304">
           <span class="hits">1</span>
           
-          <code class="ruby">      fields = item['fields']</code>
+          <code class="ruby">      new_record = NonProfitPartner.find_or_create_by_id(Integer(item['pk']))</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="305">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.name = fields['name']</code>
+          <code class="ruby">      fields = item['fields']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="306">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.description = fields['description']</code>
+          <code class="ruby">      new_record.name = fields['name']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="307">
           <span class="hits">1</span>
           
+          <code class="ruby">      new_record.description = fields['description']</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="308">
+          <span class="hits">1</span>
+          
           <code class="ruby">      new_record.link = fields['link']</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="308">
+        <li class="never" data-hits="" data-linenumber="309">
           
           
           <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="309">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      begin</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="310">
           <span class="hits">1</span>
           
-          <code class="ruby">        unless fields['logo'].blank?</code>
+          <code class="ruby">      begin</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="311">
           <span class="hits">1</span>
           
-          <code class="ruby">          new_record.remote_logo_url = &quot;http://transitandtrails.org/media/&quot; + fields['logo']</code>
+          <code class="ruby">        unless fields['logo'].blank?</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="312">
+        <li class="covered" data-hits="1" data-linenumber="312">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">          # new_record.logo.store!</code>
+          <code class="ruby">          new_record.remote_logo_url = &quot;http://transitandtrails.org/media/&quot; + fields['logo']</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="313">
           
           
-          <code class="ruby">        end</code>
+          <code class="ruby">          # new_record.logo.store!</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="314">
           
           
-          <code class="ruby">      rescue Exception =&gt; e</code>
+          <code class="ruby">        end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="315">
+        <li class="never" data-hits="" data-linenumber="315">
           
           
-          <code class="ruby">        puts &quot;Could not set logo for non profit partner #{new_record.name}&quot;</code>
+          <code class="ruby">      rescue Exception =&gt; e</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="316">
           
           
-          <code class="ruby">        puts fields['logo']</code>
+          <code class="ruby">        puts &quot;Could not set logo for non profit partner #{new_record.name}&quot;</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="317">
           
           
+          <code class="ruby">        puts fields['logo']</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="318">
+          
+          
           <code class="ruby">        puts e.message</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="318">
+        <li class="never" data-hits="" data-linenumber="319">
           
           
           <code class="ruby">      end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="319">
+        <li class="covered" data-hits="1" data-linenumber="320">
           <span class="hits">1</span>
           
           <code class="ruby">      new_record.save</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="320">
-          
-          
-          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="321">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="322">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="322">
           
-          <code class="ruby">    def self.import_park(item)</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="323">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record = Park.find_or_create_by_id(Integer(item['pk']))</code>
+          <code class="ruby">    def self.import_park(item)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="324">
           <span class="hits">1</span>
           
-          <code class="ruby">      fields = item['fields']</code>
+          <code class="ruby">      new_record = Park.find_or_create_by_id(Integer(item['pk']))</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="325">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.name = fields['name']</code>
+          <code class="ruby">      fields = item['fields']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="326">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.description = fields['description']</code>
+          <code class="ruby">      new_record.name = fields['name']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="327">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.agency_id = fields['agency']</code>
+          <code class="ruby">      new_record.description = fields['description']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="328">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.acres = fields['acres']</code>
+          <code class="ruby">      new_record.agency_id = fields['agency']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="329">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.county = fields['county']</code>
+          <code class="ruby">      new_record.acres = fields['acres']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="330">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.county_slug = fields['county_slug']</code>
+          <code class="ruby">      new_record.county = fields['county']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="331">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.slug = fields['slug']</code>
+          <code class="ruby">      new_record.county_slug = fields['county_slug']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="332">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.link = fields['link']</code>
+          <code class="ruby">      new_record.slug = fields['slug']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="333">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.bounds = fields['geom']</code>
+          <code class="ruby">      new_record.link = fields['link']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="334">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.non_profit_partner_id = fields['non_profit_partner']</code>
+          <code class="ruby">      new_record.bounds = fields['geom']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="335">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.save</code>
+          <code class="ruby">      new_record.non_profit_partner_id = fields['non_profit_partner']</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="336">
+        <li class="covered" data-hits="1" data-linenumber="336">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">    end</code>
+          <code class="ruby">      new_record.save</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="337">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="338">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="338">
           
-          <code class="ruby">    def self.import_attribute_category(item)</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="339">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record = Category.find_or_create_by_id(Integer(item['pk']))</code>
+          <code class="ruby">    def self.import_attribute_category(item)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="340">
           <span class="hits">1</span>
           
-          <code class="ruby">      fields = item['fields']</code>
+          <code class="ruby">      new_record = Category.find_or_create_by_id(Integer(item['pk']))</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="341">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.name = fields['name']</code>
+          <code class="ruby">      fields = item['fields']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="342">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.description = fields['description']</code>
+          <code class="ruby">      new_record.name = fields['name']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="343">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.rank = fields['rank']</code>
+          <code class="ruby">      new_record.description = fields['description']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="344">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.visible = fields['visible']</code>
+          <code class="ruby">      new_record.rank = fields['rank']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="345">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.save</code>
+          <code class="ruby">      new_record.visible = fields['visible']</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="346">
+        <li class="covered" data-hits="1" data-linenumber="346">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">    end</code>
+          <code class="ruby">      new_record.save</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="347">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="348">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="348">
           
-          <code class="ruby">    def self.import_trailhead(item)</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="349">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record = Trailhead.find_or_create_by_id(Integer(item['pk']))</code>
+          <code class="ruby">    def self.import_trailhead(item)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="350">
           <span class="hits">1</span>
           
-          <code class="ruby">      fields = item['fields']</code>
+          <code class="ruby">      new_record = Trailhead.find_or_create_by_id(Integer(item['pk']))</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="351">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.name = fields['name']</code>
+          <code class="ruby">      fields = item['fields']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="352">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.description = fields['description']</code>
+          <code class="ruby">      new_record.name = fields['name']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="353">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.rideshare = fields['rideshare']</code>
+          <code class="ruby">      new_record.description = fields['description']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="354">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.latitude = fields['latitude']</code>
+          <code class="ruby">      new_record.rideshare = fields['rideshare']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="355">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.longitude = fields['longitude']</code>
+          <code class="ruby">      new_record.latitude = fields['latitude']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="356">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.zimride_url = fields['zimride_url']</code>
+          <code class="ruby">      new_record.longitude = fields['longitude']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="357">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.user_id = fields['author']</code>
+          <code class="ruby">      new_record.zimride_url = fields['zimride_url']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="358">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.approved = fields['approved']</code>
+          <code class="ruby">      new_record.user_id = fields['author']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="359">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.park_id = fields['park']</code>
+          <code class="ruby">      new_record.approved = fields['approved']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="360">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.trailhead_features = TrailheadFeature.where(id: fields['features'])</code>
+          <code class="ruby">      new_record.park_id = fields['park']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="361">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.save</code>
+          <code class="ruby">      new_record.trailhead_features = TrailheadFeature.where(id: fields['features'])</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="362">
+        <li class="covered" data-hits="1" data-linenumber="362">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">    end</code>
+          <code class="ruby">      new_record.save</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="363">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="364">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="364">
           
-          <code class="ruby">    def self.import_campground(item)</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="365">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record = Campground.find_or_create_by_id(Integer(item['pk']))</code>
+          <code class="ruby">    def self.import_campground(item)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="366">
           <span class="hits">1</span>
           
-          <code class="ruby">      fields = item['fields']</code>
+          <code class="ruby">      new_record = Campground.find_or_create_by_id(Integer(item['pk']))</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="367">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.name = fields['name']</code>
+          <code class="ruby">      fields = item['fields']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="368">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.description = fields['description']</code>
+          <code class="ruby">      new_record.name = fields['name']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="369">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.latitude = fields['latitude']</code>
+          <code class="ruby">      new_record.description = fields['description']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="370">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.longitude = fields['longitude']</code>
+          <code class="ruby">      new_record.latitude = fields['latitude']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="371">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.user_id = fields['author']</code>
+          <code class="ruby">      new_record.longitude = fields['longitude']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="372">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.approved = true</code>
+          <code class="ruby">      new_record.user_id = fields['author']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="373">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.park_id = fields['park']</code>
+          <code class="ruby">      new_record.approved = true</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="374">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.campground_features = CampgroundFeature.where(id: fields['features'])</code>
+          <code class="ruby">      new_record.park_id = fields['park']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="375">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.save</code>
+          <code class="ruby">      new_record.campground_features = CampgroundFeature.where(id: fields['features'])</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="376">
+        <li class="covered" data-hits="1" data-linenumber="376">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">    end</code>
+          <code class="ruby">      new_record.save</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="377">
           
           
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="378">
+          
+          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="378">
+        <li class="covered" data-hits="1" data-linenumber="379">
           <span class="hits">1</span>
           
           <code class="ruby">    def self.import_campground_map(item)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="379">
+        <li class="covered" data-hits="2" data-linenumber="380">
           <span class="hits">2</span>
           
           <code class="ruby">      if Map.exists?(:legacy_id=&gt;Integer(item['pk']),:mapable_type=&gt;'Campground')</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="380">
+        <li class="missed" data-hits="0" data-linenumber="381">
           
           
           <code class="ruby">        return false</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="381">
+        <li class="never" data-hits="" data-linenumber="382">
           
           
           <code class="ruby">      end</code>
-        </li>
-      
-        <li class="covered" data-hits="2" data-linenumber="382">
-          <span class="hits">2</span>
-          
-          <code class="ruby">      new_record = Map.new</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="383">
           <span class="hits">2</span>
           
-          <code class="ruby">      fields = item['fields']</code>
+          <code class="ruby">      new_record = Map.new</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="384">
           <span class="hits">2</span>
           
-          <code class="ruby">      new_record.legacy_id = Integer(item['pk'])</code>
+          <code class="ruby">      fields = item['fields']</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="385">
           <span class="hits">2</span>
           
-          <code class="ruby">      new_record.name = fields['name']</code>
+          <code class="ruby">      new_record.legacy_id = Integer(item['pk'])</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="386">
           <span class="hits">2</span>
           
-          <code class="ruby">      new_record.description = fields['description']</code>
+          <code class="ruby">      new_record.name = fields['name']</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="387">
           <span class="hits">2</span>
           
-          <code class="ruby">      new_record.user_id = fields['user']</code>
+          <code class="ruby">      new_record.description = fields['description']</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="388">
           <span class="hits">2</span>
           
-          <code class="ruby">      new_record.url = fields['map_url']</code>
+          <code class="ruby">      new_record.user_id = fields['user']</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="389">
           <span class="hits">2</span>
           
-          <code class="ruby">      new_record.mapable_id = fields['campground']</code>
+          <code class="ruby">      new_record.url = fields['map_url']</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="390">
           <span class="hits">2</span>
           
-          <code class="ruby">      new_record.mapable_type = &quot;Campground&quot;</code>
+          <code class="ruby">      new_record.mapable_id = fields['campground']</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="391">
           <span class="hits">2</span>
           
-          <code class="ruby">      begin</code>
+          <code class="ruby">      new_record.mapable_type = &quot;Campground&quot;</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="392">
           <span class="hits">2</span>
           
-          <code class="ruby">        unless fields['map'].blank?</code>
+          <code class="ruby">      begin</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="393">
           <span class="hits">2</span>
           
-          <code class="ruby">          new_record.remote_map_url = &quot;http://transitandtrails.org/media/&quot; + fields['map']</code>
+          <code class="ruby">        unless fields['map'].blank?</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="394">
+        <li class="covered" data-hits="2" data-linenumber="394">
+          <span class="hits">2</span>
           
-          
-          <code class="ruby">        end</code>
+          <code class="ruby">          new_record.remote_map_url = &quot;http://transitandtrails.org/media/&quot; + fields['map']</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="395">
           
           
-          <code class="ruby">      rescue Exception =&gt; e</code>
+          <code class="ruby">        end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="396">
+        <li class="never" data-hits="" data-linenumber="396">
           
           
-          <code class="ruby">        puts &quot;Could not set map for campground #{new_record.name}&quot;</code>
+          <code class="ruby">      rescue Exception =&gt; e</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="397">
           
           
-          <code class="ruby">        puts fields['map']</code>
+          <code class="ruby">        puts &quot;Could not set map for campground #{new_record.name}&quot;</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="398">
           
           
-          <code class="ruby">        puts e.message</code>
+          <code class="ruby">        puts fields['map']</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="399">
           
           
-          <code class="ruby">        puts e.backtrace</code>
+          <code class="ruby">        puts e.message</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="400">
           
           
+          <code class="ruby">        puts e.backtrace</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="401">
+          
+          
           <code class="ruby">        return false</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="401">
+        <li class="never" data-hits="" data-linenumber="402">
           
           
           <code class="ruby">      end</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="402">
+        <li class="covered" data-hits="2" data-linenumber="403">
           <span class="hits">2</span>
           
           <code class="ruby">      new_record.save</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="403">
-          
-          
-          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="404">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="405">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="405">
           
-          <code class="ruby">    def self.import_campground_photo(item)</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="406">
           <span class="hits">1</span>
           
+          <code class="ruby">    def self.import_campground_photo(item)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="407">
+          <span class="hits">1</span>
+          
           <code class="ruby">      if Photo.exists?(:legacy_id=&gt;Integer(item['pk']),:photoable_type=&gt;'Campground')</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="407">
+        <li class="missed" data-hits="0" data-linenumber="408">
           
           
           <code class="ruby">        return false</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="408">
+        <li class="never" data-hits="" data-linenumber="409">
           
           
           <code class="ruby">      end</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="409">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      new_record = Photo.new</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="410">
           <span class="hits">1</span>
           
-          <code class="ruby">      fields = item['fields']</code>
+          <code class="ruby">      new_record = Photo.new</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="411">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.legacy_id =Integer(item['pk'])</code>
+          <code class="ruby">      fields = item['fields']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="412">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.flickr_id = fields['flickr_id']</code>
+          <code class="ruby">      new_record.legacy_id =Integer(item['pk'])</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="413">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.uploaded_to_flickr = fields['uploaded_to_flickr']</code>
+          <code class="ruby">      new_record.flickr_id = fields['flickr_id']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="414">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.user_id = fields['user']</code>
+          <code class="ruby">      new_record.uploaded_to_flickr = fields['uploaded_to_flickr']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="415">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.photoable_id = fields['campground']</code>
+          <code class="ruby">      new_record.user_id = fields['user']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="416">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.photoable_type = &quot;Campground&quot;</code>
+          <code class="ruby">      new_record.photoable_id = fields['campground']</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="417">
+        <li class="covered" data-hits="1" data-linenumber="417">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">      # begin</code>
+          <code class="ruby">      new_record.photoable_type = &quot;Campground&quot;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="418">
           
           
-          <code class="ruby">      #   unless fields['map'].blank?</code>
+          <code class="ruby">      # begin</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="419">
           
           
-          <code class="ruby">      #     new_record.remote_map_url = &quot;http://transitandtrails.org/media/&quot; + fields['map']</code>
+          <code class="ruby">      #   unless fields['map'].blank?</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="420">
           
           
-          <code class="ruby">      #     new_record.map.store!</code>
+          <code class="ruby">      #     new_record.remote_map_url = &quot;http://transitandtrails.org/media/&quot; + fields['map']</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="421">
           
           
-          <code class="ruby">      #   end</code>
+          <code class="ruby">      #     new_record.map.store!</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="422">
           
           
-          <code class="ruby">      # rescue Exception =&gt; e</code>
+          <code class="ruby">      #   end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="423">
           
           
-          <code class="ruby">      #   puts &quot;Could not set map for campground #{new_record.name}&quot;</code>
+          <code class="ruby">      # rescue Exception =&gt; e</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="424">
           
           
-          <code class="ruby">      #   puts fields['map']</code>
+          <code class="ruby">      #   puts &quot;Could not set map for campground #{new_record.name}&quot;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="425">
           
           
-          <code class="ruby">      #   puts e.message</code>
+          <code class="ruby">      #   puts fields['map']</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="426">
           
           
+          <code class="ruby">      #   puts e.message</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="427">
+          
+          
           <code class="ruby">      # end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="427">
+        <li class="covered" data-hits="1" data-linenumber="428">
           <span class="hits">1</span>
           
           <code class="ruby">      new_record.save</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="428">
-          
-          
-          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="429">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="430">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="430">
           
-          <code class="ruby">    def self.import_trailhead_photo(item)</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="431">
           <span class="hits">1</span>
           
+          <code class="ruby">    def self.import_trailhead_photo(item)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="432">
+          <span class="hits">1</span>
+          
           <code class="ruby">      if Photo.exists?(:legacy_id=&gt;Integer(item['pk']),:photoable_type=&gt;'Trailhead')</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="432">
+        <li class="missed" data-hits="0" data-linenumber="433">
           
           
           <code class="ruby">        return false</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="433">
+        <li class="never" data-hits="" data-linenumber="434">
           
           
           <code class="ruby">      end</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="434">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      new_record = Photo.new</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="435">
           <span class="hits">1</span>
           
-          <code class="ruby">      fields = item['fields']</code>
+          <code class="ruby">      new_record = Photo.new</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="436">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.legacy_id = Integer(item['pk'])</code>
+          <code class="ruby">      fields = item['fields']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="437">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.flickr_id = fields['flickr_id']</code>
+          <code class="ruby">      new_record.legacy_id = Integer(item['pk'])</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="438">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.uploaded_to_flickr = fields['uploaded_to_flickr']</code>
+          <code class="ruby">      new_record.flickr_id = fields['flickr_id']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="439">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.user_id = fields['user']</code>
+          <code class="ruby">      new_record.uploaded_to_flickr = fields['uploaded_to_flickr']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="440">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.photoable_id = fields['trailhead']</code>
+          <code class="ruby">      new_record.user_id = fields['user']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="441">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.photoable_type = &quot;Trailhead&quot;</code>
+          <code class="ruby">      new_record.photoable_id = fields['trailhead']</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="442">
+        <li class="covered" data-hits="1" data-linenumber="442">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">      # begin</code>
+          <code class="ruby">      new_record.photoable_type = &quot;Trailhead&quot;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="443">
           
           
-          <code class="ruby">      #   unless fields['map'].blank?</code>
+          <code class="ruby">      # begin</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="444">
           
           
-          <code class="ruby">      #     new_record.remote_map_url = &quot;http://transitandtrails.org/media/&quot; + fields['map']</code>
+          <code class="ruby">      #   unless fields['map'].blank?</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="445">
           
           
-          <code class="ruby">      #     new_record.map.store!</code>
+          <code class="ruby">      #     new_record.remote_map_url = &quot;http://transitandtrails.org/media/&quot; + fields['map']</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="446">
           
           
-          <code class="ruby">      #   end</code>
+          <code class="ruby">      #     new_record.map.store!</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="447">
           
           
-          <code class="ruby">      # rescue Exception =&gt; e</code>
+          <code class="ruby">      #   end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="448">
           
           
-          <code class="ruby">      #   puts &quot;Could not set map for campground #{new_record.name}&quot;</code>
+          <code class="ruby">      # rescue Exception =&gt; e</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="449">
           
           
-          <code class="ruby">      #   puts fields['map']</code>
+          <code class="ruby">      #   puts &quot;Could not set map for campground #{new_record.name}&quot;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="450">
           
           
-          <code class="ruby">      #   puts e.message</code>
+          <code class="ruby">      #   puts fields['map']</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="451">
           
           
+          <code class="ruby">      #   puts e.message</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="452">
+          
+          
           <code class="ruby">      # end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="452">
+        <li class="covered" data-hits="1" data-linenumber="453">
           <span class="hits">1</span>
           
           <code class="ruby">      new_record.save</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="453">
-          
-          
-          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="454">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="455">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="455">
           
-          <code class="ruby">    def self.import_trip_photo(item)</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="456">
           <span class="hits">1</span>
           
+          <code class="ruby">    def self.import_trip_photo(item)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="457">
+          <span class="hits">1</span>
+          
           <code class="ruby">      if Photo.exists?(:legacy_id=&gt;Integer(item['id']),:photoable_type=&gt;'Trip')</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="457">
+        <li class="missed" data-hits="0" data-linenumber="458">
           
           
           <code class="ruby">        return false</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="458">
+        <li class="never" data-hits="" data-linenumber="459">
           
           
           <code class="ruby">      end</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="459">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      new_record = Photo.new</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="460">
           <span class="hits">1</span>
           
-          <code class="ruby">      fields = item</code>
+          <code class="ruby">      new_record = Photo.new</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="461">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.flickr_id = fields['flickr_id']</code>
+          <code class="ruby">      fields = item</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="462">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.legacy_id = Integer(item['id'])</code>
+          <code class="ruby">      new_record.flickr_id = fields['flickr_id']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="463">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.uploaded_to_flickr = fields['uploaded_to_flickr']</code>
+          <code class="ruby">      new_record.legacy_id = Integer(item['id'])</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="464">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.user_id = fields['user']</code>
+          <code class="ruby">      new_record.uploaded_to_flickr = fields['uploaded_to_flickr']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="465">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.photoable_id = fields['trip']</code>
+          <code class="ruby">      new_record.user_id = fields['user']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="466">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.photoable_type = &quot;Trip&quot;</code>
+          <code class="ruby">      new_record.photoable_id = fields['trip']</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="467">
+        <li class="covered" data-hits="1" data-linenumber="467">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">      # begin</code>
+          <code class="ruby">      new_record.photoable_type = &quot;Trip&quot;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="468">
           
           
-          <code class="ruby">      #   unless fields['map'].blank?</code>
+          <code class="ruby">      # begin</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="469">
           
           
-          <code class="ruby">      #     new_record.remote_map_url = &quot;http://transitandtrails.org/media/&quot; + fields['map']</code>
+          <code class="ruby">      #   unless fields['map'].blank?</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="470">
           
           
-          <code class="ruby">      #     new_record.map.store!</code>
+          <code class="ruby">      #     new_record.remote_map_url = &quot;http://transitandtrails.org/media/&quot; + fields['map']</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="471">
           
           
-          <code class="ruby">      #   end</code>
+          <code class="ruby">      #     new_record.map.store!</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="472">
           
           
-          <code class="ruby">      # rescue Exception =&gt; e</code>
+          <code class="ruby">      #   end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="473">
           
           
-          <code class="ruby">      #   puts &quot;Could not set map for campground #{new_record.name}&quot;</code>
+          <code class="ruby">      # rescue Exception =&gt; e</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="474">
           
           
-          <code class="ruby">      #   puts fields['map']</code>
+          <code class="ruby">      #   puts &quot;Could not set map for campground #{new_record.name}&quot;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="475">
           
           
-          <code class="ruby">      #   puts e.message</code>
+          <code class="ruby">      #   puts fields['map']</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="476">
           
           
+          <code class="ruby">      #   puts e.message</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="477">
+          
+          
           <code class="ruby">      # end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="477">
+        <li class="covered" data-hits="1" data-linenumber="478">
           <span class="hits">1</span>
           
           <code class="ruby">      new_record.save</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="478">
-          
-          
-          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="479">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="480">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="480">
           
-          <code class="ruby">    def self.import_trip_map(item)</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="481">
           <span class="hits">1</span>
           
+          <code class="ruby">    def self.import_trip_map(item)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="482">
+          <span class="hits">1</span>
+          
           <code class="ruby">      if Map.exists?(:legacy_id=&gt;Integer(item['pk']),:mapable_type=&gt;'Trip')</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="482">
+        <li class="missed" data-hits="0" data-linenumber="483">
           
           
           <code class="ruby">        return false</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="483">
+        <li class="never" data-hits="" data-linenumber="484">
           
           
           <code class="ruby">      end</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="484">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      new_record = Map.new</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="485">
           <span class="hits">1</span>
           
-          <code class="ruby">      fields = item['fields']</code>
+          <code class="ruby">      new_record = Map.new</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="486">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.name = fields['name']</code>
+          <code class="ruby">      fields = item['fields']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="487">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.legacy_id = Integer(item['pk'])</code>
+          <code class="ruby">      new_record.name = fields['name']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="488">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.user_id = fields['user']</code>
+          <code class="ruby">      new_record.legacy_id = Integer(item['pk'])</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="489">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.url = fields['map_url']</code>
+          <code class="ruby">      new_record.user_id = fields['user']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="490">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.mapable_id = fields['trip']</code>
+          <code class="ruby">      new_record.url = fields['map_url']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="491">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.mapable_type = &quot;Trip&quot;</code>
+          <code class="ruby">      new_record.mapable_id = fields['trip']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="492">
           <span class="hits">1</span>
           
-          <code class="ruby">      begin</code>
+          <code class="ruby">      new_record.mapable_type = &quot;Trip&quot;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="493">
           <span class="hits">1</span>
           
-          <code class="ruby">        unless fields['map'].blank?</code>
+          <code class="ruby">      begin</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="494">
           <span class="hits">1</span>
           
-          <code class="ruby">          new_record.remote_map_url = &quot;http://transitandtrails.org/media/#{fields['map']}&quot;</code>
+          <code class="ruby">        unless fields['map'].blank?</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="495">
+        <li class="covered" data-hits="1" data-linenumber="495">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">        end</code>
+          <code class="ruby">          new_record.remote_map_url = &quot;http://transitandtrails.org/media/#{fields['map']}&quot;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="496">
           
           
-          <code class="ruby">      rescue Exception =&gt; e</code>
+          <code class="ruby">        end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="497">
+        <li class="never" data-hits="" data-linenumber="497">
           
           
-          <code class="ruby">        puts item.to_json</code>
+          <code class="ruby">      rescue Exception =&gt; e</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="498">
           
           
-          <code class="ruby">        puts &quot;Could not set map for trip #{new_record.name}&quot;</code>
+          <code class="ruby">        puts item.to_json</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="499">
           
           
-          <code class="ruby">        puts fields['map']</code>
+          <code class="ruby">        puts &quot;Could not set map for trip #{new_record.name}&quot;</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="500">
           
           
-          <code class="ruby">        puts e.message</code>
+          <code class="ruby">        puts fields['map']</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="501">
           
           
-          <code class="ruby">        puts e.backtrace</code>
+          <code class="ruby">        puts e.message</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="502">
           
           
+          <code class="ruby">        puts e.backtrace</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="503">
+          
+          
           <code class="ruby">        return false</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="503">
+        <li class="never" data-hits="" data-linenumber="504">
           
           
           <code class="ruby">      end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="504">
+        <li class="covered" data-hits="1" data-linenumber="505">
           <span class="hits">1</span>
           
           <code class="ruby">      new_record.save</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="505">
-          
-          
-          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="506">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="507">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="507">
           
-          <code class="ruby">    def self.import_trailhead_map(item)</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="508">
           <span class="hits">1</span>
           
+          <code class="ruby">    def self.import_trailhead_map(item)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="509">
+          <span class="hits">1</span>
+          
           <code class="ruby">      if Map.exists?(:legacy_id=&gt;Integer(item['pk']),:mapable_type=&gt;'Trailhead')</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="509">
+        <li class="missed" data-hits="0" data-linenumber="510">
           
           
           <code class="ruby">        return false</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="510">
+        <li class="never" data-hits="" data-linenumber="511">
           
           
           <code class="ruby">      end</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="511">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      new_record = Map.new</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="512">
           <span class="hits">1</span>
           
-          <code class="ruby">      fields = item['fields']</code>
+          <code class="ruby">      new_record = Map.new</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="513">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.legacy_id = Integer(item['pk'])</code>
+          <code class="ruby">      fields = item['fields']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="514">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.url = fields['map_url']</code>
+          <code class="ruby">      new_record.legacy_id = Integer(item['pk'])</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="515">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.mapable_id = fields['trailhead']</code>
+          <code class="ruby">      new_record.url = fields['map_url']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="516">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.mapable_type = &quot;Trailhead&quot;</code>
+          <code class="ruby">      new_record.mapable_id = fields['trailhead']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="517">
           <span class="hits">1</span>
           
-          <code class="ruby">      begin</code>
+          <code class="ruby">      new_record.mapable_type = &quot;Trailhead&quot;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="518">
           <span class="hits">1</span>
           
+          <code class="ruby">      begin</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="519">
+          <span class="hits">1</span>
+          
           <code class="ruby">        unless fields['map'].blank?</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="519">
+        <li class="missed" data-hits="0" data-linenumber="520">
           
           
           <code class="ruby">          new_record.remote_map_url = &quot;http://transitandtrails.org/media/&quot; + fields['map']</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="520">
+        <li class="never" data-hits="" data-linenumber="521">
           
           
           <code class="ruby">        end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="521">
+        <li class="never" data-hits="" data-linenumber="522">
           
           
           <code class="ruby">      rescue Exception =&gt; e</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="522">
-          
-          
-          <code class="ruby">        puts &quot;Could not set map for trailhead #{new_record.name}&quot;</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="523">
           
           
-          <code class="ruby">        puts item.to_json</code>
+          <code class="ruby">        puts &quot;Could not set map for trailhead #{new_record.name}&quot;</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="524">
           
           
-          <code class="ruby">        puts fields['map']</code>
+          <code class="ruby">        puts item.to_json</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="525">
           
           
-          <code class="ruby">        puts e.message</code>
+          <code class="ruby">        puts fields['map']</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="526">
           
           
-          <code class="ruby">        puts e.backtrace</code>
+          <code class="ruby">        puts e.message</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="527">
           
           
+          <code class="ruby">        puts e.backtrace</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="528">
+          
+          
           <code class="ruby">        return false</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="528">
+        <li class="never" data-hits="" data-linenumber="529">
           
           
           <code class="ruby">      end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="529">
+        <li class="covered" data-hits="1" data-linenumber="530">
           <span class="hits">1</span>
           
           <code class="ruby">      new_record.save</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="530">
-          
-          
-          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="531">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="532">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="532">
           
-          <code class="ruby">    def self.import_campground_feature(item)</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="533">
           <span class="hits">1</span>
           
-          <code class="ruby">      fields = item['fields']</code>
+          <code class="ruby">    def self.import_campground_feature(item)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="534">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record = CampgroundFeature.find_or_create_by_id(item['pk'])</code>
+          <code class="ruby">      fields = item['fields']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="535">
           <span class="hits">1</span>
           
-          <code class="ruby">      populate_feature(new_record,fields)</code>
+          <code class="ruby">      new_record = CampgroundFeature.find_or_create_by_id(item['pk'])</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="536">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.save</code>
+          <code class="ruby">      populate_feature(new_record,fields)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="537">
+        <li class="covered" data-hits="1" data-linenumber="537">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">    end</code>
+          <code class="ruby">      new_record.save</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="538">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="539">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="539">
           
-          <code class="ruby">    def self.import_trip_feature(item)</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="540">
           <span class="hits">1</span>
           
-          <code class="ruby">      fields = item['fields']</code>
+          <code class="ruby">    def self.import_trip_feature(item)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="541">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record = TripFeature.find_or_create_by_id(item['pk'])</code>
+          <code class="ruby">      fields = item['fields']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="542">
           <span class="hits">1</span>
           
-          <code class="ruby">      populate_feature(new_record,fields)</code>
+          <code class="ruby">      new_record = TripFeature.find_or_create_by_id(item['pk'])</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="543">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.save</code>
+          <code class="ruby">      populate_feature(new_record,fields)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="544">
+        <li class="covered" data-hits="1" data-linenumber="544">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">    end</code>
+          <code class="ruby">      new_record.save</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="545">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="546">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="546">
           
-          <code class="ruby">    def self.import_trailhead_feature(item)</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="547">
           <span class="hits">1</span>
           
-          <code class="ruby">      fields = item['fields']</code>
+          <code class="ruby">    def self.import_trailhead_feature(item)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="548">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record = TrailheadFeature.find_or_create_by_id(item['pk'])</code>
+          <code class="ruby">      fields = item['fields']</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="549">
           <span class="hits">1</span>
           
-          <code class="ruby">      populate_feature(new_record,fields)</code>
+          <code class="ruby">      new_record = TrailheadFeature.find_or_create_by_id(item['pk'])</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="550">
           <span class="hits">1</span>
           
-          <code class="ruby">      new_record.save</code>
+          <code class="ruby">      populate_feature(new_record,fields)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="551">
+        <li class="covered" data-hits="1" data-linenumber="551">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">    end</code>
+          <code class="ruby">      new_record.save</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="552">
           
           
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="553">
+          
+          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="553">
+        <li class="covered" data-hits="1" data-linenumber="554">
           <span class="hits">1</span>
           
           <code class="ruby">    def self.populate_feature(new_record,fields)</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="554">
+        <li class="covered" data-hits="3" data-linenumber="555">
           <span class="hits">3</span>
           
           <code class="ruby">      new_record.name = fields['name']</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="555">
+        <li class="covered" data-hits="3" data-linenumber="556">
           <span class="hits">3</span>
           
           <code class="ruby">      new_record.description = fields['description']</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="556">
+        <li class="covered" data-hits="3" data-linenumber="557">
           <span class="hits">3</span>
           
           <code class="ruby">      if new_record.rank</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="557">
+        <li class="missed" data-hits="0" data-linenumber="558">
           
           
           <code class="ruby">        new_record.rank = fields['rank'] if fields['rank'] &gt; new_record.rank</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="558">
+        <li class="never" data-hits="" data-linenumber="559">
           
           
           <code class="ruby">      else</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="559">
+        <li class="covered" data-hits="3" data-linenumber="560">
           <span class="hits">3</span>
           
           <code class="ruby">        new_record.rank = fields['rank']</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="560">
+        <li class="never" data-hits="" data-linenumber="561">
           
           
           <code class="ruby">      end</code>
-        </li>
-      
-        <li class="covered" data-hits="3" data-linenumber="561">
-          <span class="hits">3</span>
-          
-          <code class="ruby">      new_record.category_id = fields['category']</code>
         </li>
       
         <li class="covered" data-hits="3" data-linenumber="562">
           <span class="hits">3</span>
           
-          <code class="ruby">      new_record.link_url = fields['link_url']</code>
+          <code class="ruby">      new_record.category_id = fields['category']</code>
         </li>
       
         <li class="covered" data-hits="3" data-linenumber="563">
           <span class="hits">3</span>
           
-          <code class="ruby">      begin</code>
+          <code class="ruby">      new_record.link_url = fields['link_url']</code>
         </li>
       
         <li class="covered" data-hits="3" data-linenumber="564">
           <span class="hits">3</span>
           
-          <code class="ruby">        unless fields['marker_icon'].blank?</code>
+          <code class="ruby">      begin</code>
         </li>
       
         <li class="covered" data-hits="3" data-linenumber="565">
           <span class="hits">3</span>
           
-          <code class="ruby">          new_record.remote_marker_icon_url = &quot;http://transitandtrails.org/media/&quot; + fields['marker_icon']</code>
+          <code class="ruby">        unless fields['marker_icon'].blank?</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="566">
+        <li class="covered" data-hits="3" data-linenumber="566">
+          <span class="hits">3</span>
           
-          
-          <code class="ruby">          # new_record.marker_icon.store!</code>
+          <code class="ruby">          new_record.remote_marker_icon_url = &quot;http://transitandtrails.org/media/&quot; + fields['marker_icon']</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="567">
           
           
-          <code class="ruby">        end</code>
+          <code class="ruby">          # new_record.marker_icon.store!</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="568">
+        <li class="never" data-hits="" data-linenumber="568">
           
           
-          <code class="ruby">      rescue Exception =&gt; e</code>
+          <code class="ruby">        end</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="569">
           
           
-          <code class="ruby">        puts &quot;Could not set marker icon for feature #{new_record.name}&quot;</code>
+          <code class="ruby">      rescue Exception =&gt; e</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="570">
           
           
-          <code class="ruby">        puts fields['marker_icon']</code>
+          <code class="ruby">        puts &quot;Could not set marker icon for feature #{new_record.name}&quot;</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="571">
           
           
-          <code class="ruby">        puts e.message</code>
+          <code class="ruby">        puts fields['marker_icon']</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="572">
+        <li class="missed" data-hits="0" data-linenumber="572">
           
           
-          <code class="ruby">      end</code>
+          <code class="ruby">        puts e.message</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="573">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="574">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="575">
           
           
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="576">
+          
+          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="576">
+        <li class="covered" data-hits="1" data-linenumber="577">
           <span class="hits">1</span>
           
           <code class="ruby">    def self.import_user(item)</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="577">
+        <li class="covered" data-hits="3" data-linenumber="578">
           <span class="hits">3</span>
           
           <code class="ruby">      if item['fields']['is_active']</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="578">
+        <li class="covered" data-hits="2" data-linenumber="579">
           <span class="hits">2</span>
           
           <code class="ruby">        new_user = User.find_or_create_by_id(Integer(item['pk']))</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="579">
+        <li class="covered" data-hits="2" data-linenumber="580">
           <span class="hits">2</span>
           
           <code class="ruby">        new_user.email = item['fields']['email']</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="580">
+        <li class="covered" data-hits="2" data-linenumber="581">
           <span class="hits">2</span>
           
           <code class="ruby">        new_user.username = item['fields']['username']</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="581">
+        <li class="covered" data-hits="2" data-linenumber="582">
           <span class="hits">2</span>
           
           <code class="ruby">        new_user.django_password = item['fields']['password']</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="582">
+        <li class="covered" data-hits="2" data-linenumber="583">
           <span class="hits">2</span>
           
           <code class="ruby">        new_user.admin = item['fields']['is_superuser'] || item['fields']['is_staff']</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="583">
+        <li class="covered" data-hits="2" data-linenumber="584">
           <span class="hits">2</span>
           
           <code class="ruby">        new_user.last_sign_in_at = item['fields']['last_login']</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="584">
+        <li class="covered" data-hits="2" data-linenumber="585">
           <span class="hits">2</span>
           
           <code class="ruby">        new_user.created_at = item['fields']['date_joined']</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="585">
+        <li class="covered" data-hits="2" data-linenumber="586">
           <span class="hits">2</span>
           
           <code class="ruby">        if !item['fields']['groups'].empty?</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="586">
+        <li class="covered" data-hits="2" data-linenumber="587">
           <span class="hits">2</span>
           
           <code class="ruby">          new_user.trailblazer = true</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="587">
+        <li class="never" data-hits="" data-linenumber="588">
           
           
           <code class="ruby">        end</code>
-        </li>
-      
-        <li class="covered" data-hits="2" data-linenumber="588">
-          <span class="hits">2</span>
-          
-          <code class="ruby">        new_user.confirm!</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="589">
           <span class="hits">2</span>
           
+          <code class="ruby">        new_user.confirm!</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="590">
+          <span class="hits">2</span>
+          
           <code class="ruby">        return new_user.save(:validate =&gt; false)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="590">
+        <li class="never" data-hits="" data-linenumber="591">
           
           
           <code class="ruby">      else</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="591">
+        <li class="covered" data-hits="1" data-linenumber="592">
           <span class="hits">1</span>
           
           <code class="ruby">        return false</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="592">
-          
-          
-          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="593">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="594">
           
           
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="595">
+          
+          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="595">
+        <li class="covered" data-hits="1" data-linenumber="596">
           <span class="hits">1</span>
           
           <code class="ruby">    def self.import_user_profile(item)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="596">
+        <li class="covered" data-hits="2" data-linenumber="597">
           <span class="hits">2</span>
           
           <code class="ruby">      if User.exists? Integer(item['fields']['user'])</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="597">
+        <li class="covered" data-hits="1" data-linenumber="598">
           <span class="hits">1</span>
           
           <code class="ruby">        new_profile = User.find(Integer(item['fields']['user'])).user_profile || UserProfile.new</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="598">
+        <li class="covered" data-hits="1" data-linenumber="599">
           <span class="hits">1</span>
           
           <code class="ruby">        new_profile.user_id = item['fields']['user']</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="599">
+        <li class="covered" data-hits="1" data-linenumber="600">
           <span class="hits">1</span>
           
           <code class="ruby">        new_profile.firstname = item['fields']['first_name']</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="600">
+        <li class="covered" data-hits="1" data-linenumber="601">
           <span class="hits">1</span>
           
           <code class="ruby">        new_profile.lastname = item['fields']['last_name']</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="601">
+        <li class="covered" data-hits="1" data-linenumber="602">
           <span class="hits">1</span>
           
           <code class="ruby">        new_profile.address1 = item['fields']['address1']</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="602">
+        <li class="covered" data-hits="1" data-linenumber="603">
           <span class="hits">1</span>
           
           <code class="ruby">        new_profile.address2 = item['fields']['address2']</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="603">
+        <li class="covered" data-hits="1" data-linenumber="604">
           <span class="hits">1</span>
           
           <code class="ruby">        new_profile.city = item['fields']['city']</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="604">
+        <li class="covered" data-hits="1" data-linenumber="605">
           <span class="hits">1</span>
           
           <code class="ruby">        new_profile.state = item['fields']['state']</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="605">
+        <li class="covered" data-hits="1" data-linenumber="606">
           <span class="hits">1</span>
           
           <code class="ruby">        new_profile.zip = item['fields']['zip']</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="606">
+        <li class="covered" data-hits="1" data-linenumber="607">
           <span class="hits">1</span>
           
           <code class="ruby">        new_profile.api_key = item['fields']['api_key']</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="607">
+        <li class="covered" data-hits="1" data-linenumber="608">
           <span class="hits">1</span>
           
           <code class="ruby">        new_profile.api_secret = item['fields']['api_secret']</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="608">
+        <li class="covered" data-hits="1" data-linenumber="609">
           <span class="hits">1</span>
           
           <code class="ruby">        new_profile.organization_name = item['fields']['organization_name']</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="609">
+        <li class="covered" data-hits="1" data-linenumber="610">
           <span class="hits">1</span>
           
           <code class="ruby">        new_profile.signup_source = item['fields']['signup_source']</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="610">
+        <li class="covered" data-hits="1" data-linenumber="611">
           <span class="hits">1</span>
           
           <code class="ruby">        new_profile.website_address = item['fields']['website_address']</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="611">
-          <span class="hits">1</span>
-          
-          <code class="ruby">        begin</code>
-        </li>
-      
         <li class="covered" data-hits="1" data-linenumber="612">
           <span class="hits">1</span>
           
-          <code class="ruby">          unless item['fields']['avatar'].blank?</code>
+          <code class="ruby">        begin</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="613">
           <span class="hits">1</span>
           
-          <code class="ruby">            new_profile.remote_avatar_url = &quot;http://transitandtrails.org/media/&quot; + item['fields']['avatar']</code>
+          <code class="ruby">          unless item['fields']['avatar'].blank?</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="614">
+        <li class="covered" data-hits="1" data-linenumber="614">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">            # new_profile.avatar.store!</code>
+          <code class="ruby">            new_profile.remote_avatar_url = &quot;http://transitandtrails.org/media/&quot; + item['fields']['avatar']</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="615">
           
           
-          <code class="ruby">          end</code>
+          <code class="ruby">            # new_profile.avatar.store!</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="616">
           
           
-          <code class="ruby">        rescue Exception =&gt; e</code>
+          <code class="ruby">          end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="617">
+        <li class="never" data-hits="" data-linenumber="617">
           
           
-          <code class="ruby">          puts &quot;Could not set avatar for user #{new_profile.user_id}&quot;</code>
+          <code class="ruby">        rescue Exception =&gt; e</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="618">
           
           
+          <code class="ruby">          puts &quot;Could not set avatar for user #{new_profile.user_id}&quot;</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="619">
+          
+          
           <code class="ruby">          puts e.message</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="619">
+        <li class="never" data-hits="" data-linenumber="620">
           
           
           <code class="ruby">        end</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="620">
-          <span class="hits">1</span>
-          
-          <code class="ruby">        begin</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="621">
           <span class="hits">1</span>
           
-          <code class="ruby">          unless item['fields']['organization_avatar'].blank?</code>
+          <code class="ruby">        begin</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="622">
           <span class="hits">1</span>
           
-          <code class="ruby">            new_profile.remote_organization_avatar_url = &quot;http://transitandtrails.org/media/&quot; + item['fields']['organization_avatar']</code>
+          <code class="ruby">          unless item['fields']['organization_avatar'].blank?</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="623">
+        <li class="covered" data-hits="1" data-linenumber="623">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">            # new_profile.organization_avatar.store!</code>
+          <code class="ruby">            new_profile.remote_organization_avatar_url = &quot;http://transitandtrails.org/media/&quot; + item['fields']['organization_avatar']</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="624">
           
           
-          <code class="ruby">          end</code>
+          <code class="ruby">            # new_profile.organization_avatar.store!</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="625">
           
           
-          <code class="ruby">        rescue Exception =&gt; e</code>
+          <code class="ruby">          end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="626">
+        <li class="never" data-hits="" data-linenumber="626">
           
           
-          <code class="ruby">          puts &quot;Could not set organization avatar for user #{new_profile.user_id}&quot;</code>
+          <code class="ruby">        rescue Exception =&gt; e</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="627">
           
           
+          <code class="ruby">          puts &quot;Could not set organization avatar for user #{new_profile.user_id}&quot;</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="628">
+          
+          
           <code class="ruby">          puts e.message</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="628">
+        <li class="never" data-hits="" data-linenumber="629">
           
           
           <code class="ruby">        end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="629">
+        <li class="covered" data-hits="1" data-linenumber="630">
           <span class="hits">1</span>
           
           <code class="ruby">        return new_profile.save</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="630">
+        <li class="never" data-hits="" data-linenumber="631">
           
           
           <code class="ruby">      else</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="631">
+        <li class="covered" data-hits="1" data-linenumber="632">
           <span class="hits">1</span>
           
           <code class="ruby">        return false</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="632">
+        <li class="never" data-hits="" data-linenumber="633">
           
           
           <code class="ruby">      end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="633">
+        <li class="never" data-hits="" data-linenumber="634">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="634">
+        <li class="never" data-hits="" data-linenumber="635">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="635">
+        <li class="never" data-hits="" data-linenumber="636">
           
           
           <code class="ruby">end</code>
