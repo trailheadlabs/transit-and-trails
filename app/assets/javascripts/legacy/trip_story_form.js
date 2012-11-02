@@ -15,6 +15,5 @@ $(function(){
     });
   };
 
-  $('#id_story').ckeditor({height: '200px',width:'500px'});
   initTripDate();
 })

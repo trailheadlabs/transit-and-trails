@@ -2,6 +2,9 @@
   = stylesheet_link_tag "application"
   = stylesheet_link_tag "legacy/trip"
   = stylesheet_link_tag "embed/trips"
+  %script(src="/legacy/ckeditor/ckeditor.js")
+  %script(src="/legacy/ckeditor/adapters/jquery.js")
+
 - content_for :page_title do
   Trip Details : #{truncate(@trip.name,:length=>40)}
 

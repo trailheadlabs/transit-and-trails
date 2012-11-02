@@ -4,10 +4,19 @@
     %title Transit & Trails
     = javascript_include_tag "application"
     = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
-    = render :partial => '/shared/partials/legacy_head'    
     %link(rel="shortcut icon" type="image/x-icon" href="/media/favicon.ico")
     = csrf_meta_tags
+    = javascript_include_tag "legacy/common"
+    = stylesheet_link_tag "legacy/jquery/css/ui-lightness/jquery-ui-1.7.2.custom"
+    = javascript_include_tag "legacy/jquery/js/jquery-ui-1.7.2.custom.min"
+    = javascript_include_tag "legacy/plugins"
+
+    = stylesheet_link_tag "legacy/reset"
+    = stylesheet_link_tag "legacy/common"
+    = stylesheet_link_tag "legacy/style"
+
     = yield :head
+
     = stylesheet_link_tag "legacy/embed"
   %body
     .embed
@@ -18,6 +27,6 @@
           BY
           %a{:href => "http://transitandtrails.org", :target => "_blank"}
             %img{:src => "/assets/legacy/plan/small-logo.png"}/
-            
+
 
       = yield :page_content
