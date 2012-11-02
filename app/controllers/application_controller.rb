@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  def authenticate_user!(opts)
+  def authenticate_user!(opts={})
     url = params[:next_url] || request.fullpath
     session[:user_return_to] = url
     super(opts)
