@@ -65,7 +65,7 @@ RSpec.configure do |config|
   # end
 
   config.before(:each) do
-    SimpleRoles::Configuration.valid_roles.each do |role|
+    [:admin,:trailblazer].each do |role|
       r = Role.new
       r.name = role.to_s
       r.save

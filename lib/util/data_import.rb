@@ -586,7 +586,7 @@ module Util
         new_user.confirm!
         result = new_user.save(:validate => false)
         if(item['fields']['is_superuser'] || item['fields']['is_staff'])
-          new_user.roles=:admin
+          new_user.add_role :admin
         end
         item['fields']['groups'].each do |group|
           new_user.add_role group_map[group]

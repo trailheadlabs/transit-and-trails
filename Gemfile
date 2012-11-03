@@ -34,7 +34,6 @@ gem 'simple_form'
 gem 'database_cleaner'
 gem 'cancan'
 gem 'truncate_html'
-gem 'simple_roles'
 gem 'newrelic_rpm'
 gem 'airbrake'
 

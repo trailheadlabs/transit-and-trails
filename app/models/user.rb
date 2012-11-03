@@ -8,12 +8,14 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-                  :username, :django_password, :user_profile, :admin
+                  :username, :django_password, :user_profile, :admin, :role_ids
   # attr_accessible :title, :body
 
   has_one :user_profile
 
   has_many :trailheads, :inverse_of => :user
+
+  has_and_belongs_to_many :roles
 
   has_paper_trail
 
@@ -27,13 +29,24 @@ class User < ActiveRecord::Base
 
   validates :username, :uniqueness => true
 
-  simple_roles do
-    strategy :many
-    valid_roles :user, :admin, :trailblazer,:baynature_trailblazer,:baynature_admin,:agency_trailblazer
-  end
-
   def populate_user_profile
     build_user_profile unless user_profile
+  end
+
+  def add_role(role_sym)
+    roles << Role.find_by_name(role_sym.to_s)
+  end
+
+  def has_role?(role_sym)
+    roles.exists?(name: role_sym.to_s)
+  end
+
+  def admin?
+    has_role? :admin
+  end
+
+  def trailblazer?
+    has_role? :trailblazer
   end
 
   def valid_password?(password)
