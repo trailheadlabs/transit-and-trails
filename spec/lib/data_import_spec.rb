@@ -623,7 +623,7 @@ describe "DataImport" do
     fields = item['fields']
     new_record = Map.last
     new_record.should_not be nil
-    new_record.name.should eq fields['name']    
+    new_record.name.should eq fields['name']
     new_record.url.should eq fields['map_url']
     new_record.user_id.should eq fields['user']
     unless fields['map'].blank?
@@ -751,10 +751,40 @@ describe "DataImport" do
     new_user.username.should eq item['fields']['username']
     new_user.email.should eq item['fields']['email']
     new_user.django_password.should eq item['fields']['password']
-    new_user.admin.should eq item['fields']['is_superuser'] || item['fields']['is_staff']
     new_user.last_sign_in_at.should eq item['fields']['last_login']
     new_user.created_at.should eq item['fields']['date_joined']
     new_user.should be_confirmed
+    new_user.admin?.should eq false
+  end
+
+  it "imports admin users properly" do
+    item = JSON::parse('{"pk":20,"model":"auth.user","fields":{"username":"admin","first_name":"Jereme","last_name":"Monteau","is_active":true,"is_superuser":true,"is_staff":false,"last_login":"2012-08-03 16:39:36","groups":[1],"user_permissions":[],"password":"sha1$a3f08$d62f324e83384347d6cb1499c152f81b6cb6cc9f","email":"me@jmoe.com","date_joined":"2009-03-24 09:03:01"}}')
+    Util::DataImport::import_user item
+    new_user = User.find_by_username('admin')
+    new_user.should_not be nil
+    new_user.id.should eq item['pk']
+    new_user.username.should eq item['fields']['username']
+    new_user.email.should eq item['fields']['email']
+    new_user.django_password.should eq item['fields']['password']
+    new_user.last_sign_in_at.should eq item['fields']['last_login']
+    new_user.created_at.should eq item['fields']['date_joined']
+    new_user.should be_confirmed
+    new_user.admin?.should eq true
+  end
+
+  it "imports trailblazer users properly" do
+    item = JSON::parse('{"pk":20,"model":"auth.user","fields":{"username":"admin","first_name":"Jereme","last_name":"Monteau","is_active":true,"is_superuser":true,"is_staff":false,"last_login":"2012-08-03 16:39:36","groups":[1],"user_permissions":[],"password":"sha1$a3f08$d62f324e83384347d6cb1499c152f81b6cb6cc9f","email":"me@jmoe.com","date_joined":"2009-03-24 09:03:01"}}')
+    Util::DataImport::import_user item
+    new_user = User.find_by_username('admin')
+    new_user.should_not be nil
+    new_user.id.should eq item['pk']
+    new_user.username.should eq item['fields']['username']
+    new_user.email.should eq item['fields']['email']
+    new_user.django_password.should eq item['fields']['password']
+    new_user.last_sign_in_at.should eq item['fields']['last_login']
+    new_user.created_at.should eq item['fields']['date_joined']
+    new_user.should be_confirmed
+    new_user.trailblazer?.should eq true
   end
 
   it "does not import inactive users" do

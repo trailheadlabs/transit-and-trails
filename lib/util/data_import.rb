@@ -575,19 +575,23 @@ module Util
     end
 
     def self.import_user(item)
+      group_map = { 1=>:trailblazer,2=>:baynature_trailblazer,3=>:baynature_admin}
       if item['fields']['is_active']
         new_user = User.find_or_create_by_id(Integer(item['pk']))
         new_user.email = item['fields']['email']
         new_user.username = item['fields']['username']
         new_user.django_password = item['fields']['password']
-        new_user.admin = item['fields']['is_superuser'] || item['fields']['is_staff']
         new_user.last_sign_in_at = item['fields']['last_login']
         new_user.created_at = item['fields']['date_joined']
-        if !item['fields']['groups'].empty?
-          new_user.trailblazer = true
-        end
         new_user.confirm!
-        return new_user.save(:validate => false)
+        result = new_user.save(:validate => false)
+        if(item['fields']['is_superuser'] || item['fields']['is_staff'])
+          new_user.roles=:admin
+        end
+        item['fields']['groups'].each do |group|
+          new_user.add_role group_map[group]
+        end
+        return result
       else
         return false
       end

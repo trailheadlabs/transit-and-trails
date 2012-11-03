@@ -8,7 +8,7 @@ describe "rails admin" do
 
   it "let's admin users in" do
     user = FactoryGirl.create(:admin)
-    user.admin.should be_true
+    user.admin?.should be_true
     visit '/admin'
     fill_in 'Username', with: user.username
     fill_in 'Password', with: 'please'

@@ -4,7 +4,6 @@ FactoryGirl.define do
     email 'example@example.com'
     password 'please'
     password_confirmation 'please'
-    admin false
     # required if the Devise Confirmable module is used
     confirmed_at Time.now
   end
@@ -14,9 +13,12 @@ FactoryGirl.define do
     email 'admin@example.com'
     password 'please'
     password_confirmation 'please'
-    admin true
     # required if the Devise Confirmable module is used
     confirmed_at Time.now
+
+    after(:create) do |user, evaluator|
+      user.add_role :admin
+    end
   end
 
   factory :django_user, class: User do

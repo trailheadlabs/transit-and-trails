@@ -24,20 +24,20 @@ gem 'multi_json'
 gem 'yajl-ruby'
 gem 'flickraw-cached'
 gem 'geocoder'
-# gem 'ffi-geos'
-# gem 'rgeo', :git => "git://github.com/TransitAndTrails/rgeo.git"
 gem 'rgeo'
 gem 'paper_trail', '~> 2'
 gem 'jquery-rails'
 gem 'bourbon'
-gem 'newrelic_rpm'
 gem 'high_voltage'
 gem 'simple_form_fancy_uploads'
 gem 'simple_form'
 gem 'database_cleaner'
 gem 'cancan'
 gem 'truncate_html'
+gem 'simple_roles'
+gem 'newrelic_rpm'
 gem 'airbrake'
+
 
 # Gems used only for assets and not required
 # in production environments by default.

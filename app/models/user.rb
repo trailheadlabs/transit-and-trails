@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -28,6 +27,11 @@ class User < ActiveRecord::Base
 
   validates :username, :uniqueness => true
 
+  simple_roles do
+    strategy :many
+    valid_roles :user, :admin, :trailblazer,:baynature_trailblazer,:baynature_admin,:agency_trailblazer
+  end
+
   def populate_user_profile
     build_user_profile unless user_profile
   end
@@ -46,8 +50,5 @@ class User < ActiveRecord::Base
     end
   end
 
-  def trailblazer?
-    return self.admin || self.trailblazer
-  end
 
 end

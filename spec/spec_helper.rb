@@ -65,6 +65,11 @@ RSpec.configure do |config|
   # end
 
   config.before(:each) do
+    SimpleRoles::Configuration.valid_roles.each do |role|
+      r = Role.new
+      r.name = role.to_s
+      r.save
+    end
     photos = double(:getSizes => [{"label"=>'Thumbnail',"source" => "http://someawesomeurl.com"}])
     flickr.stub!(:photos).and_return(photos)
   end

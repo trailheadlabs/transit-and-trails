@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121102190222) do
+ActiveRecord::Schema.define(:version => 20121102222132) do
 
   create_table "agencies", :force => true do |t|
     t.string   "name"
@@ -222,6 +222,14 @@ ActiveRecord::Schema.define(:version => 20121102190222) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "roles", :force => true do |t|
+    t.string   "name",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "roles", ["name"], :name => "index_roles_on_name", :unique => true
+
   create_table "stories", :force => true do |t|
     t.integer  "storytellable_id"
     t.string   "storytellable_type"
@@ -365,6 +373,15 @@ ActiveRecord::Schema.define(:version => 20121102190222) do
     t.string   "signup_source"
     t.string   "website_address"
   end
+
+  create_table "user_roles", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.integer  "role_id",    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "user_roles", ["user_id", "role_id"], :name => "index_user_roles_on_user_id_and_role_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "",    :null => false

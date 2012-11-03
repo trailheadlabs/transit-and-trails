@@ -1,6 +1,6 @@
 module PointOfInterest
   def auto_approve
-    if user && (user.trailblazer? || user.admin)
+    if user && (user.trailblazer? || user.admin?)
       self.approved = true
     end
   end
@@ -40,7 +40,7 @@ module PointOfInterest
     @default_park ||= (park || cached_park_by_bounds)
   end
 
-  
+
   def agency
     agency_override || (default_park && default_park.agency) || nil
   end
