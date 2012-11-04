@@ -18,4 +18,8 @@ class UserProfile < ActiveRecord::Base
     self.api_secret = Digest::SHA256.hexdigest(SecureRandom::random_bytes)
   end
 
+  def name
+    "#{firstname} #{lastname}"
+  end
+
 end

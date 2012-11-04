@@ -29,6 +29,26 @@ class User < ActiveRecord::Base
 
   validates :username, :uniqueness => true
 
+  def users_for_role(role_name)
+    Role.find_by_name(role_name) && Role.find_by_name(role_name).users
+  end
+
+  def trailblazers
+    users_for_role('trailblazer')
+  end
+
+  def admins
+    users_for_role('admin')
+  end
+
+  def baynature_trailblazers
+    users_for_role('baynature_trailblazers')
+  end
+
+  def baynature_admins
+    users_for_role('baynature_admin')
+  end
+
   def populate_user_profile
     build_user_profile unless user_profile
   end
