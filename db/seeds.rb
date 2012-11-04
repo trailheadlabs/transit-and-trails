@@ -17,3 +17,7 @@ end
 ["Transit","Walk","Bike", "Drive", "Rideshare"].each do |item|
   TravelMode.find_or_create_by_name item
 end
+
+['admin','trailblazer','baynature_trailblazer','baynature_admin','agency_trailblazer'].each do |item|
+  Role.find_or_create_by_name item
+end
