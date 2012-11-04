@@ -97,9 +97,9 @@ module Util
       count = json.count
       json.each_with_index do |item,index|
         begin
-        # puts JSON.pretty_generate item, :indent => "  "
-        puts self.send(import_method_name,item)
-        puts "#{index+1}/#{count}"
+          # puts JSON.pretty_generate item, :indent => "  "
+          puts self.send(import_method_name,item)
+          puts "#{index+1}/#{count}"
         rescue Exception => e
           puts "Could not import item :"
           puts e.message

@@ -4,7 +4,7 @@ namespace :import do
   namespace :users do
     desc "Import user accounts from the S3 backup"
     task :accounts => :environment do
-      Util::DataImport::import_items(Util::DataImport::latest_user_objects,"latest_user_objects")
+      Util::DataImport::import_items(Util::DataImport::latest_user_objects,"import_user")
       json = Util::DataImport::latest_user_objects
     end
 
@@ -15,11 +15,15 @@ namespace :import do
       json = Util::DataImport::latest_user_objects
       user = json.select {|v| v['fields']['username'] == args[:username] }
       puts user[0].to_json
-      if user
-        puts JSON.pretty_generate item, :indent => "  "
-        puts Util::DataImport::import_user user[0]
-      else
-        puts "User #{:username} not found"
+      begin
+        if user
+          puts JSON.pretty_generate user[0], :indent => "  "
+          puts Util::DataImport::import_user user[0]
+        else
+          puts "User #{:username} not found"
+        end
+      rescue Exception => e
+        puts e.backtrace
       end
     end
 
@@ -53,7 +57,7 @@ namespace :import do
   desc "Import features from the S3 backup"
   task :features => :environment do
     puts "importing trip features"
-    Util::DataImport::import_items(Util::DataImport::latest_trip_feature_objects,"import_feature")    
+    Util::DataImport::import_items(Util::DataImport::latest_trip_feature_objects,"import_feature")
 
     puts "importing trailhead features"
     Util::DataImport::import_items(Util::DataImport::latest_trailhead_feature_objects,"import_feature")
