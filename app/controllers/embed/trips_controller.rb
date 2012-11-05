@@ -1,6 +1,7 @@
 module Embed
   class TripsController < ApplicationController
     before_filter :embed_authenticate_trailblazer!
+
     def new
       @trip = Trip.new
       @trip.intensity = Intensity.first
