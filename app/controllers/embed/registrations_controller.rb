@@ -24,6 +24,7 @@ module Embed
     def approve
       @user = User.find_by_username(params[:username])
       @user.trailblazer = true
+      @user.add_role :baynature_trailblazer
       respond_to do |format|
         if @user.save
           Embed::RegistrationMailer.user_approved_email(@user).deliver

@@ -69,6 +69,14 @@ class User < ActiveRecord::Base
     has_role? :trailblazer
   end
 
+  def baynature_trailblazer?
+    has_role? :baynature_trailblazer
+  end
+
+  def baynature_admin?
+    has_role? :baynature_admin
+  end
+
   def valid_password?(password)
     if(encrypted_password.blank?)
       salt = django_password.split('$')[1]

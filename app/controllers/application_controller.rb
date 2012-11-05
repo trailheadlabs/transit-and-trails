@@ -34,11 +34,9 @@ class ApplicationController < ActionController::Base
   end
 
   def embed_authenticate_trailblazer!
-    Rails.logger.info("embed_authenticate_trailblazer!")
     url = params[:next_url] || request.fullpath
     session[:user_return_to] = url
-    Rails.logger.info("session[:user_return_to] = #{session[:user_return_to]}")
-    unless user_signed_in? && current_user.trailblazer?
+    unless user_signed_in? && (current_user.trailblazer? || current_user.baynature_trailblazer?)
       flash[:alert] = "Please login as a Trail Blazer to access that page."
       redirect_to '/embed/sessions/new' # halts request cycle
     end
@@ -47,8 +45,7 @@ class ApplicationController < ActionController::Base
   def embed_authenticate_admin!
     url = params[:next_url] || request.fullpath
     session[:user_return_to] = url
-
-    unless user_signed_in? && current_user.admin?
+    unless user_signed_in? && (current_user.admin? || curent_user.baynature_admin?)
       flash[:alert] = "Please login as an admin to access that page."
       redirect_to '/embed/sessions/new' # halts request cycle
     end

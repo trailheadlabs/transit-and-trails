@@ -1,5 +1,7 @@
 %p
-  Welcome #{@user.email}!
-%p You can confirm your account email through the link below:
+  Hi #{@user.email}!
+%p
+  Welcome to the Bay Nature Trailblazer Program.
+%p Please confirm your email address with the link below:
 %p= link_to 'Confirm my account', embed_confirm_url(@user, :confirmation_token => @user.confirmation_token)
 %p Once you have activated your account it will be reviewed by Bay Nature and you will receive a confirmation email once it has been approved.
