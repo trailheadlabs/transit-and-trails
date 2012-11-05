@@ -55,10 +55,10 @@
                         .download-icon
                         .download-text
                           View Map
-                    - if can?(:destroy, :map)
+                    - if can?(:destroy, Map)
                       = link_to("Delete Map", polymorphic_path([@trip,map]), :class=> "delete", :method => :delete, :confirm => "Are you sure?", :class=>"right delete-map-link")
 
-            - if can?(:create, @trip)
+            - if can?(:create, Map)
               %label.text-attr-label
                 Add Map
               %form

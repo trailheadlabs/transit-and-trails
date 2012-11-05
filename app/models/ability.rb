@@ -10,13 +10,14 @@ class Ability
     if user.admin?
         can :manage, :all
     end
-    if user.trailblazer?
-        can :manage, :trailheads
-        can :manage, :photos
-        can :manage, :maps
+    if user.trailblazer? || user.baynature_trailblazer?
+        can :manage, Trailhead
+        can :manage, Photo
+        can :manage, Map
+        Rails.logger.info('Trailblazer!')
     end
     if user.baynature_trailblazer?
-        can :manage, :trips
+        can :manage, Trip
     end
     #
     # The first argument to `can` is the action you are giving the user permission to do.

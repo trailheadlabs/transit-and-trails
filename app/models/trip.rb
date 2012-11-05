@@ -42,8 +42,10 @@ class Trip < ActiveRecord::Base
   end
 
   def refind_parks
-    Rails.cache.delete("trip:#{id}:park_ids")
-    find_parks
+    if(route_changed?)
+      Rails.cache.delete("trip:#{id}:park_ids")
+      find_parks
+    end
   end
 
   def find_parks

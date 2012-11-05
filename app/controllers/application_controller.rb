@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
   def embed_authenticate_trailblazer!
     url = params[:next_url] || request.fullpath
     session[:user_return_to] = url
-    unless user_signed_in? && (current_user.trailblazer? || current_user.baynature_trailblazer?)
+    unless user_signed_in? && (current_user.admin? || current_user.trailblazer? || current_user.baynature_trailblazer?)
       flash[:alert] = "Please login as a Trail Blazer to access that page."
       redirect_to '/embed/sessions/new' # halts request cycle
     end
