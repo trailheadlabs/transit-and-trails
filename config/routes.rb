@@ -8,7 +8,7 @@ Transitandtrails::Application.routes.draw do
 
   class ApiSslConstraint
     def self.matches?(request)
-      request.subdomain == 'api' && !Rails.env.production? || request.ssl?
+      request.subdomain == 'api.rails' && !Rails.env.production? || request.ssl?
     end
   end
 
