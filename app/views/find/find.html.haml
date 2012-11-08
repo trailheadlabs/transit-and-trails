@@ -36,12 +36,14 @@
       %a#add-trips.green-button.map-add-trip-button{:href => "#{new_trip_path}"}
         %span.big-plus +
         %span.add-trip-text Add Trip
-    %a#add-campgrounds.green-button.map-add-campground-button{:href => "#{new_campground_path}"}
-      %span.big-plus +
-      %span.add-trip-text Add Campground
-    %a#add-trails.green-button{:href => "#{new_trailhead_path}"}
-      %span.big-plus +
-      %span.add-trip-text Add Trailhead
+    - if can? :create, :campground
+      %a#add-campgrounds.green-button.map-add-campground-button{:href => "#{new_campground_path}"}
+        %span.big-plus +
+        %span.add-trip-text Add Campground
+    - if can? :create, :trailhead
+      %a#add-trails.green-button{:href => "#{new_trailhead_path}"}
+        %span.big-plus +
+        %span.add-trip-text Add Trailhead
 
   / e: trails map
   #trail-list

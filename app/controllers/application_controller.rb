@@ -1,4 +1,9 @@
 class ApplicationController < ActionController::Base
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:error] = "Please login as a user that can access that."
+    redirect_to new_user_session_path
+  end
+
   protect_from_forgery
 
   def authenticate_user!(opts={})

@@ -12,8 +12,8 @@ Transitandtrails::Application.routes.draw do
     end
   end
 
-  constraints ApiSslConstraint do
-    constraints :subdomain => (Rails.env.production? ? /api\.rails|api/ : /.*/) do
+  constraints SslConstraint do
+    constraints :subdomain => (Rails.env.production? ? /api\.staging|api\.rails|api/ : /.*/) do
       namespace :api, :defaults => {:format => :json} do
         namespace :v1 do
           resources :users, :only => [:show, :index]
