@@ -14,27 +14,27 @@
       <img src="./assets/0.7.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2012-11-07T16:54:45-08:00">2012-11-07T16:54:45-08:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2012-11-07T23:10:25-08:00">2012-11-07T23:10:25-08:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">76.49%</span></span>
+    (<span class="covered_percent"><span class="red">76.58%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         2.39
+         2.42
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>104</b> files in total.
-    <b>1714</b> relevant lines. 
+    <b>1712</b> relevant lines. 
     <span class="green"><b>1311</b> lines covered</span> and
-    <span class="red"><b>403</b> lines missed </span>
+    <span class="red"><b>401</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -122,12 +122,12 @@
       
       <tr>
         <td class="strong"><a href="#c404292616c54d7065341c00901f2d8156493bef" class="src_link" title="app/controllers/application_controller.rb">app/controllers/application_controller.rb</a></td>
-        <td class="red strong">59.26 %</td>
-        <td>91</td>
-        <td>54</td>
-        <td>32</td>
-        <td>22</td>
-        <td>5.8</td>
+        <td class="red strong">62.26 %</td>
+        <td>94</td>
+        <td>53</td>
+        <td>33</td>
+        <td>20</td>
+        <td>9.0</td>
       </tr>
       
       <tr>
@@ -322,10 +322,10 @@
       
       <tr>
         <td class="strong"><a href="#28a05fee89cc0d6c9f20b032cfdb8185d01485c5" class="src_link" title="app/controllers/plan_controller.rb">app/controllers/plan_controller.rb</a></td>
-        <td class="red strong">40.0 %</td>
-        <td>25</td>
-        <td>15</td>
-        <td>6</td>
+        <td class="red strong">35.71 %</td>
+        <td>24</td>
+        <td>14</td>
+        <td>5</td>
         <td>9</td>
         <td>0.4</td>
       </tr>
@@ -1099,20 +1099,20 @@
           <div class="file_list_container" id="Controllers">
   <h2>
     <span class="group_name">Controllers</span>
-    (<span class="covered_percent"><span class="red">61.06%</span></span>
+    (<span class="covered_percent"><span class="red">61.23%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.15
+         1.24
        </span>
     </span> hits/line)
   </h2>
   <a name="Controllers"></a>
   <div>
     <b>39</b> files in total.
-    <b>701</b> relevant lines. 
+    <b>699</b> relevant lines. 
     <span class="green"><b>428</b> lines covered</span> and
-    <span class="red"><b>273</b> lines missed </span>
+    <span class="red"><b>271</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -1200,12 +1200,12 @@
       
       <tr>
         <td class="strong"><a href="#c404292616c54d7065341c00901f2d8156493bef" class="src_link" title="app/controllers/application_controller.rb">app/controllers/application_controller.rb</a></td>
-        <td class="red strong">59.26 %</td>
-        <td>91</td>
-        <td>54</td>
-        <td>32</td>
-        <td>22</td>
-        <td>5.8</td>
+        <td class="red strong">62.26 %</td>
+        <td>94</td>
+        <td>53</td>
+        <td>33</td>
+        <td>20</td>
+        <td>9.0</td>
       </tr>
       
       <tr>
@@ -1400,10 +1400,10 @@
       
       <tr>
         <td class="strong"><a href="#28a05fee89cc0d6c9f20b032cfdb8185d01485c5" class="src_link" title="app/controllers/plan_controller.rb">app/controllers/plan_controller.rb</a></td>
-        <td class="red strong">40.0 %</td>
-        <td>25</td>
-        <td>15</td>
-        <td>6</td>
+        <td class="red strong">35.71 %</td>
+        <td>24</td>
+        <td>14</td>
+        <td>5</td>
         <td>9</td>
         <td>0.4</td>
       </tr>
@@ -3548,11 +3548,11 @@
         <div class="source_table" id="c404292616c54d7065341c00901f2d8156493bef">
   <div class="header">
     <h3>app/controllers/application_controller.rb</h3>
-    <h4><span class="red">59.26 %</span> covered</h4>
+    <h4><span class="red">62.26 %</span> covered</h4>
     <div>
-      <b>54</b> relevant lines. 
-      <span class="green"><b>32</b> lines covered</span> and
-      <span class="red"><b>22</b> lines missed.</span>
+      <b>53</b> relevant lines. 
+      <span class="green"><b>33</b> lines covered</span> and
+      <span class="red"><b>20</b> lines missed.</span>
     </div>
   </div>
   
@@ -3568,538 +3568,556 @@
         <li class="covered" data-hits="1" data-linenumber="2">
           <span class="hits">1</span>
           
-          <code class="ruby">  protect_from_forgery</code>
+          <code class="ruby">  rescue_from CanCan::AccessDenied do |exception|</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="3">
+        <li class="missed" data-hits="0" data-linenumber="3">
+          
+          
+          <code class="ruby">    flash[:error] = &quot;Please login as a user that can access that.&quot;</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="4">
+          
+          
+          <code class="ruby">    redirect_to new_user_session_path</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="5">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="6">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="4">
+        <li class="covered" data-hits="1" data-linenumber="7">
           <span class="hits">1</span>
           
-          <code class="ruby">  def authenticate_user!(opts={})</code>
-        </li>
-      
-        <li class="covered" data-hits="80" data-linenumber="5">
-          <span class="hits">80</span>
-          
-          <code class="ruby">    url = params[:next_url] || request.fullpath</code>
-        </li>
-      
-        <li class="covered" data-hits="80" data-linenumber="6">
-          <span class="hits">80</span>
-          
-          <code class="ruby">    session[:user_return_to] = url</code>
-        </li>
-      
-        <li class="covered" data-hits="80" data-linenumber="7">
-          <span class="hits">80</span>
-          
-          <code class="ruby">    super(opts)</code>
+          <code class="ruby">  before_filter :store_location, :except =&gt; {:controller=&gt;:devise_session}</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="8">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="9">
+        <li class="covered" data-hits="1" data-linenumber="9">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  protect_from_forgery</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="10">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="10">
+        <li class="covered" data-hits="1" data-linenumber="11">
           <span class="hits">1</span>
           
-          <code class="ruby">  def authenticate_admin!</code>
+          <code class="ruby">  def store_location</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="11">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="143" data-linenumber="12">
+          <span class="hits">143</span>
           
-          <code class="ruby">    url = params[:next_url] || request.fullpath</code>
+          <code class="ruby">    unless request.path == &quot;/users/sign_in&quot; || request.path == &quot;/embed/sessions/new&quot;</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="12">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="128" data-linenumber="13">
+          <span class="hits">128</span>
           
-          <code class="ruby">    session[:user_return_to] = url</code>
+          <code class="ruby">      session[:user_return_to] = request.referer || request.fullpath</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="13">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="128" data-linenumber="14">
+          <span class="hits">128</span>
           
-          <code class="ruby">    authenticate_user!</code>
+          <code class="ruby">      Rails.logger.info(&quot;store_location #{session[:user_return_to]}&quot;)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="14">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="15">
           
-          <code class="ruby">    unless current_user.admin?</code>
+          
+          <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="15">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="16">
           
-          <code class="ruby">      flash[:alert] = &quot;Admin user required.&quot;</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="16">
-          <span class="hits">1</span>
           
-          <code class="ruby">      redirect_to '/' # halts request cycle</code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="17">
           
           
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="18">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="19">
-          
-          
           <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="18">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def authenticate_admin!</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="19">
+          <span class="hits">2</span>
+          
+          <code class="ruby">    authenticate_user!</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="20">
           <span class="hits">1</span>
           
-          <code class="ruby">  def valid_api_key!</code>
+          <code class="ruby">    unless current_user.admin?</code>
         </li>
       
-        <li class="covered" data-hits="21" data-linenumber="21">
-          <span class="hits">21</span>
+        <li class="covered" data-hits="1" data-linenumber="21">
+          <span class="hits">1</span>
           
-          <code class="ruby">    if Rails.env.production?</code>
+          <code class="ruby">      flash[:alert] = &quot;Admin user required.&quot;</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="22">
+        <li class="covered" data-hits="1" data-linenumber="22">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">      unless UserProfile.where(:api_key=&gt;params[:key]).exists?</code>
+          <code class="ruby">      redirect_to '/' # halts request cycle</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="23">
+        <li class="never" data-hits="" data-linenumber="23">
           
           
-          <code class="ruby">        render :json =&gt; {:code=&gt;401,:message=&gt;&quot;Unauthorized&quot;}, :status =&gt; :unauthorized</code>
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="24">
           
           
-          <code class="ruby">      end</code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="25">
           
           
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="26">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="27">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="28">
+        <li class="covered" data-hits="1" data-linenumber="26">
           <span class="hits">1</span>
           
-          <code class="ruby">  def valid_admin_api_key!</code>
+          <code class="ruby">  def valid_api_key!</code>
+        </li>
+      
+        <li class="covered" data-hits="21" data-linenumber="27">
+          <span class="hits">21</span>
+          
+          <code class="ruby">    if Rails.env.production?</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="28">
+          
+          
+          <code class="ruby">      unless UserProfile.where(:api_key=&gt;params[:key]).exists?</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="29">
           
           
-          <code class="ruby">    if Rails.env.production?</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="30">
-          
-          
-          <code class="ruby">      unless UserProfile.where(:api_key=&gt;params[:key]).exists? &amp;&amp; UserProfile.where(:api_key=&gt;params[:key].user.is_admin?)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="31">
-          
-          
           <code class="ruby">        render :json =&gt; {:code=&gt;401,:message=&gt;&quot;Unauthorized&quot;}, :status =&gt; :unauthorized</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="32">
+        <li class="never" data-hits="" data-linenumber="30">
           
           
           <code class="ruby">      end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="33">
+        <li class="never" data-hits="" data-linenumber="31">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="34">
+        <li class="never" data-hits="" data-linenumber="32">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="35">
+        <li class="never" data-hits="" data-linenumber="33">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="36">
+        <li class="covered" data-hits="1" data-linenumber="34">
           <span class="hits">1</span>
           
-          <code class="ruby">  def embed_authenticate_trailblazer!</code>
+          <code class="ruby">  def valid_admin_api_key!</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="35">
+          
+          
+          <code class="ruby">    if Rails.env.production?</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="36">
+          
+          
+          <code class="ruby">      unless UserProfile.where(:api_key=&gt;params[:key]).exists? &amp;&amp; UserProfile.where(:api_key=&gt;params[:key].user.is_admin?)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="37">
           
           
-          <code class="ruby">    url = params[:next_url] || request.fullpath</code>
+          <code class="ruby">        render :json =&gt; {:code=&gt;401,:message=&gt;&quot;Unauthorized&quot;}, :status =&gt; :unauthorized</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="38">
+        <li class="never" data-hits="" data-linenumber="38">
           
           
-          <code class="ruby">    session[:user_return_to] = url</code>
+          <code class="ruby">      end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="39">
+        <li class="never" data-hits="" data-linenumber="39">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="40">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="41">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="42">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def embed_authenticate_trailblazer!</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="43">
           
           
           <code class="ruby">    unless user_signed_in? &amp;&amp; (current_user.admin? || current_user.trailblazer? || current_user.baynature_trailblazer?)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="40">
+        <li class="missed" data-hits="0" data-linenumber="44">
           
           
           <code class="ruby">      flash[:alert] = &quot;Please login as a Trail Blazer to access that page.&quot;</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="41">
+        <li class="missed" data-hits="0" data-linenumber="45">
           
           
           <code class="ruby">      redirect_to '/embed/sessions/new' # halts request cycle</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="42">
+        <li class="never" data-hits="" data-linenumber="46">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="43">
+        <li class="never" data-hits="" data-linenumber="47">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="44">
+        <li class="never" data-hits="" data-linenumber="48">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="45">
+        <li class="covered" data-hits="1" data-linenumber="49">
           <span class="hits">1</span>
           
           <code class="ruby">  def embed_authenticate_admin!</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="46">
-          
-          
-          <code class="ruby">    url = params[:next_url] || request.fullpath</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="47">
-          
-          
-          <code class="ruby">    session[:user_return_to] = url</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="48">
+        <li class="missed" data-hits="0" data-linenumber="50">
           
           
           <code class="ruby">    unless user_signed_in? &amp;&amp; (current_user.admin? || current_user.baynature_admin?)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="49">
+        <li class="missed" data-hits="0" data-linenumber="51">
           
           
           <code class="ruby">      flash[:alert] = &quot;Please login as an admin to access that page.&quot;</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="50">
+        <li class="missed" data-hits="0" data-linenumber="52">
           
           
           <code class="ruby">      redirect_to '/embed/sessions/new' # halts request cycle</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="51">
+        <li class="never" data-hits="" data-linenumber="53">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="52">
+        <li class="never" data-hits="" data-linenumber="54">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="53">
+        <li class="never" data-hits="" data-linenumber="55">
           
           
           <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="54">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def apply_limit_and_offset(params,records)</code>
-        </li>
-      
-        <li class="covered" data-hits="6" data-linenumber="55">
-          <span class="hits">6</span>
-          
-          <code class="ruby">    if params[:limit]</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="56">
           <span class="hits">1</span>
           
+          <code class="ruby">  def apply_limit_and_offset(params,records)</code>
+        </li>
+      
+        <li class="covered" data-hits="6" data-linenumber="57">
+          <span class="hits">6</span>
+          
+          <code class="ruby">    if params[:limit]</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="58">
+          <span class="hits">1</span>
+          
           <code class="ruby">      records = records.limit(Integer(params[:limit]))</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="57">
+        <li class="never" data-hits="" data-linenumber="59">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="58">
+        <li class="covered" data-hits="6" data-linenumber="60">
           <span class="hits">6</span>
           
           <code class="ruby">    if params[:offset]</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="59">
+        <li class="missed" data-hits="0" data-linenumber="61">
           
           
           <code class="ruby">      records = records.offset(Integer(params[:offset]))</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="60">
+        <li class="never" data-hits="" data-linenumber="62">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="61">
+        <li class="covered" data-hits="6" data-linenumber="63">
           <span class="hits">6</span>
           
           <code class="ruby">    return records</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="62">
+        <li class="never" data-hits="" data-linenumber="64">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="63">
+        <li class="never" data-hits="" data-linenumber="65">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="64">
+        <li class="covered" data-hits="1" data-linenumber="66">
           <span class="hits">1</span>
           
           <code class="ruby">  def loadkv</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="65">
+        <li class="missed" data-hits="0" data-linenumber="67">
           
           
           <code class="ruby">    render :json =&gt; {:key=&gt;params[:key],:value=&gt;session[params[:key]] || nil}</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="66">
+        <li class="never" data-hits="" data-linenumber="68">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="67">
+        <li class="never" data-hits="" data-linenumber="69">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="68">
+        <li class="covered" data-hits="1" data-linenumber="70">
           <span class="hits">1</span>
           
           <code class="ruby">  def savekv</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="69">
+        <li class="missed" data-hits="0" data-linenumber="71">
           
           
           <code class="ruby">    session[params[:key]] = params[:value]</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="70">
+        <li class="missed" data-hits="0" data-linenumber="72">
           
           
           <code class="ruby">    render :json =&gt; {:key=&gt;params[:key],:value=&gt;params[:value]}</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="71">
+        <li class="never" data-hits="" data-linenumber="73">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="72">
+        <li class="never" data-hits="" data-linenumber="74">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="73">
+        <li class="covered" data-hits="1" data-linenumber="75">
           <span class="hits">1</span>
           
           <code class="ruby">  def stored_location_for(resource_or_scope)</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="74">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="6" data-linenumber="76">
+          <span class="hits">6</span>
           
           <code class="ruby">    session[:user_return_to] || super</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="75">
+        <li class="never" data-hits="" data-linenumber="77">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="76">
+        <li class="never" data-hits="" data-linenumber="78">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="77">
+        <li class="covered" data-hits="1" data-linenumber="79">
           <span class="hits">1</span>
           
           <code class="ruby">  def after_sign_in_path_for(resource)</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="78">
+        <li class="covered" data-hits="3" data-linenumber="80">
           <span class="hits">3</span>
           
           <code class="ruby">    Rails.logger.info(&quot;session[:user_return_to] = #{session[:user_return_to]}&quot;)</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="79">
+        <li class="covered" data-hits="3" data-linenumber="81">
+          <span class="hits">3</span>
+          
+          <code class="ruby">    Rails.logger.info(&quot;stored_location_for(resource) = #{stored_location_for(resource)}&quot;)</code>
+        </li>
+      
+        <li class="covered" data-hits="3" data-linenumber="82">
           <span class="hits">3</span>
           
           <code class="ruby">    stored_location_for(resource) || root_path</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="80">
+        <li class="never" data-hits="" data-linenumber="83">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="81">
+        <li class="never" data-hits="" data-linenumber="84">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="82">
+        <li class="covered" data-hits="1" data-linenumber="85">
           <span class="hits">1</span>
           
           <code class="ruby">  def after_sign_out_path_for(resource)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="83">
+        <li class="missed" data-hits="0" data-linenumber="86">
           
           
           <code class="ruby">    Rails.logger.info(&quot;session[:user_return_to] = #{session[:user_return_to]}&quot;)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="84">
+        <li class="missed" data-hits="0" data-linenumber="87">
           
           
           <code class="ruby">    stored_location_for(resource) || root_path</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="85">
+        <li class="never" data-hits="" data-linenumber="88">
           
           
           <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="86">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="87">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def not_found</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="88">
-          
-          
-          <code class="ruby">    raise ActionController::RoutingError.new('Not Found')</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="89">
           
           
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="90">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def not_found</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="91">
+          
+          
+          <code class="ruby">    raise ActionController::RoutingError.new('Not Found')</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="92">
+          
+          
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="90">
+        <li class="never" data-hits="" data-linenumber="93">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="91">
+        <li class="never" data-hits="" data-linenumber="94">
           
           
           <code class="ruby">end</code>
@@ -7604,10 +7622,10 @@
         <div class="source_table" id="28a05fee89cc0d6c9f20b032cfdb8185d01485c5">
   <div class="header">
     <h3>app/controllers/plan_controller.rb</h3>
-    <h4><span class="red">40.0 %</span> covered</h4>
+    <h4><span class="red">35.71 %</span> covered</h4>
     <div>
-      <b>15</b> relevant lines. 
-      <span class="green"><b>6</b> lines covered</span> and
+      <b>14</b> relevant lines. 
+      <span class="green"><b>5</b> lines covered</span> and
       <span class="red"><b>9</b> lines missed.</span>
     </div>
   </div>
@@ -7621,145 +7639,139 @@
           <code class="ruby">class PlanController &lt; ApplicationController</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="2">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  before_filter :store_location</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="3">
+        <li class="never" data-hits="" data-linenumber="2">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="4">
+        <li class="covered" data-hits="1" data-linenumber="3">
           <span class="hits">1</span>
           
           <code class="ruby">  def trailhead</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="5">
+        <li class="missed" data-hits="0" data-linenumber="4">
           
           
           <code class="ruby">    @trailhead = Trailhead.find(params[:trailhead_id])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="6">
+        <li class="missed" data-hits="0" data-linenumber="5">
           
           
           <code class="ruby">    render &quot;plan&quot;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="6">
+          
+          
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="7">
           
           
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="8">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="9">
+        <li class="covered" data-hits="1" data-linenumber="8">
           <span class="hits">1</span>
           
           <code class="ruby">  def trip</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="10">
+        <li class="missed" data-hits="0" data-linenumber="9">
           
           
           <code class="ruby">    @trip = Trip.find(params[:trip_id])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="11">
+        <li class="missed" data-hits="0" data-linenumber="10">
           
           
           <code class="ruby">    render &quot;plan&quot;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="11">
+          
+          
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="12">
           
           
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="13">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="14">
+        <li class="covered" data-hits="1" data-linenumber="13">
           <span class="hits">1</span>
           
           <code class="ruby">  def campground</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="15">
+        <li class="missed" data-hits="0" data-linenumber="14">
           
           
           <code class="ruby">    @campground = Campground.find(params[:campground_id])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="16">
+        <li class="missed" data-hits="0" data-linenumber="15">
           
           
           <code class="ruby">    render &quot;plan&quot;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="16">
+          
+          
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="17">
           
           
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="18">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="19">
+        <li class="covered" data-hits="1" data-linenumber="18">
           <span class="hits">1</span>
           
           <code class="ruby">  def coordinates</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="20">
+        <li class="missed" data-hits="0" data-linenumber="19">
           
           
           <code class="ruby">    @latitude = params[:latitude]</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="21">
+        <li class="missed" data-hits="0" data-linenumber="20">
           
           
           <code class="ruby">    @longitude = params[:longitude]</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="22">
+        <li class="missed" data-hits="0" data-linenumber="21">
           
           
           <code class="ruby">    render &quot;plan&quot;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="23">
+        <li class="never" data-hits="" data-linenumber="22">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="24">
+        <li class="never" data-hits="" data-linenumber="23">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="25">
+        <li class="never" data-hits="" data-linenumber="24">
           
           
           <code class="ruby">end</code>
