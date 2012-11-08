@@ -3,8 +3,8 @@
   #download-maps
     - object.maps.each do |map|
       .map
-        - if map.map
-          %a.get-map{:href => "#{map.map}", :target => "_blank"}
+        - if !map.map.url.nil?
+          %a.get-map{:href => "#{map.map.url}", :target => "_blank"}
             .download-icon
             .download-text
               Download Map
