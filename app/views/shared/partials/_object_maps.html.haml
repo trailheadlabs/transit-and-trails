@@ -9,13 +9,13 @@
             .download-text
               Download Map
               %span.down-caret ▼
-        - elsif map.map_url
-          %a.get-map{:href => "#{map.map_url}", :target => "_blank"}
+        - elsif map.url
+          %a.get-map{:href => "#{map.url}", :target => "_blank"}
             .download-icon
             .download-text
               Download Map
               %span.down-caret ▼
-        - if can?(:destroy, :map)
+        - if can?(:destroy, map)
           = link_to("Delete", polymorphic_path([object,map]), :method => :delete, :confirm => "Are you sure?", :class=>"green-button right padded")
 
 - if can?(:create, object)
