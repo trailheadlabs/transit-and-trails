@@ -4,17 +4,18 @@ class ApplicationController < ActionController::Base
     redirect_to new_user_session_path
   end
 
+  before_filter :store_location, :except => {:controller=>:devise_session}
+
   protect_from_forgery
 
-  def authenticate_user!(opts={})
-    url = params[:next_url] || request.fullpath
-    session[:user_return_to] = url
-    super(opts)
+  def store_location
+    unless request.path == "/users/sign_in" || request.path == "/embed/sessions/new"
+      session[:user_return_to] = request.referer || request.fullpath
+      Rails.logger.info("store_location #{session[:user_return_to]}")
+    end
   end
 
   def authenticate_admin!
-    url = params[:next_url] || request.fullpath
-    session[:user_return_to] = url
     authenticate_user!
     unless current_user.admin?
       flash[:alert] = "Admin user required."
@@ -39,8 +40,6 @@ class ApplicationController < ActionController::Base
   end
 
   def embed_authenticate_trailblazer!
-    url = params[:next_url] || request.fullpath
-    session[:user_return_to] = url
     unless user_signed_in? && (current_user.admin? || current_user.trailblazer? || current_user.baynature_trailblazer?)
       flash[:alert] = "Please login as a Trail Blazer to access that page."
       redirect_to '/embed/sessions/new' # halts request cycle
@@ -48,8 +47,6 @@ class ApplicationController < ActionController::Base
   end
 
   def embed_authenticate_admin!
-    url = params[:next_url] || request.fullpath
-    session[:user_return_to] = url
     unless user_signed_in? && (current_user.admin? || current_user.baynature_admin?)
       flash[:alert] = "Please login as an admin to access that page."
       redirect_to '/embed/sessions/new' # halts request cycle
@@ -81,6 +78,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     Rails.logger.info("session[:user_return_to] = #{session[:user_return_to]}")
+    Rails.logger.info("stored_location_for(resource) = #{stored_location_for(resource)}")
     stored_location_for(resource) || root_path
   end
 
