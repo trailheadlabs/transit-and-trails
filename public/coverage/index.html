@@ -14,7 +14,7 @@
       <img src="./assets/0.7.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2012-11-04T21:18:46-08:00">2012-11-04T21:18:46-08:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2012-11-07T16:54:45-08:00">2012-11-07T16:54:45-08:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -32,9 +32,9 @@
   <a name="AllFiles"></a>
   <div>
     <b>104</b> files in total.
-    <b>1710</b> relevant lines. 
-    <span class="green"><b>1308</b> lines covered</span> and
-    <span class="red"><b>402</b> lines missed </span>
+    <b>1714</b> relevant lines. 
+    <span class="green"><b>1311</b> lines covered</span> and
+    <span class="red"><b>403</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -712,12 +712,12 @@
       
       <tr>
         <td class="strong"><a href="#9eaef46f01fe879ca5c6ceb78450a5fd8e91871b" class="src_link" title="app/models/ability.rb">app/models/ability.rb</a></td>
-        <td class="red strong">69.23 %</td>
-        <td>36</td>
-        <td>13</td>
+        <td class="red strong">64.29 %</td>
+        <td>37</td>
+        <td>14</td>
         <td>9</td>
-        <td>4</td>
-        <td>13.4</td>
+        <td>5</td>
+        <td>12.4</td>
       </tr>
       
       <tr>
@@ -932,12 +932,12 @@
       
       <tr>
         <td class="strong"><a href="#a341a11a00e2cd20bea58277c0064178927c9610" class="src_link" title="app/models/trip.rb">app/models/trip.rb</a></td>
-        <td class="yellow strong">90.0 %</td>
-        <td>141</td>
-        <td>80</td>
-        <td>72</td>
+        <td class="green strong">90.36 %</td>
+        <td>146</td>
+        <td>83</td>
+        <td>75</td>
         <td>8</td>
-        <td>19.5</td>
+        <td>19.0</td>
       </tr>
       
       <tr>
@@ -957,7 +957,7 @@
         <td>46</td>
         <td>40</td>
         <td>6</td>
-        <td>9.4</td>
+        <td>10.7</td>
       </tr>
       
       <tr>
@@ -1526,20 +1526,20 @@
           <div class="file_list_container" id="Models">
   <h2>
     <span class="group_name">Models</span>
-    (<span class="covered_percent"><span class="green">93.18%</span></span>
+    (<span class="covered_percent"><span class="green">93.02%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         4.44
+         4.43
        </span>
     </span> hits/line)
   </h2>
   <a name="Models"></a>
   <div>
     <b>26</b> files in total.
-    <b>469</b> relevant lines. 
-    <span class="green"><b>437</b> lines covered</span> and
-    <span class="red"><b>32</b> lines missed </span>
+    <b>473</b> relevant lines. 
+    <span class="green"><b>440</b> lines covered</span> and
+    <span class="red"><b>33</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -1557,12 +1557,12 @@
       
       <tr>
         <td class="strong"><a href="#9eaef46f01fe879ca5c6ceb78450a5fd8e91871b" class="src_link" title="app/models/ability.rb">app/models/ability.rb</a></td>
-        <td class="red strong">69.23 %</td>
-        <td>36</td>
-        <td>13</td>
+        <td class="red strong">64.29 %</td>
+        <td>37</td>
+        <td>14</td>
         <td>9</td>
-        <td>4</td>
-        <td>13.4</td>
+        <td>5</td>
+        <td>12.4</td>
       </tr>
       
       <tr>
@@ -1777,12 +1777,12 @@
       
       <tr>
         <td class="strong"><a href="#a341a11a00e2cd20bea58277c0064178927c9610" class="src_link" title="app/models/trip.rb">app/models/trip.rb</a></td>
-        <td class="yellow strong">90.0 %</td>
-        <td>141</td>
-        <td>80</td>
-        <td>72</td>
+        <td class="green strong">90.36 %</td>
+        <td>146</td>
+        <td>83</td>
+        <td>75</td>
         <td>8</td>
-        <td>19.5</td>
+        <td>19.0</td>
       </tr>
       
       <tr>
@@ -1802,7 +1802,7 @@
         <td>46</td>
         <td>40</td>
         <td>6</td>
-        <td>9.4</td>
+        <td>10.7</td>
       </tr>
       
       <tr>
@@ -3790,7 +3790,7 @@
         <li class="missed" data-hits="0" data-linenumber="39">
           
           
-          <code class="ruby">    unless user_signed_in? &amp;&amp; (current_user.trailblazer? || current_user.baynature_trailblazer?)</code>
+          <code class="ruby">    unless user_signed_in? &amp;&amp; (current_user.admin? || current_user.trailblazer? || current_user.baynature_trailblazer?)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="40">
@@ -3844,7 +3844,7 @@
         <li class="missed" data-hits="0" data-linenumber="48">
           
           
-          <code class="ruby">    unless user_signed_in? &amp;&amp; (current_user.admin? || curent_user.baynature_admin?)</code>
+          <code class="ruby">    unless user_signed_in? &amp;&amp; (current_user.admin? || current_user.baynature_admin?)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="49">
@@ -11792,11 +11792,11 @@
         <div class="source_table" id="9eaef46f01fe879ca5c6ceb78450a5fd8e91871b">
   <div class="header">
     <h3>app/models/ability.rb</h3>
-    <h4><span class="red">69.23 %</span> covered</h4>
+    <h4><span class="red">64.29 %</span> covered</h4>
     <div>
-      <b>13</b> relevant lines. 
+      <b>14</b> relevant lines. 
       <span class="green"><b>9</b> lines covered</span> and
-      <span class="red"><b>4</b> lines missed.</span>
+      <span class="red"><b>5</b> lines missed.</span>
     </div>
   </div>
   
@@ -11878,142 +11878,148 @@
         <li class="covered" data-hits="30" data-linenumber="13">
           <span class="hits">30</span>
           
-          <code class="ruby">    if user.trailblazer?</code>
+          <code class="ruby">    if user.trailblazer? || user.baynature_trailblazer?</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="14">
           
           
-          <code class="ruby">        can :manage, :trailheads</code>
+          <code class="ruby">        can :manage, Trailhead</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="15">
           
           
-          <code class="ruby">        can :manage, :photos</code>
+          <code class="ruby">        can :manage, Photo</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="16">
           
           
-          <code class="ruby">        can :manage, :maps</code>
+          <code class="ruby">        can :manage, Map</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="17">
+        <li class="missed" data-hits="0" data-linenumber="17">
+          
+          
+          <code class="ruby">        Rails.logger.info('Trailblazer!')</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="18">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="30" data-linenumber="18">
+        <li class="covered" data-hits="30" data-linenumber="19">
           <span class="hits">30</span>
           
           <code class="ruby">    if user.baynature_trailblazer?</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="19">
+        <li class="missed" data-hits="0" data-linenumber="20">
           
           
-          <code class="ruby">        can :manage, :trips</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="20">
-          
-          
-          <code class="ruby">    end</code>
+          <code class="ruby">        can :manage, Trip</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="21">
           
           
-          <code class="ruby">    #</code>
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="22">
           
           
-          <code class="ruby">    # The first argument to `can` is the action you are giving the user permission to do.</code>
+          <code class="ruby">    #</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="23">
           
           
-          <code class="ruby">    # If you pass :manage it will apply to every action. Other common actions here are</code>
+          <code class="ruby">    # The first argument to `can` is the action you are giving the user permission to do.</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="24">
           
           
-          <code class="ruby">    # :read, :create, :update and :destroy.</code>
+          <code class="ruby">    # If you pass :manage it will apply to every action. Other common actions here are</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="25">
           
           
-          <code class="ruby">    #</code>
+          <code class="ruby">    # :read, :create, :update and :destroy.</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="26">
           
           
-          <code class="ruby">    # The second argument is the resource the user can perform the action on. If you pass</code>
+          <code class="ruby">    #</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="27">
           
           
-          <code class="ruby">    # :all it will apply to every resource. Otherwise pass a Ruby class of the resource.</code>
+          <code class="ruby">    # The second argument is the resource the user can perform the action on. If you pass</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="28">
           
           
-          <code class="ruby">    #</code>
+          <code class="ruby">    # :all it will apply to every resource. Otherwise pass a Ruby class of the resource.</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="29">
           
           
-          <code class="ruby">    # The third argument is an optional hash of conditions to further filter the objects.</code>
+          <code class="ruby">    #</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="30">
           
           
-          <code class="ruby">    # For example, here the user can only update published articles.</code>
+          <code class="ruby">    # The third argument is an optional hash of conditions to further filter the objects.</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="31">
           
           
-          <code class="ruby">    #</code>
+          <code class="ruby">    # For example, here the user can only update published articles.</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="32">
           
           
-          <code class="ruby">    #   can :update, Article, :published =&gt; true</code>
+          <code class="ruby">    #</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="33">
           
           
-          <code class="ruby">    #</code>
+          <code class="ruby">    #   can :update, Article, :published =&gt; true</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="34">
           
           
-          <code class="ruby">    # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities</code>
+          <code class="ruby">    #</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="35">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">    # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="36">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="37">
           
           
           <code class="ruby">end</code>
@@ -15332,10 +15338,10 @@
         <div class="source_table" id="a341a11a00e2cd20bea58277c0064178927c9610">
   <div class="header">
     <h3>app/models/trip.rb</h3>
-    <h4><span class="yellow">90.0 %</span> covered</h4>
+    <h4><span class="green">90.36 %</span> covered</h4>
     <div>
-      <b>80</b> relevant lines. 
-      <span class="green"><b>72</b> lines covered</span> and
+      <b>83</b> relevant lines. 
+      <span class="green"><b>75</b> lines covered</span> and
       <span class="red"><b>8</b> lines missed.</span>
     </div>
   </div>
@@ -15460,115 +15466,115 @@
         <li class="covered" data-hits="1" data-linenumber="20">
           <span class="hits">1</span>
           
-          <code class="ruby">  reverse_geocoded_by :latitude, :longitude</code>
+          <code class="ruby">  validates :ending_trailhead_id, :presence =&gt; true</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="21">
+        <li class="covered" data-hits="1" data-linenumber="21">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  validates :starting_trailhead_id, :presence =&gt; true</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="22">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="22">
+        <li class="covered" data-hits="1" data-linenumber="23">
           <span class="hits">1</span>
           
-          <code class="ruby">  def update_geometry</code>
-        </li>
-      
-        <li class="covered" data-hits="37" data-linenumber="23">
-          <span class="hits">37</span>
-          
-          <code class="ruby">    self.geometry = route_as_geometry</code>
+          <code class="ruby">  reverse_geocoded_by :latitude, :longitude</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="24">
           
           
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="25">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="26">
+        <li class="covered" data-hits="1" data-linenumber="25">
           <span class="hits">1</span>
           
-          <code class="ruby">  def parks</code>
+          <code class="ruby">  def update_geometry</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="27">
+        <li class="covered" data-hits="37" data-linenumber="26">
+          <span class="hits">37</span>
+          
+          <code class="ruby">    self.geometry = route_as_geometry</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="27">
           
           
-          <code class="ruby">    @parks || find_parks</code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="28">
           
           
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="29">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="30">
+        <li class="covered" data-hits="1" data-linenumber="29">
           <span class="hits">1</span>
           
-          <code class="ruby">  def latitude</code>
+          <code class="ruby">  def parks</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="31">
+        <li class="missed" data-hits="0" data-linenumber="30">
           
           
-          <code class="ruby">    starting_trailhead.latitude</code>
+          <code class="ruby">    @parks || find_parks</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="31">
+          
+          
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="32">
           
           
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="33">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="34">
+        <li class="covered" data-hits="1" data-linenumber="33">
           <span class="hits">1</span>
           
-          <code class="ruby">  def longitude</code>
+          <code class="ruby">  def latitude</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="35">
+        <li class="missed" data-hits="0" data-linenumber="34">
           
           
-          <code class="ruby">    starting_trailhead.longitude</code>
+          <code class="ruby">    starting_trailhead.latitude</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="35">
+          
+          
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="36">
           
           
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="37">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="38">
+        <li class="covered" data-hits="1" data-linenumber="37">
           <span class="hits">1</span>
           
-          <code class="ruby">  def latitude=</code>
+          <code class="ruby">  def longitude</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="38">
+          
+          
+          <code class="ruby">    starting_trailhead.longitude</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="39">
@@ -15586,7 +15592,7 @@
         <li class="covered" data-hits="1" data-linenumber="41">
           <span class="hits">1</span>
           
-          <code class="ruby">  def longitude=</code>
+          <code class="ruby">  def latitude=</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="42">
@@ -15604,586 +15610,616 @@
         <li class="covered" data-hits="1" data-linenumber="44">
           <span class="hits">1</span>
           
-          <code class="ruby">  def refind_parks</code>
+          <code class="ruby">  def longitude=</code>
         </li>
       
-        <li class="covered" data-hits="37" data-linenumber="45">
-          <span class="hits">37</span>
-          
-          <code class="ruby">    Rails.cache.delete(&quot;trip:#{id}:park_ids&quot;)</code>
-        </li>
-      
-        <li class="covered" data-hits="37" data-linenumber="46">
-          <span class="hits">37</span>
-          
-          <code class="ruby">    find_parks</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="47">
+        <li class="never" data-hits="" data-linenumber="45">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="48">
+        <li class="never" data-hits="" data-linenumber="46">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="49">
+        <li class="covered" data-hits="1" data-linenumber="47">
           <span class="hits">1</span>
           
-          <code class="ruby">  def find_parks</code>
+          <code class="ruby">  def refind_parks</code>
         </li>
       
-        <li class="covered" data-hits="37" data-linenumber="50">
+        <li class="covered" data-hits="37" data-linenumber="48">
           <span class="hits">37</span>
           
-          <code class="ruby">    cached_ids = Rails.cache.read(&quot;trip:#{id}:park_ids&quot;)</code>
+          <code class="ruby">    if(route_changed?)</code>
         </li>
       
-        <li class="covered" data-hits="37" data-linenumber="51">
-          <span class="hits">37</span>
+        <li class="covered" data-hits="35" data-linenumber="49">
+          <span class="hits">35</span>
           
-          <code class="ruby">    if(cached_ids)</code>
+          <code class="ruby">      Rails.cache.delete(&quot;trip:#{id}:park_ids&quot;)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="52">
+        <li class="covered" data-hits="35" data-linenumber="50">
+          <span class="hits">35</span>
+          
+          <code class="ruby">      find_parks</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="51">
           
           
-          <code class="ruby">      @parks = Park.where(:id=&gt;cached_ids)</code>
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="52">
+          
+          
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="53">
           
           
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="54">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def find_parks</code>
+        </li>
+      
+        <li class="covered" data-hits="35" data-linenumber="55">
+          <span class="hits">35</span>
+          
+          <code class="ruby">    cached_ids = Rails.cache.read(&quot;trip:#{id}:park_ids&quot;)</code>
+        </li>
+      
+        <li class="covered" data-hits="35" data-linenumber="56">
+          <span class="hits">35</span>
+          
+          <code class="ruby">    if(cached_ids)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="57">
+          
+          
+          <code class="ruby">      @parks = Park.where(:id=&gt;cached_ids)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="58">
+          
+          
           <code class="ruby">    else</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="54">
-          
-          
-          <code class="ruby">      # is left = min_longitude &lt; park.max_longitude</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="55">
-          
-          
-          <code class="ruby">      # is right = max_longitude &gt; park.min_longitude</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="56">
-          
-          
-          <code class="ruby">      # is above = max_latiude &gt; park.min_latitude</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="57">
-          
-          
-          <code class="ruby">      # is below = min_latitude &lt; park.max_latitude</code>
-        </li>
-      
-        <li class="covered" data-hits="37" data-linenumber="58">
-          <span class="hits">37</span>
-          
-          <code class="ruby">      @parks = Park.where(&quot;max_longitude &gt; :min_longitude AND min_longitude &lt; :max_longitude&quot; +</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="59">
           
           
-          <code class="ruby">        &quot; AND min_latitude &lt; :max_latitude AND max_latitude &gt; :min_latitude&quot;,</code>
+          <code class="ruby">      # is left = min_longitude &lt; park.max_longitude</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="60">
           
           
-          <code class="ruby">        {:min_longitude =&gt; min_longitude, :max_longitude =&gt; max_longitude, :min_latitude=&gt;min_latitude, :max_latitude =&gt; max_latitude})</code>
+          <code class="ruby">      # is right = max_longitude &gt; park.min_longitude</code>
         </li>
       
-        <li class="covered" data-hits="37" data-linenumber="61">
-          <span class="hits">37</span>
+        <li class="never" data-hits="" data-linenumber="61">
           
-          <code class="ruby">      @parks.select! do |p|</code>
+          
+          <code class="ruby">      # is above = max_latiude &gt; park.min_latitude</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="62">
-          <span class="hits">4</span>
+        <li class="never" data-hits="" data-linenumber="62">
           
-          <code class="ruby">        p.intersects_trip? self</code>
+          
+          <code class="ruby">      # is below = min_latitude &lt; park.max_latitude</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="63">
+        <li class="covered" data-hits="35" data-linenumber="63">
+          <span class="hits">35</span>
           
-          
-          <code class="ruby">      end</code>
+          <code class="ruby">      @parks = Park.where(&quot;max_longitude &gt; :min_longitude AND min_longitude &lt; :max_longitude&quot; +</code>
         </li>
       
-        <li class="covered" data-hits="41" data-linenumber="64">
-          <span class="hits">41</span>
+        <li class="never" data-hits="" data-linenumber="64">
           
-          <code class="ruby">      Rails.cache.write(&quot;trip:#{id}:park_ids&quot;,@parks.collect{|p| p.id})</code>
+          
+          <code class="ruby">        &quot; AND min_latitude &lt; :max_latitude AND max_latitude &gt; :min_latitude&quot;,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="65">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">        {:min_longitude =&gt; min_longitude, :max_longitude =&gt; max_longitude, :min_latitude=&gt;min_latitude, :max_latitude =&gt; max_latitude})</code>
         </li>
       
-        <li class="covered" data-hits="37" data-linenumber="66">
-          <span class="hits">37</span>
+        <li class="covered" data-hits="35" data-linenumber="66">
+          <span class="hits">35</span>
           
-          <code class="ruby">    return @parks</code>
+          <code class="ruby">      @parks.select! do |p|</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="67">
+        <li class="covered" data-hits="4" data-linenumber="67">
+          <span class="hits">4</span>
           
-          
-          <code class="ruby">  end</code>
+          <code class="ruby">        p.intersects_trip? self</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="68">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">      end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="69">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="39" data-linenumber="69">
+          <span class="hits">39</span>
           
-          <code class="ruby">  def geometry_as_route</code>
+          <code class="ruby">      Rails.cache.write(&quot;trip:#{id}:park_ids&quot;,@parks.collect{|p| p.id})</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="70">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="70">
           
-          <code class="ruby">    result = &quot;[&quot;</code>
+          
+          <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="71">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="35" data-linenumber="71">
+          <span class="hits">35</span>
           
-          <code class="ruby">    unless bounds_as_array.nil?</code>
+          <code class="ruby">    return @parks</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="72">
-          <span class="hits">4</span>
+        <li class="never" data-hits="" data-linenumber="72">
           
-          <code class="ruby">      result += bounds_as_array.collect {|coord| &quot;[#{coord[1]},#{coord[0]}]&quot;}.join(&quot;,&quot;)</code>
+          
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="73">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="74">
+        <li class="covered" data-hits="1" data-linenumber="74">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">  def geometry_as_route</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="75">
           <span class="hits">1</span>
           
-          <code class="ruby">    result += &quot;]&quot;</code>
+          <code class="ruby">    result = &quot;[&quot;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="76">
+        <li class="covered" data-hits="1" data-linenumber="76">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">  end</code>
+          <code class="ruby">    unless bounds_as_array.nil?</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="77">
+        <li class="covered" data-hits="4" data-linenumber="77">
+          <span class="hits">4</span>
+          
+          <code class="ruby">      result += bounds_as_array.collect {|coord| &quot;[#{coord[1]},#{coord[0]}]&quot;}.join(&quot;,&quot;)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="78">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="79">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="78">
+        <li class="covered" data-hits="1" data-linenumber="80">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    result += &quot;]&quot;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="81">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="82">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="83">
           <span class="hits">1</span>
           
           <code class="ruby">  def route_as_geometry</code>
         </li>
       
-        <li class="covered" data-hits="37" data-linenumber="79">
+        <li class="covered" data-hits="37" data-linenumber="84">
           <span class="hits">37</span>
           
           <code class="ruby">    if !self.route.blank?</code>
         </li>
       
-        <li class="covered" data-hits="37" data-linenumber="80">
+        <li class="covered" data-hits="37" data-linenumber="85">
           <span class="hits">37</span>
           
           <code class="ruby">      obj = JSON.parse(self.route)</code>
         </li>
       
-        <li class="covered" data-hits="37" data-linenumber="81">
+        <li class="covered" data-hits="37" data-linenumber="86">
           <span class="hits">37</span>
           
           <code class="ruby">      obj.collect! do |value|</code>
         </li>
       
-        <li class="covered" data-hits="114" data-linenumber="82">
+        <li class="covered" data-hits="114" data-linenumber="87">
           <span class="hits">114</span>
           
           <code class="ruby">        &quot;#{value[1]} #{value[0]}&quot;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="83">
-          
-          
-          <code class="ruby">      end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="84">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="37" data-linenumber="85">
-          <span class="hits">37</span>
-          
-          <code class="ruby">      return &quot;LINESTRING (&quot; + obj.join(&quot;, &quot;) + &quot;)&quot;</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="86">
-          
-          
-          <code class="ruby">    else</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="87">
-          
-          
-          <code class="ruby">      return nil</code>
-        </li>
-      
         <li class="never" data-hits="" data-linenumber="88">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="89">
           
           
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="90">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="91">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="37" data-linenumber="90">
+          <span class="hits">37</span>
           
-          <code class="ruby">  def bounds_as_array</code>
+          <code class="ruby">      return &quot;LINESTRING (&quot; + obj.join(&quot;, &quot;) + &quot;)&quot;</code>
         </li>
       
-        <li class="covered" data-hits="31" data-linenumber="92">
-          <span class="hits">31</span>
-          
-          <code class="ruby">    if self.geometry</code>
-        </li>
-      
-        <li class="covered" data-hits="316" data-linenumber="93">
-          <span class="hits">316</span>
-          
-          <code class="ruby">      return self.geometry.gsub(/[A-Za-z]|\(|\)/,&quot;&quot;).strip.split(',').collect{|c| c.split(&quot; &quot;).collect{|d| Float(d)}}</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="94">
+        <li class="never" data-hits="" data-linenumber="91">
           
           
           <code class="ruby">    else</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="95">
+        <li class="never" data-hits="" data-linenumber="92">
           
           
           <code class="ruby">      return nil</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="96">
+        <li class="never" data-hits="" data-linenumber="93">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="97">
+        <li class="never" data-hits="" data-linenumber="94">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="98">
+        <li class="never" data-hits="" data-linenumber="95">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="99">
+        <li class="covered" data-hits="1" data-linenumber="96">
           <span class="hits">1</span>
           
-          <code class="ruby">  def update_bounds_min_max</code>
+          <code class="ruby">  def bounds_as_array</code>
         </li>
       
-        <li class="covered" data-hits="37" data-linenumber="100">
-          <span class="hits">37</span>
+        <li class="covered" data-hits="31" data-linenumber="97">
+          <span class="hits">31</span>
           
-          <code class="ruby">    if !geometry.blank? &amp;&amp; (self.geometry_changed? || min_longitude.nil?)</code>
+          <code class="ruby">    if self.geometry</code>
         </li>
       
-        <li class="covered" data-hits="25" data-linenumber="101">
-          <span class="hits">25</span>
+        <li class="covered" data-hits="316" data-linenumber="98">
+          <span class="hits">316</span>
           
-          <code class="ruby">      sides = sides_of_bounds</code>
+          <code class="ruby">      return self.geometry.gsub(/[A-Za-z]|\(|\)/,&quot;&quot;).strip.split(',').collect{|c| c.split(&quot; &quot;).collect{|d| Float(d)}}</code>
         </li>
       
-        <li class="covered" data-hits="25" data-linenumber="102">
-          <span class="hits">25</span>
-          
-          <code class="ruby">      self.min_longitude = sides[0]</code>
-        </li>
-      
-        <li class="covered" data-hits="25" data-linenumber="103">
-          <span class="hits">25</span>
-          
-          <code class="ruby">      self.max_longitude = sides[1]</code>
-        </li>
-      
-        <li class="covered" data-hits="25" data-linenumber="104">
-          <span class="hits">25</span>
-          
-          <code class="ruby">      self.min_latitude = sides[2]</code>
-        </li>
-      
-        <li class="covered" data-hits="25" data-linenumber="105">
-          <span class="hits">25</span>
-          
-          <code class="ruby">      self.max_latitude = sides[3]</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="106">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="107">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="108">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="109">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def sides_of_bounds</code>
-        </li>
-      
-        <li class="covered" data-hits="25" data-linenumber="110">
-          <span class="hits">25</span>
-          
-          <code class="ruby">    b_a = bounds_as_array</code>
-        </li>
-      
-        <li class="covered" data-hits="102" data-linenumber="111">
-          <span class="hits">102</span>
-          
-          <code class="ruby">    longs = b_a.collect{|c| c[0]}.sort</code>
-        </li>
-      
-        <li class="covered" data-hits="102" data-linenumber="112">
-          <span class="hits">102</span>
-          
-          <code class="ruby">    lats = b_a.collect{|c| c[1]}.sort</code>
-        </li>
-      
-        <li class="covered" data-hits="25" data-linenumber="113">
-          <span class="hits">25</span>
-          
-          <code class="ruby">    min_long = longs[0]</code>
-        </li>
-      
-        <li class="covered" data-hits="25" data-linenumber="114">
-          <span class="hits">25</span>
-          
-          <code class="ruby">    max_long = longs[-1]</code>
-        </li>
-      
-        <li class="covered" data-hits="25" data-linenumber="115">
-          <span class="hits">25</span>
-          
-          <code class="ruby">    min_lat = lats[0]</code>
-        </li>
-      
-        <li class="covered" data-hits="25" data-linenumber="116">
-          <span class="hits">25</span>
-          
-          <code class="ruby">    max_lat = lats[-1]</code>
-        </li>
-      
-        <li class="covered" data-hits="25" data-linenumber="117">
-          <span class="hits">25</span>
-          
-          <code class="ruby">    [min_long,max_long,min_lat,max_lat]</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="118">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="119">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="120">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def length_miles</code>
-        </li>
-      
-        <li class="covered" data-hits="13" data-linenumber="121">
-          <span class="hits">13</span>
-          
-          <code class="ruby">    if geometry.nil?</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="122">
-          
-          
-          <code class="ruby">      return 0.0</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="123">
+        <li class="never" data-hits="" data-linenumber="99">
           
           
           <code class="ruby">    else</code>
         </li>
       
-        <li class="covered" data-hits="13" data-linenumber="124">
-          <span class="hits">13</span>
+        <li class="never" data-hits="" data-linenumber="100">
           
-          <code class="ruby">      factory = ::RGeo::Geographic.spherical_factory()</code>
+          
+          <code class="ruby">      return nil</code>
         </li>
       
-        <li class="covered" data-hits="13" data-linenumber="125">
-          <span class="hits">13</span>
+        <li class="never" data-hits="" data-linenumber="101">
           
-          <code class="ruby">      obj = factory.parse_wkt(self.geometry)</code>
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="102">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="103">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="104">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def update_bounds_min_max</code>
+        </li>
+      
+        <li class="covered" data-hits="37" data-linenumber="105">
+          <span class="hits">37</span>
+          
+          <code class="ruby">    if !geometry.blank? &amp;&amp; (self.geometry_changed? || min_longitude.nil?)</code>
+        </li>
+      
+        <li class="covered" data-hits="25" data-linenumber="106">
+          <span class="hits">25</span>
+          
+          <code class="ruby">      sides = sides_of_bounds</code>
+        </li>
+      
+        <li class="covered" data-hits="25" data-linenumber="107">
+          <span class="hits">25</span>
+          
+          <code class="ruby">      self.min_longitude = sides[0]</code>
+        </li>
+      
+        <li class="covered" data-hits="25" data-linenumber="108">
+          <span class="hits">25</span>
+          
+          <code class="ruby">      self.max_longitude = sides[1]</code>
+        </li>
+      
+        <li class="covered" data-hits="25" data-linenumber="109">
+          <span class="hits">25</span>
+          
+          <code class="ruby">      self.min_latitude = sides[2]</code>
+        </li>
+      
+        <li class="covered" data-hits="25" data-linenumber="110">
+          <span class="hits">25</span>
+          
+          <code class="ruby">      self.max_latitude = sides[3]</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="111">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="112">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="113">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="114">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def sides_of_bounds</code>
+        </li>
+      
+        <li class="covered" data-hits="25" data-linenumber="115">
+          <span class="hits">25</span>
+          
+          <code class="ruby">    b_a = bounds_as_array</code>
+        </li>
+      
+        <li class="covered" data-hits="102" data-linenumber="116">
+          <span class="hits">102</span>
+          
+          <code class="ruby">    longs = b_a.collect{|c| c[0]}.sort</code>
+        </li>
+      
+        <li class="covered" data-hits="102" data-linenumber="117">
+          <span class="hits">102</span>
+          
+          <code class="ruby">    lats = b_a.collect{|c| c[1]}.sort</code>
+        </li>
+      
+        <li class="covered" data-hits="25" data-linenumber="118">
+          <span class="hits">25</span>
+          
+          <code class="ruby">    min_long = longs[0]</code>
+        </li>
+      
+        <li class="covered" data-hits="25" data-linenumber="119">
+          <span class="hits">25</span>
+          
+          <code class="ruby">    max_long = longs[-1]</code>
+        </li>
+      
+        <li class="covered" data-hits="25" data-linenumber="120">
+          <span class="hits">25</span>
+          
+          <code class="ruby">    min_lat = lats[0]</code>
+        </li>
+      
+        <li class="covered" data-hits="25" data-linenumber="121">
+          <span class="hits">25</span>
+          
+          <code class="ruby">    max_lat = lats[-1]</code>
+        </li>
+      
+        <li class="covered" data-hits="25" data-linenumber="122">
+          <span class="hits">25</span>
+          
+          <code class="ruby">    [min_long,max_long,min_lat,max_lat]</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="123">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="124">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="125">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def length_miles</code>
         </li>
       
         <li class="covered" data-hits="13" data-linenumber="126">
           <span class="hits">13</span>
           
-          <code class="ruby">      return obj.length / 1609.344</code>
+          <code class="ruby">    if geometry.nil?</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="127">
+        <li class="missed" data-hits="0" data-linenumber="127">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">      return 0.0</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="128">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">    else</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="129">
+        <li class="covered" data-hits="13" data-linenumber="129">
+          <span class="hits">13</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">      factory = ::RGeo::Geographic.spherical_factory()</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="130">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="13" data-linenumber="130">
+          <span class="hits">13</span>
           
-          <code class="ruby">  def categorized_attributes</code>
+          <code class="ruby">      obj = factory.parse_wkt(self.geometry)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="131">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="13" data-linenumber="131">
+          <span class="hits">13</span>
           
-          <code class="ruby">    result = {}</code>
+          <code class="ruby">      return obj.length / 1609.344</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="132">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    Category.all.each do |category|</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="133">
-          
-          
-          <code class="ruby">      features = self.trip_features.where(:category_id=&gt;category.id).order(&quot;id&quot;)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="134">
-          
-          
-          <code class="ruby">      if features.count &gt; 0</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="135">
-          
-          
-          <code class="ruby">        result[category.name] = features</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="136">
-          
-          
-          <code class="ruby">      end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="137">
+        <li class="never" data-hits="" data-linenumber="132">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="138">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    result</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="139">
+        <li class="never" data-hits="" data-linenumber="133">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="140">
+        <li class="never" data-hits="" data-linenumber="134">
           
           
           <code class="ruby"></code>
         </li>
       
+        <li class="covered" data-hits="1" data-linenumber="135">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def categorized_attributes</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="136">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    result = {}</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="137">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    Category.all.each do |category|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="138">
+          
+          
+          <code class="ruby">      features = self.trip_features.where(:category_id=&gt;category.id).order(&quot;id&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="139">
+          
+          
+          <code class="ruby">      if features.count &gt; 0</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="140">
+          
+          
+          <code class="ruby">        result[category.name] = features</code>
+        </li>
+      
         <li class="never" data-hits="" data-linenumber="141">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="142">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="143">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    result</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="144">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="145">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="146">
           
           
           <code class="ruby">end</code>
@@ -16639,8 +16675,8 @@
           <code class="ruby">  def has_role?(role_sym)</code>
         </li>
       
-        <li class="covered" data-hits="109" data-linenumber="61">
-          <span class="hits">109</span>
+        <li class="covered" data-hits="139" data-linenumber="61">
+          <span class="hits">139</span>
           
           <code class="ruby">    roles.exists?(name: role_sym.to_s)</code>
         </li>
@@ -16711,8 +16747,8 @@
           <code class="ruby">  def baynature_trailblazer?</code>
         </li>
       
-        <li class="covered" data-hits="30" data-linenumber="73">
-          <span class="hits">30</span>
+        <li class="covered" data-hits="60" data-linenumber="73">
+          <span class="hits">60</span>
           
           <code class="ruby">    has_role? :baynature_trailblazer</code>
         </li>

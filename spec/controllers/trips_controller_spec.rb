@@ -26,6 +26,8 @@ describe TripsController do
   def valid_attributes
     {
       name: "Trip",
+      starting_trailhead_id: 1,
+      ending_trailhead_id: 1,
       route: "[[37.8322173645,-122.21251487699999],[37.82038707077789,-122.20015992431638],[37.8318217249,-122.18518317400003]]"
     }
   end

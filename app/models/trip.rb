@@ -17,6 +17,9 @@ class Trip < ActiveRecord::Base
 
   validates :name, :presence => true, :uniqueness => true
 
+  validates :ending_trailhead_id, :presence => true
+  validates :starting_trailhead_id, :presence => true
+
   reverse_geocoded_by :latitude, :longitude
 
   def update_geometry

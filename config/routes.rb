@@ -1,12 +1,18 @@
 Transitandtrails::Application.routes.draw do
 
-  class SslConstraint 
-    def self.matches?(request) 
+  class SslConstraint
+    def self.matches?(request)
       !Rails.env.production? || request.ssl?
-    end 
+    end
   end
-  
-  constraints SslConstraint do
+
+  class ApiSslConstraint
+    def self.matches?(request)
+      request.subdomain == 'api' && !Rails.env.production? || request.ssl?
+    end
+  end
+
+  constraints ApiSslConstraint do
     constraints :subdomain => (Rails.env.production? ? /api\.rails|api/ : /.*/) do
       namespace :api, :defaults => {:format => :json} do
         namespace :v1 do
@@ -41,7 +47,7 @@ Transitandtrails::Application.routes.draw do
   end
 
   constraints :subdomain => (Rails.env.production? ? /embed\.rails|embed|rails/ : /.*/) do
-    namespace :embed do      
+    namespace :embed do
       match "login" => "sessions#new", :as => :sigin
       match "signin" => "sessions#new"
       match "signout" => "sessions#destroy", :as => :signout
@@ -121,7 +127,7 @@ Transitandtrails::Application.routes.draw do
 
   match 'parks(/:slug(/:county_slug))' => "parks#show"
 
-  resources :parks do 
+  resources :parks do
     resources :maps, :only => [:index]
     resources :photos, :only => [:index]
     resources :trailheads, :only => [:index]
