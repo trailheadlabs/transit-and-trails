@@ -2,4 +2,16 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      trip:
+        starting_trailhead_id: "Starting trailhead"
+        ending_trailhead_id: "Ending trailhead"
+    errors:
+      models:
+        user:
+          attributes:
+            starting_trailhead_id:
+              blank: "needs to be selected"
+          ending_trailhead_id:
+              blank: "needs to be selected"

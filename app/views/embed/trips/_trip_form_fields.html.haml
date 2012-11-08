@@ -3,9 +3,12 @@
 = f.input :ending_trailhead_id, :as => :hidden
 
 #trailhead-meta
-  / - if @trip.errors.size > 0
-  /   .errors
-  /     = @trip.errors.full_messages
+  - if @trip.errors.size > 0
+    .error
+      %ul
+        - @trip.errors.full_messages.each do |error|
+          %li
+            #{error}
 
   = f.input :name, :label => "Name your trip", :input_html => { :class => "text-attr-label" }
   .list
