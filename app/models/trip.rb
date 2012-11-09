@@ -83,10 +83,13 @@ class Trip < ActiveRecord::Base
   def route_as_geometry
     if !self.route.blank?
       obj = JSON.parse(self.route)
-      obj.collect! do |value|
-        "#{value[1]} #{value[0]}"
+      if(obj.length>0)
+        obj.collect! do |value|
+          "#{value[1]} #{value[0]}"
+        end
+      else
+        return nil
       end
-
       return "LINESTRING (" + obj.join(", ") + ")"
     else
       return nil
