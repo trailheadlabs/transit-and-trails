@@ -123,7 +123,7 @@ class Trip < ActiveRecord::Base
   end
 
   def length_miles
-    if geometry.nil?
+    if geometry.blank?
       return 0.0
     else
       factory = ::RGeo::Geographic.spherical_factory()
