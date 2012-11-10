@@ -40,7 +40,7 @@
   %p
     .trailhead-info-window-buttons
       %a.trailhead-info-window-button{:href => "/trips/#{ @trip.id }"} More Info
-      %a.trailhead-info-window-button{:href => "/plan/#{ @trip.id }/"} Plan a Trip Here
+      %a.trailhead-info-window-button{:href => "/plan/trip/#{ @trip.id }/"} Plan a Trip Here
   - if can? :delete, @trip
     %p
       %b Actions
