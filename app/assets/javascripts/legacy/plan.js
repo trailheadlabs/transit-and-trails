@@ -383,7 +383,12 @@ TNT.plan = {
 			$('#start-from-address').val(place.address);
 			TNT.plan.start_from_address = place.address;
       saveLocationToSession(place.address);
-		}
+		} else {
+      $('#start-from-address').val("San Francisco, CA");
+      TNT.plan.start_from_address = "San Francisco, CA";
+      saveLocationToSession("San Francisco, CA");
+    }
+
 	},
 
 	getEndReverseGeocode: function(latlng) {
@@ -452,10 +457,10 @@ TNT.plan = {
 
 	showAddress: function(address){
 		 var self = this;
-		 saveLocationToSession(address);
 		 if (this.geocoder) {
 			 this.geocoder.getLatLng(address, function(point){
 				 if (point) {
+          saveLocationToSession(address);
 					self.showLatLng(point);
 				 }
 			 })

@@ -12,13 +12,13 @@ class Campground < ActiveRecord::Base
   has_many :stories, :as => :storytellable, :dependent => :destroy
 
   has_and_belongs_to_many :campground_features
-  attr_accessible :approved, :description, :latitude, :longitude, :name, :campground_feature_ids, :agency_id
+  attr_accessible :approved, :description, :latitude, :longitude, :name, :campground_feature_ids, :agency_id, :class_name
   reverse_geocoded_by :latitude, :longitude
 
   validates :name, :presence => true, :uniqueness => true
 
   before_save :auto_approve, :park_by_bounds
-  
+
   def categorized_attributes
     result = {}
     Category.all.each do |category|

@@ -15,11 +15,12 @@ class Trailhead < ActiveRecord::Base
   has_many :trips_ending_at, :class_name => "Trip", :foreign_key => "ending_trailhead_id"
   scope :approved, where(:approved => true, :user_id => User.where(admin: true))
   has_paper_trail
-  attr_accessible :description, :latitude, :longitude, :name, :rideshare, :zimride_url, :approved, 
-    :park_id, :user_id, :trips_ending_at_ids, :trips_starting_at_ids, :trailhead_feature_ids, :agency_id
+  attr_accessible :description, :latitude, :longitude, :name, :rideshare, :zimride_url, :approved,
+    :park_id, :user_id, :trips_ending_at_ids, :trips_starting_at_ids, :trailhead_feature_ids, :agency_id, :class_name
+
   attr_accessible :maps_attributes, :allow_destroy => true
   reverse_geocoded_by :latitude, :longitude
- 
+
   accepts_nested_attributes_for :maps, :allow_destroy => true
 
   before_save :auto_approve, :park_by_bounds

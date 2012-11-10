@@ -1,4 +1,9 @@
 $(function() {
+    $.ajaxSetup({
+      beforeSend: function(xhr) {
+        xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+      }
+    });
     $(window).unload(function() {
         GUnload();
     });
@@ -637,8 +642,7 @@ TNT.find = {
     populateStartAddress: function(response) {
         var that = this;
         if (!response || response.Status.code != 200) {
-            //alert("Could not populate start address.\nStatus Code:" + response.Status.code);
-            $('#address').val($('#lat').val() + ", " + $('#lng').val());
+            $('#address').val("San Francisco, CA");
             saveLocationToSession($("#address").val());
             TNT.find.saveMap();
         }
@@ -845,8 +849,13 @@ TNT.find = {
     loadLastLocation: function() {
         loadLocationFromSession(
         function(data) {
-            $('#address').val(data.value);
-            that.showAddress(data.value);
+            if(data != 'null') {
+                $('#address').val(data.value);
+                that.showAddress(data.value);
+            } else {
+                $('#address').val('San Francisco, CA');
+                that.showAddress("San Francisco, CA");
+            }
         });
     }
 };

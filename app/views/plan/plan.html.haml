@@ -108,7 +108,7 @@
 / Application Script
 %script{:src => "/assets/legacy/plan.js"}
 %script
-  $(new function(){
+  $(function(){
   - if @trailhead
     initializeTrailhead(#{@trailhead.id});
   - elsif @trip

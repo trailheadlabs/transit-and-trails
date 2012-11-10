@@ -10,7 +10,7 @@ class Trip < ActiveRecord::Base
   has_many :maps, :as => :mapable, :dependent => :destroy
 
   attr_accessible :description, :ending_trailhead_id, :name, :route, :starting_trailhead_id,
-    :latitude, :longitude, :intensity_id, :duration_id, :trip_feature_ids
+    :latitude, :longitude, :intensity_id, :duration_id, :trip_feature_ids, :class_name
 
   before_save :update_bounds_min_max, :update_geometry
   after_save :refind_parks

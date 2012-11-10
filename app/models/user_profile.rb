@@ -19,7 +19,13 @@ class UserProfile < ActiveRecord::Base
   end
 
   def name
-    "#{firstname} #{lastname}"
+    if(firstname && lastname)
+      "#{firstname} #{lastname}"
+    elsif(organization_name)
+      "#{organization_name}"
+    else
+      user.username
+    end
   end
 
 end

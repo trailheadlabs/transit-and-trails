@@ -11,7 +11,6 @@ class ApplicationController < ActionController::Base
   def store_location
     unless request.path == "/users/sign_in" || request.path == "/embed/sessions/new"
       session[:user_return_to] = request.referer || request.fullpath
-      Rails.logger.info("store_location #{session[:user_return_to]}")
     end
   end
 
@@ -64,10 +63,12 @@ class ApplicationController < ActionController::Base
   end
 
   def loadkv
-    render :json => {:key=>params[:key],:value=>session[params[:key]] || nil}
+    Rails.logger.info("loadkv : key = #{params[:key]} value = #{session[params[:key]]}")
+    render :json => {:key=>params[:key],:value=>(session[params[:key]] || nil)}
   end
 
   def savekv
+    Rails.logger.info("savekv : key = #{params[:key]} value = #{params[:value]}")
     session[params[:key]] = params[:value]
     render :json => {:key=>params[:key],:value=>params[:value]}
   end
@@ -77,13 +78,10 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    Rails.logger.info("session[:user_return_to] = #{session[:user_return_to]}")
-    Rails.logger.info("stored_location_for(resource) = #{stored_location_for(resource)}")
     stored_location_for(resource) || root_path
   end
 
   def after_sign_out_path_for(resource)
-    Rails.logger.info("session[:user_return_to] = #{session[:user_return_to]}")
     stored_location_for(resource) || root_path
   end
 
