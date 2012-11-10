@@ -7,7 +7,13 @@ RailsAdmin.config do |config|
       :username
     end
   end
-  
+
+  config.model UserProfile do
+    object_label_method do
+      :name
+    end
+  end
+
   config.authenticate_with do
     authenticate_admin!
   end

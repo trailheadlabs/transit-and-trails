@@ -19,9 +19,9 @@ class UserProfile < ActiveRecord::Base
   end
 
   def name
-    if(firstname && lastname)
+    if(!firstname.blank? && !lastname.blank?)
       "#{firstname} #{lastname}"
-    elsif(organization_name)
+    elsif(!organization_name.blank?)
       "#{organization_name}"
     else
       user.username
