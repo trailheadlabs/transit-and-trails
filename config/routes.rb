@@ -142,6 +142,8 @@ Transitandtrails::Application.routes.draw do
 
   match 'profile' => 'user_profiles#edit', :as => :profile
 
+  match 'send_contact' => "application#send_contact", :via => :post, :as => :send_contact
+
   resources :user_profiles do
     member do
       post 'reset_api_key'

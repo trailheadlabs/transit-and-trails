@@ -1,9 +1,11 @@
 .left
+  = link_to 'Blog', "http://blog.transitandtrails.org"
+  |
   = link_to 'About', static_path(:id=>:about)
   |
   = link_to 'Partners', partners_path
   |
-  = link_to 'Contact', "mailto:contact@transitandtrails.org?subject=This site rocks!", :target => :blank
+  = link_to 'Contact', static_path(:id=>:contact)
 .right
   = link_to 'Terms', static_path(:id=>:terms)
   |

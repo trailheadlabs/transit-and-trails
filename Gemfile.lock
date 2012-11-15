@@ -182,6 +182,8 @@ GEM
       railties (~> 3.0)
     pg (0.14.1)
     polyglot (0.3.3)
+    pony (1.4)
+      mail (> 2.0)
     rabl (0.7.2)
       activesupport (>= 2.3.14)
       multi_json (~> 1.0)
@@ -324,6 +326,7 @@ DEPENDENCIES
   omniauth-twitter
   paper_trail (~> 2)
   pg
+  pony
   rabl
   rails (= 3.2.8)
   rails_admin

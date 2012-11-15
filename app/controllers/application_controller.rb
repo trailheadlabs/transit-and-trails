@@ -89,4 +89,12 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError.new('Not Found')
   end
 
+  def send_contact
+    if params[:from].blank?
+      flash[:error] = "Please provide your email address so we can get back to you."
+      redirect_to :back
+    else
+      Pony.mail(:to=>"contact@transitandtrails.org",:subject=>"Contact Form",:from=>params[:from],:body=>params[:message])
+    end
+  end
 end

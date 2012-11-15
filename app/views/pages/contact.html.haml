@@ -1,1 +1,14 @@
-%h1 Contact
+%h2.page-header Contact Us
+.content
+  = form_tag "/send_contact", :method => :post, :class => "simple_form"
+  .input
+    %label
+      Your Email Address
+      %input(type="text" placeholder="your@email.com" name="from")
+  .input
+    %label
+      Message
+      %textarea(name="message" rows="10")
+        This site rocks!
+  %input(type="submit" value="Send" class="btn")
+
