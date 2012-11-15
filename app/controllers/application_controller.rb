@@ -94,7 +94,11 @@ class ApplicationController < ActionController::Base
       flash[:error] = "Please provide your email address so we can get back to you."
       redirect_to :back
     else
-      Pony.mail(:to=>"contact@transitandtrails.org",:subject=>"Contact Form",:from=>params[:from],:body=>params[:message])
+      if Rails.env.production?
+        Pony.mail(:to=>"contact@transitandtrails.org",:subject=>"Contact Form",:from=>params[:from],:body=>params[:message])
+      end
+      flash[:notice] = "Thanks for the message! We'll get back to you as soon as we can."
+      redirect_to :back
     end
   end
 end
