@@ -9,26 +9,26 @@ class Park < ActiveRecord::Base
 
   has_paper_trail
 
-  rails_admin do        
-    field :name do 
+  rails_admin do
+    field :name do
       searchable true
     end
-    field :description do    
+    field :description do
       searchable false
     end
-    field :county do    
+    field :county do
       searchable false
     end
     field :county_slug do
       searchable false
     end
-    field :bounds do    
+    field :bounds do
       searchable false
     end
-    field :slug do    
+    field :slug do
       searchable false
-    end    
-    field :link do    
+    end
+    field :link do
       searchable false
     end
     include_all_fields
@@ -68,7 +68,7 @@ class Park < ActiveRecord::Base
   end
 
   def campgrounds
-    ((!cached_campgrounds.empty? && cached_campgrounds) || campgrounds_in_bounds) 
+    ((!cached_campgrounds.empty? && cached_campgrounds) || campgrounds_in_bounds)
   end
 
   def campgrounds_in_bounds
@@ -82,7 +82,7 @@ class Park < ActiveRecord::Base
     return campgrounds
   end
 
-  def trips    
+  def trips
     trailheads.collect{|t| t.trips_starting_at + t.trips_ending_at }.flatten
   end
 
@@ -121,8 +121,13 @@ class Park < ActiveRecord::Base
   end
 
   def polys
-    tmp = bounds.gsub(/[A-Za-z]|\)/,"").strip.split('(').select{|c| !c.blank?}
-    tmp.collect!{ |c|c.strip.split(',').collect{|e| e.split(" ").collect{|d| Float(d)}} }
+    if !bounds.blank?
+      tmp = bounds.gsub(/[A-Za-z]|\)/,"").strip.split('(').select{|c| !c.blank?}
+      tmp.collect!{ |c|c.strip.split(',').collect{|e| e.split(" ").collect{|d| Float(d)}} }
+      return tmp
+    else
+      return []
+    end
   end
 
   def contains_trailhead?(trailhead)
