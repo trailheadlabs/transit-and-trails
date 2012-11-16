@@ -19,7 +19,7 @@
 - if @trailhead
   - if @trailhead.rideshare
     %input#rideshare{:type => "hidden", :value => "true"}/
-    %input#zimride_url{:type => "hidden", :value => ""}/
+    %input#zimride_url{:type => "hidden", :value => "#{trailhead.zimride_url}"}/
   - else
     %input#rideshare{:type => "hidden", :value => "false"}/
 
