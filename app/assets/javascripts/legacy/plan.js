@@ -718,7 +718,7 @@ TNT.plan = {
     }
     else if(this.directionMode == 'rideshare') {
       if(isReturnTrip) {
-        this.showEndRideshareNewWindow();
+        this.showStartRideshareNewWindow();
       } else {
         this.showStartRideshareNewWindow();
       }
