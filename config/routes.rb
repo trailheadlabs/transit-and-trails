@@ -46,42 +46,42 @@ Transitandtrails::Application.routes.draw do
     end
   end
 
-  constraints :subdomain => (Rails.env.production? ? /embed\.rails|embed|rails/ : /.*/) do
-    namespace :embed do
-      match "login" => "sessions#new", :as => :sigin
-      match "signin" => "sessions#new"
-      match "signout" => "sessions#destroy", :as => :signout
-      match "signup" => "registrations#new", :as => :signup
-      match "confirm" => "registrations#confirm", :as => :confirm
-      match "approve" => "registrations#approve", :as => :approve
-      resources :trailheads do
-        member do
-          get 'details'
-        end
+  # constraints :subdomain => (Rails.env.production? ? /embed\.rails|embed|rails/ : /.*/) do
+  namespace :embed do
+    match "login" => "sessions#new", :as => :sigin
+    match "signin" => "sessions#new"
+    match "signout" => "sessions#destroy", :as => :signout
+    match "signup" => "registrations#new", :as => :signup
+    match "confirm" => "registrations#confirm", :as => :confirm
+    match "approve" => "registrations#approve", :as => :approve
+    resources :trailheads do
+      member do
+        get 'details'
       end
-      resources :campgrounds do
-        member do
-          get 'details'
-        end
-      end
-      resources :sessions, :only => [:new]
-      resources :registrations, :only => [:new,:create]
-      resources :trips, :only => [:new,:create,:update,:edit] do
-        member do
-          get 'edit_details'
-          get 'edit_photos'
-          put 'update_details'
-          put 'update_photos'
-        end
-      end
-      match "plan/location" => "plan#location"
-      match "plan/trailhead/:trailhead_id" => "plan#trailhead"
-      match "plan/campground/:campground_id" => "plan#campground"
-      match "plan/trip/:trip_id" => "plan#trip"
-      match "plan/trailhead_list" => "plan#trailhead_list"
-      match "plan/non_profit_partner_trailheads" => "plan#non_profit_partner_trailheads"
     end
+    resources :campgrounds do
+      member do
+        get 'details'
+      end
+    end
+    resources :sessions, :only => [:new]
+    resources :registrations, :only => [:new,:create]
+    resources :trips, :only => [:new,:create,:update,:edit] do
+      member do
+        get 'edit_details'
+        get 'edit_photos'
+        put 'update_details'
+        put 'update_photos'
+      end
+    end
+    match "plan/location" => "plan#location"
+    match "plan/trailhead/:trailhead_id" => "plan#trailhead"
+    match "plan/campground/:campground_id" => "plan#campground"
+    match "plan/trip/:trip_id" => "plan#trip"
+    match "plan/trailhead_list" => "plan#trailhead_list"
+    match "plan/non_profit_partner_trailheads" => "plan#non_profit_partner_trailheads"
   end
+  # end
 
   resources :trips do
     resources :maps
