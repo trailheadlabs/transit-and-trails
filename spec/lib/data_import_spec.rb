@@ -706,7 +706,7 @@ describe "DataImport" do
           "name": "San Francisco Bay Trail",
           "link_url": "http://www.baytrail.org/",
           "rank": 3,
-          "marker_icon": "trailhead_marker_icons/bay_trail.JPG",
+          "marker_icon": "baosc.png",
           "description": "This trailhead is along the San Francisco Bay Trail. The San Francisco Bay Trail is a bicycle and pedestrian trail that will eventually allow continuous travel around the shoreline of San Francisco Bay. As of 2012, approximately 325 miles (523 km) of trail have been completed. When finished, the Bay Trail will extend over 500 miles (805 km) to link the shoreline of nine counties, passing through 47 cities and crossing seven toll bridges. It is a project of the Association of Bay Area Governments. Read more at http://www.baytrail.org/"
         }
       }
@@ -797,7 +797,7 @@ describe "DataImport" do
     user = JSON::parse('{"pk":18,"model":"auth.user","fields":{"username":"jereme","first_name":"Jereme","last_name":"Monteau","is_active":true,"is_superuser":false,"is_staff":false,"last_login":"2012-08-03 16:39:36","groups":[1],"user_permissions":[],"password":"sha1$a3f08$d62f324e83384347d6cb1499c152f81b6cb6cc9f","email":"me@jmoe.com","date_joined":"2009-03-24 09:03:01"}}')
     Util::DataImport::import_user user
 
-    item = JSON::parse('{"pk":1,"model":"tnt.userprofile","fields":{"last_name":"Monteau","facebook_photo_url":null,"organization_avatar_thumbnail_url":"organizations_avatars/jereme/604e28c6-dcc0-11e1-8cda-1231380b3501.jpg","organization_avatar":"organizations_avatars/transit-trails/avatar_2.jpg","city":"Berkeley","first_name":"Jereme","zip":"94708","organization_name":"Transit & Trails","state":"CA","facebook_profile":null,"address1":"2794 Shasta Road","api_key":"e73f44a17ae5b1b9d6d129e818023ed8b0c6acd9b238c1bb88cba13c86065bfb","api_secret":"5cf75dfc79804e008d135df93da15317a67368d29cae84f1b93ba7a33d28d287","address2":"","website_address":"http://jmoe.com","beta":false,"facebook_profile_url":null,"user":18,"signup_source":"","avatar_thumbnail_url":"user_profiles_avatars/jereme/604e004e-dcc0-11e1-8cda-1231380b3501.jpg","avatar":"user_profiles_avatars/jereme/avatar.png","facebook":false}}')
+    item = JSON::parse('{"pk":1,"model":"tnt.userprofile","fields":{"last_name":"Monteau","facebook_photo_url":null,"organization_avatar_thumbnail_url":"organizations_avatars/jereme/604e28c6-dcc0-11e1-8cda-1231380b3501.jpg","organization_avatar":"baosc.png","city":"Berkeley","first_name":"Jereme","zip":"94708","organization_name":"Transit & Trails","state":"CA","facebook_profile":null,"address1":"2794 Shasta Road","api_key":"e73f44a17ae5b1b9d6d129e818023ed8b0c6acd9b238c1bb88cba13c86065bfb","api_secret":"5cf75dfc79804e008d135df93da15317a67368d29cae84f1b93ba7a33d28d287","address2":"","website_address":"http://jmoe.com","beta":false,"facebook_profile_url":null,"user":18,"signup_source":"","avatar_thumbnail_url":"user_profiles_avatars/jereme/604e004e-dcc0-11e1-8cda-1231380b3501.jpg","avatar":"baosc.png","facebook":false}}')
     Util::DataImport::import_user_profile item
     new_profile = UserProfile.last
     new_profile.user_id.should eq item['fields']['user']
