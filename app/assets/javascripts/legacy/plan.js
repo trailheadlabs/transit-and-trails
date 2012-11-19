@@ -732,7 +732,7 @@ TNT.plan = {
 
     var zimride_url = $('#zimride_url').val();
     var start_from_address = $("#start-from-address").val();
-    var url = zimride_url + "&s=" + encodeURIComponent(start_from_address) + "&date=" + encodeURIComponent(raw_trip_date);
+    var url = zimride_url + "&s=" + start_from_address + "&date=" + raw_trip_date;
     var url = encodeURI(url);
 
     window.open(url, "start_rideshare");
