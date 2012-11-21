@@ -10,7 +10,7 @@ namespace :flickr do
 
     puts "Open this url in your process to complete the authication process : #{auth_url}"
     puts "Copy here the number given when you complete the process."
-    verify = gets.strip
+    verify = STDIN.gets.strip
 
     begin
       flickr.get_access_token(token['oauth_token'], token['oauth_token_secret'], verify)
