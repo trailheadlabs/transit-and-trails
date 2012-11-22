@@ -1,0 +1,86 @@
+@import "bootstrap";
+@import "font-awesome";
+
+body{
+  background-image:url(/assets/woodbackground.jpg);
+  font-family: 'Open Sans', sans-serif;
+  font-weight:200;
+  letter-spacing: 1px;
+}
+
+.navbar-inner.navbar-main {
+  height:84px;
+  background-image:none;
+  background-color:#4a90b1;
+  box-shadow: 0px 2px 20px 1px #1A7A0D;
+  position:relative;
+  z-index: 100;
+  color:white;
+  .container{
+    padding-top:10px;
+    .navbar-content{
+      height:100%;
+      position:relative;
+    }
+  }
+
+}
+
+.navbar-inner.navbar-find {
+  background-image:url(/assets/greentexture.jpg);
+  box-shadow: -5px 5px 12px #333;
+  position:relative;
+  z-index: 10;
+  height:50px;
+  .container{
+    padding-top:10px;
+  }
+  color:white;
+}
+
+input.search-query{
+  position: relative;
+  top: 1px;
+}
+
+.main-nav-items{
+  li{
+    padding-left:40px;
+    font-size:18px;
+  }
+
+  position:absolute;
+  bottom:4px;
+  right:0px;
+}
+.navbar .btn-group{
+  margin-top:0px;
+}
+.btn-group > .btn:first-child {
+  @include border-radius(20px 0px 0px 20px)
+}
+
+.btn-group > .btn:last-child {
+   @include border-radius(0px 20px 20px 0px)
+}
+.btn-success.active{
+  background-color:#4a90b1;
+}
+
+button{
+  font-weight:400;
+  padding-bottom:6px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.nav-what-label{
+  position:relative;
+  top:2px;
+}
+.navbar-logo{
+  float:left;
+  width:152px;
+  height:66px;
+  background-image:url(/assets/find_sprite.png);
+
+}

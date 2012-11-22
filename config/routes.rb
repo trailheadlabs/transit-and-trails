@@ -158,6 +158,8 @@ Transitandtrails::Application.routes.draw do
 
   root :to => "find#find"
 
+  match "/find/v2" => "find#v2"
+
   match 'objects/near/html' => 'find#objects_near'
 
   match 'find' => "find#find"

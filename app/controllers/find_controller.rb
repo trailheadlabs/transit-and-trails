@@ -1,4 +1,9 @@
 class FindController < ApplicationController
+  def v2
+    find
+    render "v2", :layout => "v2"
+  end
+
   def find
     @latest_photos = Photo.order('legacy_id desc, id desc').limit(6)
     @featuredtab = FeaturedTab.last
