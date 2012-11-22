@@ -21,6 +21,9 @@ body{
     .navbar-content{
       height:100%;
       position:relative;
+      .sign-in{
+        font-size:12px;
+      }
     }
   }
 
@@ -47,6 +50,10 @@ input.search-query{
   li{
     padding-left:40px;
     font-size:18px;
+  }
+
+  .nav{
+    margin:0px;
   }
 
   position:absolute;
