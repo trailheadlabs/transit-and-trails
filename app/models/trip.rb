@@ -8,7 +8,7 @@ class Trip < ActiveRecord::Base
   has_many :stories, :as => :storytellable, :dependent => :destroy
   has_many :photos, :as => :photoable, :dependent => :destroy
   has_many :maps, :as => :mapable, :dependent => :destroy
-
+  has_paper_trail
   attr_accessible :description, :ending_trailhead_id, :name, :route, :starting_trailhead_id,
     :latitude, :longitude, :intensity_id, :duration_id, :trip_feature_ids, :class_name
 

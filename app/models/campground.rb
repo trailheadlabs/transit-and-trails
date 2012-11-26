@@ -19,6 +19,8 @@ class Campground < ActiveRecord::Base
 
   before_save :auto_approve, :park_by_bounds
 
+  has_paper_trail
+
   def categorized_attributes
     result = {}
     Category.all.each do |category|

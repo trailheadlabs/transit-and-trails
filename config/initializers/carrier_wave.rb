@@ -11,6 +11,6 @@ if Rails.env.test? or Rails.env.cucumber?
       :aws_secret_access_key  => ENV['AWS_SECRET'],       # required
     }
     config.fog_directory  = "tntrailsuploads-#{Rails.env}"                     # required
-    config.fog_host       = "https://tntrailsuploads-#{Rails.env}.s3.amazonaws.com"            # optional, defaults to nil
+    config.fog_endpoint   = "https://tntrailsuploads-#{Rails.env}.s3.amazonaws.com"            # optional, defaults to nil
   end
 end

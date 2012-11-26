@@ -157,6 +157,7 @@ class TrailheadsController < ApplicationController
     @trailhead.destroy
 
     respond_to do |format|
+      flas[:notice] = "Trailhead deleted."
       format.html { redirect_to root_path }
       format.json { head :no_content }
     end
