@@ -13,7 +13,7 @@ class Trailhead < ActiveRecord::Base
   has_many :photos, :as => :photoable, :dependent => :destroy
   has_many :trips_starting_at, :class_name => "Trip", :foreign_key => "starting_trailhead_id"
   has_many :trips_ending_at, :class_name => "Trip", :foreign_key => "ending_trailhead_id"
-  scope :approved, where(:approved => true, :user_id => User.where(admin: true))
+  scope :approved, where(:approved => true)
   has_paper_trail
   attr_accessible :description, :latitude, :longitude, :name, :rideshare, :zimride_url, :approved,
     :park_id, :user_id, :trips_ending_at_ids, :trips_starting_at_ids, :trailhead_feature_ids, :agency_id, :class_name

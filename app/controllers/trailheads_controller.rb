@@ -157,7 +157,7 @@ class TrailheadsController < ApplicationController
     @trailhead.destroy
 
     respond_to do |format|
-      format.html { redirect_to trailheads_url }
+      format.html { redirect_to root }
       format.json { head :no_content }
     end
   end
