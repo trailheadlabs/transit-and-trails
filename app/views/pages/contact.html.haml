@@ -10,5 +10,9 @@
       Message
       %textarea(name="message" rows="10")
         This site rocks!
+  .input
+    %label
+      Are you human?
+      = recaptcha_tags
   %input(type="submit" value="Send" class="btn")
 

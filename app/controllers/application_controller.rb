@@ -93,6 +93,10 @@ class ApplicationController < ActionController::Base
     if params[:from].blank?
       flash[:error] = "Please provide your email address so we can get back to you."
       redirect_to :back
+    elsif
+      !verify_recaptcha
+      flash[:error] = "Sorry, we couldn't verify that you aren't a spambot."
+      redirect_to :back
     else
       if Rails.env.production?
         Pony.mail(:to=>"contact@transitandtrails.org",:subject=>"Contact Form",:from=>params[:from],:body=>params[:message])
