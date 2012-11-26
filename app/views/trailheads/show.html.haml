@@ -4,7 +4,7 @@
   :javascript
     google.load("maps", "2.x");
   = javascript_include_tag "legacy/markermanager"
-  
+
   %script{:src => "/assets/legacy/galleria/galleria-1.2.7.min.js"}
   = javascript_include_tag "legacy/common"
   = stylesheet_link_tag "legacy/reset"
@@ -23,7 +23,8 @@
 #page.trip-details
 
   #trail-details.trail-details-overlay
-    != @trailhead.description
+    .description
+      != @trailhead.description
 
   #details-section
     #plan.alt.trailhead

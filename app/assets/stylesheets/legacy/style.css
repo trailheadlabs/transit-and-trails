@@ -1867,8 +1867,6 @@ span.required {
     font-size: 1em;
     padding: 30px;
     width: 400px;
-    max-height:300px;
-    overflow-y:scroll;
     text-align: left;
 }
 #trailhead-maps .map { margin:20px 15px; clear: left; height: 26px;}
