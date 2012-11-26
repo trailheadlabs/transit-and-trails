@@ -29,23 +29,23 @@ class User < ActiveRecord::Base
 
   validates :username, :uniqueness => true
 
-  def users_for_role(role_name)
+  def self.users_for_role(role_name)
     Role.find_by_name(role_name) && Role.find_by_name(role_name).users
   end
 
-  def trailblazers
+  def self.trailblazers
     users_for_role('trailblazer')
   end
 
-  def admins
+  def self.admins
     users_for_role('admin')
   end
 
-  def baynature_trailblazers
+  def self.baynature_trailblazers
     users_for_role('baynature_trailblazers')
   end
 
-  def baynature_admins
+  def self.baynature_admins
     users_for_role('baynature_admin')
   end
 

@@ -1,7 +1,13 @@
 module PointOfInterest
   def auto_approve
-    if user && (user.trailblazer? || user.admin?)
+    if user && (user.trailblazer? || user.admin? || user.baynature_trailblazer? || user.baynature_admin?)
       self.approved = true
+    end
+  end
+
+  def update_park_by_bounds
+    if(latitude_changed? || longitude_changed?)
+      park_by_bounds
     end
   end
 

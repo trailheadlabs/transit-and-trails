@@ -2,7 +2,7 @@ namespace :data do
 
   desc "Reset autoincrements"
   task :reset_all_autoincrements, [:value] => [:environment] do |t, args|
-    [ 
+    [
       Agency,
       Campground,
       CampgroundFeature,
@@ -40,12 +40,12 @@ namespace :data do
     puts "Done"
   end
 
-  desc "Approve all campgrounds"
-  task :approve_trailheads => :environment do
-    puts Trailhead.where(user_id: User.where(admin: true)).update_all(approved: true) 
-    puts Trailhead.where(user_id: User.where(trailblazer: true)).update_all(approved: true)    
-    puts "Done"
-  end
+  # desc "Approve all trailheads"
+  # task :approve_trailheads => :environment do
+  #   puts Trailhead.where(user_id: User.where(admin: true)).update_all(approved: true)
+  #   puts Trailhead.where(user_id: User.where(trailblazer: true)).update_all(approved: true)
+  #   puts "Done"
+  # end
 
   desc "Cache parks on trailheads"
   task :cache_trailhead_parks => :environment do
@@ -55,6 +55,19 @@ namespace :data do
       puts "#{i+1}/#{count}"
     end
     puts "Done"
+  end
+
+  desc "Approve trailheads"
+  task :approve_trailheads => :environment do
+    puts "Approving trailheads"
+    count = 0
+    Trailhead.all.each do |t|
+      t.save
+      if t.approved
+        count += 1
+      end
+    end
+    puts "Done : #{count} approved"
   end
 
   desc "Destroy all campground_photos"

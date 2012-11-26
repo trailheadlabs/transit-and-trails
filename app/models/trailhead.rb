@@ -23,7 +23,7 @@ class Trailhead < ActiveRecord::Base
 
   accepts_nested_attributes_for :maps, :allow_destroy => true
 
-  before_save :auto_approve, :park_by_bounds
+  before_save :auto_approve, :update_park_by_bounds
 
   validates :name, :presence => true, :uniqueness => true
 
