@@ -15,7 +15,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'rails_admin'
-gem 'fog'
+gem "fog", "~> 1.3.1"
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'simple_form'
