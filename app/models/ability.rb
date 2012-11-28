@@ -11,10 +11,11 @@ class Ability
         can :manage, :all
     end
     if user.trailblazer? || user.baynature_trailblazer?
+        can :manage, Trip
         can :manage, Trailhead
+        can :manage, Campground
         can :manage, Photo
         can :manage, Map
-        Rails.logger.info('Trailblazer!')
     end
     if user.baynature_trailblazer?
         can :manage, Trip

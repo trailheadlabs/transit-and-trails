@@ -54,6 +54,7 @@ class User < ActiveRecord::Base
   end
 
   def add_role(role_sym)
+    if !roles.find_by_name(role_sym.to_s)
     roles << Role.find_by_name(role_sym.to_s)
   end
 
