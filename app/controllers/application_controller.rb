@@ -5,12 +5,13 @@ class ApplicationController < ActionController::Base
   end
 
   before_filter :store_location, :except => {:controller=>:devise_session}
+  skip_before_filter :store_location, :only => [:loadkv,:savekv]
 
   protect_from_forgery
 
   def store_location
     Rails.logger.info params[:controller]
-    unless request.path == "/users/sign_in" || request.path == "/embed/sessions/new" || params[:controller].match(/devise/)
+    unless request.xhr? || params[:controller].match(/devise/) || request.format == :json
       Rails.logger.info "STORED LOCATION"
       session[:user_return_to] = request.referer || request.fullpath
     end
