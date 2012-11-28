@@ -32,15 +32,15 @@
 #trails
   #the-trails
     #find-map
-    - if can? :create, :trip
+    - if can? :create, Trip
       %a#add-trips.green-button.map-add-trip-button{:href => "#{new_trip_path}"}
         %span.big-plus +
         %span.add-trip-text Add Trip
-    - if can? :create, :campground
+    - if can? :create, Campground
       %a#add-campgrounds.green-button.map-add-campground-button{:href => "#{new_campground_path}"}
         %span.big-plus +
         %span.add-trip-text Add Campground
-    - if can? :create, :trailhead
+    - if can? :create, Trailhead
       %a#add-trails.green-button{:href => "#{new_trailhead_path}"}
         %span.big-plus +
         %span.add-trip-text Add Trailhead

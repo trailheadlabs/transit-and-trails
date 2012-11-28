@@ -1,4 +1,4 @@
-- content_for :head do  
+- content_for :head do
   = stylesheet_link_tag "application"
   = javascript_include_tag "application"
   = javascript_include_tag "legacy/common"
@@ -16,7 +16,7 @@
 
     #trail-details.trail-details-overlay
       != @trailhead.description
-  
+
     #details-section
       #plan.alt.trailhead
         #trip-meta
@@ -43,11 +43,11 @@
               %a.green-button.padded-sides{:href => "/embed/plan/trailhead/#{@trailhead.id}"}
                 Plan Trip to Here
 
-            - if can?(:edit,:trailhead)
+            - if can?(:edit,@trailhead)
               .button-frame
                 %a.green-button{:href => "#{edit_trailhead_path(@trailhead)}", :target=>"_blank"} Edit Trailhead
 
-            - if can?(:destroy,:trailhead)
+            - if can?(:destroy,@trailhead)
               .button-frame
                 = link_to("Delete Trailhead", @trailhead, :method => :delete, :confirm => "Are you sure?", :class=>"green-button")
 

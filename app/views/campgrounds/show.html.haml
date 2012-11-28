@@ -4,7 +4,7 @@
   :javascript
     google.load("maps", "2.x");
   = javascript_include_tag "legacy/markermanager"
-  
+
   / load Galleria
   %script{:src => "/assets/legacy/galleria/galleria-1.2.7.min.js"}
   = javascript_include_tag "legacy/common"
@@ -63,11 +63,11 @@
             %a.green-button.padded-sides{:href => "/plan/campground/#{@campground.id}"}
               Plan Trip to Here
 
-          - if can?(:edit,:campground)
+          - if can?(:edit,@campground)
             .button-frame
               %a.green-button{:href => "#{edit_campground_path(@campground)}"} Edit Campground
 
-          - if can?(:destroy,:campground)
+          - if can?(:destroy,@campground)
             .button-frame
               = link_to("Delete Campground", @campground, :method => :delete, :confirm => "Are you sure?", :class=>"green-button")
 

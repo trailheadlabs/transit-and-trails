@@ -102,7 +102,7 @@ class ApplicationController < ActionController::Base
       redirect_to :back
     else
       if Rails.env.production?
-        Pony.mail(:to=>"contact@transitandtrails.org",:subject=>"Contact Form",:from=>params[:from],:body=>params[:message])
+        Pony.mail(:to=>"contact@transitandtrails.org",:subject=>"Transit & Trails Contact Form",:from=>params[:from],:body=>params[:message])
       end
       flash[:notice] = "Thanks for the message! We'll get back to you as soon as we can."
       redirect_to :back

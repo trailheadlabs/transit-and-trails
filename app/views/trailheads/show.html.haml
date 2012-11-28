@@ -64,11 +64,11 @@
             %a.green-button.padded-sides{:href => "/plan/trailhead/#{@trailhead.id}"}
               Plan Trip to Here
 
-          - if can?(:edit,:trailhead)
+          - if can?(:edit,@trailhead)
             .button-frame
               %a.green-button{:href => "#{edit_trailhead_path(@trailhead)}"} Edit Trailhead
 
-          - if can?(:destroy,:trailhead)
+          - if can?(:destroy,@trailhead)
             .button-frame
               = link_to("Delete Trailhead", @trailhead, :method => :delete, :confirm => "Are you sure?", :class=>"green-button")
 

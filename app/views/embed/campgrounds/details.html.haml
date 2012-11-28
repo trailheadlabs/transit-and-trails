@@ -1,4 +1,4 @@
-- content_for :head do  
+- content_for :head do
   = stylesheet_link_tag "application"
   = javascript_include_tag "application"
   = javascript_include_tag "legacy/common"
@@ -43,11 +43,11 @@
               %a.green-button.padded-sides{:href => "/embed/plan/campground/#{@campground.id}"}
                 Plan Trip to Here
 
-            - if can?(:edit,:campground)
+            - if can?(:edit,@campground)
               .button-frame
                 %a.green-button{:href => "#{edit_campground_path(@campground)}", :target => "_blank"} Edit Campground
 
-            - if can?(:destroy,:campground)
+            - if can?(:destroy,@campground)
               .button-frame
                 = link_to("Delete Campground", @campground, :method => :delete, :confirm => "Are you sure?", :class=>"green-button")
 
