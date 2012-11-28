@@ -9,7 +9,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   def store_location
-    unless request.path == "/users/sign_in" || request.path == "/embed/sessions/new"
+    Rails.logger.info params[:controller]
+    unless request.path == "/users/sign_in" || request.path == "/embed/sessions/new" || params[:controller].match(/devise/)
+      Rails.logger.info "STORED LOCATION"
       session[:user_return_to] = request.referer || request.fullpath
     end
   end
