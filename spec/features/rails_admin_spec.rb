@@ -10,9 +10,11 @@ describe "rails admin" do
     user = FactoryGirl.create(:admin)
     user.admin?.should be_true
     visit '/admin'
-    fill_in 'Username', with: user.username
-    fill_in 'Password', with: 'please'
-    click_on 'Sign In'
+    within "#new_user" do
+      fill_in 'Username', with: user.username
+      fill_in 'Password', with: 'please'
+      click_on 'Sign In'
+    end
     page.should_not have_content 'Sign in'
   end
 
@@ -20,9 +22,11 @@ describe "rails admin" do
     user = FactoryGirl.create(:user)
     user.admin.should be_false
     visit '/admin'
-    fill_in 'Username', with: user.username
-    fill_in 'Password', with: 'please'
-    click_on 'Sign In'
+    within "#new_user" do
+      fill_in 'Username', with: user.username
+      fill_in 'Password', with: 'please'
+      click_on 'Sign In'
+    end
     page.should_not have_content 'Sign in'
   end
 

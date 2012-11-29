@@ -11,7 +11,7 @@ describe "signup page" do
     page.should have_content("Sign Up")
     fill_in 'Username', with: 'newuser'
     fill_in 'Email', with: 'newuser@email.com'
-    fill_in 'Password', with: 'please'
+    fill_in 'user_password', with: 'please'
     fill_in 'Password confirmation', with: 'please'
     click_button 'Sign Up'
     page.should have_content 'A message with a confirmation link has been sent to your email address.'
@@ -21,7 +21,7 @@ describe "signup page" do
     visit '/users/sign_up'
     page.should have_content("Sign Up")
     fill_in 'Username', with: 'newuser'
-    fill_in 'Password', with: 'please'
+    fill_in 'user_password', with: 'please'
     fill_in 'Password confirmation', with: 'please'
     click_button 'Sign Up'
     page.should have_selector ".email.field_with_errors"

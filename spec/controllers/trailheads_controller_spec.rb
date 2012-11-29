@@ -114,6 +114,11 @@ describe TrailheadsController do
           }.to change(Trailhead, :count).by(1)
         end
 
+        it "assigns trailhead user as current user" do
+          post :create, {:trailhead => valid_attributes}, valid_session
+          assigns(:trailhead).user.should eq @user
+        end
+
         it "assigns a newly created trailhead as @trailhead" do
           post :create, {:trailhead => valid_attributes}, valid_session
           assigns(:trailhead).should be_a(Trailhead)
@@ -198,7 +203,7 @@ describe TrailheadsController do
       it "redirects to the trailheads list" do
         trailhead = Trailhead.create! valid_attributes
         delete :destroy, {:id => trailhead.to_param}, valid_session
-        response.should redirect_to(trailheads_url)
+        response.should redirect_to(root_url)
       end
     end
   end
