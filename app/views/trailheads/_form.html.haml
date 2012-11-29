@@ -20,6 +20,10 @@
     .editor
       %textarea(name="trailhead[description]" id="trailhead_description" rows="10" cols="40")
         #{@trailhead.description}
+    - if can? :override_park, Park
+      = f.input :park_name, :url => autocomplete_park_name_parks_path, :as => :autocomplete, :placeholder => "Start Typing a Park Name", :id_element => '#trailhead_park_id', :label => "Park Override"
+      = f.input :park_id, :as => :hidden
+
   / e: tour
   #plan-map-instructions Click on the map to place your trailhead. You can reposition your pin by dragging it or clicking in a new location. Gray pins show existing trailheads.
   #plan-map

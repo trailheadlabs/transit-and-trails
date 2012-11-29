@@ -125,6 +125,7 @@ Transitandtrails::Application.routes.draw do
     end
   end
 
+  match 'parks/autocomplete_park_name' => "parks#autocomplete_park_name", :as => :autocomplete_park_name_parks
   match 'parks(/:slug(/:county_slug))' => "parks#show"
 
   resources :parks do

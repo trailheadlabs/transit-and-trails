@@ -39,6 +39,7 @@ gem 'airbrake'
 gem 'pony'
 gem 'recaptcha', :require => "recaptcha/rails"
 gem "rails_admin_map_field", :git => "git://github.com/jmoe/rails_admin_map_field.git"
+gem 'rails3-jquery-autocomplete'
 
 # Gems used only for assets and not required
 # in production environments by default.

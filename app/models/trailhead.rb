@@ -15,7 +15,7 @@ class Trailhead < ActiveRecord::Base
   has_many :trips_ending_at, :class_name => "Trip", :foreign_key => "ending_trailhead_id"
   scope :approved, where(:approved => true)
   has_paper_trail
-  attr_accessible :description, :latitude, :longitude, :name, :rideshare, :zimride_url, :approved,
+  attr_accessible :description, :latitude, :longitude, :name, :rideshare, :zimride_url, :approved, :park_name,
     :park_id, :user_id, :trips_ending_at_ids, :trips_starting_at_ids, :trailhead_feature_ids, :agency_id, :class_name
 
   attr_accessible :maps_attributes, :allow_destroy => true
@@ -26,6 +26,13 @@ class Trailhead < ActiveRecord::Base
   before_save :auto_approve, :update_park_by_bounds
 
   validates :name, :presence => true, :uniqueness => true
+
+  def park_name
+    park && park.name
+  end
+
+  def park_name=(val)
+  end
 
   def categorized_attributes
     result = {}

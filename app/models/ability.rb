@@ -7,18 +7,8 @@ class Ability
     #
     user ||= User.new # guest user (not logged in)
     can :read, :all
-    if user.admin?
-        can :manage, :all
-    end
-    if user.trailblazer? || user.baynature_trailblazer?
-        can :manage, Trip
-        can :manage, Trailhead
-        can :manage, Campground
-        can :manage, Photo
-        can :manage, Map
-    end
-    if user.baynature_trailblazer?
-        can :manage, Trip
+    user.roles.each do |role|
+        send(role.name)
     end
     #
     # The first argument to `can` is the action you are giving the user permission to do.
@@ -34,5 +24,26 @@ class Ability
     #   can :update, Article, :published => true
     #
     # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
+  end
+
+  def admin
+    can :manage, :all
+  end
+
+  def trailblazer
+    can :manage, Trip
+    can :manage, Trailhead
+    can :manage, Campground
+    can :manage, Photo
+    can :manage, Map
+  end
+
+  def baynature_trailblazer
+    trailblazer
+  end
+
+  def agency_trailblazer
+    trailblazer
+    can :override_park, Park
   end
 end
