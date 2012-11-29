@@ -78,6 +78,7 @@ class ApplicationController < ActionController::Base
 
   def stored_location_for(resource_or_scope)
     session[:user_return_to] || super
+    session.delete("user_return_to")
   end
 
   def after_sign_in_path_for(resource)
