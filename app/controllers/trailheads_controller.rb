@@ -122,6 +122,7 @@ class TrailheadsController < ApplicationController
   # POST /trailheads.json
   def create
     @trailhead = Trailhead.new(params[:trailhead])
+    @trailhead.user = current_user
 
     respond_to do |format|
       if @trailhead.save
@@ -157,7 +158,7 @@ class TrailheadsController < ApplicationController
     @trailhead.destroy
 
     respond_to do |format|
-      flas[:notice] = "Trailhead deleted."
+      flash[:notice] = "Trailhead deleted."
       format.html { redirect_to root_path }
       format.json { head :no_content }
     end

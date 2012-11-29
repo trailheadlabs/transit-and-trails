@@ -68,6 +68,7 @@ class CampgroundsController < ApplicationController
   # POST /campgrounds.json
   def create
     @campground = Campground.new(params[:campground])
+    @campground.user = current_user
 
     respond_to do |format|
       if @campground.save
