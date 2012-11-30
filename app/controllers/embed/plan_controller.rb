@@ -39,7 +39,7 @@ module Embed
       partner_id = params[:partner_id]
       parks = Park.where(:non_profit_partner_id => partner_id)
       trailhead_ids = parks.collect{|p| p.trailheads }.flatten
-
+      trailhead_ids += Trailhead.where(non_profit_partner_id: partner_id)
       attribute_id = params[:attribute_id]
       if attribute_id
         @selected_trailheads = TrailheadFeature.find(attribute_id).trailheads.where(id:trailhead_ids)

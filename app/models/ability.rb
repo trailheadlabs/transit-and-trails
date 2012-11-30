@@ -46,5 +46,6 @@ class Ability
     trailblazer
     can :override_park, Trailhead
     can :override_agency, Trailhead
+    can :override_non_profit_partner, Trailhead
   end
 end

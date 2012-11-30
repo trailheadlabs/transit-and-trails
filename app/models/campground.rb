@@ -12,7 +12,14 @@ class Campground < ActiveRecord::Base
   has_many :stories, :as => :storytellable, :dependent => :destroy
 
   has_and_belongs_to_many :campground_features
-  attr_accessible :approved, :description, :latitude, :longitude, :name, :campground_feature_ids, :agency_id, :class_name
+  attr_accessible :approved,
+                  :description,
+                  :latitude,
+                  :longitude,
+                  :name,
+                  :campground_feature_ids,
+                  :agency_id,
+                  :user_id
   reverse_geocoded_by :latitude, :longitude
 
   validates :name, :presence => true, :uniqueness => true

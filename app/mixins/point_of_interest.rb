@@ -51,4 +51,8 @@ module PointOfInterest
     agency_override || (default_park && default_park.agency) || nil
   end
 
+  def non_profit_partner
+    default_park && default_park.non_profit_partner
+  end
+
 end

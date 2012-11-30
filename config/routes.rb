@@ -143,6 +143,12 @@ Transitandtrails::Application.routes.draw do
     end
   end
 
+  resources :non_profit_partners do
+    collection do
+      get 'autocomplete_non_profit_partner_name'
+    end
+  end
+
   resources :parks, :only => [:show]
 
   resources :partners, :only => [:index]

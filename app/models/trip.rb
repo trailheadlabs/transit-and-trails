@@ -9,8 +9,18 @@ class Trip < ActiveRecord::Base
   has_many :photos, :as => :photoable, :dependent => :destroy
   has_many :maps, :as => :mapable, :dependent => :destroy
   has_paper_trail
-  attr_accessible :approved, :description, :ending_trailhead_id, :name, :route, :starting_trailhead_id,
-    :latitude, :longitude, :intensity_id, :duration_id, :trip_feature_ids, :class_name
+  attr_accessible :approved,
+                  :description,
+                  :ending_trailhead_id,
+                  :name,
+                  :route,
+                  :starting_trailhead_id,
+                  :latitude,
+                  :longitude,
+                  :intensity_id,
+                  :duration_id,
+                  :trip_feature_ids,
+                  :user_id
 
   before_save :update_bounds_min_max, :update_geometry, :update_coordinates
   after_save :refind_parks

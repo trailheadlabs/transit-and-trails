@@ -5,6 +5,7 @@ class Trailhead < ActiveRecord::Base
 
   belongs_to :user, :inverse_of => :trailheads
   belongs_to :park, :inverse_of => :trailhead_overrides
+  belongs_to :non_profit_partner, :inverse_of => :trailhead_overrides
   belongs_to :agency_override, :class_name => "Agency", :foreign_key => "agency_id"
   belongs_to :cached_park_by_bounds, :class_name => "Park", :foreign_key => "cached_park_by_bounds_id"
   has_and_belongs_to_many :trailhead_features
@@ -30,7 +31,8 @@ class Trailhead < ActiveRecord::Base
                   :trips_starting_at_ids,
                   :trailhead_feature_ids,
                   :agency_id,
-                  :class_name
+                  :non_profit_partner_id,
+                  :non_profit_partner_name
 
   attr_accessible :maps_attributes, :allow_destroy => true
   reverse_geocoded_by :latitude, :longitude
@@ -40,6 +42,18 @@ class Trailhead < ActiveRecord::Base
   before_save :auto_approve, :update_park_by_bounds
 
   validates :name, :presence => true, :uniqueness => true
+
+  alias :non_profit_partner_attr :non_profit_partner
+  def non_profit_partner
+    (non_profit_partner_id && self.non_profit_partner_attr) || (default_park && default_park.non_profit_partner)
+  end
+
+  def non_profit_partner_name
+    non_profit_partner_id && non_profit_partner.name
+  end
+
+  def non_profit_partner_name=(val)
+  end
 
   def park_name
     park && park.name

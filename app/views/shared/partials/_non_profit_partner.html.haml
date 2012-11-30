@@ -1,20 +1,20 @@
 / end Regional Trails
 / begin Non-profit Partner
-- if object.respond_to?(:default_park) && object.default_park && object.default_park.non_profit_partner
+- if object.respond_to?(:non_profit_partner) && object.non_profit_partner
   .agency.non-profit-partner
     .logo
-      - if object.default_park.non_profit_partner.logo
-        - if object.default_park.non_profit_partner.link
-          %a{:href => "#{object.default_park.non_profit_partner.link}", :target => "_blank"}
-            %img{:src => "#{object.default_park.non_profit_partner.logo }"}/
+      - if object.non_profit_partner.logo
+        - if object.non_profit_partner.link
+          %a{:href => "#{object.non_profit_partner.link}", :target => "_blank"}
+            %img{:src => "#{object.non_profit_partner.logo }"}/
         - else
-          %img{:src => "#{object.default_park.non_profit_partner.logo }"}/
+          %img{:src => "#{object.non_profit_partner.logo }"}/
     .text
       Nonprofit Partner: 
       .name
-        - if object.default_park.non_profit_partner.link
-          %a{:href => "#{object.default_park.non_profit_partner.link}", :target => "_blank"}
-            #{object.default_park.non_profit_partner.name}
+        - if object.non_profit_partner.link
+          %a{:href => "#{object.non_profit_partner.link}", :target => "_blank"}
+            #{object.non_profit_partner.name}
         - else
-          #{object.default_park.non_profit_partner.name}
+          #{object.non_profit_partner.name}
   / end Non-profit Partner

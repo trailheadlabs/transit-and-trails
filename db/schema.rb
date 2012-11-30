@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121130183214) do
+ActiveRecord::Schema.define(:version => 20121130190757) do
 
   create_table "agencies", :force => true do |t|
     t.string   "name"
@@ -279,6 +279,7 @@ ActiveRecord::Schema.define(:version => 20121130183214) do
     t.integer  "park_id"
     t.integer  "cached_park_by_bounds_id"
     t.integer  "agency_id"
+    t.integer  "non_profit_partner_id"
   end
 
   add_index "trailheads", ["user_id"], :name => "index_trailheads_on_user_id"
