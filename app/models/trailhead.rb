@@ -15,8 +15,22 @@ class Trailhead < ActiveRecord::Base
   has_many :trips_ending_at, :class_name => "Trip", :foreign_key => "ending_trailhead_id"
   scope :approved, where(:approved => true)
   has_paper_trail
-  attr_accessible :description, :latitude, :longitude, :name, :rideshare, :zimride_url, :approved, :park_name,
-    :park_id, :user_id, :trips_ending_at_ids, :trips_starting_at_ids, :trailhead_feature_ids, :agency_id, :class_name
+  attr_accessible :description,
+                  :latitude,
+                  :longitude,
+                  :name,
+                  :rideshare,
+                  :zimride_url,
+                  :approved,
+                  :park_name,
+                  :agency_name,
+                  :park_id,
+                  :user_id,
+                  :trips_ending_at_ids,
+                  :trips_starting_at_ids,
+                  :trailhead_feature_ids,
+                  :agency_id,
+                  :class_name
 
   attr_accessible :maps_attributes, :allow_destroy => true
   reverse_geocoded_by :latitude, :longitude
@@ -32,6 +46,13 @@ class Trailhead < ActiveRecord::Base
   end
 
   def park_name=(val)
+  end
+
+  def agency_name
+    agency_override && agency_override.name
+  end
+
+  def agency_name=(val)
   end
 
   def categorized_attributes

@@ -137,6 +137,12 @@ Transitandtrails::Application.routes.draw do
 
   resources :stories
 
+  resources :agencies do
+    collection do
+      get 'autocomplete_agency_name'
+    end
+  end
+
   resources :parks, :only => [:show]
 
   resources :partners, :only => [:index]
@@ -150,8 +156,6 @@ Transitandtrails::Application.routes.draw do
       post 'reset_api_key'
     end
   end
-
-
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 

@@ -44,6 +44,7 @@ class Ability
 
   def agency_trailblazer
     trailblazer
-    can :override_park, Park
+    can :override_park, Trailhead
+    can :override_agency, Trailhead
   end
 end
