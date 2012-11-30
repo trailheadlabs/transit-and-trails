@@ -48,4 +48,8 @@ class Ability
     can :override_agency, Trailhead
     can :override_non_profit_partner, Trailhead
   end
+
+  def baynature_admin
+    baynature_trailblazer
+  end
 end
