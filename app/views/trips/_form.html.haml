@@ -68,7 +68,9 @@
                     #{ attribute.name }
               - if category.trip_features.count >= 5
                 %a.show-more{:href => "#"} + show more..
-
+      - if can? :approve, @trip
+        %li
+          = f.input :approved
       %li
         %input.green-link-button{:type => "submit", :value => "Save Trip"}
       %li

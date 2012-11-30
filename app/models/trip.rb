@@ -9,10 +9,10 @@ class Trip < ActiveRecord::Base
   has_many :photos, :as => :photoable, :dependent => :destroy
   has_many :maps, :as => :mapable, :dependent => :destroy
   has_paper_trail
-  attr_accessible :description, :ending_trailhead_id, :name, :route, :starting_trailhead_id,
+  attr_accessible :approved, :description, :ending_trailhead_id, :name, :route, :starting_trailhead_id,
     :latitude, :longitude, :intensity_id, :duration_id, :trip_feature_ids, :class_name
 
-  before_save :update_bounds_min_max, :update_geometry
+  before_save :update_bounds_min_max, :update_geometry, :update_coordinates
   after_save :refind_parks
 
   validates :name, :presence => true, :uniqueness => true
@@ -22,26 +22,23 @@ class Trip < ActiveRecord::Base
 
   reverse_geocoded_by :latitude, :longitude
 
+  scope :approved, where(approved: true)
+
+  def update_coordinates
+    if(!starting_trailhead_id.blank? && !starting_trailhead.nil?)
+      self.latitude = starting_trailhead.latitude
+      self.longitude = starting_trailhead.longitude
+    end
+  end
+
   def update_geometry
-    self.geometry = route_as_geometry
+    if(route_changed?)
+      self.geometry = route_as_geometry
+    end
   end
 
   def parks
     @parks || find_parks
-  end
-
-  def latitude
-    starting_trailhead.latitude
-  end
-
-  def longitude
-    starting_trailhead.longitude
-  end
-
-  def latitude=
-  end
-
-  def longitude=
   end
 
   def refind_parks
@@ -61,8 +58,8 @@ class Trip < ActiveRecord::Base
       # is above = max_latiude > park.min_latitude
       # is below = min_latitude < park.max_latitude
       @parks = Park.where("max_longitude > :min_longitude AND min_longitude < :max_longitude" +
-        " AND min_latitude < :max_latitude AND max_latitude > :min_latitude",
-        {:min_longitude => min_longitude, :max_longitude => max_longitude, :min_latitude=>min_latitude, :max_latitude => max_latitude})
+                          " AND min_latitude < :max_latitude AND max_latitude > :min_latitude",
+                          {:min_longitude => min_longitude, :max_longitude => max_longitude, :min_latitude=>min_latitude, :max_latitude => max_latitude})
       @parks.select! do |p|
         p.intersects_trip? self
       end

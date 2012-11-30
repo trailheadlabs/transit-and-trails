@@ -1,5 +1,7 @@
 class TripsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index,:show,:info_window,:near_coordinates]
+  check_authorization :only => [:new,:edit]
+  load_and_authorize_resource :only => [:new,:edit]
 
   # GET /trips
   # GET /trips.json
@@ -21,7 +23,7 @@ class TripsController < ApplicationController
     limit = 1000 || params[:limit]
     offset = 0 || params[:offset]
     approved = true || params[:approved]
-    @trips = Trailhead.where(:approved => approved).near([latitude,longitude],distance,:select => "trailheads.id, trailheads.latitude, trailheads.longitude, trips.id, trips.name, trips.user_id, trips.intensity_id, trips.duration_id, trips.starting_trailhead_id, trips.ending_trailhead_id").joins(:trips_starting_at).limit(limit).offset(offset)
+    @trips = Trip.where(:approved => approved).near([latitude,longitude],distance).limit(limit).offset(offset)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @trips }
@@ -58,6 +60,7 @@ class TripsController < ApplicationController
   # GET /trips/new.json
   def new
     @trip = Trip.new
+    @trip.approved = true
     @trip.intensity = Intensity.first
     @trip.duration = Duration.first
     @start_id = params[:start_id]

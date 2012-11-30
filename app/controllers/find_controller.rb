@@ -19,8 +19,7 @@ class FindController < ApplicationController
     offset = 0
     @trailheads = Trailhead.where(:approved => approved).near([latitude,longitude],distance).limit(limit).offset(offset)
     @campgrounds = Campground.where(:approved => approved).near([latitude,longitude],distance).limit(limit).offset(offset)
-
-    @trips = Trailhead.where(:approved => approved).near([latitude,longitude],distance,:select => "trailheads.*, trips.*").joins(:trips_starting_at).limit(limit).offset(offset)
+    @trips = Trip.where(:approved => approved).near([latitude,longitude],distance).limit(limit).offset(offset)
     @allpoints = @trailheads + @campgrounds + @trips
     @allpoints.sort! { |a,b| Float(a.distance) <=> Float(b.distance) }
     render :layout => false

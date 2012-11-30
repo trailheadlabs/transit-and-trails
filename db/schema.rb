@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121130002911) do
+ActiveRecord::Schema.define(:version => 20121130041021) do
 
   create_table "agencies", :force => true do |t|
     t.string   "name"
@@ -341,14 +341,16 @@ ActiveRecord::Schema.define(:version => 20121130002911) do
     t.integer  "starting_trailhead_id"
     t.integer  "ending_trailhead_id"
     t.text     "route"
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
     t.text     "geometry"
     t.float    "min_longitude"
     t.float    "max_longitude"
     t.float    "min_latitude"
     t.float    "max_latitude"
-    t.boolean  "approved",              :default => false
+    t.boolean  "approved",              :default => true
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "trips", ["duration_id"], :name => "index_trips_on_duration_id"
