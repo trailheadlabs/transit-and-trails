@@ -109,6 +109,8 @@ function setEndLatLng(latlng){
   var lat = parseFloat(latlng.split(",")[0]);
   var lng = parseFloat(latlng.split(",")[1]);
   TNT.plan.trailhead_latlng = new GLatLng(lat,lng);
+  TNT.plan.end_lat = lat;
+  TNT.plan.end_lng = lng;
   showTripDrivingRoutes();
 }
 
@@ -1074,21 +1076,33 @@ TNT.plan = {
 
 // Plan Driving Route Stuff
 
-var startDirections = new GDirections();
+startDirections = new GDirections();
 GEvent.addListener(startDirections, "load", onStartDirectionsLoad);
 GEvent.addListener(startDirections, "error", handleStartDirectionsErrors);
 
-var tripDirections = new GDirections();
+tripDirections = new GDirections();
 GEvent.addListener(tripDirections, "load", onTripDirectionsLoad);
 GEvent.addListener(tripDirections, "error", handleTripDirectionsErrors);
 
-var endDirections = new GDirections();
+endDirections = new GDirections();
 GEvent.addListener(endDirections, "load", onEndDirectionsLoad);
 GEvent.addListener(endDirections, "error", handleEndDirectionsErrors);
 
 function onStartDirectionsLoad() {
     TNT.plan.startMiles = startDirections.getDistance().meters * 0.000621371192;
-    showEndDrivingRoutes();
+    if(TNT.plan.mode == 'trailhead')
+    {
+        TNT.plan.totalMiles = TNT.plan.startMiles * 2;
+        $("#driving-miles").text(TNT.plan.totalMiles.toFixed(1));
+        TNT.plan.driving_gallons = (TNT.plan.totalMiles / 21).toFixed(1);
+        $("#driving-gas").text(TNT.plan.driving_gallons);
+        TNT.plan.driving_cost = (TNT.plan.driving_gallons * 4).toFixed(2);
+        $("#driving-money").text(TNT.plan.driving_cost);
+        TNT.plan.driving_carbon = (TNT.plan.driving_gallons * 19.4).toFixed(1);
+        $("#driving-carbon").text(TNT.plan.driving_carbon);
+    } else {
+      showEndDrivingRoutes();
+    }
 }
 
 function handleStartDirectionsErrors()

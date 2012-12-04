@@ -13,8 +13,8 @@
     = javascript_include_tag "v2"
     = stylesheet_link_tag "application", :media => "all"
     = stylesheet_link_tag "find", :media => "all"
-    = stylesheet_link_tag "//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,200,400,300,500,600,700,800"
-
+    = stylesheet_link_tag "//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+    = javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyCcUhpQftpOwXVSLJqHrvwYCqnhTy3bchE&sensor=false&libraries=places"
     = yield :head
   %body
     .navbar.navbar-fixed-top
@@ -42,7 +42,8 @@
             %button.btn.btn-success{:type => "button"} Campgrounds
           %span.nav-what-label
             &nbsp;&nbsp;Near
-          %input.search-query{:placeholder => "San Francisco, CA", :type => "text"}
+          %input.search-query#find-location{:placeholder => "San Francisco, CA", :type => "text"}
+          %button.btn.btn-success.btn-round{:type => "button"} Find
           %span.nav-mode.btn-group.pull-right{"data-toggle" => "buttons-radio"}
             %button.btn.btn-success#map-mode-button{:type => "button", "data-toggle"=>"button"} Map
             %button.btn.btn-success{:type => "button"} List

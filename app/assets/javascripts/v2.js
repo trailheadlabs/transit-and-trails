@@ -19,5 +19,13 @@ $(function(){
   $('#trip-filter-button').button('toggle');
   $('.nav-mode').button();
   $('#map-mode-button').button('toggle');
-
+  var mapOptions = {
+    center: new google.maps.LatLng(37.78, -122.42),
+    zoom: 12,
+    mapTypeId: google.maps.MapTypeId.TERRAIN
+  };
+  var map = new google.maps.Map(document.getElementById("find_map"),
+            mapOptions);
+  var autocomplete = new google.maps.places.Autocomplete($('#find-location')[0]);
+  autocomplete.bindTo('bounds', map);
 });
