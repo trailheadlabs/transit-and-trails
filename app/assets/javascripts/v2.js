@@ -14,18 +14,117 @@
 //= require jquery_ujs
 //= require bootstrap
 
+var Find = {};
+Find.mapMarkers = [];
+
+Find.clearFindMapMarkers = function(){
+  for(i in Find.mapMarkers){
+    Find.mapMarkers[i].setMap(null);
+  }
+}
+Find.codeAddress = function() {
+    var address = document.getElementById("address").value;
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+        });
+      } else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+    });
+  }
+Find.addTripMarker = function(trip){
+  var myLatlng = new google.maps.LatLng(trip.latitude,trip.longitude);
+
+  var newMarker = new google.maps.Marker({
+    position: myLatlng,
+    map: Find.map,
+    animation: google.maps.Animation.DROP,
+    title:trip.name,
+    icon: {
+      anchor: new google.maps.Point(15, 45),
+      origin: new google.maps.Point(250,0),
+      url: "/assets/find_sprite.png",
+      size: new google.maps.Size(30, 45)
+    }
+
+  });
+  Find.mapMarkers.push(newMarker);
+  $("#trip_list_item_" + trip.id).hover(
+    function(newMarker){
+      return function(){
+        newMarker.setAnimation(google.maps.Animation.BOUNCE);
+      }
+    }(newMarker),
+    function(newMarker){
+      return function(){
+        newMarker.setAnimation(null);
+      }
+    }(newMarker));
+}
+
 $(function(){
+  $('#scrolltop').click(function(){
+    $("html, body").animate({ scrollTop: 0 },300);
+    return false;
+  });
+  $('.filters').slideDown(1000)
   $('.nav-what').button();
   $('#trip-filter-button').button('toggle');
   $('.nav-mode').button();
   $('#map-mode-button').button('toggle');
   var mapOptions = {
     center: new google.maps.LatLng(37.78, -122.42),
-    zoom: 12,
-    mapTypeId: google.maps.MapTypeId.TERRAIN
+    zoom: 11,
+    mapTypeId: google.maps.MapTypeId.TERRAIN,
+    zoomControl: true
   };
-  var map = new google.maps.Map(document.getElementById("find_map"),
+  Find.map = new google.maps.Map(document.getElementById("find_map"),
             mapOptions);
   var autocomplete = new google.maps.places.Autocomplete($('#find-location')[0]);
-  autocomplete.bindTo('bounds', map);
+  autocomplete.bindTo('bounds', Find.map);
+
+  google.maps.event.addListener(autocomplete, 'place_changed', function() {
+    var place = autocomplete.getPlace();
+    if (!place.geometry) {
+      // Inform the user that a place was not found and return.
+      return;
+    }
+
+    // If the place has a geometry, then present it on a map.
+    if (place.geometry.viewport) {
+      // Use the viewport if it is provided.
+      Find.map.fitBounds(place.geometry.viewport);
+    } else {
+      // Otherwise use the location and set a chosen zoom level.
+      Find.map.setCenter(place.geometry.location);
+      Find.map.setZoom(17);
+    }
+    var image = new google.maps.MarkerImage(
+        place.icon, new google.maps.Size(71, 71),
+        new google.maps.Point(0, 0), new google.maps.Point(17, 34),
+        new google.maps.Size(35, 35));
+    marker.setIcon(image);
+    marker.setPosition(place.geometry.location);
+
+    infowindow.setContent(place.name);
+    infowindow.open(Find.map, marker);
+  });
+
+  google.maps.event.addListener(Find.map, 'idle', function(){
+    $("#find-list").slideUp(1000);
+    var bounds = Find.map.getBounds();
+    var center = Find.map.getCenter();
+    $("#find-list").load("/find/trips_within_bounds",
+      {'sw_latitude':bounds.getSouthWest().lat(),
+       'sw_longitude':bounds.getSouthWest().lng(),
+       'ne_latitude':bounds.getNorthEast().lat(),
+       'ne_longitude':bounds.getNorthEast().lng(),
+       'center_latitude':center.lat(),
+       'center_longitude':center.lng()});
+  });
+
 });

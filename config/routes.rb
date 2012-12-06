@@ -171,6 +171,10 @@ Transitandtrails::Application.routes.draw do
 
   match "/find/v2" => "find#v2"
 
+  match "find/trailheads_within_bounds" => "find#trailheads_within_bounds"
+
+  match "find/trips_within_bounds" => "find#trips_within_bounds"
+
   match 'objects/near/html' => 'find#objects_near'
 
   match 'find' => "find#find"

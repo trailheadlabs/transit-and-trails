@@ -80,4 +80,15 @@ class Trailhead < ActiveRecord::Base
     result
   end
 
+  # GET /trailheads/within_bounds
+  # GET /trailheads/within_bounds.json
+  def self.within_bounds(sw_latitude,sw_longitude,ne_latitude,ne_longitude)
+    min_latitude = sw_latitude
+    max_latitude = ne_latitude
+    min_longitude = sw_longitude
+    max_longitude = ne_longitude
+    Trailhead.where("latitude > :min_latitude AND latitude < :max_latitude AND longitude > :min_longitude AND longitude < :max_longitude",
+      :min_latitude => min_latitude, :min_longitude => min_longitude, :max_latitude => max_latitude, :max_longitude => max_longitude)
+  end
+
 end

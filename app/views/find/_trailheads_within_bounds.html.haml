@@ -1,0 +1,28 @@
+:javascript
+  Find.clearFindMapMarkers();
+
+%ul.media-list
+  - trailheads.each do |trailhead|
+    %li.media.find-list-item(id="trailhead_list_item_#{trailhead.id}")
+      %a.pull-left(href="#{trailhead_path(trailhead)}")
+        %img.media-object(src="http://placehold.it/100x100")
+      .media-body
+      %h4.media-heading
+        = trailhead.name
+    :javascript
+      var myLatlng = new google.maps.LatLng(#{trailhead.latitude},#{trailhead.longitude});
+      var newMarker = new google.maps.Marker({
+        position: myLatlng,
+        map: Find.map,
+        title:"#{trailhead.name}"
+      });
+      Find.mapMarkers.push(newMarker);
+      $("#trailhead_list_item_#{trailhead.id}").hover(
+        function(newMarker){
+        return function(){
+          newMarker.setAnimation(google.maps.Animation.BOUNCE);
+        }}(newMarker),
+        function(newMarker){return function(){
+          newMarker.setAnimation(null);
+        }}(newMarker));
+

@@ -1,0 +1,27 @@
+:javascript
+  Find.clearFindMapMarkers();
+
+%ul.media-list
+  - trips.each_with_index do |trip,index|
+    %li.media.find-list-item(id="trip_list_item_#{trip.id}")
+      %a.pull-left(href="#{trip_path(trip)}")
+        %img.media-object(src="http://placehold.it/120x120")
+      .media-body
+      %a(href="#{trip_path(trip)}")
+        %h4.media-heading
+          = trip.name
+      %p.park-name
+        = trip.park_name
+      = trip.duration.name
+      |
+      = trip.intensity.name
+      |
+      = trip.length_miles.round(2)
+      Miles
+      %p.description
+        = truncate_html(strip_tags(trip.description),:length=>300)
+    :javascript
+      setTimeout(function(){
+        Find.addTripMarker(#{trip.as_json.except('geometry').except('route').except('description').to_json})
+      }, #{index} * 100);
+      $('#find-list').slideDown(1000);

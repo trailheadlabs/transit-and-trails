@@ -10,6 +10,34 @@ class FindController < ApplicationController
     @recentactivity = RecentActivity.last
   end
 
+  def trailheads_within_bounds
+    sw_latitude = Float(params[:sw_latitude])
+    ne_latitude = Float(params[:ne_latitude])
+    sw_longitude = Float(params[:sw_longitude])
+    ne_longitude = Float(params[:ne_longitude])
+    center_latitude = Float(params[:center_latitude])
+    center_longitude = Float(params[:center_longitude])
+    limit = 1000 || params[:limit]
+    offset = 0 || params[:offset]
+    approved = true || params[:approved]
+    @trailheads = Trailhead.within_bounds(sw_latitude,sw_longitude,ne_latitude,ne_longitude).where(approved: approved).limit(limit).offset(offset).near([center_latitude,center_longitude])
+    render :partial => "trailheads_within_bounds", :locals => {:trailheads => @trailheads}
+  end
+
+  def trips_within_bounds
+    sw_latitude = Float(params[:sw_latitude])
+    ne_latitude = Float(params[:ne_latitude])
+    sw_longitude = Float(params[:sw_longitude])
+    ne_longitude = Float(params[:ne_longitude])
+    center_latitude = Float(params[:center_latitude])
+    center_longitude = Float(params[:center_longitude])
+    limit = 1000 || params[:limit]
+    offset = 0 || params[:offset]
+    approved = true || params[:approved]
+    @trips = Trip.within_bounds(sw_latitude,sw_longitude,ne_latitude,ne_longitude).where(approved: approved).limit(limit).offset(offset).near([center_latitude,center_longitude])
+    render :partial => "trips_within_bounds", :locals => {:trips => @trips}
+  end
+
   def objects_near
     latitude = params[:lat]
     longitude = params[:long]

@@ -153,4 +153,16 @@ class Trip < ActiveRecord::Base
     result
   end
 
+  def self.within_bounds(sw_latitude,sw_longitude,ne_latitude,ne_longitude)
+    min_latitude = sw_latitude
+    max_latitude = ne_latitude
+    min_longitude = sw_longitude
+    max_longitude = ne_longitude
+    Trip.where("latitude > :min_latitude AND latitude < :max_latitude AND longitude > :min_longitude AND longitude < :max_longitude",
+      :min_latitude => min_latitude, :min_longitude => min_longitude, :max_latitude => max_latitude, :max_longitude => max_longitude)
+  end
+
+  def park_name
+    starting_trailhead && starting_trailhead.default_park && starting_trailhead.default_park.name
+  end
 end
