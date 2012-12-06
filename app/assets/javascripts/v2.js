@@ -17,6 +17,23 @@
 var Find = {};
 Find.mapMarkers = [];
 
+$.fn.serializeObject = function()
+{
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function() {
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+};
+
 Find.clearFindMapMarkers = function(){
   for(i in Find.mapMarkers){
     Find.mapMarkers[i].setMap(null);
@@ -66,7 +83,28 @@ Find.addTripMarker = function(trip){
     }(newMarker));
 }
 
+Find.showTrips = function(){
+  Find.clearFindMapMarkers();
+  var bounds = Find.map.getBounds();
+  var center = Find.map.getCenter();
+  var params = $('#filters-form').serializeObject();
+  params['sw_latitude'] = bounds.getSouthWest().lat();
+  params['sw_longitude'] = bounds.getSouthWest().lng();
+  params['ne_latitude'] = bounds.getNorthEast().lat();
+  params['ne_longitude'] = bounds.getNorthEast().lng();
+  params['center_latitude'] = center.lat();
+  params['center_longitude'] = center.lng();
+  $('.filter-checkbox').attr('disabled','disabled');
+  $("#findlist").load("/find/trips_within_bounds",params, function(){
+    $('.filter-checkbox').removeAttr('disabled');
+  });
+}
+
 $(function(){
+  $("#filters-form").submit(function(){
+    Find.showTrips();
+    return false;
+  });
   $('#scrolltop').click(function(){
     $("html, body").animate({ scrollTop: 0 },300);
     return false;
@@ -114,17 +152,6 @@ $(function(){
     infowindow.open(Find.map, marker);
   });
 
-  google.maps.event.addListener(Find.map, 'idle', function(){
-    $("#find-list").slideUp(1000);
-    var bounds = Find.map.getBounds();
-    var center = Find.map.getCenter();
-    $("#find-list").load("/find/trips_within_bounds",
-      {'sw_latitude':bounds.getSouthWest().lat(),
-       'sw_longitude':bounds.getSouthWest().lng(),
-       'ne_latitude':bounds.getNorthEast().lat(),
-       'ne_longitude':bounds.getNorthEast().lng(),
-       'center_latitude':center.lat(),
-       'center_longitude':center.lng()});
-  });
-
+  google.maps.event.addListener(Find.map, 'idle', Find.showTrips)
+  $(".filter-checkbox").change(Find.showTrips)
 });

@@ -34,8 +34,32 @@ class FindController < ApplicationController
     limit = 1000 || params[:limit]
     offset = 0 || params[:offset]
     approved = true || params[:approved]
-    @trips = Trip.within_bounds(sw_latitude,sw_longitude,ne_latitude,ne_longitude).where(approved: approved).limit(limit).offset(offset).near([center_latitude,center_longitude])
-    render :partial => "trips_within_bounds", :locals => {:trips => @trips}
+    @filter_names = []
+    @trips = Trip.within_bounds(sw_latitude,sw_longitude,ne_latitude,ne_longitude)
+
+    if(params[:feature_ids])
+      ids = params[:feature_ids]
+      @trips = @trips.find(:all,:include=>:trip_features,:conditions=>['trip_features.id IN (?)',ids])
+      @filter_names += TripFeature.find(params[:feature_ids]).collect(&:name)
+    end
+
+    if(params[:duration_ids])
+      @trips = @trips.where(duration_id: params[:duration_ids])
+      @filter_names += Duration.find(params[:duration_ids]).collect(&:name)
+    end
+
+    if(params[:intensity_ids])
+      @trips = @trips.where(intensity_id: params[:intensity_ids])
+      @filter_names += Intensity.find(params[:intensity_ids]).collect(&:name)
+    end
+
+    unless(params[:name_query].blank?)
+      q = "%#{params[:name_query]}%"
+      @trips = @trips.where("name ILIKE ?",q)
+    end
+
+    @trips = Trip.where(approved: approved, id: @trips).limit(limit).offset(offset).near([center_latitude,center_longitude])
+    render :partial => "trips_within_bounds", :locals => {:trips => @trips, :filter_names => @filter_names}
   end
 
   def objects_near

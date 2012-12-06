@@ -1,39 +1,42 @@
 .container
   .row
-    .span8.maplist
-      .list#find-list
-        %h4
-          Finding...
-    .span4.mapfilters
-      .map
-        #find_map
-      .message
-        %a#scrolltop(href="#top")
-          Filters
-          %i.icon-circle-arrow-up.pull-right
-      .filters
-        %form#filters-form
-          %p.filter-header
-            Duration
-          %p
-            - Duration.all.each do |d|
-              %label.checkbox
-                %input(type="checkbox" name="duration_ids[]" value="#{d.id}")
-                = d.name
-          %hr
-          %p.filter-header
-            Intensity
-          %p
-            - Intensity.all.each do |i|
-              %label.checkbox
-                %input(type="checkbox" name="intensity_ids[]" value="#{i.id}")
-                = i.name
-          - Category.all.each do |category|
-            - unless category.trip_features.empty?
-              %hr
-              %p.filter-header
-                = category.name
-              - category.trip_features.each do |feature|
+    .span8
+      #findlist
+    .span4#mapfilters
+      .mapfilters
+        .map
+          #find_map
+        .message
+          %a#scrolltop(href="#top")
+            Filters
+            %i.icon-circle-arrow-up.pull-right
+        .filters
+          %form#filters-form
+            %p.filter-header
+              Name
+            %p
+              %input.search-query#find-location{:placeholder => "Type a trip name...", :type => "text", :name => 'name_query'}
+            %p.filter-header
+              Duration
+            %p
+              - Duration.all.each do |d|
                 %label.checkbox
-                  %input(type="checkbox" name="feature_ids[]" value="#{feature.id}")
-                  = feature.name
+                  %input.filter-checkbox(type="checkbox" name="duration_ids[]" value="#{d.id}")
+                  = d.name
+            %hr
+            %p.filter-header
+              Intensity
+            %p
+              - Intensity.all.each do |i|
+                %label.checkbox
+                  %input.filter-checkbox(type="checkbox" name="intensity_ids[]" value="#{i.id}")
+                  = i.name
+            - Category.all.each do |category|
+              - unless category.trip_features.empty?
+                %hr
+                %p.filter-header
+                  = category.name
+                - category.trip_features.each do |feature|
+                  %label.checkbox
+                    %input.filter-checkbox(type="checkbox" name="feature_ids[]" value="#{feature.id}")
+                    = feature.name
