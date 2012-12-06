@@ -194,7 +194,6 @@ describe "DataImport" do
     new_record = FeaturedTab.find(item['pk'])
     new_record.should_not be nil
     new_record.id.should eq item['pk']
-    new_record.header.should eq fields['header']
     new_record.highlighted.should eq fields['highlighted']
     new_record.text1.should eq fields['text1']
     new_record.text2.should eq fields['text2']
