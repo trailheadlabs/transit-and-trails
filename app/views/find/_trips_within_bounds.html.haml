@@ -1,19 +1,19 @@
 #find-list-container
-  .list-header
-    .list-header-icon
-    %span.badge.badge-inverse
-      = trips.count
-    Trips found near San Francisco
-  %span.list-filters
-    %b
-      Filters :
-    - filter_names.each do |filter|
-      %span.label.label-success
-        = filter
-    - if filter_names.empty?
-      %span.label.label-success
-        None
-
+  .list-top
+    .list-header
+      .list-header-icon
+      %span.badge.badge-inverse
+        = trips.count
+      Trips found near San Francisco
+    %span.list-filters
+      %b
+        Filters :
+      - filter_names.each do |filter|
+        %span.label.label-success
+          = filter
+      - if filter_names.empty?
+        %span.label.label-success
+          None
   .list#find-list
 
     %ul.media-list

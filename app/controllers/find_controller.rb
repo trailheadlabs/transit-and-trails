@@ -118,12 +118,6 @@ class FindController < ApplicationController
     @filter_names = []
     @trips = Trip.within_bounds(sw_latitude,sw_longitude,ne_latitude,ne_longitude)
 
-    if(params[:feature_ids])
-      ids = params[:feature_ids]
-      @trips = @trips.find(:all,:include=>:trip_features,:conditions=>['trip_features.id IN (?)',ids])
-      @filter_names += TripFeature.find(params[:feature_ids]).collect(&:name)
-    end
-
     if(params[:duration_ids])
       @trips = @trips.where(duration_id: params[:duration_ids])
       @filter_names += Duration.find(params[:duration_ids]).collect(&:name)
@@ -132,6 +126,12 @@ class FindController < ApplicationController
     if(params[:intensity_ids])
       @trips = @trips.where(intensity_id: params[:intensity_ids])
       @filter_names += Intensity.find(params[:intensity_ids]).collect(&:name)
+    end
+
+    if(params[:feature_ids])
+      ids = params[:feature_ids]
+      @trips = @trips.find(:all,:include=>:trip_features,:conditions=>['trip_features.id IN (?)',ids])
+      @filter_names += TripFeature.find(params[:feature_ids]).collect(&:name)
     end
 
     if(params[:my_trips])
