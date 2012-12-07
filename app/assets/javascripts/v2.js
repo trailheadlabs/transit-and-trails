@@ -154,6 +154,7 @@ Find.showItems = function(){
 
 Find.loadItems = function(find_path){
   $("#findlist").fadeOut();
+  $('#progress').slideDown();
   Find.clearFindMapMarkers();
   var bounds = Find.map.getBounds();
   var center = Find.map.getCenter();
@@ -167,6 +168,7 @@ Find.loadItems = function(find_path){
   $('.filter-checkbox').attr('disabled','disabled');
   $("#findlist").load(find_path,params, function(){
     $('.filter-checkbox').removeAttr('disabled');
+    $('#progress').slideUp();
     $("#findlist").fadeIn();
   });
 }

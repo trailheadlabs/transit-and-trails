@@ -13,7 +13,7 @@
       - campgrounds.each_with_index do |campground,index|
         %li.media.find-list-item(id="campground_list_item_#{campground.id}")
           %a.pull-left(href="#{campground_path(campground)}")
-            %img.media-object(src="http://placehold.it/120x120")
+            %img.media-object.img-rounded.img-polaroid(src="#{campground.thumbnail_url}")
           .media-body
             %a(href="#{campground_path(campground)}")
               %h4.media-heading

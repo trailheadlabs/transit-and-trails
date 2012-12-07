@@ -117,6 +117,14 @@ body{
   }
 }
 
+#progress {
+  display:none;
+  margin-top:20px;
+  padding:20px;
+  background-color:white;
+  @include border-radius(10px);
+}
+
 #find-list-container{
   margin-top:20px;
   background-color:white;

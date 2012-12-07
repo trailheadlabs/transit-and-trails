@@ -144,12 +144,20 @@ class Trip < ActiveRecord::Base
 
   def categorized_attributes
     result = {}
-    Category.all.each do |category|
-      features = self.trip_features.where(:category_id=>category.id).order("id")
-      unless features.empty?
-        result[category.name] = features
+    self.trip_features.includes(:category).each do |feature|
+      if result[feature.category.name]
+        result[feature.category.name] << feature
+      else
+        result[feature.category.name] = [feature]
       end
     end
+
+    # Category.all.each do |category|
+    #   features = self.trip_features.where(:category_id=>category.id).order("id")
+    #   unless features.empty?
+    #     result[category.name] = features
+    #   end
+    # end
     result
   end
 

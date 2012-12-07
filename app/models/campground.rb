@@ -30,13 +30,29 @@ class Campground < ActiveRecord::Base
 
   def categorized_attributes
     result = {}
-    Category.all.each do |category|
-      features = self.campground_features.where(:category_id=>category.id).order("id")
-      if features.count > 0
-        result[category.name] = features
+    self.campground_features.includes(:category).each do |feature|
+      if result[feature.category.name]
+        result[feature.category.name] << feature
+      else
+        result[feature.category.name] = [feature]
       end
     end
+
+    # Category.all.each do |category|
+    #   features = self.campground_features.where(:category_id=>category.id).order("id")
+    #   if features.count > 0
+    #     result[category.name] = features
+    #   end
+    # end
     result
+  end
+
+  def thumbnail_url
+    if self.photos.first
+      self.photos.first.flickr_large_square_url
+    else
+      "http://placehold.it/150x150"
+    end
   end
 
   def self.within_bounds(sw_latitude,sw_longitude,ne_latitude,ne_longitude)

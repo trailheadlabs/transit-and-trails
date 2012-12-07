@@ -24,7 +24,7 @@ class FindController < ApplicationController
     ne_longitude = Float(params[:ne_longitude])
     center_latitude = Float(params[:center_latitude])
     center_longitude = Float(params[:center_longitude])
-    limit = 25 || params[:limit]
+    limit = 100 || params[:limit]
     offset = 0 || params[:offset]
     approved = true || params[:approved]
     @trailheads = Trailhead.within_bounds(sw_latitude,sw_longitude,ne_latitude,ne_longitude)

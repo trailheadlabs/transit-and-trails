@@ -79,12 +79,19 @@ class Trailhead < ActiveRecord::Base
 
   def categorized_attributes
     result = {}
-    Category.all.each do |category|
-      features = self.trailhead_features.where(:category_id=>category.id).order("id")
-      if features.count > 0
-        result[category.name] = features
+    self.trailhead_features.each do |feature|
+      if result[feature.category.name]
+        result[feature.category.name] += [feature]
+      else
+        result[feature.category.name] = [feature]
       end
     end
+    # Category.all.each do |category|
+    #   features = self.trailhead_features.where(:category_id=>category.id).order("id")
+    #   if features.count > 0
+    #     result[category.name] = features
+    #   end
+    # end
     result
   end
 
