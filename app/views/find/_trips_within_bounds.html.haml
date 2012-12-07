@@ -35,11 +35,12 @@
                 %span.category
                   #{category}
                 %br
-                - features[0..2].each do |feature|
-                  %span.label.label-feature
-                    = feature.name
-                - if features.count > 3
-                  = link_to "and more...", trip
+                - features.each_with_index do |feature,index|
+                  - if index < 4
+                    %span.label.label-feature
+                      = feature.name
+                  - if index == 4
+                    = link_to "and more...", trip
 
         %hr
         :javascript

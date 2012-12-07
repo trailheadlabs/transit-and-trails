@@ -146,7 +146,7 @@ class Trip < ActiveRecord::Base
     result = {}
     Category.all.each do |category|
       features = self.trip_features.where(:category_id=>category.id).order("id")
-      if features.count > 0
+      unless features.empty?
         result[category.name] = features
       end
     end

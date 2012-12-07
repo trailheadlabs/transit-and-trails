@@ -1,0 +1,16 @@
+:javascript
+  find_mode = 'TRIPS';
+.container
+  .row
+    .span8
+      #findlist
+    .span4#mapfilters
+      .mapfilters
+        .map
+          #find_map
+        .message
+          %a#scrolltop(href="#top")
+            Filters
+            %i.icon-circle-arrow-up.pull-right
+        .filters
+          = render :partial => "trip_filters"

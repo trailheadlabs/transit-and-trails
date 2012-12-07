@@ -40,19 +40,20 @@ Find.clearFindMapMarkers = function(){
   }
 }
 Find.codeAddress = function() {
-    var address = document.getElementById("address").value;
-    geocoder.geocode( { 'address': address}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        map.setCenter(results[0].geometry.location);
-        var marker = new google.maps.Marker({
-            map: map,
-            position: results[0].geometry.location
-        });
-      } else {
-        alert("Geocode was not successful for the following reason: " + status);
-      }
-    });
-  }
+  var address = document.getElementById("address").value;
+  geocoder.geocode( { 'address': address}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+    } else {
+      alert("Geocode was not successful for the following reason: " + status);
+    }
+  });
+}
+
 Find.addTripMarker = function(trip){
   var myLatlng = new google.maps.LatLng(trip.latitude,trip.longitude);
 
@@ -83,7 +84,44 @@ Find.addTripMarker = function(trip){
     }(newMarker));
 }
 
-Find.showTrips = function(){
+Find.addTrailheadMarker = function(trailhead){
+  var myLatlng = new google.maps.LatLng(trailhead.latitude,trailhead.longitude);
+
+  var newMarker = new google.maps.Marker({
+    position: myLatlng,
+    map: Find.map,
+    animation: google.maps.Animation.DROP,
+    title:trailhead.name,
+    icon: {
+      anchor: new google.maps.Point(15, 45),
+      origin: new google.maps.Point(250,0),
+      url: "/assets/find_sprite.png",
+      size: new google.maps.Size(30, 45)
+    }
+  });
+  Find.mapMarkers.push(newMarker);
+  $("#trailhead_list_item_" + trailhead.id).hover(
+    function(newMarker){
+      return function(){
+        newMarker.setAnimation(google.maps.Animation.BOUNCE);
+      }
+    }(newMarker),
+    function(newMarker){
+      return function(){
+        newMarker.setAnimation(null);
+      }
+    }(newMarker));
+}
+
+Find.showItems = function(){
+  if(find_mode == "TRAILHEADS"){
+    Find.showTrailheads();
+  } else if(find_mode == "TRIPS") {
+    Find.showTrips();
+  }
+}
+
+Find.loadItems = function(find_path){
   Find.clearFindMapMarkers();
   var bounds = Find.map.getBounds();
   var center = Find.map.getCenter();
@@ -95,14 +133,22 @@ Find.showTrips = function(){
   params['center_latitude'] = center.lat();
   params['center_longitude'] = center.lng();
   $('.filter-checkbox').attr('disabled','disabled');
-  $("#findlist").load("/find/trips_within_bounds",params, function(){
+  $("#findlist").load(find_path,params, function(){
     $('.filter-checkbox').removeAttr('disabled');
   });
 }
 
+Find.showTrips = function(){
+  Find.loadItems('/find/trips_within_bounds');
+}
+
+Find.showTrailheads = function(){
+  Find.loadItems('/find/trailheads_within_bounds');
+}
+
 $(function(){
   $("#filters-form").submit(function(){
-    Find.showTrips();
+    Find.showItems();
     return false;
   });
   $('#scrolltop').click(function(){
@@ -152,6 +198,6 @@ $(function(){
     infowindow.open(Find.map, marker);
   });
 
-  google.maps.event.addListener(Find.map, 'idle', Find.showTrips)
-  $(".filter-checkbox").change(Find.showTrips)
+  google.maps.event.addListener(Find.map, 'idle', Find.showItems)
+  $(".filter-checkbox").change(Find.showItems)
 });

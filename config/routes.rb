@@ -169,7 +169,11 @@ Transitandtrails::Application.routes.draw do
 
   root :to => "find#find"
 
-  match "/find/v2" => "find#v2"
+  match "/find/v2" => "find#trips"
+
+  match "/find/v2/trips" => "find#trips"
+
+  match "/find/v2/trailheads" => "find#trailheads"
 
   match "find/trailheads_within_bounds" => "find#trailheads_within_bounds"
 

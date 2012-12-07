@@ -1,7 +1,10 @@
 class FindController < ApplicationController
-  def v2
-    find
-    render "v2", :layout => "v2"
+  def trips
+    render :layout => "v2"
+  end
+
+  def trailheads
+    render :layout => "v2"
   end
 
   def find
@@ -20,8 +23,38 @@ class FindController < ApplicationController
     limit = 1000 || params[:limit]
     offset = 0 || params[:offset]
     approved = true || params[:approved]
-    @trailheads = Trailhead.within_bounds(sw_latitude,sw_longitude,ne_latitude,ne_longitude).where(approved: approved).limit(limit).offset(offset).near([center_latitude,center_longitude])
-    render :partial => "trailheads_within_bounds", :locals => {:trailheads => @trailheads}
+    @trailheads = Trailhead.within_bounds(sw_latitude,sw_longitude,ne_latitude,ne_longitude)
+    @filter_names = []
+    if(params[:feature_ids])
+      ids = params[:feature_ids]
+      @trailheads = @trailheads.find(:all,:include=>:trailhead_features,:conditions=>['trailhead_features.id IN (?)',ids])
+      @filter_names += TrailheadFeature.find(params[:feature_ids]).collect(&:name)
+    end
+
+    if(params[:my_trailheads])
+      @trailheads = @trailheads.where(user_id: current_user)
+      @filter_names += ["My Tailheads"]
+    end
+
+    unless(params[:near].blank?)
+      @filter_names += ["Near: #{params[:near]}"]
+    end
+
+    unless(params[:user_query].blank?)
+      q = "%#{params[:user_query]}%"
+      @users = User.where("username ILIKE ?",q)
+      @trailheads = @trailheads.where(user_id: @users)
+      @filter_names += ["User: #{params[:user_query]}"]
+    end
+
+    unless(params[:name_query].blank?)
+      q = "%#{params[:name_query]}%"
+      @trailheads = @trailheads.where("name ILIKE ?",q)
+      @filter_names += ["Name: #{params[:name_query]}"]
+    end
+
+    @trailheads = Trailhead.where(approved: approved, id: @trailheads).limit(limit).offset(offset).near([center_latitude,center_longitude])
+    render :partial => "trailheads_within_bounds", :locals => {:trailheads => @trailheads, :filter_names => @filter_names}
   end
 
   def trips_within_bounds
