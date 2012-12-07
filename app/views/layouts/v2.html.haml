@@ -23,28 +23,42 @@
           .navbar-logo
           .navbar-content
             .sign-in.pull-right
-              Sign In | Sign Out
+              - if user_signed_in?
+                = link_to current_user.username, edit_user_registration_path
+                |
+                = link_to 'Profile', profile_path
+                - if current_user.admin?
+                  |
+                  = link_to 'Admin', rails_admin_path
+                |
+                = link_to "Sign Out", destroy_user_session_path, method: :delete
+              - else
+                Welcome
+                |
+                = link_to "Sign Up", new_user_registration_path
+                |
+                = link_to "Sign In", new_user_session_path
             .main-nav-items
               %ul.nav
                 %li
-                  Find
+                  Trips
                 %li
-                  About
+                  Trailheads
                 %li
-                  Community
-      .navbar-inner.navbar-find
-        .container
-          %span.nav-what-label
-            What are you looking for?
-          %span.nav-what.btn-group{"data-toggle" => "buttons-radio"}
-            %button.btn.btn-success#trip-filter-button{:type => "button", "data-toggle"=>"button"} Trips
-            %button.btn.btn-success{:type => "button"} Trailheads
-            %button.btn.btn-success{:type => "button"} Campgrounds
-          %span.nav-what-label
-            &nbsp;&nbsp;Near
-          %input.search-query#find-location{:placeholder => "San Francisco, CA", :type => "text"}
-          %button.btn.btn-success.btn-round{:type => "button"} Find
-          %span.nav-mode.btn-group.pull-right{"data-toggle" => "buttons-radio"}
-            %button.btn.btn-success#map-mode-button{:type => "button", "data-toggle"=>"button"} Map
-            %button.btn.btn-success{:type => "button"} List
+                  Campgrounds
+      / .navbar-inner.navbar-find
+      /   .container
+      /     %span.nav-what-label
+      /       What are you looking for?
+      /     %span.nav-what.btn-group{"data-toggle" => "buttons-radio"}
+      /       %button.btn.btn-success#trip-filter-button{:type => "button", "data-toggle"=>"button"} Trips
+      /       %button.btn.btn-success{:type => "button"} Trailheads
+      /       %button.btn.btn-success{:type => "button"} Campgrounds
+      /     %span.nav-what-label
+      /       &nbsp;&nbsp;Near
+      /     %input.search-query#find-location{:placeholder => "San Francisco, CA", :type => "text"}
+      /     %button.btn.btn-success.btn-round{:type => "button"} Find
+      /     %span.nav-mode.btn-group.pull-right{"data-toggle" => "buttons-radio"}
+      /       %button.btn.btn-success#map-mode-button{:type => "button", "data-toggle"=>"button"} Map
+      /       %button.btn.btn-success{:type => "button"} List
     = yield

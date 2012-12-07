@@ -13,9 +13,19 @@
         .filters
           %form#filters-form
             %p.filter-header
-              Name
+              Near
             %p
-              %input.search-query#find-location{:placeholder => "Type a trip name...", :type => "text", :name => 'name_query'}
+              %input.search-query#find-location{:placeholder => "San Francisco, CA", :type => "text", :name => 'near'}
+              %button.btn.btn-success.btn.btn-round.pull-right{:type => "submit", :value => "Find"}
+                Find
+            %hr
+            %p.filter-header
+              Trip Name
+            %p
+              %input.search-query{:placeholder => "Type a trip name...", :type => "text", :name => 'name_query'}
+              %button.btn.btn-success.btn.btn-round.pull-right{:type => "submit", :value => "Find"}
+                Find
+            %hr
             %p.filter-header
               Duration
             %p
@@ -31,6 +41,18 @@
                 %label.checkbox
                   %input.filter-checkbox(type="checkbox" name="intensity_ids[]" value="#{i.id}")
                   = i.name
+            %hr
+            %p.filter-header
+              Author
+            %p
+              - if user_signed_in?
+                %label.checkbox
+                  %input.filter-checkbox(type="checkbox" name="my_trips" value="true")
+                  My Trips (#{current_user.username})
+              %input.search-query{:placeholder => "Type a user name...", :type => "text", :name => 'user_query'}
+              %button.btn.btn-success.btn-round.pull-right{:type => "submit", :value => "Find"}
+                Find
+
             - Category.all.each do |category|
               - unless category.trip_features.empty?
                 %hr

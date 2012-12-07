@@ -58,7 +58,7 @@ body{
 }
 
 .filter-header{
-  font-size:18px;
+  font-size:16px;
   font-weight:400;
   color:$main-blue;
 }
@@ -98,6 +98,14 @@ body{
   background-color:white;
   padding:20px;
   @include border-radius(0px 0px 10px 10px);
+  .btn-round{
+    @include border-radius(20px);
+    margin-top:1px;
+  }
+
+  .search-query{
+    width:170px;
+  }
   .message{
     position:relative;
     margin:0px;
@@ -155,10 +163,22 @@ body{
   }
 }
 .container{
-  padding-top:134px;
+  padding-top:84px;
   margin-bottom:100px;
 }
 .navbar-inner{
+  a {
+    color: white;
+    text-decoration:none;
+    &:visited {
+      color: white;
+    }
+    &:hover {
+      color: white;
+      text-decoration:underline;
+    }
+  }
+
   -webkit-font-smoothing: antialiased;
   border:none;
   letter-spacing: 0px;
@@ -175,7 +195,7 @@ body{
   height:84px;
   background-image:none;
   background-color:#4a90b1;
-  box-shadow: 0px 2px 20px 1px #1A7A0D;
+  box-shadow: 0px 2px 20px 1px black;
   position:relative;
   z-index: 100;
   color:white;

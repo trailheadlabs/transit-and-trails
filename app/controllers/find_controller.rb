@@ -53,9 +53,26 @@ class FindController < ApplicationController
       @filter_names += Intensity.find(params[:intensity_ids]).collect(&:name)
     end
 
+    if(params[:my_trips])
+      @trips = @trips.where(user_id: current_user)
+      @filter_names += ["My Trips"]
+    end
+
+    unless(params[:near].blank?)
+      @filter_names += ["Near: #{params[:near]}"]
+    end
+
+    unless(params[:user_query].blank?)
+      q = "%#{params[:user_query]}%"
+      @users = User.where("username ILIKE ?",q)
+      @trips = @trips.where(user_id: @users)
+      @filter_names += ["User: #{params[:user_query]}"]
+    end
+
     unless(params[:name_query].blank?)
       q = "%#{params[:name_query]}%"
       @trips = @trips.where("name ILIKE ?",q)
+      @filter_names += ["Name: #{params[:name_query]}"]
     end
 
     @trips = Trip.where(approved: approved, id: @trips).limit(limit).offset(offset).near([center_latitude,center_longitude])

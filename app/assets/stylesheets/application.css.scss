@@ -8,6 +8,10 @@ abbr[title="required"] {
   color:red;
 }
 
+input[type="url"], input[type="text"], input[type="password"], input[type="email"], textarea {
+  font-family: 'Open Sans', sans-serif;
+}
+
 body {
   font-size: 14px;
   line-height: 18px;
