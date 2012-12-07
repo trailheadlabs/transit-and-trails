@@ -113,15 +113,47 @@ Find.addTrailheadMarker = function(trailhead){
     }(newMarker));
 }
 
+Find.addCampgroundMarker = function(campground){
+  var myLatlng = new google.maps.LatLng(campground.latitude,campground.longitude);
+
+  var newMarker = new google.maps.Marker({
+    position: myLatlng,
+    map: Find.map,
+    animation: google.maps.Animation.DROP,
+    title:campground.name,
+    icon: {
+      anchor: new google.maps.Point(15, 45),
+      origin: new google.maps.Point(250,0),
+      url: "/assets/find_sprite.png",
+      size: new google.maps.Size(30, 45)
+    }
+  });
+  Find.mapMarkers.push(newMarker);
+  $("#campground_list_item_" + campground.id).hover(
+    function(newMarker){
+      return function(){
+        newMarker.setAnimation(google.maps.Animation.BOUNCE);
+      }
+    }(newMarker),
+    function(newMarker){
+      return function(){
+        newMarker.setAnimation(null);
+      }
+    }(newMarker));
+}
+
 Find.showItems = function(){
   if(find_mode == "TRAILHEADS"){
     Find.showTrailheads();
   } else if(find_mode == "TRIPS") {
     Find.showTrips();
+  } else if(find_mode == "CAMPGROUNDS") {
+    Find.showCampgrounds();
   }
 }
 
 Find.loadItems = function(find_path){
+  $("#findlist").fadeOut();
   Find.clearFindMapMarkers();
   var bounds = Find.map.getBounds();
   var center = Find.map.getCenter();
@@ -135,6 +167,7 @@ Find.loadItems = function(find_path){
   $('.filter-checkbox').attr('disabled','disabled');
   $("#findlist").load(find_path,params, function(){
     $('.filter-checkbox').removeAttr('disabled');
+    $("#findlist").fadeIn();
   });
 }
 
@@ -144,6 +177,10 @@ Find.showTrips = function(){
 
 Find.showTrailheads = function(){
   Find.loadItems('/find/trailheads_within_bounds');
+}
+
+Find.showCampgrounds = function(){
+  Find.loadItems('/find/campgrounds_within_bounds');
 }
 
 $(function(){

@@ -175,7 +175,11 @@ Transitandtrails::Application.routes.draw do
 
   match "/find/v2/trailheads" => "find#trailheads"
 
+  match "/find/v2/campgrounds" => "find#campgrounds"
+
   match "find/trailheads_within_bounds" => "find#trailheads_within_bounds"
+
+  match "find/campgrounds_within_bounds" => "find#campgrounds_within_bounds"
 
   match "find/trips_within_bounds" => "find#trips_within_bounds"
 

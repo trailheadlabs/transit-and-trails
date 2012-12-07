@@ -7,6 +7,10 @@ class FindController < ApplicationController
     render :layout => "v2"
   end
 
+  def campgrounds
+    render :layout => "v2"
+  end
+
   def find
     @latest_photos = Photo.order('legacy_id desc, id desc').limit(6)
     @featuredtab = FeaturedTab.last
@@ -33,7 +37,7 @@ class FindController < ApplicationController
 
     if(params[:my_trailheads])
       @trailheads = @trailheads.where(user_id: current_user)
-      @filter_names += ["My Tailheads"]
+      @filter_names += ["My Trailheads"]
     end
 
     unless(params[:near].blank?)
@@ -55,6 +59,50 @@ class FindController < ApplicationController
 
     @trailheads = Trailhead.where(approved: approved, id: @trailheads).limit(limit).offset(offset).near([center_latitude,center_longitude])
     render :partial => "trailheads_within_bounds", :locals => {:trailheads => @trailheads, :filter_names => @filter_names}
+  end
+
+  def campgrounds_within_bounds
+    sw_latitude = Float(params[:sw_latitude])
+    ne_latitude = Float(params[:ne_latitude])
+    sw_longitude = Float(params[:sw_longitude])
+    ne_longitude = Float(params[:ne_longitude])
+    center_latitude = Float(params[:center_latitude])
+    center_longitude = Float(params[:center_longitude])
+    limit = 1000 || params[:limit]
+    offset = 0 || params[:offset]
+    approved = true || params[:approved]
+    @campgrounds = Campground.within_bounds(sw_latitude,sw_longitude,ne_latitude,ne_longitude)
+    @filter_names = []
+    if(params[:feature_ids])
+      ids = params[:feature_ids]
+      @campgrounds = @campgrounds.find(:all,:include=>:campground_features,:conditions=>['campground_features.id IN (?)',ids])
+      @filter_names += CampgroundFeature.find(params[:feature_ids]).collect(&:name)
+    end
+
+    if(params[:my_campgrounds])
+      @campgrounds = @campgrounds.where(user_id: current_user)
+      @filter_names += ["My Campgrounds"]
+    end
+
+    unless(params[:near].blank?)
+      @filter_names += ["Near: #{params[:near]}"]
+    end
+
+    unless(params[:user_query].blank?)
+      q = "%#{params[:user_query]}%"
+      @users = User.where("username ILIKE ?",q)
+      @campgrounds = @campgrounds.where(user_id: @users)
+      @filter_names += ["User: #{params[:user_query]}"]
+    end
+
+    unless(params[:name_query].blank?)
+      q = "%#{params[:name_query]}%"
+      @campgrounds = @campgrounds.where("name ILIKE ?",q)
+      @filter_names += ["Name: #{params[:name_query]}"]
+    end
+
+    @campgrounds = Campground.where(approved: approved, id: @campgrounds).limit(limit).offset(offset).near([center_latitude,center_longitude])
+    render :partial => "campgrounds_within_bounds", :locals => {:campgrounds => @campgrounds, :filter_names => @filter_names}
   end
 
   def trips_within_bounds

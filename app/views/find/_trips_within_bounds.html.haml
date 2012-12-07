@@ -1,7 +1,7 @@
 #find-list-container
   .list-header
     .list-header-icon
-    %span.badge.badge-info
+    %span.badge.badge-inverse
       = trips.count
     Trips found near San Francisco
   .list-filters
@@ -16,31 +16,31 @@
           %a.pull-left(href="#{trip_path(trip)}")
             %img.media-object(src="http://placehold.it/120x120")
           .media-body
-          %a(href="#{trip_path(trip)}")
-            %h4.media-heading
-              = trip.name
-          %p.park-name
-            = trip.park_name
-          = trip.duration.name
-          |
-          = trip.intensity.name
-          |
-          = trip.length_miles.round(1)
-          Miles
-          %p.description
-            = truncate_html(strip_tags(trip.description),:length=>300)
-          .features
-            - trip.categorized_attributes.each do |category,features|
-              %p
-                %span.category
-                  #{category}
-                %br
-                - features.each_with_index do |feature,index|
-                  - if index < 4
-                    %span.label.label-feature
-                      = feature.name
-                  - if index == 4
-                    = link_to "and more...", trip
+            %a(href="#{trip_path(trip)}")
+              %h4.media-heading
+                = trip.name
+            %p.park-name
+              = trip.park_name
+            = trip.duration.name
+            |
+            = trip.intensity.name
+            |
+            = trip.length_miles.round(1)
+            Miles
+            %p.description
+              = truncate_html(strip_tags(trip.description),:length=>300)
+            .features
+              - trip.categorized_attributes.each do |category,features|
+                %p
+                  %span.category
+                    #{category}
+                  %br
+                  - features.each_with_index do |feature,index|
+                    - if index < 3
+                      %span.label.label-feature
+                        = feature.name
+                    - if index == 3
+                      = link_to "and more...", trip
 
         %hr
         :javascript

@@ -46,6 +46,9 @@ module PointOfInterest
     @default_park ||= (park || cached_park_by_bounds)
   end
 
+  def default_park_name
+    default_park && default_park.name
+  end
 
   def agency
     agency_override || (default_park && default_park.agency) || nil

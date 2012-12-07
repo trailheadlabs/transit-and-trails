@@ -1,7 +1,7 @@
 #find-list-container
   .list-header
     .list-header-icon
-    %span.badge.badge-info
+    %span.badge.badge-inverse
       = trailheads.count
     Trailheads found near San Francisco
   .list-filters
@@ -15,24 +15,27 @@
           %a.pull-left(href="#{trailhead_path(trailhead)}")
             %img.media-object(src="http://placehold.it/120x120")
           .media-body
-          %a(href="#{trailhead_path(trailhead)}")
-            %h4.media-heading
-              = trailhead.name
-          %p.park-name
-            = trailhead.park_name
-          %p.description
-            = truncate_html(strip_tags(trailhead.description),:length=>300)
-          .features
-            - trailhead.categorized_attributes.each do |category,features|
-              %p
-                %span.category
-                  #{category}:
-                - features.each_with_index do |feature,index|
-                  - if index < 4
-                    %span.label.label-feature
-                      = feature.name
-                  - if index == 4
-                    = link_to "and more...", trailhead
+            %a(href="#{trailhead_path(trailhead)}")
+              %h4.media-heading
+                = trailhead.name
+            %p.park-name
+              = trailhead.default_park_name
+            %p.description
+              = truncate_html(strip_tags(trailhead.description),:length=>300)
+            .features
+              - trailhead.categorized_attributes.each do |category,features|
+                %p
+                  %span.category
+                    #{category}:
+                  %br
+                  - features.each_with_index do |feature,index|
+                    - if index < 3
+                      %span.label.label-feature
+                        = feature.name
+                    - if index == 3
+                      = link_to "and more...", trailhead
         %hr
         :javascript
           Find.addTrailheadMarker(#{trailhead.as_json.except('description').to_json});
+  / .pages
+  /   = paginate trailheads, :params => {:controller => 'find', :action => 'trailheads_within_bounds'}

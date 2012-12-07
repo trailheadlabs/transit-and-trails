@@ -330,6 +330,7 @@ DEPENDENCIES
   hpricot
   httparty
   jquery-rails
+  kaminari
   launchy
   mini_magick
   multi_json
