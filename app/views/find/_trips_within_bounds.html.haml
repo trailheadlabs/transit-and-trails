@@ -4,14 +4,21 @@
     %span.badge.badge-inverse
       = trips.count
     Trips found near San Francisco
-  .list-filters
+  %span.list-filters
+    %b
+      Filters :
     - filter_names.each do |filter|
       %span.label.label-success
         = filter
+    - if filter_names.empty?
+      %span.label.label-success
+        None
+
   .list#find-list
 
     %ul.media-list
       - trips.each_with_index do |trip,index|
+        %hr
         %li.media.find-list-item(id="trip_list_item_#{trip.id}")
           %a.pull-left(href="#{trip_path(trip)}")
             %img.media-object.img-rounded.img-polaroid(src="#{trip.thumbnail_url}")
@@ -42,6 +49,5 @@
                     - if index == 3
                       = link_to "and more...", trip
 
-        %hr
         :javascript
           Find.addTripMarker(#{trip.as_json.except('geometry').except('route').except('description').to_json});

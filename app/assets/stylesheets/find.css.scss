@@ -59,8 +59,9 @@ body{
 }
 
 .filter-header{
-  font-size:16px;
-  font-weight:400;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
   color:$main-blue;
 }
 // Hack for autocomplete to show up above everything
@@ -125,6 +126,9 @@ body{
   @include border-radius(10px);
 }
 
+.list-filters{
+  display:block;
+}
 #find-list-container{
   margin-top:20px;
   background-color:white;
@@ -178,6 +182,7 @@ body{
 
 .navbar .nav > li > a {
   padding-right:0px;
+  padding-bottom:4px;
   color: white;
   text-decoration:none;
   &:visited {
@@ -232,7 +237,7 @@ body{
       height:100%;
       position:relative;
       .sign-in{
-        font-size:12px;
+        font-size:14px;
       }
     }
   }
