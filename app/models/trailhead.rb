@@ -59,6 +59,14 @@ class Trailhead < ActiveRecord::Base
     park && park.name
   end
 
+  def thumbnail_url
+    if self.photos.first
+      self.photos.first.flickr_large_square_url
+    else
+      "http://placehold.it/150x150"
+    end
+  end
+
   def park_name=(val)
   end
 

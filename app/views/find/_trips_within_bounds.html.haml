@@ -14,7 +14,7 @@
       - trips.each_with_index do |trip,index|
         %li.media.find-list-item(id="trip_list_item_#{trip.id}")
           %a.pull-left(href="#{trip_path(trip)}")
-            %img.media-object(src="http://placehold.it/120x120")
+            %img.media-object.img-rounded.img-polaroid(src="#{trip.thumbnail_url}")
           .media-body
             %a(href="#{trip_path(trip)}")
               %h4.media-heading

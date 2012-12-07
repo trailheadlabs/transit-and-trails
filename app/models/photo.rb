@@ -23,12 +23,12 @@ class Photo < ActiveRecord::Base
   def cache_flickr_urls
     if(flickr_id_changed? || flickr_urls.nil?)
       fetch_flickr_sizes
-    end    
+    end
   end
 
   def fetch_flickr_sizes
-    sizes = flickr.photos.getSizes(photo_id: flickr_id)    
-    sizes.each do |s|      
+    sizes = flickr.photos.getSizes(photo_id: flickr_id)
+    sizes.each do |s|
       token = s["label"].parameterize.underscore.to_sym
       flickr_urls[token] = s["source"]
     end
@@ -43,7 +43,7 @@ class Photo < ActiveRecord::Base
 
   def flickr_image_url(size)
     if flickr_urls[size].nil?
-      fetch_flickr_sizes      
+      fetch_flickr_sizes
       save
     end
     flickr_urls[size]
@@ -57,6 +57,10 @@ class Photo < ActiveRecord::Base
 
   def flickr_square_url
     flickr_image_url :square
+  end
+
+  def flickr_large_square_url
+    flickr_image_url :large_square
   end
 
   def flickr_medium_url

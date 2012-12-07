@@ -153,6 +153,14 @@ class Trip < ActiveRecord::Base
     result
   end
 
+  def thumbnail_url
+    if self.photos.first
+      self.photos.first.flickr_large_square_url
+    else
+      "http://placehold.it/150x150"
+    end
+  end
+
   def self.within_bounds(sw_latitude,sw_longitude,ne_latitude,ne_longitude)
     min_latitude = sw_latitude
     max_latitude = ne_latitude
