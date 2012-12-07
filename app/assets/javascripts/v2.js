@@ -195,10 +195,11 @@ $(function(){
     return false;
   });
   $('.filters').slideDown(1000)
-  $('.nav-what').button();
-  $('#trip-filter-button').button('toggle');
-  $('.nav-mode').button();
-  $('#map-mode-button').button('toggle');
+  // $('.nav-what').button();
+  // $('#trip-filter-button').button('toggle');
+  // $('.nav-mode').button();
+  // $('#map-mode-button').button('toggle');
+
   var mapOptions = {
     center: new google.maps.LatLng(37.78, -122.42),
     zoom: 11,
@@ -207,6 +208,7 @@ $(function(){
   };
   Find.map = new google.maps.Map(document.getElementById("find_map"),
             mapOptions);
+
   var autocomplete = new google.maps.places.Autocomplete($('#find-location')[0]);
   autocomplete.bindTo('bounds', Find.map);
 
@@ -226,15 +228,7 @@ $(function(){
       Find.map.setCenter(place.geometry.location);
       Find.map.setZoom(17);
     }
-    var image = new google.maps.MarkerImage(
-        place.icon, new google.maps.Size(71, 71),
-        new google.maps.Point(0, 0), new google.maps.Point(17, 34),
-        new google.maps.Size(35, 35));
-    marker.setIcon(image);
-    marker.setPosition(place.geometry.location);
 
-    infowindow.setContent(place.name);
-    infowindow.open(Find.map, marker);
   });
 
   google.maps.event.addListener(Find.map, 'idle', Find.showItems)

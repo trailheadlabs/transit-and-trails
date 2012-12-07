@@ -77,8 +77,9 @@ body{
   position:relative;
   .message{
     color:$main-blue;
-    font-weight:400;
-    font-size:18px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
     width:280px;
     position: fixed;
     background: white;
