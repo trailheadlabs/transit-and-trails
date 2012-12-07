@@ -130,6 +130,7 @@ body{
   display:block;
 }
 #find-list-container{
+  margin-top: 20px;
   background-color:white;
   @include border-radius(10px);
   .list-header{
@@ -138,7 +139,7 @@ body{
     margin-bottom: 5px;
     background-color:#ddd;
     padding:8px;
-    // @include border-radius(10px 10px 0px 0px);
+    @include border-radius(10px 10px 0px 0px);
     position:relative;
     .list-header-icon{
       margin-right:12px;
@@ -152,13 +153,21 @@ body{
     }
   }
   .list{
-    margin-top:70px;
     padding:10px;
     z-index:10;
   }
 
 }
 
+#find-list-container.trips{
+  margin-top:0px;
+  .list-header{
+    @include border-radius(0px);
+  }
+}
+.trips .list {
+  margin-top:70px;
+}
 
 #find_map{
   height:300px;
@@ -185,7 +194,6 @@ body{
   position:fixed;
   background-color:white;
   width:620px;
-  @include border-radius(0px 0px 10px 10px);
 }
 
 .navbar .nav > li > a {
