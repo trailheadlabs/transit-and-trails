@@ -37,9 +37,10 @@ body{
     }
   }
   span.category{
-    font-weight:600;
-    font-size:12px;
     color:$main-blue;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
   }
   .label{
     font-weight:600;

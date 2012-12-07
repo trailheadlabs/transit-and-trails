@@ -1,28 +1,45 @@
-:javascript
-  Find.clearFindMapMarkers();
+#find-list-container
+  .list-header
+    .list-header-icon
+    %span.badge.badge-info
+      = trips.count
+    Trips found near San Francisco
+  .list-filters
+    - filter_names.each do |filter|
+      %span.label.label-success
+        = filter
+  .list#find-list
 
-%ul.media-list
-  - trailheads.each do |trailhead|
-    %li.media.find-list-item(id="trailhead_list_item_#{trailhead.id}")
-      %a.pull-left(href="#{trailhead_path(trailhead)}")
-        %img.media-object(src="http://placehold.it/100x100")
-      .media-body
-      %h4.media-heading
-        = trailhead.name
-    :javascript
-      var myLatlng = new google.maps.LatLng(#{trailhead.latitude},#{trailhead.longitude});
-      var newMarker = new google.maps.Marker({
-        position: myLatlng,
-        map: Find.map,
-        title:"#{trailhead.name}"
-      });
-      Find.mapMarkers.push(newMarker);
-      $("#trailhead_list_item_#{trailhead.id}").hover(
-        function(newMarker){
-        return function(){
-          newMarker.setAnimation(google.maps.Animation.BOUNCE);
-        }}(newMarker),
-        function(newMarker){return function(){
-          newMarker.setAnimation(null);
-        }}(newMarker));
+    %ul.media-list
+      - trips.each_with_index do |trip,index|
+        %li.media.find-list-item(id="trip_list_item_#{trip.id}")
+          %a.pull-left(href="#{trip_path(trip)}")
+            %img.media-object(src="http://placehold.it/120x120")
+          .media-body
+          %a(href="#{trip_path(trip)}")
+            %h4.media-heading
+              = trip.name
+          %p.park-name
+            = trip.park_name
+          = trip.duration.name
+          |
+          = trip.intensity.name
+          |
+          = trip.length_miles.round(1)
+          Miles
+          %p.description
+            = truncate_html(strip_tags(trip.description),:length=>300)
+          .features
+            - trip.categorized_attributes.each do |category,features|
+              %p
+                %span.category
+                  #{category}:
+                - features[0..2].each do |feature|
+                  %span.label.label-feature
+                    = feature.name
+                - if features.count > 3
+                  = link_to "and more...", trip
 
+        %hr
+        :javascript
+          Find.addTripMarker(#{trip.as_json.except('geometry').except('route').except('description').to_json});

@@ -33,7 +33,8 @@
             - trip.categorized_attributes.each do |category,features|
               %p
                 %span.category
-                  #{category}:
+                  #{category}
+                %br
                 - features[0..2].each do |feature|
                   %span.label.label-feature
                     = feature.name
