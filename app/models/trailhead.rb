@@ -5,7 +5,7 @@ class Trailhead < ActiveRecord::Base
 
   belongs_to :user, :inverse_of => :trailheads
   belongs_to :park, :inverse_of => :trailhead_overrides
-  belongs_to :non_profit_partner, :inverse_of => :trailhead_overrides
+  belongs_to :non_profit_partner_override, :inverse_of => :trailhead_overrides, :class_name => "NonProfitPartner", :foreign_key => "non_profit_partner_id"
   belongs_to :agency_override, :class_name => "Agency", :foreign_key => "agency_id"
   belongs_to :cached_park_by_bounds, :class_name => "Park", :foreign_key => "cached_park_by_bounds_id"
   has_and_belongs_to_many :trailhead_features
@@ -43,21 +43,18 @@ class Trailhead < ActiveRecord::Base
 
   validates :name, :presence => true, :uniqueness => true
 
-  alias_method :non_profit_partner_attr, :non_profit_partner
   def non_profit_partner
-    (non_profit_partner_id && self.non_profit_partner_attr) || (default_park && default_park.non_profit_partner)
+    non_profit_partner_override || default_park.try(:non_profit_partner)
   end
 
   def non_profit_partner_name
-    non_profit_partner && non_profit_partner.name
+    non_profit_partner_override.try(:name)
   end
 
-  def non_profit_partner_name=(val)
+  def non_profit_partner_name=(name)
+    self.non_profit_partner_override = NonProfitPartner.find_by_name(name)
   end
 
-  def park_name
-    park && park.name
-  end
 
   def thumbnail_url
     if self.photos.first
@@ -67,23 +64,31 @@ class Trailhead < ActiveRecord::Base
     end
   end
 
-  def park_name=(val)
+  def park_name
+    park.try(:name)
+  end
+
+  def park_name=(name)
+    self.park = Park.find_by_name(name)
   end
 
   def agency_name
-    agency_override && agency_override.name
+    agency_override.try(:name)
   end
 
-  def agency_name=(val)
+  def agency_name=(name)
+    self.agency_override = Agency.find_by_name(name)
   end
 
   def categorized_attributes
     result = {}
     self.trailhead_features.each do |feature|
-      if result[feature.category.name]
-        result[feature.category.name] += [feature]
-      else
-        result[feature.category.name] = [feature]
+      unless feature.category.nil?
+        if result[feature.category.name]
+          result[feature.category.name] += [feature]
+        else
+          result[feature.category.name] = [feature]
+        end
       end
     end
     # Category.all.each do |category|

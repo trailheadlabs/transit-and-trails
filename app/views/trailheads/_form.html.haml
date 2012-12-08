@@ -21,14 +21,11 @@
       %textarea(name="trailhead[description]" id="trailhead_description" rows="10" cols="40")
         #{@trailhead.description}
     - if can? :override_park, @trailhead
-      = f.input :park_name, :url => autocomplete_park_name_parks_path, :as => :autocomplete, :placeholder => "Start Typing a Park Name", :id_element => '#trailhead_park_id', :label => "Park Override"
-      = f.input :park_id, :as => :hidden
+      = f.input :park_name, :url => autocomplete_park_name_parks_path, :as => :autocomplete, :placeholder => "Start Typing a Park Name", :label => "Park Override"
     - if can? :override_agency, @trailhead
-      = f.input :agency_name, :url => autocomplete_agency_name_agencies_path, :as => :autocomplete, :placeholder => "Start Typing an Agency Name", :id_element => '#trailhead_agency_id', :label => "Agency Override"
-      = f.input :agency_id, :as => :hidden
+      = f.input :agency_name, :url => autocomplete_agency_name_agencies_path, :as => :autocomplete, :placeholder => "Start Typing an Agency Name", :label => "Agency Override"
     - if can? :override_non_profit_partner, @trailhead
-      = f.input :non_profit_partner_name, :url => autocomplete_non_profit_partner_name_non_profit_partners_path, :as => :autocomplete, :placeholder => "Start Typing a Partner Name", :id_element => '#trailhead_non_profit_partner_id', :label => "Non-profit Partner Override"
-      = f.input :non_profit_partner_id, :as => :hidden
+      = f.input :non_profit_partner_name, :url => autocomplete_non_profit_partner_name_non_profit_partners_path, :as => :autocomplete, :placeholder => "Start Typing a Partner Name", :label => "Non-profit Partner Override"
 
   / e: tour
   #plan-map-instructions Click on the map to place your trailhead. You can reposition your pin by dragging it or clicking in a new location. Gray pins show existing trailheads.
