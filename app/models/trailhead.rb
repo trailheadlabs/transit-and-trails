@@ -43,7 +43,7 @@ class Trailhead < ActiveRecord::Base
 
   validates :name, :presence => true, :uniqueness => true
 
-  alias :non_profit_partner_attr :non_profit_partner
+  alias_method :non_profit_partner_attr, :non_profit_partner
   def non_profit_partner
     (non_profit_partner_id && self.non_profit_partner_attr) || (default_park && default_park.non_profit_partner)
   end
