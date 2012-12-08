@@ -55,15 +55,6 @@ class Trailhead < ActiveRecord::Base
     self.non_profit_partner_override = NonProfitPartner.find_by_name(name)
   end
 
-
-  def thumbnail_url
-    if self.photos.first
-      self.photos.first.flickr_large_square_url
-    else
-      "http://placehold.it/150x150"
-    end
-  end
-
   def park_name
     park.try(:name)
   end
@@ -78,6 +69,14 @@ class Trailhead < ActiveRecord::Base
 
   def agency_name=(name)
     self.agency_override = Agency.find_by_name(name)
+  end
+
+  def thumbnail_url
+    if self.photos.first
+      self.photos.first.flickr_large_square_url
+    else
+      "http://placehold.it/150x150"
+    end
   end
 
   def categorized_attributes
