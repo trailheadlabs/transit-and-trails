@@ -145,10 +145,12 @@ class Trip < ActiveRecord::Base
   def categorized_attributes
     result = {}
     self.trip_features.includes(:category).each do |feature|
-      if result[feature.category.name]
-        result[feature.category.name] << feature
-      else
-        result[feature.category.name] = [feature]
+      unless feature.category.nil?
+        if result[feature.category.name]
+          result[feature.category.name] << feature
+        else
+          result[feature.category.name] = [feature]
+        end
       end
     end
 
