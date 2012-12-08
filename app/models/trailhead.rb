@@ -49,7 +49,7 @@ class Trailhead < ActiveRecord::Base
   end
 
   def non_profit_partner_name
-    non_profit_partner_id && non_profit_partner.name
+    non_profit_partner && non_profit_partner.name
   end
 
   def non_profit_partner_name=(val)
