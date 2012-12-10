@@ -4,7 +4,7 @@
       .list-header-icon
       %span.badge.badge-inverse
         = trips.count
-      Trips found near San Francisco
+      Trips found near #{near}
     %span.list-filters
       %b
         Filters :
@@ -20,20 +20,25 @@
       - trips.each_with_index do |trip,index|
         %hr
         %li.media.find-list-item(id="trip_list_item_#{trip.id}")
-          %a.pull-left(href="#{trip_path(trip)}")
-            %img.media-object.img-rounded.img-polaroid(src="#{trip.thumbnail_url}")
+          .pull-left
+            %a(href="#{trip_path(trip)}")
+              %img.media-object.img-rounded.img-polaroid(src="#{trip.thumbnail_url}")
+            %br
+            = link_to "Plan my trip!", "/plan/trip/#{trip.id}", :class => "btn btn-success btn-block"
           .media-body
             %a(href="#{trip_path(trip)}")
-              %h4.media-heading
+              %h4.media-heading.find-list-name
                 = trip.name
             %p.park-name
               = trip.park_name
-            = trip.duration.name
-            |
-            = trip.intensity.name
-            |
-            = trip.length_miles.round(1)
-            Miles
+            %p
+              .div(class="intensity-icon #{trip.intensity.name.downcase}")
+              = trip.intensity.name
+              |
+              = trip.duration.name
+              |
+              = trip.length_miles.round(1)
+              Miles
             %p.description
               = truncate_html(strip_tags(trip.description),:length=>300)
             .features

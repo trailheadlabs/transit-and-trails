@@ -9,6 +9,27 @@ body{
   letter-spacing: 1px;
 }
 
+.intensity-icon{
+  background-image:url(/assets/find_sprite.png);
+  width:15px;
+  height:15px;
+  float:left;
+  margin-top:5px;
+}
+
+.intensity-icon.easy{
+  background-position:0px -80px;
+}
+
+.intensity-icon.moderate{
+  background-position:-20px -80px;
+}
+
+.intensity-icon.strenuous{
+  margin-top:2px;
+  background-position:-40px -80px;
+}
+
 .fullpage-map{
   width:100%;
   height:100%;
@@ -22,13 +43,14 @@ body{
 .map{
   background-color:white;
   position:fixed;
-  height:300px;
+  height:200px;
   width:300px;
   z-index:10;
   box-shadow: -2px 3px 10px rgba(51, 51, 51, 0.4);
 }
 
 .media.find-list-item{
+  color:#333;
   padding:10px;
   .features{
     a{
@@ -93,11 +115,21 @@ body{
   }
 }
 
+h4.find-list-name{
+  font-weight:400;
+  font-size:22px;
+}
+
+.park-name{
+  font-size:13px;
+  color:#888;
+}
+
 .filters{
   display:none;
   position:relative;
   z-index:5;
-  margin-top:300px;
+  margin-top:200px;
   background-color:white;
   padding:20px;
   @include border-radius(0px 0px 10px 10px);
@@ -171,7 +203,7 @@ body{
 }
 
 #find_map{
-  height:300px;
+  height:200px;
   position:relative;
   z-index:0;
   img{
@@ -210,6 +242,19 @@ body{
     text-decoration:underline;
   }
   text-shadow: -1px -1px 0px #555;
+}
+
+a.btn{
+  color: white;
+  text-decoration:none;
+  &:visited {
+    color: white;
+  }
+  &:hover {
+    color: white;
+    text-decoration:none;
+  }
+
 }
 
 .navbar-inner{

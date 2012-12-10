@@ -40,9 +40,7 @@ class FindController < ApplicationController
       @filter_names += ["My Trailheads"]
     end
 
-    unless(params[:near].blank?)
-      @filter_names += ["Near: #{params[:near]}"]
-    end
+    @near = "#{params[:near]}" || "San Francisco, CA"
 
     unless(params[:user_query].blank?)
       q = "%#{params[:user_query]}%"
@@ -58,7 +56,7 @@ class FindController < ApplicationController
     end
 
     @trailheads = Trailhead.where(approved: approved, id: @trailheads).limit(limit).offset(offset).near([center_latitude,center_longitude])
-    render :partial => "trailheads_within_bounds", :locals => {:trailheads => @trailheads, :filter_names => @filter_names}
+    render :partial => "trailheads_within_bounds", :locals => {:trailheads => @trailheads, :filter_names => @filter_names, :near => @near}
   end
 
   def campgrounds_within_bounds
@@ -117,6 +115,7 @@ class FindController < ApplicationController
     approved = true || params[:approved]
     @filter_names = []
     @trips = Trip.within_bounds(sw_latitude,sw_longitude,ne_latitude,ne_longitude)
+    @near = params[:near].blank? ? "San Francisco, CA" : "#{params[:near]}"
 
     if(params[:duration_ids])
       @trips = @trips.where(duration_id: params[:duration_ids])
@@ -139,10 +138,6 @@ class FindController < ApplicationController
       @filter_names += ["My Trips"]
     end
 
-    unless(params[:near].blank?)
-      @filter_names += ["Near: #{params[:near]}"]
-    end
-
     unless(params[:user_query].blank?)
       q = "%#{params[:user_query]}%"
       @users = User.where("username ILIKE ?",q)
@@ -157,7 +152,7 @@ class FindController < ApplicationController
     end
 
     @trips = Trip.where(approved: approved, id: @trips).limit(limit).offset(offset).near([center_latitude,center_longitude])
-    render :partial => "trips_within_bounds", :locals => {:trips => @trips, :filter_names => @filter_names}
+    render :partial => "trips_within_bounds", :locals => {:trips => @trips, :filter_names => @filter_names, :near => @near}
   end
 
   def objects_near

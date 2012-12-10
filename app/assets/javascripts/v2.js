@@ -166,8 +166,10 @@ Find.loadItems = function(find_path){
   params['center_latitude'] = center.lat();
   params['center_longitude'] = center.lng();
   $('.filter-checkbox').attr('disabled','disabled');
+  $('button').attr('disabled','disabled');
   $("#findlist").load(find_path,params, function(){
     $('.filter-checkbox').removeAttr('disabled');
+    $('button').removeAttr('disabled');
     $('#progress').slideUp();
     $("#findlist").fadeIn();
   });
