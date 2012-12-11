@@ -170,8 +170,9 @@ Find.addCampgroundMarker = function(campground){
 }
 
 Find.mapIdle = function(){
-  if($('#redo_search_in_map').is(':checked')){
+  if(Find.forceShowItems || $('#redo_search_in_map').is(':checked')){
     Find.showItems();
+    Find.forceShowItems = false;
   }
   if(!Find.firstLoadDone){
     Find.showItems();
@@ -180,17 +181,22 @@ Find.mapIdle = function(){
 }
 
 Find.showItems = function(){
+  if(find_mode == "TRAILHEADS"){
+    Find.showTrailheads();
+  } else if(find_mode == "TRIPS") {
+    Find.showTrips();
+  } else if(find_mode == "CAMPGROUNDS") {
+    Find.showCampgrounds();
+  }
+}
+
+Find.submitFilters = function(){
   var newNear = $("#find-location").val();
   if( newNear != "" && newNear != Find.currentNear){
     Find.codeAddress($("#find-location").val());
+    Find.forceShowItems = true;
   } else {
-    if(find_mode == "TRAILHEADS"){
-      Find.showTrailheads();
-    } else if(find_mode == "TRIPS") {
-      Find.showTrips();
-    } else if(find_mode == "CAMPGROUNDS") {
-      Find.showCampgrounds();
-    }
+    showItems();
   }
 }
 
@@ -235,7 +241,7 @@ Find.showCampgrounds = function(){
 
 $(function(){
   $("#filters-form").submit(function(){
-    Find.showItems();
+    Find.submitFilters();
     return false;
   });
   $('#scrolltop').click(function(){
