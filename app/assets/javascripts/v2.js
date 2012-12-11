@@ -233,7 +233,16 @@ $(function(){
     center: new google.maps.LatLng(37.78, -122.42),
     zoom: 11,
     mapTypeId: google.maps.MapTypeId.TERRAIN,
-    zoomControl: true
+    mapTypeControl: true,
+    mapTypeControlOptions: {
+      position: google.maps.ControlPosition.RIGHT_BOTTOM,
+      style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+    },
+    zoomControl: true,
+    zoomControlOptions: {
+      position: google.maps.ControlPosition.RIGHT_BOTTOM,
+      style: google.maps.ZoomControlStyle.SMALL
+    }
   };
   Find.map = new google.maps.Map(document.getElementById("find_map"),
             mapOptions);

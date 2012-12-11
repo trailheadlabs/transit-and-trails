@@ -7,6 +7,11 @@ body{
   font-family: 'Open Sans', sans-serif;
   font-weight:400;
   letter-spacing: 1px;
+  position:relative;
+}
+
+.relative{
+  position:relative;
 }
 
 .intensity-icon{
@@ -53,6 +58,74 @@ body{
   background-color:#ccc;
   opacity:0.5;
 }
+
+.top{
+  z-index:1000;
+}
+.map-mode{
+  #find-list-container{
+    margin-top:0px;
+    @include border-radius(0px);
+    .list-header{
+      @include border-radius(0px);
+      height:18px;
+    }
+  }
+
+  #find-map-disable{
+    width:100%;
+    height:100%;
+    z-index:2;
+  }
+  .maplist{
+    z-index:5;
+    #findlist{
+      .list-header-icon{
+        margin-right:12px;
+        float:left;
+        position: relative;
+        top: 0px;
+        left: 4px;
+        width:42px;
+        height:42px;
+        background:url(/assets/find_sprite.png) -200px 0px;
+      }
+    }
+  }
+  .map{
+    z-index:1;
+    margin-top:0px;
+    width:100%;
+    height:100%;
+    #find_map{
+      z-index: 0;
+      height:100%;
+      width:100%;
+    }
+  }
+  #find-list{
+    height:90px;
+    overflow:scroll;
+    .description{
+      display:none;
+    }
+    .features{
+      display:none;
+    }
+    .media-object{
+      height:60px;
+    }
+  }
+  .message{
+    margin-top:0px;
+  }
+  .filters{
+    margin-top:0px;
+  }
+
+}
+
+
 
 .map{
   background-color:white;

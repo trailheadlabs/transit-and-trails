@@ -1,21 +1,26 @@
 :javascript
   find_mode = 'TRAILHEADS';
-.container
-  .row
-    .span8
-      #progress
-        %h4
-          Loading
-        .progress.progress-striped.active
-          .bar{:style => "width: 100%;"}
-      #findlist
-    .span4#mapfilters
-      .mapfilters
-        .map
-          #find_map
-        .message
-          %a#scrolltop(href="#top")
-            Filters
-            %i.icon-circle-arrow-up.pull-right
-        .filters
-          = render :partial => "trailhead_filters"
+= content_for :map do
+  .map-mode
+    #find-map-disable
+    .map
+      #find_map
+.map-mode
+  .container
+    .row
+      .span4#mapfilters
+        .mapfilters
+          .message
+            %a#scrolltop(href="#top")
+              Filters
+              %i.icon-circle-arrow-up.pull-right
+          .filters
+            = render :partial => "trailhead_filters"
+      .span8.relative.top
+        .maplist
+          #progress
+            %h4
+              Loading
+            .progress.progress-striped.active
+              .bar{:style => "width: 100%;"}
+          #findlist
