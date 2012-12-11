@@ -1,13 +1,17 @@
+:javascript
+  $('#campground-count').text("#{campgrounds.count}")
 #find-list-container
-  .list-header
-    .list-header-icon
-    %span.badge.badge-inverse
-      = campgrounds.count
-    Campgrounds found near San Francisco
-  .list-filters
-    - filter_names.each do |filter|
-      %span.label.label-success
-        = filter
+  / .list-header
+  /   .list-header-icon
+  /   %span.badge.badge-inverse#campground-count
+  /     = campgrounds.count
+  /   Campgrounds found near
+  /   %span#near
+  /     San Francisco
+  / .list-filters
+  /   - filter_names.each do |filter|
+  /     %span.label.label-success
+  /       = filter
   .list#find-list
     %ul.media-list
       - campgrounds.each_with_index do |campground,index|

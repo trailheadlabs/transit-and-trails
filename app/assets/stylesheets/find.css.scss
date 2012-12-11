@@ -114,6 +114,7 @@ body{
     }
     .media-object{
       height:60px;
+      width:60px;
     }
   }
   .message{
@@ -187,6 +188,7 @@ body{
 
 .mapfilters{
   position:relative;
+  display:none;
   .message{
     color:$main-blue;
     font-size: 14px;
@@ -216,7 +218,6 @@ h4.find-list-name{
 }
 
 .filters{
-  display:none;
   position:relative;
   z-index:5;
   margin-top:200px;
@@ -252,29 +253,31 @@ h4.find-list-name{
 .list-filters{
   display:block;
 }
+
+.list-header{
+  font-weight:400;
+  height: 20px;
+  margin-bottom: 5px;
+  background-color:#ddd;
+  padding:8px;
+  @include border-radius(10px 10px 0px 0px);
+  position:relative;
+  .list-header-icon{
+    margin-right:12px;
+    float:left;
+    position: relative;
+    top: -20px;
+    left: 4px;
+    width:50px;
+    height:77px;
+    background:url(/assets/find_sprite.png) -310px 0px;
+  }
+}
+
 #find-list-container{
   margin-top: 20px;
   background-color:white;
   @include border-radius(10px);
-  .list-header{
-    font-weight:400;
-    height: 20px;
-    margin-bottom: 5px;
-    background-color:#ddd;
-    padding:8px;
-    @include border-radius(10px 10px 0px 0px);
-    position:relative;
-    .list-header-icon{
-      margin-right:12px;
-      float:left;
-      position: relative;
-      top: -20px;
-      left: 4px;
-      width:50px;
-      height:77px;
-      background:url(/assets/find_sprite.png) -310px 0px;
-    }
-  }
   .list{
     padding:10px;
     z-index:10;
@@ -462,4 +465,38 @@ button{
   height:66px;
   background-image:url(/assets/find_sprite.png);
 
+}
+
+.campgrounds{
+  .mapfilters{
+    margin-top:20px;
+    font-size:12px;
+    .message{
+      margin-top:0px;
+      @include border-radius(10px);
+    }
+    .filters{
+      top:-14px;
+      margin-top:0px;
+      padding-top:50px;
+    }
+    .list-header{
+      margin-bottom:0px;
+      z-index:10;
+    }
+  }
+  .map {
+    width:620px;
+    height:200px;
+  }
+  #progress{
+    margin-top:220px;
+  }
+  #findlist{
+    margin-top:200px;
+  }
+  #find-list-container{
+    margin-top:0px;
+    @include border-radius(0px 0px 10px 10px)
+  }
 }

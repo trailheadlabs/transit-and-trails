@@ -51,7 +51,7 @@ class Campground < ActiveRecord::Base
     if self.photos.first
       self.photos.first.flickr_large_square_url
     else
-      "http://placehold.it/150x150"
+      "/assets/placeholder_item_image.png"
     end
   end
 

@@ -1,3 +1,5 @@
+:javascript
+  Find.mapMode = true;
 #find-list-container.trailheads
   .list-header
     .list-header-icon
@@ -11,29 +13,7 @@
   .list#find-list
     %ul.media-list
       - trailheads.each_with_index do |trailhead,index|
-        %li.media.find-list-item(id="trailhead_list_item_#{trailhead.id}")
-          %a.pull-left(href="#{trailhead_path(trailhead)}")
-            %img.media-object.img-rounded.img-polaroid(src="#{trailhead.thumbnail_url}")
-          .media-body
-            %a(href="#{trailhead_path(trailhead)}")
-              %h4.media-heading
-                = trailhead.name
-            %p.park-name
-              = trailhead.default_park_name
-            %p.description
-              = truncate_html(strip_tags(trailhead.description),:length=>300)
-            .features
-              - trailhead.categorized_attributes.each do |category,features|
-                %p
-                  %span.category
-                    #{category}:
-                  %br
-                  - features.each_with_index do |feature,index|
-                    - if index < 3
-                      %span.label.label-feature
-                        = feature.name
-                    - if index == 3
-                      = link_to "and more...", trailhead
+        = render :partial => 'trailheads_media_item', :locals => {:trailhead => trailhead}
         %hr
         :javascript
           Find.addTrailheadMarker(#{trailhead.as_json.except('description').to_json});

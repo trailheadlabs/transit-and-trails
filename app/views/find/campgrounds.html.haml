@@ -1,6 +1,8 @@
-.container
+.container.campgrounds
   .row
     .span8
+      .map
+        #find_map
       #progress
         %h4
           Loading
@@ -9,12 +11,15 @@
       #findlist
     .span4#mapfilters
       .mapfilters
-        .map
-          #find_map
         .message
           %a#scrolltop(href="#top")
             Filters
             %i.icon-circle-arrow-up.pull-right
+        .list-header
+          .list-header-icon
+          %span.badge.badge-inverse#campground-count
+            0
+          Campgrounds Found
         .filters
           = render :partial => "campground_filters"
 :javascript

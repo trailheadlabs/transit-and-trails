@@ -117,6 +117,15 @@ Find.addTrailheadMarker = function(trailhead){
       size: new google.maps.Size(30, 45)
     }
   });
+
+  google.maps.event.addListener(newMarker, 'click', function() {
+      var infowindow = new google.maps.InfoWindow({
+        content: $('#trailhead_list_item_' + trailhead.id)[0].outerHTML,
+      });
+
+      // infowindow.open(Find.map,newMarker);
+  });
+
   Find.mapMarkers.push(newMarker);
   $("#trailhead_list_item_" + trailhead.id).hover(
     function(newMarker){
@@ -158,6 +167,16 @@ Find.addCampgroundMarker = function(campground){
         newMarker.setAnimation(null);
       }
     }(newMarker));
+}
+
+Find.mapIdle = function(){
+  if($('#redo_search_in_map').is(':checked')){
+    Find.showItems();
+  }
+  if(!Find.firstLoadDone){
+    Find.showItems();
+    Find.firstLoadDone = true;
+  }
 }
 
 Find.showItems = function(){
@@ -223,7 +242,7 @@ $(function(){
     $("html, body").animate({ scrollTop: 0 },300);
     return false;
   });
-  $('.filters').slideDown(1000)
+  $('.mapfilters').slideDown(1000)
   // $('.nav-what').button();
   // $('#trip-filter-button').button('toggle');
   // $('.nav-mode').button();
@@ -246,6 +265,10 @@ $(function(){
   };
   Find.map = new google.maps.Map(document.getElementById("find_map"),
             mapOptions);
+
+  Find.overlay = new google.maps.OverlayView();
+  Find.overlay.draw = function() {};
+  Find.overlay.setMap(Find.map);
 
   Find.geocoder = new google.maps.Geocoder();
 
@@ -270,6 +293,6 @@ $(function(){
     }
   });
 
-  google.maps.event.addListener(Find.map, 'idle', Find.showItems)
-  $(".filter-checkbox").change(Find.showItems)
+  google.maps.event.addListener(Find.map, 'idle', Find.mapIdle);
+  $(".filter-checkbox").change(Find.showItems);
 });
