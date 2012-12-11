@@ -39,20 +39,38 @@ Find.clearFindMapMarkers = function(){
     Find.mapMarkers[i].setMap(null);
   }
 }
-Find.codeAddress = function() {
-  var address = document.getElementById("address").value;
-  geocoder.geocode( { 'address': address}, function(results, status) {
+
+Find.codeAddress = function(address) {
+  Find.geocoder.geocode( { 'address': address}, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
-      map.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({
-          map: map,
-          position: results[0].geometry.location
-      });
+      Find.currentNear = results[0].formatted_address;
+      $("#find-location").val(Find.currentNear);
+      Find.map.setCenter(results[0].geometry.location);
+      Find.map.fitBounds(results[0].geometry.viewport);
     } else {
-      alert("Geocode was not successful for the following reason: " + status);
+      $("#find-location").val(Find.currentNear);
+      alert("Could not find location.");
     }
   });
 }
+
+ Find.codeLatLng = function(latlng) {
+    geocoder.geocode({'latLng': latlng}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        if (results[1]) {
+          map.setZoom(11);
+          marker = new google.maps.Marker({
+              position: latlng,
+              map: map
+          });
+          infowindow.setContent(results[1].formatted_address);
+          infowindow.open(map, marker);
+        }
+      } else {
+        alert("Geocoder failed due to: " + status);
+      }
+    });
+  }
 
 Find.addTripMarker = function(trip){
   var myLatlng = new google.maps.LatLng(trip.latitude,trip.longitude);
@@ -143,12 +161,17 @@ Find.addCampgroundMarker = function(campground){
 }
 
 Find.showItems = function(){
-  if(find_mode == "TRAILHEADS"){
-    Find.showTrailheads();
-  } else if(find_mode == "TRIPS") {
-    Find.showTrips();
-  } else if(find_mode == "CAMPGROUNDS") {
-    Find.showCampgrounds();
+  var newNear = $("#find-location").val();
+  if( newNear != "" && newNear != Find.currentNear){
+    Find.codeAddress($("#find-location").val());
+  } else {
+    if(find_mode == "TRAILHEADS"){
+      Find.showTrailheads();
+    } else if(find_mode == "TRIPS") {
+      Find.showTrips();
+    } else if(find_mode == "CAMPGROUNDS") {
+      Find.showCampgrounds();
+    }
   }
 }
 
@@ -167,9 +190,13 @@ Find.loadItems = function(find_path){
   params['center_longitude'] = center.lng();
   $('.filter-checkbox').attr('disabled','disabled');
   $('button').attr('disabled','disabled');
+  $('input').attr('disabled','disabled');
+  $("#find-map-disable").fadeIn();
   $("#findlist").load(find_path,params, function(){
     $('.filter-checkbox').removeAttr('disabled');
     $('button').removeAttr('disabled');
+    $('input').removeAttr('disabled');
+    $("#find-map-disable").fadeOut();
     $('#progress').slideUp();
     $("#findlist").fadeIn();
   });
@@ -211,6 +238,8 @@ $(function(){
   Find.map = new google.maps.Map(document.getElementById("find_map"),
             mapOptions);
 
+  Find.geocoder = new google.maps.Geocoder();
+
   var autocomplete = new google.maps.places.Autocomplete($('#find-location')[0]);
   autocomplete.bindTo('bounds', Find.map);
 
@@ -230,7 +259,6 @@ $(function(){
       Find.map.setCenter(place.geometry.location);
       Find.map.setZoom(17);
     }
-
   });
 
   google.maps.event.addListener(Find.map, 'idle', Find.showItems)

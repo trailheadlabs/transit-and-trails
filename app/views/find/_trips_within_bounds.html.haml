@@ -56,3 +56,4 @@
 
         :javascript
           Find.addTripMarker(#{trip.as_json.except('geometry').except('route').except('description').to_json});
+          Find.currentNear = "#{near}";
