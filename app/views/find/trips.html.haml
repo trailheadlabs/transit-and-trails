@@ -2,13 +2,6 @@
   find_mode = 'TRIPS';
 .container
   .row
-    .span8
-      #progress
-        %h4
-          Loading
-        .progress.progress-striped.active
-          .bar{:style => "width: 100%;"}
-      #findlist
     .span4#mapfilters
       .mapfilters
         #find-map-disable
@@ -20,3 +13,21 @@
             %i.icon-circle-arrow-up.pull-right
         .filters
           = render :partial => "trip_filters"
+    .span8
+      #progress
+        %h4
+          Loading
+        .progress.progress-striped.active
+          .bar{:style => "width: 100%;"}
+      #findlist
+    / .span4#mapfilters
+    /   .mapfilters
+    /     #find-map-disable
+    /     .map
+    /       #find_map
+    /     .message
+    /       %a#scrolltop(href="#top")
+    /         Filters
+    /         %i.icon-circle-arrow-up.pull-right
+    /     .filters
+    /       = render :partial => "trip_filters"
