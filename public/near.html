@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html style="width:100%;height:100%;padding:0px;margin:0px">
+<head>
+  <title>NearSighter</title>
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=true"></script>
+  <script type="text/javascript">
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(location){
+        var lat = location.coords.latitude;
+        var lng = location.coords.longitude;
+
+        var map;
+        var service;
+        var infowindow;
+
+        function initialize() {
+          var pyrmont = new google.maps.LatLng(lat,lng);
+
+          map = new google.maps.Map(document.getElementById('map'), {
+              mapTypeId: google.maps.MapTypeId.ROADMAP,
+              center: pyrmont,
+              zoom: 15
+            });
+
+          var request = {
+            location: pyrmont,
+            radius: '500'
+
+          };
+
+          service = new google.maps.places.PlacesService(map);
+          service.nearbySearch(request, callback);
+        }
+
+        function callback(results, status) {
+          if (status == google.maps.places.PlacesServiceStatus.OK) {
+            for (var i = 0; i < results.length; i++) {
+              var place = results[i];
+              createMarker(results[i]);
+            }
+          }
+        }
+        function createMarker(place) {
+          var placeLoc = place.geometry.location;
+          var marker = new google.maps.Marker({
+            map: map,
+            position: place.geometry.location
+          });
+
+          google.maps.event.addListener(marker, 'click', function() {
+            infowindow.setContent(place.name);
+            infowindow.open(map, this);
+          });
+        }
+        initialize();
+      });
+    }
+  </script>
+<body style="width:100%;height:100%;padding:0px;margin:0px">
+  <div id="map" style="width:100%;height:100%;padding:0px;margin:0px"></div>
+</body>
+</html>
