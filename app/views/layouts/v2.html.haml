@@ -47,19 +47,20 @@
                   = link_to 'Trailheads', '/find/v2/trailheads'
                 %li
                   = link_to 'Campgrounds', '/find/v2/campgrounds'
-      / .navbar-inner.navbar-find
-      /   .container
-      /     %span.nav-what-label
-      /       What are you looking for?
-      /     %span.nav-what.btn-group{"data-toggle" => "buttons-radio"}
-      /       %button.btn.btn-success#trip-filter-button{:type => "button", "data-toggle"=>"button"} Trips
-      /       %button.btn.btn-success{:type => "button"} Trailheads
-      /       %button.btn.btn-success{:type => "button"} Campgrounds
-      /     %span.nav-what-label
-      /       &nbsp;&nbsp;Near
-      /     %input.search-query#find-location{:placeholder => "San Francisco, CA", :type => "text"}
-      /     %button.btn.btn-success.btn-round{:type => "button"} Find
-      /     %span.nav-mode.btn-group.pull-right{"data-toggle" => "buttons-radio"}
-      /       %button.btn.btn-success#map-mode-button{:type => "button", "data-toggle"=>"button"} Map
-      /       %button.btn.btn-success{:type => "button"} List
-    = yield
+    #wrap
+      #main
+        = yield
+    #footer
+      .container
+        %ul
+          %li
+            = link_to "About", static_path(:about)
+          %li
+            = link_to "Blog", "http://blog.transitandtrails.org"
+          %li
+            = link_to "Partners", partners_path
+          %li
+            = link_to "API", "/api"
+
+
+
