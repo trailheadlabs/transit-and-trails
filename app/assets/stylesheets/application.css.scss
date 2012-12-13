@@ -140,16 +140,16 @@ a.green-map-button, a.green-button, a.gray-button {
     }
   }
 
-a {
-  color: $aqua;
-  text-decoration:none;
-  &:visited {
-    color: $aqua; }
-  &:hover {
-    color: $aqua;
-    text-decoration:underline;
-  }
-}
+// a {
+//   color: $aqua;
+//   text-decoration:none;
+//   &:visited {
+//     color: $aqua; }
+//   &:hover {
+//     color: $aqua;
+//     text-decoration:underline;
+//   }
+// }
 
 .middle{
   margin: 0 auto;

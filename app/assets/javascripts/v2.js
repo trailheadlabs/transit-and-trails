@@ -63,7 +63,7 @@ Find.codeAddress = function(address) {
               position: latlng,
               map: map
           });
-          infowindow.setContent(results[1].formatted_address);
+          infowindow.setContent($('<div class="infowindow">').append(results[1].formatted_address));
           infowindow.open(map, marker);
         }
       } else {
@@ -100,6 +100,13 @@ Find.addTripMarker = function(trip){
         newMarker.setAnimation(null);
       }
     }(newMarker));
+
+  $("#trip_list_item_" + trip.id + " .zoom-button").click( function() {
+    Find.map.panTo(newMarker.position);
+    Find.map.setZoom(18);
+    return false;
+  });
+
 }
 
 Find.addTrailheadMarker = function(trailhead){
@@ -119,11 +126,18 @@ Find.addTrailheadMarker = function(trailhead){
   });
 
   google.maps.event.addListener(newMarker, 'click', function() {
+      var div = $('<ul class="media-list">')
+      div.append($('#trailhead_list_item_' + trailhead.id)[0].outerHTML);
+      var content = $('<div class="infowindow">').append(div);
       var infowindow = new google.maps.InfoWindow({
-        content: $('#trailhead_list_item_' + trailhead.id)[0].outerHTML,
+        content: content[0].outerHTML
       });
-
-      // infowindow.open(Find.map,newMarker);
+      if(Find.openInfowindow){
+        Find.openInfowindow.close();
+      }
+      Find.openInfowindow = infowindow;
+      Find.map.panTo(newMarker.position);
+      infowindow.open(Find.map,newMarker);
   });
 
   Find.mapMarkers.push(newMarker);
@@ -138,6 +152,11 @@ Find.addTrailheadMarker = function(trailhead){
         newMarker.setAnimation(null);
       }
     }(newMarker));
+
+  $("#trailhead_list_item_" + trailhead.id + " .zoom_button").click( function() {
+    Find.map.panTo(newMarker.position);
+    Find.map.setZoom(18);
+  });
 }
 
 Find.addCampgroundMarker = function(campground){
@@ -196,8 +215,9 @@ Find.submitFilters = function(){
     Find.codeAddress($("#find-location").val());
     Find.forceShowItems = true;
   } else {
-    showItems();
+    Find.showItems();
   }
+  return false;
 }
 
 Find.loadItems = function(find_path){
@@ -240,7 +260,8 @@ Find.showCampgrounds = function(){
 }
 
 $(function(){
-  $("#filters-form").submit(function(){
+  $("#filters-form").submit(function(event){
+    event.preventDefault();
     Find.submitFilters();
     return false;
   });
@@ -295,7 +316,7 @@ $(function(){
     } else {
       // Otherwise use the location and set a chosen zoom level.
       Find.map.setCenter(place.geometry.location);
-      Find.map.setZoom(17);
+      Find.map.setZoom(20);
     }
   });
 

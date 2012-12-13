@@ -12,6 +12,7 @@
         = filter
   .list#find-list
     %ul.media-list
+      - count = trailheads.count
       - trailheads.each_with_index do |trailhead,index|
         = render :partial => 'trailheads_media_item', :locals => {:trailhead => trailhead}
         %hr

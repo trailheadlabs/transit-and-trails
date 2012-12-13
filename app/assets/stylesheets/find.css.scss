@@ -186,9 +186,19 @@ body{
   box-shadow: 5px 5px 10px #555;
 }
 
+.infowindow{
+  .description{
+    display:none;
+  }
+  .features{
+    display:none;
+  }
+  width:400px;
+}
 .mapfilters{
   position:relative;
   display:none;
+  box-shadow: 3px 3px 10px rgba(51, 51, 51, 0.4);
   .message{
     color:$main-blue;
     font-size: 14px;
@@ -337,18 +347,18 @@ h4.find-list-name{
   text-shadow: -1px -1px 0px #555;
 }
 
-a.btn{
-  color: white;
-  text-decoration:none;
-  &:visited {
-    color: white;
-  }
-  &:hover {
-    color: white;
-    text-decoration:none;
-  }
+// a.btn{
+//   color: white;
+//   text-decoration:none;
+//   &:visited {
+//     color: white;
+//   }
+//   &:hover {
+//     color: white;
+//     text-decoration:none;
+//   }
 
-}
+// }
 
 .navbar-inner{
   a {
