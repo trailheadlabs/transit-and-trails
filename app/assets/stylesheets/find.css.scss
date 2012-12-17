@@ -240,7 +240,7 @@ a#trailheadlabs{
     font-size: 14px;
     font-weight: 600;
     text-transform: uppercase;
-    width:280px;
+    width:$gridColumnWidth * 4 + $gridGutterWidth * 2;
     position: fixed;
     background: white;
     margin-top: 200px;
