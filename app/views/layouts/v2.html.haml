@@ -53,7 +53,7 @@
     #footer
       .container
         .row
-          .span4
+          .span3
             %h4
               Transit & Trails
             %ul
@@ -68,16 +68,7 @@
               %li
                 = link_to "API", "/api"
 
-          .span4
-            %h4
-              Download Our Apps
-            %ul
-              %li
-                = link_to "iOS", static_path(:about)
-              %li
-                = link_to "Android", "http://blog.transitandtrails.org"
-
-          .span4
+          .span2
             %h4
               Community
             %ul
@@ -90,4 +81,14 @@
               %li
                 = link_to "Flickr", "http://flickr.com/transitandtrails"
 
-
+          .span3
+            %h4
+              Download Our Apps
+            %ul
+              %li
+                = link_to "iOS", static_path(:about)
+              %li
+                = link_to "Android", "http://blog.transitandtrails.org"
+          .span4
+            %a#openspacecouncil(href="http://openspacecouncil.org")
+              .openspacecouncil-logo.image-link

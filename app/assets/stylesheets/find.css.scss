@@ -1,3 +1,7 @@
+$main-green: #6ca547;
+$gridColumnWidth: 65px;
+$navbarBackground: $main-green;
+$navbarBackgroundHighlight: $main-green;
 @import "variables";
 @import "bootstrap";
 @import "font-awesome";
@@ -14,13 +18,31 @@ html{
   height:100%;
 }
 
+$footer-height:200px;
+
+a#openspacecouncil{
+  padding:10px;
+  @include border-radius(10px);
+  background-color:white;
+  display:block;
+  float:right;
+  box-shadow: -1px -1px 2px #777;
+}
+
+.openspacecouncil-logo{
+  background-image:url(application_layout_sprite.png);
+  background-position: -600px -160px;
+  height:35px;
+  width:280px;
+}
+
 #wrap {
   min-height: 100%;
 }
 
 #main {
   overflow:auto;
-  padding-bottom:150px; /* this needs to be bigger than footer height*/
+  padding-bottom:$footer-height; /* this needs to be bigger than footer height*/
 }
 
 #footer {
@@ -30,12 +52,13 @@ html{
   -webkit-text-stroke: 0.2px;
   color:white;
   position: relative;
-  margin-top: -150px; /* negative value of footer height */
-  height: 150px;
+  margin-top: $footer-height * -1; /* negative value of footer height */
+  height: $footer-height;
   clear:both;
   padding-top:20px;
-  background-color:$main-blue;
-  background-image:url(/assets/greentexture_bright.jpg);
+  // background-color:$main-blue;
+  background-color:$main-green;
+  // background-image:url(/assets/greentexture_bright.jpg);
   box-shadow: -2px -10px 10px rgba(51, 51, 51, 0.8);
   ul{
     list-style-type: none;
@@ -83,13 +106,17 @@ html{
   display:none;
   position:fixed;
   height:200px;
-  width:300px;
+  width:$gridColumnWidth * 8 + $gridGutterWidth * 7;
   z-index:20;
   img{
     max-width: none;
   }
   background-color:#ccc;
   opacity:0.5;
+}
+
+.bigger{
+  height:400px;
 }
 
 .top{
@@ -100,7 +127,7 @@ html{
   background-color:white;
   position:fixed;
   height:200px;
-  width:620px;
+  width:$gridColumnWidth * 8 + $gridGutterWidth * 7;
   z-index:10;
   box-shadow: -2px 3px 10px rgba(51, 51, 51, 0.4);
 }
@@ -261,10 +288,15 @@ h4.find-list-name{
   // display:none;
   padding:10px;
   color:#666;
+  b{
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 12px;
+  }
 }
 
 .list-header{
-  font-weight:400;
+  font-weight:600;
   height: 20px;
   margin-bottom: 5px;
   background-color:#ddd;
@@ -308,7 +340,7 @@ h4.find-list-name{
   padding-top:20px;
   position:fixed;
   background-color:white;
-  width:620px;
+  width:$gridColumnWidth * 8 + $gridGutterWidth * 7;
 }
 
 .navbar .nav > li > a {
@@ -352,8 +384,8 @@ h4.find-list-name{
 .navbar-inner.navbar-main {
   -webkit-text-stroke: 0.5px;
   height:84px;
-  background-image:url(/assets/greentexture_bright.jpg);
-  background-color:white;
+  // background-image:url(/assets/greentexture_bright.jpg);
+  background-color:#569E23;
   box-shadow: -2px 3px 10px rgba(51, 51, 51, 0.4);
   position:relative;
   color:white;
@@ -408,6 +440,11 @@ button{
   background-image:url(/assets/find_sprite.png);
 
 }
+
+#map_size_toggle{
+  font-weight:600;
+}
+
 .mapfilters{
   margin-top:20px;
   font-size:12px;
