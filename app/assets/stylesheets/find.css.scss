@@ -24,6 +24,10 @@ html{
 }
 
 #footer {
+  -webkit-font-smoothing: antialiased;
+  font-weight:400;
+  text-shadow: -1px -1px 0px #555;
+  -webkit-text-stroke: 0.2px;
   color:white;
   position: relative;
   margin-top: -150px; /* negative value of footer height */
@@ -47,13 +51,8 @@ html{
       color: white;
       text-decoration:underline;
     }
-    text-shadow: -1px -1px 0px #555;
   }
 }
-
-#footer {
-}
-
 
 .relative{
   position:relative;
@@ -80,17 +79,6 @@ html{
   background-position:-40px -80px;
 }
 
-.fullpage-map{
-  width:100%;
-  height:100%;
-  position:fixed;
-  z-index: 0;
-  #find_map{
-    width:100%;
-    height:100%;
-  }
-}
-
 #find-map-disable{
   display:none;
   position:fixed;
@@ -107,79 +95,38 @@ html{
 .top{
   z-index:1000;
 }
-.map-mode{
-  #find-list-container{
-    margin-top:0px;
-    @include border-radius(0px);
-    .list-header{
-      @include border-radius(0px);
-      height:18px;
-    }
-  }
-
-  #find-map-disable{
-    width:100%;
-    height:100%;
-    z-index:2;
-  }
-  .maplist{
-    z-index:5;
-    #findlist{
-      .list-header-icon{
-        margin-right:12px;
-        float:left;
-        position: relative;
-        top: 0px;
-        left: 4px;
-        width:42px;
-        height:42px;
-        background:url(/assets/find_sprite.png) -200px 0px;
-      }
-    }
-  }
-  .map{
-    z-index:1;
-    margin-top:0px;
-    width:100%;
-    height:100%;
-    #find_map{
-      z-index: 0;
-      height:100%;
-      width:100%;
-    }
-  }
-  #find-list{
-    height:90px;
-    overflow:scroll;
-    .description{
-      display:none;
-    }
-    .features{
-      display:none;
-    }
-    .media-object{
-      height:60px;
-      width:60px;
-    }
-  }
-  .message{
-    margin-top:0px;
-  }
-  .filters{
-    margin-top:0px;
-  }
-
-}
-
-
 
 .map{
   background-color:white;
   position:fixed;
   height:200px;
-  width:300px;
+  width:620px;
   z-index:10;
   box-shadow: -2px 3px 10px rgba(51, 51, 51, 0.4);
+}
+
+.map.bigger{
+  height:400px;
+}
+
+.map-buttons{
+  position:fixed;
+  margin:10px;
+  z-index:20;
+}
+
+
+#find_map{
+  height:200px;
+  position:relative;
+  z-index:0;
+  img{
+    max-width: none;
+  }
+}
+
+#find_map.bigger{
+  height:400px;
 }
 
 .media.find-list-item{
@@ -240,6 +187,7 @@ html{
   }
   width:400px;
 }
+
 .mapfilters{
   position:relative;
   display:none;
@@ -305,8 +253,14 @@ h4.find-list-name{
   @include border-radius(10px);
 }
 
+#active-filters{
+  background-color:white;
+}
+
 .list-filters{
-  display:block;
+  // display:none;
+  padding:10px;
+  color:#666;
 }
 
 .list-header{
@@ -330,33 +284,13 @@ h4.find-list-name{
 }
 
 #find-list-container{
-  margin-top: 20px;
   background-color:white;
-  @include border-radius(10px);
+  @include border-radius(0px 0px 10px 10px);
   .list{
     padding:10px;
     z-index:10;
   }
 
-}
-
-#find-list-container.trips{
-  margin-top:0px;
-  .list-header{
-    @include border-radius(0px);
-  }
-}
-.trips .list {
-  margin-top:70px;
-}
-
-#find_map{
-  height:200px;
-  position:relative;
-  z-index:0;
-  img{
-    max-width: none;
-  }
 }
 
 .find-list-item{
@@ -391,19 +325,6 @@ h4.find-list-name{
   }
   text-shadow: -1px -1px 0px #555;
 }
-
-// a.btn{
-//   color: white;
-//   text-decoration:none;
-//   &:visited {
-//     color: white;
-//   }
-//   &:hover {
-//     color: white;
-//     text-decoration:none;
-//   }
-
-// }
 
 .navbar-inner{
   a {
@@ -450,22 +371,6 @@ h4.find-list-name{
   }
 }
 
-.navbar-inner.navbar-find {
-  background-image:url(/assets/greentexture.jpg);
-  box-shadow: -5px 5px 12px rgba(51, 51, 51, 0.5);
-  position:relative;
-  z-index: 10;
-  height:50px;
-  .btn-round{
-    @include border-radius(20px);
-    margin-top:1px;
-  }
-  .container{
-    padding-top:10px;
-  }
-  color:white;
-}
-
 input.search-query{
   position: relative;
   top: 1px;
@@ -485,19 +390,6 @@ input.search-query{
   bottom:4px;
   right:0px;
 }
-.navbar .btn-group{
-  margin-top:0px;
-}
-.btn-group > .btn:first-child {
-  @include border-radius(20px 0px 0px 20px)
-}
-
-.btn-group > .btn:last-child {
-  @include border-radius(0px 20px 20px 0px)
-}
-.btn-success.active{
-  background-color:#4a90b1;
-}
 
 button{
   font-weight:400;
@@ -516,37 +408,29 @@ button{
   background-image:url(/assets/find_sprite.png);
 
 }
-
-.campgrounds{
-  .mapfilters{
-    margin-top:20px;
-    font-size:12px;
-    .message{
-      margin-top:0px;
-      @include border-radius(10px);
-    }
-    .filters{
-      top:-14px;
-      margin-top:0px;
-      padding-top:50px;
-    }
-    .list-header{
-      margin-bottom:0px;
-      z-index:10;
-    }
-  }
-  .map {
-    width:620px;
-    height:200px;
-  }
-  #progress{
-    margin-top:220px;
-  }
-  #findlist{
-    margin-top:200px;
-  }
-  #find-list-container{
+.mapfilters{
+  margin-top:20px;
+  font-size:12px;
+  .message{
     margin-top:0px;
-    @include border-radius(0px 0px 10px 10px)
+    @include border-radius(10px);
   }
+  .filters{
+    top:-14px;
+    margin-top:0px;
+    padding-top:50px;
+  }
+  .list-header{
+    margin-bottom:0px;
+    z-index:10;
+  }
+}
+#progress{
+  margin-top:220px;
+}
+#findlist{
+  margin-top:200px;
+}
+#findlist.bigger{
+  margin-top:400px;
 }

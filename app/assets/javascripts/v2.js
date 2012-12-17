@@ -40,6 +40,14 @@ Find.clearFindMapMarkers = function(){
   }
 }
 
+Find.toggleMapSize = function(){
+  $("#find_map").toggleClass('bigger',1000);
+  $(".map").toggleClass('bigger',1000);
+  $("#findlist").toggleClass('bigger',1000);
+  $("#map_size_toggle").text().trim() == 'Bigger' ? $("#map_size_toggle").text("Smaller") : $("#map_size_toggle").text('Bigger')
+  google.maps.event.trigger(Find.map, "resize");
+};
+
 Find.codeAddress = function(address) {
   Find.geocoder.geocode( { 'address': address}, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
@@ -244,6 +252,7 @@ Find.loadItems = function(find_path){
     $("#find-map-disable").fadeOut();
     $('#progress').slideUp();
     $("#findlist").fadeIn();
+    $("#active-filters").html($(".list-filters").html());
   });
 }
 
@@ -269,6 +278,11 @@ $(function(){
     $("html, body").animate({ scrollTop: 0 },300);
     return false;
   });
+
+  $('#map_size_toggle').click(function(){
+    Find.toggleMapSize();
+  });
+
   $('.mapfilters').slideDown(1000)
   // $('.nav-what').button();
   // $('#trip-filter-button').button('toggle');
@@ -281,14 +295,15 @@ $(function(){
     mapTypeId: google.maps.MapTypeId.TERRAIN,
     mapTypeControl: true,
     mapTypeControlOptions: {
-      position: google.maps.ControlPosition.RIGHT_BOTTOM,
+      position: google.maps.ControlPosition.TOP_RIGHT,
       style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
     },
     zoomControl: true,
     zoomControlOptions: {
-      position: google.maps.ControlPosition.RIGHT_BOTTOM,
+      position: google.maps.ControlPosition.TOP_RIGHT,
       style: google.maps.ZoomControlStyle.SMALL
-    }
+    },
+    panControl: false
   };
   Find.map = new google.maps.Map(document.getElementById("find_map"),
             mapOptions);

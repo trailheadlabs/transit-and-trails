@@ -1,14 +1,5 @@
 .container.campgrounds
   .row
-    .span8
-      .map
-        #find_map
-      #progress
-        %h4
-          Loading
-        .progress.progress-striped.active
-          .bar{:style => "width: 100%;"}
-      #findlist
     .span4#mapfilters
       .mapfilters
         .message
@@ -20,7 +11,21 @@
           %span.badge.badge-inverse#campground-count
             0
           Campgrounds Found
+          / #active-filters
         .filters
           = render :partial => "campground_filters"
+    .span8
+      .map
+        #find_map
+      .map-buttons
+        %a#map_size_toggle.btn.btn-success.btn-small
+          Bigger
+      #progress
+        %h4
+          Loading
+        .progress.progress-striped.active
+          .bar{:style => "width: 100%;"}
+      #findlist
+
 :javascript
   find_mode = 'CAMPGROUNDS';

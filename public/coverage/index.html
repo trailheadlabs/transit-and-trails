@@ -14,14 +14,14 @@
       <img src="./assets/0.7.1/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2012-12-08T14:55:22-08:00">2012-12-08T14:55:22-08:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2012-12-13T14:16:26-08:00">2012-12-13T14:16:26-08:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">70.85%</span></span>
+    (<span class="covered_percent"><span class="red">70.93%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
@@ -32,9 +32,9 @@
   <a name="AllFiles"></a>
   <div>
     <b>104</b> files in total.
-    <b>1935</b> relevant lines. 
+    <b>1933</b> relevant lines. 
     <span class="green"><b>1371</b> lines covered</span> and
-    <span class="red"><b>564</b> lines missed </span>
+    <span class="red"><b>562</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -242,11 +242,11 @@
       
       <tr>
         <td class="strong"><a href="#8e950b97333e49d19a0767002e0b0d5d075712a0" class="src_link" title="app/controllers/find_controller.rb">app/controllers/find_controller.rb</a></td>
-        <td class="red strong">10.14 %</td>
-        <td>209</td>
-        <td>148</td>
+        <td class="red strong">10.27 %</td>
+        <td>204</td>
+        <td>146</td>
         <td>15</td>
-        <td>133</td>
+        <td>131</td>
         <td>0.2</td>
       </tr>
       
@@ -1099,7 +1099,7 @@
           <div class="file_list_container" id="Controllers">
   <h2>
     <span class="group_name">Controllers</span>
-    (<span class="covered_percent"><span class="red">52.65%</span></span>
+    (<span class="covered_percent"><span class="red">52.78%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
@@ -1110,9 +1110,9 @@
   <a name="Controllers"></a>
   <div>
     <b>39</b> files in total.
-    <b>830</b> relevant lines. 
+    <b>828</b> relevant lines. 
     <span class="green"><b>437</b> lines covered</span> and
-    <span class="red"><b>393</b> lines missed </span>
+    <span class="red"><b>391</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -1320,11 +1320,11 @@
       
       <tr>
         <td class="strong"><a href="#8e950b97333e49d19a0767002e0b0d5d075712a0" class="src_link" title="app/controllers/find_controller.rb">app/controllers/find_controller.rb</a></td>
-        <td class="red strong">10.14 %</td>
-        <td>209</td>
-        <td>148</td>
+        <td class="red strong">10.27 %</td>
+        <td>204</td>
+        <td>146</td>
         <td>15</td>
-        <td>133</td>
+        <td>131</td>
         <td>0.2</td>
       </tr>
       
@@ -6386,11 +6386,11 @@
         <div class="source_table" id="8e950b97333e49d19a0767002e0b0d5d075712a0">
   <div class="header">
     <h3>app/controllers/find_controller.rb</h3>
-    <h4><span class="red">10.14 %</span> covered</h4>
+    <h4><span class="red">10.27 %</span> covered</h4>
     <div>
-      <b>148</b> relevant lines. 
+      <b>146</b> relevant lines. 
       <span class="green"><b>15</b> lines covered</span> and
-      <span class="red"><b>133</b> lines missed.</span>
+      <span class="red"><b>131</b> lines missed.</span>
     </div>
   </div>
   
@@ -6652,817 +6652,817 @@
         <li class="missed" data-hits="0" data-linenumber="43">
           
           
-          <code class="ruby">    unless(params[:near].blank?)</code>
+          <code class="ruby">    @near = &quot;#{params[:near]}&quot; || &quot;San Francisco, CA&quot;</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="44">
-          
-          
-          <code class="ruby">      @filter_names += [&quot;Near: #{params[:near]}&quot;]</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="45">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="46">
+        <li class="never" data-hits="" data-linenumber="44">
           
           
           <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="45">
+          
+          
+          <code class="ruby">    unless(params[:user_query].blank?)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="46">
+          
+          
+          <code class="ruby">      q = &quot;%#{params[:user_query]}%&quot;</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="47">
           
           
-          <code class="ruby">    unless(params[:user_query].blank?)</code>
+          <code class="ruby">      @users = User.where(&quot;username ILIKE ?&quot;,q)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="48">
           
           
-          <code class="ruby">      q = &quot;%#{params[:user_query]}%&quot;</code>
+          <code class="ruby">      @trailheads = @trailheads.where(user_id: @users)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="49">
           
           
-          <code class="ruby">      @users = User.where(&quot;username ILIKE ?&quot;,q)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="50">
-          
-          
-          <code class="ruby">      @trailheads = @trailheads.where(user_id: @users)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="51">
-          
-          
           <code class="ruby">      @filter_names += [&quot;User: #{params[:user_query]}&quot;]</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="52">
+        <li class="never" data-hits="" data-linenumber="50">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="53">
+        <li class="never" data-hits="" data-linenumber="51">
           
           
           <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="52">
+          
+          
+          <code class="ruby">    unless(params[:name_query].blank?)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="53">
+          
+          
+          <code class="ruby">      q = &quot;%#{params[:name_query]}%&quot;</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="54">
           
           
-          <code class="ruby">    unless(params[:name_query].blank?)</code>
+          <code class="ruby">      @trailheads = @trailheads.where(&quot;name ILIKE ?&quot;,q)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="55">
           
           
-          <code class="ruby">      q = &quot;%#{params[:name_query]}%&quot;</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="56">
-          
-          
-          <code class="ruby">      @trailheads = @trailheads.where(&quot;name ILIKE ?&quot;,q)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="57">
-          
-          
           <code class="ruby">      @filter_names += [&quot;Name: #{params[:name_query]}&quot;]</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="58">
+        <li class="never" data-hits="" data-linenumber="56">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="59">
+        <li class="never" data-hits="" data-linenumber="57">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="60">
+        <li class="missed" data-hits="0" data-linenumber="58">
           
           
           <code class="ruby">    @trailheads = Trailhead.where(approved: approved, id: @trailheads).limit(limit).offset(offset).near([center_latitude,center_longitude])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="61">
+        <li class="missed" data-hits="0" data-linenumber="59">
           
           
-          <code class="ruby">    render :partial =&gt; &quot;trailheads_within_bounds&quot;, :locals =&gt; {:trailheads =&gt; @trailheads, :filter_names =&gt; @filter_names}</code>
+          <code class="ruby">    render :partial =&gt; &quot;trailheads_within_bounds&quot;, :locals =&gt; {:trailheads =&gt; @trailheads, :filter_names =&gt; @filter_names, :near =&gt; @near}</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="62">
+        <li class="never" data-hits="" data-linenumber="60">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="63">
+        <li class="never" data-hits="" data-linenumber="61">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="64">
+        <li class="covered" data-hits="1" data-linenumber="62">
           <span class="hits">1</span>
           
           <code class="ruby">  def campgrounds_within_bounds</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="65">
+        <li class="missed" data-hits="0" data-linenumber="63">
           
           
           <code class="ruby">    sw_latitude = Float(params[:sw_latitude])</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="64">
+          
+          
+          <code class="ruby">    ne_latitude = Float(params[:ne_latitude])</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="65">
+          
+          
+          <code class="ruby">    sw_longitude = Float(params[:sw_longitude])</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="66">
           
           
-          <code class="ruby">    ne_latitude = Float(params[:ne_latitude])</code>
+          <code class="ruby">    ne_longitude = Float(params[:ne_longitude])</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="67">
           
           
-          <code class="ruby">    sw_longitude = Float(params[:sw_longitude])</code>
+          <code class="ruby">    center_latitude = Float(params[:center_latitude])</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="68">
           
           
-          <code class="ruby">    ne_longitude = Float(params[:ne_longitude])</code>
+          <code class="ruby">    center_longitude = Float(params[:center_longitude])</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="69">
           
           
-          <code class="ruby">    center_latitude = Float(params[:center_latitude])</code>
+          <code class="ruby">    limit = 1000 || params[:limit]</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="70">
           
           
-          <code class="ruby">    center_longitude = Float(params[:center_longitude])</code>
+          <code class="ruby">    offset = 0 || params[:offset]</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="71">
           
           
-          <code class="ruby">    limit = 1000 || params[:limit]</code>
+          <code class="ruby">    approved = true || params[:approved]</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="72">
           
           
-          <code class="ruby">    offset = 0 || params[:offset]</code>
+          <code class="ruby">    @campgrounds = Campground.within_bounds(sw_latitude,sw_longitude,ne_latitude,ne_longitude)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="73">
           
           
-          <code class="ruby">    approved = true || params[:approved]</code>
+          <code class="ruby">    @filter_names = []</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="74">
           
           
-          <code class="ruby">    @campgrounds = Campground.within_bounds(sw_latitude,sw_longitude,ne_latitude,ne_longitude)</code>
+          <code class="ruby">    if(params[:feature_ids])</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="75">
           
           
-          <code class="ruby">    @filter_names = []</code>
+          <code class="ruby">      ids = params[:feature_ids]</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="76">
           
           
-          <code class="ruby">    if(params[:feature_ids])</code>
+          <code class="ruby">      @campgrounds = @campgrounds.find(:all,:include=&gt;:campground_features,:conditions=&gt;['campground_features.id IN (?)',ids])</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="77">
           
           
-          <code class="ruby">      ids = params[:feature_ids]</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="78">
-          
-          
-          <code class="ruby">      @campgrounds = @campgrounds.find(:all,:include=&gt;:campground_features,:conditions=&gt;['campground_features.id IN (?)',ids])</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="79">
-          
-          
           <code class="ruby">      @filter_names += CampgroundFeature.find(params[:feature_ids]).collect(&amp;:name)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="80">
+        <li class="never" data-hits="" data-linenumber="78">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="81">
+        <li class="never" data-hits="" data-linenumber="79">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="82">
+        <li class="missed" data-hits="0" data-linenumber="80">
           
           
           <code class="ruby">    if(params[:my_campgrounds])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="83">
+        <li class="missed" data-hits="0" data-linenumber="81">
           
           
           <code class="ruby">      @campgrounds = @campgrounds.where(user_id: current_user)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="84">
+        <li class="missed" data-hits="0" data-linenumber="82">
           
           
           <code class="ruby">      @filter_names += [&quot;My Campgrounds&quot;]</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="85">
+        <li class="never" data-hits="" data-linenumber="83">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="86">
+        <li class="never" data-hits="" data-linenumber="84">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="87">
+        <li class="missed" data-hits="0" data-linenumber="85">
           
           
           <code class="ruby">    unless(params[:near].blank?)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="88">
+        <li class="missed" data-hits="0" data-linenumber="86">
           
           
           <code class="ruby">      @filter_names += [&quot;Near: #{params[:near]}&quot;]</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="89">
+        <li class="never" data-hits="" data-linenumber="87">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="90">
+        <li class="never" data-hits="" data-linenumber="88">
           
           
           <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="89">
+          
+          
+          <code class="ruby">    unless(params[:user_query].blank?)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="90">
+          
+          
+          <code class="ruby">      q = &quot;%#{params[:user_query]}%&quot;</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="91">
           
           
-          <code class="ruby">    unless(params[:user_query].blank?)</code>
+          <code class="ruby">      @users = User.where(&quot;username ILIKE ?&quot;,q)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="92">
           
           
-          <code class="ruby">      q = &quot;%#{params[:user_query]}%&quot;</code>
+          <code class="ruby">      @campgrounds = @campgrounds.where(user_id: @users)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="93">
           
           
-          <code class="ruby">      @users = User.where(&quot;username ILIKE ?&quot;,q)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="94">
-          
-          
-          <code class="ruby">      @campgrounds = @campgrounds.where(user_id: @users)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="95">
-          
-          
           <code class="ruby">      @filter_names += [&quot;User: #{params[:user_query]}&quot;]</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="96">
+        <li class="never" data-hits="" data-linenumber="94">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="97">
+        <li class="never" data-hits="" data-linenumber="95">
           
           
           <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="96">
+          
+          
+          <code class="ruby">    unless(params[:name_query].blank?)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="97">
+          
+          
+          <code class="ruby">      q = &quot;%#{params[:name_query]}%&quot;</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="98">
           
           
-          <code class="ruby">    unless(params[:name_query].blank?)</code>
+          <code class="ruby">      @campgrounds = @campgrounds.where(&quot;name ILIKE ?&quot;,q)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="99">
           
           
-          <code class="ruby">      q = &quot;%#{params[:name_query]}%&quot;</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="100">
-          
-          
-          <code class="ruby">      @campgrounds = @campgrounds.where(&quot;name ILIKE ?&quot;,q)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="101">
-          
-          
           <code class="ruby">      @filter_names += [&quot;Name: #{params[:name_query]}&quot;]</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="102">
+        <li class="never" data-hits="" data-linenumber="100">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="103">
+        <li class="never" data-hits="" data-linenumber="101">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="104">
+        <li class="missed" data-hits="0" data-linenumber="102">
           
           
           <code class="ruby">    @campgrounds = Campground.where(approved: approved, id: @campgrounds).limit(limit).offset(offset).near([center_latitude,center_longitude])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="105">
+        <li class="missed" data-hits="0" data-linenumber="103">
           
           
           <code class="ruby">    render :partial =&gt; &quot;campgrounds_within_bounds&quot;, :locals =&gt; {:campgrounds =&gt; @campgrounds, :filter_names =&gt; @filter_names}</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="106">
+        <li class="never" data-hits="" data-linenumber="104">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="107">
+        <li class="never" data-hits="" data-linenumber="105">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="108">
+        <li class="covered" data-hits="1" data-linenumber="106">
           <span class="hits">1</span>
           
           <code class="ruby">  def trips_within_bounds</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="109">
+        <li class="missed" data-hits="0" data-linenumber="107">
           
           
           <code class="ruby">    sw_latitude = Float(params[:sw_latitude])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="110">
+        <li class="missed" data-hits="0" data-linenumber="108">
           
           
           <code class="ruby">    ne_latitude = Float(params[:ne_latitude])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="111">
+        <li class="missed" data-hits="0" data-linenumber="109">
           
           
           <code class="ruby">    sw_longitude = Float(params[:sw_longitude])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="112">
+        <li class="missed" data-hits="0" data-linenumber="110">
           
           
           <code class="ruby">    ne_longitude = Float(params[:ne_longitude])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="113">
+        <li class="missed" data-hits="0" data-linenumber="111">
           
           
           <code class="ruby">    center_latitude = Float(params[:center_latitude])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="114">
+        <li class="missed" data-hits="0" data-linenumber="112">
           
           
           <code class="ruby">    center_longitude = Float(params[:center_longitude])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="115">
+        <li class="missed" data-hits="0" data-linenumber="113">
           
           
           <code class="ruby">    limit = 1000 || params[:limit]</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="116">
+        <li class="missed" data-hits="0" data-linenumber="114">
           
           
           <code class="ruby">    offset = 0 || params[:offset]</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="117">
+        <li class="missed" data-hits="0" data-linenumber="115">
           
           
           <code class="ruby">    approved = true || params[:approved]</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="118">
+        <li class="missed" data-hits="0" data-linenumber="116">
           
           
           <code class="ruby">    @filter_names = []</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="119">
+        <li class="missed" data-hits="0" data-linenumber="117">
           
           
           <code class="ruby">    @trips = Trip.within_bounds(sw_latitude,sw_longitude,ne_latitude,ne_longitude)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="120">
+        <li class="missed" data-hits="0" data-linenumber="118">
+          
+          
+          <code class="ruby">    @near = params[:near].blank? ? &quot;San Francisco, CA&quot; : &quot;#{params[:near]}&quot;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="119">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="121">
+        <li class="missed" data-hits="0" data-linenumber="120">
           
           
           <code class="ruby">    if(params[:duration_ids])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="122">
+        <li class="missed" data-hits="0" data-linenumber="121">
           
           
           <code class="ruby">      @trips = @trips.where(duration_id: params[:duration_ids])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="123">
+        <li class="missed" data-hits="0" data-linenumber="122">
           
           
           <code class="ruby">      @filter_names += Duration.find(params[:duration_ids]).collect(&amp;:name)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="124">
+        <li class="never" data-hits="" data-linenumber="123">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="125">
+        <li class="never" data-hits="" data-linenumber="124">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="126">
+        <li class="missed" data-hits="0" data-linenumber="125">
           
           
           <code class="ruby">    if(params[:intensity_ids])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="127">
+        <li class="missed" data-hits="0" data-linenumber="126">
           
           
           <code class="ruby">      @trips = @trips.where(intensity_id: params[:intensity_ids])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="128">
+        <li class="missed" data-hits="0" data-linenumber="127">
           
           
           <code class="ruby">      @filter_names += Intensity.find(params[:intensity_ids]).collect(&amp;:name)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="129">
+        <li class="never" data-hits="" data-linenumber="128">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="130">
+        <li class="never" data-hits="" data-linenumber="129">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="131">
+        <li class="missed" data-hits="0" data-linenumber="130">
           
           
           <code class="ruby">    if(params[:feature_ids])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="132">
+        <li class="missed" data-hits="0" data-linenumber="131">
           
           
           <code class="ruby">      ids = params[:feature_ids]</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="133">
+        <li class="missed" data-hits="0" data-linenumber="132">
           
           
           <code class="ruby">      @trips = @trips.find(:all,:include=&gt;:trip_features,:conditions=&gt;['trip_features.id IN (?)',ids])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="134">
+        <li class="missed" data-hits="0" data-linenumber="133">
           
           
           <code class="ruby">      @filter_names += TripFeature.find(params[:feature_ids]).collect(&amp;:name)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="135">
+        <li class="never" data-hits="" data-linenumber="134">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="136">
+        <li class="never" data-hits="" data-linenumber="135">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="137">
+        <li class="missed" data-hits="0" data-linenumber="136">
           
           
           <code class="ruby">    if(params[:my_trips])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="138">
+        <li class="missed" data-hits="0" data-linenumber="137">
           
           
           <code class="ruby">      @trips = @trips.where(user_id: current_user)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="139">
+        <li class="missed" data-hits="0" data-linenumber="138">
           
           
           <code class="ruby">      @filter_names += [&quot;My Trips&quot;]</code>
         </li>
       
+        <li class="never" data-hits="" data-linenumber="139">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
         <li class="never" data-hits="" data-linenumber="140">
           
           
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="141">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="142">
-          
-          
-          <code class="ruby">    unless(params[:near].blank?)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="143">
-          
-          
-          <code class="ruby">      @filter_names += [&quot;Near: #{params[:near]}&quot;]</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="144">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="145">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="146">
+        <li class="missed" data-hits="0" data-linenumber="141">
           
           
           <code class="ruby">    unless(params[:user_query].blank?)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="147">
+        <li class="missed" data-hits="0" data-linenumber="142">
           
           
           <code class="ruby">      q = &quot;%#{params[:user_query]}%&quot;</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="148">
+        <li class="missed" data-hits="0" data-linenumber="143">
           
           
           <code class="ruby">      @users = User.where(&quot;username ILIKE ?&quot;,q)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="149">
+        <li class="missed" data-hits="0" data-linenumber="144">
           
           
           <code class="ruby">      @trips = @trips.where(user_id: @users)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="150">
+        <li class="missed" data-hits="0" data-linenumber="145">
           
           
           <code class="ruby">      @filter_names += [&quot;User: #{params[:user_query]}&quot;]</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="151">
+        <li class="never" data-hits="" data-linenumber="146">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="152">
+        <li class="never" data-hits="" data-linenumber="147">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="153">
+        <li class="missed" data-hits="0" data-linenumber="148">
           
           
           <code class="ruby">    unless(params[:name_query].blank?)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="154">
+        <li class="missed" data-hits="0" data-linenumber="149">
           
           
           <code class="ruby">      q = &quot;%#{params[:name_query]}%&quot;</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="155">
+        <li class="missed" data-hits="0" data-linenumber="150">
           
           
           <code class="ruby">      @trips = @trips.where(&quot;name ILIKE ?&quot;,q)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="156">
+        <li class="missed" data-hits="0" data-linenumber="151">
           
           
           <code class="ruby">      @filter_names += [&quot;Name: #{params[:name_query]}&quot;]</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="157">
+        <li class="never" data-hits="" data-linenumber="152">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="158">
+        <li class="never" data-hits="" data-linenumber="153">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="159">
+        <li class="missed" data-hits="0" data-linenumber="154">
           
           
           <code class="ruby">    @trips = Trip.where(approved: approved, id: @trips).limit(limit).offset(offset).near([center_latitude,center_longitude])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="160">
+        <li class="missed" data-hits="0" data-linenumber="155">
           
           
-          <code class="ruby">    render :partial =&gt; &quot;trips_within_bounds&quot;, :locals =&gt; {:trips =&gt; @trips, :filter_names =&gt; @filter_names}</code>
+          <code class="ruby">    render :partial =&gt; &quot;trips_within_bounds&quot;, :locals =&gt; {:trips =&gt; @trips, :filter_names =&gt; @filter_names, :near =&gt; @near}</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="161">
+        <li class="never" data-hits="" data-linenumber="156">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="162">
+        <li class="never" data-hits="" data-linenumber="157">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="163">
+        <li class="covered" data-hits="1" data-linenumber="158">
           <span class="hits">1</span>
           
           <code class="ruby">  def objects_near</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="164">
+        <li class="missed" data-hits="0" data-linenumber="159">
           
           
           <code class="ruby">    latitude = params[:lat]</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="165">
+        <li class="missed" data-hits="0" data-linenumber="160">
           
           
           <code class="ruby">    longitude = params[:long]</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="166">
+        <li class="missed" data-hits="0" data-linenumber="161">
           
           
           <code class="ruby">    distance = params[:distance]</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="167">
+        <li class="missed" data-hits="0" data-linenumber="162">
           
           
           <code class="ruby">    approved = true</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="168">
+        <li class="missed" data-hits="0" data-linenumber="163">
           
           
           <code class="ruby">    limit = 1000</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="169">
+        <li class="missed" data-hits="0" data-linenumber="164">
           
           
           <code class="ruby">    offset = 0</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="170">
+        <li class="missed" data-hits="0" data-linenumber="165">
           
           
           <code class="ruby">    @trailheads = Trailhead.where(:approved =&gt; approved).near([latitude,longitude],distance).limit(limit).offset(offset)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="171">
+        <li class="missed" data-hits="0" data-linenumber="166">
           
           
           <code class="ruby">    @campgrounds = Campground.where(:approved =&gt; approved).near([latitude,longitude],distance).limit(limit).offset(offset)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="172">
+        <li class="missed" data-hits="0" data-linenumber="167">
           
           
           <code class="ruby">    @trips = Trip.where(:approved =&gt; approved).near([latitude,longitude],distance).limit(limit).offset(offset)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="173">
+        <li class="never" data-hits="" data-linenumber="168">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="174">
+        <li class="missed" data-hits="0" data-linenumber="169">
           
           
           <code class="ruby">    if(params[:user_id])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="175">
+        <li class="missed" data-hits="0" data-linenumber="170">
           
           
           <code class="ruby">      @trailheads = @trailheads.where(user_id: params[:user_id])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="176">
+        <li class="missed" data-hits="0" data-linenumber="171">
           
           
           <code class="ruby">      @trips = @trips.where(user_id: params[:user_id])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="177">
+        <li class="missed" data-hits="0" data-linenumber="172">
           
           
           <code class="ruby">      @campgrounds = @campgrounds.where(user_id: params[:user_id])</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="178">
+        <li class="never" data-hits="" data-linenumber="173">
           
           
           <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="174">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="175">
+          
+          
+          <code class="ruby">    @allpoints = @trailheads + @campgrounds + @trips</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="176">
+          
+          
+          <code class="ruby">    @allpoints.sort! { |a,b| Float(a.distance) &lt;=&gt; Float(b.distance) }</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="177">
+          
+          
+          <code class="ruby">    render :layout =&gt; false</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="178">
+          
+          
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="179">
@@ -7471,181 +7471,151 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="180">
-          
-          
-          <code class="ruby">    @allpoints = @trailheads + @campgrounds + @trips</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="181">
-          
-          
-          <code class="ruby">    @allpoints.sort! { |a,b| Float(a.distance) &lt;=&gt; Float(b.distance) }</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="182">
-          
-          
-          <code class="ruby">    render :layout =&gt; false</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="183">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="184">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="185">
+        <li class="covered" data-hits="1" data-linenumber="180">
           <span class="hits">1</span>
           
           <code class="ruby">  def marinstage</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="186">
+        <li class="missed" data-hits="0" data-linenumber="181">
           
           
           <code class="ruby">    self.find</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="187">
+        <li class="missed" data-hits="0" data-linenumber="182">
           
           
           <code class="ruby">    @starting_lat = 37.904141</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="188">
+        <li class="missed" data-hits="0" data-linenumber="183">
           
           
           <code class="ruby">    @starting_lng = -122.603838</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="189">
+        <li class="missed" data-hits="0" data-linenumber="184">
           
           
           <code class="ruby">    render &quot;find&quot;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="190">
+        <li class="never" data-hits="" data-linenumber="185">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="191">
+        <li class="never" data-hits="" data-linenumber="186">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="192">
+        <li class="covered" data-hits="1" data-linenumber="187">
           <span class="hits">1</span>
           
           <code class="ruby">  def sanjosetrails</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="193">
+        <li class="missed" data-hits="0" data-linenumber="188">
           
           
           <code class="ruby">    self.find</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="194">
+        <li class="missed" data-hits="0" data-linenumber="189">
           
           
           <code class="ruby">    @starting_lat = 37.3393857</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="195">
+        <li class="missed" data-hits="0" data-linenumber="190">
           
           
           <code class="ruby">    @starting_lng = -121.8949555</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="196">
+        <li class="missed" data-hits="0" data-linenumber="191">
           
           
           <code class="ruby">    render &quot;find&quot;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="197">
+        <li class="never" data-hits="" data-linenumber="192">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="198">
+        <li class="never" data-hits="" data-linenumber="193">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="199">
+        <li class="covered" data-hits="1" data-linenumber="194">
           <span class="hits">1</span>
           
           <code class="ruby">  def regional_landing_page</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="200">
+        <li class="missed" data-hits="0" data-linenumber="195">
           
           
           <code class="ruby">    self.find</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="201">
+        <li class="missed" data-hits="0" data-linenumber="196">
           
           
           <code class="ruby">    object = RegionalLandingPage.find_by_path(params[:region])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="202">
+        <li class="missed" data-hits="0" data-linenumber="197">
           
           
           <code class="ruby">    if object.nil?</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="203">
+        <li class="missed" data-hits="0" data-linenumber="198">
           
           
           <code class="ruby">      raise ActionController::RoutingError.new('Not Found')</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="204">
+        <li class="never" data-hits="" data-linenumber="199">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="205">
+        <li class="missed" data-hits="0" data-linenumber="200">
           
           
           <code class="ruby">    @starting_lat = object.latitude</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="206">
+        <li class="missed" data-hits="0" data-linenumber="201">
           
           
           <code class="ruby">    @starting_lng = object.longitude</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="207">
+        <li class="missed" data-hits="0" data-linenumber="202">
           
           
           <code class="ruby">    render &quot;find&quot;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="208">
+        <li class="never" data-hits="" data-linenumber="203">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="209">
+        <li class="never" data-hits="" data-linenumber="204">
           
           
           <code class="ruby">end</code>
@@ -13708,7 +13678,7 @@
         <li class="missed" data-hits="0" data-linenumber="54">
           
           
-          <code class="ruby">      &quot;http://placehold.it/150x150&quot;</code>
+          <code class="ruby">      &quot;/assets/placeholder_item_image.png&quot;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="55">
@@ -14188,7 +14158,7 @@
         <li class="covered" data-hits="1" data-linenumber="2">
           <span class="hits">1</span>
           
-          <code class="ruby">  attr_accessible :description, :link, :logo, :name, :logo_cache, :remote_logo_url</code>
+          <code class="ruby">  attr_accessible :description, :link, :logo, :name, :logo_cache, :remote_logo_url, :remove_logo</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="3">
@@ -14200,7 +14170,7 @@
         <li class="covered" data-hits="1" data-linenumber="4">
           <span class="hits">1</span>
           
-          <code class="ruby">  has_many :trailhead_overrides, :class_name =&gt; 'Trailhead', :inverse_of =&gt; :non_profit_partner</code>
+          <code class="ruby">  has_many :trailhead_overrides, :class_name =&gt; 'Trailhead', :inverse_of =&gt; :non_profit_partner_override</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="5">
@@ -16864,7 +16834,7 @@
         <li class="missed" data-hits="0" data-linenumber="78">
           
           
-          <code class="ruby">      &quot;http://placehold.it/150x150&quot;</code>
+          <code class="ruby">      &quot;/assets/placeholder_item_image.png&quot;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="79">
@@ -18472,7 +18442,7 @@
         <li class="missed" data-hits="0" data-linenumber="170">
           
           
-          <code class="ruby">      &quot;http://placehold.it/150x150&quot;</code>
+          <code class="ruby">      &quot;/assets/placeholder_item_image.png&quot;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="171">

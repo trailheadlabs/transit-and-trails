@@ -1,24 +1,22 @@
+:javascript
+  $('#trip-count').text("#{trips.count}")
+
 #find-list-container.trips
-  .list-top
-    .list-header
-      .list-header-icon
-      %span.badge.badge-inverse
-        = trips.count
-      Trips found near #{near}
-    %span.list-filters
-      %b
-        Filters :
-      - filter_names.each do |filter|
-        %span.label.label-success
-          = filter
-      - if filter_names.empty?
-        %span.label.label-success
-          None
   .list#find-list
+
+    - unless filter_names.empty?
+      .list-filters
+        %b
+          Filters :
+        - filter_names.each do |filter|
+          %span.label.label-success
+            = filter
+        - if filter_names.empty?
+          %span.label.label-success
+            None
 
     %ul.media-list
       - trips.each_with_index do |trip,index|
-        %hr
         %li.media.find-list-item(id="trip_list_item_#{trip.id}")
           .pull-left
             %a(href="#{trip_path(trip)}")
@@ -58,7 +56,7 @@
                         = feature.name
                     - if index == 3
                       = link_to "and more...", trip
-
+        %hr
         :javascript
           Find.addTripMarker(#{trip.as_json.except('geometry').except('route').except('description').to_json});
           Find.currentNear = "#{near}";

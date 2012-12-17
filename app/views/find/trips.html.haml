@@ -1,33 +1,30 @@
 :javascript
   find_mode = 'TRIPS';
-.container
+.container.trip
   .row
     .span4#mapfilters
       .mapfilters
-        #find-map-disable
-        .map
-          #find_map
         .message
           %a#scrolltop(href="#top")
             Filters
             %i.icon-circle-arrow-up.pull-right
+        .list-header
+          .list-header-icon
+          %span.badge.badge-inverse#trip-count
+            0
+          Trips Found
+          / #active-filters
         .filters
           = render :partial => "trip_filters"
     .span8
+      .map
+        #find_map
+      .map-buttons
+        %a#map_size_toggle.btn.btn-success.btn-small
+          Bigger
       #progress
         %h4
           Loading
         .progress.progress-striped.active
           .bar{:style => "width: 100%;"}
       #findlist
-    / .span4#mapfilters
-    /   .mapfilters
-    /     #find-map-disable
-    /     .map
-    /       #find_map
-    /     .message
-    /       %a#scrolltop(href="#top")
-    /         Filters
-    /         %i.icon-circle-arrow-up.pull-right
-    /     .filters
-    /       = render :partial => "trip_filters"

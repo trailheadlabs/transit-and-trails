@@ -52,15 +52,42 @@
         = yield
     #footer
       .container
-        %ul
-          %li
-            = link_to "About", static_path(:about)
-          %li
-            = link_to "Blog", "http://blog.transitandtrails.org"
-          %li
-            = link_to "Partners", partners_path
-          %li
-            = link_to "API", "/api"
+        .row
+          .span4
+            %h4
+              Transit & Trails
+            %ul
+              %li
+                = link_to "About", static_path(:about)
+              %li
+                = link_to "Partners", partners_path
+              %li
+                = link_to "Challenge", static_path(:challenge)
+              %li
+                = link_to "Terms", static_path(:terms)
+              %li
+                = link_to "API", "/api"
 
+          .span4
+            %h4
+              Download Our Apps
+            %ul
+              %li
+                = link_to "iOS", static_path(:about)
+              %li
+                = link_to "Android", "http://blog.transitandtrails.org"
+
+          .span4
+            %h4
+              Community
+            %ul
+              %li
+                = link_to "Blog", "http://blog.transitandtrails.org"
+              %li
+                = link_to "Twitter", "http://twitter.com/transitandtrail"
+              %li
+                = link_to "Facebook", "http://facebook.com/transitandtrails"
+              %li
+                = link_to "Flickr", "http://flickr.com/transitandtrails"
 
 
