@@ -43,7 +43,8 @@
               = trip.length_miles.round(1)
               Miles
             %p.description
-              = truncate_html(strip_tags(trip.description),:length=>300)
+              = truncate_html(strip_tags(trip.description),:length=>200)
+              = link_to "more", trip
             .features
               - trip.categorized_attributes.each do |category,features|
                 %p
