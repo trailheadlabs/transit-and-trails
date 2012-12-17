@@ -25,13 +25,29 @@ a#openspacecouncil{
   @include border-radius(10px);
   background-color:white;
   display:block;
-  float:right;
+  // float:right;
   box-shadow: -1px -1px 2px #777;
 }
 
 .openspacecouncil-logo{
   background-image:url(application_layout_sprite.png);
   background-position: -600px -160px;
+  height:35px;
+  width:280px;
+}
+
+a#trailheadlabs{
+  padding:10px;
+  @include border-radius(10px);
+  background-color:white;
+  display:block;
+  // float:right;
+  box-shadow: -1px -1px 2px #777;
+}
+
+.trailheadlabs-logo{
+  background-image:url(trailheadlabs_logo.png);
+  background-position: 0px 0px;
   height:35px;
   width:280px;
 }
