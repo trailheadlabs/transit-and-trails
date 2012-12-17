@@ -283,7 +283,6 @@ $(function(){
     Find.toggleMapSize();
   });
 
-  $('.mapfilters').slideDown(1000)
   // $('.nav-what').button();
   // $('#trip-filter-button').button('toggle');
   // $('.nav-mode').button();
@@ -337,4 +336,5 @@ $(function(){
 
   google.maps.event.addListener(Find.map, 'idle', Find.mapIdle);
   $(".filter-checkbox").change(Find.showItems);
+  $('.mapfilters').fadeIn(600)
 });
