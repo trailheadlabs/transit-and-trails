@@ -6,6 +6,7 @@
   = javascript_include_tag "legacy/date"
   = stylesheet_link_tag "legacy/plan"
   = stylesheet_link_tag "legacy/embed_plan"
+  = stylesheet_link_tag "embed/plan"
 
 %input#trip_start_lat{:name => "trip_start_lat", :type => "hidden"}
 %input#trip_start_lng{:name => "trip_start_lng", :type => "hidden"}
@@ -23,7 +24,7 @@
   Trip Planner
 
 - content_for :page_content do
-  #plan
+  #plan(class="#{@width_class}")
     #plan-map{:style => "display:none"}
     %form#the-plan
       .clearfix

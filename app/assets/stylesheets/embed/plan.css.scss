@@ -1,0 +1,36 @@
+.width350{
+  #the-plan {
+    width:348px;
+    #trailhead-select{
+      width:305px;
+    }
+    .address {
+      width: 215px;
+    }
+    .select{
+      width: 55px;
+    }
+    .date{
+      margin-left:4px;
+    }
+
+    #trip_hour, #trip_minutes {
+      width:15px;
+    }
+
+    .green-link-button{
+      font-size:14px;
+      padding: 8px 18px;
+    }
+
+    #return-trip-button{
+      width:inherit;
+    }
+  }
+  .plan-type{
+    padding: 15px 0px 0px 6px;
+  }
+  .numbers li{
+    width:90px;
+  }
+}

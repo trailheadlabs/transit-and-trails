@@ -1,6 +1,13 @@
 module Embed
   class PlanController < ApplicationController
+    before_filter :width_filter
     caches_action :non_profit_partner_trailheads, :expires_in => 60, :cache_path => Proc.new { |c| c.params }
+
+    def width_filter
+      if params[:width]
+        @width_class = "width" + params[:width]
+      end
+    end
 
     def plan
       @initial_date = params[:date]
