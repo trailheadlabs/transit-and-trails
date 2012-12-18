@@ -1,6 +1,14 @@
 %li.media.find-list-item(id="trailhead_list_item_#{trailhead.id}")
-  %a.pull-left(href="#{trailhead_path(trailhead)}")
-    %img.media-object.img-rounded.img-polaroid(src="#{trailhead.thumbnail_url}")
+  .pull-left
+    %a(href="#{trailhead_path(trailhead)}")
+      %img.media-object.img-rounded.img-polaroid(src="#{trailhead.thumbnail_url}")
+      %br
+      = link_to "Zoom In", "#", :class => "btn btn-block zoom-button btn-warning"
+      = link_to "Plan My Trip", "/plan/trailhead/#{trailhead.id}", :class => "btn btn-success btn-block"
+      - if can? :edit, trailhead
+        = link_to "Edit Trailhead", edit_trailhead_path(trailhead), :class => "btn btn-primary btn-block"
+      - if can? :destroy, trailhead
+        = link_to "Delete Trailhead", trailhead_path(trailhead), :method => :delete, :class => "btn btn-danger btn-block", :data => { :confirm => "Are you sure?" }
   .media-body
     %a(href="#{trailhead_path(trailhead)}")
       %h4.media-heading

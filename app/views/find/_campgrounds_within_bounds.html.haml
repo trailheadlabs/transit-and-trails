@@ -18,8 +18,22 @@
     %ul.media-list
       - campgrounds.each_with_index do |campground,index|
         %li.media.find-list-item(id="campground_list_item_#{campground.id}")
-          %a.pull-left(href="#{campground_path(campground)}")
-            %img.media-object.img-rounded.img-polaroid(src="#{campground.thumbnail_url}")
+          .pull-left
+            %a(href="#{campground_path(campground)}")
+              %img.media-object.img-rounded.img-polaroid(src="#{campground.thumbnail_url}")
+            %br
+            = link_to "Zoom In", "#", :class => "btn btn-block zoom-button btn-warning"
+            = link_to "Plan My Trip", "/plan/campground/#{campground.id}", :class => "btn btn-success btn-block"
+            - if can? :edit, campground
+              = link_to edit_campground_path(campground), :class => "btn btn-primary btn-block" do
+                %i.icon-edit
+                Edit
+            - if can? :destroy, campground
+              = link_to campground_path(campground), :method => :delete, :class => "btn btn-danger btn-block", :data => { :confirm => "Are you sure?" } do
+                %i.icon-trash
+                Delete
+
+
           .media-body
             %a(href="#{campground_path(campground)}")
               %h4.media-heading

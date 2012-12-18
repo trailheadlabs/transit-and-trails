@@ -154,9 +154,10 @@ Find.addTrailheadMarker = function(trailhead){
       }
     }(newMarker));
 
-  $("#trailhead_list_item_" + trailhead.id + " .zoom_button").click( function() {
+  $("#trailhead_list_item_" + trailhead.id + " .zoom-button").click(function() {
     Find.map.panTo(newMarker.position);
     Find.map.setZoom(18);
+    return false;
   });
 }
 
@@ -181,6 +182,13 @@ Find.addCampgroundMarker = function(campground){
   });
 
   Find.mapMarkers.push(newMarker);
+
+  $("#campground_list_item_" + campground.id + " .zoom-button").click(function() {
+    Find.map.panTo(newMarker.position);
+    Find.map.setZoom(18);
+    return false;
+  });
+
   $("#campground_list_item_" + campground.id).hover(
     function(newMarker){
       return function(){
