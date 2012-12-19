@@ -10,6 +10,7 @@
     /[if lt IE 9]
       = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
     = javascript_include_tag "application"
+    = javascript_include_tag "legacy/common"
     = javascript_include_tag "v2"
     = stylesheet_link_tag "application", :media => "all"
     = stylesheet_link_tag "find", :media => "all"
@@ -50,6 +51,35 @@
     #wrap
       #main
         = yield
+        .container
+          .row
+            .span4#mapfilters
+              .mapfilters
+                .message
+                  %a#scrolltop(href="#top")
+                    Filters
+                    %i.icon-circle-arrow-up.pull-right
+                = yield :list_filters
+            .span8
+              .map
+                #find-map-disable
+                #find_map
+              .map-buttons
+                %a#map_size_toggle.btn.btn-success.btn-small
+                  Bigger
+              #progress
+                %h4
+                  Loading
+                .progress.progress-striped.active
+                  .bar{:style => "width: 100%;"}
+              .notice-list
+                - flash.each do |name, msg|
+                  - if msg.is_a?(String)
+                    .notice
+                      %div{:class => "alert alert-#{name == :notice ? "success" : "error"}"}
+                        %a.close{"data-dismiss" => "alert"} ×
+                        = content_tag :div, msg, :id => "flash_#{name}"
+                #findlist
     #footer
       .container
         .row
@@ -86,11 +116,12 @@
               Download Our Apps
             %ul
               %li
-                = link_to "iOS", static_path(:about)
+                = link_to "iOS", "http://itunes.apple.com/us/app/transit-trails-find-plan-share/id415996890?mt=8&ign-mpt=uo%3D4"
               %li
-                = link_to "Android", "http://blog.transitandtrails.org"
+                = link_to "Android", "https://market.android.com/details?id=com.openspacecouncil.tnt&feature=search_result#?t=W251bGwsMSwxLDEsImNvbS5vcGVuc3BhY2Vjb3VuY2lsLnRudCJd"
           .span4
             %h4
               Brought To You By
             %a#openspacecouncil(href="http://openspacecouncil.org")
               .openspacecouncil-logo.image-link
+    = render :partial => "/layouts/tracking"

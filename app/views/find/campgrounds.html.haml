@@ -1,31 +1,10 @@
-.container.campgrounds
-  .row
-    .span4#mapfilters
-      .mapfilters
-        .message
-          %a#scrolltop(href="#top")
-            Filters
-            %i.icon-circle-arrow-up.pull-right
-        .list-header
-          .list-header-icon
-          %span.badge.badge-inverse#campground-count
-            0
-          Campgrounds Found
-          / #active-filters
-        .filters
-          = render :partial => "campground_filters"
-    .span8
-      .map
-        #find_map
-      .map-buttons
-        %a#map_size_toggle.btn.btn-success.btn-small
-          Bigger
-      #progress
-        %h4
-          Loading
-        .progress.progress-striped.active
-          .bar{:style => "width: 100%;"}
-      #findlist
-
 :javascript
   find_mode = 'CAMPGROUNDS';
+- content_for :list_filters do
+  .list-header
+    .list-header-icon
+    %span.badge.badge-inverse#campground-count
+      0
+    Campgrounds Found
+  .filters
+    = render :partial => "campground_filters"

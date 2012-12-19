@@ -16,6 +16,7 @@
           #user-nav
             = render :partial => "/layouts/user_navigation"
           %a(href="/" id="home-link")
+
         - if notice
           .flash#notice= notice
         - if alert

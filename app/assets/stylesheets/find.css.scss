@@ -481,9 +481,16 @@ button{
 #progress{
   margin-top:220px;
 }
-#findlist{
+.notice-list{
   margin-top:200px;
+  .notice{
+    background-color:white;
+    padding:10px;
+  }
+  .alert{
+    margin-bottom:0px;
+  }
 }
-#findlist.bigger{
+.notice-list.bigger{
   margin-top:400px;
 }
