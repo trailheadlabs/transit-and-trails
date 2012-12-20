@@ -1,6 +1,6 @@
 module Embed
   class TripsController < ApplicationController
-    before_filter :embed_authenticate_trailblazer!
+    before_filter :embed_authenticate_trailblazer!, :except => [:show]
 
     def new
       @trip = Trip.new
@@ -9,6 +9,11 @@ module Embed
       @trip.name = "My New Trip"
       session[:post_save_redirect] = params[:post_save_redirect]
       render "new", :layout => "static_embed"
+    end
+
+    def show
+      @trip = Trip.find(params[:id])
+      render :layout => "embed"
     end
 
     def create

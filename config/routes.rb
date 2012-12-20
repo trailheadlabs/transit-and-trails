@@ -12,6 +12,7 @@ Transitandtrails::Application.routes.draw do
     end
   end
 
+  # API
   constraints SslConstraint do
     constraints :subdomain => (Rails.env.production? ? /api\.staging|api\.rails|api/ : /.*/) do
       namespace :api, :defaults => {:format => :json} do
@@ -46,6 +47,7 @@ Transitandtrails::Application.routes.draw do
     end
   end
 
+  # EMBED
   constraints :subdomain => (Rails.env.production? ? /embed\.rails|embed|rails/ : /.*/) do
     namespace :embed do
       match "login" => "sessions#new", :as => :sigin
@@ -66,7 +68,7 @@ Transitandtrails::Application.routes.draw do
       end
       resources :sessions, :only => [:new]
       resources :registrations, :only => [:new,:create]
-      resources :trips, :only => [:new,:create,:update,:edit] do
+      resources :trips, :only => [:new,:create,:update,:edit,:show] do
         member do
           get 'edit_details'
           get 'edit_photos'
