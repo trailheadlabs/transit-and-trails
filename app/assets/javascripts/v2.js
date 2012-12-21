@@ -43,7 +43,7 @@ Find.clearFindMapMarkers = function(){
 Find.toggleMapSize = function(){
   $("#find_map").toggleClass('bigger',1000);
   $(".map").toggleClass('bigger',1000);
-  $("#findlist").toggleClass('bigger',1000);
+  $(".notice-list").toggleClass('bigger',1000);
   $("#map_size_toggle").text().trim() == 'Bigger' ? $("#map_size_toggle").text("Smaller") : $("#map_size_toggle").text('Bigger')
   google.maps.event.trigger(Find.map, "resize");
 };
