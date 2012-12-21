@@ -329,6 +329,18 @@ h4.find-list-name{
     height:77px;
     background:url(/assets/find_sprite.png) -310px 0px;
   }
+  .list-header-icon.trailheads{
+    background-position: -310px 0px
+  }
+  .list-header-icon.trips{
+    background-position: -310px -80px
+  }
+
+  .list-header-icon.campgrounds{
+    background-position: -310px -160px
+  }
+
+
 }
 
 #find-list-container{

@@ -90,7 +90,7 @@ Find.addTripMarker = function(trip){
     title:trip.name,
     icon: {
       anchor: new google.maps.Point(15, 45),
-      origin: new google.maps.Point(250,0),
+      origin: new google.maps.Point(250,80),
       url: "/assets/find_sprite.png",
       size: new google.maps.Size(30, 45)
     }
@@ -171,7 +171,7 @@ Find.addCampgroundMarker = function(campground){
     title:campground.name,
     icon: {
       anchor: new google.maps.Point(15, 45),
-      origin: new google.maps.Point(250,0),
+      origin: new google.maps.Point(250,160),
       url: "/assets/find_sprite.png",
       size: new google.maps.Size(30, 45)
     }
