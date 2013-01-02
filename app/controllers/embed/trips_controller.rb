@@ -7,6 +7,9 @@ module Embed
       @trip.intensity = Intensity.first
       @trip.duration = Duration.first
       @trip.name = "My New Trip"
+      @center_latitude = params[:center_latitude]
+      @center_longitude = params[:center_longitude]
+
       session[:post_save_redirect] = params[:post_save_redirect]
       render "new", :layout => "static_embed"
     end

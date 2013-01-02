@@ -15,41 +15,50 @@
         editMode = TNT.EditMode.UPDATE;
 
 :javascript
-$(function () {
-    $('form').submit(function(){
-        TNT.tripmap.getWayPointHtml();return true;
-    });
+    $(function () {
+        $('form').submit(function(){
+            TNT.tripmap.getWayPointHtml();return true;
+        });
 
-    TNT.tripmap.init(editMode);
+        TNT.tripmap.init(editMode);
 
-    $('a.show-more').toggle(function(e) {
-        e.preventDefault();
-        $(this).parent().find('li.hidden').show().slideDown();
-        $(this).text('- show less');
-    },function(e) {
-        e.preventDefault();
-        $(this).parent().find('li.hidden').hide().slideUp();
-        $(this).text('+ show more');
-    });
+        $('a.show-more').toggle(function(e) {
+            e.preventDefault();
+            $(this).parent().find('li.hidden').show().slideDown();
+            $(this).text('- show less');
+        },function(e) {
+            e.preventDefault();
+            $(this).parent().find('li.hidden').hide().slideUp();
+            $(this).text('+ show more');
+        });
 
-    $('#find_address').click(function(e){
-        e.preventDefault();
-        TNT.tripmap.findAddress(editMode);
-    });
-
-    $('#id_start_address').bind('keypress',function(e){
-        var code = (e.keyCode ? e.keyCode : e.which);
-        if(code == 13) { //Enter keycode
-            //Do something
+        $('#find_address').click(function(e){
             e.preventDefault();
             TNT.tripmap.findAddress(editMode);
-        }
+        });
+
+        $('#id_start_address').bind('keypress',function(e){
+            var code = (e.keyCode ? e.keyCode : e.which);
+            if(code == 13) { //Enter keycode
+                //Do something
+                e.preventDefault();
+                TNT.tripmap.findAddress(editMode);
+            }
+        });
+
+        $('ul.outer-list ul li:odd').css({backgroundColor: '#F6F7FC'});
+
+        $('#cancel-button').click(function(e){
+            e.preventDefault();
+            window.location.href = $(this).data('url');
+        });
+
+        // comment
     });
 
-    $('ul.outer-list ul li:odd').css({backgroundColor: '#F6F7FC'});
-
-    $('#cancel-button').click(function(e){
-        e.preventDefault();
-        window.location.href = $(this).data('url');
-    });
-});
+- if @center_latitude && @center_longitude
+    :javascript
+        $(function(){
+            TNT.tripmap.setCenterOn(#{@center_latitude},#{@center_longitude});
+            TNT.tripmap.map.setCenter(TNT.tripmap.centerOn);
+        });
