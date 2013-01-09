@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   def store_location
     Rails.logger.info params[:controller]
-    unless request.xhr? || params[:controller].match(/devise/) || request.format == :json
+    unless request.xhr? || params[:controller].match(/devise|session/) || request.format == :json
       Rails.logger.info "STORED LOCATION"
       session[:user_return_to] = request.referer || request.fullpath
     end
