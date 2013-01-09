@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
     redirect_to new_user_session_path
   end
 
-  before_filter :store_location, :except => {:controller=>:devise_session}
+  before_filter :store_location, :except => {:controller=>[:devise_session,:embed_session}
   skip_before_filter :store_location, :only => [:loadkv,:savekv]
 
   protect_from_forgery
