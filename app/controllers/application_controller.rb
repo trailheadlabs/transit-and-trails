@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     Rails.logger.info params[:controller]
     unless request.xhr? || params[:controller].match(/devise|session/) || request.format == :json
       Rails.logger.info "STORED LOCATION"
-      session[:user_return_to] = request.referer || request.fullpath
+      session[:user_return_to] = request.fullpath
     end
   end
 
