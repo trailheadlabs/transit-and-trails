@@ -354,7 +354,7 @@ DEPENDENCIES
   rgeo
   rspec-rails (~> 2.0)
   ruby_parser
-  sass-rails (~> 3.2.3)
+  sass-rails
   simple_form
   simple_form_fancy_uploads
   simplecov

@@ -25,6 +25,6 @@ ul.people{
     float:left;
     margin:20px;
     border:2px solid #CCC;
-    @include border-radius(3px);
+    border-radius: 3px;
   }
 }

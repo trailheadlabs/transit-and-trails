@@ -22,7 +22,7 @@ $footer-height:200px;
 
 a#openspacecouncil{
   padding:10px;
-  @include border-radius(10px);
+  border-radius: 10px;
   background-color:white;
   display:block;
   // float:right;
@@ -38,7 +38,7 @@ a#openspacecouncil{
 
 a#trailheadlabs{
   padding:10px;
-  @include border-radius(10px);
+  border-radius: 10px;
   background-color:white;
   display:block;
   // float:right;
@@ -200,7 +200,7 @@ a#trailheadlabs{
 }
 
 .media.find-list-item{
-  @include border-radius(10px);
+  border-radius: 10px;
 }
 .media.find-list-item:hover{
   background-color:#eee;
@@ -216,7 +216,7 @@ a#trailheadlabs{
 .pac-container
 {
   z-index: 10000 !important;
-  @include border-radius(10px);
+  border-radius: 10px;
   padding:4px;
   box-shadow: 5px 5px 10px #555;
 }
@@ -246,7 +246,7 @@ a#trailheadlabs{
     margin-top: 200px;
     z-index: 0;
     padding:10px;
-    @include border-radius(0px 0px 10px 10px);
+    border-radius: 0px 0px 10px 10px;
     i{
       font-size:20px;
     }
@@ -269,9 +269,9 @@ h4.find-list-name{
   margin-top:200px;
   background-color:white;
   padding:20px;
-  @include border-radius(0px 0px 10px 10px);
+  border-radius: 0px 0px 10px 10px;
   .btn-round{
-    @include border-radius(20px);
+    border-radius: 20px;
     margin-top:1px;
   }
 
@@ -293,7 +293,7 @@ h4.find-list-name{
   margin-top:20px;
   padding:20px;
   background-color:white;
-  @include border-radius(10px);
+  border-radius: 10px;
 }
 
 #active-filters{
@@ -317,7 +317,7 @@ h4.find-list-name{
   margin-bottom: 5px;
   background-color:#ddd;
   padding:8px;
-  @include border-radius(10px 10px 0px 0px);
+  border-radius: 10px 10px 0px 0px;
   position:relative;
   .list-header-icon{
     margin-right:12px;
@@ -345,7 +345,7 @@ h4.find-list-name{
 
 #find-list-container{
   background-color:white;
-  @include border-radius(0px 0px 10px 10px);
+  border-radius:0px 0px 10px 10px;
   .list{
     padding:10px;
     z-index:10;
@@ -478,7 +478,7 @@ button{
   font-size:12px;
   .message{
     margin-top:0px;
-    @include border-radius(10px);
+    border-radius: 10px;
   }
   .filters{
     top:-14px;
