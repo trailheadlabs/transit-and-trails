@@ -20,14 +20,14 @@
         %li.media.find-list-item(id="trip_list_item_#{trip.id}")
           .pull-left
             %a(href="#{trip_path(trip)}")
-              %img.media-object.img-rounded.img-polaroid(src="#{trip.thumbnail_url}")
+              %img.media-object.img-rounded(src="#{trip.thumbnail_url}")
             %br
-            = link_to "Zoom In", "#", :class => "btn btn-block zoom-button btn-warning"
-            = link_to "Plan My Trip", "/plan/trip/#{trip.id}", :class => "btn btn-success btn-block"
+            = link_to "Zoom In", "#", :class => "btn btn-block zoom-button btn-warning btn-round"
+            = link_to "Plan My Trip", "/plan/trip/#{trip.id}", :class => "btn btn-success btn-block btn-round"
             - if can? :edit, trip
-              = link_to "Edit Trip", edit_trip_path(trip), :class => "btn btn-primary btn-block"
+              = link_to "Edit Trip", edit_trip_path(trip), :class => "btn btn-primary btn-block btn-round"
             - if can? :destroy, trip
-              = link_to "Delete Trip", trip_path(trip), :method => :delete, :class => "btn btn-danger btn-block", :data => { :confirm => "Are you sure?" }
+              = link_to "Delete Trip", trip_path(trip), :method => :delete, :class => "btn btn-danger btn-block btn-round", :data => { :confirm => "Are you sure?" }
           .media-body
             %a(href="#{trip_path(trip)}")
               %h4.media-heading.find-list-name
