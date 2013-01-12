@@ -1,0 +1,44 @@
+#footer
+  .container
+    .row
+      .span3
+        %h4
+          Transit & Trails
+        %ul
+          %li
+            = link_to "About", static_path(:about)
+          %li
+            = link_to "Partners", partners_path
+          %li
+            = link_to "Challenge", static_path(:challenge)
+          %li
+            = link_to "Terms", static_path(:terms)
+          %li
+            = link_to "API", "/api"
+
+      .span2
+        %h4
+          Community
+        %ul
+          %li
+            = link_to "Blog", "http://blog.transitandtrails.org"
+          %li
+            = link_to "Twitter", "http://twitter.com/transitandtrail"
+          %li
+            = link_to "Facebook", "http://facebook.com/transitandtrails"
+          %li
+            = link_to "Flickr", "http://flickr.com/transitandtrails"
+
+      .span3
+        %h4
+          Download Our Apps
+        %ul
+          %li
+            = link_to "iOS", "http://itunes.apple.com/us/app/transit-trails-find-plan-share/id415996890?mt=8&ign-mpt=uo%3D4"
+          %li
+            = link_to "Android", "https://market.android.com/details?id=com.openspacecouncil.tnt&feature=search_result#?t=W251bGwsMSwxLDEsImNvbS5vcGVuc3BhY2Vjb3VuY2lsLnRudCJd"
+      .span4
+        %h4
+          Brought To You By
+        %a#openspacecouncil(href="http://openspacecouncil.org")
+          .openspacecouncil-logo.image-link
