@@ -1,3 +1,7 @@
+#plan-map img {
+  max-width: none;
+}
+
 select, input[type=text]
 {
 	font-size:12px;

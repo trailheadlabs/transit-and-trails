@@ -1,4 +1,5 @@
-body {
+
+/*body {
     font-size: 13px;
     margin: 0px;
     text-align: center;
@@ -6,7 +7,7 @@ body {
     color: #514b42;
     font-family: 'Open Sans', sans-serif;
 }
-
+*/
 #api-docs pre{
     padding:10px;
     border: 1px solid #aaa;
@@ -23,24 +24,6 @@ body {
 
 .trip-editor-map {
     cursor: crosshair;
-}
-
-#wrap {
-    position: relative;
-    margin: auto;
-    width: 983px;
-    overflow: hidden;
-    border: 1px solid #222;
-    border-top: 0px;
-    background: #fff;
-    -webkit-border-radius: 0 0 20px 20px;
-    -moz-border-radius: 0 0 20px 20px;
-    -o-border-radius: 0 0 20px 20px;
-    border-radius: 0 0 20px 20px;
-    -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, .2);
-    -moz-box-shadow: 0 0 15px rgba(0, 0, 0, .2);
-    -o-box-shadow: 0 0 15px rgba(0, 0, 0, .2);
-    box-shadow: 0 0 15px rgba(0, 0, 0, .2);
 }
 
 #head {
@@ -367,7 +350,7 @@ ul.people li h3 {
 
 #page {
     position: relative;
-    padding: 0px 15px;
+    padding: 10px 15px;
     text-align: left;
 }
 
@@ -1627,15 +1610,6 @@ a.social5 {
     width: 70px;
 }
 
-#footer {
-    position: relative;
-    padding: 12px 0 25px 0;
-    width: 963px;
-    margin: auto;
-    overflow: hidden;
-    color: #ffeecf;
-    font-size: 14px;
-}
 
 .foot-links {
     float: left;
@@ -1643,23 +1617,6 @@ a.social5 {
 
 .info-links {
     float: right;
-}
-
-#footer li {
-    float: left;
-}
-
-#footer a {
-    color: #ffeecf;
-    margin: 0 5px;
-}
-
-#footer li:after {
-    content: " | "
-}
-
-#footer ul li:last-child:after {
-    content: ""
 }
 
 /*

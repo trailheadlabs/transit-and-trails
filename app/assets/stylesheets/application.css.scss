@@ -19,8 +19,45 @@ input[type="url"], input[type="text"], input[type="password"], input[type="email
   font-family: 'Open Sans', sans-serif;
 }
 
+#page-head, .section-head, .attributes {
+  h1, h2, h3, h4, h5, h6, ol, ul, li {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    font-family: 'Open Sans', sans-serif;
+  }
+}
+
+#section-head {
+  h1, h2, h3, h4, h5, h6, ol, ul, li {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    font-family: 'Open Sans', sans-serif;
+  }
+}
+
+#page, .attributes {
+  ol, ul {
+    list-style: none;
+  }
+}
+#page {
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+}
+
 .container.main {
   background-color:white;
+  padding-bottom:40px;
 }
 
 body {
@@ -265,6 +302,12 @@ a.green-map-button, a.green-button, a.gray-button {
   padding:10px 40px 40px 40px;
 }
 
+.footer-header{
+  color:white;
+  text-transform:uppercase;
+  font-weight:600;
+  font-size:13px;
+}
 .content-footer{
   clear:both;
   margin-top:40px;

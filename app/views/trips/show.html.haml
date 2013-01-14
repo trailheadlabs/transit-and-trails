@@ -6,7 +6,6 @@
   %script{:src => "/assets/legacy/galleria/galleria-1.2.7.min.js"}
   %script{:src => "/assets/legacy/jquery/js/jquery.tools.min.js", :type => "text/javascript"}
   = javascript_include_tag "legacy/common"
-  = stylesheet_link_tag "legacy/reset"
   = stylesheet_link_tag "legacy/common"
   = stylesheet_link_tag "legacy/style"
   = stylesheet_link_tag "legacy/trailhead_detail"
@@ -66,7 +65,7 @@
         #trailhead-details
           - if @trip.description
             .description
-              != truncate_html(@trip.description, :length=> 300,  :omission => '...<br/><a class="trail-details-modal modal" rel="#trail-details" >Read more...</a>')
+              != truncate_html(@trip.description, :length=> 300,  :omission => '...<br/><a class="trail-details-modal description-modal" rel="#trail-details" >Read more...</a>')
             / e: entry
           - else
             %div{:style => "height:10px"}
@@ -176,7 +175,7 @@
 
       TNT.tripmap.init(TNT.EditMode.READONLY);
 
-      $("a.modal").overlay();
+      $("a.description-modal").overlay();
       $('thumbnail a[rel]').overlay();
 
       $(window).unload(function () {

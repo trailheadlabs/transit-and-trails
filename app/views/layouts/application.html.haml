@@ -10,10 +10,8 @@
     /[if lt IE 9]
       = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
     = javascript_include_tag "application"
-    = javascript_include_tag "v2"
     = stylesheet_link_tag "application", :media => "all"
     = stylesheet_link_tag "//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
-    = javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyCcUhpQftpOwXVSLJqHrvwYCqnhTy3bchE&sensor=false&libraries=places"
     = yield :head
   %body
     = render :partial => "layouts/v2_navbar"
