@@ -169,7 +169,7 @@ Transitandtrails::Application.routes.draw do
 
   devise_for :users
 
-  root :to => "find#find"
+  root :to => "find#trips"
 
   match "/find/v2" => "find#trips"
 
