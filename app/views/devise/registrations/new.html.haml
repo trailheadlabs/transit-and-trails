@@ -6,6 +6,6 @@
     = f.input :email
     = f.input :password, :required => true
     = f.input :password_confirmation, :required => true
-    = f.button :submit, :value => "Sign Up",:button_html => { :disable_with => "Wait" }
+    = f.button :submit, :class=> "btn btn-success", :value => "Sign Up",:button_html => { :disable_with => "Wait" }
 
   = render "devise/shared/links"

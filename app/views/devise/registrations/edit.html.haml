@@ -7,4 +7,4 @@
     = f.input :password, :required => false, :input_html => {:autocomplete => "off"}, :hint => "(Leave blank if you don't want to change it)"
     = f.input :password_confirmation, :required => false
     = f.input :current_password, :hint => "(Required to change password)"
-    = f.button :submit, :value => "Save", :button_html => { :disable_with => "Wait" }
+    = f.button :submit, :class=> "btn btn-success", :value => "Save", :button_html => { :disable_with => "Wait" }

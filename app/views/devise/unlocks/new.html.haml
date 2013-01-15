@@ -2,6 +2,6 @@
 .content
   = simple_form_for(resource, :as => resource_name, :url => unlock_path(resource_name), :html => { :method => :post }) do |f|
     = f.input :username
-    = f.button :submit, :value => "Resend Instructions"
+    = f.button :submit, :class=> "btn btn-success", :value => "Resend Instructions"
 
   = render "devise/shared/links"
