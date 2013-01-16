@@ -35,6 +35,9 @@
             %p.park-name
               = trip.park_name
             %p
+              %i.icon-user
+              = trip.user && trip.user.username
+            %p
               .div(class="intensity-icon #{trip.intensity.name.downcase}")
               = trip.intensity.name
               |
