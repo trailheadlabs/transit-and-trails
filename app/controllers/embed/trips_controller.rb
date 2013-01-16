@@ -21,6 +21,7 @@ module Embed
 
     def create
       @trip = Trip.new(params[:trip])
+      @trip.user = current_user
 
       respond_to do |format|
         if @trip.save
