@@ -51,7 +51,7 @@
         #trailhead-details
           - if @campground.description
             .description
-              != truncate_html(@campground.description, :length=> 300,  :omission => '...<br/><a class="trail-details-modal modal" rel="#trail-details" >Read more...</a>')
+              != truncate_html(@campground.description, :length=> 300,  :omission => '...<br/><a class="trail-details-modal description-modal" rel="#trail-details" >Read more...</a>')
             / e: entry
           - else
             %div{:style => "height:10px"}
@@ -95,7 +95,7 @@
         /         - else
         /           #{feature.name}
 
-      = render :partial => "/shared/partials/non_profit_partner", :locals => {:object=>@campground}
+        = render :partial => "/shared/partials/non_profit_partner", :locals => {:object=>@campground}
 
     / e:plan
     = render :partial => "/shared/partials/object_stories", :locals => {:object=>@campground}
@@ -133,7 +133,7 @@
           });
       }
 
-      $("a.modal").overlay();
+      $("a.description-modal").overlay();
       $('thumbnail a[rel]').overlay();
 
       initCampgroundDetails(#{@campground.id}, false);

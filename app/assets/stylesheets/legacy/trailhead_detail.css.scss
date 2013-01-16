@@ -1,0 +1,39 @@
+#page{
+#details-section { float: left; }
+#trailhead-photos-map { float: right; }
+
+#trailhead-stories{
+clear: left;
+padding-top: 20px;
+}
+
+#trailhead-stories-and-comments{
+margin: 20px 0;
+}
+
+#trailhead-comments{
+clear: both;
+padding-top: 20px;
+}
+div.agency div.logo {
+display: inline-block;
+float: left;
+margin: 2px 10px;
+width: 20px;
+}
+#plan.trailhead div.agency div.logo img { margin: 0; }
+
+div.non-profit-partner div.logo {
+display: inline-block;
+float: left;
+margin: 2px 10px;
+width:0;
+}
+
+.trail-details-overlay{
+.description{
+overflow-y:scroll;
+max-height: 400px;
+}
+}
+}

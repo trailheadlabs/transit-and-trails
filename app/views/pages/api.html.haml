@@ -1,6 +1,6 @@
 #api-docs.entry
   %h2.page-header API
-.content
+.legacy.content
   %p#contents
     %h3 Contents
   %p
@@ -78,15 +78,15 @@
   %br/
   %h3#introduction Introduction
   %ul
-    %li The API is currently read-only, the only accepted HTTP method is GET.    
+    %li The API is currently read-only, the only accepted HTTP method is GET.
     %li All API requests must be made via HTTPS
-    %li 
-      All API requests must include a key parameter with a valid API Key value. API Keys can be found on the 
+    %li
+      All API requests must include a key parameter with a valid API Key value. API Keys can be found on the
       %a(href="http://api.rails.transitandtrails.org/")
         user profile page
       \.
     %li The default response format is JSON. Responses can be formated as json by appending .xml to the request path. For example : https://api.transitandtrails.org/api/v1/trailheads.xml?key=valid_api_key
-    %li Error handling is limited. Get Trailhead, Trip, Campground and User will return 404 response codes when an invalid ID is specified. Beware of 500 response codes. This will get better, we promise.  
+    %li Error handling is limited. Get Trailhead, Trip, Campground and User will return 404 response codes when an invalid ID is specified. Beware of 500 response codes. This will get better, we promise.
   %h5
     [
     %a{:href => "#contents"} Contents
@@ -96,7 +96,7 @@
   %h3#trailheads Trailheads
   %p#trailhead_object
     %h4 Trailhead Object
-    %table
+    %table.table
       %tr
         %th Property Name
         %th Description
@@ -359,7 +359,7 @@
   %h3#campgrounds Campgrounds
   %p#campground_object
     %h4 Campground Object
-    %table
+    %table.table
       %tr
         %th Property Name
         %th Description
@@ -618,7 +618,7 @@
   %h3#trips Trips
   %p#trip_object
     %h4 Trip Object
-    %table
+    %table.table
       %tr
         %th Property Name
         %th Description
@@ -918,7 +918,7 @@
   %h3#users Users
   %p#user_object
     %h4 User Object
-    %table
+    %table.table
       %tr
         %th Property Name
         %th Description

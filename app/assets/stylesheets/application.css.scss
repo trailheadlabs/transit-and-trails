@@ -25,42 +25,6 @@ input[type="url"], input[type="text"], input[type="password"], input[type="email
   font-family: 'Open Sans', sans-serif;
 }
 
-#page-head, .section-head, .attributes {
-  h1, h2, h3, h4, h5, h6, ol, ul, li {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-    font-family: 'Open Sans', sans-serif;
-  }
-}
-
-#section-head {
-  h1, h2, h3, h4, h5, h6, ol, ul, li {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-    font-family: 'Open Sans', sans-serif;
-  }
-}
-
-#page, .attributes {
-  ol, ul {
-    list-style: none;
-  }
-}
-#page {
-  table {
-    border-collapse: collapse;
-    border-spacing: 0;
-  }
-}
-
 .container.main {
   background-color:white;
   padding-bottom:40px;
@@ -96,11 +60,15 @@ a#openspacecouncil{
 
 #wrap {
   min-height: 100%;
+  margin: 0 auto $footer-height * -1; /* negative value of footer height */
 }
 
 #main {
   overflow:auto;
-  padding-bottom:$footer-height; /* this needs to be bigger than footer height*/
+}
+
+#push{
+  height: $footer-height;
 }
 
 #footer {
@@ -109,7 +77,7 @@ a#openspacecouncil{
   -webkit-text-stroke: 0.2px;
   color:white;
   position: relative;
-  margin-top: $footer-height * -1; /* negative value of footer height */
+
   height: $footer-height;
   clear:both;
   padding-top:20px;
@@ -310,6 +278,12 @@ a.green-map-button, a.green-button, a.gray-button {
   width:100%;
 }
 
+#find-map, #plan-map{
+  img{
+    max-width: none;
+  }
+}
+
 .main-header{
   height:160px;
   background-image:url(application_layout_sprite.jpg);
@@ -317,9 +291,10 @@ a.green-map-button, a.green-button, a.gray-button {
   margin-bottom:10px;
   @include box-shadow(0 0 15px rgba(0, 0, 0, .5));
 }
-.content{
-  padding:10px 40px 40px 40px;
-}
+
+.container.main .content, .legacy.content, .partners.content{
+   padding:10px 40px 40px 40px;
+ }
 
 .footer-header{
   color:white;

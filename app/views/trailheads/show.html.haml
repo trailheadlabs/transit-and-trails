@@ -52,7 +52,7 @@
         #trailhead-details
           - if @trailhead.description
             .description
-              != truncate_html(@trailhead.description, :length=> 300,  :omission => '...<br/><a class="trail-details-modal modal" rel="#trail-details" >Read more...</a>')
+              != truncate_html(@trailhead.description, :length=> 300,  :omission => '...<br/><a class="trail-details-modal description-modal" rel="#trail-details" >Read more...</a>')
             / e: entry
           - else
             %div{:style => "height:10px"}
