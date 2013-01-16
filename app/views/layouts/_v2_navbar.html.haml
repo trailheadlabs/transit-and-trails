@@ -24,6 +24,21 @@
             = link_to 'Campgrounds', '/find/v2/campgrounds'
       %ul.nav.pull-right
         - if user_signed_in?
+          - if (can? :create, Trailhead) || (can? :create, Trip) || (can? :create, Campground)
+            %li.dropdown
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                Add
+                %span.caret
+              %ul.dropdown-menu
+                - if can? :create, Trip
+                  %li
+                    = link_to "Trip", new_trip_path
+                - if can? :create, Trailhead
+                  %li
+                    = link_to "Trailhead", new_trailhead_path
+                - if can? :create, Campground
+                  %li
+                    = link_to "Campground", new_campground_path
           %li.dropdown
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
               = current_user.username
