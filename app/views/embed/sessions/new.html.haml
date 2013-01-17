@@ -12,7 +12,7 @@
           %li
             %a{:href => "/embed/signup"} Click here to become a Trail Blazer
           %li
-            %a{:href => "/accounts/password/reset", :target => "_blank"} Forgot your password?
+            %a{:href => "#{new_password_path(:user)}", :target => "_blank"} Forgot your password?
     .entry.bottom
       #django-submit
         %input.green-submit-button{:type => "submit", :value => "Submit"}

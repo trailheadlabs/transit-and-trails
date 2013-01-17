@@ -280,7 +280,7 @@ a.green-map-button, a.green-button, a.gray-button {
   @include box-shadow(0 0 15px rgba(0, 0, 0, .5));
 }
 
-.container.main .content, .legacy.content, .partners.content{
+.container.main > .content, .partners.content{
    padding:10px 40px 40px 40px;
  }
 

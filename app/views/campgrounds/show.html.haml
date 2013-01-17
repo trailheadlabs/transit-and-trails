@@ -8,9 +8,8 @@
   / load Galleria
   %script{:src => "/assets/legacy/galleria/galleria-1.2.7.min.js"}
   = javascript_include_tag "legacy/common"
-  = stylesheet_link_tag "legacy/reset"
-  = stylesheet_link_tag "legacy/common"
-  = stylesheet_link_tag "legacy/style"
+
+  = stylesheet_link_tag "legacy/legacy"
   = stylesheet_link_tag "legacy/campground_detail"
 
 / begin lightboxed images
@@ -21,7 +20,7 @@
         %img.thumbnail{:src => "#{photo.flickr_medium_url}"}/
 / end lightboxed images
 
-#page.trip-details
+#page.trip-details.legacy
 
   #trail-details.trail-details-overlay
     != @campground.description

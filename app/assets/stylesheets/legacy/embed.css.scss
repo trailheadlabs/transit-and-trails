@@ -1,11 +1,12 @@
 body{
   font-size:13px;
   background-color:white;
+  background-image:none;
   color:black;
   text-align:left;
 }
 
-body.legacy-reset {
+.legacy {
 
   .hidden{
     display:none;
