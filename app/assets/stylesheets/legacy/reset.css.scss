@@ -1,3 +1,7 @@
+body {
+  line-height: 1;
+}
+
 /* http://meyerweb.com/eric/tools/css/reset/  v2.0 | 20110126  License: none (public domain) */
 body.legacy-reset, .container.main {
   html, body, div, span, applet, object, iframe,
@@ -24,9 +28,6 @@ body.legacy-reset, .container.main {
   article, aside, details, figcaption, figure,
   footer, header, hgroup, menu, nav, section {
   	display: block;
-  }
-  body {
-  	line-height: 1;
   }
   ol, ul {
   	list-style: none;

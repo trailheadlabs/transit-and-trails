@@ -1,7 +1,7 @@
 @import "variables";
 @import "bourbon";
 
-.simple_form {
+body.legacy-reset .simple_form, .simple-form {
   .datetime{
     width:100px;
     display:inline;

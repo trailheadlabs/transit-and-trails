@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#content, .container.main{
+body.legacy-reset, .container.main{
   .ui-autocomplete{
     text-align:left;
   }
