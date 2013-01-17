@@ -1,0 +1,364 @@
+@import "variables";
+@import "bourbon";
+
+abbr[title="required"] {
+  color:red;
+}
+
+#trail-details .close, .photo .close {
+  opacity: 1.0;
+}
+
+input[type="url"], input[type="text"], input[type="password"], input[type="email"], textarea {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.container.main {
+  background-color:white;
+  padding-bottom:40px;
+}
+
+body {
+  background-image:url(/assets/woodbackground.jpg);
+  font-size: 14px;
+  line-height: 18px;
+  background-color:#514B43;
+  margin:0px;
+  padding:0px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+$footer-height:200px;
+
+a#openspacecouncil{
+  padding:10px;
+  border-radius: 10px;
+  background-color:white;
+  display:block;
+  // float:right;
+  box-shadow: -1px -1px 2px #777;
+}
+
+.openspacecouncil-logo{
+  background-image:url(application_layout_sprite.png);
+  background-position: -600px -160px;
+  height:35px;
+  width:280px;
+}
+
+#wrap {
+  min-height: 100%;
+  margin: 0 auto $footer-height * -1; /* negative value of footer height */
+}
+
+#main {
+  overflow:auto;
+}
+
+#push{
+  height: $footer-height;
+}
+
+#footer {
+  -webkit-font-smoothing: antialiased;
+  font-weight:400;
+  -webkit-text-stroke: 0.2px;
+  color:white;
+  position: relative;
+
+  height: $footer-height;
+  clear:both;
+  padding-top:20px;
+  // background-color:$main-blue;
+  background-color:$main-green;
+  // background-image:url(/assets/greentexture_bright.jpg);
+  box-shadow: -2px -10px 10px rgba(51, 51, 51, 0.8);
+  ul{
+    list-style-type: none;
+    margin-left:0px;
+  }
+  a {
+    font-size:14px;
+    color: white;
+    text-decoration:none;
+    &:visited {
+      color: white;
+    }
+    &:hover {
+      color: white;
+      text-decoration:underline;
+    }
+  }
+}
+
+#subfooter{
+  font-size:12px;
+  color:#4A90B1;
+  background-color:white;
+  text:black;
+  .text{
+    margin-top:6px;
+  }
+  .container{
+    padding:10px;
+  }
+}
+
+#main .container{
+  padding-top:56px;
+  margin-bottom:100px;
+}
+
+.page-header{
+  border-top: solid 1px #C7C7C7;
+  border-bottom:  solid 1px #C7C7C7;
+  background-color: $super-light-blue;
+  padding:14px 40px;
+}
+
+p, ol, ul, td {
+  font-size: 14px;
+  line-height: 20px; }
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+  overflow: auto;
+  border:1px solid #aaa;
+  border-radius: 4px;
+}
+
+ul.devise-links{
+  margin-left:20px;
+}
+
+.flash{
+  padding:10px 40px;
+  margin-bottom:10px;
+}
+
+#notice {
+  color: green;
+  background-color: rgba(0, 255, 0, 0.1);
+  border-top:1px solid green;
+  border-bottom:1px solid green;
+}
+
+#alert {
+  color: red;
+  background-color: rgba(255, 0, 0, 0.1);
+  border-top:1px solid red;
+  border-bottom:1px solid red;
+}
+
+#error {
+  color: red;
+  background-color: rgba(255, 0, 0, 0.1);
+  border-top:1px solid red;
+  border-bottom:1px solid red;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px;
+    margin-bottom: 0px;
+    background-color: #c00;
+    color: #fff; }
+  ul li {
+    font-size: 12px;
+    list-style: square; } }
+
+// input[type="submit"]{
+//   @include button(#74AB4C);
+//   text-shadow: 0 -1px 1px #001E00;
+//   font-weight:600;
+//   font-size:14px;
+// }
+div {
+  @include clearfix;
+  &.field, &.actions {
+    margin-bottom: 10px; }
+}
+
+.editor{
+  clear:both;
+}
+h1, h2, h3, h4, h5{
+  color: #514B42;
+  font-weight:500;
+}
+
+h3{
+  font-weight:600;
+}
+
+.green-button{
+  @include button(#74AB4C);
+  text-shadow: 0 -1px 1px #001E00;
+  font-weight:600;
+  font-size:14px;
+}
+
+.gray-button{
+  @include button(#666);
+  text-shadow: 0 -1px 1px #001E00;
+  font-weight:600;
+  font-size:14px;
+}
+
+a.green-map-button, a.green-button, a.gray-button {
+    color: white;
+    text-decoration:none;
+    &:visited {
+      color: white; }
+    &:hover {
+      color: white;
+      text-decoration:none;
+    }
+  }
+
+// a {
+//   color: $aqua;
+//   text-decoration:none;
+//   &:visited {
+//     color: $aqua; }
+//   &:hover {
+//     color: $aqua;
+//     text-decoration:underline;
+//   }
+// }
+
+.middle{
+  margin: 0 auto;
+  width:985px;
+}
+.main{
+  background-color:white;
+  border-left:solid 1px black;
+  border-right:solid 1px black;
+  border-bottom:solid 1px black;
+  border-radius: 0px 0px 30px 30px;
+  @include box-shadow(0 4px 15px rgba(0, 0, 0, .7));
+}
+
+#user-nav{
+  position: absolute;
+  top: 8px;
+  left: 16px;
+}
+
+#home-link{
+  position: absolute;
+  right:0px;
+  bottom:0px;
+  height:130px;
+  width:100%;
+}
+
+#find-map, #plan-map{
+  img{
+    max-width: none;
+  }
+}
+
+.main-header{
+  height:160px;
+  background-image:url(application_layout_sprite.jpg);
+  position:relative;
+  margin-bottom:10px;
+  @include box-shadow(0 0 15px rgba(0, 0, 0, .5));
+}
+
+.container.main .content, .legacy.content, .partners.content{
+   padding:10px 40px 40px 40px;
+ }
+
+.footer-header{
+  color:white;
+  text-transform:uppercase;
+  font-weight:600;
+  font-size:12px;
+}
+.content-footer{
+  clear:both;
+  margin-top:40px;
+  padding:20px;
+  .image-link{
+    background-image:url(application_layout_sprite.png);
+    height:40px;
+    float:left;
+    margin-right:20px;
+  }
+  .left{
+    float:left;
+  }
+  .right{
+    float:right;
+  }
+  .openspacecouncil-logo{
+    background-position: -600px -160px;
+    height:40px;
+    width:280px;
+  }
+  .twitter{
+    background-position: -0px -160px;
+    width:40px;
+  }
+  .facebook{
+    background-position: -40px -160px;
+    width:45px;
+  }
+  .newsletter{
+    background-position: -100px -160px;
+    width:60px;
+  }
+  .blog{
+    background-position: -160px -160px;
+    width:40px;
+  }
+  .ios-app{
+    background-position: -200px -160px;
+    width:110px;
+  }
+  .android-app{
+    background-position: -320px -160px;
+    width:110px;
+    margin-right:0px;
+  }
+}
+
+
+.footer{
+  position: relative;
+  padding: 20px;
+  color: #FFEECF;
+  font-size: 14px;
+  text-shadow: 0px -1px black;
+  .left{
+    float:left;
+  }
+  .right{
+    float:right;
+  }
+  a {
+    color: #FFEECF;
+    text-decoration:none;
+    &:visited {
+      color: #FFEECF; }
+    &:hover {
+      color: #FFEECF;
+      text-decoration:underline;
+    }
+  }
+}

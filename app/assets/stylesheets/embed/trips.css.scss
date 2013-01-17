@@ -1,55 +1,57 @@
 @import "bourbon";
 
-#map_url {
-  width:260px;
-}
+#content{
+  #map_url {
+    width:260px;
+  }
 
 
-#maps .map a.get-map{
-  float:left;
-}
+  #maps .map a.get-map{
+    float:left;
+  }
 
-.delete-map-link{
-  margin-top:10px;
-  text-transform:uppercase;
-  color:red;
-}
+  .delete-map-link{
+    margin-top:10px;
+    text-transform:uppercase;
+    color:red;
+  }
 
-body{
-  font-size:13px;
-}
+  body{
+    font-size:13px;
+  }
 
-#plan.alt.trailhead #plan-map {
-  height: 394px;
-}
+  #plan.alt.trailhead #plan-map {
+    height: 394px;
+  }
 
-#page{
-  height:478px;
-  padding-bottom:0px;
-}
+  #page{
+    height:478px;
+    padding-bottom:0px;
+  }
 
-#trip_attributes{
-  clear:both;
-  height:348px;
-}
-.list div {
-  clear:both;
-}
+  #trip_attributes{
+    clear:both;
+    height:348px;
+  }
+  .list div {
+    clear:both;
+  }
 
-#photo-upload{
-  clear:both;
-}
-#map-container{
-  border-radius: 0px;
-}
-#find_address{
-  padding: 3px 10px;
-  margin-left:6px;
-}
+  #photo-upload{
+    clear:both;
+  }
+  #map-container{
+    border-radius: 0px;
+  }
+  #find_address{
+    padding: 3px 10px;
+    margin-left:6px;
+  }
 
-span.error{
-  text-transform:uppercase;
-  font-weight:500;
-  margin-top:6px;
-  margin-left:0px;
+  span.error{
+    text-transform:uppercase;
+    font-weight:500;
+    margin-top:6px;
+    margin-left:0px;
+  }
 }
