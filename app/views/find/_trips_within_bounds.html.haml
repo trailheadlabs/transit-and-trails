@@ -34,13 +34,7 @@
                 = trip.name
             %p.park-name
               = trip.park_name
-            - if trip.user
-              %p
-                - if !trip.user.profile.avatar.file && trip.user.profile.organization_avatar.file
-                  = image_tag trip.user.profile.organization_avatar, :class => "img-rounded avatar"
-                - else
-                  = image_tag trip.user.profile.avatar, :class => "img-rounded avatar"
-                = user_label(trip.user)
+            = render :partial => "object_user_label", :locals => { :object => trip }
             / - if trip.user && trip.user.profile.organization_name
             /   %p
             /     = image_tag trip.user.profile.organization_avatar, :class => "img-rounded avatar"

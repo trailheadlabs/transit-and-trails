@@ -107,7 +107,8 @@ Find.addTripMarker = function(trip){
     }(newMarker));
 
   google.maps.event.addListener(newMarker, 'click', function() {
-      $("body").animate({scrollTop: $("#trip_list_item_" + trip.id).offset().top-300}, 600);
+      var mapHeight = $("#find_map").height() + 60;
+      $("body").animate({scrollTop: $("#trip_list_item_" + trip.id).offset().top-mapHeight}, 600);
   });
 
   $("#trip_list_item_" + trip.id + " .zoom-button").click( function() {
@@ -135,7 +136,8 @@ Find.addTrailheadMarker = function(trailhead){
   });
 
   google.maps.event.addListener(newMarker, 'click', function() {
-      $("body").animate({scrollTop: $("#trailhead_list_item_" + trailhead.id).offset().top-300}, 600);
+      var mapHeight = $("#find_map").height() + 60;
+      $("body").animate({scrollTop: $("#trailhead_list_item_" + trailhead.id).offset().top-mapHeight}, 600);
   });
 
   Find.mapMarkers.push(newMarker);
@@ -175,7 +177,8 @@ Find.addCampgroundMarker = function(campground){
   });
 
   google.maps.event.addListener(newMarker, 'click', function() {
-      $("body").animate({scrollTop: $("#campground_list_item_" + campground.id).offset().top-300}, 600);
+      var mapHeight = $("#find_map").height() + 60;
+      $("body").animate({scrollTop: $("#campground_list_item_" + campground.id).offset().top-mapHeight}, 600);
   });
 
   Find.mapMarkers.push(newMarker);

@@ -38,6 +38,7 @@
                 = campground.name
             %p.park-name
               = campground.default_park_name
+            = render :partial => "object_user_label", :locals => { :object => trailhead }
             %p.description
               = truncate_html(strip_tags(campground.description),:length=>300)
             .features
