@@ -38,6 +38,7 @@ Find.clearFindMapMarkers = function(){
 }
 
 Find.toggleMapSize = function(){
+  $("#find-map-disable").toggleClass('bigger');
   $("#find_map").toggleClass('bigger');
   $(".map").toggleClass('bigger');
   $(".notice-list").toggleClass('bigger');
@@ -247,6 +248,7 @@ Find.loadItems = function(find_path){
   params['ne_longitude'] = bounds.getNorthEast().lng();
   params['center_latitude'] = center.lat();
   params['center_longitude'] = center.lng();
+  params['zoom'] = Find.map.getZoom();
   $('.filter-checkbox').attr('disabled','disabled');
   $('button').attr('disabled','disabled');
   $('input').attr('disabled','disabled');
@@ -295,8 +297,8 @@ $(function(){
   // $('#map-mode-button').button('toggle');
 
   var mapOptions = {
-    center: new google.maps.LatLng(37.78, -122.42),
-    zoom: 11,
+    center: new google.maps.LatLng(starting_lat,starting_lng),
+    zoom: starting_zoom,
     mapTypeId: google.maps.MapTypeId.TERRAIN,
     mapTypeControl: true,
     mapTypeControlOptions: {

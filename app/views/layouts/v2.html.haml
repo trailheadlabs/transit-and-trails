@@ -55,3 +55,7 @@
       #push
     = render :partial => "layouts/v2_footer"
     = render :partial => "/layouts/tracking"
+    %script
+      starting_lat = #{session[:starting_lat] || 37.78};
+      starting_lng = #{session[:starting_lng] || -122.42};
+      starting_zoom = #{session[:starting_zoom] || 11};
