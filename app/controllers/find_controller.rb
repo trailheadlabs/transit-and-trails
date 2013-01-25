@@ -1,14 +1,11 @@
 class FindController < ApplicationController
   def trips
-    render :layout => "v2"
   end
 
   def trailheads
-    render :layout => "v2"
   end
 
   def campgrounds
-    render :layout => "v2"
   end
 
   def find
@@ -184,14 +181,14 @@ class FindController < ApplicationController
     self.find
     session[:starting_lat] = @starting_lat = 37.904141
     session[:starting_lng] = @starting_lng = -122.603838
-    render "trips", :layout => "v2"
+    render "trips"
   end
 
   def sanjosetrails
     self.find
     session[:starting_lat] = @starting_lat = 37.3393857
     session[:starting_lng] = @starting_lng = -121.8949555
-    render "trips", :layout => "v2"
+    render "trips"
   end
 
   def regional_landing_page
@@ -202,6 +199,6 @@ class FindController < ApplicationController
     end
     session[:starting_lat] = @starting_lat = object.latitude
     session[:starting_lng] = @starting_lng = object.longitude
-    render "trips", :layout => "v2"
+    render "trips"
   end
 end

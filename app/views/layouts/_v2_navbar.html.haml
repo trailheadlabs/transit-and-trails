@@ -6,22 +6,22 @@
       %ul.nav
         - if params[:action] == "trips"
           %li.active
-            = link_to 'Trips', '/find/v2/trips'
+            = link_to 'Trips', find_trips_path
         - else
           %li
-            = link_to 'Trips', '/find/v2/trips'
+            = link_to 'Trips', find_trips_path
         - if params[:action] == "trailheads"
           %li.active
-            = link_to 'Trailheads', '/find/v2/trailheads'
+            = link_to 'Trailheads', find_trailheads_path
         - else
           %li
-            = link_to 'Trailheads', '/find/v2/trailheads'
+            = link_to 'Trailheads', find_trailheads_path
         - if params[:action] == "campgrounds"
           %li.active
-            = link_to 'Campgrounds', '/find/v2/campgrounds'
+            = link_to 'Campgrounds', find_campgrounds_path
         - else
           %li
-            = link_to 'Campgrounds', '/find/v2/campgrounds'
+            = link_to 'Campgrounds', find_campgrounds_path
       %ul.nav.pull-right
         - if user_signed_in?
           - if (can? :create, Trailhead) || (can? :create, Trip) || (can? :create, Campground)

@@ -62,15 +62,16 @@ class TrailheadsController < ApplicationController
   # GET /trailheads
   # GET /trailheads.json
   def index
-    if(params[:park_id])
-      @trailheads = Park.find(params[:park_id]).trailheads
-    else
-      @trailheads = Trailhead.all
-    end
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @trailheads }
-    end
+    redirect_to find_trailheads_path
+    # if(params[:park_id])
+    #   @trailheads = Park.find(params[:park_id]).trailheads
+    # else
+    #   @trailheads = Trailhead.all
+    # end
+    # respond_to do |format|
+    #   format.html # index.html.erb
+    #   format.json { render json: @trailheads }
+    # end
   end
 
   # GET /trailheads/1
@@ -159,7 +160,7 @@ class TrailheadsController < ApplicationController
 
     respond_to do |format|
       flash[:notice] = "Trailhead deleted."
-      format.html { redirect_to root_path }
+      format.html { redirect_to find_trailheads_path }
       format.json { head :no_content }
     end
   end

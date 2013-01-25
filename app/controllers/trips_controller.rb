@@ -6,12 +6,7 @@ class TripsController < ApplicationController
   # GET /trips
   # GET /trips.json
   def index
-    @trips = Trip.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @trips }
-    end
+    redirect_to find_trips_path
   end
 
   # GET /trips/near_coordinates
@@ -118,7 +113,7 @@ class TripsController < ApplicationController
     @trip.destroy
 
     respond_to do |format|
-      format.html { redirect_to trips_url }
+      format.html { redirect_to find_trips_url }
       format.json { head :no_content }
     end
   end

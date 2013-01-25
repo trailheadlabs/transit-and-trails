@@ -237,7 +237,7 @@ Find.submitFilters = function(){
 }
 
 Find.loadItems = function(find_path){
-  $("#findlist").fadeOut();
+  $(".notice-list").fadeOut();
   $('#progress').slideDown();
   Find.clearFindMapMarkers();
   var bounds = Find.map.getBounds();
@@ -260,7 +260,7 @@ Find.loadItems = function(find_path){
     $('input').removeAttr('disabled');
     $("#find-map-disable").fadeOut();
     $('#progress').slideUp();
-    $("#findlist").fadeIn();
+    $(".notice-list").fadeIn();
     $("#active-filters").html($(".list-filters").html());
   });
 }

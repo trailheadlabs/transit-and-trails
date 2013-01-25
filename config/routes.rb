@@ -171,13 +171,13 @@ Transitandtrails::Application.routes.draw do
 
   root :to => "find#trips"
 
-  match "/find/v2" => "find#trips"
+  match "find" => "find#trips"
 
-  match "/find/v2/trips" => "find#trips"
+  match "find/trips" => "find#trips", :as => :find_trips
 
-  match "/find/v2/trailheads" => "find#trailheads"
+  match "find/trailheads" => "find#trailheads", :as => :find_trailheads
 
-  match "/find/v2/campgrounds" => "find#campgrounds"
+  match "find/campgrounds" => "find#campgrounds", :as => :find_campgrounds
 
   match "find/trailheads_within_bounds" => "find#trailheads_within_bounds"
 

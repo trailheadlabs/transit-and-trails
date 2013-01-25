@@ -4,12 +4,7 @@ class CampgroundsController < ApplicationController
   # GET /campgrounds
   # GET /campgrounds.json
   def index
-    @campgrounds = Campground.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @campgrounds }
-    end
+    redirect_to find_campgrounds_path
   end
 
   # GET /campgrounds/near_coordinates
@@ -104,7 +99,7 @@ class CampgroundsController < ApplicationController
     @campground.destroy
 
     respond_to do |format|
-      format.html { redirect_to campgrounds_url }
+      format.html { redirect_to find_campgrounds_url }
       format.json { head :no_content }
     end
   end
