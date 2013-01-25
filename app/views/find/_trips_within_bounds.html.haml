@@ -34,6 +34,12 @@
                 = trip.name
             %p.park-name
               = trip.park_name
+            = render :partial => "object_user_label", :locals => { :object => trip }
+            / - if trip.user && trip.user.profile.organization_name
+            /   %p
+            /     = image_tag trip.user.profile.organization_avatar, :class => "img-rounded avatar"
+            /     = organization_label(trip.user)
+
             %p
               .div(class="intensity-icon #{trip.intensity.name.downcase}")
               = trip.intensity.name

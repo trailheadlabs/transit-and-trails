@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.trail-details-overlay{
+.trip-details-overlay,.trail-details-overlay{
   .description{
     overflow-y:scroll;
     max-height: 400px;

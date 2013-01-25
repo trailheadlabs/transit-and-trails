@@ -1,4 +1,11 @@
-.simple_form {
+@import "variables";
+@import "bourbon";
+
+.legacy .simple_form, .simple-form {
+  .datetime{
+    width:100px;
+    display:inline;
+  }
   input[type="url"], input[type="text"], input[type="password"], input[type="email"], textarea{
     font-size:14px;
     padding:6px;

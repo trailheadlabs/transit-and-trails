@@ -2,9 +2,8 @@
   = stylesheet_link_tag "application"
   = javascript_include_tag "application"
   = javascript_include_tag "legacy/common"
-  = stylesheet_link_tag "legacy/reset"
-  = stylesheet_link_tag "legacy/common"
-  = stylesheet_link_tag "legacy/style"
+
+  = stylesheet_link_tag "legacy/legacy"
   = stylesheet_link_tag "legacy/trailhead_detail"
   %script{:src => "/assets/legacy/jquery/js/jquery.tools.min.js", :type => "text/javascript"}
 
@@ -12,7 +11,7 @@
   Trailhead Details
 
 - content_for :page_content do
-  #page.trip-details
+  #page.trip-details.legacy
 
     #trail-details.trail-details-overlay
       != @trailhead.description
@@ -31,7 +30,7 @@
           #trailhead-details
             - if @trailhead.description
               .description
-                != truncate_html(@trailhead.description, :length=> 300,  :omission => '...<br/><a class="trail-details-modal modal" rel="#trail-details" >Read more...</a>')
+                != truncate_html(@trailhead.description, :length=> 300,  :omission => '...<br/><a class="trail-details-modal description-modal" rel="#trail-details" >Read more...</a>')
               / e: entry
             - else
               %div{:style => "height:10px"}
@@ -80,6 +79,6 @@
 
   :javascript
     $(function(){
-      $("a.modal").overlay();
+      $("a.description-modal").overlay();
     });
 

@@ -1,0 +1,291 @@
+body{
+  font-size:13px;
+  background-color:white;
+  background-image:none;
+  color:black;
+  text-align:left;
+}
+
+.legacy {
+
+  .hidden{
+    display:none;
+  }
+
+  .embed{
+    float:left;
+    font-size:0.88em;
+  }
+
+  .embed-header{
+    background-color:#5B8BA6;
+    height:40px;
+    border-bottom:solid 2px #87A9BC;
+  }
+
+  .embed-header .title {
+    text-transform:uppercase;
+    font-size:18px;
+    font-weight:600;
+    color:white;
+    text-shadow:0 -1px 1px #222;
+    float:left;
+    padding:9px 12px;
+  }
+
+  .embed-header .logo {
+    float:right;
+    font-size:12px;
+    font-weight:bold;
+    color:#B5C9D7;
+    padding:4px;
+  }
+
+  .embed-header .logo img {
+    vertical-align:middle;
+  }
+
+  #trip-meta{
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -o-border-radius: 0px;
+    border-radius: 0px;
+    width:377px;
+  }
+
+  div.agency{
+    font-size:11px;
+  }
+
+  span.error{
+    display: block;
+    margin-left: 200px;
+    color: red;
+  }
+  .input{
+    margin-bottom:14px;
+  }
+
+  .nav{
+    line-height:1em;
+    font-size:12px;
+    float:right;
+    color:#B5C9D7;
+    padding:14px;
+    text-transform: uppercase;
+    font-weight:600;
+  }
+
+  .nav a{
+    color:white;
+  }
+  .embed-content{
+    margin:30px auto;
+    width:600px;
+
+  }
+
+  #content{
+    padding: 0px;
+    padding-top: 0px;
+  }
+
+  .entry.static ul{
+    margin-left:150px;
+  }
+  #trip-photos{
+    display:block;
+    float:left;
+    padding:0px 10px;
+    width:500px;
+  }
+
+  .scrollable{
+    width:320px;
+  }
+
+  #trip-done-button {
+    display:inline-block;
+    padding:9px 0px;
+    text-align:center;
+  }
+
+  #trip-maps{
+    display:block;
+    float:left;
+    width:400px;
+    padding:0px 10px;
+  }
+
+  #trip-attribute-box{
+    float:left;
+    margin-right:10px;
+  }
+  .trip-photos-maps-content{
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+    border:solid 1px #bbb;
+    padding:10px;
+  }
+  #map-container{
+    padding-left:0px;
+    float:left;
+    border-right:solid 2px #87A9BC;
+  }
+
+  #trip-detail-buttons{
+    padding:20px;
+    text-align:right;
+    float:right;
+    position:absolute;
+    bottom:20px;
+    right:20px;
+  }
+  #page{
+    padding:0px;
+    height:500px;
+  }
+
+  #plan.trailhead{
+    overflow:inherit;
+    min-height:500px;
+    float:none;
+  }
+
+  #id_description{
+    width:200px;
+  }
+  #trip_attributes{
+    float:left;
+    height:300px;
+    width:400px;
+    overflow-y:scroll;
+    padding:8px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+    border:solid 1px #bbb;
+
+  }
+  #plan.alt.trailhead #plan-map-instructions{
+    width:509px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -o-border-radius: 0px;
+    border-radius: 0px;
+    padding: 4px 20px;
+  }
+
+  #plan.alt.trailhead #plan-map {
+    height: 372px;
+    width: 548px;
+    margin-top: 84px;
+  }
+
+  .embed-attr-list{
+    float:left;
+    clear:both;
+  }
+  .trip-map-buttons{
+    left:90px;
+  }
+  #embed-next-button{
+    position:absolute;
+    right:20px;
+    bottom:20px;
+  }
+  #wrap {
+      position: relative;
+      margin: auto;
+      width: 970px;
+      overflow: hidden;
+      border: none;
+      border-top: 0px;
+      background: #fff;
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      -o-border-radius: 0;
+      border-radius: 0;
+      -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, .2);
+      -moz-box-shadow: 0 0 15px rgba(0, 0, 0, .2);
+      -o-box-shadow: 0 0 15px rgba(0, 0, 0, .2);
+      box-shadow: 0 0 15px rgba(0, 0, 0, .2);
+  }
+  .embed-left{
+    float:left;
+    border-right: solid 2px #87A9BC;
+    width:420px;
+  }
+
+  #id_description{
+    height:400px;
+  }
+  #trailhead-meta{
+    border: none;
+    background:white;
+    position:relative;
+    overflow-y:auto;
+    width:inherit;
+    float:left;
+    height:440px;
+    padding: 0px 10px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -o-border-radius: 0px;
+    border-radius: 0px;
+  }
+  #django-form{
+    margin: 10px auto;
+  }
+  #plan.trip-editor{
+    width:940px;
+  }
+  .embed-header{
+    background-color:#5B8BA6;
+    height:40px;
+    border-bottom:solid 2px #87A9BC;
+  }
+
+  .trail-details-overlay{
+    width:300px;
+  }
+  .embed-header .title {
+    text-transform:uppercase;
+    font-size:18px;
+    font-weight:600;
+    color:white;
+    text-shadow:0 -1px 1px #222;
+    float:left;
+    padding:9px 12px;
+  }
+
+  .embed-header .logo {
+    float:right;
+    font-size:12px;
+    font-weight:bold;
+    color:#B5C9D7;
+    padding:4px;
+  }
+
+  .embed-header .logo img {
+    vertical-align:middle;
+  }
+
+  #the-plan h3{
+    height:inherit;
+    padding-bottom:10px;
+  }
+
+  #the-plan h3#name-title{
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+
+  .numbers{
+    margin: 6px 25px 0px 25px;
+  }
+}

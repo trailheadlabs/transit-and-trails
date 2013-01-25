@@ -2,40 +2,42 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.ui-autocomplete{
-  text-align:left;
-}
-
-.simple_form{
-    #trailhead-meta .control-label{
-      font-weight : 600;
-    }
+.legacy, .container.main{
+  .ui-autocomplete{
+    text-align:left;
   }
 
-.simple_form {
-  .editor{
-    margin-bottom:20px;
-  }
-  .control-label{
-    // font-weight:600;
-  }
-  ul{
-    li{
-      padding:4px;
+  .simple_form{
+      #trailhead-meta .control-label{
+        font-weight : 600;
+      }
     }
-    label{
-      width:inherit;
-      float:none;
-      padding:6px;
+
+  .simple_form {
+    .editor{
+      margin-bottom:20px;
     }
-    input[type="checkbox"]{
+    .control-label{
+      // font-weight:600;
+    }
+    ul{
+      li{
+        padding:4px;
+      }
+      label{
+        width:inherit;
+        float:none;
+        padding:6px;
+      }
+      input[type="checkbox"]{
+        float:left;
+        margin-right:6px;
+      }
+    }
+
+    div.radio_buttons
+    {
       float:left;
-      margin-right:6px;
     }
-  }
-
-  div.radio_buttons
-  {
-    float:left;
   }
 }

@@ -7,9 +7,8 @@
 
   %script{:src => "/assets/legacy/galleria/galleria-1.2.7.min.js"}
   = javascript_include_tag "legacy/common"
-  = stylesheet_link_tag "legacy/reset"
-  = stylesheet_link_tag "legacy/common"
-  = stylesheet_link_tag "legacy/style"
+
+  = stylesheet_link_tag "legacy/legacy"
   = stylesheet_link_tag "legacy/trailhead_detail"
 
 / begin lightboxed images
@@ -52,7 +51,7 @@
         #trailhead-details
           - if @trailhead.description
             .description
-              != truncate_html(@trailhead.description, :length=> 300,  :omission => '...<br/><a class="trail-details-modal modal" rel="#trail-details" >Read more...</a>')
+              != truncate_html(@trailhead.description, :length=> 300,  :omission => '...<br/><a class="trail-details-modal description-modal" rel="#trail-details" >Read more...</a>')
             / e: entry
           - else
             %div{:style => "height:10px"}

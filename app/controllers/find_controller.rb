@@ -22,8 +22,9 @@ class FindController < ApplicationController
     ne_latitude = Float(params[:ne_latitude])
     sw_longitude = Float(params[:sw_longitude])
     ne_longitude = Float(params[:ne_longitude])
-    center_latitude = Float(params[:center_latitude])
-    center_longitude = Float(params[:center_longitude])
+    session[:starting_lat] = center_latitude = Float(params[:center_latitude])
+    session[:starting_lng] = center_longitude = Float(params[:center_longitude])
+    session[:starting_zoom] = zoom = Float(params[:zoom])
     limit = 100 || params[:limit]
     offset = 0 || params[:offset]
     approved = true || params[:approved]
@@ -64,8 +65,9 @@ class FindController < ApplicationController
     ne_latitude = Float(params[:ne_latitude])
     sw_longitude = Float(params[:sw_longitude])
     ne_longitude = Float(params[:ne_longitude])
-    center_latitude = Float(params[:center_latitude])
-    center_longitude = Float(params[:center_longitude])
+    session[:starting_lat] = center_latitude = Float(params[:center_latitude])
+    session[:starting_lng] = center_longitude = Float(params[:center_longitude])
+    session[:starting_zoom] = zoom = Float(params[:zoom])
     limit = 1000 || params[:limit]
     offset = 0 || params[:offset]
     approved = true || params[:approved]
@@ -108,8 +110,9 @@ class FindController < ApplicationController
     ne_latitude = Float(params[:ne_latitude])
     sw_longitude = Float(params[:sw_longitude])
     ne_longitude = Float(params[:ne_longitude])
-    center_latitude = Float(params[:center_latitude])
-    center_longitude = Float(params[:center_longitude])
+    session[:starting_lat] = center_latitude = Float(params[:center_latitude])
+    session[:starting_lng] = center_longitude = Float(params[:center_longitude])
+    session[:starting_zoom] = zoom = Float(params[:zoom])
     limit = 1000 || params[:limit]
     offset = 0 || params[:offset]
     approved = true || params[:approved]
@@ -179,16 +182,16 @@ class FindController < ApplicationController
 
   def marinstage
     self.find
-    @starting_lat = 37.904141
-    @starting_lng = -122.603838
-    render "find"
+    session[:starting_lat] = @starting_lat = 37.904141
+    session[:starting_lng] = @starting_lng = -122.603838
+    render "trips", :layout => "v2"
   end
 
   def sanjosetrails
     self.find
-    @starting_lat = 37.3393857
-    @starting_lng = -121.8949555
-    render "find"
+    session[:starting_lat] = @starting_lat = 37.3393857
+    session[:starting_lng] = @starting_lng = -121.8949555
+    render "trips", :layout => "v2"
   end
 
   def regional_landing_page
@@ -197,8 +200,8 @@ class FindController < ApplicationController
     if object.nil?
       raise ActionController::RoutingError.new('Not Found')
     end
-    @starting_lat = object.latitude
-    @starting_lng = object.longitude
-    render "find"
+    session[:starting_lat] = @starting_lat = object.latitude
+    session[:starting_lng] = @starting_lng = object.longitude
+    render "trips", :layout => "v2"
   end
 end

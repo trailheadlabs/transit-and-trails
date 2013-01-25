@@ -29,6 +29,10 @@ class User < ActiveRecord::Base
 
   validates :username, :uniqueness => true
 
+  def profile
+    user_profile
+  end
+
   def self.users_for_role(role_name)
     Role.find_by_name(role_name) && Role.find_by_name(role_name).users
   end

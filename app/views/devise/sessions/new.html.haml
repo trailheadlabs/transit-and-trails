@@ -5,6 +5,6 @@
     = f.input :password
     - if devise_mapping.rememberable?
       = f.input :remember_me, :as => :boolean
-    = f.button :submit, :value => "Sign In", :button_html => { :disable_with => "Wait" }
+    = f.button :submit, :class=> "btn btn-success", :value => "Sign In", :button_html => { :disable_with => "Wait" }
 
   = render "devise/shared/links"

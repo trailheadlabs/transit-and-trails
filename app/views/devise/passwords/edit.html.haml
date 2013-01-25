@@ -5,6 +5,6 @@
     = f.hidden_field :reset_password_token
     = f.input :password
     = f.input :password_confirmation
-    = f.button :submit, :value => "Change Password"
+    = f.button :submit, :class=> "btn btn-success", :value => "Change Password"
 
   = render "devise/shared/links"

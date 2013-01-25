@@ -1,5 +1,6 @@
 :javascript
   $('#campground-count').text("#{campgrounds.count}")
+
 #find-list-container
 
   .list#find-list
@@ -22,24 +23,23 @@
             %a(href="#{campground_path(campground)}")
               %img.media-object.img-rounded.img-polaroid(src="#{campground.thumbnail_url}")
             %br
-            = link_to "Zoom In", "#", :class => "btn btn-block zoom-button btn-warning"
-            = link_to "Plan My Trip", "/plan/campground/#{campground.id}", :class => "btn btn-success btn-block"
+            = link_to "Zoom In", "#", :class => "btn btn-block zoom-button btn-warning btn-round"
+            = link_to "Plan My Trip", "/plan/campground/#{campground.id}", :class => "btn btn-success btn-block btn-round"
             - if can? :edit, campground
-              = link_to edit_campground_path(campground), :class => "btn btn-primary btn-block" do
+              = link_to edit_campground_path(campground), :class => "btn btn-primary btn-block  btn-round" do
                 %i.icon-edit
                 Edit
             - if can? :destroy, campground
-              = link_to campground_path(campground), :method => :delete, :class => "btn btn-danger btn-block", :data => { :confirm => "Are you sure?" } do
+              = link_to campground_path(campground), :method => :delete, :class => "btn btn-danger btn-block btn-round", :data => { :confirm => "Are you sure?" } do
                 %i.icon-trash
                 Delete
-
-
           .media-body
             %a(href="#{campground_path(campground)}")
               %h4.media-heading
                 = campground.name
             %p.park-name
               = campground.default_park_name
+            = render :partial => "object_user_label", :locals => { :object => campground }
             %p.description
               = truncate_html(strip_tags(campground.description),:length=>300)
             .features

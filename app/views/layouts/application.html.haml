@@ -1,31 +1,25 @@
-!!!
-%html
+!!! 5
+%html(lang="en")
   %head
-    %title Transit & Trails
-    = stylesheet_link_tag    "application", :media => "all"
-    = stylesheet_link_tag "//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
-    = javascript_include_tag "application"
-    = javascript_include_tag "legacy/common"
-    %link(rel="shortcut icon" type="image/x-icon" href="/media/favicon.ico")
+    %meta(charset="utf-8")
+    %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
+    %meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    %title= content_for?(:title) ? yield(:title) : "Transit & Trails : Find, Plan and Share Outdoor Experiences"
     = csrf_meta_tags
+    / Le HTML5 shim, for IE6-8 support of HTML elements
+    /[if lt IE 9]
+      = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
+    = javascript_include_tag "application"
+    = stylesheet_link_tag "application", :media => "all"
+    = stylesheet_link_tag "//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
     = yield :head
   %body
-    .middle
-      .main
-        .main-header
-          #user-nav
-            = render :partial => "/layouts/user_navigation"
-          %a(href="/" id="home-link")
+    = render :partial => "layouts/v2_navbar"
 
-        - if notice
-          .flash#notice= notice
-        - if alert
-          .flash#alert= alert
-        - if flash[:error]
-          .flash#error= flash[:error]
-        #{yield}
-        .content-footer
-          = render :partial => "/layouts/social_footer"
-      .footer
-        = render :partial => "/layouts/footer"
+    #wrap
+      #main
+        .container.main
+          = yield
+      #push
+    = render :partial => "layouts/v2_footer"
     = render :partial => "/layouts/tracking"

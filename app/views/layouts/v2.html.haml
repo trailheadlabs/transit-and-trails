@@ -18,61 +18,7 @@
     = javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyCcUhpQftpOwXVSLJqHrvwYCqnhTy3bchE&sensor=false&libraries=places"
     = yield :head
   %body
-    = yield :map
-    .navbar.navbar-fixed-top
-      .navbar-inner
-        .container
-          %a.brand(href="/")
-            = image_tag "navbar_logo.png"
-          %ul.nav
-            - if params[:action] == "trips"
-              %li.active
-                = link_to 'Trips', '/find/v2/trips'
-            - else
-              %li
-                = link_to 'Trips', '/find/v2/trips'
-            - if params[:action] == "trailheads"
-              %li.active
-                = link_to 'Trailheads', '/find/v2/trailheads'
-            - else
-              %li
-                = link_to 'Trailheads', '/find/v2/trailheads'
-            - if params[:action] == "campgrounds"
-              %li.active
-                = link_to 'Campgrounds', '/find/v2/campgrounds'
-            - else
-              %li
-                = link_to 'Campgrounds', '/find/v2/campgrounds'
-
-          %ul.nav.pull-right
-            - if user_signed_in?
-              %li.dropdown
-                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                  = current_user.username
-                  %span.caret
-                %ul.dropdown-menu
-                  %li
-                    = link_to "Account", edit_user_registration_path
-                  %li
-                    = link_to 'Profile', profile_path
-                  - if current_user.admin?
-                    %li
-                      = link_to 'Admin', rails_admin_path
-                  %li.divider
-                  %li
-                    = link_to destroy_user_session_path, method: :delete do
-                      %i.icon-signout
-                      Sign Out
-            - else
-              %li
-                = link_to new_user_session_path do
-                  %i.icon-signin
-                  Sign In
-              / %li
-              /   = link_to "|", "#"
-              / %li
-              /   = link_to "Sign Up", new_user_registration_path
-
+    = render :partial => "layouts/v2_navbar"
 
     #wrap
       #main
@@ -106,48 +52,10 @@
                         %a.close{"data-dismiss" => "alert"} ×
                         = content_tag :div, msg, :id => "flash_#{name}"
                 #findlist
-    #footer
-      .container
-        .row
-          .span3
-            %h4
-              Transit & Trails
-            %ul
-              %li
-                = link_to "About", static_path(:about)
-              %li
-                = link_to "Partners", partners_path
-              %li
-                = link_to "Challenge", static_path(:challenge)
-              %li
-                = link_to "Terms", static_path(:terms)
-              %li
-                = link_to "API", "/api"
-
-          .span2
-            %h4
-              Community
-            %ul
-              %li
-                = link_to "Blog", "http://blog.transitandtrails.org"
-              %li
-                = link_to "Twitter", "http://twitter.com/transitandtrail"
-              %li
-                = link_to "Facebook", "http://facebook.com/transitandtrails"
-              %li
-                = link_to "Flickr", "http://flickr.com/transitandtrails"
-
-          .span3
-            %h4
-              Download Our Apps
-            %ul
-              %li
-                = link_to "iOS", "http://itunes.apple.com/us/app/transit-trails-find-plan-share/id415996890?mt=8&ign-mpt=uo%3D4"
-              %li
-                = link_to "Android", "https://market.android.com/details?id=com.openspacecouncil.tnt&feature=search_result#?t=W251bGwsMSwxLDEsImNvbS5vcGVuc3BhY2Vjb3VuY2lsLnRudCJd"
-          .span4
-            %h4
-              Brought To You By
-            %a#openspacecouncil(href="http://openspacecouncil.org")
-              .openspacecouncil-logo.image-link
+      #push
+    = render :partial => "layouts/v2_footer"
     = render :partial => "/layouts/tracking"
+    %script
+      starting_lat = #{session[:starting_lat] || 37.78};
+      starting_lng = #{session[:starting_lng] || -122.42};
+      starting_zoom = #{session[:starting_zoom] || 11};

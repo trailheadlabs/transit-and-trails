@@ -10,9 +10,6 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require jquery
-//= require jquery_ujs
-//= require bootstrap
 
 var Find = {};
 Find.mapMarkers = [];
@@ -41,9 +38,11 @@ Find.clearFindMapMarkers = function(){
 }
 
 Find.toggleMapSize = function(){
-  $("#find_map").toggleClass('bigger',1000);
-  $(".map").toggleClass('bigger',1000);
-  $(".notice-list").toggleClass('bigger',1000);
+  $("#find-map-disable").toggleClass('bigger');
+  $("#find_map").toggleClass('bigger');
+  $(".map").toggleClass('bigger');
+  $(".notice-list").toggleClass('bigger');
+  $("#progress").toggleClass('bigger');
   $("#map_size_toggle").text().trim() == 'Bigger' ? $("#map_size_toggle").text("Smaller") : $("#map_size_toggle").text('Bigger')
   google.maps.event.trigger(Find.map, "resize");
 };
@@ -110,7 +109,8 @@ Find.addTripMarker = function(trip){
     }(newMarker));
 
   google.maps.event.addListener(newMarker, 'click', function() {
-      $("body").animate({scrollTop: $("#trip_list_item_" + trip.id).offset().top-300}, 600);
+      var mapHeight = $("#find_map").height() + 60;
+      $("body").animate({scrollTop: $("#trip_list_item_" + trip.id).offset().top-mapHeight}, 600);
   });
 
   $("#trip_list_item_" + trip.id + " .zoom-button").click( function() {
@@ -138,7 +138,8 @@ Find.addTrailheadMarker = function(trailhead){
   });
 
   google.maps.event.addListener(newMarker, 'click', function() {
-      $("body").animate({scrollTop: $("#trailhead_list_item_" + trailhead.id).offset().top-300}, 600);
+      var mapHeight = $("#find_map").height() + 60;
+      $("body").animate({scrollTop: $("#trailhead_list_item_" + trailhead.id).offset().top-mapHeight}, 600);
   });
 
   Find.mapMarkers.push(newMarker);
@@ -178,7 +179,8 @@ Find.addCampgroundMarker = function(campground){
   });
 
   google.maps.event.addListener(newMarker, 'click', function() {
-      $("body").animate({scrollTop: $("#campground_list_item_" + campground.id).offset().top-300}, 600);
+      var mapHeight = $("#find_map").height() + 60;
+      $("body").animate({scrollTop: $("#campground_list_item_" + campground.id).offset().top-mapHeight}, 600);
   });
 
   Find.mapMarkers.push(newMarker);
@@ -247,6 +249,7 @@ Find.loadItems = function(find_path){
   params['ne_longitude'] = bounds.getNorthEast().lng();
   params['center_latitude'] = center.lat();
   params['center_longitude'] = center.lng();
+  params['zoom'] = Find.map.getZoom();
   $('.filter-checkbox').attr('disabled','disabled');
   $('button').attr('disabled','disabled');
   $('input').attr('disabled','disabled');
@@ -295,8 +298,8 @@ $(function(){
   // $('#map-mode-button').button('toggle');
 
   var mapOptions = {
-    center: new google.maps.LatLng(37.78, -122.42),
-    zoom: 11,
+    center: new google.maps.LatLng(starting_lat,starting_lng),
+    zoom: starting_zoom,
     mapTypeId: google.maps.MapTypeId.TERRAIN,
     mapTypeControl: true,
     mapTypeControlOptions: {

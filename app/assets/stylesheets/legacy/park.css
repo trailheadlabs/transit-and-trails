@@ -13,12 +13,12 @@
 }
 
 
-#trail-list{
+#park #trail-list{
   width:377px;
   height:300px;
 }
 
-#trail-list ul {
+#park #trail-list ul {
 position: relative;
 overflow: auto;
 height: 300px;
