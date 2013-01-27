@@ -1,6 +1,6 @@
 - if object.user
   %p
-    - if !object.user.profile.avatar.file && object.user.profile.organization_avatar.file
+    - if object.user.profile.organization_avatar.file
       = image_tag object.user.profile.organization_avatar, :class => "img-rounded avatar"
     - else
       = image_tag object.user.profile.avatar, :class => "img-rounded avatar"
