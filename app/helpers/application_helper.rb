@@ -3,8 +3,9 @@ module ApplicationHelper
     if user.nil?
       result = ""
     elsif user.profile && !user.profile.organization_name.blank?
-      if !user.profile.organization_url.blank?
-        result = link_to user.profile.organization_name, user.profile.organization_url
+      web_url = user.profile.organization_url || user.profile.website_address
+      if !web_url.blank?
+        result = link_to user.profile.organization_name, web_url
       else
         result = user.profile.organization_name
       end
