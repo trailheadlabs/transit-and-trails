@@ -24,8 +24,9 @@ class Campground < ActiveRecord::Base
 
   validates :name, :presence => true, :uniqueness => true
 
-  before_save :auto_approve, :park_by_bounds
+  before_save :park_by_bounds
 
+  before_create :auto_approve
   has_paper_trail
 
   def categorized_attributes

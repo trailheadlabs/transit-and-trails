@@ -61,7 +61,7 @@
 
       - if current_user.admin?
         %li
-          = f.input :approved
+          = f.input :approved, :as => :boolean
       %li
         %input.green-link-button{:type => "submit", :value => "Save Trailhead"}
       %li

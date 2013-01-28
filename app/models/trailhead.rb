@@ -14,7 +14,7 @@ class Trailhead < ActiveRecord::Base
   has_many :photos, :as => :photoable, :dependent => :destroy
   has_many :trips_starting_at, :class_name => "Trip", :foreign_key => "starting_trailhead_id"
   has_many :trips_ending_at, :class_name => "Trip", :foreign_key => "ending_trailhead_id"
-  scope :approved, where(:approved => true)
+  # scope :approved, where(:approved => true)
   has_paper_trail
   attr_accessible :description,
                   :latitude,
@@ -39,7 +39,9 @@ class Trailhead < ActiveRecord::Base
 
   accepts_nested_attributes_for :maps, :allow_destroy => true
 
-  before_save :auto_approve, :update_park_by_bounds
+  before_save :update_park_by_bounds
+
+  before_create :auto_approve
 
   validates :name, :presence => true, :uniqueness => true
 
