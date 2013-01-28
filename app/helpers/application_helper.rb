@@ -8,7 +8,7 @@ module ApplicationHelper
         if !(web_url.match /^http/)
           web_url = "http://" + web_url
         end
-        result = link_to user.profile.organization_name, web_url
+        result = link_to user.profile.organization_name, web_url, :target => :blank
       else
         result = user.profile.organization_name
       end
@@ -28,7 +28,7 @@ module ApplicationHelper
       result = ""
     elsif user.profile && !user.profile.organization_name.blank?
       if !user.profile.organization_url.blank?
-        result = link_to user.profile.organization_name, user.profile.organization_url
+        result = link_to user.profile.organization_name, user.profile.organization_url, :target => :blank
       else
         result = user.profile.organization_name
       end
