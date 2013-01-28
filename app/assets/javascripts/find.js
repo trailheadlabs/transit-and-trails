@@ -205,13 +205,27 @@ Find.addCampgroundMarker = function(campground){
 }
 
 Find.mapIdle = function(){
-  if(Find.forceShowItems || $('#redo_search_in_map').is(':checked')){
-    Find.showItems();
-    Find.forceShowItems = false;
-  }
-  if(!Find.firstLoadDone){
-    Find.showItems();
-    Find.firstLoadDone = true;
+
+  Find.newIdleCenterLat = Find.map.getCenter().lat();
+  Find.newIdleCenterLng = Find.map.getCenter().lng();
+  Find.newIdleCenterZoom = Find.map.getZoom();
+
+  if(Find.idleCenterLat != Find.newIdleCenterLat ||
+    Find.idleCenterLng != Find.newIdleCenterLng ||
+    Find.idleCenterZoom != Find.newIdleCenterZoom) {
+
+    Find.idleCenterLat = Find.map.getCenter().lat();
+    Find.idleCenterLng = Find.map.getCenter().lng();
+    Find.idleCenterZoom = Find.map.getZoom();
+
+    if(Find.forceShowItems || $('#redo_search_in_map').is(':checked')){
+      Find.showItems();
+      Find.forceShowItems = false;
+    }
+    if(!Find.firstLoadDone){
+      Find.showItems();
+      Find.firstLoadDone = true;
+    }
   }
 }
 
@@ -343,7 +357,11 @@ $(function(){
     }
   });
 
-  google.maps.event.addListener(Find.map, 'idle', Find.mapIdle);
+
   $(".filter-checkbox").change(Find.showItems);
   $('.map, .mapfilters').fadeIn(600)
+
+
+  google.maps.event.addListener(Find.map, 'idle', Find.mapIdle);
+
 });
