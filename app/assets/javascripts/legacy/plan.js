@@ -728,14 +728,34 @@ TNT.plan = {
   },
 
   showStartRideshareNewWindow: function() {
-    raw_trip_date = $('#trip_date').val();
-    trip_date_vals = raw_trip_date.split("/");
-    trip_date_input = trip_date_vals[2] + trip_date_vals[0] + trip_date_vals[1]
+    var raw_trip_date = $('#trip_date').val();
+    var trip_date_vals = raw_trip_date.split("/");
+    var trip_date_input = trip_date_vals[2] + trip_date_vals[0] + trip_date_vals[1]
+
+    var trailhead_id = 999;
+    var starting_lat = this.start_lat;
+    var starting_lng = this.start_lng;
+    var ending_lat = this.end_lat;
+    var ending_lng = this.end_lng;
 
     var zimride_url = $('#zimride_url').val();
     var start_from_address = $("#start-from-address").val();
-    var url = zimride_url + "&s=" + start_from_address + "&date=" + raw_trip_date;
-    var url = encodeURI(url);
+    var zimride_search_url= "http://www.zimride.com/search?utm_source=ptnr&utm_medium=tt&utm_campaign=web&" +
+      "utm_content=" + trailhead_id +
+      "&date=" + raw_trip_date +
+      "&s_lat=" + starting_lat +
+      "&s_lng=" + starting_lng +
+      "&e_lat=" + ending_lat +
+      "&s_user_lat=" + starting_lat +
+      "&s_user_lng=" + starting_lng +
+      "&e_lng=" + ending_lng +
+      "&e_user_lat=" + ending_lat +
+      "&e_user_lng=" + ending_lng +
+      "&s_full_text=" + start_from_address +
+      "&e_full_text=" + this.trailhead.name;
+
+    // var url = zimride_url + "&s=" + start_from_address + "&date=" + raw_trip_date;
+    var url = encodeURI(zimride_search_url);
 
     window.open(url, "start_rideshare");
   },

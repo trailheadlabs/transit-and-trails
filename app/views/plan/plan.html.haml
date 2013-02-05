@@ -18,11 +18,8 @@
 %input#start_from_lng{:name => "start_from_lng", :type => "hidden"}/
 
 - if @trailhead
-  - if @trailhead.rideshare
-    %input#rideshare{:type => "hidden", :value => "true"}/
-    %input#zimride_url{:type => "hidden", :value => "#{@trailhead.zimride_url}"}/
-  - else
-    %input#rideshare{:type => "hidden", :value => "false"}/
+  %input#rideshare{:type => "hidden", :value => "true"}/
+  %input#zimride_url{:type => "hidden", :value => "#{@trailhead.zimride_url}"}/
 
 #page
   #page-head
@@ -52,7 +49,7 @@
             %a#walking-mode.pt3{:href => "#"} Walking
           %li
             %a#driving-mode.pt4{:href => "#"} Driving
-          - if @trailhead && @trailhead.rideshare
+          - if @trailhead
             %li
               %a#rideshare-mode.rideshare{:href => "#"} Rideshare
       / e: plan type
