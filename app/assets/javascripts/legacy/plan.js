@@ -751,8 +751,8 @@ TNT.plan = {
       "&e_lng=" + ending_lng +
       "&e_user_lat=" + ending_lat +
       "&e_user_lng=" + ending_lng +
-      "&s_full_text=" + start_from_address +
-      "&e_full_text=" + this.trailhead.name;
+      "&s_full_text=" + start_from_address;
+      // "&e_full_text=" + this.trailhead.name;
 
     // var url = zimride_url + "&s=" + start_from_address + "&date=" + raw_trip_date;
     var url = encodeURI(zimride_search_url);
