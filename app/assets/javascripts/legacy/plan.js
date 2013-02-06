@@ -754,7 +754,8 @@ TNT.plan = {
       "&e_user_lat=" + ending_lat +
       "&e_user_lng=" + ending_lng +
       "&e_full_text=" + starting_lat + "," + starting_lng +
-      "&s_full_text=" + start_from_address;
+      "&s_full_text=" + start_from_address +
+      "&s=" + start_from_address;
 
       // "&e_full_text=" + this.trailhead.name;
 
