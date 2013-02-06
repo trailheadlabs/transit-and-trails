@@ -448,7 +448,7 @@ TNT.plan = {
 		var self = this;
 		var endLatLng = null;
     loadLocationFromSession(function(data){
-			if (data && data.value != "null") {
+			if (data && data.value && data.value != "null") {
 				self.showAddress(data.value);
 			}
 			else {
@@ -753,7 +753,9 @@ TNT.plan = {
       "&e_lng=" + ending_lng +
       "&e_user_lat=" + ending_lat +
       "&e_user_lng=" + ending_lng +
+      "&e_full_text=" + starting_lat + "," + starting_lng +
       "&s_full_text=" + start_from_address;
+
       // "&e_full_text=" + this.trailhead.name;
 
     var url = "";
