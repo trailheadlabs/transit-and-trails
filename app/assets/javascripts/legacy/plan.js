@@ -740,8 +740,10 @@ TNT.plan = {
 
     var zimride_url = $('#zimride_url').val();
     var start_from_address = $("#start-from-address").val();
-    var zimride_search_url= "http://www.zimride.com/search?utm_source=ptnr&utm_medium=tt&utm_campaign=web&" +
-      "utm_content=" + trailhead_id +
+    var zimride_search_url= "http://www.zimride.com/search";
+
+    var zimride_params =
+      "?utm_source=ptnr&utm_medium=tt&utm_campaign=web&utm_content=" + trailhead_id +
       "&date=" + raw_trip_date +
       "&s_lat=" + starting_lat +
       "&s_lng=" + starting_lng +
@@ -754,8 +756,15 @@ TNT.plan = {
       "&s_full_text=" + start_from_address;
       // "&e_full_text=" + this.trailhead.name;
 
+    var url = "";
+    if(zimride_url.trim() != "") {
+      url = zimride_url.trim() + zimride_params;
+    } else {
+      url = zimride_search_url.trim() + zimride_params;
+    }
+
     // var url = zimride_url + "&s=" + start_from_address + "&date=" + raw_trip_date;
-    var url = encodeURI(zimride_search_url);
+    url = encodeURI(url);
 
     window.open(url, "start_rideshare");
   },
