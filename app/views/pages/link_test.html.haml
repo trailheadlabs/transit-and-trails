@@ -1,0 +1,7 @@
+%p
+  Hi #{current_user.email}!
+%p
+  Welcome to the Bay Nature Trailblazer Program.
+%p Please confirm your email address with the link below:
+%p= link_to 'Confirm my account', embed_confirm_url(current_user, {:confirmation_token => current_user.confirmation_token,:host=>'embed.transitandtrails.org'})
+%p Once you have activated your account it will be reviewed by Bay Nature and you will receive a confirmation email once it has been approved.
