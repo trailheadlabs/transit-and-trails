@@ -732,7 +732,7 @@ TNT.plan = {
     var trip_date_vals = raw_trip_date.split("/");
     var trip_date_input = trip_date_vals[2] + trip_date_vals[0] + trip_date_vals[1]
 
-    var trailhead_id = 999;
+    var trailhead_id = this.trailhead.id;
     var starting_lat = this.start_lat;
     var starting_lng = this.start_lng;
     var ending_lat = this.end_lat;
