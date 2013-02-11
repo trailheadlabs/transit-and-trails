@@ -13,7 +13,7 @@ class Embed::RegistrationMailer < ActionMailer::Base
 
   def admin_registration_email(user)
     @user = user
-    mail(:to => "baynaturesignups@transitandtrails.org", :subject => "(Testing) New Bay Nature Trailblazer")
+    mail(:to => "baynaturesignups@transitandtrails.org", :subject => "New Bay Nature Trailblazer")
   end
 
 end
