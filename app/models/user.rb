@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable,
-         :confirmable
+         :confirmable, :omniauthable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
@@ -14,6 +14,10 @@ class User < ActiveRecord::Base
   has_one :user_profile
 
   has_many :trailheads, :inverse_of => :user
+
+  has_many :identities, :inverse_of => :user, :dependent => :destroy
+
+  has_many :favorites, :dependent => :destroy
 
   has_and_belongs_to_many :roles
 
@@ -28,6 +32,23 @@ class User < ActiveRecord::Base
   validates :username, :email, :presence => true
 
   validates :username, :uniqueness => true
+
+  def self.create_with_omniauth(info)
+    create(name: info['name'])
+  end
+
+  def favorite_trailheads
+    Trailhead.where(:id => favorites.where(:favorable_type=>'Trailhead').map(&:favorable_id))
+  end
+
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if data = session["omniauth.data"]
+        user.email = data["email"] if user.email.blank?
+        user.username = data['nickname'] if user.username.blank?
+      end
+    end
+  end
 
   def profile
     user_profile

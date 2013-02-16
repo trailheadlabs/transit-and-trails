@@ -1,0 +1,20 @@
+$("html, body").animate({ scrollTop: 0 },300);
+$(".notice-list").fadeOut();
+$('#progress').slideDown();
+Find.clearFindMapMarkers();
+$('.filter-checkbox').attr('disabled','disabled');
+$('button').attr('disabled','disabled');
+$('input').attr('disabled','disabled');
+$("#find-map-disable").fadeIn();
+
+$('#trailheads').html('#{escape_javascript(render :partial => 'trailheads_media_item', :as => :trailhead, :collection => @trailheads)}');
+
+$('.filter-checkbox').removeAttr('disabled');
+$('button').removeAttr('disabled');
+$('input').removeAttr('disabled');
+$("#find-map-disable").fadeOut();
+$('#progress').slideUp();
+$(".notice-list").fadeIn();
+$('#paginator').html('#{escape_javascript(paginate(@trailheads, :remote => true).to_s)}');
+
+/ $('#trailheads').html("test");

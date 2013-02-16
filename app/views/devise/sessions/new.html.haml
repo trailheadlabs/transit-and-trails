@@ -1,10 +1,18 @@
 %h2.page-header Sign In
 .content
+  %p
+    - if devise_mapping.omniauthable?
+      - resource_class.omniauth_providers.each do |provider|
+        = link_to omniauth_authorize_path(resource_name, provider), :class => "btn btn-primary btn-large" do
+          %i(class="icon-#{provider}-sign")
+          &nbsp;&nbsp;Sign In with #{provider.to_s.titleize}
+  %br
   = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
     = f.input :username, :input_html => {:autofocus => true}
     = f.input :password
     - if devise_mapping.rememberable?
       = f.input :remember_me, :as => :boolean, :label => false, :inline_label => "Remember me"
+    %br
     = f.button :submit, :class=> "btn btn-success", :value => "Sign In", :button_html => { :disable_with => "Wait" }
 
   = render "devise/shared/links"

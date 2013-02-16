@@ -1,5 +1,11 @@
 Transitandtrails::Application.routes.draw do
 
+  resources :favorites
+
+
+  resources :identities
+
+
   class SslConstraint
     def self.matches?(request)
       !Rails.env.production? || request.ssl?
@@ -167,7 +173,7 @@ Transitandtrails::Application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "users/registrations" }
 
   root :to => "find#trips"
 

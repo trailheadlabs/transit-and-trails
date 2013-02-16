@@ -60,6 +60,11 @@ group :test, :development do
   gem "factory_girl_rails"
 end
 
+group :development do
+  gem "binding_of_caller"
+  gem "better_errors"
+end
+
 group :test do
   gem "capybara"
   gem "launchy"

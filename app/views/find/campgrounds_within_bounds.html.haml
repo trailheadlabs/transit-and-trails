@@ -1,0 +1,23 @@
+:javascript
+  $('#campground-count').text("#{@campgrounds.total_count}")
+
+#find-list-container
+
+  .list#find-list
+
+    - unless @filter_names.empty?
+      .list-filters
+        %b
+          Filters :
+        - @filter_names.each do |filter|
+          %span.label.label-success
+            = filter
+        - if @filter_names.empty?
+          %span.label.label-success
+            None
+
+    %ul.media-list#campgrounds
+      = render :partial => 'campgrounds_media_item', :as => :campground, :collection => @campgrounds
+
+    #paginator.pull-right
+      = paginate @campgrounds, :remote => true

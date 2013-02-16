@@ -1,0 +1,22 @@
+:javascript
+  $('#trailhead-count').text("#{@trailheads.total_count}")
+#find-list-container.trailheads
+
+  .list#find-list
+
+    - unless @filter_names.empty?
+      %span.list-filters
+        %b
+          Filters :
+        - @filter_names.each do |filter|
+          %span.label.label-success
+            = filter
+        - if @filter_names.empty?
+          %span.label.label-success
+            None
+
+    %ul.media-list#trailheads
+      = render :partial => 'trailheads_media_item', :as => :trailhead, :collection => @trailheads
+
+    #paginator.pull-right
+      = paginate @trailheads, :remote => true
