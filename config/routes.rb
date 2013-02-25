@@ -177,6 +177,8 @@ Transitandtrails::Application.routes.draw do
 
   root :to => "find#trips"
 
+  match "shared/page_not_found" => "application#page_not_found"
+
   match "find" => "find#trips"
 
   match "find/trips" => "find#trips", :as => :find_trips

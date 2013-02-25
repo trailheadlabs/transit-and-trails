@@ -18,7 +18,7 @@
     = javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyCcUhpQftpOwXVSLJqHrvwYCqnhTy3bchE&sensor=false&libraries=places"
     = yield :head
   %body
-    = render :partial => "layouts/v2_navbar"
+    = render :partial => "layouts/navbar"
 
     #wrap
       #main
@@ -53,7 +53,7 @@
                         = content_tag :div, msg, :id => "flash_#{name}"
                 #findlist
       #push
-    = render :partial => "layouts/v2_footer"
+    = render :partial => "layouts/footer"
     = render :partial => "/layouts/tracking"
     %script
       starting_lat = #{session[:starting_lat] || 37.78};

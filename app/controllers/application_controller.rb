@@ -95,6 +95,10 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError.new('Not Found')
   end
 
+  def page_not_found
+    render "shared/page_not_found"
+  end
+
   def send_contact
     if params[:from].blank?
       flash[:error] = "Please provide your email address so we can get back to you."

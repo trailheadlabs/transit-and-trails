@@ -11,12 +11,11 @@
       = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
     = javascript_include_tag "application"
     = stylesheet_link_tag "application", :media => "all"
-    = stylesheet_link_tag "//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
     = yield :head
   %body
 
     #wrap
-      = render :partial => "layouts/v2_navbar"
+      = render :partial => "layouts/navbar"
       #main
         .container.main
           .messages
@@ -28,5 +27,5 @@
                     = content_tag :div, msg, :id => "flash_#{name}"
           = yield
       #push
-    = render :partial => "layouts/v2_footer"
+    = render :partial => "layouts/footer"
     = render :partial => "/layouts/tracking"
