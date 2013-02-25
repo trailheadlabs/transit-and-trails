@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe "trips/new" do
   before(:each) do
+    view_sign_in
     assign(:trip, stub_model(Trip,
       :name => "MyString",
       :description => "MyText",

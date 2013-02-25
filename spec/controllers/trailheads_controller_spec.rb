@@ -35,19 +35,9 @@ describe TrailheadsController do
   end
 
   describe "GET index" do
-    it "assigns all trailheads as @trailheads" do
-      trailhead = Trailhead.create! valid_attributes
+    it "redirects to find trailheads page" do
       get :index, {}, valid_session
-      assigns(:trailheads).should eq([trailhead])
-    end
-  end
-
-  describe "GET index with park_id" do
-    it "assigns park trailheads as @trailheads" do
-      park = FactoryGirl.create(:park)
-      trailhead = FactoryGirl.create(:trailhead)
-      get :index, {:park_id=>park.id}
-      assigns(:trailheads).first.should == park.trailheads.first
+      response.should redirect_to(find_trailheads_path)
     end
   end
 
@@ -203,7 +193,7 @@ describe TrailheadsController do
       it "redirects to the trailheads list" do
         trailhead = Trailhead.create! valid_attributes
         delete :destroy, {:id => trailhead.to_param}, valid_session
-        response.should redirect_to(root_url)
+        response.should redirect_to(find_trailheads_url)
       end
     end
   end
