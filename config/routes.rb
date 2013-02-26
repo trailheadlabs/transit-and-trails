@@ -155,6 +155,8 @@ Transitandtrails::Application.routes.draw do
 
   resources :partners, :only => [:index]
 
+  match "safari_cookie_fix" => "application#set_cookie"
+
   match 'profile' => 'user_profiles#edit', :as => :profile
 
   match 'send_contact' => "application#send_contact", :via => :post, :as => :send_contact
