@@ -39,9 +39,13 @@
         Plan Trip to Here
 
     .photos.embed-section
+      %label.feature
+        Photos
       = render :partial => "/shared/partials/photo_carousel", :locals => {:object=>@trip}
 
     .route-map.embed-section
+      %label.feature
+        Map
       #plan-map.trailhead-details-map
 
     .features.embed-section

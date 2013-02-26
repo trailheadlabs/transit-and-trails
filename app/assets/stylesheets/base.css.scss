@@ -5,6 +5,23 @@ abbr[title="required"] {
   color:red;
 }
 
+.label-feature {
+  background-color: #a3aaaf;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 0.9em;
+  margin-right:6px;
+  margin-bottom:10px;
+}
+
+label.feature{
+  color: #4C93B5;
+  font-weight: 700;
+  font-size: 1em;
+  text-transform: uppercase;
+}
+
 #trail-details .close, .photo .close {
   opacity: 1.0;
 }

@@ -14,6 +14,9 @@ body{
     margin: 0px;
   }
 
+  .carousel{
+    margin-bottom:0px;
+  }
 }
 
 .description-overlay {
@@ -32,6 +35,7 @@ body{
 .embed-header{
   background-color:#5B8BA6;
   border-bottom:solid 2px #87A9BC;
+  padding:0px 10px;
 }
 
 .embed-header .title {
@@ -63,14 +67,15 @@ body{
 }
 
 .header{
-  padding: 10px 0 0 70px;
+  padding: 10px 14px 0 70px;
   height: 62px;
   background: #fff;
   border-bottom: 1px solid #dddddd;
   position: relative;
   clear: both;
   .trip-name{
-    font-size:1.5em;
+    font-weight:500;
+    font-size:1.4em;
     margin-bottom:6px;
   }
 }
@@ -90,29 +95,14 @@ body{
 }
 
 #plan-map{
-  min-height:200px;
+  min-height:300px;
   border: solid 1px #dddddd;
   background-color: white;
-}
-.label-feature {
-  background-color: #a3aaaf;
-  padding: 4px 8px;
-  border-radius: 12px;
-  font-weight: 500;
-  font-size: 0.9em;
-  margin-right:6px;
-  margin-bottom:10px;
 }
 
 hr{
   margin-top:6px;
   margin-bottom:10px;
-}
-label.feature{
-  color: #4C93B5;
-  font-weight: 700;
-  font-size: 1em;
-  text-transform: uppercase;
 }
 
 /* the overlayed element */
