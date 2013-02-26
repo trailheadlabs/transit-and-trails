@@ -15,7 +15,7 @@
             %a{:href => "#{new_password_path(:user)}", :target => "_blank"} Forgot your password?
           - unless cookies[:safari_cookie]
             %li
-              = link_to "Using Safari?", "/safari_cookie_set", :method => :post
+              = link_to "Using Safari? Click here first!", "/safari_cookie_set", :method => :post
     .entry.bottom
       #django-submit
         %input.green-submit-button{:type => "submit", :value => "Submit"}
