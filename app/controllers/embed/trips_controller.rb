@@ -16,7 +16,11 @@ module Embed
 
     def show
       @trip = Trip.find(params[:id])
-      render :layout => "embed"
+      if params[:r]
+        render "responsive_show", :layout => "embed/responsive"
+      else
+        render :layout => "embed"
+      end
     end
 
     def create

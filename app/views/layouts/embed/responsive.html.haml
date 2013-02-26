@@ -1,0 +1,26 @@
+!!!
+%html
+  %head
+    %title Transit & Trails
+    = csrf_meta_tags
+    = stylesheet_link_tag "application"
+    = stylesheet_link_tag "embed/responsive"
+    = javascript_include_tag "application"
+
+
+    = yield :head
+
+  %body
+    .embed
+      .embed-header
+        .title
+          = yield :page_title
+        .logo
+          BY
+          %a{:href => "http://transitandtrails.org", :target => "_blank"}
+            %img{:src => "/assets/legacy/plan/small-logo.png"}/
+
+
+      = yield :page_content
+
+    = render :partial => "/layouts/tracking"

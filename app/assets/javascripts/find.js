@@ -43,7 +43,7 @@ Find.toggleMapSize = function(){
   $(".map").toggleClass('bigger');
   $(".notice-list").toggleClass('bigger');
   $("#progress").toggleClass('bigger');
-  $("#map_size_toggle").text().trim() == 'Bigger' ? $("#map_size_toggle").text("Smaller") : $("#map_size_toggle").text('Bigger')
+  $("#map_size_toggle").text().trim() == 'Bigger Map' ? $("#map_size_toggle").text("Smaller Map") : $("#map_size_toggle").text('Bigger Map')
   google.maps.event.trigger(Find.map, "resize");
 };
 
