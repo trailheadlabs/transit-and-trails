@@ -1,3 +1,12 @@
+/ begin lightboxed images
+- object.photos.each_with_index do |photo,i|
+  .overlay{:id => "photo#{i}"}
+    %div
+      %a{:href => "http://flickr.com/photos/transitandtrails/#{photo.flickr_id}", :target => "_blank"}
+        %img.thumbnail{:src => "#{photo.flickr_medium_url}"}/
+/ end lightboxed images
+
+
 - if can?(:create,object)
   .section-head
     %h2 Photos

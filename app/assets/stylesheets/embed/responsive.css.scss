@@ -3,6 +3,19 @@ body{
   background-image:none;
 }
 
+.embed{
+  float:left;
+  font-size:0.88em;
+  position:relative;
+  width:100%;
+
+  .actions{
+    text-align:center;
+    margin: 0px;
+  }
+
+}
+
 .description-overlay {
   box-shadow: 0 0 90px 5px #000;
   display: none;
@@ -14,30 +27,6 @@ body{
   padding: 30px;
   width: 400px;
   text-align: left;
-}
-
-.description{
-  padding:20px;
-}
-.type-flag {
-  position: absolute;
-  top: -3px;
-  left: 25px;
-}
-
-.header{
-  padding: 15px 0 0 70px;
-  height: 51px;
-  background: #fff;
-  border-bottom: 1px solid #dddddd;
-  position: relative;
-  clear: both;
-}
-
-.embed{
-  float:left;
-  font-size:0.88em;
-  position:relative;
 }
 
 .embed-header{
@@ -65,4 +54,93 @@ body{
 
 .embed-header .logo img {
   vertical-align:middle;
+}
+
+.type-flag {
+  position: absolute;
+  top: 0px;
+  left: 20px;
+}
+
+.header{
+  padding: 10px 0 0 70px;
+  height: 62px;
+  background: #fff;
+  border-bottom: 1px solid #dddddd;
+  position: relative;
+  clear: both;
+  .trip-name{
+    font-size:1.5em;
+    margin-bottom:6px;
+  }
+}
+
+.embed-section{
+  padding:20px;
+  border-bottom: 1px solid #dddddd;
+  background-color:#F6F7FC;
+}
+
+.description{
+  border-bottom: 1px solid #dddddd;
+  p {
+    font-size:1em;
+    line-height:1.7em;
+  }
+}
+
+#plan-map{
+  min-height:200px;
+  border: solid 1px #dddddd;
+  background-color: white;
+}
+.label-feature {
+  background-color: #a3aaaf;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 0.9em;
+  margin-right:6px;
+  margin-bottom:10px;
+}
+
+hr{
+  margin-top:6px;
+  margin-bottom:10px;
+}
+label.feature{
+  color: #4C93B5;
+  font-weight: 700;
+  font-size: 1em;
+  text-transform: uppercase;
+}
+
+/* the overlayed element */
+.overlay {
+  display:none;
+  z-index:10000;
+  /*background-image:url(/assets/legacy/bp.png);*/
+  font-size:11px;
+  -moz-box-shadow: 10px 10px 5px #333;
+  -webkit-box-shadow: 10px 10px 5px #333;
+  box-shadow: 10px 10px 5px #333;
+}
+
+.carousel-inner{
+  .item{
+    img{
+      width:97%;
+    }
+  }
+}
+
+.carousel-control{
+  &.right{
+    top: 40px;
+    right: 5%;
+  }
+  &.left{
+    top: 40px;
+    left:5%;
+  }
 }

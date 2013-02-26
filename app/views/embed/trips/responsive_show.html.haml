@@ -3,31 +3,55 @@
 
 - content_for :page_content do
 
-  .description-overlay
+  #description-modal.description-overlay
     != @trip.description
+
+  %script
+    trip_route = #{@trip.geometry_as_route || "null"};
+
+  / Hidden form fields
+  %input#id_route{:type => "hidden", :value => ""}/
+  - if @trip.starting_trailhead
+    %input#trip_starting_trailhead_id{:type => "hidden", :value => "#{@trip.starting_trailhead.id}"}/
+    %input#starting_point_latitude{:type => "hidden", :value => "#{@trip.starting_trailhead.latitude}"}/
+    %input#starting_point_longitude{:type => "hidden", :value => "#{@trip.starting_trailhead.longitude}"}/
+  - if @trip.ending_trailhead
+    %input#trip_ending_trailhead_id{:type => "hidden", :value => "#{@trip.ending_trailhead.id}"}/
+    %input#ending_point_latitude{:type => "hidden", :value => "#{@trip.ending_trailhead.latitude}"}/
+    %input#ending_point_longitude{:type => "hidden", :value => "#{@trip.ending_trailhead.longitude}"}/
+
 
   .content
     .header
       %img.type-flag{:alt => "", :src => "/assets/legacy/trip.png"}/
-      .trip-name #{@trip.name}
+      .trip-name
+        = link_to @trip.name, @trip, :target => :blank
       - if @trip.starting_trailhead.default_park
         %em
-        %a{:href => "#{park_path(@trip.starting_trailhead.default_park)}"} #{@trip.starting_trailhead.default_park.name}
+        = link_to @trip.starting_trailhead.default_park.name, park_path(@trip.starting_trailhead.default_park), :target => :blank
 
     - if @trip.description
-      .description
-        != truncate_html(@trip.description, :length=> 200,  :omission => ' ...<p><a class="trail-details-modal description-modal" rel="#trail-details" >Read more &raquo;</a></p>')
+      .description.embed-section
+        != truncate_html(@trip.description, :length=> 400,  :omission => ' ...<p><a class="trail-details-modal description-modal" rel="#description-modal" >Read more &raquo;</a></p>')
 
-    = render :partial => "/shared/partials/features", :locals => {:object=>@trip}
+    .actions.embed-section
+      %a.green-button.padded-sides{:href => "/embed/plan/trip/#{@trip.id}"}
+        Plan Trip to Here
 
+    .photos.embed-section
+      = render :partial => "/shared/partials/photo_carousel", :locals => {:object=>@trip}
 
-    %a.green-button.padded-sides{:href => "/embed/plan/trip/#{@trip.id}"}
-      Plan Trip to Here
+    .route-map.embed-section
+      #plan-map.trailhead-details-map
 
+    .features.embed-section
+      = render :partial => "/shared/partials/features", :locals => {:object=>@trip}
 
-    = render :partial => "/shared/partials/object_maps", :locals => {:object=>@trip}
+    .map-downloads.embed-section
+      = render :partial => "/shared/partials/object_maps", :locals => {:object=>@trip}
 
-    = render :partial => "/shared/partials/agency", :locals => {:object=>@trip}
+    .agency.embed-section
+      = render :partial => "/shared/partials/agency", :locals => {:object=>@trip}
 
     - regional_trails = @trip.trip_features.where(:category_id=>Category.where(:name=>"Regional Trail"))
     - regional_trails.each do |feature|
@@ -49,9 +73,20 @@
             - else
               #{feature.name}
 
-    = render :partial => "/shared/partials/non_profit_partner", :locals => {:object=>@trip}
+    .non-profit-partner.embed-section
+      = render :partial => "/shared/partials/non_profit_partner", :locals => {:object=>@trip}
 
-:javascript
-  $(function(){
-    $("a.description-modal").overlay();
-  });
+  %script(src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCcUhpQftpOwXVSLJqHrvwYCqnhTy3bchE&sensor=false&libraries=drawing,geometry")
+
+  %script{:src => "/assets/legacy/tripmap.js", :type => "text/javascript"}
+
+  :javascript
+    $(function(){
+
+      TNT.tripmap.init(TNT.EditMode.READONLY);
+
+      $(window).unload(function () {
+          GUnload();
+      });
+
+    });

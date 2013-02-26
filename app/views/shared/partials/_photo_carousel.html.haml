@@ -1,0 +1,22 @@
+#photoCarousel.carousel.slide
+  / %ol.carousel-indicators
+  /   - object.photos.each_with_index do |photo,index|
+  /     - if index == 0
+  /       %li.active{"data-slide-to" => "0", "data-target" => "#photoCarousel"}
+  /     - else
+  /       %li{"data-slide-to" => "#{index}", "data-target" => "#photoCarousel"}
+  / / Carousel items
+  .carousel-inner
+    - object.photos.each_with_index do |photo,index|
+      - if index == 0
+        .active.item
+          %a{:href => "http://flickr.com/photos/transitandtrails/#{photo.flickr_id}", :target => "_blank"}
+            %img.img-polaroid{:src => "#{photo.flickr_large_url}"}/
+      - else
+        .item
+          %a{:href => "http://flickr.com/photos/transitandtrails/#{photo.flickr_id}", :target => "_blank"}
+            %img.img-polaroid{:src => "#{photo.flickr_large_url}"}/
+
+  / Carousel nav
+  %a.carousel-control.left{"data-slide" => "prev", :href => "#photoCarousel"} &lsaquo;
+  %a.carousel-control.right{"data-slide" => "next", :href => "#photoCarousel"} &rsaquo;
