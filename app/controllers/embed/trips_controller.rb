@@ -1,5 +1,6 @@
 module Embed
   class TripsController < ApplicationController
+    skip_before_filter :verify_authenticity_token
     before_filter :embed_authenticate_trailblazer!, :except => [:show]
 
     def new
