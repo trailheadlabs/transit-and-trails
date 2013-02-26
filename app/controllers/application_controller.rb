@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   end
   before_filter :store_location, :except => {:controller=>[:devise_session,:embed_session]}
   skip_before_filter :store_location, :only => [:loadkv,:savekv]
-
+  skip_before_filter :verify_authenticity_token, :only => {:controller=>[:devise_session,:embed_session]}
   protect_from_forgery
 
   def store_location
