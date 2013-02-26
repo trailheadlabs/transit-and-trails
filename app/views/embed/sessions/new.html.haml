@@ -13,6 +13,8 @@
             %a{:href => "/embed/signup"} Click here to become a Trail Blazer
           %li
             %a{:href => "#{new_password_path(:user)}", :target => "_blank"} Forgot your password?
+          %li
+            = link_to "Using Safari?", "/safari_cookie_set", :method => :post
     .entry.bottom
       #django-submit
         %input.green-submit-button{:type => "submit", :value => "Submit"}

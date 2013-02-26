@@ -6,6 +6,12 @@ class ApplicationController < ActionController::Base
   before_filter :store_location, :except => {:controller=>[:devise_session,:embed_session]}
   skip_before_filter :store_location, :only => [:loadkv,:savekv]
   protect_from_forgery
+  skip_before_filter :verify_authenticity_token, :only => [:safari_cookie_set]
+
+  def safari_cookie_set
+    cookies[:safari_cookie] = "set"
+    redirect_to :back
+  end
 
   def store_location
     Rails.logger.info params[:controller]

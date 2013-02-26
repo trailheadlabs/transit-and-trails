@@ -171,6 +171,8 @@ Transitandtrails::Application.routes.draw do
 
   root :to => "find#trips"
 
+  match "safari_cookie_set" => "application#safari_cookie_set"
+
   match "find" => "find#trips"
 
   match "find/trips" => "find#trips", :as => :find_trips
