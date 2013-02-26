@@ -11,3 +11,4 @@
     = @user_profile.api_key
   %p
     = link_to "Reset API Key", reset_api_key_user_profile_path(@user_profile), method: :post, data: {confirm: 'Are you sure? Any applications using this key will no longer work.'}, class: 'green-button'
+
