@@ -3,11 +3,15 @@ class ApplicationController < ActionController::Base
     flash[:error] = "Please login as a user that can access that."
     redirect_to new_user_session_path
   end
-
+  before_filter :set_p3p
   before_filter :store_location, :except => {:controller=>[:devise_session,:embed_session]}
   skip_before_filter :store_location, :only => [:loadkv,:savekv]
 
   protect_from_forgery
+
+  def set_p3p
+    headers['P3P'] = 'CP="ALL DSP COR CURa ADMa DEVa OUR IND COM NAV"'
+  end
 
   def store_location
     Rails.logger.info params[:controller]
