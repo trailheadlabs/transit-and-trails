@@ -3,8 +3,6 @@
 
   %script(src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCcUhpQftpOwXVSLJqHrvwYCqnhTy3bchE&sensor=false&libraries=drawing,geometry")
 
-  %script{:src => "/assets/legacy/galleria/galleria-1.2.7.min.js"}
-  %script{:src => "/assets/legacy/jquery/js/jquery.tools.min.js", :type => "text/javascript"}
   = javascript_include_tag "legacy/common"
 
   = stylesheet_link_tag "legacy/legacy"
@@ -122,6 +120,9 @@
         = render :partial => "/shared/partials/disqus"
     / e: comments
   .clearfix  
+
+%script{:src => "/assets/legacy/galleria/galleria-1.2.7.min.js"}
+%script{:src => "/assets/legacy/jquery/js/jquery.tools.min.js", :type => "text/javascript"}
 
 %script{:src => "/assets/legacy/tripmap.js", :type => "text/javascript"}
 
