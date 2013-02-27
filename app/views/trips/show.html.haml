@@ -10,6 +10,14 @@
   = stylesheet_link_tag "legacy/trip"
   = stylesheet_link_tag "trips"
 
+/ begin lightboxed images
+- @trip.photos.each_with_index do |photo,i|
+  .overlay{:id => "photo#{i}"}
+    %div
+      %a{:href => "http://flickr.com/photos/transitandtrails/#{photo.flickr_id}", :target => "_blank"}
+        %img.thumbnail{:src => "#{photo.flickr_medium_url}"}/
+/ end lightboxed images
+
 %script
   trip_route = #{@trip.geometry_as_route};
 
