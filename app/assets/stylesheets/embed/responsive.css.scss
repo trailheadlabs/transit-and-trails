@@ -106,7 +106,30 @@ body{
   .carousel{
     margin-bottom:0px;
     width:100%;
-    border: 1px solid #dddddd;
+    .carousel-inner{
+      // height:400px;
+      text-align:center;
+      border: 1px solid #dddddd;
+      // background-color:black;
+      .item{
+        vertical-align: middle;
+        img{
+          // max-height:400px;
+          width:100%;
+        }
+      }
+    }
+
+    .carousel-control{
+      &.right{
+        top: 40px;
+        right: 5%;
+      }
+      &.left{
+        top: 40px;
+        left:5%;
+      }
+    }
   }
 }
 
@@ -205,21 +228,3 @@ hr{
   }
 }
 
-.carousel-inner{
-  .item{
-    img{
-      width:100%;
-    }
-  }
-}
-
-.carousel-control{
-  &.right{
-    top: 40px;
-    right: 5%;
-  }
-  &.left{
-    top: 40px;
-    left:5%;
-  }
-}

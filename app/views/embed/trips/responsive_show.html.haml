@@ -55,7 +55,7 @@
     - if @show.include? 'actions'
       .actions.embed-section
         %a.green-button.padded-sides{:href => "/embed/plan/trip/#{@trip.id}"}
-          Plan Trip to Here
+          Plan Your Trip!
 
     - if (@show.include? 'photos') && !@trip.photos.empty?
       .photos.embed-section
@@ -88,7 +88,7 @@
       .features.embed-section
         = render :partial => "/shared/partials/features", :locals => {:object=>@trip}
 
-    - if @show.include? 'downloads'
+    - if (@show.include? 'downloads') && !@trip.maps.empty?
       .map-downloads.embed-section
         %label.feature
           Downloads
