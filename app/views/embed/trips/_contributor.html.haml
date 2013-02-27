@@ -7,11 +7,11 @@
           - if object.user.user_profile.website_address
             %a{:href => "http://#{object.user.user_profile.website_address}", :target => "_blank"}
               - if object.user.user_profile.organization_avatar.url(:thumbnail)
-                %img#organization-image{:src => "#{object.user.user_profile.organization_avatar.url(:thumbnail)}"}
+                %img.img-polaroid#organization-image{:src => "#{object.user.user_profile.organization_avatar.url(:thumbnail)}"}
               #{object.user.user_profile.organization_name}
           - else
             - if object.user.user_profile.organization_avatar.url(:thumbnail)
-              %img#organization-image{:src => "#{object.user.user_profile.organization_avatar.url(:thumbnail)}"}
+              %img.img-polaroid#organization-image{:src => "#{object.user.user_profile.organization_avatar.url(:thumbnail)}"}
             #{object.user.user_profile.organization_name}
   - else
     #organization
@@ -20,10 +20,10 @@
           - if object.user.user_profile.website_address
             %a{:href => "http://#{object.user.user_profile.website_address}", :target => "_blank"}
               - if object.user.user_profile.avatar.url(:thumbnail)
-                %img#organization-image{:src => "#{object.user.user_profile.avatar_url(:thumbnail)}"}
+                %img.img-polaroid#organization-image{:src => "#{object.user.user_profile.avatar_url(:thumbnail)}"}
               #{object.user.username}
           - else
             - if object.user.user_profile.avatar.url(:thumbnail)
-              %img#organization-image{:src => "#{object.user.user_profile.avatar_url(:thumbnail)}"}
+              %img.img-polaroid#organization-image{:src => "#{object.user.user_profile.avatar_url(:thumbnail)}"}
             #{object.user.username}
   / end Trailblazer Organization
