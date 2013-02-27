@@ -28,11 +28,7 @@ module Embed
         @show = @show - @hide
       end
 
-      if params[:r]
-        render "responsive_show", :layout => "embed/responsive"
-      else
-        render :layout => "embed"
-      end
+      render "responsive_show", :layout => "embed/responsive"
     end
 
     def create

@@ -2,7 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#trailhead-details{
+    .trip-summary{
+    padding:20px;
+  }
+}
 .trip-details-overlay,.trail-details-overlay{
+
   .description{
     overflow-y:scroll;
     max-height: 400px;

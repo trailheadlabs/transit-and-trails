@@ -6,7 +6,7 @@
         - attributes.each do |attr|
           %span.label.label-feature
             = attr.name
-    %hr
+      %hr
   - if object.has_attribute?(:transit_agencies) && object.transit_agencies
     .common-attribute
       %label Transit
@@ -14,3 +14,4 @@
         %a{:href => "#{item.web}", :target => "_blank"} #{item.name}
         - unless index == object.transit_agencies.count - 1
           ,
+    %hr
