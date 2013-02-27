@@ -57,7 +57,7 @@
         %a.green-button.padded-sides{:href => "/embed/plan/trip/#{@trip.id}"}
           Plan Trip to Here
 
-    - if @show.include? 'photos'
+    - if (@show.include? 'photos') && !@trip.photos.empty?
       .photos.embed-section
         %label.feature
           Photos
