@@ -40,6 +40,14 @@ namespace :data do
     puts "Done"
   end
 
+  desc "Cache flickr urls"
+  task :cache_flickr_urls => :environment do
+    Photo.all.each do |photo|
+      photo.cache_flickr_urls
+      photo.save
+    end
+  end
+
   # desc "Approve all trailheads"
   # task :approve_trailheads => :environment do
   #   puts Trailhead.where(user_id: User.where(admin: true)).update_all(approved: true)
