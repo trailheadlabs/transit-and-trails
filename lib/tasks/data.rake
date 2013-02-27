@@ -44,7 +44,7 @@ namespace :data do
   task :cache_flickr_urls => :environment do
     Photo.all.each do |photo|
       photo.cache_flickr_urls
-      photo.save
+      puts photo.save
     end
   end
 
