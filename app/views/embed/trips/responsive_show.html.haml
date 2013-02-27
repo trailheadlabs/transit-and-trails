@@ -1,5 +1,5 @@
 - content_for :page_title do
-  Trip Details
+  = params[:title] || "Trip Information"
 
 - content_for :page_content do
 
@@ -22,75 +22,95 @@
 
 
   .content
-    .header
-      %img.type-flag{:alt => "", :src => "/assets/legacy/trip.png"}/
-      .trip-name
-        = link_to @trip.name, @trip, :target => :blank
-      - if @trip.starting_trailhead.default_park
-        %em
-        = link_to @trip.starting_trailhead.default_park.name, park_path(@trip.starting_trailhead.default_park), :target => :blank
+    - if @show.include? 'header'
+      .header
+        %img.type-flag{:alt => "", :src => "/assets/legacy/trip.png"}/
+        .trip-name
+          = link_to @trip.name, @trip, :target => :blank
+        - if @trip.starting_trailhead.default_park
+          %em
+          = link_to @trip.starting_trailhead.default_park.name, park_path(@trip.starting_trailhead.default_park), :target => :blank
 
-    - if @trip.description
+    - if @show.include? 'contributor'
+      .contributor.embed-section
+        %label.feature
+          Contributed By
+
+        = render :partial => "contributor", :locals => {:object=>@trip}
+
+    - if (@show.include? 'description') && !@trip.description.blank?
       .description.embed-section
-        != truncate_html(@trip.description, :length=> 400,  :omission => ' ...<p><a class="trail-details-modal description-modal" rel="#description-modal" >Read more &raquo;</a></p>')
+        %label.feature
+          Description
 
-    .actions.embed-section
-      %a.green-button.padded-sides{:href => "/embed/plan/trip/#{@trip.id}"}
-        Plan Trip to Here
+        != truncate_html(@trip.description, :length=> 400,  :omission => " ...<p><a  href='#{trip_path(@trip)}' target='_blank'>Read more &raquo;</a></p>")
 
-    .photos.embed-section
-      %label.feature
-        Photos
-      = render :partial => "/shared/partials/photo_carousel", :locals => {:object=>@trip}
+    - if @show.include? 'summary'
+      .summary.embed-section
+        %label.feature
+          Summary
 
-    .route-map.embed-section
-      %label.feature
-        Map
-      #plan-map.trailhead-details-map
+        = render :partial => "trips/summary", :locals => {:trip=>@trip}
 
-    .features.embed-section
-      = render :partial => "/shared/partials/features", :locals => {:object=>@trip}
+    - if @show.include? 'actions'
+      .actions.embed-section
+        %a.green-button.padded-sides{:href => "/embed/plan/trip/#{@trip.id}"}
+          Plan Trip to Here
 
-    .map-downloads.embed-section
-      = render :partial => "/shared/partials/object_maps", :locals => {:object=>@trip}
+    - if @show.include? 'photos'
+      .photos.embed-section
+        %label.feature
+          Photos
+        = render :partial => "/shared/partials/photo_carousel", :locals => {:object=>@trip}
 
-    .agency.embed-section
-      = render :partial => "/shared/partials/agency", :locals => {:object=>@trip}
+    - if @show.include? 'map'
+      %script(src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCcUhpQftpOwXVSLJqHrvwYCqnhTy3bchE&sensor=false&libraries=drawing,geometry")
 
-    - regional_trails = @trip.trip_features.where(:category_id=>Category.where(:name=>"Regional Trail"))
-    - regional_trails.each do |feature|
-      - klass = feature == regional_trails.last ? "agency last" : "agency"
-      .if.endif{:class => "#{klass}"}
-        .logo
-          - if feature.marker_icon
-            - if feature.link_url
-              %a{:href => "#{feature.link_url}", :target => "_blank"}
+      %script{:src => "/assets/legacy/tripmap.js", :type => "text/javascript"}
+
+      :javascript
+        $(function(){
+
+          TNT.tripmap.init(TNT.EditMode.READONLY);
+
+          $(window).unload(function () {
+              GUnload();
+          });
+
+        });
+
+      .route-map.embed-section
+        %label.feature
+          Map
+        #plan-map.trailhead-details-map
+
+    - if @show.include? 'attributes'
+      .features.embed-section
+        = render :partial => "/shared/partials/features", :locals => {:object=>@trip}
+
+    - if @show.include? 'downloads'
+      .map-downloads.embed-section
+        %label.feature
+          Downloads
+        = render :partial => "downloads", :locals => {:object=>@trip}
+
+    - if @show.include? 'trails'
+      - regional_trails = @trip.trip_features.where(:category_id=>Category.where(:name=>"Regional Trail"))
+      - regional_trails.each do |feature|
+        - klass = feature == regional_trails.last ? "agency last" : "agency"
+        .if.endif{:class => "#{klass}"}
+          .logo
+            - if feature.marker_icon
+              - if feature.link_url
+                %a{:href => "#{feature.link_url}", :target => "_blank"}
+                  %img{:src => "#{feature.marker_icon.url}"}/
+              - else
                 %img{:src => "#{feature.marker_icon.url}"}/
-            - else
-              %img{:src => "#{feature.marker_icon.url}"}/
-        .text
-          This trail is part of the
-          .name
-            - if feature.link_url
-              %a{:href => "#{feature.link_url}", :target => "_blank"}
-                #{ feature.name }
-            - else
-              #{feature.name}
-
-    .non-profit-partner.embed-section
-      = render :partial => "/shared/partials/non_profit_partner", :locals => {:object=>@trip}
-
-  %script(src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCcUhpQftpOwXVSLJqHrvwYCqnhTy3bchE&sensor=false&libraries=drawing,geometry")
-
-  %script{:src => "/assets/legacy/tripmap.js", :type => "text/javascript"}
-
-  :javascript
-    $(function(){
-
-      TNT.tripmap.init(TNT.EditMode.READONLY);
-
-      $(window).unload(function () {
-          GUnload();
-      });
-
-    });
+          .text
+            This trail is part of the
+            .name
+              - if feature.link_url
+                %a{:href => "#{feature.link_url}", :target => "_blank"}
+                  #{ feature.name }
+              - else
+                #{feature.name}

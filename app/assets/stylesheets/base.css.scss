@@ -5,6 +5,10 @@ abbr[title="required"] {
   color:red;
 }
 
+#main .notice, #main .notice .alert {
+  padding:20px;
+  border-radius:6px;
+}
 .label-feature {
   background-color: #a3aaaf;
   padding: 4px 8px;

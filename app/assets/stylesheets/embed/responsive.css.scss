@@ -3,11 +3,100 @@ body{
   background-image:none;
 }
 
+.summary{
+
+  .tour-time {
+      position: relative;
+      list-style: none;
+      margin: 0px;
+      border: 1px solid #ddd;
+      background: #fff;
+
+      overflow: hidden;
+  }
+
+  .tour-time li {
+      float: left;
+      width: 33%;
+      font-size: 14px;
+      padding: 6px 0;
+      text-align: center;
+      line-height: 1.4em;
+      border-right: 1px solid #ddd;
+  }
+
+  .tour-time li:last-of-type {
+      border: 0;
+  }
+
+  .tour-time strong {
+      display: block;
+      font-weight: bold;
+  }
+
+  .tour-time em {
+      color: #677780;
+  }
+
+  .to-from{
+      position: relative;
+      padding: 8px 18px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-top: 0;
+  }
+
+  .parks{
+      position: relative;
+      padding: 8px 18px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-top: 0;
+  }
+
+
+  .to-from p {
+      line-height: 1.3em;
+      font-size: 14px;
+      padding: 6px 0 6px 32px;
+  }
+
+  .to-from strong {
+      display: block;
+      font-weight: bold;
+  }
+
+  .to-from a {
+      color: #1b80ae;
+  }
+
+  .from {
+      background: url(/assets/legacy/start.jpg) left center no-repeat;
+  }
+
+  .to {
+      background: url(/assets/legacy/end.jpg) left center no-repeat;
+  }
+
+}
+
+.contributor{
+  .content {
+    display: table-cell;
+    vertical-align: middle;
+    padding-right: 10px;
+  }
+  img{
+    height:32px;
+    width:auto;
+  }
+}
 .embed{
+  border: 1px solid #dddddd;
+  border-bottom: none;
   float:left;
-  font-size:0.88em;
+  font-size:0.9em;
   position:relative;
-  width:100%;
 
   .actions{
     text-align:center;
@@ -16,6 +105,8 @@ body{
 
   .carousel{
     margin-bottom:0px;
+    width:100%;
+    border: 1px solid #dddddd;
   }
 }
 
@@ -73,8 +164,8 @@ body{
   border-bottom: 1px solid #dddddd;
   position: relative;
   clear: both;
+  font-weight:600;
   .trip-name{
-    font-weight:500;
     font-size:1.4em;
     margin-bottom:6px;
   }
@@ -105,21 +196,19 @@ hr{
   margin-bottom:10px;
 }
 
-/* the overlayed element */
-.overlay {
-  display:none;
-  z-index:10000;
-  /*background-image:url(/assets/legacy/bp.png);*/
-  font-size:11px;
-  -moz-box-shadow: 10px 10px 5px #333;
-  -webkit-box-shadow: 10px 10px 5px #333;
-  box-shadow: 10px 10px 5px #333;
+.map-downloads{
+  ul{
+    margin-left:30px;
+  }
+  li{
+    font-size:0.9em;
+  }
 }
 
 .carousel-inner{
   .item{
     img{
-      width:97%;
+      width:100%;
     }
   }
 }
