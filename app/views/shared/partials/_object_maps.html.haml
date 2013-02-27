@@ -6,15 +6,15 @@
         - if !map.map.url.nil?
           %a.get-map{:href => "#{map.map.url}", :target => "_blank"}
             .download-icon
+            %i.icon-download
             .download-text
               Download Map
-              %span.down-caret ▼
         - elsif map.url
           %a.get-map{:href => "#{map.url}", :target => "_blank"}
             .download-icon
+            %i.icon-download
             .download-text
               Download Map
-              %span.down-caret ▼
         - if can?(:destroy, map)
           = link_to("Delete", polymorphic_path([object,map]), :method => :delete, :confirm => "Are you sure?", :class=>"green-button right padded")
 
