@@ -11,11 +11,11 @@
       - if index == 0
         .active.item
           %a{:href => "http://flickr.com/photos/transitandtrails/#{photo.flickr_id}", :target => "_blank"}
-            %img{:src => "#{photo.flickr_large_url}"}/
+            %img{:src => "#{photo.flickr_medium_url}"}/
       - else
         .item
           %a{:href => "http://flickr.com/photos/transitandtrails/#{photo.flickr_id}", :target => "_blank"}
-            %img{:src => "#{photo.flickr_large_url}"}/
+            %img{:src => "#{photo.flickr_medium_url}"}/
 
   / Carousel nav
   %a.carousel-control.left{"data-slide" => "prev", :href => "#photoCarousel"} &lsaquo;
