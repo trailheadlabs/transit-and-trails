@@ -17,7 +17,19 @@ module Embed
 
     def show
       @trip = Trip.find(params[:id])
-      render :layout => "embed"
+
+      if params[:show]
+        @show = params[:show].split(',')
+      else
+        @show = ['description','contributor','summary','photos','map','attributes','actions','header','downloads']
+      end
+
+      if params[:hide]
+        @hide = params[:hide].split(',')
+        @show = @show - @hide
+      end
+
+      render "responsive_show", :layout => "embed/responsive"
     end
 
     def create

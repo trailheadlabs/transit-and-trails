@@ -1,11 +1,19 @@
 %h2.page-header Sign Up
 .content
+  %p
+    - if devise_mapping.omniauthable?
+      - resource_class.omniauth_providers.each do |provider|
+        = link_to omniauth_authorize_path(resource_name, provider), :class => "btn btn-primary btn-large" do
+          %i(class="icon-#{provider}-sign")
+            &nbsp;&nbsp;Sign Up with #{provider.to_s.titleize}
+  %br
   = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
     / = devise_error_messages!
     = f.input :username, :required => true, :input_html => {:autofocus=>true}
     = f.input :email
     = f.input :password, :required => true
     = f.input :password_confirmation, :required => true
+    %br
     = f.button :submit, :class=> "btn btn-success", :value => "Sign Up",:button_html => { :disable_with => "Wait" }
 
   = render "devise/shared/links"

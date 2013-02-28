@@ -2,13 +2,15 @@
 // $dropdownLinkColor: white;
 // $dropdownBorder: #4a7d2c;
 
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800);
 @import "variables";
 @import "bootstrap";
 @import "font-awesome";
 @import "bourbon";
 @import "partners";
 @import "about";
-@import "simple_form";
 @import "navbar";
-@import "application_base";
+@import "simple_form";
+@import "base";
+
 

@@ -2,12 +2,16 @@
   - object.categorized_attributes.each do |category, attributes|
     - if category != 'Regional Trail'
       .common-attribute
-        %label #{category}:
-        = attributes.collect{|c|c.name}.join(', ')
+        %label.feature #{category}
+        - attributes.each do |attr|
+          %span.label.label-feature
+            = attr.name
+      %hr
   - if object.has_attribute?(:transit_agencies) && object.transit_agencies
     .common-attribute
-      %label Transit:
+      %label Transit
       - object.transit_agencies.order("name").each_with_index do |item,index|
         %a{:href => "#{item.web}", :target => "_blank"} #{item.name}
         - unless index == object.transit_agencies.count - 1
           ,
+    %hr

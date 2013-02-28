@@ -7,6 +7,7 @@ class Ability
     #
     user ||= User.new # guest user (not logged in)
     can :read, :all
+    can :manage, Favorite
     user.roles.each do |role|
         send(role.name)
     end

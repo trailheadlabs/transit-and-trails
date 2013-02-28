@@ -8,3 +8,13 @@
     = f.input :password_confirmation, :required => false
     = f.input :current_password, :hint => "(Required to change password)"
     = f.button :submit, :class=> "btn btn-success", :value => "Save", :button_html => { :disable_with => "Wait" }
+
+- unless @user.identities.empty?
+  %h2.page-header
+    Identities
+
+  .content
+    %ul
+    - @user.identities.each do |id|
+      %li
+        = link_to "Disconnect #{id.provider.capitalize}", id, :method => :delete

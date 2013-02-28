@@ -13,6 +13,8 @@ class ApplicationController < ActionController::Base
     redirect_to :back
   end
 
+  skip_before_filter :verify_authenticity_token, only: [:loadkv,:savekv]
+
   def store_location
     Rails.logger.info params[:controller]
     unless request.xhr? || params[:controller].match(/devise|session/) || request.format == :json
@@ -95,6 +97,10 @@ class ApplicationController < ActionController::Base
 
   def not_found
     raise ActionController::RoutingError.new('Not Found')
+  end
+
+  def page_not_found
+    render "shared/page_not_found"
   end
 
   def send_contact

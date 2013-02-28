@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121130190757) do
+ActiveRecord::Schema.define(:version => 20130216012914) do
 
   create_table "agencies", :force => true do |t|
     t.string   "name"
@@ -73,6 +73,16 @@ ActiveRecord::Schema.define(:version => 20121130190757) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "favorites", :force => true do |t|
+    t.integer  "favorable_id"
+    t.string   "favorable_type"
+    t.integer  "user_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "favorites", ["user_id"], :name => "index_favorites_on_user_id"
+
   create_table "featured_tabs", :force => true do |t|
     t.boolean  "highlighted"
     t.string   "header"
@@ -95,6 +105,16 @@ ActiveRecord::Schema.define(:version => 20121130190757) do
     t.datetime "updated_at",  :null => false
     t.string   "name"
   end
+
+  create_table "identities", :force => true do |t|
+    t.string   "uid"
+    t.string   "provider"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "identities", ["user_id"], :name => "index_identities_on_user_id"
 
   create_table "intensities", :force => true do |t|
     t.string   "name"

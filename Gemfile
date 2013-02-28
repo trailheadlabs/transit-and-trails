@@ -26,7 +26,7 @@ gem 'flickraw-cached'
 gem 'geocoder'
 gem 'rgeo'
 gem 'paper_trail', '~> 2'
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 2.1.4'
 gem 'bourbon'
 gem 'high_voltage'
 gem 'simple_form_fancy_uploads'
@@ -59,6 +59,11 @@ end
 group :test, :development do
   gem "rspec-rails", "~> 2.0"
   gem "factory_girl_rails"
+end
+
+group :development do
+  gem "binding_of_caller"
+  gem "better_errors"
 end
 
 group :test do

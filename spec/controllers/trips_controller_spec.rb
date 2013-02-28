@@ -43,7 +43,7 @@ describe TripsController do
     it "assigns all trips as @trips" do
       trip = Trip.create! valid_attributes
       get :index, {}, valid_session
-      assigns(:trips).should eq([trip])
+      request.should redirect_to(find_trips_path)
     end
   end
 
@@ -169,7 +169,7 @@ describe TripsController do
       it "redirects to the trips list" do
         trip = Trip.create! valid_attributes
         delete :destroy, {:id => trip.to_param}, valid_session
-        response.should redirect_to(trips_url)
+        response.should redirect_to(find_trips_url)
       end
     end
   end

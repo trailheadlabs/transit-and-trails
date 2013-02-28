@@ -31,3 +31,6 @@
                 = feature.name
             - if index == 3
               = link_to "and more...", trailhead
+%hr
+:javascript
+  Find.addTrailheadMarker(#{trailhead.as_json.except('description').to_json});

@@ -174,7 +174,7 @@ describe "DataImport" do
           "name": "Featured Tab",
           "link3": "",
           "text3": "Get outside and get moving!",
-          "image": "featured/featured-tab/417418_10150550121088404_264884664_n.jpg",
+          "image": "baosc.png",
           "link2": "http://blog.transitandtrails.org/2012/07/what-parks-and-trails-are-around-you/",
           "link2_text": "On the blog",
           "highlighted": false,

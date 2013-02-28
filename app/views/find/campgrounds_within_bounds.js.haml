@@ -1,0 +1,20 @@
+$("html, body").animate({ scrollTop: 0 },300);
+$(".notice-list").fadeOut();
+$('#progress').slideDown();
+Find.clearFindMapMarkers();
+$('.filter-checkbox').attr('disabled','disabled');
+$('button').attr('disabled','disabled');
+$('input').attr('disabled','disabled');
+$("#find-map-disable").fadeIn();
+
+$('#campgrounds').html('#{escape_javascript(render :partial => 'campgrounds_media_item', :as => :campground, :collection => @campgrounds)}');
+
+$('.filter-checkbox').removeAttr('disabled');
+$('button').removeAttr('disabled');
+$('input').removeAttr('disabled');
+$("#find-map-disable").fadeOut();
+$('#progress').slideUp();
+$(".notice-list").fadeIn();
+$('#paginator').html('#{escape_javascript(paginate(@campgrounds, :remote => true).to_s)}');
+
+/ $('#trailheads').html("test");

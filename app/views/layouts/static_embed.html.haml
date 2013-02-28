@@ -12,7 +12,7 @@
     = stylesheet_link_tag "legacy/legacy"
     = stylesheet_link_tag "editors"
     = stylesheet_link_tag "legacy/embed"
-    = stylesheet_link_tag "application_base"
+    = stylesheet_link_tag "base"
 
     %link(rel="shortcut icon" type="image/x-icon" href="/media/favicon.ico")
     = csrf_meta_tags
@@ -35,3 +35,5 @@
               = link_to "Sign Out", embed_signout_path
 
         = yield :page_content
+
+    = render :partial => "/layouts/tracking"

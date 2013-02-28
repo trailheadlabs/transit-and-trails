@@ -22,7 +22,6 @@ class FindController < ApplicationController
     session[:starting_lat] = center_latitude = Float(params[:center_latitude])
     session[:starting_lng] = center_longitude = Float(params[:center_longitude])
     session[:starting_zoom] = zoom = Float(params[:zoom])
-    limit = 100 || params[:limit]
     offset = 0 || params[:offset]
     approved = true || params[:approved]
     @trailheads = Trailhead.within_bounds(sw_latitude,sw_longitude,ne_latitude,ne_longitude)
@@ -53,8 +52,13 @@ class FindController < ApplicationController
       @filter_names += ["Name: #{params[:name_query]}"]
     end
 
-    @trailheads = Trailhead.where(approved: approved, id: @trailheads).limit(limit).offset(offset).near([center_latitude,center_longitude])
-    render :partial => "trailheads_within_bounds", :locals => {:trailheads => @trailheads, :filter_names => @filter_names, :near => @near}
+    @trailheads = Trailhead.where(approved: approved, id: @trailheads).near([center_latitude,center_longitude])
+    @trailheads = @trailheads.page params[:page]
+    respond_to do |format|
+      format.html { render :layout => false } # show.html.erb
+      format.js # show.html.erb
+      format.json { render json: @trailhead }
+    end
   end
 
   def campgrounds_within_bounds
@@ -99,7 +103,13 @@ class FindController < ApplicationController
     end
 
     @campgrounds = Campground.where(approved: approved, id: @campgrounds).limit(limit).offset(offset).near([center_latitude,center_longitude])
-    render :partial => "campgrounds_within_bounds", :locals => {:campgrounds => @campgrounds, :filter_names => @filter_names}
+    @campgrounds = @campgrounds.page params[:page]
+    respond_to do |format|
+      format.html { render :layout => false } # show.html.erb
+      format.js # show.html.erb
+      format.json { render json: @trailhead }
+    end
+
   end
 
   def trips_within_bounds
@@ -110,8 +120,6 @@ class FindController < ApplicationController
     session[:starting_lat] = center_latitude = Float(params[:center_latitude])
     session[:starting_lng] = center_longitude = Float(params[:center_longitude])
     session[:starting_zoom] = zoom = Float(params[:zoom])
-    limit = 1000 || params[:limit]
-    offset = 0 || params[:offset]
     approved = true || params[:approved]
     @filter_names = []
     @trips = Trip.within_bounds(sw_latitude,sw_longitude,ne_latitude,ne_longitude)
@@ -151,8 +159,14 @@ class FindController < ApplicationController
       @filter_names += ["Name: #{params[:name_query]}"]
     end
 
-    @trips = Trip.where(approved: approved, id: @trips).limit(limit).offset(offset).near([center_latitude,center_longitude])
-    render :partial => "trips_within_bounds", :locals => {:trips => @trips, :filter_names => @filter_names, :near => @near}
+    @trips = Trip.where(approved: approved, id: @trips).near([center_latitude,center_longitude])
+    @trips = @trips.page params[:page]
+    respond_to do |format|
+      format.html { render :layout => false } # show.html.erb
+      format.js # show.html.erb
+      format.json { render json: @trailhead }
+    end
+
   end
 
   def objects_near

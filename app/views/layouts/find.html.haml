@@ -14,11 +14,10 @@
     = javascript_include_tag "find"
     = stylesheet_link_tag "application", :media => "all"
     = stylesheet_link_tag "find", :media => "all"
-    = stylesheet_link_tag "//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
     = javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyCcUhpQftpOwXVSLJqHrvwYCqnhTy3bchE&sensor=false&libraries=places"
     = yield :head
   %body
-    = render :partial => "layouts/v2_navbar"
+    = render :partial => "layouts/navbar"
 
     #wrap
       #main
@@ -37,8 +36,8 @@
                 #find-map-disable
                 #find_map
               .map-buttons
-                %a#map_size_toggle.btn.btn-success.btn-small.btn-round
-                  Bigger
+                %a#map_size_toggle.btn.btn-primary.btn.btn-round
+                  Bigger Map
               #progress
                 %h4
                   Loading
@@ -53,7 +52,7 @@
                         = content_tag :div, msg, :id => "flash_#{name}"
                 #findlist
       #push
-    = render :partial => "layouts/v2_footer"
+    = render :partial => "layouts/footer"
     = render :partial => "/layouts/tracking"
     %script
       starting_lat = #{session[:starting_lat] || 37.78};

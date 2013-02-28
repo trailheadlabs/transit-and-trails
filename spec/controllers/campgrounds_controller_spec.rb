@@ -38,7 +38,7 @@ describe CampgroundsController do
     it "assigns all campgrounds as @campgrounds" do
       campground = Campground.create! valid_attributes
       get :index, {}, valid_session
-      assigns(:campgrounds).should eq([campground])
+      response.should redirect_to(find_campgrounds_path)
     end
   end
 
@@ -164,7 +164,7 @@ describe CampgroundsController do
       it "redirects to the campgrounds list" do
         campground = Campground.create! valid_attributes
         delete :destroy, {:id => campground.to_param}, valid_session
-        response.should redirect_to(campgrounds_url)
+        response.should redirect_to(find_campgrounds_url)
       end
     end
   end

@@ -1,0 +1,22 @@
+:javascript
+  $('#trip-count').text("#{@trips.total_count}")
+
+#find-list-container.trips
+  .list#find-list
+
+    - unless @filter_names.empty?
+      .list-filters
+        %b
+          Filters :
+        - @filter_names.each do |filter|
+          %span.label.label-success
+            = filter
+        - if @filter_names.empty?
+          %span.label.label-success
+            None
+
+    %ul.media-list#trips
+      = render :partial => 'trips_media_item', :as => :trip, :collection => @trips
+
+    #paginator.pull-right
+      = paginate @trips, :remote => true
