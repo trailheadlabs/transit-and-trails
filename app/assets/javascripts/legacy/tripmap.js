@@ -64,7 +64,8 @@ TNT.tripmap = {
             },
             scaleControl: true,
             streetViewControl: true,
-            overviewMapControl: true
+            overviewMapControl: true,
+            scrollwheel: false
         }
         if(this.editMode != TNT.EditMode.READONLY){
             mapOptions.draggableCursor = 'crosshair';
