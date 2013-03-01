@@ -47,7 +47,9 @@ Transitandtrails::Application.routes.draw do
               get 'route'
             end
           end
-          resources :trailhead_attributes, :only => [:show, :index]
+          resources :trailhead_attributes, :only => [:index]
+          resources :campground_attributes, :only => [:index]
+          resources :trip_attributes, :only => [:index]
         end
       end
     end

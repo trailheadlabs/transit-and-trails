@@ -15,12 +15,12 @@
       %p.from
         %strong Start
         - if trip.starting_trailhead
-          %a{:href => "/trailheads/#{ trip.starting_trailhead.id }"} #{ trip.starting_trailhead.name }
+          %a.trailhead{:href => "/trailheads/#{ trip.starting_trailhead.id }"} #{ trip.starting_trailhead.name }
         - else
           \-
       %p.to
         %strong End
         - if trip.ending_trailhead
-          %a{:href => "/trailheads/#{ trip.ending_trailhead.id }"} #{ trip.ending_trailhead.name }
+          %a.trailhead{:href => "/trailheads/#{ trip.ending_trailhead.id }"} #{ trip.ending_trailhead.name }
         - else
           \-
