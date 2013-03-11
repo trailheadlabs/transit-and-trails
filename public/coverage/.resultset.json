@@ -4758,6 +4758,17 @@
         null,
         null
       ],
+      "/Users/jereme/git/transitandtrails/app/controllers/api/v1/campground_attributes_controller.rb": [
+        1,
+        1,
+        1,
+        1,
+        0,
+        null,
+        null,
+        null,
+        null
+      ],
       "/Users/jereme/git/transitandtrails/app/controllers/api/v1/campgrounds_controller.rb": [
         1,
         1,
@@ -4942,6 +4953,17 @@
         null,
         null
       ],
+      "/Users/jereme/git/transitandtrails/app/controllers/api/v1/trailhead_attributes_controller.rb": [
+        1,
+        1,
+        1,
+        1,
+        0,
+        null,
+        null,
+        null,
+        null
+      ],
       "/Users/jereme/git/transitandtrails/app/controllers/api/v1/trailheads_controller.rb": [
         1,
         1,
@@ -5104,6 +5126,17 @@
         0,
         0,
         0,
+        0,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/jereme/git/transitandtrails/app/controllers/api/v1/trip_attributes_controller.rb": [
+        1,
+        1,
+        1,
+        1,
         0,
         null,
         null,
@@ -8562,6 +8595,6 @@
         null
       ]
     },
-    "timestamp": 1362010803
+    "timestamp": 1363024333
   }
 }
