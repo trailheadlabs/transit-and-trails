@@ -1,19 +1,24 @@
 require "yajl"
 
-class PrettyRabl
-  ParseError = ::Yajl::ParseError
+# class PrettyRabl
+#   ParseError = ::Yajl::ParseError
 
-  def self.load(string, options={}) #:nodoc:
-    ::Yajl::Parser.new(:symbolize_keys => options[:symbolize_keys]).parse(string)
-  end
+#   def self.load(string, options={}) #:nodoc:
+#     ::Yajl::Parser.new(:symbolize_keys => options[:symbolize_keys]).parse(string)
+#   end
 
-  def self.dump(object, options={}) #:nodoc:
-    object = Hash[object.sort] if object.is_a? Hash
-    if object.is_a? Array
-      object.collect! { |x| x = Hash[x.sort] if x.is_a? Hash}
-    end
-    options.merge! :pretty=>true
-    ::Yajl::Encoder.encode(object, options)
+#   def self.dump(object, options={}) #:nodoc:
+#     object = Hash[object.sort] if object.is_a? Hash
+#     if object.is_a? Array
+#       object.collect! { |x| x = Hash[x.sort] if x.is_a? Hash}
+#     end
+#     options.merge! :pretty=>true
+#     ::Yajl::Encoder.encode(object, options)
+#   end
+# end
+class PrettyJson
+  def self.dump(object)
+    JSON.pretty_generate(object, {:indent => "  "})
   end
 end
 
@@ -24,7 +29,7 @@ Rabl.configure do |config|
   # config.cache_sources = Rails.env != 'development' # Defaults to false
   # config.cache_engine = Rabl::CacheEngine.new # Defaults to Rails cache
   # config.escape_all_output = false
-  config.json_engine = PrettyRabl # Any multi\_json engines
+  config.json_engine = PrettyJson # Any multi\_json engines
   # config.msgpack_engine = nil # Defaults to ::MessagePack
   # config.bson_engine = nil # Defaults to ::BSON
   # config.plist_engine = nil # Defaults to ::Plist::Emit
