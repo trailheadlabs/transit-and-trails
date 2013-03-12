@@ -1,5 +1,5 @@
 object @trip
-attributes :id, :name, :description, :ending_trailhead_id, :starting_trailhead_id
+attributes :id, :name, :description, :ending_trailhead_id, :starting_trailhead_id, :distance
 attributes :user_id => :author_id
 child(:starting_trailhead => :starting_trailhead) { attributes :latitude, :longitude }
 glue :duration do

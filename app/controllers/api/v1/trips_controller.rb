@@ -3,6 +3,10 @@ module Api
     class TripsController < Api::V1::ApiController
       def index
         @trips = apply_limit_and_offset(params,Trip.order("id"))
+        if(params[:latitude] && params[:longitude])
+          distance = params[:distance] || 100
+          @trips = @trips.near([params[:latitude],params[:longitude]],distance)
+        end
       end
 
       def show
