@@ -36,7 +36,8 @@ class Photo < ActiveRecord::Base
 
   # eventually we should just cache all of these on the model
   def flickr_url
-    "http://flickr.com/#{flickr.test.login.username}/#{flickr_id}"
+    FlickRaw.url_photopage(flickr_info)
+    # "http://flickr.com/#{flickr.test.login.username}/#{flickr_id}"
   rescue
     nil
   end
