@@ -138,7 +138,11 @@ class Trip < ActiveRecord::Base
     else
       factory = ::RGeo::Geographic.spherical_factory()
       obj = factory.parse_wkt(self.geometry)
-      return obj.length / 1609.344
+      if obj.nil?
+        return 0.0
+      else
+        return obj.length / 1609.344
+      end
     end
   end
 
