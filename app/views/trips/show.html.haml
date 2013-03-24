@@ -1,6 +1,6 @@
+- content_for :title do
+  Transit & Trails : #{@trip.name}
 - content_for :head do
-  %meta{:content => "Transit & Trails : #{@trip.name}", :property => "og:title"}/
-
   %script(src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCcUhpQftpOwXVSLJqHrvwYCqnhTy3bchE&sensor=false&libraries=drawing,geometry")
 
   = javascript_include_tag "legacy/common"

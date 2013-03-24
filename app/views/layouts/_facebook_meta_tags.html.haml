@@ -1,0 +1,20 @@
+:ruby
+  og_object = @trailhead || @trip || @campground
+  og_title = "Transit & Trails"
+  og_description = "Find, Plan & Share Outdoor Adventures"
+  og_site_name = "Transit & Trails"
+  og_url = "#{request.url}"
+  og_image = "#{asset_url('square_logo.jpg')}"
+  og_type = "website"
+  if og_object
+    og_title = og_object.name
+    og_description = strip_tags(og_object.description)
+    og_type = "action"
+  end
+
+%meta{:content => "#{og_title}", :property => "og:title"}/
+%meta{:content => "#{og_type}", :property => "og:type"}/
+%meta{:content => "#{og_url}", :property => "og:url"}/
+%meta{:content => "#{og_image}", :property => "og:image"}/
+%meta{:content => "#{og_site_name}", :property => "og:site_name"}/
+%meta{:content => "#{og_description}", :property => "og:description"}/

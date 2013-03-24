@@ -81,6 +81,7 @@ describe Api::V1::TripsController do
       3.times do
         FactoryGirl.create(:photo,:photoable_type=>'Trip',:photoable_id=>trip.id)
       end
+      Photo.any_instance.should_receive(:flickr_url).any_number_of_times.and_return('http://flickr.com')
       get :photos, {:id=>trip.id}
       response.should be_success
       object = JSON.parse(response.body)
