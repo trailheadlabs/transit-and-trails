@@ -33,22 +33,28 @@
 
     - if @show.include? 'contributor'
       .contributor.embed-section
-        %label.feature
-          Contributed By
+        - unless @hide_section_labels
+          %label.feature
+            Contributed By
 
         = render :partial => "contributor", :locals => {:object=>@trip}
 
     - if (@show.include? 'description') && !@trip.description.blank?
       .description.embed-section
-        %label.feature
-          Description
+        - unless @hide_section_labels
+          %label.feature
+            Description
 
-        != truncate_html(@trip.description, :length=> 400,  :omission => " ...<p><a  href='#{trip_path(@trip)}' target='_blank'>Read more &raquo;</a></p>")
+        - if @full_description
+          != @trip.description
+        - else
+          != truncate_html(@trip.description, :length=> 400,  :omission => " ...<p><a  href='#{trip_path(@trip)}' target='_blank'>Read more &raquo;</a></p>")
 
     - if @show.include? 'summary'
       .summary.embed-section
-        %label.feature
-          Summary
+        - unless @hide_section_labels
+          %label.feature
+            Summary
 
         = render :partial => "trips/summary", :locals => {:trip=>@trip}
 
@@ -59,8 +65,9 @@
 
     - if (@show.include? 'photos') && !@trip.photos.empty?
       .photos.embed-section
-        %label.feature
-          Photos
+        - unless @hide_section_labels
+          %label.feature
+            Photos
         = render :partial => "/shared/partials/photo_carousel", :locals => {:object=>@trip}
 
     - if @show.include? 'map'
@@ -80,8 +87,9 @@
         });
 
       .route-map.embed-section
-        %label.feature
-          Map
+        - unless @hide_section_labels
+          %label.feature
+            Map
         #plan-map.trailhead-details-map
 
     - if @show.include? 'attributes'
@@ -90,8 +98,9 @@
 
     - if (@show.include? 'downloads') && !@trip.maps.empty?
       .map-downloads.embed-section
-        %label.feature
-          Downloads
+        - unless @hide_section_labels
+          %label.feature
+            Downloads
         = render :partial => "downloads", :locals => {:object=>@trip}
 
     - if @show.include? 'trails'
