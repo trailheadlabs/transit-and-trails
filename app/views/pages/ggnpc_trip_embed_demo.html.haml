@@ -13,6 +13,7 @@
     Preview
   %p(style="padding:20px")
     %iframe(src="http://embed.transitandtrails.org/embed/trips/1287" frameborder="false" width="700" height="2500" )
+
   %h3
     Example 2 : Only Header, Description and Map with Custom Title (600x800px)
   %h5
@@ -36,3 +37,28 @@
     Preview
   %p(style="padding:20px")
     %iframe(src="http://embed.transitandtrails.org/embed/trips/1287?title=Trip%20Photos&show=photos" frameborder="false" width="300" height="400" )
+
+  %h3
+    Example 4 : Map Only, No Section Labels
+  %h5
+    Code
+  %hr
+  %pre
+    &lt;iframe src=&quot;http://embed.transitandtrails.org/embed/trips/1287?title=Trip%20Photos&amp;show=photos&amp;hide_title=true&amp;hide_section_labels=true&quot; frameborder=&quot;false&quot; width=&quot;600&quot; height=&quot;600&quot;&gt;&lt;/iframe&gt;
+  %h4
+    Preview
+  %p(style="padding:20px")
+    %iframe(src="http://embed.transitandtrails.org/embed/trips/1287?title=Trip%20Photos&show=photos&hide_title=true&hide_section_labels=true" frameborder="false" width="600" height="600" )
+
+
+  %h3
+    Example 5 : Full Description
+  %h5
+    Code
+  %hr
+  %pre
+    &lt;iframe src=&quot;http://embed.transitandtrails.org/embed/trips/1287?show=header,description,map&amp;full_description=true&quot; frameborder=&quot;false&quot; width=&quot;600&quot; height=&quot;800&quot;&gt;&lt;/iframe&gt;
+  %h4
+    Preview
+  %p(style="padding:20px")
+    %iframe(src="http://embed.transitandtrails.org/embed/trips/1287?show=header,description,map&full_description=true" frameborder="false" width="600" height="800" )
