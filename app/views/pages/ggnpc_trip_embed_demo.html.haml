@@ -44,12 +44,12 @@
     Code
   %hr
   %pre
-    &lt;iframe src=&quot;http://embed.transitandtrails.org/embed/trips/1287?title=Trip%20Photos&amp;show=photos&amp;hide_title=true&amp;hide_section_labels=true&quot; frameborder=&quot;false&quot; width=&quot;600&quot; height=&quot;600&quot;&gt;&lt;/iframe&gt;
+    &lt;iframe src=&quot;http://embed.transitandtrails.org/embed/trips/1287?show=map&amp;hide_title=true&amp;hide_section_labels=true&quot; frameborder=&quot;false&quot; width=&quot;600&quot; height=&quot;600&quot;&gt;&lt;/&lt;iframe&gt;
   %h4
     Preview
   %p(style="padding:20px")
-    %iframe(src="http://embed.transitandtrails.org/embed/trips/1287?title=Trip%20Photos&show=photos&hide_title=true&hide_section_labels=true" frameborder="false" width="600" height="600" )
-
+    :erb
+      <iframe src="http://embed.transitandtrails.org/embed/trips/1287?show=map&hide_title=true&hide_section_labels=true" frameborder="false" width="600" height="600"></<iframe>
 
   %h3
     Example 5 : Full Description
@@ -57,8 +57,8 @@
     Code
   %hr
   %pre
-    &lt;iframe src=&quot;http://embed.transitandtrails.org/embed/trips/1287?show=header,description,map&amp;full_description=true&quot; frameborder=&quot;false&quot; width=&quot;600&quot; height=&quot;800&quot;&gt;&lt;/iframe&gt;
+    &lt;iframe src=&quot;http://embed.transitandtrails.org/embed/trips/1287?show=header,description,map&amp;full_description=true&quot; frameborder=&quot;false&quot; width=&quot;600&quot; height=&quot;1400&quot;&gt;&lt;/iframe&gt;
   %h4
     Preview
   %p(style="padding:20px")
-    %iframe(src="http://embed.transitandtrails.org/embed/trips/1287?show=header,description,map&full_description=true" frameborder="false" width="600" height="800" )
+    %iframe(src="http://embed.transitandtrails.org/embed/trips/1287?show=header,description,map&full_description=true" frameborder="false" width="600" height="1400" )
