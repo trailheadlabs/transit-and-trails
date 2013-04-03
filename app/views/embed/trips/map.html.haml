@@ -1,0 +1,43 @@
+- content_for :page_title do
+  = params[:title] || "Trip Map"
+
+- content_for :page_content do
+
+  %script
+    trip_route = #{@trip.geometry_as_route || "null"};
+
+  / Hidden form fields
+  %input#id_route{:type => "hidden", :value => ""}/
+  - if @trip.starting_trailhead
+    %input#trip_starting_trailhead_id{:type => "hidden", :value => "#{@trip.starting_trailhead.id}"}/
+    %input#starting_point_latitude{:type => "hidden", :value => "#{@trip.starting_trailhead.latitude}"}/
+    %input#starting_point_longitude{:type => "hidden", :value => "#{@trip.starting_trailhead.longitude}"}/
+  - if @trip.ending_trailhead
+    %input#trip_ending_trailhead_id{:type => "hidden", :value => "#{@trip.ending_trailhead.id}"}/
+    %input#ending_point_latitude{:type => "hidden", :value => "#{@trip.ending_trailhead.latitude}"}/
+    %input#ending_point_longitude{:type => "hidden", :value => "#{@trip.ending_trailhead.longitude}"}/
+
+  .content
+
+
+    %script(src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCcUhpQftpOwXVSLJqHrvwYCqnhTy3bchE&sensor=false&libraries=drawing,geometry")
+
+    %script{:src => "/assets/legacy/tripmap.js", :type => "text/javascript"}
+
+    :javascript
+      $(function(){
+
+        TNT.tripmap.init(TNT.EditMode.READONLY);
+
+        $(window).unload(function () {
+            GUnload();
+        });
+
+      });
+
+    #plan-map.trailhead-details-map
+
+  :javascript
+    $(function(){
+      $('a.trailhead').attr('target','_blank');
+    });

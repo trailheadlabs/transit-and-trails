@@ -1,0 +1,15 @@
+!!!
+%html
+  %head
+    %title Transit & Trails
+    = csrf_meta_tags
+    = stylesheet_link_tag "application"
+    = stylesheet_link_tag "embed/fill"
+    = javascript_include_tag "application"
+    %meta(name="viewport" content="width=device-width, initial-scale=1.0")
+
+    = yield :head
+
+  %body
+    = yield :page_content
+    = render :partial => "/layouts/tracking"

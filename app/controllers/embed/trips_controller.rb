@@ -1,7 +1,7 @@
 module Embed
   class TripsController < ApplicationController
     skip_before_filter :verify_authenticity_token
-    before_filter :embed_authenticate_trailblazer!, :except => [:show]
+    before_filter :embed_authenticate_trailblazer!, :except => [:show,:map]
 
     def new
       @trip = Trip.new
@@ -41,7 +41,12 @@ module Embed
         @full_description = params[:full_description] == 'true'
       end
 
-      render "responsive_show", :layout => "embed/responsive"
+      render :layout => "embed/responsive"
+    end
+
+    def map
+      @trip = Trip.find(params[:id])
+      render :layout => "embed/fill"
     end
 
     def create

@@ -80,6 +80,7 @@ Transitandtrails::Application.routes.draw do
         member do
           get 'edit_details'
           get 'edit_photos'
+          get 'map'
           put 'update_details'
           put 'update_photos'
         end
