@@ -33,7 +33,8 @@
       %a.back-to-details{:href => "/campgrounds/#{@campground.id}/"} Back to Details
   / e: page head
   #plan
-    #plan-map
+    - unless @show_map == false
+      #plan-map
     %form#the-plan
       %label#returning-from-label Going To
       %h3#name-title

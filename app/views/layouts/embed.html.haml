@@ -9,12 +9,14 @@
     = javascript_include_tag "legacy/jquery/js/jquery-ui-1.7.2.custom.min"
     = javascript_include_tag "legacy/plugins"
 
-    = stylesheet_link_tag "legacy/jquery/css/ui-lightness/jquery-ui-1.7.2.custom"
     = stylesheet_link_tag "legacy/legacy"
+
 
     = yield :head
 
     = stylesheet_link_tag "legacy/embed"
+    = stylesheet_link_tag "legacy/jquery/css/ui-lightness/jquery-ui-1.7.2.custom"
+
   %body.legacy
     .embed
       .embed-header

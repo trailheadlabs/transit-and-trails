@@ -1,4 +1,47 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800);
+html,body,.embed,#plan,#the-plan{
+  width:100%;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #F6F7FC;
+}
 .legacy {
+  label{
+    color: #4C93B5;
+    font-weight: 700;
+    font-size: 1em;
+    text-transform: uppercase;
+  }
+  .ui-datepicker-calendar{
+    td{
+      padding:2px;
+    }
+  }
+
+  #the-plan,#return-trip-button,#get-directions-button{
+    width:100%;
+    float:none;
+  }
+  #the-plan .set{
+    float:none;
+  }
+  #the-plan {
+    .address{
+      width: 95%;
+    }
+  }
+  .plan-type{
+    padding: 15px 0px 0px 6px;
+  }
+  .numbers li{
+    width:33%;
+  }
+  .pac-container
+  {
+    border:solid 1px #ccc;
+    z-index: 10000 !important;
+    padding:2px;
+    box-shadow: 3px 3px 6px #aaa;
+  }
   #ggnpc-warning{
     line-height:1.4em;
     padding:20px;
@@ -34,10 +77,8 @@
   }
   #plan{
     float:left;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    -o-border-radius: 0;
     border-radius: 0;
+    border:none;
   }
 
   #the-plan{
@@ -87,6 +128,6 @@
 
   #trailhead-select{
     margin: 0px 0px 3px 20px;
-    width:340px;
+    width:95%;
   }
 }

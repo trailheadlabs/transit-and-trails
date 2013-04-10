@@ -317,6 +317,7 @@ $(function(){
     mapTypeId: google.maps.MapTypeId.TERRAIN,
     mapTypeControl: true,
     mapTypeControlOptions: {
+      mapTypeIds: [google.maps.MapTypeId.TERRAIN,google.maps.MapTypeId.SATELLITE,google.maps.MapTypeId.ROADMAP,'OSM'],
       position: google.maps.ControlPosition.TOP_RIGHT,
       style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
     },
@@ -335,6 +336,16 @@ $(function(){
   Find.overlay.setMap(Find.map);
 
   Find.geocoder = new google.maps.Geocoder();
+
+  //Define OSM map type pointing at the OpenStreetMap tile server
+  Find.map.mapTypes.set("OSM", new google.maps.ImageMapType({
+      getTileUrl: function(coord, zoom) {
+          return "http://tile.openstreetmap.org/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
+      },
+      tileSize: new google.maps.Size(256, 256),
+      name: "OSM",
+      maxZoom: 18
+  }));
 
   var autocomplete = new google.maps.places.Autocomplete($('#find-location')[0]);
   autocomplete.bindTo('bounds', Find.map);

@@ -624,7 +624,7 @@ TNT.plan = {
   		this.map.setCenter(centerpoint, zoom-1);
   	},
 
-	// These are all of the trip routing supper functions
+	// These are all of the trip routing super functions
 
   showDirections: function(isReturnTrip) {
     var router = $('#transit-router').val();
