@@ -5,6 +5,9 @@ html,body,.embed,#plan,#the-plan{
   background-color: #F6F7FC;
 }
 .legacy {
+  h3#name-title{
+    padding-left:12px;
+  }
   label{
     color: #4C93B5;
     font-weight: 600;
@@ -87,11 +90,11 @@ html,body,.embed,#plan,#the-plan{
 
   #the-plan p{
     clear:both;
-    padding: 7px 25px;
+    padding: 7px 12px;
   }
 
   #the-plan #starting-point-form{
-    padding: 8px 25px;
+    padding: 8px 12px;
     margin-bottom:19px;
   }
   #the-plan #starting-point-latlng{
