@@ -16,6 +16,8 @@ module Embed
     end
 
     def location
+      @selected_location = true
+      @destination_name = params[:destination_name]
       @latitude = params[:lat]
       @longitude = params[:lng]
       plan

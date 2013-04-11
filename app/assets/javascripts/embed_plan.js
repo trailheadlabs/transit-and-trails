@@ -105,17 +105,12 @@ function initializeDefault(){
 
 function initializePoint(latitude,longitude){
   initialize();
-  TNT.plan.trailheadMarker.setLatLng(new google.maps.LatLng(
-    latitude, longitude));
-  TNT.plan.centerOnTrailhead();
   TNT.plan.google_router = true;
   TNT.plan.fiveoneone_router = true;
-  TNT.plan.trailheadMarker.show();
   TNT.plan.mode = 'point'
   TNT.plan.point_latlng = new google.maps.LatLng(latitude,longitude);
 
   TNT.plan.end_latlng = new google.maps.LatLng(latitude,longitude);
-  $('#name-title').text(latitude + ',' + longitude);
 }
 
 function initializeTrailhead(id){
@@ -181,6 +176,8 @@ TNT.plan = {
 
     autocomplete = new google.maps.places.Autocomplete(input, options);
 
+    this.codeAddress();
+
     google.maps.event.addListener(autocomplete, 'place_changed', function() {
       var place = autocomplete.getPlace();
       if (!place.geometry) {
@@ -234,7 +231,6 @@ TNT.plan = {
     var url = "/trips/" + id + ".json/";
     $.getJSON(url,function(trip) {
       TNT.plan.trip = trip;
-      $('#name-title').text(trip.name);
       TNT.plan.end_latlng = new google.maps.LatLng(trip.start_lat,trip.start_lng);
       TNT.plan.loadStartTrailheadRouters(trip.starting_trailhead_id);
       TNT.plan.loadEndTrailheadRouters(trip.ending_trailhead_id);
@@ -246,7 +242,6 @@ TNT.plan = {
     $.getJSON(url, function(trailhead) {
       TNT.plan.trailhead = trailhead;
       TNT.plan.end_latlng = new google.maps.LatLng(trailhead.latitude,trailhead.longitude);
-      $('#name-title').text(trailhead.name);
       TNT.plan.loadStartTrailheadRouters(id);
       TNT.plan.loadEndTrailheadRouters(id);
 
@@ -258,7 +253,6 @@ TNT.plan = {
     $.getJSON(url, function(campground) {
       TNT.plan.campground = campground;
       TNT.plan.end_latlng = new google.maps.LatLng(campground.latitude,campground.longitude);
-      $('#name-title').text(campground.name);
     });
     TNT.plan.google_router = true;
     TNT.plan.fiveoneone_router = true;

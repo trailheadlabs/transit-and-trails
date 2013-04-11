@@ -51,6 +51,14 @@
           %h3#name-title
             - if @selected_trip
               = @selected_trip.name
+            - elsif @selected_trailhead
+              = @selected_trailhead.name
+            - elsif @selected_campground
+              = @selected_campground.name
+            - elsif @destination_name
+              = @destination_name
+            - elsif @selected_location
+              #{@latitude.to_f.round(4)}, #{@longitude.to_f.round(4)}
       .plan-type
         %ul
           %li
@@ -67,7 +75,8 @@
       / e: plan type
       #starting-point-form
         %label#starting-point-label Starting Point
-        %input#start-from-address.text.address{:type => "text", :placeholder => "start typing your address"}/
+        - starting_address = params[:starting_location]
+        %input#start-from-address.text.address{:type => "text", :placeholder => "start typing your address", :value=>"#{starting_address}"}/
         %br
           #starting-point-latlng
       %p

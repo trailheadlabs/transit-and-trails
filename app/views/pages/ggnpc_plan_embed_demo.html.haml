@@ -1,0 +1,65 @@
+.content
+  %h1
+    GGNPC Plan Embed Demo
+  %br
+  %h3
+    Example 1 : Going to a Trip (800px wide)
+  %h5
+    Code
+  %pre
+    &lt;iframe frameborder=&#039;false&#039; height=&#039;600&#039; src=&#039;http://staging.transitandtrails.org/embed/plan/trip/1287&#039; width=&#039;800&#039;&gt;&lt;/iframe&gt;
+  %hr
+  %h4
+    Preview
+  %p(style="padding:20px")
+    %iframe(src="http://staging.transitandtrails.org/embed/plan/trip/1287" frameborder="false" width="800" height="600")
+
+  %h3
+    Example 2 : Going to a Trailhead (600px wide)
+  %h5
+    Code
+  %pre
+    &lt;iframe frameborder=&#039;false&#039; height=&#039;600&#039; src=&#039;http://staging.transitandtrails.org/embed/plan/trailhead/51&#039; width=&#039;600&#039;&gt;&lt;/iframe&gt;
+  %hr
+  %h4
+    Preview
+  %p(style="padding:20px")
+    %iframe(src="http://staging.transitandtrails.org/embed/plan/trailhead/51" frameborder="false" width="600" height="600")
+
+  %h3
+    Example 3 : Going to a Trailhead (400px wide)
+  %h5
+    Code
+  %pre
+    &lt;iframe frameborder=&#039;false&#039; height=&#039;600&#039; src=&#039;http://staging.transitandtrails.org/embed/plan/trailhead/51&#039; width=&#039;400&#039;&gt;&lt;/iframe&gt;
+  %hr
+  %h4
+    Preview
+  %p(style="padding:20px")
+    %iframe(src="http://staging.transitandtrails.org/embed/plan/trailhead/51" frameborder="false" width="400" height="600")
+
+  %h3
+    Example 4 : Custom Starting Location (350px wide)
+  %h5
+    Code
+  %pre
+    &lt;iframe frameborder=&#039;false&#039; height=&#039;600&#039; src=&#039;http://staging.transitandtrails.org/embed/plan/trailhead/51?starting_location=Oakland,CA&#039; width=&#039;350&#039;&gt;&lt;/iframe&gt;
+
+  %hr
+  %h4
+    Preview
+  %p(style="padding:20px")
+    %iframe(src="http://staging.transitandtrails.org/embed/plan/trailhead/51?starting_location=Oakland,CA" frameborder="false" width="350" height="600")
+
+  %h3
+    Example 5 : Going to a Lat/Lng Destination with a Custom Name from a Custom Starting Location
+  %h5
+    Code
+  %pre
+    &lt;iframe frameborder=&#039;false&#039; height=&#039;600&#039; src=&#039;http://staging.transitandtrails.org/embed/plan/location?lat=37.62&amp;amp;lng=122.49&amp;amp;destination_name=Secret Spot&amp;amp;starting_location=Oakland,CA&#039; width=&#039;500&#039;&gt;&lt;/iframe&gt;
+
+  %hr
+  %h4
+    Preview
+  %p(style="padding:20px")
+    %iframe(src="http://staging.transitandtrails.org/embed/plan/location?lat=37.62&lng=122.49&destination_name=Secret Spot&starting_location=Oakland,CA" frameborder="false" width="500" height="600")
