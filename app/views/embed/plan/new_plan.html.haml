@@ -26,18 +26,18 @@
     %input#rideshare{:type => "hidden", :value => "true"}/
     %input#zimride_url{:type => "hidden", :value => "#{@selected_trailhead.zimride_url}"}/
 
-  #plan(class="#{@width_class}")
+  #plan
     %form#the-plan
-      .clearfix
+      .going-to.embed-section
         - if @selected_trailheads
-          %label#returning-from-label
+          %label.feature
             Going to Trailhead
           %select#trailhead-select
             - @selected_trailheads.each do |trailhead|
               %option{:value => "#{trailhead.latitude},#{trailhead.longitude}"}
                 = trailhead.name
         - else
-          %label#returning-from-label
+          %label.feature
             - if @selected_trip
               Going on Trip
             - elsif @selected_trailhead
@@ -58,7 +58,7 @@
               = @destination_name
             - elsif @selected_location
               #{@latitude.to_f.round(4)}, #{@longitude.to_f.round(4)}
-      .plan-type
+      .plan-type.embed-section
         %ul
           %li
             %a#transit-mode.pt1.active{:href => "#"} Transit
