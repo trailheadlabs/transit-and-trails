@@ -47,16 +47,17 @@
     background-color:black;
   }
   .title{
-    width:100%;
-    position:absolute;
+    // width:100%;
+    // position:absolute;
     top:14px;
     color:$main-blue;
     text-transform: uppercase;
     font-weight:700;
-    span{
-      padding:4px 20px;
-      background-image: url(asset-path('rockywall.png',image));
-    }
+    position:relative;
+    top:-28px;
+    padding:4px 20px;
+    background-image: url(asset-path('rockywall.png',image));
+
   }
 }
 
@@ -159,14 +160,13 @@ a.btn-landing:hover{
   }
   .row.heading{
     .title{
+      top:0px;
       color:#999;
-      span{
-        background-image:none;
-      }
+      background-image:none;
     }
   }
   .row.logos{
-    padding-top:30px;
+    padding-top:10px;
     text-align:center;
   }
 }

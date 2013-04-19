@@ -16,9 +16,8 @@
     .row.heading
       .span12
         %hr
-        .title
-          %span
-            Featured Trips
+        %span.title
+          Featured Trips
     .row
       - @featured_trips.each do |trip|
         .span3
@@ -43,30 +42,37 @@
     .row.heading
       .span12
         %hr
-        .title
-          %span
+          %span.title
             Case Studies
     .row
       .span4
-        = link_to trips_path do
+        = link_to "https://s3.amazonaws.com/tntcasestudies/BayNature_casestudy.pdf", :target => :blank do
           .case-study
       .span4
-        .case-study.sanjose
+        = link_to "https://s3.amazonaws.com/tntcasestudies/sanjose_casestudy.pdf", :target => :blank do
+          .case-study.sanjose
       .span4
-        .case-study.ggnpc
+        = link_to "https://s3.amazonaws.com/tntcasestudies/GGNPC_casestudy.pdf", :target => :blank do
+          .case-study.ggnpc
 
 .landing-partners
   .mask
     .container
       .row.heading
         .span12
-          .title
-            %span
-              Partners
+          %span.title
+            Partners
       .row.logos
         .span12
-          %h2
-            511 BART Spare the Air
+          = image_tag "partners_sprite.png"
+      .row.heading
+        .span12
+          %br
+          %span.uppercase
+            = link_to "and many more", partners_path
+          %br
+
+
 
 :javascript
   // 2. This code loads the IFrame Player API code asynchronously.
