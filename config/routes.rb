@@ -178,7 +178,7 @@ Transitandtrails::Application.routes.draw do
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "users/registrations" }
 
-  root :to => "find#trips"
+  root :to => "application#index"
 
   match "safari_cookie_set" => "application#safari_cookie_set"
 

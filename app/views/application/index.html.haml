@@ -1,0 +1,118 @@
+.container.movie
+  .row
+    .span10.offset1
+      .videoWrapper
+        #player
+      .big-tagline
+        Find, Plan & Share Outdoor Activities
+.featured
+  .container
+    .row
+      .span12
+        #play-how-it-works
+          = link_to "#", :id=>"how-it-works-link", :class => "btn-landing" do
+            See How it Works &raquo;
+  .container
+    .row.heading
+      .span12
+        %hr
+        .title
+          %span
+            Featured Trips
+    .row
+      - @featured_trips.each do |trip|
+        .span3
+          .featured-thumbnail
+            = link_to trip do
+              = image_tag trip.thumbnail_url
+          .name
+            = link_to trip.name, trip
+          .author
+            = render :partial => "find/object_user_label", :locals => { :object => trip }
+          .description
+            = truncate(strip_tags(trip.description),:length=>150)
+          .attributes
+            - trip.trip_features.where(category_id:Category.find_by_name('Trip Type')).each do |feature|
+              %span.label.label-feature
+                = feature.name
+    .row.call-to-action
+      .span12.call-to-action
+        = link_to trips_path, :class => "btn-landing" do
+          Find Your Next Adventure &raquo;
+
+    .row.heading
+      .span12
+        %hr
+        .title
+          %span
+            Case Studies
+    .row
+      .span4
+        = link_to trips_path do
+          .case-study
+      .span4
+        .case-study.sanjose
+      .span4
+        .case-study.ggnpc
+
+.landing-partners
+  .mask
+    .container
+      .row.heading
+        .span12
+          .title
+            %span
+              Partners
+      .row.logos
+        .span12
+          %h2
+            511 BART Spare the Air
+
+:javascript
+  // 2. This code loads the IFrame Player API code asynchronously.
+  var tag = document.createElement('script');
+
+  tag.src = "https://www.youtube.com/iframe_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  // 3. This function creates an <iframe> (and YouTube player)
+  //    after the API code downloads.
+  var player;
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+      height: '390',
+      width: '640',
+      videoId: 'RuUB6Bo2StA',
+      playerVars: {showinfo:0},
+      events: {
+        'onReady': onPlayerReady,
+        'onStateChange': onPlayerStateChange
+      }
+    });
+  }
+
+  // 4. The API will call this function when the video player is ready.
+  function onPlayerReady(event) {
+    // event.target.playVideo();
+  }
+
+  // 5. The API calls this function when the player's state changes.
+  //    The function indicates that when playing a video (state=1),
+  //    the player should play for six seconds and then stop.
+  var done = false;
+  function onPlayerStateChange(event) {
+  }
+  function stopVideo() {
+    player.stopVideo();
+  }
+
+  function playHowItWorks(){
+    player.loadVideoById('TdTT60UTO4s');
+  }
+
+  $(function(){
+    $("#how-it-works-link").click(function(){
+      playHowItWorks()
+    });
+  });

@@ -119,4 +119,10 @@ class ApplicationController < ActionController::Base
       redirect_to :back
     end
   end
+
+  def index
+    @featured_trips = TripFeature.find_by_name('Featured').trips.limit(4)
+    render :layout => "landing"
+  end
+
 end
