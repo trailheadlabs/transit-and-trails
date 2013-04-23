@@ -4,18 +4,20 @@ class PhotoUploader < CarrierWave::Uploader::Base
   after :cache, :upload_to_flickr
 
   def upload_to_flickr(file)
-    Rails.logger.info "Uploading to flickr"
-    Rails.logger.info model.to_json
-    title = eval "#{model.photoable_type}.find(#{model.photoable_id}).name"
-    description = "Want to go here? Get more info at <a href=\"http://transitandtrails.org/#{model.photoable_type.pluralize.downcase}/#{model.photoable_id}\">Transit & Trails</a>"
-    result = flickr.upload_photo file.path, :title => title, :description => description
-    model.flickr_id = result
-    model.save
+    unless flickr_id
+      Rails.logger.info "Uploading to flickr"
+      Rails.logger.info model.to_json
+      title = eval "#{model.photoable_type}.find(#{model.photoable_id}).name"
+      description = "Want to go here? Get more info at <a href=\"http://transitandtrails.org/#{model.photoable_type.pluralize.downcase}/#{model.photoable_id}\">Transit & Trails</a>"
+      result = flickr.upload_photo file.path, :title => title, :description => description
+      model.flickr_id = result
+      model.save
+    end
   end
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
 
   # Include the Sprockets helpers for Rails 3.1+ asset pipeline compatibility:
   # include Sprockets::Helpers::RailsHelper
@@ -23,7 +25,7 @@ class PhotoUploader < CarrierWave::Uploader::Base
 
   # Choose what kind of storage to use for this uploader:
   # storage :file
-  # storage :fog
+  storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -47,9 +49,9 @@ class PhotoUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
-  # version :thumb do
-  #   process :scale => [50, 50]
-  # end
+  version :big_thumb do
+    process :resize_to_fill => [300, 300]
+  end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:

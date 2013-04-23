@@ -101,9 +101,12 @@ a#openspacecouncil{
   ul{
     list-style-type: none;
     margin-left:0px;
+    li{
+      line-height: 24px;
+    }
   }
   a {
-    font-size:14px;
+    font-size:15px;
     color: white;
     text-decoration:none;
     &:visited {
@@ -129,7 +132,7 @@ a#openspacecouncil{
 #subfooter{
   font-size:12px;
   color:#4A90B1;
-  background-color:white;
+  background-image: url(asset-path('rockywall.png',image));
   text:black;
   .text{
     margin-top:6px;

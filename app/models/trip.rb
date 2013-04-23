@@ -168,8 +168,24 @@ class Trip < ActiveRecord::Base
   end
 
   def thumbnail_url
-    if self.photos.first
-      self.photos.first.flickr_large_square_url
+    if self.photos.order('id').first
+      self.photos.order('id').first.flickr_large_square_url
+    else
+      "/assets/placeholder_item_image.png"
+    end
+  end
+
+  def medium_url
+    if self.photos.order('id').first
+      self.photos.order('id').first.flickr_medium_url
+    else
+      "/assets/placeholder_item_image.png"
+    end
+  end
+
+  def big_thumb
+    if self.photos.order('id').first
+      self.photos.order('id').first.big_thumb
     else
       "/assets/placeholder_item_image.png"
     end

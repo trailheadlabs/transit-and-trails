@@ -1,6 +1,6 @@
 .container.movie
   .row
-    .span10.offset1
+    .span8.offset2
       .videoWrapper
         #player
       .big-tagline
@@ -23,7 +23,7 @@
         .span3
           .featured-thumbnail
             = link_to trip do
-              = image_tag trip.thumbnail_url
+              = image_tag trip.big_thumb, :class => "img-rounded"
           .name
             = link_to trip.name, trip
           .author
@@ -55,22 +55,22 @@
         = link_to "https://s3.amazonaws.com/tntcasestudies/GGNPC_casestudy.pdf", :target => :blank do
           .case-study.ggnpc
 
-.landing-partners
-  .mask
-    .container
-      .row.heading
-        .span12
-          %span.title
-            Partners
-      .row.logos
-        .span12
-          = image_tag "partners_sprite.png"
-      .row.heading
-        .span12
-          %br
-          %span.uppercase
-            = link_to "and many more", partners_path
-          %br
+/ .landing-partners
+/   .mask
+/     .container
+/       .row.heading
+/         .span12
+/           %span.title
+/             Partners
+/       .row.logos
+/         .span12
+/           = image_tag "partners_sprite.png"
+/       .row.heading
+/         .span12
+/           %br
+/           %span.uppercase
+/             = link_to "and many more", partners_path
+/           %br
 
 
 

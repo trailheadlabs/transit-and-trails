@@ -7,6 +7,8 @@ class Photo < ActiveRecord::Base
   serialize :flickr_urls, Hash
   before_save :cache_flickr_urls
 
+  default_scope order('id desc')
+
   def delete_from_flickr
     begin
       flickr.photos.delete :photo_id => self.flickr_id
@@ -23,6 +25,16 @@ class Photo < ActiveRecord::Base
   def cache_flickr_urls
     if(flickr_id_changed? || flickr_urls.nil?)
       fetch_flickr_sizes
+    end
+  end
+
+  def big_thumb
+    if image.file && !image.url(:big_thumb).blank?
+      return image.url(:big_thumb)
+    else
+      self.remote_image_url = self.flickr_medium_url
+      save
+      return image.url(:big_thumb)
     end
   end
 

@@ -91,13 +91,16 @@ a.btn-landing:hover{
   position:relative;
   padding:40px 0px;
   width:100%;
-  background-image: url(asset-path('rockywall.png',image));
-  .name{
-    padding:10px 0px;
+  a{
     color:$main-blue;
-    font-size:1.3em;
+  }
+
+  background-image: url(asset-path('rockywall.png',image));
+  .name {
+    padding:10px 0px;
+    font-size:24px;
     font-weight:500;
-    line-height:1.3em;
+    line-height:30px;
   }
   .author{
     img{
@@ -111,20 +114,17 @@ a.btn-landing:hover{
     margin-bottom:10px;
   }
   .featured-thumbnail{
-    img{
-      border-radius: 10px;
-      width:100%;
-    }
   }
 
 }
 
 .label-feature {
-  background-color: #a3aaaf;
-  padding: 4px 8px;
+  background-color: #BCB7B2;
+  opacity:0.9;
+  padding: 4px 10px;
   border-radius: 12px;
   font-weight: 500;
-  font-size: 0.8em;
+  font-size: 11px;
   margin-right:6px;
   margin-bottom:10px;
 }
