@@ -4,7 +4,7 @@ class PhotoUploader < CarrierWave::Uploader::Base
   after :cache, :upload_to_flickr
 
   def upload_to_flickr(file)
-    unless flickr_id
+    unless model.flickr_id
       Rails.logger.info "Uploading to flickr"
       Rails.logger.info model.to_json
       title = eval "#{model.photoable_type}.find(#{model.photoable_id}).name"
