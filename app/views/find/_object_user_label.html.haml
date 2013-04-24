@@ -4,5 +4,4 @@
       = image_tag object.user.profile.organization_avatar, :class => "img-rounded avatar"
     - else
       = image_tag object.user.profile.avatar, :class => "img-rounded avatar"
-    - unless noname == true
-      = user_label(object.user)
+    = user_label(object.user)
