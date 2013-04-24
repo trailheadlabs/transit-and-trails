@@ -13,13 +13,12 @@
     /[if lt IE 9]
       = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
     = javascript_include_tag "application"
-    = stylesheet_link_tag "application", :media => "all"
-    = stylesheet_link_tag "index", :media => "all"
+    = stylesheet_link_tag "landing", :media => "all"
     = yield :head
   %body
 
     #wrap
-      = render :partial => "layouts/navbar"
+      = render :partial => "layouts/navbar", :locals => {:landing_page=>true}
       = yield
       #push
     = render :partial => "layouts/footer"

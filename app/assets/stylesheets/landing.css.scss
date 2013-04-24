@@ -1,3 +1,19 @@
+// $dropdownBackground: $navbarBackground;
+// $dropdownLinkColor: white;
+// $dropdownBorder: #4a7d2c;
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800);
+@import "variables";
+@import "landing_custom_bootstrap";
+@import "bootstrap";
+@import "font-awesome";
+@import "bourbon";
+@import "partners";
+@import "about";
+@import "navbar";
+@import "simple_form";
+@import "base";
+
 @import "variables";
 
 .videoWrapper {
@@ -35,7 +51,7 @@
 }
 
 .movie{
-  padding-top:55px;
+  padding-top:85px;
 }
 
 .row.heading{
@@ -200,3 +216,4 @@ a.btn-landing:hover{
 #footer{
   box-shadow: -2px -4px 10px rgba(51, 51, 51, 0.2);
 }
+
