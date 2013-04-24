@@ -20,14 +20,19 @@
           Featured Trips
     .row
       - @featured_trips.each do |trip|
-        .span3
+        .span4
           .featured-thumbnail
             = link_to trip do
-              = image_tag trip.big_thumb, :class => "img-rounded"
+              = image_tag trip.big_thumb, :class => "img-rounded img-trip-thumbnail"
+            - if trip.user.profile.organization_avatar.file
+              = image_tag trip.user.profile.organization_avatar, :class => "avatar"
+            - else
+              = image_tag trip.user.profile.avatar, :class => "avatar"
+            = link_to "Plan Trip", plan_trip_path(:trip_id=>trip.id), :class => "btn-landing btn-landing-small plan-trip-button"
           .name
             = link_to trip.name, trip
           .author
-            = render :partial => "find/object_user_label", :locals => { :object => trip }
+            = user_label(trip.user)
           .description
             = truncate(strip_tags(trip.description),:length=>150)
           .attributes

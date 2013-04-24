@@ -218,7 +218,7 @@ Transitandtrails::Application.routes.draw do
   match 'session/savekv' => "application#savekv"
 
   match 'plan/trailhead/:trailhead_id' => "plan#trailhead"
-  match 'plan/trip/:trip_id' => "plan#trip"
+  match 'plan/trip/:trip_id' => "plan#trip", :as => :plan_trip
   match 'plan/campground/:campground_id' => "plan#campground"
 
   # The priority is based upon order of creation:

@@ -73,7 +73,7 @@ a.btn-landing:link,a.btn-landing:hover,a.btn-landing:visited,a.btn-landing:activ
 }
 
 a.btn-landing:hover{
-  background-color:#69DD50;
+  background-color:#89B668;
 }
 
 .btn-landing{
@@ -85,6 +85,13 @@ a.btn-landing:hover{
   padding: 16px 26px;
   font-family: "Open Sans", sans-serif;
   font-weight: 200;
+}
+
+.btn-landing-small{
+  font-size:1em;
+  border-radius:25px;
+  padding: 6px 23px;
+  font-weight:500;
 }
 
 .featured{
@@ -103,9 +110,12 @@ a.btn-landing:hover{
     line-height:30px;
   }
   .author{
+    // text-transform: uppercase;
+    font-size:14px;
     img{
       height:30px;
     }
+    margin-bottom:10px;
   }
   .description{
     color:#7a8c96;
@@ -114,8 +124,24 @@ a.btn-landing:hover{
     margin-bottom:10px;
   }
   .featured-thumbnail{
+    position:relative;
+    .img-trip-thumbnail{
+      width:100%;
+    }
   }
-
+  img.avatar{
+    max-height: 50px;
+    max-width: 150px;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    border: solid 1px #CCC;
+  }
+  .plan-trip-button{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
 }
 
 .label-feature {

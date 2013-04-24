@@ -121,7 +121,7 @@ class ApplicationController < ActionController::Base
   end
 
   def index
-    @featured_trips = TripFeature.find_by_name('Featured').trips.limit(4)
+    @featured_trips = TripFeature.find_by_name('Featured').trips.limit(3)
     render :layout => "landing"
   end
 
