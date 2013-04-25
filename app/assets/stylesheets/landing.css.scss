@@ -116,7 +116,7 @@ a.btn-landing:hover{
     color:$main-blue;
   }
 
-  background-image: url(asset-path('rockywall.png',image));
+  background-image: url(asset-path('rockywall_60percent.jpg',image));
   .name {
     padding:10px 0px;
     font-size:24px;
@@ -174,24 +174,36 @@ a.btn-landing:hover{
 }
 .case-study{
   margin: 0 auto;
-  background-image:url(asset-path('case_study_sprite.jpg',image));
-  width:302px;
-  height:122px;
-  opacity: 0.9;
+  background-image:url(asset-path('tnt_landing_sprite.jpg',image));
+  width:300px;
+  height:120px;
+
+  &.baynature{
+    background-position: 0px -0px;
+  }
+  &.baynature:hover{
+    background-position: -300px 0px;
+  }
+
   &.sanjose{
-    background-position: -332px 0px;
+    background-position: 0px -150px;
   }
+  &.sanjose:hover{
+    background-position: -300px -150px;
+  }
+
   &.ggnpc{
-    background-position: -660px 0px;
+    background-position: 0px -300px;
   }
-  &:hover{
-    opacity:1.0;
+  &.ggnpc:hover{
+    background-position: -300px -300px;
   }
+
 
 }
 
 .landing-partners{
-  background-image: url(asset-path('rockywall.png',image));
+  background-image: url(asset-path('rockywall_60percent.jpg',image));
   width: 100%;
   .mask{
     background: rgba(54, 25, 25, .1);
