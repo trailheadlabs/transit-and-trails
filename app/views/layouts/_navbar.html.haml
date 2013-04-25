@@ -2,11 +2,7 @@
   .navbar-inner
     .container
       %a.brand(href="/")
-        - landing_page ||= false
-        - if landing_page == true
-          = image_tag "landing_navbar_logo.png"
-        - else
-          = image_tag "navbar_logo.png"
+        = image_tag "navbar_logo.png"
       %ul.nav
         - if params[:action] == "trips"
           %li.active

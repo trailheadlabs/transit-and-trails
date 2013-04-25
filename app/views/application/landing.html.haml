@@ -1,6 +1,6 @@
 .container.movie
   .row
-    .span8.offset2
+    .span10.offset1
       .videoWrapper
         #player
       .big-tagline
@@ -28,7 +28,7 @@
               = image_tag trip.user.profile.organization_avatar, :class => "avatar"
             - else
               = image_tag trip.user.profile.avatar, :class => "avatar"
-            = link_to "Plan Trip", plan_trip_path(:trip_id=>trip.id), :class => "btn-landing btn-landing-small plan-trip-button"
+            / = link_to "Plan Trip", plan_trip_path(:trip_id=>trip.id), :class => "btn-landing btn-landing-small plan-trip-button"
           .name
             = link_to trip.name, trip
           .author

@@ -4,7 +4,7 @@
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800);
 @import "variables";
-@import "landing_custom_bootstrap";
+@import "custom_bootstrap";
 @import "bootstrap";
 @import "font-awesome";
 @import "bourbon";
@@ -13,8 +13,6 @@
 @import "navbar";
 @import "simple_form";
 @import "base";
-
-@import "variables";
 
 .videoWrapper {
   position: relative;
@@ -51,7 +49,7 @@
 }
 
 .movie{
-  padding-top:85px;
+  padding-top:55px;
 }
 
 .row.heading{
@@ -146,7 +144,7 @@ a.btn-landing:hover{
     }
   }
   img.avatar{
-    max-height: 50px;
+    max-height: 60px;
     max-width: 150px;
     position: absolute;
     bottom: 10px;
