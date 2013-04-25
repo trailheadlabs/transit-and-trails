@@ -143,15 +143,15 @@
   %script
     $(new function(){
     - if @selected_trailhead
-      initializeTrailhead(#{@selected_trailhead.id});
+      TNT.plan.initializeTrailhead(#{@selected_trailhead.id});
     - elsif @selected_trip
-      initializeTrip(#{@selected_trip.id});
+      TNT.plan.initializeTrip(#{@selected_trip.id});
     - elsif @selected_campground
-      initializeCampground(#{@selected_campground.id});
+      TNT.plan.initializeCampground(#{@selected_campground.id});
     - elsif @selected_trailheads
-      initializeTrailheadList();
+      TNT.plan.initializeTrailheadList();
     - else
-      initializePoint(#{@latitude},#{@longitude});
+      TNT.plan.initializePoint(#{@latitude},#{@longitude});
 
     - if @initial_date
       TNT.plan.initTripDate(Date.parse('#{@initial_date}'));

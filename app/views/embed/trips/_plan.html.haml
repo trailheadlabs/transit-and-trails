@@ -1,0 +1,68 @@
+.plan-type
+  %ul
+    %li
+      %a#transit-mode.pt1.active{:href => "#"} Transit
+    %li
+      %a#biking-mode.pt2{:href => "#"} Biking
+    %li
+      %a#walking-mode.pt3{:href => "#"} Walking
+    %li
+      %a#driving-mode.pt4{:href => "#"} Driving
+    - if @selected_trailhead
+      %li
+        %a#rideshare-mode.rideshare{:href => "#"} Rideshare
+/ e: plan type
+#starting-point-form
+  %label#starting-point-label Starting Point
+  - starting_address = params[:starting_location]
+  %input#start-from-address.text.address{:type => "text", :placeholder => "start typing your address", :value=>"#{starting_address}"}/
+  %br
+    #starting-point-latlng
+%p
+  %label When
+  %select#trip_dep_arr.select
+    %option{:value => "dep"} Depart
+    %option{:value => "arr"} Arrive
+
+  %input#trip_date.text.date{:name => "trip_date", :type => "text", :value => ""}
+  &nbsp;
+  %input#trip_hour{:name => "trip_hour", :onkeyup => "numbersOnly(this,2);lessThan(this,12);", :type => "text", :value => "00"}
+    \:
+    %input#trip_minutes{:name => "trip_minutes", :onkeyup => "numbersOnly(this,2);lessThan(this,59);", :type => "text", :value => "00"}
+      %select#trip_ampm{:name => "trip_ampm", :style => "width:50px"}
+        %option#am_option{:value => "am"} AM
+        %option#pm_option{:value => "pm"} PM
+%p
+  %label Transit Site
+  %select#transit-router.select
+    %option{:value => "google"} Google
+    %option{:value => "511"} 511.org
+  %select#zimride-router.select{:style => "display:none;width:100px;"}
+    %option{:value => "Zimride"} Zimride
+
+  %br/
+%p{:style => "font-size:12px;font-weight:bold"} Results open in a new page.
+%ul.numbers
+  %li
+    %strong Driving
+    %em
+      %span#driving-miles -
+      miles
+  %li
+    %strong Gas Saved
+    %em
+      %span#driving-gas -
+      gal @ 21 mpg
+  %li
+    %strong Money Saved
+    %em
+      $
+      %span#driving-money -.-
+      @ $4/gal
+#carbon-cost
+  Carbon savings :
+  %span#driving-carbon -
+  pounds
+%p
+  %input#get-directions-button.get-directions.green-link-button{:type => "submit", :value => "Directions There"}/
+  %input#return-trip-button.plan-return.green-link-button{:type => "submit", :value => "Directions Back"}/

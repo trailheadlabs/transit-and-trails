@@ -1,3 +1,8 @@
+/ - content_for :head do
+/   = javascript_include_tag "legacy/common"
+/   = javascript_include_tag "legacy/date"
+/   = javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyCcUhpQftpOwXVSLJqHrvwYCqnhTy3bchE&sensor=false&libraries=places"
+
 - content_for :page_title do
   = params[:title] || "Trip Information"
 
@@ -124,7 +129,10 @@
               - else
                 #{feature.name}
 
+  / = javascript_include_tag "embed_plan"
+
   :javascript
     $(function(){
       $('a.trailhead').attr('target','_blank');
+      // TNT.plan.initializeTrip(#{@trip.id});
     });

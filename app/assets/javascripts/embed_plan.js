@@ -4,7 +4,7 @@ $(function(){
   });
 
   $('#trailhead-select').change(function(){
-    setEndLatLng($(this).val());
+    TNT.plan.setEndLatLng($(this).val());
   });
 
   // setup event handlers
@@ -80,57 +80,8 @@ $(function(){
 
 });
 
-// Initialize google maps and the rounded corners
-function initialize() {
-    TNT.plan.init();
-    TNT.plan.initTripDate();
-}
 
-function initializeTrailheadList() {
-  initialize();
-  TNT.plan.mode = 'trailhead';
-  setEndLatLng($('#trailhead-select').val());
-}
-
-function setEndLatLng(latlng){
-  var lat = parseFloat(latlng.split(",")[0]);
-  var lng = parseFloat(latlng.split(",")[1]);
-  TNT.plan.trailhead_latlng = new google.maps.LatLng(lat,lng);
-  TNT.plan.end_latlng = TNT.plan.trailhead_latlng;
-}
-
-function initializeDefault(){
-  initialize();
-}
-
-function initializePoint(latitude,longitude){
-  initialize();
-  TNT.plan.google_router = true;
-  TNT.plan.fiveoneone_router = true;
-  TNT.plan.mode = 'point'
-  TNT.plan.point_latlng = new google.maps.LatLng(latitude,longitude);
-
-  TNT.plan.end_latlng = new google.maps.LatLng(latitude,longitude);
-}
-
-function initializeTrailhead(id){
-  initialize();
-  TNT.plan.loadTrailheadIntoPlan(id);
-  TNT.plan.mode = 'trailhead';
-}
-
-function initializeCampground(id){
-  initialize();
-  TNT.plan.loadCampgroundIntoPlan(id);
-  TNT.plan.mode = 'trailhead';
-}
-
-function initializeTrip(id){
-  initialize();
-  TNT.plan.loadTripIntoPlan(id);
-}
-
-var TNT = {};
+var TNT = TNT || {};
 
 TNT.plan = {
   mode: 'trip',
@@ -160,6 +111,54 @@ TNT.plan = {
   trailhead: null,
   campground: null,
   trip: null,
+
+  // Initialize google maps and the rounded corners
+  initialize: function() {
+      this.init();
+      this.initTripDate();
+  },
+
+  initializeTrailheadList: function() {
+    this.initialize();
+    this.mode = 'trailhead';
+    this.setEndLatLng($('#trailhead-select').val());
+  },
+
+  setEndLatLng: function(latlng){
+    var lat = parseFloat(latlng.split(",")[0]);
+    var lng = parseFloat(latlng.split(",")[1]);
+    this.trailhead_latlng = new google.maps.LatLng(lat,lng);
+    this.end_latlng = this.trailhead_latlng;
+  },
+
+
+  initializePoint: function(latitude,longitude){
+    this.initialize();
+    this.google_router = true;
+    this.fiveoneone_router = true;
+    this.mode = 'point'
+    this.point_latlng = new google.maps.LatLng(latitude,longitude);
+
+    this.end_latlng = new google.maps.LatLng(latitude,longitude);
+  },
+
+  initializeTrailhead: function(id){
+    this.initialize();
+    this.loadTrailheadIntoPlan(id);
+    this.mode = 'trailhead';
+  },
+
+  initializeCampground: function(id){
+    this.initialize();
+    this.loadCampgroundIntoPlan(id);
+    this.mode = 'trailhead';
+  },
+
+  initializeTrip: function(id){
+    this.initialize();
+    this.loadTripIntoPlan(id);
+  },
+
 
   init: function(){
     this.directionsService = new google.maps.DirectionsService();
