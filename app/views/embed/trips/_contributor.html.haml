@@ -4,8 +4,8 @@
     #organization
       .cell
         .content
-          - if object.user.user_profile.website_address
-            %a{:href => "http://#{object.user.user_profile.website_address}", :target => "_blank"}
+          - if !object.user.user_profile.external_url.blank?
+            = link_to object.user.user_profile.external_url, :target => :blank do
               - if object.user.user_profile.organization_avatar.url(:thumbnail)
                 %img.img-polaroid#organization-image{:src => "#{object.user.user_profile.organization_avatar.url(:thumbnail)}"}
               #{object.user.user_profile.organization_name}
@@ -17,8 +17,8 @@
     #organization
       .cell
         .content
-          - if object.user.user_profile.website_address
-            %a{:href => "http://#{object.user.user_profile.website_address}", :target => "_blank"}
+          - if !object.user.user_profile.external_url.blank?
+            = link_to object.user.user_profile.external_url, :target => :blank do
               - if object.user.user_profile.avatar.url(:thumbnail)
                 %img.img-polaroid#organization-image{:src => "#{object.user.user_profile.avatar_url(:thumbnail)}"}
               #{object.user.username}

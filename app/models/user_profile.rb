@@ -18,6 +18,21 @@ class UserProfile < ActiveRecord::Base
     self.api_secret = Digest::SHA256.hexdigest(SecureRandom::random_bytes)
   end
 
+  def external_url
+    _external_url = ""
+    if !website_address.blank?
+      _external_url = website_address
+    elsif !organization_url.blank?
+      _external_url organization_url
+    elsif !url.blank?
+      _external_url = url
+    end
+    unless _external_url.blank? || (_external_url.starts_with? "http")
+      _external_url = "http://" + _external_url
+    end
+    return _external_url
+  end
+
   def name
     if(!firstname.blank? && !lastname.blank?)
       "#{firstname} #{lastname}"
