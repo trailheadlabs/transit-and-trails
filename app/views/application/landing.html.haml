@@ -34,7 +34,7 @@
           .author
             = user_label(trip.user)
           .description
-            = truncate(strip_tags(trip.description),:length=>150)
+            != truncate_html(strip_tags(trip.description),:length=>150)
           .attributes
             - trip.trip_features.where(category_id:Category.find_by_name('Trip Type')).each do |feature|
               %span.label.label-feature
