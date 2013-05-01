@@ -28,7 +28,7 @@ class FindController < ApplicationController
     @filter_names = []
     if(params[:feature_ids])
       ids = params[:feature_ids]
-      @trailheads = @trailheads.find(:all,:include=>:trailhead_features,:conditions=>['trailhead_features.id IN (?)',ids])
+      @trailheads = @trailheads.joins(:trailhead_features).where(:trailhead_features => {:id => ids}).group('trailheads.id').having(['count(trailheads.id) = ?',ids.length])
       @filter_names += TrailheadFeature.find(params[:feature_ids]).collect(&:name)
     end
 
@@ -76,7 +76,7 @@ class FindController < ApplicationController
     @filter_names = []
     if(params[:feature_ids])
       ids = params[:feature_ids]
-      @campgrounds = @campgrounds.find(:all,:include=>:campground_features,:conditions=>['campground_features.id IN (?)',ids])
+      @campgrounds = @campgrounds.joins(:campground_features).where(:campground_features => {:id => ids}).group('campgrounds.id').having(['count(campgrounds.id) = ?',ids.length])
       @filter_names += CampgroundFeature.find(params[:feature_ids]).collect(&:name)
     end
 
@@ -137,7 +137,7 @@ class FindController < ApplicationController
 
     if(params[:feature_ids])
       ids = params[:feature_ids]
-      @trips = @trips.find(:all,:include=>:trip_features,:conditions=>['trip_features.id IN (?)',ids])
+      @trips = @trips.joins(:trip_features).where(:trip_features => {:id => ids}).group('trips.id').having(['count(trips.id) = ?',ids.length])
       @filter_names += TripFeature.find(params[:feature_ids]).collect(&:name)
     end
 
