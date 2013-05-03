@@ -31,6 +31,92 @@ $.fn.serializeObject = function()
     return o;
 };
 
+$(function(){
+  $("#filters-form").submit(function(event){
+    event.preventDefault();
+    Find.submitFilters();
+    return false;
+  });
+  $('#scrolltop').click(function(){
+    $("html, body").animate({ scrollTop: 0 },300);
+    return false;
+  });
+
+  $('#map_size_toggle').click(function(){
+    Find.toggleMapSize();
+  });
+
+  Find.init();
+  $(".filter-checkbox").change(Find.submitFilters);
+  $("#redo_search_in_map").change(Find.redoChanged);
+  $('.map, .mapfilters').fadeIn(600)
+
+});
+
+Find.init = function(){
+  var mapOptions = {
+    center: new google.maps.LatLng(starting_lat,starting_lng),
+    zoom: starting_zoom,
+    mapTypeId: google.maps.MapTypeId.TERRAIN,
+    mapTypeControl: true,
+    mapTypeControlOptions: {
+      mapTypeIds: [google.maps.MapTypeId.TERRAIN,google.maps.MapTypeId.SATELLITE,google.maps.MapTypeId.ROADMAP,'OSM'],
+      position: google.maps.ControlPosition.TOP_RIGHT,
+      style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+    },
+    zoomControl: true,
+    zoomControlOptions: {
+      position: google.maps.ControlPosition.TOP_RIGHT,
+      style: google.maps.ZoomControlStyle.SMALL
+    },
+    panControl: false
+  };
+  Find.map = new google.maps.Map(document.getElementById("find_map"),
+            mapOptions);
+
+  Find.overlay = new google.maps.OverlayView();
+  Find.overlay.draw = function() {};
+  Find.overlay.setMap(Find.map);
+
+  Find.geocoder = new google.maps.Geocoder();
+
+  //Define OSM map type pointing at the OpenStreetMap tile server
+  Find.map.mapTypes.set("OSM", new google.maps.ImageMapType({
+      getTileUrl: function(coord, zoom) {
+          return "http://tile.openstreetmap.org/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
+      },
+      tileSize: new google.maps.Size(256, 256),
+      name: "OSM",
+      maxZoom: 18
+  }));
+
+  var autocomplete = new google.maps.places.Autocomplete($('#find-location')[0]);
+  autocomplete.bindTo('bounds', Find.map);
+
+  google.maps.event.addListener(autocomplete, 'place_changed', function() {
+    var place = autocomplete.getPlace();
+    if (!place.geometry) {
+      // Inform the user that a place was not found and return.
+      return;
+    }
+
+    // If the place has a geometry, then present it on a map.
+    if (place.geometry.viewport) {
+      // Use the viewport if it is provided.
+      Find.map.fitBounds(place.geometry.viewport);
+    } else {
+      // Otherwise use the location and set a chosen zoom level.
+      Find.map.setCenter(place.geometry.location);
+      Find.map.setZoom(20);
+    }
+    Find.currentSearchBounds = Find.map.getBounds();
+    Find.currentSearchCenter = Find.map.getCenter();
+  });
+  google.maps.event.addListener(Find.map, 'idle', Find.mapIdle);
+  Find.currentSearchBounds = Find.map.getBounds();
+  Find.currentSearchCenter = Find.map.getCenter();
+}
+
 Find.clearFindMapMarkers = function(){
   for(i in Find.mapMarkers){
     Find.mapMarkers[i].setMap(null);
@@ -54,6 +140,9 @@ Find.codeAddress = function(address) {
       $("#find-location").val(Find.currentNear);
       Find.map.setCenter(results[0].geometry.location);
       Find.map.fitBounds(results[0].geometry.viewport);
+      Find.currentSearchBounds = Find.map.getBounds();
+      Find.currentSearchCenter = Find.map.getCenter();
+
     } else {
       $("#find-location").val(Find.currentNear);
       alert("Could not find location.");
@@ -219,6 +308,8 @@ Find.mapIdle = function(){
     Find.idleCenterZoom = Find.map.getZoom();
 
     if(Find.forceShowItems || $('#redo_search_in_map').is(':checked')){
+      Find.currentSearchBounds = map.getBounds();
+      Find.currentSearchCenter = map.getCenter();
       Find.showItems();
       Find.forceShowItems = false;
     }
@@ -244,18 +335,30 @@ Find.submitFilters = function(){
   if( newNear != "" && newNear != Find.currentNear){
     Find.codeAddress($("#find-location").val());
     Find.forceShowItems = true;
-  } else {
-    Find.showItems();
   }
+  Find.showItems();
+
   return false;
+}
+
+Find.redoChanged = function(){
+  if($('#redo_search_in_map').is(':checked')) {
+    Find.submitFilters();
+  }
 }
 
 Find.loadItems = function(find_path){
   $(".notice-list").fadeOut();
   $('#progress').slideDown();
   Find.clearFindMapMarkers();
-  var bounds = Find.map.getBounds();
-  var center = Find.map.getCenter();
+  Find.currentSearchBounds = Find.currentSearchBounds || Find.map.getBounds();
+  Find.currentSearchCenter = Find.currentSearchCenter || Find.map.getBounds();
+  if($('#redo_search_in_map').is(':checked')) {
+    Find.currentSearchBounds = Find.map.getBounds();
+    Find.currentSearchCenter = Find.map.getBounds();
+  }
+  var bounds = Find.currentSearchBounds;
+  var center = Find.currentSearchCenter;
   var params = $('#filters-form').serializeObject();
   params['sw_latitude'] = bounds.getSouthWest().lat();
   params['sw_longitude'] = bounds.getSouthWest().lng();
@@ -291,88 +394,3 @@ Find.showCampgrounds = function(){
   Find.loadItems('/find/campgrounds_within_bounds');
 }
 
-$(function(){
-  $("#filters-form").submit(function(event){
-    event.preventDefault();
-    Find.submitFilters();
-    return false;
-  });
-  $('#scrolltop').click(function(){
-    $("html, body").animate({ scrollTop: 0 },300);
-    return false;
-  });
-
-  $('#map_size_toggle').click(function(){
-    Find.toggleMapSize();
-  });
-
-  // $('.nav-what').button();
-  // $('#trip-filter-button').button('toggle');
-  // $('.nav-mode').button();
-  // $('#map-mode-button').button('toggle');
-
-  var mapOptions = {
-    center: new google.maps.LatLng(starting_lat,starting_lng),
-    zoom: starting_zoom,
-    mapTypeId: google.maps.MapTypeId.TERRAIN,
-    mapTypeControl: true,
-    mapTypeControlOptions: {
-      mapTypeIds: [google.maps.MapTypeId.TERRAIN,google.maps.MapTypeId.SATELLITE,google.maps.MapTypeId.ROADMAP,'OSM'],
-      position: google.maps.ControlPosition.TOP_RIGHT,
-      style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
-    },
-    zoomControl: true,
-    zoomControlOptions: {
-      position: google.maps.ControlPosition.TOP_RIGHT,
-      style: google.maps.ZoomControlStyle.SMALL
-    },
-    panControl: false
-  };
-  Find.map = new google.maps.Map(document.getElementById("find_map"),
-            mapOptions);
-
-  Find.overlay = new google.maps.OverlayView();
-  Find.overlay.draw = function() {};
-  Find.overlay.setMap(Find.map);
-
-  Find.geocoder = new google.maps.Geocoder();
-
-  //Define OSM map type pointing at the OpenStreetMap tile server
-  Find.map.mapTypes.set("OSM", new google.maps.ImageMapType({
-      getTileUrl: function(coord, zoom) {
-          return "http://tile.openstreetmap.org/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
-      },
-      tileSize: new google.maps.Size(256, 256),
-      name: "OSM",
-      maxZoom: 18
-  }));
-
-  var autocomplete = new google.maps.places.Autocomplete($('#find-location')[0]);
-  autocomplete.bindTo('bounds', Find.map);
-
-  google.maps.event.addListener(autocomplete, 'place_changed', function() {
-    var place = autocomplete.getPlace();
-    if (!place.geometry) {
-      // Inform the user that a place was not found and return.
-      return;
-    }
-
-    // If the place has a geometry, then present it on a map.
-    if (place.geometry.viewport) {
-      // Use the viewport if it is provided.
-      Find.map.fitBounds(place.geometry.viewport);
-    } else {
-      // Otherwise use the location and set a chosen zoom level.
-      Find.map.setCenter(place.geometry.location);
-      Find.map.setZoom(20);
-    }
-  });
-
-
-  $(".filter-checkbox").change(Find.showItems);
-  $('.map, .mapfilters').fadeIn(600)
-
-
-  google.maps.event.addListener(Find.map, 'idle', Find.mapIdle);
-
-});

@@ -23,7 +23,7 @@ class UserProfile < ActiveRecord::Base
     if !website_address.blank?
       _external_url = website_address
     elsif !organization_url.blank?
-      _external_url organization_url
+      _external_url = organization_url
     elsif !url.blank?
       _external_url = url
     end
