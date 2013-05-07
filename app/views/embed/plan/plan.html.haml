@@ -22,9 +22,13 @@
   %input#start_from_lat{:name => "start_from_lat", :type => "hidden"}
   %input#start_from_lng{:name => "start_from_lng", :type => "hidden"}
 
-  - if @selected_trailhead
+  - if @selected_trailhead || @selected_trailheads
+    - if @selected_trailheads
+      - zimride_url = @selected_trailheads[0].zimride_url
+    - else
+      - zimride_url = @selected_trailhead.zimride_url
     %input#rideshare{:type => "hidden", :value => "true"}/
-    %input#zimride_url{:type => "hidden", :value => "#{@selected_trailhead.zimride_url}"}/
+    %input#zimride_url{:type => "hidden", :value => "#{zimride_url}"}/
 
   #plan(class="#{@width_class}")
     %form#the-plan
@@ -34,7 +38,7 @@
             Going to Trailhead
           %select#trailhead-select
             - @selected_trailheads.each do |trailhead|
-              %option{:value => "#{trailhead.latitude},#{trailhead.longitude}"}
+              %option{:value => "#{trailhead.latitude},#{trailhead.longitude}", :data=>{:zimride_url=> "#{trailhead.zimride_url}", :trailhead_id => "#{trailhead.id}" } }
                 = trailhead.name
         - else
           %label#returning-from-label
@@ -68,9 +72,8 @@
             %a#walking-mode.pt3{:href => "#"} Walking
           %li
             %a#driving-mode.pt4{:href => "#"} Driving
-          - if @selected_trailhead
-            %li
-              %a#rideshare-mode.rideshare{:href => "#"} Rideshare
+          %li
+            %a#rideshare-mode.rideshare{:href => "#"} Rideshare
       / e: plan type
       #starting-point-form
         %label#starting-point-label Starting Point

@@ -5,6 +5,9 @@ $(function(){
 
   $('#trailhead-select').change(function(){
     TNT.plan.setEndLatLng($(this).val());
+    var selectedOption = $(this).find(':selected');
+    TNT.plan.trailhead = {id: selectedOption.data('trailheadId')};
+    $("#zimride_url").val(selectedOption.data('zimrideUrl'));
   });
 
   // setup event handlers
@@ -122,6 +125,9 @@ TNT.plan = {
     this.initialize();
     this.mode = 'trailhead';
     this.setEndLatLng($('#trailhead-select').val());
+    var selectedOption = $('#trailhead-select').find(':selected');
+    TNT.plan.trailhead = {id: selectedOption.data('trailheadId')};
+    $("#zimride_url").val(selectedOption.data('zimrideUrl'));
   },
 
   setEndLatLng: function(latlng){
@@ -359,13 +365,13 @@ TNT.plan = {
     var trip_date_vals = raw_trip_date.split("/");
     var trip_date_input = trip_date_vals[2] + trip_date_vals[0] + trip_date_vals[1]
 
-    var trailhead_id = this.trailhead.id;
+    var trailhead_id = (this.trailhead && this.trailhead.id) || (this.trip && this.trip.starting_trailhead_id);
     var starting_lat = this.start_lat;
     var starting_lng = this.start_lng;
     var ending_lat = this.end_lat;
     var ending_lng = this.end_lng;
 
-    var zimride_url = $('#zimride_url').val();
+    var zimride_url = $('#zimride_url').val() || '';
     var start_from_address = $("#start-from-address").val();
     var zimride_search_url= "http://www.zimride.com/search";
 
