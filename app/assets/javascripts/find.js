@@ -352,10 +352,10 @@ Find.loadItems = function(find_path){
   $('#progress').slideDown();
   Find.clearFindMapMarkers();
   Find.currentSearchBounds = Find.currentSearchBounds || Find.map.getBounds();
-  Find.currentSearchCenter = Find.currentSearchCenter || Find.map.getBounds();
+  Find.currentSearchCenter = Find.currentSearchCenter || Find.map.getCenter();
   if($('#redo_search_in_map').is(':checked')) {
     Find.currentSearchBounds = Find.map.getBounds();
-    Find.currentSearchCenter = Find.map.getBounds();
+    Find.currentSearchCenter = Find.map.getCenter();
   }
   var bounds = Find.currentSearchBounds;
   var center = Find.currentSearchCenter;
