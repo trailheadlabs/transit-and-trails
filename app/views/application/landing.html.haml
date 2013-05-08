@@ -12,8 +12,9 @@
         #play-how-it-works
           = link_to "#", :id=>"how-it-works-link", :class => "btn-landing" do
             See How it Works &raquo;
-  - if @featured_trips
-    .container
+
+  .container
+    - if @featured_trips
       .row.heading
         .span12
           %hr
