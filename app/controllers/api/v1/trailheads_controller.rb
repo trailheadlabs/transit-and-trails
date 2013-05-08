@@ -23,7 +23,6 @@ module Api
           distance = params[:distance] || 100
           @trailheads = @trailheads.near([params[:latitude],params[:longitude]],distance)
         end
-
         @trailheads = apply_limit_and_offset(params,@trailheads.order('id'))
 
       end

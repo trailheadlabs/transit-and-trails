@@ -121,7 +121,9 @@ class ApplicationController < ActionController::Base
   end
 
   def landing
-    @featured_trips = TripFeature.find_by_name('Featured').trips.limit(3)
+    featured = TripFeature.find_by_name('Featured')
+    @featured_trips = (featured && featured.trips.limit(3)) || Trip.order('id desc').limit(3)
+
     render :layout => "landing"
   end
 

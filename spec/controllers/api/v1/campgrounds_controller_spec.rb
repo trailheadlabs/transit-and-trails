@@ -75,7 +75,7 @@ describe Api::V1::CampgroundsController do
       3.times do
         FactoryGirl.create(:photo,:photoable_type=>'Campground',:photoable_id=>campground.id)
       end
-      Photo.any_instance.should_receive(:flickr_url).any_number_of_times.and_return('http://flickr.com')
+      Photo.any_instance.stub(:flickr_url).and_return('http://flickr.com')
       get :photos, {:id=>campground.id}
       response.should be_success
       object = JSON.parse(response.body)

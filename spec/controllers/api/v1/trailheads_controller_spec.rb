@@ -3,14 +3,14 @@ require 'spec_helper'
 describe Api::V1::TrailheadsController do
   render_views
   # let(:params)  { { :key=>FactoryGirl.create(:user_profile).api_key } }
-  let(:params) { { :key => 'test' } }
+  let(:params) { { :key => FactoryGirl.create(:user_profile).api_key } }
 
-  {:key=>FactoryGirl.create(:user_profile).api_key}
   describe "GET 'index'" do
     it "returns a list of trailheads" do
       10.times do
         FactoryGirl.create(:trailhead)
       end
+      Trailhead.all.count.should eq 10
       get :index, params
       response.should be_success
       list = JSON.parse(response.body)
@@ -92,7 +92,7 @@ describe Api::V1::TrailheadsController do
       3.times do
         FactoryGirl.create(:photo,:photoable_type=>'Trailhead',:photoable_id=>trailhead.id)
       end
-      Photo.any_instance.should_receive(:flickr_url).any_number_of_times.and_return('http://flickr.com')
+      Photo.any_instance.stub(:flickr_url).and_return('http://flickr.com')
       get :photos, params.merge(:id=>trailhead.id)
       response.should be_success
       object = JSON.parse(response.body)

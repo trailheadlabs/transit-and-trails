@@ -1,6 +1,10 @@
 require "spec_helper"
 
 describe "home page" do
+  before :each do
+    FactoryGirl.create(:trip_feature, :name => "Featured")
+  end
+
   it "displays the home page" do
     visit "/"
     page.should have_content("Transit & Trails")

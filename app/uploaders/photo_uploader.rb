@@ -5,8 +5,6 @@ class PhotoUploader < CarrierWave::Uploader::Base
 
   def upload_to_flickr(file)
     unless model.flickr_id
-      Rails.logger.info "Uploading to flickr"
-      Rails.logger.info model.to_json
       title = eval "#{model.photoable_type}.find(#{model.photoable_id}).name"
       description = "Want to go here? Get more info at <a href=\"http://transitandtrails.org/#{model.photoable_type.pluralize.downcase}/#{model.photoable_id}\">Transit & Trails</a>"
       result = flickr.upload_photo file.path, :title => title, :description => description
@@ -25,7 +23,9 @@ class PhotoUploader < CarrierWave::Uploader::Base
 
   # Choose what kind of storage to use for this uploader:
   # storage :file
-  storage :fog
+  unless Rails.env.test?
+    storage :fog
+  end
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
