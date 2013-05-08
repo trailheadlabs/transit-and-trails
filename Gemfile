@@ -42,6 +42,7 @@ gem "rails_admin_map_field", :git => "git://github.com/jmoe/rails_admin_map_fiel
 gem 'rails3-jquery-autocomplete'
 gem 'kaminari'
 gem 'rack-iframe'
+gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
 
 # Gems used only for assets and not required
 # in production environments by default.
