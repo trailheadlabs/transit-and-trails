@@ -24,6 +24,14 @@ class FindController < ApplicationController
     session[:starting_zoom] = zoom = Float(params[:zoom])
     offset = 0 || params[:offset]
     approved = true || params[:approved]
+    if(params[:name_query].blank?)
+      @trailheads = Trailhead.within_bounds(sw_latitude,sw_longitude,ne_latitude,ne_longitude)
+    else
+      q = "%#{params[:name_query]}%"
+      @trailheads = Trailhead.where("name ILIKE ?",q)
+      @filter_names += ["Name: #{params[:name_query]}"]
+    end
+
     @trailheads = Trailhead.within_bounds(sw_latitude,sw_longitude,ne_latitude,ne_longitude)
     @filter_names = []
     if(params[:feature_ids])
@@ -46,11 +54,6 @@ class FindController < ApplicationController
       @filter_names += ["User: #{params[:user_query]}"]
     end
 
-    unless(params[:name_query].blank?)
-      q = "%#{params[:name_query]}%"
-      @trailheads = @trailheads.where("name ILIKE ?",q)
-      @filter_names += ["Name: #{params[:name_query]}"]
-    end
 
     @trailheads = Trailhead.where(approved: approved, id: @trailheads).near([center_latitude,center_longitude])
     @trailheads = @trailheads.page params[:page]
@@ -72,7 +75,15 @@ class FindController < ApplicationController
     limit = 1000 || params[:limit]
     offset = 0 || params[:offset]
     approved = true || params[:approved]
-    @campgrounds = Campground.within_bounds(sw_latitude,sw_longitude,ne_latitude,ne_longitude)
+    if(params[:name_query].blank?)
+      @campgrounds = Campground.within_bounds(sw_latitude,sw_longitude,ne_latitude,ne_longitude)
+    else
+      q = "%#{params[:name_query]}%"
+      @campgrounds = Campgrounds.where("name ILIKE ?",q)
+      @filter_names += ["Name: #{params[:name_query]}"]
+    end
+
+
     @filter_names = []
     if(params[:feature_ids])
       ids = params[:feature_ids]
@@ -96,12 +107,6 @@ class FindController < ApplicationController
       @filter_names += ["User: #{params[:user_query]}"]
     end
 
-    unless(params[:name_query].blank?)
-      q = "%#{params[:name_query]}%"
-      @campgrounds = @campgrounds.where("name ILIKE ?",q)
-      @filter_names += ["Name: #{params[:name_query]}"]
-    end
-
     @campgrounds = Campground.where(approved: approved, id: @campgrounds).limit(limit).offset(offset).near([center_latitude,center_longitude])
     @campgrounds = @campgrounds.page params[:page]
     respond_to do |format|
@@ -122,7 +127,15 @@ class FindController < ApplicationController
     session[:starting_zoom] = zoom = Float(params[:zoom])
     approved = true || params[:approved]
     @filter_names = []
-    @trips = Trip.within_bounds(sw_latitude,sw_longitude,ne_latitude,ne_longitude)
+    if(params[:name_query].blank?)
+      @trips = Trip.within_bounds(sw_latitude,sw_longitude,ne_latitude,ne_longitude)
+    else
+      q = "%#{params[:name_query]}%"
+      @trips = Trip.where("name ILIKE ?",q)
+      @filter_names += ["Name: #{params[:name_query]}"]
+    end
+
+
     @near = params[:near].blank? ? "San Francisco, CA" : "#{params[:near]}"
 
     if(params[:duration_ids])
@@ -151,12 +164,6 @@ class FindController < ApplicationController
       @users = User.where("username ILIKE ?",q)
       @trips = @trips.where(user_id: @users)
       @filter_names += ["User: #{params[:user_query]}"]
-    end
-
-    unless(params[:name_query].blank?)
-      q = "%#{params[:name_query]}%"
-      @trips = @trips.where("name ILIKE ?",q)
-      @filter_names += ["Name: #{params[:name_query]}"]
     end
 
     @trips = Trip.where(approved: approved, id: @trips).near([center_latitude,center_longitude])

@@ -308,8 +308,8 @@ Find.mapIdle = function(){
     Find.idleCenterZoom = Find.map.getZoom();
 
     if(Find.forceShowItems || $('#redo_search_in_map').is(':checked')){
-      Find.currentSearchBounds = map.getBounds();
-      Find.currentSearchCenter = map.getCenter();
+      Find.currentSearchBounds = Find.map.getBounds();
+      Find.currentSearchCenter = Find.map.getCenter();
       Find.showItems();
       Find.forceShowItems = false;
     }
