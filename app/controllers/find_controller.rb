@@ -24,6 +24,8 @@ class FindController < ApplicationController
     session[:starting_zoom] = zoom = Float(params[:zoom])
     offset = 0 || params[:offset]
     approved = true || params[:approved]
+    @filter_names = []
+
     if(params[:name_query].blank?)
       @trailheads = Trailhead.within_bounds(sw_latitude,sw_longitude,ne_latitude,ne_longitude)
     else
@@ -32,8 +34,6 @@ class FindController < ApplicationController
       @filter_names += ["Name: #{params[:name_query]}"]
     end
 
-    @trailheads = Trailhead.within_bounds(sw_latitude,sw_longitude,ne_latitude,ne_longitude)
-    @filter_names = []
     if(params[:feature_ids])
       ids = params[:feature_ids]
       @trailheads = @trailheads.joins(:trailhead_features).where(:trailhead_features => {:id => ids}).group('trailheads.id').having(['count(trailheads.id) = ?',ids.length])
@@ -75,6 +75,7 @@ class FindController < ApplicationController
     limit = 1000 || params[:limit]
     offset = 0 || params[:offset]
     approved = true || params[:approved]
+    @filter_names = []
     if(params[:name_query].blank?)
       @campgrounds = Campground.within_bounds(sw_latitude,sw_longitude,ne_latitude,ne_longitude)
     else
@@ -84,7 +85,7 @@ class FindController < ApplicationController
     end
 
 
-    @filter_names = []
+
     if(params[:feature_ids])
       ids = params[:feature_ids]
       @campgrounds = @campgrounds.joins(:campground_features).where(:campground_features => {:id => ids}).group('campgrounds.id').having(['count(campgrounds.id) = ?',ids.length])

@@ -15,6 +15,7 @@
         = trailhead.name
     %p.park-name
       = trailhead.default_park_name
+    = render :partial => "/shared/partials/agency", :locals => { :object => trailhead }
     = render :partial => "object_user_label", :locals => { :object => trailhead }
 
     %p.description
