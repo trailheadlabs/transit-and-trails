@@ -1009,16 +1009,16 @@ TNT.plan = {
   },
 
   buildGoogleDrivingURL: function(trip_date, trip_arr_dep, trip_hour, trip_minute, trip_ampm, start_lat, start_lng, end_lat, end_lng, originName, destinationName) {
-      var url = "http://www.google.com/maps?f=d&source=s_d&saddr=" + escape(originName) + "%20@" + start_lat
-              + "+,+" + start_lng + "&daddr=" + escape(destinationName) + "%20@" + end_lat + "+,+" + end_lng
+      var url = "http://www.google.com/maps?f=d&source=s_d&saddr=" + start_lat
+              + "+,+" + start_lng + "&daddr=" + end_lat + "+,+" + end_lng
               + "&hl=en&mra=ls&ttype=" + trip_arr_dep + "&noexp=0&noal=0&sort="
               + "&time=" + trip_hour + ":" + trip_minute + trip_ampm + "&date=" + escape(trip_date);
       return url;
   },
 
   buildGoogleTransitURLBase: function(trip_date, trip_arr_dep, trip_hour, trip_minute, trip_ampm, start_lat, start_lng, end_lat, end_lng, originName, destinationName, mode) {
-      var url = "http://www.google.com/maps?f=d&source=s_d&saddr=" + escape(originName) + "%20@" + start_lat
-              + "+,+" + start_lng + "&daddr=" + escape(destinationName) + "%20@" + end_lat + "+,+" + end_lng
+      var url = "http://www.google.com/maps?f=d&source=s_d&saddr=" + start_lat
+              + "+,+" + start_lng + "&daddr=" + end_lat + "+,+" + end_lng
               + "&hl=en&mra=ls" + "&dirflg=" + mode + "&ttype=" + trip_arr_dep + "&noexp=0&noal=0&sort="
               + "&time=" + trip_hour + ":" + trip_minute + trip_ampm + "&date=" + escape(trip_date);
       return url;
