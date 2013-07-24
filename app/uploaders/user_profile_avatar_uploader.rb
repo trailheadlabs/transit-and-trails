@@ -21,7 +21,7 @@ class UserProfileAvatarUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    asset_path([version_name, "default_user_avatar.png"].compact.join('_'))
+    "http://www.transitandtrails.org" + asset_path([version_name, "default_user_avatar.png"].compact.join('_'))
   end
 
   version :thumbnail do
