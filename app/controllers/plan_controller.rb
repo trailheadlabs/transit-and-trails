@@ -6,8 +6,8 @@ class PlanController < ApplicationController
   end
 
   def trip
-    if true
-    # if request.subdomain == 'embed'
+    # if true
+    if request.subdomain == 'embed'
       redirect_to "/embed" + request.path
     else
       @trip = Trip.find(params[:trip_id])
