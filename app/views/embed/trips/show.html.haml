@@ -129,6 +129,12 @@
               - else
                 #{feature.name}
 
+    - if request.referer
+      
+      .actions.embed-section
+        %a.green-button.padded-sides{:href => "#{request.referer}"}
+          Back
+
   / = javascript_include_tag "embed_plan"
 
   :javascript
