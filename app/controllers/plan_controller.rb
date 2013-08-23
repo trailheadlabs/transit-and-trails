@@ -6,8 +6,13 @@ class PlanController < ApplicationController
   end
 
   def trip
-    @trip = Trip.find(params[:trip_id])
-    render "plan"
+    if true
+    # if request.subdomain == 'embed'
+      redirect_to "/embed" + request.path
+    else
+      @trip = Trip.find(params[:trip_id])
+      render "plan"
+    end
   end
 
   def campground

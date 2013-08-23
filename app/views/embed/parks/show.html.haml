@@ -15,6 +15,11 @@
   = params[:title] || "Park Information"
 
 - content_for :page_content do
+
+  #embed-plan-modal
+    .modal-content
+      %iframe#trip-planner(src="/embed/plan/trip/222")
+      = link_to "Close"
   #plan.alt
 
     #park
@@ -111,6 +116,8 @@
       $('#find-map').width($('#plan').outerWidth()-$('#park').outerWidth());
       $('#find-map').height($('body').outerHeight()-$('.embed-header').outerHeight()-4);
       $('#trail-list').height($('body').outerHeight()-$('#park-header').outerHeight()-$('.embed-header').outerHeight());      
+      $('#embed-plan-modal').width($('body').outerWidth()-20);
+      $('#embed-plan-modal').height($('body').outerHeight()-20);
       }
       $(window).resize(function(){
       autoFit();

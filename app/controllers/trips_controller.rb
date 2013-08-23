@@ -28,6 +28,11 @@ class TripsController < ApplicationController
   # GET /trips/1
   # GET /trips/1.json
   def show
+    if request.subdomain == 'embed'
+      redirect_to "/embed" + request.path
+      return
+    end
+
     @trip = Trip.find(params[:id])
 
     respond_to do |format|
