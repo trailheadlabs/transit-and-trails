@@ -76,6 +76,7 @@ Transitandtrails::Application.routes.draw do
       end
       resources :sessions, :only => [:new]
       resources :registrations, :only => [:new,:create]
+      resources :parks, :only => [:show]
       resources :trips, :only => [:new,:create,:update,:edit,:show] do
         member do
           get 'edit_details'

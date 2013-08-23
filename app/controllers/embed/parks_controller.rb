@@ -8,6 +8,8 @@ module Embed
         if @parks.empty?
            @parks = Park.where(:id=>params[:slug])
         end
+      elsif params[:id]
+          @parks = Park.where(:id=>params[:id])
       end
 
       @polys = []
@@ -44,13 +46,8 @@ module Embed
       @trips.uniq!
       @campgrounds.uniq!
       @park = @parks && @parks.first
-      respond_to do |format|
-        if @park
-          format.html # show.html.erb
-        else
-          not_found
-        end
-      end
+      render :layout => "embed/responsive"
+
     end
   end
 end

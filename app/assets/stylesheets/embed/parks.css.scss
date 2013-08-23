@@ -1,3 +1,10 @@
+
+#find-map{
+    min-height: inherit;
+}
+#park{
+    padding-top:0px;
+}
 // Place all the styles related to the Parks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
@@ -100,8 +107,8 @@
 
 #park #trail-list {
     position: relative;
-    width: 353px;
-    height: inherit;
+    width: 377px;
+    
     background: #fff;
     z-index: 100;
     border-right: 1px solid #b3b3b3;
@@ -111,10 +118,11 @@
     box-shadow: 0 5px 10px rgba(0, 0, 0, .3);
 }
 
-#park #trail-list ul {
+.embed #park #trail-list ul {
     position: relative;
     overflow: auto;
-    height:inherit;    
+    height:inherit;
+    margin:0px;
 }
 
 #trail-list li {

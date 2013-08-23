@@ -12,6 +12,9 @@
 	position: relative;
 }
 
+.embed #park {
+	padding-top:0px;
+}
 
 #park #trail-list{
   width:377px;

@@ -219,7 +219,7 @@ function initialize_park(id) {
             TNT.find.loadTrailheadsInline(trailheads);
         }
         $('.trail-list-progress').hide();
-        $("#trail-list").jScrollPane();
+        // $("#trail-list").jScrollPane();        
     }
 }
 
