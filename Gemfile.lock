@@ -86,6 +86,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.2)
+    dalli (2.6.4)
     database_cleaner (0.9.1)
     debug_inspector (0.0.2)
     devise (2.2.4)
@@ -330,6 +331,7 @@ DEPENDENCIES
   carrierwave
   closure-compiler
   coffee-rails
+  dalli
   database_cleaner
   devise
   factory_girl_rails

@@ -44,6 +44,7 @@ gem 'kaminari'
 gem 'rack-iframe'
 gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
 gem 'figaro'
+gem 'dalli'
 
 # Gems used only for assets and not required
 # in production environments by default.
