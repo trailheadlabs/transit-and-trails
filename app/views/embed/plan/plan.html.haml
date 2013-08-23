@@ -130,6 +130,11 @@
         %input#get-directions-button.get-directions.green-link-button{:type => "submit", :value => "Directions There"}/
         %input#return-trip-button.plan-return.green-link-button{:type => "submit", :value => "Directions Back"}/
 
+      - if request.referer
+        .actions.embed-section
+          %a.green-button.padded-sides{:href => "#{request.referer}"}
+            &laquo; Back
+
   = javascript_include_tag "embed_plan"
 
   - if @agency_id
