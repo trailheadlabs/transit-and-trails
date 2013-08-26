@@ -201,7 +201,7 @@ function initialize_park(id) {
     if (GBrowserIsCompatible()) {
         TNT.find.init();
         TNT.find.park_page = true;
-        var latlngbounds = new GLatLngBounds();
+        latlngbounds = new GLatLngBounds();
         var count = gpolys.length;
         $(gpolys).each(function(index, item) {
             var parkoverlay = new GPolygon(item, "#ff0000", 1, 0, "#red", 0.3);
