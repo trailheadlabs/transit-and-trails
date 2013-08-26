@@ -205,3 +205,54 @@
     color: #b2b2b2;
 }
 
+  .trailhead-info-window{
+    padding:8px;
+    width: 300px;
+  }
+
+  .trailhead-info-window-title{
+    padding: 4px 0px;
+    font-size: 15px;
+    text-transform:uppercase;
+  }
+
+  .trailhead-info-window-park{
+    font-style:italic;
+    color:#1b80ae;
+    padding: 0px 0px 4px 0px;
+    margin-bottom:4px;
+  }
+
+  .trailhead-info-window-closest-transit{
+    font-weight:bold;
+  }
+
+  .trailhead-info-window b {
+    font-weight:bolder;
+  }
+
+  .trailhead-info-window p {
+    padding-bottom: 6px;
+  }
+
+
+  .trailhead-info-window td {
+    padding-bottom: 8px;
+  }
+
+  .trailhead-info-window-buttons{
+    padding:10px;
+    display:block;
+  }
+  .trailhead-info-window-button {
+    padding:6px 10px;
+    margin-right:10px;
+    background-color:#F3F3F3;
+    font-size:16px;
+    font-weight:bold;
+    color:#1b80ae;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    border:solid 1px #ccc;
+  }
+
