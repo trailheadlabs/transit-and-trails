@@ -77,6 +77,11 @@ class TrailheadsController < ApplicationController
   # GET /trailheads/1
   # GET /trailheads/1.json
   def show
+    if request.subdomain == 'embed' && request.format == 'html'
+      redirect_to "/embed" + request.path
+      return
+    end
+    
     @trailhead = Trailhead.find(params[:id])
 
     respond_to do |format|

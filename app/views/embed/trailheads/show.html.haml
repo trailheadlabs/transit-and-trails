@@ -1,0 +1,101 @@
+/ - content_for :head do
+/   = javascript_include_tag "legacy/common"
+/   = javascript_include_tag "legacy/date"
+/   = javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyCcUhpQftpOwXVSLJqHrvwYCqnhTy3bchE&sensor=false&libraries=places"
+
+- content_for :page_title do
+  = params[:title] || "Trailhead Information"
+
+- content_for :page_content do
+
+  #description-modal.description-overlay
+    != @trailhead.description
+
+  / %script
+  /   trip_route = #{@trip.geometry_as_route || "null"};
+
+  .content
+    - if @show.include? 'header'
+      .header
+        %img.type-flag{:alt => "", :src => "/assets/legacy/trailhead.png"}/
+        .trip-name
+          = link_to @trailhead.name, @trailhead, :target => :blank
+        - if @trailhead.default_park
+          %em
+          = link_to @trailhead.default_park.name, park_path(@trailhead.default_park), :target => :blank
+
+    - if @show.include? 'contributor'
+      .contributor.embed-section
+        - unless @hide_section_labels
+          %label.feature
+            Contributed By
+
+        = render :partial => "/embed/trips/contributor", :locals => {:object=>@trailhead}
+
+    - if (@show.include? 'description') && !@trailhead.description.blank?
+      .description.embed-section
+        - unless @hide_section_labels
+          %label.feature
+            Description
+
+        - if @full_description
+          != @trailhead.description
+        - else
+          != truncate_html(@trailhead.description, :length=> 400,  :omission => " ...<p><a  href='#{trailhead_path(@trailhead)}' target='_blank'>Read more &raquo;</a></p>")
+
+    - if @show.include? 'actions'
+      .actions.embed-section
+        %a.green-button.padded-sides{:href => "/embed/plan/trailhead/#{@trailhead.id}"}
+          Plan Your Trip!
+
+    - if (@show.include? 'photos') && !@trailhead.photos.empty?
+      .photos.embed-section
+        - unless @hide_section_labels
+          %label.feature
+            Photos
+        = render :partial => "/shared/partials/photo_carousel", :locals => {:object=>@trailhead}
+
+    / - if @show.include? 'map'
+    - if false
+      / %script(src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCcUhpQftpOwXVSLJqHrvwYCqnhTy3bchE&sensor=false&libraries=drawing,geometry")
+
+      %script{:src => "/assets/legacy/pointmap.js", :type => "text/javascript"}
+
+      :javascript
+        $(function(){
+          initTrailheadDetails(#{@trailhead.id}, false);
+
+          $(window).unload(function () {
+              GUnload();
+          });
+
+        });
+
+      .route-map.embed-section
+        - unless @hide_section_labels
+          %label.feature
+            Map
+        #plan-map.trailhead-details-map
+
+    - if @show.include? 'attributes'
+      .features.embed-section
+        = render :partial => "/shared/partials/features", :locals => {:object=>@trailhead}
+
+    - if (@show.include? 'downloads') && !@trailhead.maps.empty?
+      .map-downloads.embed-section
+        - unless @hide_section_labels
+          %label.feature
+            Downloads
+        = render :partial => "/embed/trips/downloads", :locals => {:object=>@trailhead}
+
+    - if request.referer      
+      .actions.embed-section
+        %a.green-button.padded-sides{:href => "#{request.referer}"}
+          &laquo; Back
+
+  / = javascript_include_tag "embed_plan"
+
+  :javascript
+    $(function(){
+      $('a.trailhead').attr('target','_blank');      
+    });
