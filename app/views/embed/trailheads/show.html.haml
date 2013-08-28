@@ -45,9 +45,9 @@
 
     - if @show.include? 'actions'
       .summary.embed-section
-        - unless @hide_section_labels
-          %label.feature
-            Plan
+        / - unless @hide_section_labels
+        /   %label.feature
+        /     Plan
         / %a.green-button.padded-sides{:href => "/embed/plan/trip/#{@trip.id}"}
         /   Plan Your Trip!
         %iframe#plan-embed(src="/embed/plan/trailhead/#{@trailhead.id}?hide_title=true")
