@@ -319,7 +319,7 @@ TNT.find = {
 
         // Add and set map type
         this.map.addMapType(G_PHYSICAL_MAP);
-        this.map.addMapType(G_SATELLITE_3D_MAP);
+        this.map.addMapType(G_SATELLITE_MAP);
         this.map.setMapType(G_NORMAL_MAP);
         this.map.addControl(new GHierarchicalMapTypeControl());
 

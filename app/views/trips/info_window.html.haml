@@ -19,12 +19,12 @@
             Length
             %br/
           #{ @trip.length_miles.round(2) } miles
-    %tr
+    %tr.trip-info-window-start
       %td
         %b Start
         \:
         #{ @trip.starting_trailhead.name }
-    %tr
+    %tr.trip-info-window-end
       %td
         %b End
         \:
@@ -32,15 +32,13 @@
     - if @trip.description
       %tr
         %td{:width => "400"}
+          %b Description
           %p
-            %b Description
-            %p
-              != truncate_html(@trip.description, :length=> 200,  :omission => '...')
+            != truncate_html(@trip.description, :length=> 200,  :omission => '...')
 
-  %p
-    .trailhead-info-window-buttons
-      %a.trailhead-info-window-button{:href => "/trips/#{ @trip.id }"} More Info
-      %a.trailhead-info-window-button{:href => "/plan/trip/#{ @trip.id }/"} Plan a Trip Here
+  .trailhead-info-window-buttons
+    %a.trailhead-info-window-button{:href => "/trips/#{ @trip.id }"} More Info
+    %a.trailhead-info-window-button{:href => "/plan/trip/#{ @trip.id }/"} Plan a Trip Here
   - if can? :delete, @trip
     %p
       %b Actions

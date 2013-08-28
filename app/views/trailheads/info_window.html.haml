@@ -9,11 +9,11 @@
         \-
         %i #{ @point.default_park.county }
   - if @point.description
-    %p.trailhead-info-window-description
+    .trailhead-info-window-description
       != truncate_html(@point.description, :limit => 200, :omission => "...")
 
   - if @feature_names
-    %p
+    %p.trailhead-info-window-features
       %b Features
       \:
       #{ @feature_names }
@@ -24,10 +24,9 @@
             %li
               %a{:href => "/trips/#{ trip.id }"}
                 #{ trip.name }
-  %p
-    .trailhead-info-window-buttons
-      %a.trailhead-info-window-button{:href => "/trailheads/#{ @point.id }"} More Info
-      %a.trailhead-info-window-button{:href => "/plan/trailhead/#{ @point.id }"} Plan a Trip Here
+  .trailhead-info-window-buttons
+    %a.trailhead-info-window-button{:href => "/trailheads/#{ @point.id }"} More Info
+    %a.trailhead-info-window-button{:href => "/plan/trailhead/#{ @point.id }"} Plan a Trip Here
 
   - if current_user && current_user.admin?
     %p

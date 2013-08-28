@@ -32,7 +32,7 @@
           - @agencies.each do |ag|
             - unless ag.link == "no website"
               %i
-                %a{:href => "#{ ag.link }"} #{ag.name}
+                %a{:href => "#{ ag.link }", :target => "_blank"} #{ag.name}
               %br/
             - else
               %i #{ ag.name }

@@ -1,4 +1,7 @@
 
+.trailhead-info-window-buttons{
+    display:none;
+}
 #embed-plan-modal{   
     display:none; 
     background:white;
@@ -242,7 +245,11 @@
 
   .trailhead-info-window-buttons{
     padding:10px;
-    display:block;
+    display:none;
+  }
+
+  .trailhead-info-window-features {
+    display:none;
   }
   .trailhead-info-window-button {
     padding:6px 10px;
@@ -256,3 +263,6 @@
     border:solid 1px #ccc;
   }
 
+  .trip-info-window-start, .trip-info-window-end{
+    display:none;
+  }

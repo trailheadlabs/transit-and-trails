@@ -1,6 +1,10 @@
 class PlanController < ApplicationController
 
   def trailhead
+    if request.subdomain == 'embed'
+      redirect_to "/embed" + request.path
+      return
+    end
     @trailhead = Trailhead.find(params[:trailhead_id])
     render "plan"
   end
