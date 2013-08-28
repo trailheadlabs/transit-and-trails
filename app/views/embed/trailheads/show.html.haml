@@ -88,7 +88,7 @@
             Downloads
         = render :partial => "/embed/trips/downloads", :locals => {:object=>@trailhead}
 
-    - if request.referer      
+    - if request.referer =~ /\/embed\/parks/
       .actions.embed-section
         %a.green-button.padded-sides{:href => "#{request.referer}"}
           &laquo; Back
