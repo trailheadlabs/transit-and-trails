@@ -1,11 +1,17 @@
 module Embed
   class PlanController < ApplicationController
-    before_filter :width_filter
+    before_filter :width_filter, :display_params
     caches_action :non_profit_partner_trailheads, :expires_in => 60, :cache_path => Proc.new { |c| c.params }
 
     def width_filter
       if params[:width]
         @width_class = "width" + params[:width]
+      end
+    end
+
+    def display_params
+      if params[:hide_title]
+        @hide_title = params[:hide_title] == 'true'
       end
     end
 

@@ -18,13 +18,14 @@
 
   %body.legacy
     .embed
-      .embed-header
-        .title
-          = yield :page_title
-        .logo
-          BY
-          %a{:href => "http://transitandtrails.org", :target => "_blank"}
-            %img{:src => "/assets/legacy/plan/small-logo.png"}/
+      - unless @hide_title
+        .embed-header
+          .title
+            = yield :page_title
+          .logo
+            BY
+            %a{:href => "http://transitandtrails.org", :target => "_blank"}
+              %img{:src => "/assets/legacy/plan/small-logo.png"}/
 
 
       = yield :page_content

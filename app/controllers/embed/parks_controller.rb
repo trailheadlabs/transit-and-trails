@@ -1,6 +1,10 @@
 module Embed
   class ParksController < ApplicationController
     def show
+      if params[:hide_title]
+        @hide_title = params[:hide_title] == 'true'
+      end
+
       if params[:county_slug]
         @parks = Park.where(:slug=>params[:slug],:county_slug=>params[:county_slug])
       elsif params[:slug]
