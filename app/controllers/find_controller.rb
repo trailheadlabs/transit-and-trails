@@ -80,7 +80,7 @@ class FindController < ApplicationController
       @campgrounds = Campground.within_bounds(sw_latitude,sw_longitude,ne_latitude,ne_longitude)
     else
       q = "%#{params[:name_query]}%"
-      @campgrounds = Campgrounds.where("name ILIKE ?",q)
+      @campgrounds = Campground.where("name ILIKE ?",q)
       @filter_names += ["Name: #{params[:name_query]}"]
     end
 
