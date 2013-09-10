@@ -1,0 +1,140 @@
+/ - content_for :head do
+/   = javascript_include_tag "legacy/common"
+/   = javascript_include_tag "legacy/date"
+/   = javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyCcUhpQftpOwXVSLJqHrvwYCqnhTy3bchE&sensor=false&libraries=places"
+
+- content_for :page_title do
+  = params[:title] || "Campground Information"
+
+- content_for :page_content do
+
+  #description-modal.description-overlay
+    != @campground.description
+
+  / %script
+  /   trip_route = #{@trip.geometry_as_route || "null"};
+
+  .content
+    - if @show.include? 'header'
+      .header
+        %img.type-flag{:alt => "", :src => "/assets/legacy/campground.png"}/
+        .trip-name
+          = link_to @campground.name, @campground, :target => :blank
+        - if @campground.default_park
+          %em
+          = link_to @campground.default_park.name, park_path(@campground.default_park), :target => :blank
+
+    - if @show.include? 'contributor'
+      .contributor.embed-section
+        - unless @hide_section_labels
+          %label.feature
+            Contributed By
+
+        = render :partial => "/embed/trips/contributor", :locals => {:object=>@campground}
+        %br
+        = render :partial => "/shared/partials/agency", :locals => {:object=>@campground}
+
+
+    - if (@show.include? 'description') && !@campground.description.blank?
+      .description.embed-section
+        - unless @hide_section_labels
+          %label.feature
+            Description
+
+        - if @full_description
+          != @campground.description
+        - else
+          != truncate_html(@campground.description, :length=> 400,  :omission => " ...<p><a  href='#{campground_path(@campground)}' target='_blank'>Read more &raquo;</a></p>")
+
+    - if @show.include? 'actions'
+      .summary.embed-section
+        / - unless @hide_section_labels
+        /   %label.feature
+        /     Plan
+        / %a.green-button.padded-sides{:href => "/embed/plan/trip/#{@trip.id}"}
+        /   Plan Your Trip!
+        %iframe#plan-embed(src="/embed/plan/campground/#{@campground.id}?hide_title=true")
+
+
+    - if (@show.include? 'photos') && !@campground.photos.empty?
+      .photos.embed-section
+        - unless @hide_section_labels
+          %label.feature
+            Photos
+        = render :partial => "/shared/partials/photo_carousel", :locals => {:object=>@campground}
+
+    / - if @show.include? 'map'
+    - if false
+      / %script(src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCcUhpQftpOwXVSLJqHrvwYCqnhTy3bchE&sensor=false&libraries=drawing,geometry")
+
+      %script{:src => "/assets/legacy/pointmap.js", :type => "text/javascript"}
+
+      :javascript
+        $(function(){
+          initTrailheadDetails(#{@campground.id}, false);
+
+          $(window).unload(function () {
+              GUnload();
+          });
+
+        });
+
+      .route-map.embed-section
+        - unless @hide_section_labels
+          %label.feature
+            Map
+        #plan-map.trailhead-details-map
+
+    - if @show.include? 'attributes'
+      .features.embed-section
+        = render :partial => "/shared/partials/features", :locals => {:object=>@campground}
+
+    - if (@show.include? 'downloads') && !@campground.maps.empty?
+      .map-downloads.embed-section
+        - unless @hide_section_labels
+          %label.feature
+            Downloads
+        = render :partial => "/embed/trips/downloads", :locals => {:object=>@campground}
+
+    - regional_trails = @campground.campground_features.where(:category_id=>Category.where(:name=>"Regional Trail"))
+
+    - if @show.include? 'trails' && !regional_trails.empty?
+      .regional-trails.embed-section
+        - unless @hide_section_labels
+          %label.feature
+            Regional Trails
+
+        - regional_trails.each do |feature|
+          - klass = feature == regional_trails.last ? "agency last" : "agency"
+          .if.endif{:class => "#{klass}"}
+            .logo
+              - if feature.marker_icon
+                - if feature.link_url
+                  %a{:href => "#{feature.link_url}", :target => "_blank"}
+                    %img{:src => "#{feature.marker_icon.url}"}/
+                - else
+                  %img{:src => "#{feature.marker_icon.url}"}/
+            .text
+              This campground is part of the
+              .name
+                - if feature.link_url
+                  %a{:href => "#{feature.link_url}", :target => "_blank"}
+                    #{ feature.name }
+                - else
+                  #{feature.name}
+
+    - if @show.include? "nonprofit_partner"
+      .noprofit-partner.embed-section
+        = render :partial => "/shared/partials/non_profit_partner", :locals => {:object=>@campground}
+
+    - if request.referer =~ /\/embed\/parks/
+      .actions.embed-section
+        %a.green-button.padded-sides{:href => "#{request.referer}"}
+          &laquo; Back
+
+  / = javascript_include_tag "embed_plan"
+
+  :javascript
+    $(function(){
+      $('a.trailhead').attr('target','_blank');      
+    });

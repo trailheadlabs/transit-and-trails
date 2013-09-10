@@ -20,6 +20,11 @@ class PlanController < ApplicationController
   end
 
   def campground
+    if request.referer =~ /\/embed\/parks/ && request.format == 'html'
+      redirect_to "/embed" + request.path
+      return
+    end
+    
     @campground = Campground.find(params[:campground_id])
     render "plan"
   end

@@ -218,6 +218,9 @@ function initialize_park(id) {
         if (typeof trailheads !== 'undefined') {
             TNT.find.loadTrailheadsInline(trailheads);
         }
+        if (typeof campgrounds !== 'undefined') {
+            TNT.find.loadCampgroundsInline(campgrounds);
+        }
         $('.trail-list-progress').hide();
         // $("#trail-list").jScrollPane();        
     }
@@ -559,6 +562,36 @@ TNT.find = {
         }
         this.trailheadMarkerManager.refresh();
     },
+
+    loadCampgroundsInline: function(inlineData) {
+        this.currentCampgrounds = [];
+        var newHtml = "";
+        for (var i = 0; i < inlineData.length; i++) {
+            var campground = inlineData[i];
+            var pointId = campground.pointId;
+            var newMarker = this.createCampgroundMarker(pointId, campground.pointTitle, campground.latlng);
+            newHtml = newHtml + '<li class="trail-type-campground">' +
+                        '<h2 id="h2_'+ pointId + '" class="details-link" rel="'+ pointId +'">'+ campground.pointTitle + '</h2>' +
+                        '<p><a href="/campgrounds/' + pointId + '" >Details</a> | <a href="/plan/campground/' + pointId +
+                        '">Plan</a></p></li>';
+            this.currentCampgrounds[pointId] = newMarker;
+        }
+        $("#trail-list > ul").append(newHtml);
+
+        this.campgroundMarkerManager.clearMarkers();
+        if (this.showTrailheads) {
+            var campgroundsArray = [];
+            $(this.currentCampgrounds).each(function(index, value) {
+                if (value != undefined) {
+                    campgroundsArray.push(value);
+                }
+            });
+
+            this.campgroundMarkerManager.addMarkers(campgroundsArray, 0);
+        }
+        this.campgroundMarkerManager.refresh();
+    },
+
     createCampgroundMarker: function(pointId, pointTitle, latlng) {
         var that = this;
         var tinyIcon = new GIcon();

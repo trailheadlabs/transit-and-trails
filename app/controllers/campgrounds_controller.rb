@@ -35,6 +35,11 @@ class CampgroundsController < ApplicationController
   # GET /campgrounds/1
   # GET /campgrounds/1.json
   def show
+    if request.referer =~ /\/embed\/parks/ && request.format == 'html'
+      redirect_to "/embed" + request.path
+      return
+    end
+    
     @campground = Campground.find(params[:id])
 
     respond_to do |format|

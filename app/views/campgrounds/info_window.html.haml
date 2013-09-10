@@ -26,8 +26,9 @@
       /           #{ trip.name }
   %p
     .trailhead-info-window-buttons
-      %a.trailhead-info-window-button{:href => "/campgrounds/#{ @point.id }"} More Info
-      %a.trailhead-info-window-button{:href => "/plan/campground/#{ @point.id }"} Plan a Trip Here
+      %a{:href => "/campgrounds/#{ @point.id }"} Details
+      |
+      %a{:href => "/plan/campground/#{ @point.id }"} Plan
 
   - if current_user && current_user.admin?
     %p
