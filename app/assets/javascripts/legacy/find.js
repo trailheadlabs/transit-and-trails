@@ -201,17 +201,17 @@ function initialize_park(id) {
     if (GBrowserIsCompatible()) {
         TNT.find.init();
         TNT.find.park_page = true;
-        latlngbounds = new GLatLngBounds();
+        TNT.parklatlngbounds = new GLatLngBounds();
         var count = gpolys.length;
         $(gpolys).each(function(index, item) {
             var parkoverlay = new GPolygon(item, "#ff0000", 1, 0, "#red", 0.3);
             var bounds = parkoverlay.getBounds();
             TNT.find.map.addOverlay(parkoverlay);
-            latlngbounds.extend(bounds.getCenter());
-            latlngbounds.extend(bounds.getSouthWest());
-            latlngbounds.extend(bounds.getNorthEast());
+            TNT.parklatlngbounds.extend(bounds.getCenter());
+            TNT.parklatlngbounds.extend(bounds.getSouthWest());
+            TNT.parklatlngbounds.extend(bounds.getNorthEast());
         });
-        TNT.find.map.setCenter(latlngbounds.getCenter(), TNT.find.map.getBoundsZoomLevel(latlngbounds));
+        TNT.find.map.setCenter(TNT.parklatlngbounds.getCenter(), TNT.find.map.getBoundsZoomLevel(TNT.parklatlngbounds));
         if (typeof trips !== 'undefined' ) {
             TNT.find.loadTripsInline(trips);
         }

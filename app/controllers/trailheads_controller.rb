@@ -77,7 +77,7 @@ class TrailheadsController < ApplicationController
   # GET /trailheads/1
   # GET /trailheads/1.json
   def show
-    if request.subdomain == 'embed' && request.format == 'html'
+    if request.referer =~ /\/embed\/parks/ && request.format == 'html'
       redirect_to "/embed" + request.path
       return
     end

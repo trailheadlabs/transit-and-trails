@@ -121,6 +121,7 @@
       }
       $(window).resize(function(){
       autoFit();
+      TNT.find.map.setCenter(TNT.parklatlngbounds.getCenter(), TNT.find.map.getBoundsZoomLevel(TNT.parklatlngbounds));
       });
       autoFit();
       initialize_park(#{ @park.id });

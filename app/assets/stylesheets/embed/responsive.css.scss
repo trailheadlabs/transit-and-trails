@@ -171,6 +171,24 @@ body{
   padding:9px 12px;
 }
 
+.embed-header .back {
+  margin-left:20px;
+  margin-top:9px;
+  float:left;
+  text-transform: uppercase;
+  font-weight:600;
+  a{
+    color:white;
+    &:link, &:hover, &:active, &:visited{
+      color:white;
+      text-decoration: none;
+    }
+    &:hover{
+
+    }
+
+  }
+}
 .embed-header .logo {
   float:right;
   font-size:12px;

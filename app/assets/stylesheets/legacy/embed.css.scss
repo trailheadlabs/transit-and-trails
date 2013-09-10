@@ -27,6 +27,26 @@ body{
     border-bottom:solid 2px #87A9BC;
   }
 
+  .embed-header .back {
+    font-size:13px;
+    margin-left:20px;
+    margin-top:12px;
+    float:left;
+    text-transform: uppercase;
+    font-weight:600;
+    a{
+      color:white;
+      &:link, &:hover, &:active, &:visited{
+        color:white;
+        text-decoration: none;
+      }
+      &:hover{
+
+      }
+
+    }
+  }
+
   .embed-header .title {
     text-transform:uppercase;
     font-size:18px;

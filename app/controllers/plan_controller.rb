@@ -1,7 +1,7 @@
 class PlanController < ApplicationController
 
   def trailhead
-    if request.subdomain == 'embed'
+    if request.referer =~ /\/embed\/parks/ && request.format == 'html'
       redirect_to "/embed" + request.path
       return
     end
@@ -11,7 +11,7 @@ class PlanController < ApplicationController
 
   def trip
     # if true
-    if request.subdomain == 'embed'
+    if request.referer =~ /\/embed\/parks/ && request.format == 'html'
       redirect_to "/embed" + request.path
     else
       @trip = Trip.find(params[:trip_id])

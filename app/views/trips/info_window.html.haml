@@ -37,8 +37,9 @@
             != truncate_html(@trip.description, :length=> 200,  :omission => '...')
 
   .trailhead-info-window-buttons
-    %a.trailhead-info-window-button{:href => "/trips/#{ @trip.id }"} More Info
-    %a.trailhead-info-window-button{:href => "/plan/trip/#{ @trip.id }/"} Plan a Trip Here
+    %a{:href => "/trips/#{ @trip.id }"} Details
+    |
+    %a{:href => "/plan/trip/#{ @trip.id }/"} Plan
   - if can? :delete, @trip
     %p
       %b Actions
