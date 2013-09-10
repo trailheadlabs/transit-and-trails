@@ -6,7 +6,7 @@ module Embed
       if params[:show]
         @show = params[:show].split(',')
       else
-        @show = ['description','contributor','summary','photos','map','attributes','actions','header','downloads','branding']
+        @show = ['trails','description','contributor','summary','photos','map','attributes','actions','header','downloads','branding']
       end
 
       if params[:hide]

@@ -93,6 +93,32 @@
             Downloads
         = render :partial => "/embed/trips/downloads", :locals => {:object=>@trailhead}
 
+    - if @show.include? 'trails'
+      .regional-trails.embed-section
+        - unless @hide_section_labels
+          %label.feature
+            Regional Trails
+
+        - regional_trails = @trailhead.trailhead_features.where(:category_id=>Category.where(:name=>"Regional Trail"))
+        - regional_trails.each do |feature|
+          - klass = feature == regional_trails.last ? "agency last" : "agency"
+          .if.endif{:class => "#{klass}"}
+            .logo
+              - if feature.marker_icon
+                - if feature.link_url
+                  %a{:href => "#{feature.link_url}", :target => "_blank"}
+                    %img{:src => "#{feature.marker_icon.url}"}/
+                - else
+                  %img{:src => "#{feature.marker_icon.url}"}/
+            .text
+              This trailhead is part of the
+              .name
+                - if feature.link_url
+                  %a{:href => "#{feature.link_url}", :target => "_blank"}
+                    #{ feature.name }
+                - else
+                  #{feature.name}
+
     - if request.referer =~ /\/embed\/parks/
       .actions.embed-section
         %a.green-button.padded-sides{:href => "#{request.referer}"}
