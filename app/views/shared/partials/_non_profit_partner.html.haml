@@ -2,15 +2,17 @@
 / begin Non-profit Partner
 - if object.respond_to?(:non_profit_partner) && object.non_profit_partner
   .agency.non-profit-partner
-    .logo
-      - if object.non_profit_partner.logo
-        - if object.non_profit_partner.link
+    - if !object.non_profit_partner.logo.blank?
+      - if object.non_profit_partner.link
+        .logo
           %a{:href => "#{object.non_profit_partner.link}", :target => "_blank"}
             %img{:src => "#{object.non_profit_partner.logo }"}/
-        - else
+      - else
+        .logo
           %img{:src => "#{object.non_profit_partner.logo }"}/
     .text
-      Nonprofit Partner: 
+      %span.non_profit_partner_label
+        Nonprofit Partner
       .name
         - if object.non_profit_partner.link
           %a{:href => "#{object.non_profit_partner.link}", :target => "_blank"}

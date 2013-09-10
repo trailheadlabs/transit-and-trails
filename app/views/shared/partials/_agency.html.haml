@@ -1,10 +1,11 @@
 - if object.respond_to?(:agency) && object.agency
   .agency
-    .logo
-      - if object.agency.logo.file && object.agency.link
+    - if object.agency.logo.file && object.agency.link
+      .logo
         %a{:href => "#{object.agency.link}", :target => "_blank"}
           %img{:src => "#{object.agency.logo}"}/
-      - elsif object.agency.logo.file
+    - elsif object.agency.logo.file
+      .logo
         %img{:src => "#{object.agency.logo}"}/
     .text
       .managed_by_label

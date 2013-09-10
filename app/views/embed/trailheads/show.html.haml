@@ -31,6 +31,9 @@
             Contributed By
 
         = render :partial => "/embed/trips/contributor", :locals => {:object=>@trailhead}
+        %br
+        = render :partial => "/shared/partials/agency", :locals => {:object=>@trailhead}
+
 
     - if (@show.include? 'description') && !@trailhead.description.blank?
       .description.embed-section
@@ -93,13 +96,14 @@
             Downloads
         = render :partial => "/embed/trips/downloads", :locals => {:object=>@trailhead}
 
-    - if @show.include? 'trails'
+    - regional_trails = @trailhead.trailhead_features.where(:category_id=>Category.where(:name=>"Regional Trail"))
+
+    - if @show.include? 'trails' && !regional_trails.empty?
       .regional-trails.embed-section
         - unless @hide_section_labels
           %label.feature
             Regional Trails
 
-        - regional_trails = @trailhead.trailhead_features.where(:category_id=>Category.where(:name=>"Regional Trail"))
         - regional_trails.each do |feature|
           - klass = feature == regional_trails.last ? "agency last" : "agency"
           .if.endif{:class => "#{klass}"}
@@ -118,6 +122,10 @@
                     #{ feature.name }
                 - else
                   #{feature.name}
+
+    - if @show.include? "nonprofit_partner"
+      .noprofit-partner.embed-section
+        = render :partial => "/shared/partials/non_profit_partner", :locals => {:object=>@trailhead}
 
     - if request.referer =~ /\/embed\/parks/
       .actions.embed-section

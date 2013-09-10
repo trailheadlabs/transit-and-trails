@@ -112,13 +112,14 @@
             Downloads
         = render :partial => "downloads", :locals => {:object=>@trip}
 
-    - if @show.include? 'trails'
+    - regional_trails = @trip.trip_features.where(:category_id=>Category.where(:name=>"Regional Trail"))
+
+    - if @show.include? 'trails' && !regional_trails.empty?
       .route-map.embed-section
         - unless @hide_section_labels
           %label.feature
             Regional Trails
 
-        - regional_trails = @trip.trip_features.where(:category_id=>Category.where(:name=>"Regional Trail"))
         - regional_trails.each do |feature|
           - klass = feature == regional_trails.last ? "agency last" : "agency"
           .if.endif{:class => "#{klass}"}
@@ -137,6 +138,10 @@
                     #{ feature.name }
                 - else
                   #{feature.name}
+
+    - if @show.include? "nonprofit_partner"
+      .noprofit-partner.embed-section
+        = render :partial => "/shared/partials/non_profit_partner", :locals => {:object=>@trip}
 
     - if request.referer =~ /\/embed\/parks/
       .actions.embed-section

@@ -256,6 +256,12 @@ hr{
 }
 
 .embed{
+  .non_profit_partner_label, .managed_by_label{
+    color: #4C93B5;
+    font-weight: 700;
+    font-size: 1em;
+    text-transform: uppercase;
+  }
   div.agency div.logo {
     display: inline-block;
     float: left;
