@@ -85,7 +85,7 @@
             Map
         #plan-map.trailhead-details-map
 
-    - if @show.include? 'attributes'
+    - if @show.include? 'attributes' && !@campground.campground_features.empty?
       .features.embed-section
         = render :partial => "/shared/partials/features", :locals => {:object=>@campground}
 
@@ -123,7 +123,7 @@
                 - else
                   #{feature.name}
 
-    - if @show.include? "nonprofit_partner"
+    - if @show.include? "nonprofit_partner" && (@campground.respond_to?(:non_profit_partner) && @campground.non_profit_partner)
       .noprofit-partner.embed-section
         = render :partial => "/shared/partials/non_profit_partner", :locals => {:object=>@campground}
 
