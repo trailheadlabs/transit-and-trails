@@ -67,6 +67,7 @@ GEM
       sass (>= 3.2.0)
       thor
     builder (3.0.4)
+    callsite (0.0.11)
     cancan (1.6.10)
     capybara (2.1.0)
       mime-types (>= 1.16)
@@ -165,6 +166,10 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     memcachier (0.0.2)
+    meta_request (0.2.5)
+      callsite
+      rack-contrib
+      railties
     mime-types (1.23)
     mini_magick (3.5.0)
       subexec (~> 0.2.1)
@@ -212,6 +217,8 @@ GEM
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
+    rack-contrib (1.1.0)
+      rack (>= 0.9.1)
     rack-iframe (0.0.3)
       rack
     rack-pjax (0.7.0)
@@ -354,6 +361,7 @@ DEPENDENCIES
   kaminari
   launchy
   memcachier
+  meta_request
   mini_magick
   multi_json
   newrelic_rpm
