@@ -4,9 +4,6 @@ $(function() {
         xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
       }
     });
-    $(window).unload(function() {
-        GUnload();
-    });
     $('input[type=text]').focus(function() {
         this.select();
     });

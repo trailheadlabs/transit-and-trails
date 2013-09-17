@@ -155,10 +155,6 @@
       $("a.description-modal").overlay();
       $('thumbnail a[rel]').overlay();
 
-      $(window).unload(function () {
-          GUnload();
-      });
-
       $('input:radio[name=map-select]').click(function () {
           if ($('input:radio[name=map-select]:checked').val() == "url") {
               $('#map-save-button').attr('value', "Save");
