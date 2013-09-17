@@ -1,3 +1,14 @@
+@media (max-width: 500px) {
+  .embed #park{
+    width:100%;
+  }
+  .embed #park #trail-list{
+    width:100%;
+  }
+  .embed #find-map{
+    display:none;
+  }
+}
 body{
   background-color: white;
   background-image:none;
@@ -202,7 +213,7 @@ body{
   }
 }
 .embed-header .logo {
-  float:right;
+  text-align:right;
   font-size:12px;
   font-weight:bold;
   color:#B5C9D7;
