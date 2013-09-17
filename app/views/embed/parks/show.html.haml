@@ -118,9 +118,10 @@
       $('#trail-list').height($('body').outerHeight()-$('#park-header').outerHeight()-$('.embed-header').outerHeight());      
       $('#embed-plan-modal').width($('body').outerWidth()-20);
       $('#embed-plan-modal').height($('body').outerHeight()-20);
+      if($('body').width() < 500){$('body .embed').addClass('tablet')} else {$('body .embed').removeClass('tablet')}
+      if($('body').width() < 300){$('body .embed').addClass('phone')} else {$('body .embed').removeClass('phone')}
       }
       $(window).resize(function(){
-      if($('body').width() < 500){$('body .embed').addClass('mobile')} else {$('body .embed').removeClass('mobile')}
       autoFit();
       TNT.find.map.setCenter(TNT.parklatlngbounds.getCenter(), TNT.find.map.getBoundsZoomLevel(TNT.parklatlngbounds));
       });

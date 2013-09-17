@@ -1,4 +1,4 @@
-@media (max-width: 500px) {
+@media (max-width: 600px) {
   .embed #park{
     width:100%;
   }
@@ -10,13 +10,37 @@
   }
 }
 
-.embed.mobile #park{
+.embed.phone .embed-header .title {
+  font-size:14px;
+}
+
+.embed.phone .embed-header .back {
+  font-size:14px;
+}
+
+.embed.phone .embed-header .logo {
+  display:none;
+}
+
+.embed.phone #plan {
+  margin-top: 34px;
+}
+
+.embed.phone #trail-list li {
+  padding: 8px 8px 8px 50px;
+}
+
+.embed.phone #trail-list p {
+  margin: 0px;
+}
+
+.embed.tablet #park{
   width:100%;
 }
-.embed.mobile #park #trail-list{
+.embed.tablet #park #trail-list{
   width:100%;
 }
-.embed.mobile #find-map{
+.embed.tablet #find-map{
   display:none;
 }
 
