@@ -8,7 +8,10 @@ html,body,.embed,#plan,#the-plan{
   font-family: 'Open Sans', sans-serif;
   background-color: #F6F7FC;
 }
+
+
 .legacy {
+
   h3#name-title{
     padding-left:12px;
   }
@@ -144,5 +147,15 @@ html,body,.embed,#plan,#the-plan{
   #trailhead-select{
     margin: 0px 0px 3px 20px;
     width:95%;
+  }
+}
+
+@media (max-width: 290px) {  
+  .legacy{
+    #return-trip-button, #get-directions-button{
+      margin-top:4px;
+      width:100%;
+      clear:both;
+    }
   }
 }

@@ -10,38 +10,11 @@
   }
 }
 
-.embed.phone .embed-header .title {
-  font-size:14px;
-}
-
-.embed.phone .embed-header .back {
-  font-size:14px;
-}
-
-.embed.phone .embed-header .logo {
-  display:none;
-}
-
-.embed.phone #plan {
-  margin-top: 34px;
-}
-
-.embed.phone #trail-list li {
-  padding: 8px 8px 8px 50px;
-}
-
-.embed.phone #trail-list p {
-  margin: 0px;
-}
-
-.embed.tablet #park{
-  width:100%;
-}
-.embed.tablet #park #trail-list{
-  width:100%;
-}
-.embed.tablet #find-map{
-  display:none;
+#plan-embed.phone{
+  #get-directions-button{
+    width:100%;
+    clear:both;
+  }
 }
 
 body{
@@ -190,7 +163,71 @@ body{
       }
     }
   }
+
+  &.tablet{
+    #park{
+      width:100%;
+    }
+    #park #trail-list{
+      width:100%;
+    }
+    #find-map{
+      display:none;
+    }
+
+  }
+  &.phone {
+    .trip-name{
+      font-size:14px;
+    }
+    .embed-header .title {
+      font-size:14px;
+    }
+
+    .embed-header .back {
+      font-size:14px;
+    }
+
+   .embed-header .logo img{
+      height:25px;
+    }
+
+   #plan {
+    margin-top: 34px;
+    }
+
+    #trail-list li {
+      padding: 8px 8px 8px 50px;
+    }
+
+    #trail-list p {
+      margin: 0px;
+    }
+
+    #organization img{
+      display:none;
+    }
+
+    #plan-embed{
+      height:640px;
+    }
+
+    &, #park{
+      #trail-list{
+        height:100%;  
+      }
+      .type-flag{
+        display:none;
+      }
+      .header{
+        padding: 10px 10px 10px 20px;
+        height:inherit;
+      }
+    }
+  }
 }
+
+
 
 .description-overlay {
   box-shadow: 0 0 90px 5px #000;
@@ -228,13 +265,13 @@ body{
 }
 
 .embed-header .back {
-  margin-left:20px;
-  margin-top:9px;
-  float:left;
-  text-transform: uppercase;
-  font-weight:600;
-  font-size:16px;
-  text-shadow: 0px 0px 1px black;
+  // margin-left:20px;
+  // margin-top:10px;
+  // float:left;
+  // text-transform: uppercase;
+  // font-weight:600;
+  // font-size:16px;
+  // text-shadow: 0px 0px 1px black;
   a{
     color:white;
     &:link, &:hover, &:active, &:visited{
@@ -252,7 +289,9 @@ body{
   font-size:12px;
   font-weight:bold;
   color:#B5C9D7;
-  padding:4px;
+  img{
+    padding:5px;
+  }
 }
 
 .embed-header .logo img {

@@ -12,7 +12,7 @@
   
 
 - content_for :page_title do
-  = params[:title] || "Park Information"
+  = params[:title] || "Park"
 
 - content_for :page_content do
 
@@ -73,7 +73,8 @@
   / e: comments
   / e: page
   %script{:src => "/assets/legacy/find.js", :type => "text/javascript"}
-
+  = javascript_include_tag "embed.js"
+  
   %script
     $(function(){
     - if @trips
@@ -105,27 +106,14 @@
         trailhead.pointId = new Number(#{ item.id });
         trailheads.push(trailhead);
 
-      gpolys = [
-      - @polys.each do |poly|
-        [
-        - poly.each do |point|
-          new GLatLng(#{point[1]},#{point[0]}),
-        ],
-      ];
-      var autoFit = function(){
-      $('#find-map').width($('#plan').outerWidth()-$('#park').outerWidth());
-      $('#find-map').height($('body').outerHeight()-$('.embed-header').outerHeight()-4);
-      $('#trail-list').height($('body').outerHeight()-$('#park-header').outerHeight()-$('.embed-header').outerHeight());      
-      $('#embed-plan-modal').width($('body').outerWidth()-20);
-      $('#embed-plan-modal').height($('body').outerHeight()-20);
-      if($('body').width() < 500){$('body .embed').addClass('tablet')} else {$('body .embed').removeClass('tablet')}
-      if($('body').width() < 300){$('body .embed').addClass('phone')} else {$('body .embed').removeClass('phone')}
-      }
-      $(window).resize(function(){
-      autoFit();
-      TNT.find.map.setCenter(TNT.parklatlngbounds.getCenter(), TNT.find.map.getBoundsZoomLevel(TNT.parklatlngbounds));
-      });
-      autoFit();
-      initialize_park(#{ @park.id });
+    gpolys = [
+    - @polys.each do |poly|
+      [
+      - poly.each do |point|
+        new GLatLng(#{point[1]},#{point[0]}),
+      ],
+    ];
+    
+    initialize_park(#{ @park.id });
 
     });
