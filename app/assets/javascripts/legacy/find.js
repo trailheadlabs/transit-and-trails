@@ -207,9 +207,11 @@ function initialize_park(id) {
             var parkoverlay = new GPolygon(item, "#ff0000", 1, 0, "#red", 0.3);
             var bounds = parkoverlay.getBounds();
             TNT.find.map.addOverlay(parkoverlay);
-            TNT.parklatlngbounds.extend(bounds.getCenter());
-            TNT.parklatlngbounds.extend(bounds.getSouthWest());
-            TNT.parklatlngbounds.extend(bounds.getNorthEast());
+            if(bounds){
+                TNT.parklatlngbounds.extend(bounds.getCenter());
+                TNT.parklatlngbounds.extend(bounds.getSouthWest());
+                TNT.parklatlngbounds.extend(bounds.getNorthEast());
+            }
         });
         TNT.find.map.setCenter(TNT.parklatlngbounds.getCenter(), TNT.find.map.getBoundsZoomLevel(TNT.parklatlngbounds));
         if (typeof trips !== 'undefined' ) {
