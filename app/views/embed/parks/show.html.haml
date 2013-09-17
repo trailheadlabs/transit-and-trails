@@ -120,6 +120,7 @@
       $('#embed-plan-modal').height($('body').outerHeight()-20);
       }
       $(window).resize(function(){
+      if($('body').width() < 500){$('body .embed').addClass('mobile')} else {$('body .embed').removeClass('mobile')}
       autoFit();
       TNT.find.map.setCenter(TNT.parklatlngbounds.getCenter(), TNT.find.map.getBoundsZoomLevel(TNT.parklatlngbounds));
       });

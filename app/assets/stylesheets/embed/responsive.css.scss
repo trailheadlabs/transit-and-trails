@@ -9,6 +9,17 @@
     display:none;
   }
 }
+
+.embed.mobile #park{
+  width:100%;
+}
+.embed.mobile #park #trail-list{
+  width:100%;
+}
+.embed.mobile #find-map{
+  display:none;
+}
+
 body{
   background-color: white;
   background-image:none;
