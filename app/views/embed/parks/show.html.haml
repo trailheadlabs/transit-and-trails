@@ -15,105 +15,105 @@
   = params[:title] || "Park"
 
 - content_for :page_content do
+  - cache ['v1',@park] do
+    #embed-plan-modal
+      .modal-content
+        %iframe#trip-planner(src="/embed/plan/trip/222")
+        = link_to "Close"
+    #plan.alt
 
-  #embed-plan-modal
-    .modal-content
-      %iframe#trip-planner(src="/embed/plan/trip/222")
-      = link_to "Close"
-  #plan.alt
+      #park
 
-    #park
+        .header#park-header
+          %img.type-flag{:alt => "", :src => "/assets/legacy/park.png"}/
+          .trip-name
+            = link_to @park.name, @park, :target => :blank
+          - if @agencies
+            - @agencies.each do |ag|
+              - unless ag.link == "no website"
+                %i
+                  %a{:href => "#{ ag.link }", :target => "_blank"} #{ag.name}
+                %br/
+              - else
+                %i #{ ag.name }
+                %br/
 
-      .header#park-header
-        %img.type-flag{:alt => "", :src => "/assets/legacy/park.png"}/
-        .trip-name
-          = link_to @park.name, @park, :target => :blank
-        - if @agencies
-          - @agencies.each do |ag|
-            - unless ag.link == "no website"
-              %i
-                %a{:href => "#{ ag.link }", :target => "_blank"} #{ag.name}
-              %br/
-            - else
-              %i #{ ag.name }
-              %br/
+          / - if @trip.starting_trailhead.default_park
+          /   %em
+          /   = link_to @trip.starting_trailhead.default_park.name, park_path(@trip.starting_trailhead.default_park), :target => :blank
 
-        / - if @trip.starting_trailhead.default_park
-        /   %em
-        /   = link_to @trip.starting_trailhead.default_park.name, park_path(@trip.starting_trailhead.default_park), :target => :blank
-
-      / .social-buttons.clearfix
-      /   %a.twitter-share-button{"data-count" => "horizontal", "data-url" => "http://transitandtrails.org/parks/#{ @park.slug }/#{ @park.county_slug }/", "data-via" => "transitandtrail", :href => "https://twitter.com/share"} Tweet
-      /   %script{:src => "//platform.twitter.com/widgets.js", :type => "text/javascript"}
-      /   %iframe{:allowTransparency => "true", :frameborder => "0", :scrolling => "no", :src => "//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.transitandtrails.org%2Fparks%2F#{ @park.slug }%2F#{@park.county_slug}&send=false&layout=button_count&width=450&show_faces=true&action=like&colorscheme=light&font&height=80&appId=173296509398219", :style => "display: inline-block; margin:10px 0; border:none; overflow:hidden; width:150px; height:20px;"}
+        / .social-buttons.clearfix
+        /   %a.twitter-share-button{"data-count" => "horizontal", "data-url" => "http://transitandtrails.org/parks/#{ @park.slug }/#{ @park.county_slug }/", "data-via" => "transitandtrail", :href => "https://twitter.com/share"} Tweet
+        /   %script{:src => "//platform.twitter.com/widgets.js", :type => "text/javascript"}
+        /   %iframe{:allowTransparency => "true", :frameborder => "0", :scrolling => "no", :src => "//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.transitandtrails.org%2Fparks%2F#{ @park.slug }%2F#{@park.county_slug}&send=false&layout=button_count&width=450&show_faces=true&action=like&colorscheme=light&font&height=80&appId=173296509398219", :style => "display: inline-block; margin:10px 0; border:none; overflow:hidden; width:150px; height:20px;"}
 
 
-      / attributes
-      #trail-list
-        .trail-list-progress
-          %img{:src => "/assets/legacy/progress-medium-blue.gif"}/
-        %ul
-    #find-map
-      / e: trails
-    / e: tour
-  / / e: plan
-  / - if @park.description
-  /   .plan-entry.description
-  /     %h4 Description
-  /     != @park.description
-  /   / e: entry
-  / - else
-  /   %div{:style => "height:10px"}
-  / .section-head
-  /   %h2 Comments
-  / / e: page head
-  / .comments
-  /   = render :partial => '/shared/partials/disqus'
+        / attributes
+        #trail-list
+          .trail-list-progress
+            %img{:src => "/assets/legacy/progress-medium-blue.gif"}/
+          %ul
+      #find-map
+        / e: trails
+      / e: tour
+    / / e: plan
+    / - if @park.description
+    /   .plan-entry.description
+    /     %h4 Description
+    /     != @park.description
+    /   / e: entry
+    / - else
+    /   %div{:style => "height:10px"}
+    / .section-head
+    /   %h2 Comments
+    / / e: page head
+    / .comments
+    /   = render :partial => '/shared/partials/disqus'
 
-  / e: comments
-  / e: page
-  %script{:src => "/assets/legacy/find.js", :type => "text/javascript"}
-  = javascript_include_tag "embed.js"
-  
-  %script
-    $(function(){
-    - if @trips
-      trips = new Array();
-      - @trips.each do |item|
-        newTrip = new Object();
-        newTrip.latlng = new GLatLng(parseFloat(#{item.starting_trailhead.latitude}), parseFloat(#{ item.starting_trailhead.longitude }));
-        newTrip.tripTitle = "#{ item.name }";
-        newTrip.tripId = new Number(#{ item.id });
-        trips.push(newTrip)
-
-    - if @campgrounds
-      campgrounds = new Array();
-      - @campgrounds.each do |item|
-        var campground = new Object;
-        campground.id = '#{ item.id }';
-        campground.latlng = new GLatLng(#{ item.latitude }, #{ item.longitude });
-        campground.pointTitle = "#{ item.name }";
-        campground.pointId = new Number(#{ item.id });
-        campgrounds.push(campground);
-
-    - if @trailheads
-      trailheads = new Array();
-      - @trailheads.each do |item|
-        var trailhead = new Object;
-        trailhead.id = '#{ item.id }';
-        trailhead.latlng = new GLatLng(#{ item.latitude }, #{ item.longitude });
-        trailhead.pointTitle = "#{ item.name }";
-        trailhead.pointId = new Number(#{ item.id });
-        trailheads.push(trailhead);
-
-    gpolys = [
-    - @polys.each do |poly|
-      [
-      - poly.each do |point|
-        new GLatLng(#{point[1]},#{point[0]}),
-      ],
-    ];
+    / e: comments
+    / e: page
+    %script{:src => "/assets/legacy/find.js", :type => "text/javascript"}
+    = javascript_include_tag "embed.js"
     
-    initialize_park(#{ @park.id });
+    %script
+      $(function(){
+      - if @trips
+        trips = new Array();
+        - @trips.each do |item|
+          newTrip = new Object();
+          newTrip.latlng = new GLatLng(parseFloat(#{item.starting_trailhead.latitude}), parseFloat(#{ item.starting_trailhead.longitude }));
+          newTrip.tripTitle = "#{ item.name }";
+          newTrip.tripId = new Number(#{ item.id });
+          trips.push(newTrip)
 
-    });
+      - if @campgrounds
+        campgrounds = new Array();
+        - @campgrounds.each do |item|
+          var campground = new Object;
+          campground.id = '#{ item.id }';
+          campground.latlng = new GLatLng(#{ item.latitude }, #{ item.longitude });
+          campground.pointTitle = "#{ item.name }";
+          campground.pointId = new Number(#{ item.id });
+          campgrounds.push(campground);
+
+      - if @trailheads
+        trailheads = new Array();
+        - @trailheads.each do |item|
+          var trailhead = new Object;
+          trailhead.id = '#{ item.id }';
+          trailhead.latlng = new GLatLng(#{ item.latitude }, #{ item.longitude });
+          trailhead.pointTitle = "#{ item.name }";
+          trailhead.pointId = new Number(#{ item.id });
+          trailheads.push(trailhead);
+
+      gpolys = [
+      - @polys.each do |poly|
+        [
+        - poly.each do |point|
+          new GLatLng(#{point[1]},#{point[0]}),
+        ],
+      ];
+      
+      initialize_park(#{ @park.id });
+
+      });
