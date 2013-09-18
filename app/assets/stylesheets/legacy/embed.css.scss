@@ -20,6 +20,22 @@ body{
   .embed{
     float:left;
     font-size:0.88em;
+    &.phone {
+      .trip-name{
+        font-size:14px;
+      }
+      .embed-header .title {
+        font-size:14px;
+      }
+
+      .embed-header .back {
+        font-size:14px;
+      }
+
+      .embed-header .logo img{
+        height:25px;
+      }
+    }
   }
 
   .embed-header{
@@ -29,10 +45,6 @@ body{
   }
 
   .embed-header .back {
-    font-size:13px;
-    margin-left:20px;
-    margin-top:12px;
-    float:left;
     text-transform: uppercase;
     font-weight:600;
     a{

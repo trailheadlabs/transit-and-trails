@@ -4,7 +4,7 @@
 /   = javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyCcUhpQftpOwXVSLJqHrvwYCqnhTy3bchE&sensor=false&libraries=places"
 
 - content_for :page_title do
-  = params[:title] || "Campground Information"
+  = params[:title] || "Campground"
 
 - content_for :page_content do
 
@@ -132,7 +132,7 @@
         %a.green-button.padded-sides{:href => "#{request.referer}"}
           &laquo; Back
 
-  / = javascript_include_tag "embed_plan"
+  = javascript_include_tag "embed"
 
   :javascript
     $(function(){

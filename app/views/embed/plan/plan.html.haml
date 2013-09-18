@@ -10,7 +10,7 @@
 /   Many parks experience consistently heavy traffic congestion and parking problems during Saturdays and Sundays from 9am–4pm, in particular Muir Woods, Stinson Beach, the Presidio, and Crissy Field. At Muir Woods, parking can be as far away from the park entrance as a mile and a half during peak times. Please consider using public transit, visiting during off peak times or consider one of the private tour operators.
 
 - content_for :page_title do
-  Trip Planner
+  Plan
 
 - content_for :page_content do
   %input#trip_start_lat{:name => "trip_start_lat", :type => "hidden"}
@@ -136,6 +136,7 @@
             &laquo; Back
 
   = javascript_include_tag "embed_plan"
+  = javascript_include_tag "embed"
 
   - if @agency_id
     :javascript
