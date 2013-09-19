@@ -72,11 +72,6 @@
       :javascript
         $(function(){
           initTrailheadDetails(#{@trailhead.id}, false);
-
-          $(window).unload(function () {
-              GUnload();
-          });
-
         });
 
       .route-map.embed-section

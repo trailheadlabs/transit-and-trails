@@ -1,7 +1,4 @@
 $(function(){
-  $(window).unload(function(){
-    GUnload();
-  });
 
   $('#trailhead-select').change(function(){
     TNT.plan.setEndLatLng($(this).val());
