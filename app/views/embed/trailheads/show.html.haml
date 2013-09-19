@@ -118,7 +118,7 @@
                 - else
                   #{feature.name}
 
-    - if @show.include? "nonprofit_partner"
+    - if @show.include? "nonprofit_partner" && (@trailhead.respond_to?(:non_profit_partner) && @trailhead.non_profit_partner)
       .noprofit-partner.embed-section
         = render :partial => "/shared/partials/non_profit_partner", :locals => {:object=>@trailhead}
 
