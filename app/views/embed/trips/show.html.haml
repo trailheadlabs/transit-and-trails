@@ -36,13 +36,13 @@
           %em
           = link_to @trip.starting_trailhead.default_park.name, park_path(@trip.starting_trailhead.default_park), :target => :blank
 
-    / - if @show.include? 'contributor'
-    /   .contributor.embed-section
-    /     - unless @hide_section_labels
-    /       %label.feature
-    /         Contributed By
+    - if @show.include? 'contributor'
+      .contributor.embed-section
+        - unless @hide_section_labels
+          %label.feature
+            Contributed By
 
-    /     = render :partial => "contributor", :locals => {:object=>@trip}
+        = render :partial => "contributor", :locals => {:object=>@trip}
 
     - if (@show.include? 'description') && !@trip.description.blank?
       .description.embed-section
@@ -70,7 +70,7 @@
         /     Plan
         / %a.green-button.padded-sides{:href => "/embed/plan/trip/#{@trip.id}"}
         /   Plan Your Trip!
-        / %iframe#plan-embed(src="/embed/plan/trip/#{@trip.id}?hide_title=true")
+        %iframe#plan-embed(src="/embed/plan/trip/#{@trip.id}?hide_title=true")
 
     - if (@show.include? 'photos') && !@trip.photos.empty?
       .photos.embed-section
@@ -135,7 +135,7 @@
                 - else
                   #{feature.name}
 
-    - if @show.include? "nonprofit_partner" && (@trip.respond_to?(:non_profit_partner) && @trip.non_profit_partner)
+    - if @show.include? "nonprofit_partner"
       .noprofit-partner.embed-section
         = render :partial => "/shared/partials/non_profit_partner", :locals => {:object=>@trip}
 
@@ -146,7 +146,7 @@
 
   / = javascript_include_tag "embed_plan"
   
-  / = javascript_include_tag "embed"
+  = javascript_include_tag "embed"
   
   :javascript
     $(function(){
