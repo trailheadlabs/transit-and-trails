@@ -36,13 +36,13 @@
           %em
           = link_to @trip.starting_trailhead.default_park.name, park_path(@trip.starting_trailhead.default_park), :target => :blank
 
-    - if @show.include? 'contributor'
-      .contributor.embed-section
-        - unless @hide_section_labels
-          %label.feature
-            Contributed By
+    / - if @show.include? 'contributor'
+    /   .contributor.embed-section
+    /     - unless @hide_section_labels
+    /       %label.feature
+    /         Contributed By
 
-        = render :partial => "contributor", :locals => {:object=>@trip}
+    /     = render :partial => "contributor", :locals => {:object=>@trip}
 
     - if (@show.include? 'description') && !@trip.description.blank?
       .description.embed-section
