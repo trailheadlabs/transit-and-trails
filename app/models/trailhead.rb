@@ -34,7 +34,8 @@ class Trailhead < ActiveRecord::Base
                   :non_profit_partner_id,
                   :non_profit_partner_name
 
-  attr_accessible :maps_attributes, :allow_destroy => true
+  # attr_accessible :maps_attributes, :allow_destroy => true
+  
   reverse_geocoded_by :latitude, :longitude
 
   accepts_nested_attributes_for :maps, :allow_destroy => true
