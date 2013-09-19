@@ -34,6 +34,7 @@ body{
   background-image:none;
 }
 
+
 #plan-embed{
   width:100%;
   height:500px;
@@ -189,6 +190,7 @@ body{
 
   }
   @media (max-width: 330px) {
+
     .header .trip-name{
       font-size:14px;
     }
@@ -396,6 +398,14 @@ hr{
   }
 
 }
+
+@media (max-width: 290px) {
+  body{
+    width:290px;
+    overflow:scroll;
+  }
+}
+
 /*
 * CSS Styles that are needed by jScrollPane for it to operate correctly.
 *
