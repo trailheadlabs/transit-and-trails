@@ -20,7 +20,7 @@ body{
   .embed{
     float:left;
     font-size:0.88em;
-    &.phone {
+    @media (max-width: 290px) {
       .trip-name{
         font-size:14px;
       }

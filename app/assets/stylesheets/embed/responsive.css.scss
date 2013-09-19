@@ -10,6 +10,18 @@
   }
 }
 
+@media (max-width: 290px) {
+  .embed #park{
+    width:100%;
+  }
+  .embed #park #trail-list{
+    width:100%;
+  }
+  .embed #find-map{
+    display:none;
+  }
+}
+
 #plan-embed.phone{
   #get-directions-button{
     width:100%;
@@ -164,7 +176,7 @@ body{
     }
   }
 
-  &.tablet{
+  @media (max-width: 610px) {
     #park{
       width:100%;
     }
@@ -176,8 +188,8 @@ body{
     }
 
   }
-  &.phone {
-    .trip-name{
+  @media (max-width: 290px) {
+    .header .trip-name{
       font-size:14px;
     }
     .embed-header .title {
