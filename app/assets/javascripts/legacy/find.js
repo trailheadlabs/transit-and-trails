@@ -542,7 +542,7 @@ TNT.find = {
             var pointId = trailhead.pointId;
             var newMarker = this.createTrailheadMarker(pointId, trailhead.pointTitle, trailhead.latlng);
             newHtml = newHtml + '<li class="trail-type-trailhead">' +
-    					'<h2 id="h2_'+ pointId + '" class="details-link" rel="'+ pointId +'">'+ trailhead.pointTitle + '</h2>' +
+    					'<a href="/trailheads/' + pointId + '"><h2 id="h2_'+ pointId + '" class="details-link" rel="'+ pointId +'">'+ trailhead.pointTitle + '</h2></a>' +
     					'<p><a href="/trailheads/' + pointId + '" >Details</a> | <a href="/plan/trailhead/' + pointId +
     					'">Plan</a></p></li>';
             this.currentTrailheads[pointId] = newMarker;

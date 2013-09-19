@@ -16,11 +16,14 @@
         .embed-header
           .title
             = yield :page_title
-            - referer_path = request.referer && URI(request.referer).path
-            - if referer_path =~ /^\/embed\/parks/
-              %span.back
-                = link_to request.referer do 
-                  &laquo; Back
+            - begin
+              - referer_path = request.referer && URI(request.referer).path
+              - if referer_path =~ /^\/embed\/parks/
+                %span.back
+                  = link_to request.referer do 
+                    &laquo; Back
+            - rescue
+            - end
           .logo            
             %a{:href => "http://transitandtrails.org", :target => "_blank"}
               %img{:src => "/assets/legacy/plan/small-logo.png"}/
