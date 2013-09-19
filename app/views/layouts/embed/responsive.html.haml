@@ -16,7 +16,8 @@
         .embed-header
           .title
             = yield :page_title
-            - if request.referer =~ /\/embed\/parks/
+            - referer_path = request.referer && URI(request.referer).path
+            - if referer_path =~ /^\/embed\/parks/
               %span.back
                 = link_to request.referer do 
                   &laquo; Back
