@@ -127,8 +127,8 @@
         %span#driving-carbon -
         pounds
       %p
-        %input#get-directions-button.get-directions.green-link-button{:type => "submit", :value => "Directions There"}/
-        %input#return-trip-button.plan-return.green-link-button{:type => "submit", :value => "Directions Back"}/
+        %input#get-directions-button.get-directions.green-link-button{:type => "submit", :value => "Directions There", :default => false}/
+        %input#return-trip-button.plan-return.green-link-button{:type => "submit", :value => "Directions Back", :default => false}/
 
       - if params[:return_to_path]
         .actions.embed-section
