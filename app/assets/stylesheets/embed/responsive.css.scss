@@ -22,13 +22,6 @@
   }
 }
 
-#plan-embed.phone{
-  #get-directions-button{
-    width:100%;
-    clear:both;
-  }
-}
-
 body{
   background-color: white;
   background-image:none;
@@ -224,6 +217,13 @@ body{
 
     #plan-embed{
       height:640px;
+    }
+
+    #plan-embed{
+      #get-directions-button{
+        width:100%;
+        clear:both;
+      }
     }
 
     &, #park{
