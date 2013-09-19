@@ -26,7 +26,7 @@ module Embed
         @full_description = params[:full_description] == 'true'
       end
 
-      render :layout => "embed/responsive"
+      render :layout => "embed/responsive
     end
 
     def details
