@@ -21,6 +21,7 @@ var autoFit = function(){
 function resizeIframe(iframe) {
   iframe.height = iframe.contentWindow.document.body.scrollHeight + "px";
 }
+
 $(function(){
   $(window).resize(function(){
     autoFit();

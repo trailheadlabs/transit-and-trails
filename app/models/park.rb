@@ -45,7 +45,7 @@ class Park < ActiveRecord::Base
   end
 
   def cached_trailheads
-    Trailhead.where(cached_park_by_bounds_id: id)
+    Trailhead.approved.where(cached_park_by_bounds_id: id)
   end
 
   def trailheads
@@ -64,7 +64,7 @@ class Park < ActiveRecord::Base
   end
 
   def cached_campgrounds
-    Campground.where(cached_park_by_bounds_id: id)
+    Campground.approved.where(cached_park_by_bounds_id: id)
   end
 
   def campgrounds
@@ -72,7 +72,7 @@ class Park < ActiveRecord::Base
   end
 
   def campgrounds_in_bounds
-    campgrounds = Campground.where("latitude > :min_latitude AND latitude < :max_latitude AND longitude > :min_longitude AND longitude < :max_longitude",
+    campgrounds = Campground.approved.where("latitude > :min_latitude AND latitude < :max_latitude AND longitude > :min_longitude AND longitude < :max_longitude",
       :min_latitude => self.min_latitude, :min_longitude => self.min_longitude, :max_latitude => self.max_latitude,
         :max_longitude => self.max_longitude )
 

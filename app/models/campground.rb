@@ -10,7 +10,9 @@ class Campground < ActiveRecord::Base
   has_many :maps, :as => :mapable, :dependent => :destroy
   has_many :photos, :as => :photoable, :dependent => :destroy
   has_many :stories, :as => :storytellable, :dependent => :destroy
-
+  
+  scope :approved, where(:approved => true)
+  
   has_and_belongs_to_many :campground_features
   attr_accessible :approved,
                   :description,
