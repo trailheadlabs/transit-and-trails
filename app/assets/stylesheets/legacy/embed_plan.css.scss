@@ -151,6 +151,10 @@ html,body,.embed,#plan,#the-plan{
 }
 
 @media (max-width: 290px) {  
+  .legacy #the-plan h3#name-title{
+    max-width:200px;
+  }
+
   .legacy{
     #return-trip-button, #get-directions-button{
       margin-top:4px;
@@ -158,4 +162,5 @@ html,body,.embed,#plan,#the-plan{
       clear:both;
     }
   }
+
 }
