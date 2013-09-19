@@ -15,9 +15,11 @@ $(function() {
 
     $('.trail-type-trailhead .details-link').live('click',
     function(event) {
-        id = parseInt($(event.target).attr('rel'));
-        TNT.find.showTrailhead(id)
-        event.preventDefault();
+        if(!$('.embed').hasClass('phone') && !$('.embed').hasClass('tablet')){
+            id = parseInt($(event.target).attr('rel'));
+            TNT.find.showTrailhead(id)
+            event.preventDefault();
+        }
     });
 
     $('.trail-type-trailhead .details-link').live('mouseenter',
@@ -64,16 +66,20 @@ $(function() {
 
     $('.trail-type-trip .details-link').live('click',
     function(event) {
-        id = parseInt($(event.target).attr('rel'));
-        TNT.find.showTrip(id)
-        event.preventDefault();
+        if(!$('.embed').hasClass('phone') && !$('.embed').hasClass('tablet')){
+            id = parseInt($(event.target).attr('rel'));
+            TNT.find.showTrip(id)
+            event.preventDefault();
+        }
     });
 
     $('.trail-type-campground .details-link').live('click',
     function(event) {
-        id = parseInt($(event.target).attr('rel'));
-        TNT.find.showCampground(id)
-        event.preventDefault();
+        if(!$('.embed').hasClass('phone') && !$('.embed').hasClass('tablet')){
+            id = parseInt($(event.target).attr('rel'));
+            TNT.find.showCampground(id)
+            event.preventDefault();
+        }
     });
 
     $('#object-select').mouseenter(function() {
@@ -425,7 +431,7 @@ TNT.find = {
             var tripId = trip.tripId;
             var newMarker = this.createTripMarker(tripId, tripTitle, latlng);
             newHtml = newHtml + '<li class="trail-type-trip">' +
-    					'<h2 id="h2_'+ tripId + '" class="details-link" rel="'+ tripId +'">'+ tripTitle + '</h2>' +
+    					'<a href="/trips/' + tripId + '"><h2 id="h2_'+ tripId + '" class="details-link" rel="'+ tripId +'">'+ tripTitle + '</h2></a>' +
     					'<p><a href="/trips/' + tripId + '" >Details</a> | <a href="/plan/trip/' + tripId +
     					'">Plan</a></p></li>';
             this.currentTrips[tripId] = newMarker;
@@ -571,7 +577,7 @@ TNT.find = {
             var pointId = campground.pointId;
             var newMarker = this.createCampgroundMarker(pointId, campground.pointTitle, campground.latlng);
             newHtml = newHtml + '<li class="trail-type-campground">' +
-                        '<h2 id="h2_'+ pointId + '" class="details-link" rel="'+ pointId +'">'+ campground.pointTitle + '</h2>' +
+                        '<a href="/campgrounds/' + pointId + '"><h2 id="h2_'+ pointId + '" class="details-link" rel="'+ pointId +'">'+ campground.pointTitle + '</h2></a>' +
                         '<p><a href="/campgrounds/' + pointId + '" >Details</a> | <a href="/plan/campground/' + pointId +
                         '">Plan</a></p></li>';
             this.currentCampgrounds[pointId] = newMarker;
