@@ -38,40 +38,20 @@
                 %i #{ ag.name }
                 %br/
 
-          / - if @trip.starting_trailhead.default_park
-          /   %em
-          /   = link_to @trip.starting_trailhead.default_park.name, park_path(@trip.starting_trailhead.default_park), :target => :blank
-
-        / .social-buttons.clearfix
-        /   %a.twitter-share-button{"data-count" => "horizontal", "data-url" => "http://transitandtrails.org/parks/#{ @park.slug }/#{ @park.county_slug }/", "data-via" => "transitandtrail", :href => "https://twitter.com/share"} Tweet
-        /   %script{:src => "//platform.twitter.com/widgets.js", :type => "text/javascript"}
-        /   %iframe{:allowTransparency => "true", :frameborder => "0", :scrolling => "no", :src => "//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.transitandtrails.org%2Fparks%2F#{ @park.slug }%2F#{@park.county_slug}&send=false&layout=button_count&width=450&show_faces=true&action=like&colorscheme=light&font&height=80&appId=173296509398219", :style => "display: inline-block; margin:10px 0; border:none; overflow:hidden; width:150px; height:20px;"}
-
 
         / attributes
+        .legend
+          = image_tag "legacy/icon1.png"
+          Trips&nbsp;
+          = image_tag "legacy/icon2.png"
+          Trailheads&nbsp;
+          = image_tag "legacy/icon3.png"
+          Campgrounds&nbsp;
         #trail-list
           .trail-list-progress
             %img{:src => "/assets/legacy/progress-medium-blue.gif"}/
           %ul
       #find-map
-        / e: trails
-      / e: tour
-    / / e: plan
-    / - if @park.description
-    /   .plan-entry.description
-    /     %h4 Description
-    /     != @park.description
-    /   / e: entry
-    / - else
-    /   %div{:style => "height:10px"}
-    / .section-head
-    /   %h2 Comments
-    / / e: page head
-    / .comments
-    /   = render :partial => '/shared/partials/disqus'
-
-    / e: comments
-    / e: page
     %script{:src => "/assets/legacy/find.js", :type => "text/javascript"}
     = javascript_include_tag "embed.js"
     
