@@ -228,7 +228,6 @@ function initialize_park(id) {
         }
         $('.trail-list-progress').hide();
         autoFit();
-        // $("#trail-list").jScrollPane();        
     }
 }
 
@@ -727,7 +726,7 @@ TNT.find = {
         $('#radius').val();
         $('#trail-list').load(downloadurl,
         function() {
-            $('#trail-list ul').jScrollPane();
+            // $('#trail-list ul').jScrollPane();
             updateObjectDisplay();
 
         });

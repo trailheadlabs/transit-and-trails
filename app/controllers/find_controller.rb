@@ -65,7 +65,6 @@ class FindController < ApplicationController
       @filter_names += ["User: #{params[:user_query]}"]
     end
 
-
     @trailheads = Trailhead.where(approved: approved, id: @trailheads).near([center_latitude,center_longitude])
     @trailheads = @trailheads.page params[:page]
     respond_to do |format|
