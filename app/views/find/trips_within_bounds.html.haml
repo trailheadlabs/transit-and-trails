@@ -14,7 +14,8 @@
         - if @filter_names.empty?
           %span.label.label-success
             None
-
+      %hr
+      
     %ul.media-list#trips
       = render :partial => 'trips_media_item', :as => :trip, :collection => @trips
 
