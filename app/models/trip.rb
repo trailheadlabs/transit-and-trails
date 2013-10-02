@@ -56,6 +56,9 @@ class Trip < ActiveRecord::Base
       Rails.cache.delete("trip:#{id}:park_ids")
       find_parks
     end
+    @parks.each do |p|
+      p.touch
+    end    
   end
 
   def find_parks

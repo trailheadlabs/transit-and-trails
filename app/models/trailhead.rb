@@ -46,6 +46,13 @@ class Trailhead < ActiveRecord::Base
 
   validates :name, :presence => true, :uniqueness => true
 
+  after_save :touch_park
+
+  def touch_park
+    default_park.touch if default_park
+    park.touch if park
+  end
+
   def non_profit_partner
     non_profit_partner_override || default_park.try(:non_profit_partner)
   end

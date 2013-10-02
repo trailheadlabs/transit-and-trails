@@ -30,7 +30,14 @@ class Campground < ActiveRecord::Base
 
   before_create :auto_approve
   has_paper_trail
+  
+  after_save :touch_park
 
+  def touch_park
+    default_park.touch if default_park
+    park.touch if park
+  end
+  
   def categorized_attributes
     result = {}
     self.campground_features.includes(:category).each do |feature|
