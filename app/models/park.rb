@@ -49,11 +49,11 @@ class Park < ActiveRecord::Base
   end
 
   def trailheads
-    ((!cached_trailheads.empty? && cached_trailheads) || trailheads_in_bounds) + trailhead_overrides
+    ((!cached_trailheads.empty? && cached_trailheads) || trailheads_in_bounds) + trailhead_overrides.approved
   end
 
   def trailheads_in_bounds
-    trailheads = Trailhead.where("latitude > :min_latitude AND latitude < :max_latitude AND longitude > :min_longitude AND longitude < :max_longitude",
+    trailheads = Trailhead.approved.where("latitude > :min_latitude AND latitude < :max_latitude AND longitude > :min_longitude AND longitude < :max_longitude",
       :min_latitude => self.min_latitude, :min_longitude => self.min_longitude, :max_latitude => self.max_latitude,
         :max_longitude => self.max_longitude )
 
@@ -83,11 +83,11 @@ class Park < ActiveRecord::Base
   end
 
   def trips
-    trailheads.collect{|t| t.trips_starting_at + t.trips_ending_at }.flatten
+    trailheads.collect{|t| t.trips_starting_at.approved + t.trips_ending_at.approved }.flatten
   end
 
   def trips_starting_in_bounds
-    trips = Trip.where(:starting_trailhead_id => trailheads)
+    trips = Trip.where(:starting_trailhead_id => trailheads).approved
     trips.select! do |t|
       self.contains_trailhead? t.starting_trailhead
     end
@@ -95,7 +95,7 @@ class Park < ActiveRecord::Base
   end
 
   def trips_ending_in_bounds
-    trips = Trip.where(:ending_trailhead_id => trailheads)
+    trips = Trip.where(:ending_trailhead_id => trailheads).approved
     trips.select! do |t|
       self.contains_trailhead? t.ending_trailhead
     end

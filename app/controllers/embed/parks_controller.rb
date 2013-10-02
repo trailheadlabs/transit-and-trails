@@ -32,19 +32,11 @@ module Embed
       Rails.logger.info("agencies finished")
 
       @parks.each do |park|
-        @acres += park.acres
-        Rails.logger.info("polys started #{DateTime.now.to_f}")
+        @acres += park.acres        
         @polys += park.polys
-        Rails.logger.info("polys finished #{DateTime.now.to_f}")
-        Rails.logger.info("trips started #{DateTime.now.to_f}")
         @trips += park.trips
-        Rails.logger.info("trips finished #{DateTime.now.to_f}")
-        Rails.logger.info("campgrounds started #{DateTime.now.to_f}")
         @campgrounds += park.campgrounds
-        Rails.logger.info("campgrounds finished #{DateTime.now.to_f}")
-        Rails.logger.info("trailheads started #{DateTime.now.to_f}")
         @trailheads += park.trailheads
-        Rails.logger.info("trailheads finished #{DateTime.now.to_f}")
       end
 
       @trips.uniq!
