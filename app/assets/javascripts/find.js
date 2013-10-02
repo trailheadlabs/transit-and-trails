@@ -177,8 +177,11 @@ Find.fitMarkerBounds = function(trip){
       //  And increase the bounds to take this point
       bounds.extend (Find.mapMarkers[i].getPosition());
     }
-    Find.map.fitBounds(bounds);
-    Find.map.setCenter(bounds.getCenter());
+    
+    if(!$('#redo_search_in_map').is(':checked')){
+      Find.map.fitBounds(bounds);
+      Find.map.setCenter(bounds.getCenter());
+    }
   }
 }
 
