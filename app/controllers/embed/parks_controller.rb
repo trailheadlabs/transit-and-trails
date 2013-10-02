@@ -14,7 +14,7 @@ module Embed
         end
       elsif params[:id]
           @parks = Park.where(:id=>params[:id])
-      end
+      end      
 
       @polys = []
       @acres = 0

@@ -121,6 +121,7 @@ Find.clearFindMapMarkers = function(){
   for(i in Find.mapMarkers){
     Find.mapMarkers[i].setMap(null);
   }
+  Find.mapMarkers = [];
 }
 
 Find.toggleMapSize = function(){
@@ -167,6 +168,19 @@ Find.codeAddress = function(address) {
       }
     });
   }
+
+Find.fitMarkerBounds = function(trip){
+  if(Find.mapMarkers.length > 0) {
+    var bounds = new google.maps.LatLngBounds();
+    //  Go through each...
+    for (var i = 0, LtLgLen = Find.mapMarkers.length; i < LtLgLen; i++) {
+      //  And increase the bounds to take this point
+      bounds.extend (Find.mapMarkers[i].getPosition());
+    }
+    Find.map.fitBounds(bounds);
+    Find.map.setCenter(bounds.getCenter());
+  }
+}
 
 Find.addTripMarker = function(trip){
   var myLatlng = new google.maps.LatLng(trip.latitude,trip.longitude);
@@ -379,6 +393,7 @@ Find.loadItems = function(find_path){
     $('#progress').slideUp();
     $(".notice-list").fadeIn();
     $("#active-filters").html($(".list-filters").html());
+    Find.fitMarkerBounds();
   });
 }
 

@@ -26,13 +26,22 @@ class FindController < ApplicationController
     approved = true || params[:approved]
     @filter_names = []
 
-    if(params[:name_query].blank?)
-      @trailheads = Trailhead.within_bounds(sw_latitude,sw_longitude,ne_latitude,ne_longitude)
+    @trailheads = Trailhead.within_bounds(sw_latitude,sw_longitude,ne_latitude,ne_longitude)
+
+    if(params[:only_mine])
+      cookies[:only_mine] = true
+      @trailheads = Trailhead.where(user_id: current_user)
+      @filter_names += ["Only Mine"]
     else
+      cookies.delete :only_mine
+    end
+      
+    if(!params[:name_query].blank?)
       q = "%#{params[:name_query]}%"
-      @trailheads = Trailhead.where("name ILIKE ?",q)
+      @trailheads = @trailheads.where("name ILIKE ?",q)
       @filter_names += ["Name: #{params[:name_query]}"]
     end
+
 
     if(params[:feature_ids])
       ids = params[:feature_ids]
@@ -48,13 +57,6 @@ class FindController < ApplicationController
       cookies.delete :unapproved
     end
 
-    if(params[:only_mine])
-      cookies[:only_mine] = true
-      @trailheads = @trailheads.where(user_id: current_user)
-      @filter_names += ["Only Mine"]
-    else
-      cookies.delete :only_mine
-    end
 
     @near = "#{params[:near]}" || "San Francisco, CA"
 
@@ -65,7 +67,12 @@ class FindController < ApplicationController
       @filter_names += ["User: #{params[:user_query]}"]
     end
 
-    @trailheads = Trailhead.where(approved: approved, id: @trailheads).near([center_latitude,center_longitude])
+    if params[:only_mine]
+      @trailheads = Trailhead.where(approved: approved, id: @trailheads).near([center_latitude,center_longitude],1000)
+    else
+      @trailheads = Trailhead.where(approved: approved, id: @trailheads).near([center_latitude,center_longitude])
+    end
+
     @trailheads = @trailheads.page params[:page]
     respond_to do |format|
       format.html { render :layout => false } # show.html.erb
@@ -86,13 +93,22 @@ class FindController < ApplicationController
     offset = 0 || params[:offset]
     approved = true || params[:approved]
     @filter_names = []
-    if(params[:name_query].blank?)
-      @campgrounds = Campground.within_bounds(sw_latitude,sw_longitude,ne_latitude,ne_longitude)
-    else
+
+    @campgrounds = Campground.within_bounds(sw_latitude,sw_longitude,ne_latitude,ne_longitude)
+    if(!params[:name_query].blank?)
       q = "%#{params[:name_query]}%"
       @campgrounds = Campground.where("name ILIKE ?",q)
       @filter_names += ["Name: #{params[:name_query]}"]
     end
+
+    if(params[:only_mine])
+      cookies[:only_mine] = true
+      @campgrounds = Campground.where(user_id: current_user)
+      @filter_names += ["Only Mine"]
+    else
+      cookies.delete :only_mine
+    end
+
 
     if(params[:feature_ids])
       ids = params[:feature_ids]
@@ -106,14 +122,6 @@ class FindController < ApplicationController
       @filter_names += ["Unapproved"]
     else
       cookies.delete :unapproved
-    end
-
-    if(params[:only_mine])
-      cookies[:only_mine] = true
-      @campgrounds = @campgrounds.where(user_id: current_user)
-      @filter_names += ["Only Mine"]
-    else
-      cookies.delete :only_mine
     end
 
     unless(params[:near].blank?)
@@ -147,9 +155,22 @@ class FindController < ApplicationController
     session[:starting_zoom] = zoom = Float(params[:zoom])
     approved = true || params[:approved]
     @filter_names = []
-    if(params[:name_query].blank?)
-      @trips = Trip.within_bounds(sw_latitude,sw_longitude,ne_latitude,ne_longitude)
+    search_radius = 10
+
+    
+    @trips = Trip.within_bounds(sw_latitude,sw_longitude,ne_latitude,ne_longitude)
+
+
+    if(params[:only_mine])
+      search_radius=1000
+      cookies[:only_mine] = true
+      @trips = Trip.where(user_id: current_user)
+      @filter_names += ["Only Mine"]
     else
+      cookies.delete :only_mine
+    end
+
+    if(!params[:name_query].blank?)
       q = "%#{params[:name_query]}%"
       @trips = Trip.where("name ILIKE ?",q)
       @filter_names += ["Name: #{params[:name_query]}"]
@@ -182,14 +203,6 @@ class FindController < ApplicationController
       cookies.delete :unapproved
     end
 
-    if(params[:only_mine])
-      cookies[:only_mine] = true
-      @trips = @trips.where(user_id: current_user)
-      @filter_names += ["Only Mine"]
-    else
-      cookies.delete :only_mine
-    end
-
     unless(params[:user_query].blank?)
       q = "%#{params[:user_query]}%"
       @users = User.where("username ILIKE ?",q)
@@ -197,7 +210,7 @@ class FindController < ApplicationController
       @filter_names += ["User: #{params[:user_query]}"]
     end
 
-    @trips = Trip.where(approved: approved, id: @trips).near([center_latitude,center_longitude])
+    @trips = Trip.where(approved: approved, id: @trips).near([center_latitude,center_longitude],search_radius)
     @trips = @trips.page params[:page]
     respond_to do |format|
       format.html { render :layout => false } # show.html.erb

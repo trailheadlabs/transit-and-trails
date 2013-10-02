@@ -15,11 +15,7 @@
   = params[:title] || "Park"
 
 - content_for :page_content do
-  - cache ['v2',@park] do
-    #embed-plan-modal
-      .modal-content
-        %iframe#trip-planner(src="/embed/plan/trip/222")
-        = link_to "Close"
+  - cache ['v3',@park] do
     #plan.alt
 
       #park
