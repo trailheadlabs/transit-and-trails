@@ -25,4 +25,13 @@ $(function(){
   });
 
   autoFit();
+  $('#more-desc-link').click(function(){
+    $('.short-description').hide();
+    $('.full-description').show();
+  });
+  $('#less-desc-link').click(function(){
+    $('.full-description').hide();
+    $('.short-description').show();
+  });
+
 });

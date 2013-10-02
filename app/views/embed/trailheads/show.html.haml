@@ -44,7 +44,13 @@
         - if @full_description
           != @trailhead.description
         - else
-          != truncate_html(@trailhead.description, :length=> 400,  :omission => " ...<p><a  href='#{trailhead_path(@trailhead)}' target='_blank'>Read more &raquo;</a></p>")
+          .short-description
+            != truncate_html(@trailhead.description, :length=> 400,  :omission => " ...<p><br/><a id='more-desc-link' class='read-more-less-link' href='#'>Read more &raquo;</a></p>")
+          .full-description
+            != @trailhead.description
+            %br
+            = link_to "#", id: "less-desc-link", class: "read-more-less-link" do
+              &laquo; Read Less
 
     - if @show.include? 'actions'
       .summary.embed-section

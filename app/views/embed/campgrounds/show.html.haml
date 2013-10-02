@@ -8,12 +8,6 @@
 
 - content_for :page_content do
 
-  #description-modal.description-overlay
-    != @campground.description
-
-  / %script
-  /   trip_route = #{@trip.geometry_as_route || "null"};
-
   .content
     - if @show.include? 'header'
       .header
@@ -44,7 +38,13 @@
         - if @full_description
           != @campground.description
         - else
-          != truncate_html(@campground.description, :length=> 400,  :omission => " ...<p><a  href='#{campground_path(@campground)}' target='_blank'>Read more &raquo;</a></p>")
+          .short-description
+            != truncate_html(@campground.description, :length=> 400,  :omission => " ...<p><br/><a id='more-desc-link' class='read-more-less-link' href='#'>Read more &raquo;</a></p>")
+          .full-description
+            != @campground.description
+            %br
+            = link_to "#", id: "less-desc-link", class: "read-more-less-link" do
+              &laquo; Read Less
 
     - if @show.include? 'actions'
       .summary.embed-section

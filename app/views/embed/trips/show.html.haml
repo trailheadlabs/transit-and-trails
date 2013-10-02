@@ -8,9 +8,6 @@
 
 - content_for :page_content do
 
-  #description-modal.description-overlay
-    != @trip.description
-
   %script
     trip_route = #{@trip.geometry_as_route || "null"};
 
@@ -53,8 +50,13 @@
         - if @full_description
           != @trip.description
         - else
-          != truncate_html(@trip.description, :length=> 400,  :omission => " ...<p><a  href='#{trip_path(@trip)}' target='_blank'>Read more &raquo;</a></p>")
-
+          .short-description
+            != truncate_html(@trip.description, :length=> 400,  :omission => " ...<p><br/><a id='more-desc-link' class='read-more-less-link' href='#'>Read more &raquo;</a></p>")
+          .full-description
+            != @trip.description
+            %br
+            = link_to "#", id: "less-desc-link", class: "read-more-less-link" do
+              &laquo; Read Less
     - if @show.include? 'summary'
       .summary.embed-section
         - unless @hide_section_labels
