@@ -5,6 +5,16 @@ class TrailheadsController < ApplicationController
   check_authorization :only => [:new,:edit,:create,:update,:destroy]
   load_and_authorize_resource :only => [:new,:edit,:create,:update,:destroy]
 
+  def approve
+    @trailhead = Trailhead.find(params[:id])
+    @trailhead.update_attributes(approved:true)
+  end
+
+  def unapprove
+    @trailhead = Trailhead.find(params[:id])
+    @trailhead.update_attributes(approved:false)
+  end
+
   def transit_routers
     @transit_routers = Trailhead.find(params[:id]).transit_routers
     render :json => @transit_routers

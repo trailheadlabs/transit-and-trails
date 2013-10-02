@@ -9,6 +9,16 @@ class TripsController < ApplicationController
     redirect_to find_trips_path
   end
 
+  def approve
+    @trip = Trip.find(params[:id])
+    @trip.update_attributes(approved:true)
+  end
+
+  def unapprove
+    @trip = Trip.find(params[:id])
+    @trip.update_attributes(approved:false)
+  end
+
   # GET /trips/near_coordinates
   # GET /trips/near_coordinates.json
   def near_coordinates

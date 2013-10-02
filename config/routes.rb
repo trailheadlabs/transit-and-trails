@@ -104,6 +104,8 @@ Transitandtrails::Application.routes.draw do
       get 'near_coordinates'
     end
     member do
+      post 'approve'
+      post 'unapprove'
       get 'info_window'
     end
   end
@@ -117,6 +119,8 @@ Transitandtrails::Application.routes.draw do
       get 'near_coordinates'
     end
     member do
+      post 'approve'
+      post 'unapprove'      
       get 'info_window'
     end
   end
@@ -131,6 +135,8 @@ Transitandtrails::Application.routes.draw do
       get 'within_bounds'
     end
     member do
+      post 'approve'
+      post 'unapprove'      
       get 'info_window'
       get 'trip_editor_info_window'
       get 'transit_routers'

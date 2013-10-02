@@ -7,6 +7,16 @@ class CampgroundsController < ApplicationController
     redirect_to find_campgrounds_path
   end
 
+  def approve
+    @campground = Campground.find(params[:id])
+    @campground.update_attributes(approved:true)
+  end
+
+  def unapprove
+    @campground = Campground.find(params[:id])
+    @campground.update_attributes(approved:false)
+  end
+
   # GET /campgrounds/near_coordinates
   # GET /campgrounds/near_coordinates.json
   def near_coordinates
