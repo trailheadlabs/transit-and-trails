@@ -29,9 +29,11 @@ class Ability
 
   def admin
     can :manage, :all
+    can :approve, :all
   end
 
   def trailblazer
+    can :approve, :all
     can :manage, Trip
     can :manage, Trailhead
     can :manage, Campground

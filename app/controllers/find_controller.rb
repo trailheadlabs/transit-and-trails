@@ -40,9 +40,20 @@ class FindController < ApplicationController
       @filter_names += TrailheadFeature.find(params[:feature_ids]).collect(&:name)
     end
 
-    if(params[:my_trailheads])
+    if(params[:unapproved])
+      cookies[:unapproved] = true
+      approved = false
+      @filter_names += ["Unapproved"]
+    else
+      cookies.delete :unapproved
+    end
+
+    if(params[:only_mine])
+      cookies[:only_mine] = true
       @trailheads = @trailheads.where(user_id: current_user)
-      @filter_names += ["My Trailheads"]
+      @filter_names += ["Only Mine"]
+    else
+      cookies.delete :only_mine
     end
 
     @near = "#{params[:near]}" || "San Francisco, CA"
@@ -84,17 +95,26 @@ class FindController < ApplicationController
       @filter_names += ["Name: #{params[:name_query]}"]
     end
 
-
-
     if(params[:feature_ids])
       ids = params[:feature_ids]
       @campgrounds = @campgrounds.joins(:campground_features).where(:campground_features => {:id => ids}).group('campgrounds.id').having(['count(campgrounds.id) = ?',ids.length])
       @filter_names += CampgroundFeature.find(params[:feature_ids]).collect(&:name)
     end
 
-    if(params[:my_campgrounds])
+    if(params[:unapproved])
+      cookies[:unapproved] = true
+      approved = false
+      @filter_names += ["Unapproved"]
+    else
+      cookies.delete :unapproved
+    end
+
+    if(params[:only_mine])
+      cookies[:only_mine] = true
       @campgrounds = @campgrounds.where(user_id: current_user)
-      @filter_names += ["My Campgrounds"]
+      @filter_names += ["Only Mine"]
+    else
+      cookies.delete :only_mine
     end
 
     unless(params[:near].blank?)
@@ -155,9 +175,20 @@ class FindController < ApplicationController
       @filter_names += TripFeature.find(params[:feature_ids]).collect(&:name)
     end
 
-    if(params[:my_trips])
+    if(params[:unapproved])
+      cookies[:unapproved] = true
+      approved = false
+      @filter_names += ["Unapproved"]
+    else
+      cookies.delete :unapproved
+    end
+
+    if(params[:only_mine])
+      cookies[:only_mine] = true
       @trips = @trips.where(user_id: current_user)
-      @filter_names += ["My Trips"]
+      @filter_names += ["Only Mine"]
+    else
+      cookies.delete :only_mine
     end
 
     unless(params[:user_query].blank?)

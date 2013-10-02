@@ -8,6 +8,23 @@
   %label.checkbox
     %input(type="checkbox" id="redo_search_in_map" value="true")
     Redo search in map
+  - if user_signed_in?
+    - only_mine = cookies[:only_mine] || false
+    %label.checkbox
+      - if only_mine
+        %input.filter-checkbox(type="checkbox" name="only_mine" value="true" checked="true")  
+      - else
+        %input.filter-checkbox(type="checkbox" name="only_mine" value="true")          
+      Only mine (#{current_user.username})
+    - if can? :approve, Trip
+      - unapproved = cookies[:unapproved] || false
+      %label.checkbox
+        - if unapproved
+          %input.filter-checkbox(type="checkbox" name="unapproved" value="true" checked="true")
+        - else
+          %input.filter-checkbox(type="checkbox" name="unapproved" value="true")
+        Unapproved
+
   %hr
   %p.filter-header
     Trailhead Name
@@ -19,10 +36,6 @@
   %p.filter-header
     Author
   %p
-    - if user_signed_in?
-      %label.checkbox
-        %input.filter-checkbox(type="checkbox" name="my_trailheads" value="true")
-        My Trailheads (#{current_user.username})
     %input.search-query{:placeholder => "Type a user name...", :type => "text", :name => 'user_query'}
     %button.btn.btn-success.btn-round.pull-right{:type => "submit", :value => "Find"}
       Find
