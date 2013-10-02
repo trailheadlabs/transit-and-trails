@@ -9,9 +9,9 @@
       = link_to "Edit Trip", edit_trip_path(trip), :class => "btn btn-primary btn-block btn-round"
     - if can? :approve, Trip
       - if trip.approved
-        = link_to "Unapprove Trip", unapprove_trip_path(trip), :method => :post, :class => "btn btn-warning btn-block btn-round", :data => { :confirm => "Are you sure?" }, :remote =>  true
+        = link_to "Unapprove", unapprove_trip_path(trip), :method => :post, :class => "btn btn-warning btn-block btn-round", :remote =>  true
       - else
-        = link_to "Approve Trip", approve_trip_path(trip), :method => :post, :class => "btn btn-primary btn-block btn-round", :data => { :confirm => "Are you sure?" }, :remote =>  true
+        = link_to "Approve", approve_trip_path(trip), :method => :post, :class => "btn btn-primary btn-block btn-round", :remote =>  true
     - if can? :destroy, Trip
       = link_to "Delete Trip", trip_path(trip), :method => :delete, :class => "btn btn-danger btn-block btn-round", :data => { :confirm => "Are you sure?" }
 
