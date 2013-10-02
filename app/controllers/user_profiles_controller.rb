@@ -1,6 +1,13 @@
 class UserProfilesController < ApplicationController
   before_filter :authenticate_user!
 
+  def trailblazer_admin
+    current_user
+    @trips = Trip.where(user_id:current_user.id)
+    @trailheads = Trailhead.where(user_id:current_user.id)
+    @campgrounds = Trailhead.where(user_id:current_user.id)
+  end
+
   # GET /user_profiles
   # GET /user_profiles.json
   def index

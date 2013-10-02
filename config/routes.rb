@@ -170,6 +170,9 @@ Transitandtrails::Application.routes.draw do
   # match 'send_contact' => "application#send_contact", :via => :post, :as => :send_contact
 
   resources :user_profiles do
+    collection do 
+      get 'trailblazer_admin'
+    end
     member do
       post 'reset_api_key'
     end
