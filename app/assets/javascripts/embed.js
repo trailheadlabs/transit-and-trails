@@ -1,6 +1,6 @@
 var autoFit = function(){
   $('#find-map').width($('#plan').outerWidth()-$('#park').outerWidth());
-  $('#find-map').height($('body').outerHeight()-$('.embed-header').outerHeight()-4);    
+  $('#find-map').height($('html').outerHeight()-$('.embed-header').outerHeight());    
   $('#embed-plan-modal').width($('body').outerWidth()-20);
   $('#embed-plan-modal').height($('body').outerHeight()-20);
 
@@ -13,7 +13,7 @@ var autoFit = function(){
     $('body .embed, #plan-embed').addClass('phone')
   } else {
     $('body .embed, #plan-embed').removeClass('phone')
-    $('#trail-list').height($('body').outerHeight()-$('#park-header').outerHeight()-$('.embed-header').outerHeight());      
+    $('#trail-list').outerHeight($('body').outerHeight()-$('#park-header').outerHeight()-$('.embed-header').outerHeight()-$('.legend').outerHeight());      
   }
 
 }
@@ -23,8 +23,7 @@ $(function(){
     autoFit();
     TNT.find.map.setCenter(TNT.parklatlngbounds.getCenter(), TNT.find.map.getBoundsZoomLevel(TNT.parklatlngbounds));
   });
-
-  autoFit();
+  
   $('#more-desc-link').click(function(){
     $('.short-description').hide();
     $('.full-description').show();
@@ -33,5 +32,10 @@ $(function(){
     $('.full-description').hide();
     $('.short-description').show();
   });
-
+  autoFit();
+  $(window).load(function(){
+    
+    autoFit();  
+  });
+  
 });

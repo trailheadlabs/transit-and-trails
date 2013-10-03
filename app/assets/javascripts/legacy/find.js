@@ -227,7 +227,7 @@ function initialize_park(id) {
             TNT.find.loadCampgroundsInline(campgrounds);
         }
         $('.trail-list-progress').hide();
-        autoFit();
+        // autoFit();
     }
 }
 

@@ -28,10 +28,10 @@
       .header
         %img.type-flag{:alt => "", :src => "/assets/legacy/trip.png"}/
         .trip-name
-          = link_to @trip.name, @trip, :target => :blank
+          = @trip.name
         - if @trip.starting_trailhead.default_park
           %em
-          = link_to @trip.starting_trailhead.default_park.name, park_path(@trip.starting_trailhead.default_park), :target => :blank
+          = @trip.starting_trailhead.default_park.name
 
     - if @show.include? 'contributor'
       .contributor.embed-section
@@ -145,6 +145,9 @@
       .actions.embed-section
         %a.green-button.padded-sides{:href => "#{request.referer}"}
           &laquo; Back
+
+    .visit-tnt.embed-section
+      = link_to "View this Trip at Trasit & Trails", trip_url(@trip)
 
   / = javascript_include_tag "embed_plan"
   
