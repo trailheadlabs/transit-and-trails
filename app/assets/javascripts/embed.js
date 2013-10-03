@@ -1,8 +1,6 @@
 var autoFit = function(){
   $('#find-map').width($('#plan').outerWidth()-$('#park').outerWidth());
   $('#find-map').height($('html').outerHeight()-$('.embed-header').outerHeight());    
-  $('#embed-plan-modal').width($('body').outerWidth()-20);
-  $('#embed-plan-modal').height($('body').outerHeight()-20);
 
   if($('body').width() < 500){
     $('body .embed, #plan-embed').addClass('tablet')

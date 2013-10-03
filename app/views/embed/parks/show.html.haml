@@ -23,7 +23,7 @@
         .header#park-header
           %img.type-flag{:alt => "", :src => "/assets/legacy/park.png"}/
           .trip-name
-            = link_to @park.name, @park, :target => :blank
+            = @park.name
           - if @agencies
             - @agencies.each do |ag|
               - unless ag.link == "no website"

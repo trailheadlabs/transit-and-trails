@@ -19,10 +19,10 @@
       .header
         %img.type-flag{:alt => "", :src => "/assets/legacy/trailhead.png"}/
         .trip-name
-          = link_to @trailhead.name, @trailhead, :target => :blank
+          = @trailhead.name
         - if @trailhead.default_park
           %em
-          = link_to @trailhead.default_park.name, park_path(@trailhead.default_park), :target => :blank
+          = @trailhead.default_park.name
 
     - if @show.include? 'contributor'
       .contributor.embed-section
@@ -132,6 +132,9 @@
       .actions.embed-section
         %a.green-button.padded-sides{:href => "#{request.referer}"}
           &laquo; Back
+
+    .visit-tnt.embed-section
+      = link_to "View this Trailhead at Trasit & Trails", trailhead_url(@trailhead,:host=>"www.transitandtrails.org"), :target => "_blank"
 
   = javascript_include_tag "embed"
 

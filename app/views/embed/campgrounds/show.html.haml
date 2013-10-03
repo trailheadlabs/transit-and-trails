@@ -13,10 +13,10 @@
       .header
         %img.type-flag{:alt => "", :src => "/assets/legacy/campground.png"}/
         .trip-name
-          = link_to @campground.name, @campground, :target => :blank
+          = @campground.name
         - if @campground.default_park
           %em
-          = link_to @campground.default_park.name, park_path(@campground.default_park), :target => :blank
+          = @campground.default_park.name
 
     - if @show.include? 'contributor'
       .contributor.embed-section
@@ -127,6 +127,9 @@
       .actions.embed-section
         %a.green-button.padded-sides{:href => "#{request.referer}"}
           &laquo; Back
+
+    .visit-tnt.embed-section
+      = link_to "View this Campground at Trasit & Trails", campground_url(@campground,:host=>"www.transitandtrails.org"), :target => "_blank"
 
   = javascript_include_tag "embed"
 

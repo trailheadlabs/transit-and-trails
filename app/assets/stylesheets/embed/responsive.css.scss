@@ -154,6 +154,9 @@ body{
     margin: 0px;
   }
 
+  .visit-tnt{
+    text-align:center;
+  }
   .content, #plan{
     margin-top:43px;
   }
@@ -336,6 +339,7 @@ body{
 }
 
 .header{
+  color:#555;
   padding: 10px 14px 0 70px;
   height: 62px;
   background: #fff;
@@ -346,7 +350,7 @@ body{
   .trip-name{
     font-size:1.3em;
     margin-bottom:6px;
-    font-weight:500;
+    font-weight:600;
   }
 }
 
@@ -386,7 +390,7 @@ hr{
 
 .embed{
   .non_profit_partner_label, .managed_by_label{
-    color: #4C93B5;
+    color: #666;
     font-weight: 700;
     font-size: 1em;
     text-transform: uppercase;
