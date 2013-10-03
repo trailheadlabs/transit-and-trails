@@ -5,9 +5,7 @@ class IdentitiesController < ApplicationController
     name = @identity.provider.capitalize
     @identity.destroy
 
-    respond_to do |format|
-      flash[:notice] = "#{name} Disconnected"
-      redirect_to :back || edit_user_path(current_user)
+    redirect_to :back || edit_user_path(current_user), :notice => "#{name} Disconnected"
     end
   end
 end
