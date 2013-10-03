@@ -1,0 +1,21 @@
+.content
+  %h3 My Parks
+  %table.table.table-striped
+    %thead
+      %tr
+        %th ID
+        %th Park
+        %th Embed Code
+        %th
+    %tbody
+      - @parks.each do |p|
+        %tr
+          %td= p.id
+          %td= link_to p.name, p
+          %td
+            %pre
+              &lt;iframe src=&quot;http://embed.transitandtrails.org/embed/parks/#{p.id}&quot; frameborder=&quot;false&quot; width=&quot;800&quot; height=&quot;600&quot;&gt;&lt;/iframe&gt;
+
+
+
+

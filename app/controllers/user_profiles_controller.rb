@@ -1,6 +1,10 @@
 class UserProfilesController < ApplicationController
   before_filter :authenticate_user!
 
+  def my_parks
+    @parks = current_user.parks
+  end
+
   def trailblazer_admin
     current_user
     @trips = Trip.where(user_id:current_user.id)

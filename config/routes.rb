@@ -178,6 +178,7 @@ Transitandtrails::Application.routes.draw do
   resources :user_profiles do
     collection do 
       get 'trailblazer_admin'
+      get 'my_parks'      
     end
     member do
       post 'reset_api_key'

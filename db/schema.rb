@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130216012914) do
+ActiveRecord::Schema.define(:version => 20131003180111) do
 
   create_table "agencies", :force => true do |t|
     t.string   "name"
@@ -21,6 +21,13 @@ ActiveRecord::Schema.define(:version => 20130216012914) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  create_table "agencies_users", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "agency_id"
+  end
+
+  add_index "agencies_users", ["user_id", "agency_id"], :name => "index_agencies_users_on_user_id_and_agency_id"
 
   create_table "campground_features", :force => true do |t|
     t.string   "name"

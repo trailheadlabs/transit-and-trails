@@ -48,7 +48,11 @@
                 = link_to "Account", edit_user_registration_path
               %li
                 = link_to 'Profile', profile_path
+              - unless current_user.parks.empty?
+                %li
+                  = link_to "My Parks", my_parks_user_profiles_path                  
               - if current_user.admin?
+                %li.divider
                 %li
                   = link_to 'Admin', rails_admin_path
               %li.divider

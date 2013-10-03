@@ -6,6 +6,8 @@
     |
     = link_to 'Admin', rails_admin_path
   |
+  - unless current_user.parks.empty?
+    = link_to "My Parks", my_parks_user_profiles_path
   = link_to "Sign Out", destroy_user_session_path, method: :delete
 - else
   Welcome
