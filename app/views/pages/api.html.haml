@@ -82,8 +82,7 @@
     %li All API requests must be made via HTTPS
     %li
       All API requests must include a key parameter with a valid API Key value. API Keys can be found on the
-      %a(href="http://api.rails.transitandtrails.org/")
-        user profile page
+      = link_to 'user profile page', profile_path        
       \.
     %li The default response format is JSON. Responses can be formated as json by appending .xml to the request path. For example : https://api.transitandtrails.org/api/v1/trailheads.xml?key=valid_api_key
     %li Error handling is limited. Get Trailhead, Trip, Campground and User will return 404 response codes when an invalid ID is specified. Beware of 500 response codes. This will get better, we promise.
