@@ -189,6 +189,7 @@ TNT.plan = {
       TNT.plan.start_latlng = place.geometry.location;
       $('#starting-point-latlng').html(TNT.plan.start_latlng.lat() + ", " + TNT.plan.start_latlng.lng());
       TNT.plan.calcRoute();
+      $('#start-from-address').blur();
     });
   },
 
