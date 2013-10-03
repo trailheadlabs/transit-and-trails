@@ -6,6 +6,6 @@ class IdentitiesController < ApplicationController
     @identity.destroy
 
     redirect_to :back || edit_user_path(current_user), :notice => "#{name} Disconnected"
-    end
+
   end
 end
