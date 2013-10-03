@@ -23,6 +23,11 @@ module Api
           distance = params[:distance] || 100
           @campgrounds = @campgrounds.near([params[:latitude],params[:longitude]],distance)
         end
+
+        if(params[:user_id])
+          @campgrounds = @campgrounds.where(user_id:params[:user_id].split(','))
+        end
+
         
         @campgrounds = apply_limit_and_offset(params,@campgrounds.order('id'))
       end

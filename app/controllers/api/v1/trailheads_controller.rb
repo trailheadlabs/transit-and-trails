@@ -7,7 +7,7 @@ module Api
       def index
         @trailheads = Trailhead.approved.order("id").includes(:cached_park_by_bounds,:park)
         if params[:non_profit_partner_id]
-          partner_id = params[:non_profit_partner_id]
+          partner_id = params[:non_profit_partner_id].split(",")
           parks = Park.where(:non_profit_partner_id => partner_id)
           trailhead_ids = parks.collect{|p| p.trailheads }.flatten
           trailhead_ids += Trailhead.select(:id).where(non_profit_partner_id: partner_id)
@@ -25,7 +25,7 @@ module Api
         end
 
         if(params[:user_id])
-          @trailheads = @trailheads.where(user_id:params[:user_id])
+          @trailheads = @trailheads.where(user_id:params[:user_id].split(','))
         end
 
         @trailheads = apply_limit_and_offset(params,@trailheads.order('id'))

@@ -155,16 +155,20 @@
     %p
       %u Optional Parameters
     %p
-      %b limit
-      \- Maximum number of items to return.
-      %b offset
-      \- Starting index of items to return.
-      %b latitude
-      \- must be used with longitude, will only return trailheads near this point
-      %b longitude
-      \- must be used with latitude, will only return trailheads near this point
-      %b distance
-      \- distance in miles, will only return trailheads within this distance of latitude and longitude parameters
+      %h5.param limit
+      Maximum number of items to return.
+      %h5.param offset
+      Starting index of items to return.
+      %h5.param latitude
+      must be used with longitude, will only return trailheads near this point
+      %h5.param longitude
+      must be used with latitude, will only return trailheads near this point
+      %h5.param distance
+      distance in miles, will only return trailheads within this distance of latitude and longitude parameters
+      %h5.param user_id
+      A comma separated list of user_ids. Will filter returned trailheads by associated user.
+      %h5.param non_profit_partner_id
+      A comma separated list of user_ids. Will filter returned trailheads by associated non-profit partners.
 
     %p
       %u Example Response
@@ -320,10 +324,10 @@
     %p
       %u Optional Parameters
     %p
-      %b limit
-      \- Maximum number of items to return.
-      %b offset
-      \- Starting index of items to return.
+      %h5.param limit
+      Maximum number of items to return.
+      %h5.param offset
+      Starting index of items to return.
     %p
       %u Example Response
     %pre
@@ -417,10 +421,13 @@
     %p
       %u Optional Parameters
     %p
-      %b limit
-      \- Maximum number of items to return.
-      %b offset
-      \- Starting index of items to return.
+      %h5.param limit
+      Maximum number of items to return.
+      %h5.param offset
+      Starting index of items to return.
+      %h5.param user_id
+      A comma separated list of user_ids. Will filter returned trips by associated user.      
+      
     %p
       %u Example Response
     %pre
@@ -579,10 +586,10 @@
     %p
       %u Optional Parameters
     %p
-      %b limit
-      \- Maximum number of items to return.
-      %b offset
-      \- Starting index of items to return.
+      %h5.param limit
+      Maximum number of items to return.
+      %h5.param offset
+      Starting index of items to return.
     %p
       %u Example Response
     %pre
@@ -688,10 +695,12 @@
     %p
       %u Optional Parameters
     %p
-      %b limit
-      \- Maximum number of items to return.
-      %b offset
-      \- Starting index of items to return.
+      %h5.param limit
+      Maximum number of items to return.
+      %h5.param offset
+      Starting index of items to return.
+      %h5.param user_id
+      A comma separated list of user_ids. Will filter returned trips by associated user.      
     %p
       %u Example Response
     %pre
@@ -879,9 +888,9 @@
     %p
       %u Optional Parameters
     %p
-      %b limit
+      %h5.param limit
       \- Maximum number of items to return.
-      %b offset
+      %h5.param offset
       \- Starting index of items to return.
     %p
       %u Example Response
@@ -982,10 +991,10 @@
     %p
       %u Optional Parameters
     %p
-      %b limit
-      \- Maximum number of items to return.
-      %b offset
-      \- Starting index of items to return.
+      %h5.param limit
+      Maximum number of items to return.
+      %h5.param offset
+      Starting index of items to return.
     %p
       %u Example Response
     %pre

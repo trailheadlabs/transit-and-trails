@@ -7,6 +7,11 @@ module Api
           distance = params[:distance] || 100
           @trips = @trips.near([params[:latitude],params[:longitude]],distance)
         end
+
+        if(params[:user_id])
+          @trips = @trips.where(user_id:params[:user_id].split(','))
+        end
+
       end
 
       def show
