@@ -7,4 +7,4 @@
   %p
     Once you have activated your account it will be reviewed by Bay Nature and you will receive a confirmation email once it has been approved.
 - else
-  %p= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token)
+  %p= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.token)
