@@ -1,6 +1,7 @@
 class Park < ActiveRecord::Base
   default_scope order('name')
   belongs_to :agency, :inverse_of => :parks
+  has_many :users, :through :agency  
   belongs_to :non_profit_partner, :inverse_of => :parks
   attr_accessible :acres, :bounds, :county, :county_slug, :description, :name, :slug, :link,
     :min_longitude, :max_longitude, :min_latitude, :max_latitude, :non_profit_partner_id, :agency_id, :trailhead_ids

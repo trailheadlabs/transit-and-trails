@@ -15,7 +15,9 @@
           %span.label.label-success
             None
       %hr
-      
+    #paginator.pull-right
+      = paginate @trips, :remote => true      
+    
     %ul.media-list#trips
       = render :partial => 'trips_media_item', :as => :trip, :collection => @trips
 
