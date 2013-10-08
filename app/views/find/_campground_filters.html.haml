@@ -16,7 +16,7 @@
       - else
         %input.filter-checkbox(type="checkbox" name="only_mine" value="true")          
       Only mine (#{current_user.username})
-    - if can? :approve, Trip
+    - if can? :approve, Campground
       - unapproved = cookies[:unapproved] || false
       %label.checkbox
         - if unapproved

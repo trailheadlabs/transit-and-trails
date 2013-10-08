@@ -30,7 +30,7 @@ class FindController < ApplicationController
 
     if(params[:only_mine])
       cookies[:only_mine] = true
-      @trailheads = Trailhead.where(user_id: current_user)
+      @trailheads = Trailhead.where(user_id: current_user.id)
       @filter_names += ["Only Mine"]
     else
       cookies.delete :only_mine
@@ -103,7 +103,7 @@ class FindController < ApplicationController
 
     if(params[:only_mine])
       cookies[:only_mine] = true
-      @campgrounds = Campground.where(user_id: current_user)
+      @campgrounds = Campground.where(user_id: current_user.id)
       @filter_names += ["Only Mine"]
     else
       cookies.delete :only_mine
@@ -164,7 +164,7 @@ class FindController < ApplicationController
     if(params[:only_mine])
       search_radius=1000
       cookies[:only_mine] = true
-      @trips = Trip.where(user_id: current_user)
+      @trips = Trip.where(user_id: current_user.id)
       @filter_names += ["Only Mine"]
     else
       cookies.delete :only_mine
