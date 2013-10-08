@@ -15,6 +15,13 @@
           %span.label.label-success
             None
       %hr
+
+    .pages  
+      #page-info
+        = page_entries_info @trailheads
+      #paginator.pull-right
+        = paginate @trailheads, :remote => true    
+
     %ul.media-list#trailheads
       = render :partial => 'trailheads_media_item', :as => :trailhead, :collection => @trailheads
 

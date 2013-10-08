@@ -1,9 +1,11 @@
 @import "variables";
 @import "bourbon";
 
-.page-info{
+#page-info{
   margin: 20px 0px;
+  float:left;
 }
+
 abbr[title="required"] {
   color:red;
 }

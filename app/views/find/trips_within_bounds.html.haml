@@ -16,6 +16,12 @@
             None
       %hr
     
+    .pages  
+      #page-info
+        = page_entries_info @trips
+      #paginator.pull-right
+        = paginate @trips, :remote => true    
+
     %ul.media-list#trips
       = render :partial => 'trips_media_item', :as => :trip, :collection => @trips
 

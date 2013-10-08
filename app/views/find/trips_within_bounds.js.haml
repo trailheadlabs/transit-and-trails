@@ -16,5 +16,6 @@ $("#find-map-disable").fadeOut();
 $('#progress').slideUp();
 $(".notice-list").fadeIn();
 $('#paginator').html('#{escape_javascript(paginate(@trips, :remote => true).to_s)}');
+$('#page-info').html('#{escape_javascript(page_entries_info(@trips).to_s)}');
 Find.fitMarkerBounds();
 / $('#trailheads').html("test");
