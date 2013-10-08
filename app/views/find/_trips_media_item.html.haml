@@ -6,7 +6,7 @@
     = link_to "Zoom In", "#", :class => "btn btn-block zoom-button btn-warning btn-round"
     = link_to "Plan My Trip", "/plan/trip/#{trip.id}", :class => "btn btn-success btn-block btn-round"
     - if can? :edit, Trip
-      = link_to "Edit Trip", edit_trip_path(trip), :class => "btn btn-primary btn-block btn-round"
+      = link_to "Edit", edit_trip_path(trip), :class => "btn btn-primary btn-block btn-round"
     - if can? :approve, Trip
       - if trip.approved
         = link_to "Unapprove", unapprove_trip_path(trip), :method => :post, :class => "btn btn-warning btn-block btn-round", :remote =>  true

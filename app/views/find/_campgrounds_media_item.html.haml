@@ -4,10 +4,9 @@
       %img.media-object.img-rounded.img-polaroid(src="#{campground.thumbnail_url}")
     %br
     = link_to "Zoom In", "#", :class => "btn btn-block zoom-button btn-warning btn-round"
-    = link_to "Plan My Trip", "/plan/campground/#{campground.id}", :class => "btn btn-success btn-block btn-round"
+    = link_to "Plan", "/plan/campground/#{campground.id}", :class => "btn btn-success btn-block btn-round"
     - if can? :edit, Campground
-      = link_to edit_campground_path(campground), :class => "btn btn-primary btn-block  btn-round" do
-        %i.icon-edit
+      = link_to edit_campground_path(campground), :class => "btn btn-primary btn-block  btn-round" do        
         Edit
     - if can? :approve, Campground
       - if campground.approved
@@ -16,8 +15,7 @@
         = link_to "Approve", approve_campground_path(campground), :method => :post, :class => "btn btn-primary btn-block btn-round", :remote =>  true
 
     - if can? :destroy, Campground
-      = link_to campground_path(campground), :method => :delete, :class => "btn btn-danger btn-block btn-round", :data => { :confirm => "Are you sure?" } do
-        %i.icon-trash
+      = link_to campground_path(campground), :method => :delete, :class => "btn btn-danger btn-block btn-round", :data => { :confirm => "Are you sure?" } do        
         Delete
   .media-body
     %a(href="#{campground_path(campground)}")

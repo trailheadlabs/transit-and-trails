@@ -4,9 +4,9 @@
       %img.media-object.img-rounded(src="#{trailhead.thumbnail_url}")
       %br
       = link_to "Zoom In", "#", :class => "btn btn-block zoom-button btn-warning btn-round"
-      = link_to "Plan My Trip", "/plan/trailhead/#{trailhead.id}", :class => "btn btn-success btn-block btn-round"
+      = link_to "Plan", "/plan/trailhead/#{trailhead.id}", :class => "btn btn-success btn-block btn-round"
       - if can? :edit, Trailhead
-        = link_to "Edit Trailhead", edit_trailhead_path(trailhead), :class => "btn btn-primary btn-block btn-round"
+        = link_to "Edit", edit_trailhead_path(trailhead), :class => "btn btn-primary btn-block btn-round"
         - if can? :approve, Trailhead
           - if trailhead.approved
             = link_to "Unapprove", unapprove_trailhead_path(trailhead), :method => :post, :class => "btn btn-warning btn-block btn-round", :remote =>  true
