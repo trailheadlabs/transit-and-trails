@@ -135,7 +135,12 @@ class FindController < ApplicationController
       @filter_names += ["User: #{params[:user_query]}"]
     end
 
-    @campgrounds = Campground.where(approved: approved, id: @campgrounds).limit(limit).offset(offset).near([center_latitude,center_longitude])
+    if params[:only_mine]
+      @campgrounds = Campground.where(approved: approved, id: @campgrounds).near([center_latitude,center_longitude],1000)
+    else
+      @campgrounds = Campground.where(approved: approved, id: @campgrounds).near([center_latitude,center_longitude])
+    end
+
     @campgrounds = @campgrounds.page params[:page]
     respond_to do |format|
       format.html { render :layout => false } # show.html.erb
@@ -210,7 +215,12 @@ class FindController < ApplicationController
       @filter_names += ["User: #{params[:user_query]}"]
     end
 
-    @trips = Trip.where(approved: approved, id: @trips).near([center_latitude,center_longitude],search_radius)
+    if params[:only_mine]
+      @trips = Trip.where(approved: approved, id: @trips).near([center_latitude,center_longitude],1000)
+    else
+      @trips = Trip.where(approved: approved, id: @trips).near([center_latitude,center_longitude])
+    end
+
     @trips = @trips.page params[:page]
     respond_to do |format|
       format.html { render :layout => false } # show.html.erb
