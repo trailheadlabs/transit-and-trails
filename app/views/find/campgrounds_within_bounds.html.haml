@@ -18,6 +18,7 @@
       %hr
 
     .pages  
+      = page_entries_info @campgrounds
       #paginator.pull-right
         = paginate @campgrounds, :remote => true
 
