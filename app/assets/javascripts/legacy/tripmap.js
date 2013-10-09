@@ -371,8 +371,8 @@ TNT.tripmap = {
             for(var i = 0; i < popCount; i++){
                 TNT.tripmap.tripLine.getPath().pop();
             }
-        } else {
-            //TNT.tripmap.tripLine.getPath().pop();
+        } else if(TNT.tripmap.tripLine.getPath().length > 1) {
+            TNT.tripmap.tripLine.getPath().pop();
         }
         if(TNT.tripmap.ending_trailhead_id){
             TNT.tripmap.currentTrailheadsById[TNT.tripmap.ending_trailhead_id].setIcon(TNT.tripmap.trailheadIcon);
@@ -400,7 +400,7 @@ TNT.tripmap = {
     loadJSONRoute : function(){
         var bounds = new google.maps.LatLngBounds();
         // var route = $.parseJSON($('#id_route').val())['coordinates'];
-        var route = trip_route;
+        var route = simplify(trip_route,0.0001);
         if(route) {
             TNT.tripmap.tripLine.setMap(null);
             for (i in route) {

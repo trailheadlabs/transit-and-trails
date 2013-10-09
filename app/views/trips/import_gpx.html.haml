@@ -1,0 +1,8 @@
+// WTF
+:javascript
+  var bounds = new google.maps.LatLngBounds();
+  - @points.each do |p|
+    var newVertex = new google.maps.LatLng(#{p.lat}, #{p.lon});
+    TNT.tripmap.tripLine.getPath().push(newVertex);
+    bounds.extend(newVertex);  
+  TNT.tripmap.map.fitBounds(bounds);

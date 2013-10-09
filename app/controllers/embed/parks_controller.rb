@@ -27,9 +27,7 @@ module Embed
       @campgrounds = []
       @campgroundnames = []
 
-      Rails.logger.info("agencies started")
       @agencies = @parks.collect{|p| p.agency}.uniq
-      Rails.logger.info("agencies finished")
 
       @parks.each do |park|
         @acres += park.acres        

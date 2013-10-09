@@ -100,6 +100,7 @@ Transitandtrails::Application.routes.draw do
     resources :photos
     resources :stories
     collection do
+      post 'import_gpx'
       get 'near_address'
       get 'near_coordinates'
     end

@@ -3,6 +3,35 @@ class TripsController < ApplicationController
   check_authorization :only => [:new,:edit]
   load_and_authorize_resource :only => [:new,:edit]
 
+  def import_gpx
+    @trip = Trip.new
+
+    if params[:gpx_file]
+      @points = []
+      with_z = false
+      with_m = false
+      params[:gpx_file]
+      data = params[:gpx_file].read
+      
+      file_mode = data =~ /trkpt/ ? "//trkpt" : (data =~ /wpt/ ? "//wpt" : "//rtept")
+      Nokogiri.HTML(data).search(file_mode).each do |tp|
+        z = z.inner_text.to_f if with_z && z = tp.at("ele")
+        m = m.inner_text if with_m && m = tp.at("time")
+        @points << [tp['lat'].to_f,tp["lon"].to_f]
+      end      
+      @trip.route = @points
+    end
+
+    @trip.approved = true
+    @trip.intensity = Intensity.first
+    @trip.duration = Duration.first
+    @start_id = params[:start_id]
+    @center_latitude = params[:center_latitude]
+    @center_longitude = params[:center_longitude]
+
+    render "new"
+  end
+
   # GET /trips
   # GET /trips.json
   def index
@@ -70,6 +99,7 @@ class TripsController < ApplicationController
   # GET /trips/new.json
   def new
     @trip = Trip.new
+
     @trip.approved = true
     @trip.intensity = Intensity.first
     @trip.duration = Duration.first
@@ -77,10 +107,6 @@ class TripsController < ApplicationController
     @center_latitude = params[:center_latitude]
     @center_longitude = params[:center_longitude]
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @trip }
-    end
   end
 
   # GET /trips/1/edit

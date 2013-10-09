@@ -33,6 +33,8 @@
                 - if can? :create, Trip
                   %li
                     = link_to "Trip", new_trip_path
+                  %li
+                    = link_to "Trip from GPX", "#import-gpx-modal", data:{toggle:"modal"}
                 - if can? :create, Trailhead
                   %li
                     = link_to "Trailhead", new_trailhead_path
@@ -69,3 +71,28 @@
           /   = link_to "|", "#"
           / %li
           /   = link_to "Sign Up", new_user_registration_path
+
+#import-gpx-modal.modal.hide.fade  
+  .modal-header
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+    %h3
+      Import Trip from GPX
+  = form_tag import_gpx_trips_path, :remote => true, :multipart => true, :id => "import-gpx-form" do
+    .modal-body
+      %br
+      %p
+        Just upload a GPX file to create a new trip.
+      %br
+      = link_to "Choose File", "#", class: "btn btn-success btn-block btn-large", id: "choose-file-button"
+      = file_field_tag "gpx_file", hidden: true, id: "gpx-file-field"
+    .modal-footer
+      %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
+  :javascript
+    $('#choose-file-button').click(function(){
+        $('#gpx-file-field').click();        
+        return false;
+      });
+    $('#gpx-file-field').change(function(){
+      $('#import-gpx-form').submit();
+      return false;
+      });

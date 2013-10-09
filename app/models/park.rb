@@ -45,7 +45,7 @@ class Park < ActiveRecord::Base
     end
   end
 
-  def cached_trailheads
+  def cached_trailheads    
     Trailhead.approved.where(cached_park_by_bounds_id: id)
   end
 

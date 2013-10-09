@@ -22,7 +22,9 @@
       %label.control-label Distance
       #distance
         \-
+
   / map
+
   #map-container
     #plan-map-instructions
       %label.text-attr-label.address{:for => "id_start_address"}
@@ -38,7 +40,7 @@
       %a.green-map-button{:href => "javascript:TNT.tripmap.clearWayPoints();"} Clear
       %a.green-map-button{:href => "javascript:TNT.tripmap.eraseFromEnd()"} Undo
       %a#follow-paths-button.green-map-button{:href => "javascript:TNT.tripmap.toggleSnap();", :name => "follow-paths-button"} Unsnap
-      %a#follow-paths-button.green-map-button{:href => "javascript:TNT.tripmap.toggleEdit();", :name => "follow-paths-button"} Edit
+      %a#follow-paths-button.green-map-button{:href => "javascript:TNT.tripmap.toggleEdit();", :name => "follow-paths-button"} Edit      
   / e: plan
   .attributes
     #trailhead-features
@@ -78,7 +80,7 @@
 
 
 :javascript
-  trip_route = #{@trip.route || "[]"};
+  trip_route = #{@trip.route || @points || "[]"};
 
 = javascript_include_tag "legacy/tripmap"
 
