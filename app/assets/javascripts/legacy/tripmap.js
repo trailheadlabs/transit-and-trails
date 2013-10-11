@@ -39,7 +39,7 @@ TNT.tripmap = {
         this.tripEndIcon.size = new google.maps.Size(38, 38);
         this.tripEndIcon.anchor = new google.maps.Point(11, 37);
 
-        this.lastAddedIndices = [];
+        this.lastAddedSegments = [];
         this.editing = editMode !== TNT.EditMode.READONLY;
         this.editMode = editMode;
         this.follow_paths = true;
@@ -154,24 +154,30 @@ TNT.tripmap = {
     },
 
     outAndBack: function(){
+        var addFrom = TNT.tripmap.tripLine.getPath().getLength() - 1;
         for(var j=TNT.tripmap.tripLine.getPath().getLength() - 1; j >= 0;j--){
             var value = TNT.tripmap.tripLine.getPath().getAt(j);
             if (value)
                 TNT.tripmap.tripLine.getPath().push(value);
         };
+        var addTo = TNT.tripmap.tripLine.getPath().getLength() - 1;
+        TNT.tripmap.lastAddedSegments.push([addFrom,addTo]);
         TNT.tripmap.ending_trailhead_id = TNT.tripmap.starting_trailhead_id;
         this.makeTripEnd(TNT.tripmap.ending_trailhead_id);
         this.updateDistanceDiv();
     },
 
     addPointToTrip: function(point){
-        if(TNT.tripmap.lastAddedIndices.length < 1){
-            TNT.tripmap.lastAddedIndices.push(1);
+        var pathLength = TNT.tripmap.tripLine.getPath().getLength();
+        var addedFrom = 0;
+        if(pathLength > 0) {
+            addedFrom = pathLength - 1;
         }
+        var addedTo = addedFrom;
         if(!this.follow_paths) {
-            this.tripLine.getPath().push(point);
+            var newLength = this.tripLine.getPath().push(point);
             TNT.tripmap.updateDistanceDiv();
-            TNT.tripmap.lastAddedIndices.push(TNT.tripmap.tripLine.getPath().getLength()-1);
+            TNT.tripmap.lastAddedSegments.push([addedFrom,newLength-1]);
         } else {
             directionsRequest = {
                 origin: this.tripLine.getPath().getAt(this.tripLine.getPath().getLength()-1),
@@ -185,9 +191,10 @@ TNT.tripmap = {
                     for (var i = 0; i < myRoute.steps.length; i++) {
                         for(j in myRoute.steps[i].path) {
                             TNT.tripmap.tripLine.getPath().push(myRoute.steps[i].path[j]);
+                            addedTo++;
                         }
                       }
-                    TNT.tripmap.lastAddedIndices.push(TNT.tripmap.tripLine.getPath().getLength());
+                    TNT.tripmap.lastAddedSegments.push([addedFrom,addedTo]);
                     TNT.tripmap.updateDistanceDiv();
                 }
 
@@ -196,26 +203,33 @@ TNT.tripmap = {
         }
     },
 
-
     prependPointToTrip: function(point){
-        TNT.tripmap.lastAddedIndices.push(TNT.tripmap.tripLine.getPath().getLength());
+        var addedFrom = 0;
+        var addedTo = addedFrom;
+
         if(!this.follow_paths) {
-            this.tripLine.getPath().push(point);
+            this.tripLine.getPath().insertAt(0,point);
+            TNT.tripmap.updateDistanceDiv();
+            TNT.tripmap.lastAddedSegments.push([addedFrom,1]);
+
         } else {
             directionsRequest = {
-                origin: this.tripLine.getPath().getAt(this.tripLine.getPath().getLength()-1),
-                destination: point,
+                origin: point,
+                destination: this.tripLine.getPath().getAt(0),
                 travelMode: google.maps.TravelMode.WALKING
             }
             directionsService.route(directionsRequest, function(result, status) {
                 if (status == google.maps.DirectionsStatus.OK) {
                     var myRoute = result.routes[0].legs[0];
-
-                    for (var i = 0; i < myRoute.steps.length; i++) {
-                        for(j in myRoute.steps[i].path) {
-                            TNT.tripmap.tripLine.getPath().push(myRoute.steps[i].path[j]);
-                        }
-                      }
+                    var newPath = []
+                    for (var i = 0; i < myRoute.steps.length; i++) {                    
+                        newPath = newPath.concat(myRoute.steps[i].path);                                    
+                    }
+                    var currentPath = TNT.tripmap.tripLine.getPath().getArray();
+                    var nextPath = newPath.concat(currentPath);
+                    TNT.tripmap.tripLine.setPath(nextPath);
+                    addedTo += newPath.length;                        
+                    TNT.tripmap.lastAddedSegments.push([addedFrom,addedTo]);
                     TNT.tripmap.updateDistanceDiv();
                 }
             });
@@ -307,21 +321,18 @@ TNT.tripmap = {
         $('#trip_starting_trailhead_id').val(id);
         $('#trip-editor-step-instruction').text("Now draw your trip. Click the ending trailhead when you are done.");
         TNT.tripmap.currentInfoWindow.close();
+        var markerLatLng = TNT.tripmap.currentTrailheadsById[id].getPosition();        
         TNT.tripmap.currentTrailheadsById[id].setIcon(TNT.tripmap.tripStartIcon);
-        if (TNT.tripmap.tripLine == null) {
-            points = new Array();
-            points.push(startLatLng);
-            this.tripLine.setMap(null);
-            TNT.tripmap.tripLine = new google.maps.Polyline(points);
-            TNT.tripmap.tripLine.setMap(this.map);
-        }
-        else {
-            TNT.tripmap.tripLine.getPath().insertAt(0, startLatLng);
-            if(TNT.tripmap.tripLine.getPath().getLength() > 1) {
-              TNT.tripmap.tripLine.getPath().removeAt(1);
-            }
-        }
 
+
+        if (TNT.tripmap.tripLine == null || TNT.tripmap.tripLine.getPath().length == 0) {
+            TNT.tripmap.tripLine = new google.maps.Polyline();
+            TNT.tripmap.tripLine.setMap(this.map);
+            TNT.tripmap.tripLine.getPath().push(startLatLng);
+            TNT.tripmap.lastAddedSegments.push([0,0]);
+        } else {
+            this.prependPointToTrip(markerLatLng);
+        }
     },
 
     makeTripEnd : function(id){
@@ -366,21 +377,30 @@ TNT.tripmap = {
     },
 
     eraseFromEnd : function(){
-        if(TNT.tripmap.lastAddedIndices.length > 1){
-            var popCount = TNT.tripmap.lastAddedIndices.pop() - TNT.tripmap.lastAddedIndices[TNT.tripmap.lastAddedIndices.length-1];
-            for(var i = 0; i < popCount; i++){
-                TNT.tripmap.tripLine.getPath().pop();
+        if(TNT.tripmap.lastAddedSegments.length > 0){
+            var popSegment = TNT.tripmap.lastAddedSegments.pop();
+            for(var i = popSegment[0]; i <= popSegment[1]; i++){
+                TNT.tripmap.tripLine.getPath().removeAt(popSegment[0]);
             }
-        } else if(TNT.tripmap.tripLine.getPath().length > 1) {
-            TNT.tripmap.tripLine.getPath().pop();
+            if(popSegment[0] == 0) {
+                if(TNT.tripmap.starting_trailhead_id){
+                    TNT.tripmap.currentTrailheadsById[TNT.tripmap.starting_trailhead_id].setIcon(TNT.tripmap.trailheadIcon);
+                    // TNT.tripmap.currentTrailheadsById[TNT.tripmap.starting_trailhead_id].setIcon(TNT.tripmap.tripStartIcon);
+                    TNT.tripmap.starting_trailhead_id = null;
+                    $('#starting-trailhead-name').text('Click a trailhead to set as end.');
+                }
+
+            }
+            else {
+                if(TNT.tripmap.ending_trailhead_id){
+                    TNT.tripmap.currentTrailheadsById[TNT.tripmap.ending_trailhead_id].setIcon(TNT.tripmap.trailheadIcon);
+                    TNT.tripmap.currentTrailheadsById[TNT.tripmap.starting_trailhead_id].setIcon(TNT.tripmap.tripStartIcon);
+                    TNT.tripmap.ending_trailhead_id = null;
+                    $('#ending-trailhead-name').text('Click a trailhead to set as end.');
+                }
+            }
+            this.updateDistanceDiv();
         }
-        if(TNT.tripmap.ending_trailhead_id){
-            TNT.tripmap.currentTrailheadsById[TNT.tripmap.ending_trailhead_id].setIcon(TNT.tripmap.trailheadIcon);
-            TNT.tripmap.currentTrailheadsById[TNT.tripmap.starting_trailhead_id].setIcon(TNT.tripmap.tripStartIcon);
-            TNT.tripmap.ending_trailhead_id = null;
-            $('#ending-trailhead-name').text('Click a trailhead to set as end.');
-        }
-        this.updateDistanceDiv();
 
     },
 
@@ -400,14 +420,16 @@ TNT.tripmap = {
     loadJSONRoute : function(){
         var bounds = new google.maps.LatLngBounds();
         // var route = $.parseJSON($('#id_route').val())['coordinates'];
-        var route = simplify(trip_route,0.0001);
-        if(route) {
+        
+        if(trip_route.length > 0) {
+            var route = simplify(trip_route,0.0001);
             TNT.tripmap.tripLine.setMap(null);
             for (i in route) {
                 var newVertex = new google.maps.LatLng(route[i][0], route[i][1]);
                 TNT.tripmap.tripLine.getPath().push(newVertex);
                 bounds.extend(newVertex);
             }
+            TNT.tripmap.lastAddedSegments.push([0,route.length])
             TNT.tripmap.tripLine.setMap(TNT.tripmap.map);
             if ($('#trip_starting_trailhead_id').val() != '') {
                 TNT.tripmap.starting_trailhead_id = $('#trip_starting_trailhead_id').val();
