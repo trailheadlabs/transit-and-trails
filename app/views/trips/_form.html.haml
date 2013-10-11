@@ -5,6 +5,13 @@
   = f.input :ending_trailhead_id, :as => :hidden
 
   #trailhead-meta
+    -if @trip.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@trip.errors.count, "error")} :"
+        %ul
+          - @trip.errors.full_messages.each do |msg|
+            %li= msg
+
     = f.input :name, :label => "Name your trip"
 
     %label.text-attr-label Description

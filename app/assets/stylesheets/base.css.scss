@@ -211,7 +211,6 @@ ul.devise-links{
 }
 
 #error_explanation {
-  width: 450px;
   border: 2px solid red;
   padding: 7px;
   padding-bottom: 0;
@@ -228,7 +227,7 @@ ul.devise-links{
     color: #fff; }
   ul li {
     font-size: 12px;
-    list-style: square; } }
+    list-style: none; } }
 
 // input[type="submit"]{
 //   @include button(#74AB4C);

@@ -93,6 +93,10 @@
         return false;
       });
     $('#gpx-file-field').change(function(){
+      $('#choose-file-button').prop('disabled', true);
+      $('#choose-file-button').css('opacity', 0.5);    
+      $('#choose-file-button').text('Uploading...');
+      
       $('#import-gpx-form').submit();
       return false;
       });
