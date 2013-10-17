@@ -20,6 +20,36 @@ class TrailheadsController < ApplicationController
     render :json => @transit_routers
   end
 
+  def upload_kml
+    @trailheads = []
+    puts "UPLOAD_KML"
+    if params[:kml_file]
+      kml = params[:kml_file].read
+      puts kml
+      noko = Nokogiri::XML(kml)
+      placemarks = noko.css('Placemark > Point')
+      puts "PLACEMARKS" 
+      puts placemarks.count
+      placemarks.each do |p|
+        placemark = p.parent
+        point = placemark.css('Point').css('coordinates').text.strip.split(',').slice(0,2).collect{|c| c.to_f}.reverse
+        name = placemark.css('name').text
+        if Trailhead.find_by_name(name)
+          name = name + " (Import #{Time.now.to_i})"
+        end
+        trailhead = Trailhead.new
+        trailhead.approved = true
+        trailhead.name = name
+        trailhead.description = placemark.css('description').text
+        trailhead.latitude = point[0]
+        trailhead.longitude = point[1]
+        trailhead.save        
+        @trailheads << trailhead
+      end
+    end
+
+  end
+
   # GET /trailheads/near_address
   # GET /trailheads/near_address.json
   def near_address

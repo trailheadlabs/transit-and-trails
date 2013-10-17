@@ -1,0 +1,23 @@
+.content
+  %table.table
+    %thead
+      %tr
+        %th
+          Name
+        %th
+          Description
+        %th
+          Latitude
+        %th
+          Longitude
+        %th
+    %tbody
+      - @trailheads.each do |t|
+        %tr          
+          %td= link_to t.name, t
+          %td= t.description
+          %td= t.latitude
+          %td= t.longitude
+          %td
+            = link_to "Edit", edit_trailhead_path(t)
+

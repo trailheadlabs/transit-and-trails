@@ -32,6 +32,37 @@ class TripsController < ApplicationController
     render "new"
   end
 
+  def import_kml
+    @trip = Trip.new
+
+    if params[:kml_file]
+      @points = []
+      with_z = false
+      with_m = false
+      params[:kml_file]
+      kml = params[:kml_file].read
+      noko = Nokogiri::XML(kml)
+      placemark = noko.css('Placemark > LineString').first.parent
+      @points = placemark.css('LineString').css('coordinates').text.lines.to_a
+      @points.collect! do |p|
+        p.strip.split(',').slice(0,2).collect{|c| c.to_f}.reverse
+      end
+
+      @trip.route = @points
+    end
+
+    @trip.approved = true
+    @trip.name = placemark.css('name').text
+    @trip.description = placemark.css('description').text
+    @trip.intensity = Intensity.first
+    @trip.duration = Duration.first
+    @start_id = params[:start_id]
+    @center_latitude = params[:center_latitude]
+    @center_longitude = params[:center_longitude]
+
+    render "new"
+  end
+
   # GET /trips
   # GET /trips.json
   def index

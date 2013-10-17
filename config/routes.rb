@@ -101,6 +101,7 @@ Transitandtrails::Application.routes.draw do
     resources :stories
     collection do
       post 'import_gpx'
+      post 'import_kml'
       get 'near_address'
       get 'near_coordinates'
     end
@@ -131,6 +132,8 @@ Transitandtrails::Application.routes.draw do
     resources :photos
     resources :stories
     collection do
+      post 'upload_kml'
+      post 'import_trailheads'
       get 'near_address'
       get 'near_coordinates'
       get 'within_bounds'

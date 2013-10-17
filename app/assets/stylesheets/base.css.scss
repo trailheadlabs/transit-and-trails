@@ -1,6 +1,10 @@
 @import "variables";
 @import "bourbon";
 
+#import-trailhead-kml-form{
+  display:none;
+}
+
 #import-gpx-form{
   margin:0px;
 }

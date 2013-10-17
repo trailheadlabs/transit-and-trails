@@ -35,9 +35,14 @@
                     = link_to "Trip", new_trip_path
                   %li
                     = link_to "Trip from GPX", "#import-gpx-modal", data:{toggle:"modal"}
+                  %li
+                    = link_to "Trip from KML", "#import-kml-modal", data:{toggle:"modal"}
                 - if can? :create, Trailhead
                   %li
                     = link_to "Trailhead", new_trailhead_path
+                  %li
+                    = link_to "Trailheads from KML", "#", id: "trailheads-from-kml-link"
+
                 - if can? :create, Campground
                   %li
                     = link_to "Campground", new_campground_path
@@ -100,3 +105,46 @@
       $('#import-gpx-form').submit();
       return false;
       });
+
+#import-kml-modal.modal.hide.fade  
+  .modal-header
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+    %h3
+      Import Trip from KML
+  = form_tag import_kml_trips_path, :remote => true, :multipart => true, :id => "import-kml-form" do
+    .modal-body
+      %br
+      %p
+        Just upload a KML file to create a new trip.
+      %br
+      = link_to "Choose File", "#", class: "btn btn-success btn-block btn-large", id: "choose-kml-file-button"
+      = file_field_tag "kml_file", hidden: true, id: "kml-file-field"
+    .modal-footer
+      %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
+  :javascript
+    $('#choose-kml-file-button').click(function(){
+        $('#kml-file-field').click();        
+        return false;
+      });
+    $('#kml-file-field').change(function(){
+      $('#choose-kml-file-button').prop('disabled', true);
+      $('#choose-kml-file-button').css('opacity', 0.5);    
+      $('#choose-kml-file-button').text('Uploading...');
+      
+      $('#import-kml-form').submit();
+      return false;
+      });
+
+#import-trailhead-kml
+  = form_tag upload_kml_trailheads_path, :method => :post, :multipart => true, :id => "import-trailhead-kml-form" do
+    = file_field_tag "kml_file", hidden: true, id: "trailhead-kml-file-field"
+  :javascript
+    $('#trailheads-from-kml-link').click(function(){
+        $('#trailhead-kml-file-field').click();        
+        return false;
+      });
+    $('#trailhead-kml-file-field').change(function(){
+      $('#import-trailhead-kml-form').submit();
+      return false;
+      });
+
