@@ -14,9 +14,8 @@
 - content_for :page_title do
   = params[:title] || "Park"
 
-- content_for :page_content do
-  - if true
-  / - cache ['v4',@park] do
+- content_for :page_content do  
+  - cache ['v4',@park] do
     #plan.alt
 
       #park

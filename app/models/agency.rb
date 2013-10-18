@@ -4,4 +4,13 @@ class Agency < ActiveRecord::Base
   has_paper_trail
   has_many :parks, :inverse_of => :agency
   has_and_belongs_to_many :users
+
+  after_save :touch_parks
+  
+  def touch_parks
+    parks.each do |p|
+      p.touch
+    end
+  end
+
 end
