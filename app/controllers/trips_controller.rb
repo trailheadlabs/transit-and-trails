@@ -33,27 +33,44 @@ class TripsController < ApplicationController
   end
 
   def import_kml
+    require "zip/zip"
     @trip = Trip.new
 
-    if params[:kml_file]
+    if file = params[:kml_file]
       @points = []
-      with_z = false
-      with_m = false
-      params[:kml_file]
-      kml = params[:kml_file].read
-      noko = Nokogiri::XML(kml)
-      placemark = noko.css('Placemark > LineString').first.parent
-      @points = placemark.css('LineString').css('coordinates').text.lines.to_a
-      @points.collect! do |p|
-        p.strip.split(',').slice(0,2).collect{|c| c.to_f}.reverse
+      @kml = nil
+      if file.original_filename.end_with? ".kmz"
+        Zip::ZipFile.open_buffer file.open do |zip|
+          zip.each do |file|            
+            if file.name.end_with? ".kml"
+              puts "KML FILE FOUND!"
+              begin
+                file.extract
+              rescue
+              end
+              @kml = File.open(file.name,'rb').read
+              puts @kml
+            end
+          end
+        end
+      else
+        @kml = params[:kml_file].read
       end
-
+      noko = Nokogiri::XML(@kml)
+      placemark = noko.css('LineString').each do |line|        
+        coords = line.css('coordinates').text.split(' ')
+        coords.collect! do |p|
+          p.strip.split(',').slice(0,2).collect{|c| c.to_f}.reverse
+        end
+        @points.concat(coords)
+      end  
+      @points.sort!{|p| p[0]}
       @trip.route = @points
     end
 
     @trip.approved = true
-    @trip.name = placemark.css('name').text
-    @trip.description = placemark.css('description').text
+    # @trip.name = placemark.css('name').text
+    # @trip.description = placemark.css('description').text
     @trip.intensity = Intensity.first
     @trip.duration = Duration.first
     @start_id = params[:start_id]

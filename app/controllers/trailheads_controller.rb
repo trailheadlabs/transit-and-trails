@@ -21,29 +21,30 @@ class TrailheadsController < ApplicationController
   end
 
   def upload_kml
-    @trailheads = []
-    puts "UPLOAD_KML"
+    @trailheads = []    
     if params[:kml_file]
       kml = params[:kml_file].read
       puts kml
       noko = Nokogiri::XML(kml)
       placemarks = noko.css('Placemark > Point')
-      puts "PLACEMARKS" 
-      puts placemarks.count
       placemarks.each do |p|
         placemark = p.parent
         point = placemark.css('Point').css('coordinates').text.strip.split(',').slice(0,2).collect{|c| c.to_f}.reverse
-        name = placemark.css('name').text
-        if Trailhead.find_by_name(name)
-          name = name + " (Import #{Time.now.to_i})"
-        end
+        name = placemark.css('name').try(:text)
         trailhead = Trailhead.new
-        trailhead.approved = true
-        trailhead.name = name
-        trailhead.description = placemark.css('description').text
+        if params[:update_existing]          
+          trailhead = Trailhead.find_or_create_by_name(name)
+        else
+          if Trailhead.find_by_name(name)
+            name = name + " (Import #{Time.now.to_i})"
+          end
+          trailhead.approved = true
+          trailhead.name = name
+        end
+        trailhead.description = placemark.css('description').try(:text)
         trailhead.latitude = point[0]
         trailhead.longitude = point[1]
-        trailhead.save        
+        trailhead.save                
         @trailheads << trailhead
       end
     end

@@ -50,6 +50,7 @@ gem 'unicorn'
 gem 'rails_12factor'
 gem 'rollbar'
 gem 'georuby', :require => "geo_ruby"
+gem 'rubyzip'
 
 # Gems used only for assets and not required
 # in production environments by default.
