@@ -94,7 +94,11 @@ class Park < ActiveRecord::Base
   end
 
   def trips
-    trailheads.collect{|t| t.trips_starting_at.approved + t.trips_ending_at.approved }.flatten
+    if users.any?
+      trailheads.collect{|t| t.trips_starting_at.approved.where(user_id:users) + t.trips_ending_at.approved.where(user_id:users) }.flatten
+    else
+      trailheads.collect{|t| t.trips_starting_at.approved + t.trips_ending_at.approved }.flatten
+    end
   end
 
   def trips_starting_in_bounds
