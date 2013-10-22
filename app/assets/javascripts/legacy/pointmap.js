@@ -18,130 +18,145 @@ TNT.pointmap = {
 
 
     init: function(entityType, editMode, start) {
-        if (!editMode)
-            editMode = TNT.EditMode.READONLY;
-        if (!start)
-            start = new GLatLng(37.887771, -122.256452);
-        var icon = null;
-        var trailheadIcon = new GIcon();
+      if (!editMode)
+        editMode = TNT.EditMode.READONLY;
+      if (!start)
+        start = new google.maps.LatLng(37.887771, -122.256452);
 
-		if (editMode != TNT.EditMode.UPDATE ) {
-			trailheadIcon.image = "/assets/legacy/map/pin_s_trailhead_active.png";
-		} else {
-			trailheadIcon.image = "/assets/legacy/map/pin_s_trailhead.png";
-		}
+      var mapOptions = {
+        center: new google.maps.LatLng(start.lat(),start.lng()),
+        zoom: 17,
+        mapTypeId: google.maps.MapTypeId.TERRAIN,
+        mapTypeControl: true,
+        mapTypeControlOptions: {
+          mapTypeIds: [google.maps.MapTypeId.TERRAIN,google.maps.MapTypeId.SATELLITE,google.maps.MapTypeId.ROADMAP,'OSM'],
+          position: google.maps.ControlPosition.TOP_RIGHT,
+          style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+        },
+        zoomControl: true,
+        zoomControlOptions: {
+          position: google.maps.ControlPosition.TOP_RIGHT,
+          style: google.maps.ZoomControlStyle.SMALL
+        },
+        panControl: false
+      };
+      this.map = new google.maps.Map(document.getElementById("plan-map"),
+                mapOptions);
 
-        trailheadIcon.iconSize = new GSize(34, 36);
-        //trailheadIcon.shadowSize = new GSize(38, 36);
-        trailheadIcon.iconAnchor = new GPoint(14, 30);
-        trailheadIcon.infoWindowAnchor = new GPoint(14, 10);
 
-        var campgroundIcon = new GIcon();
-        campgroundIcon.image = "/assets/legacy/map/pin_s_campground.png";
-        campgroundIcon.iconSize = new GSize(34, 36);
-        campgroundIcon.shadowSize = new GSize(38, 36);
-        campgroundIcon.iconAnchor = new GPoint(14, 30);
-        campgroundIcon.infoWindowAnchor = new GPoint(14, 10);
+      this.overlay = new google.maps.OverlayView();
+      this.overlay.draw = function() {};
+      this.overlay.setMap(this.map);
 
-        if (entityType == TNT.EntityType.TRAILHEAD) {
-            icon = trailheadIcon;
-        } else {
-            icon = campgroundIcon;
+      this.geocoder = new google.maps.Geocoder();
+
+      //Define OSM map type pointing at the OpenStreetMap tile server
+      this.map.mapTypes.set("OSM", new google.maps.ImageMapType({
+          getTileUrl: function(coord, zoom) {
+              return "http://tile.openstreetmap.org/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
+          },
+          tileSize: new google.maps.Size(256, 256),
+          name: "OSM",
+          maxZoom: 18
+      }));
+
+      this.trailheadMarkerManager = new MarkerManager(this.map);
+
+
+      var icon = null;
+      var trailheadIcon = {}
+
+  		if (editMode != TNT.EditMode.UPDATE ) {
+  			trailheadIcon.url = "/assets/legacy/map/pin_s_trailhead_active.png";
+  		} else {
+  			trailheadIcon.url = "/assets/legacy/map/pin_s_trailhead.png";
+  		}
+
+      trailheadIcon.size = new google.maps.Size(34, 36);        
+      trailheadIcon.anchor = new google.maps.Point(14, 30);        
+
+      var campgroundIcon = {};
+      campgroundIcon.image = "/assets/legacy/map/pin_s_campground.png";
+      campgroundIcon.iconSize = new google.maps.Size(34, 36);
+      campgroundIcon.shadowSize = new google.maps.Size(38, 36);
+      campgroundIcon.iconAnchor = new google.maps.Point(14, 30);
+
+      if (entityType == TNT.EntityType.TRAILHEAD) {
+          icon = trailheadIcon;
+      } else {
+          icon = campgroundIcon;
+      }
+
+      var trailheadMarkerOptions = {
+          position: start,
+          icon: icon,
+          anchorPoint: google.maps.Point(14, 10),
+          draggable: true,
+          clickable: false,
+          map: this.map
+      };
+
+      if (editMode == TNT.EditMode.UPDATE) {
+        trailheadMarkerOptions.draggable = true;
+      }
+
+      this.markerOptions = trailheadMarkerOptions;
+
+      this.startmarker = new google.maps.Marker(this.markerOptions);
+
+
+      google.maps.event.addListener(this.startmarker, "dragend", this.moveStart);
+
+      google.maps.event.addListener(this.map, "dragend", this.moveMap);
+
+      google.maps.event.addListener(this.map, "dblclick", this.saveMap);
+      google.maps.event.addListener.bind(this.map, "zoomend", this.saveMap);
+	    
+      loadKeyFromSession('map.zoom',function(data){
+        if( data.value){
+          var newZoom = Number(data.value);
+          TNT.pointmap.map.setZoom(newZoom);
         }
+      });
 
-        if (editMode == TNT.EditMode.UPDATE) {
-            trailheadMarkerOptions = {
-                icon: icon,
-                draggable: true,
-                clickable: true
-            };
-        } else {
-            trailheadMarkerOptions = {
-                icon: icon,
-                draggable: true,
-                clickable: false
-            }
-        };
+      this.activeMarker = this.startmarker;
 
-        this.markerOptions = trailheadMarkerOptions;
+      if (editMode !== TNT.EditMode.READONLY) {
+          google.maps.event.addListener(this.map, 'click', this.showMarker);
+      }
 
-        this.startmarker = new GMarker(start, trailheadMarkerOptions);
+      // if (editMode !== TNT.EditMode.NEW){
+      //     this.map.addOverlay(this.activeMarker);
+      // }
 
-        this.map = new GMap2($('#plan-map')[0]);
-        this.map.setCenter(start, 17);
-        //this.map.setCenter(startLatLng, 16);
-        this.map.addControl(new GLargeMapControl3D());
-        this.map.addControl(new GMapTypeControl());
-        var scaleControlPosition = new GControlPosition(G_ANCHOR_BOTTOM_LEFT, new GSize(10, 40));
-        this.map.addControl(new GScaleControl(), scaleControlPosition);
-        //this.map.enableScrollWheelZoom();
-        this.map.enableContinuousZoom();
-        //this.map.enableGoogleBar();
-        var copyOSM = new GCopyrightCollection("<a href=\"http://www.openstreetmap.org/\">OpenStreetMap</a>");
-        copyOSM.addCopyright(new GCopyright(1, new GLatLngBounds(new GLatLng( - 90, -180), new GLatLng(90, 180)), 0, " "));
-        var tilesMapnik = new GTileLayer(copyOSM, 1, 17, {
-            tileUrlTemplate: 'http://tile.openstreetmap.org/{Z}/{X}/{Y}.png'
-        });
-        var mapMapnik = new GMapType([tilesMapnik], G_NORMAL_MAP.getProjection(), "OSM");
-        this.map.addMapType(mapMapnik);
+      
 
-        this.map.addMapType(G_PHYSICAL_MAP);
-        this.map.addMapType(G_SATELLITE_MAP);
-        this.map.setMapType(G_NORMAL_MAP);
-
-        GEvent.bind(this.startmarker, "dragend", this, this.moveStart);
-
-        //GEvent.bind(this.map, "dragend", this, this.map.addOverlay(this.startmarker));
-
-        GEvent.bind(this.map, "dblclick", this, this.saveMap);
-        GEvent.bind(this.map, "zoomend", this, this.saveMap);
-		this.trailheadMarkerManager = new MarkerManager(this.map);
-		loadKeyFromSession('map.zoom',function(data){
-          if( data.value){
-            var newZoom = Number(data.value);
-            TNT.pointmap.map.setZoom(newZoom);
-          }
-        });
-
-        this.activeMarker = this.startmarker;
-
-        if (editMode !== TNT.EditMode.READONLY) {
-            GEvent.bind(this.map, 'click', this, this.showMarker);
-        }
-        if (editMode !== TNT.EditMode.NEW){
-            this.map.addOverlay(this.activeMarker);
-        }
     },
 
     saveMap: function() {
-        saveKeyValueToSession('map.center', this.map.getCenter().toUrlValue());
-        saveKeyValueToSession('map.zoom', this.map.getZoom());
+        saveKeyValueToSession('map.center', TNT.pointmap.map.getCenter().toUrlValue());
+        saveKeyValueToSession('map.zoom', TNT.pointmap.map.getZoom());
     },
 
-    showMarker: function(overlay, latLng) {
-        if (this.activeMarker)
-            this.map.removeOverlay(this.activeMarker);
-        var loc = new GLatLng(latLng.lat(), latLng.lng());
-        var clickmarker = new GMarker(loc, this.markerOptions);
-        this.map.addOverlay(clickmarker);
-        this.updateLatLngInputs(latLng);
-        this.activeMarker = clickmarker;
+    showMarker: function(event) {
+      var latLng = event.latLng;
+      TNT.pointmap.activeMarker.setPosition(latLng);
+      TNT.pointmap.updateLatLngInputs(latLng);
     },
 
-    moveStart: function(overlay, latlng) {
-        if (overlay) {
-            this.updateLatLngInputs(this.startmarker.getLatLng());
-        }
-        if (latlng) {
-            this.startmarker.setLatLng(latlng);
-            this.updateLatLngInputs(latlng);
-        }
-		downloadurl = "/trailheads/near_coordinates.json?latitude=" +
-        this.startmarker.getLatLng().lat() +
+    moveStart: function(event) {
+      var latlng = event.latLng
+      TNT.pointmap.startmarker.setPosition(latlng);
+      TNT.pointmap.updateLatLngInputs(latlng);
+    },
+
+    moveMap: function(event) {
+      var downloadurl = "/trailheads/near_coordinates.json?latitude=" +
+        TNT.pointmap.startmarker.getPosition().lat() +
         "&longitude=" +
-        this.startmarker.getLatLng().lng() +
+        TNT.pointmap.startmarker.getPosition().lng() +
         "&distance=100";
-        GDownloadUrl(downloadurl,
+        $.getJSON(downloadurl,
         function(data) {
             TNT.pointmap.loadTrailheads(data);
         });
@@ -159,35 +174,36 @@ TNT.pointmap = {
     loadTrailhead: function(id, editMode) {
         url = "/trailheads/" + id + ".json";
         var self = this;
-        GDownloadUrl(url,
-        function(data) {
-            var object = $.parseJSON(data);
-            var startLatLng = new GLatLng(parseFloat(object.latitude), parseFloat(object.longitude));
+        $.getJSON(url,
+          function(data) {
+            var object = data;
+            var startLatLng = new google.maps.LatLng(object.latitude,object.longitude);
             self.map.setCenter(startLatLng, 13);
-            self.startmarker.setLatLng(startLatLng);
-            self.map.panTo(self.startmarker.getLatLng());
+            self.startmarker.setPosition(startLatLng);
+            self.map.panTo(self.startmarker.getPosition());
             self.updateLatLngInputs(startLatLng);
-        });
+         });
     },
 
 	createTrailheadMarker: function(pointId, pointTitle, latlng) {
         var that = this;
-        var tinyIcon = new GIcon();
-        tinyIcon.image = "/assets/legacy/map/Map-Pins-Small.png";
-        tinyIcon.iconSize = new GSize(27, 28);
-        //tinyIcon.shadowSize = new GSize(38, 36);
-        tinyIcon.iconAnchor = new GPoint(14, 30);
-        tinyIcon.infoWindowAnchor = new GPoint(14, 10);
+        var tinyIcon = {};
+        tinyIcon.url = "/assets/legacy/map/Map-Pins-Small.png";
+        tinyIcon.size = new google.maps.Size(27, 28);
+        //tinyIcon.shadowSize = new google.maps.Size(38, 36);
+        tinyIcon.anchor = new google.maps.Point(14, 30);        
 
         var pointMarkerOptions = {
+            position: latlng,
+            anchor: new google.maps.Point(14, 10),
             icon: tinyIcon,
             title: pointTitle,
             draggable: false,
             clickable: true
         };
-        var newMarker = new GMarker(latlng, pointMarkerOptions);
+        var newMarker = new google.maps.Marker(pointMarkerOptions);
 
-        GEvent.addListener(newMarker, "click",
+        google.maps.event.addListener(newMarker, "click",
         function() {
             that.showTrailhead(pointId);
         });
@@ -195,14 +211,14 @@ TNT.pointmap = {
     },
 
     loadTrailheads: function(data) {
-        var markers = $.parseJSON(data);
-        this.currentTrailheads = []
-        this.trailheadMarkerManager.clearMarkers();
+        var markers = data;
+        TNT.pointmap.currentTrailheads = []
+        TNT.pointmap.trailheadMarkerManager.clearMarkers();
         $(markers).each(function(index,item) {
-            var latlng = new GLatLng(parseFloat(item["latitude"]), parseFloat(item['longitude']));
-            var distance = parseFloat(item["distance"]);
-            var pointTitle = item["name"];
-            var pointId = item["id"];
+            var latlng = new google.maps.LatLng(item.latitude, item.longitude);
+            var distance = parseFloat(item.distance);
+            var pointTitle = item.name;
+            var pointId = item.id;
             var pointIndex = index;
             var newMarker = TNT.pointmap.createTrailheadMarker(pointId, pointTitle, latlng);
             TNT.pointmap.currentTrailheads[pointId] = newMarker;
@@ -211,35 +227,33 @@ TNT.pointmap = {
             //}
         });
 
-        this.trailheadMarkerManager.refresh();
+        TNT.pointmap.trailheadMarkerManager.refresh();
     },
 
     loadCampground: function(id) {
-        var self = this;
-        url = "/campgrounds/" + id + ".json";
-        GDownloadUrl(url,
-        function(data) {
-            var object = $.parseJSON(data);
-            var startLatLng = new GLatLng(parseFloat(object.latitude), parseFloat(object.longitude));
-            self.map.setCenter(startLatLng, 13);
-            self.startmarker.setLatLng(startLatLng);
-            self.map.panTo(self.startmarker.getLatLng());
-            self.updateLatLngInputs(startLatLng);
+      var self = this;
+      url = "/campgrounds/" + id + ".json";
+      $.getJSON(url,
+        function(object) {            
+          var startLatLng = new google.maps.LatLng(object.latitude, object.longitude);
+          self.map.setCenter(startLatLng, 13);
+          self.startmarker.setPosition(startLatLng);
+          self.map.panTo(self.startmarker.getPosition());
+          self.updateLatLngInputs(startLatLng);
         });
     },
 
 
     decodeAddress: function(address) {
-        var geocoder = new GClientGeocoder();
-        if (geocoder) {
-            geocoder.getLatLng(address,
-            function(point) {
-                if (point) {
-                    TNT.pointmap.startmarker.setLatLng(point);
-                    TNT.pointmap.updateLatLngInputs(point);
-                }
-            })
+      TNT.pointmap.geocoder.geocode( { 'address': address}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          var point = results[0].geometry.location;
+          if (point) {
+            TNT.pointmap.startmarker.setPosition(point);
+            TNT.pointmap.updateLatLngInputs(point);
+          }
         }
+      });
     },
 
     chooseStart: function() {
@@ -247,128 +261,113 @@ TNT.pointmap = {
       // If there is a start location saved in the session then use it
       loadLocationFromSession(
         function(data) {
-            if (data.value) {
-                TNT.pointmap.decodeAddress(data.value);
-            }
-            else {
-                var start = new GLatLng(37.887771, -122.256452);
-                if (google.loader.ClientLocation != null) {
-                    start = new GLatLng(google.loader.ClientLocation.latitude, google.loader.ClientLocation.longitude);
-                }
-
-                TNT.pointmap.startmarker.setLatLng(start);
-                TNT.pointmap.updateLatLngInputs(start);
-            }
+          if (data.value) {
+              TNT.pointmap.decodeAddress(data.value);
+          } else {
+            var start = new google.maps.LatLng(37.887771, -122.256452);
+            TNT.pointmap.startmarker.setPosition(start);
+            TNT.pointmap.updateLatLngInputs(start);
+          }
       });
 
-        var start = new GLatLng(37.887771, -122.256452);
-        if (google.loader.ClientLocation != null) {
-            start = new GLatLng(google.loader.ClientLocation.latitude, google.loader.ClientLocation.longitude);
-        }
-        this.startmarker.setLatLng(start);
-        this.map.panTo(start);
-        this.updateLatLngInputs(start);
+      var start = new google.maps.LatLng(37.887771, -122.256452);
+      TNT.pointmap.startmarker.setPosition(start);
+      TNT.pointmap.map.panTo(start);
+      TNT.pointmap.updateLatLngInputs(start);
     }
 
 };
 
 function initTrailheadDetails(id, editMode) {
-    if (GBrowserIsCompatible()) {
-        TNT.pointmap.init(TNT.EntityType.TRAILHEAD, editMode);
-        TNT.pointmap.loadTrailhead(id, editMode);
-        if (editMode != TNT.EditMode.UPDATE)
-        {
-            TNT.pointmap.startmarker.disableDragging();
-        }
-    }
+  TNT.pointmap.init(TNT.EntityType.TRAILHEAD, editMode);
+  TNT.pointmap.loadTrailhead(id, editMode);
+  if (editMode != TNT.EditMode.UPDATE)
+  {
+      TNT.pointmap.startmarker.setDraggable(false);
+  }
 }
 
 function initCampgroundDetails(id, editMode) {
-    if (GBrowserIsCompatible()) {
-        TNT.pointmap.init(TNT.EntityType.CAMPGROUND, editMode);
-        TNT.pointmap.loadCampground(id);
-        if (editMode != TNT.EditMode.UPDATE)
-        {
-            TNT.pointmap.startmarker.disableDragging();
-        }
-
-    }
+  TNT.pointmap.init(TNT.EntityType.CAMPGROUND, editMode);
+  TNT.pointmap.loadCampground(id);
+  if (editMode != TNT.EditMode.UPDATE)
+  {
+      TNT.pointmap.startmarker.setDraggable(false);
+  }
 }
 
 // Initialize google maps and the rounded corners
 function initEditing(entityType, editMode) {
-    if (GBrowserIsCompatible()) {
-        TNT.pointmap.init(entityType, editMode);
-        TNT.pointmap.startmarker.enableDragging();
+  TNT.pointmap.init(entityType, editMode);
+  TNT.pointmap.startmarker.setDraggable(true);
 
-        if (editMode == TNT.EditMode.UPDATE) {
-            TNT.pointmap.startmarker.setLatLng(new GLatLng(parseFloat($('#trailhead_latitude').val()), parseFloat($('#trailhead_longitude').val())));
-            TNT.pointmap.map.panTo(TNT.pointmap.startmarker.getLatLng());
-        }
-        else {
-            centerUrl = '/session/loadkv?key=map.center';
+  if (editMode == TNT.EditMode.UPDATE) {
+      TNT.pointmap.startmarker.setPosition(new google.maps.LatLng(
+        parseFloat($('#trailhead_latitude').val()), 
+        parseFloat($('#trailhead_longitude').val())));
+      TNT.pointmap.map.panTo(TNT.pointmap.startmarker.getPosition());
+  } else {
+      centerUrl = '/session/loadkv?key=map.center';
 
-            GDownloadUrl(centerUrl,
-            function(data) {
-                if (data.value) {
-                    latlngarray = data.value.split(",");
-                    lat = parseFloat(latlngarray[0]);
-                    lng = parseFloat(latlngarray[1]);
-                    var newCenter = new GLatLng(lat, lng);
-                    TNT.pointmap.startmarker.setLatLng(newCenter);
-                    TNT.pointmap.map.setCenter(TNT.pointmap.startmarker.getLatLng());
-                    TNT.pointmap.updateLatLngInputs(newCenter);
-                }
-                else {
-                    TNT.pointmap.chooseStart();
-                }
-            });
+      $.getJSON(centerUrl,
+      function(data) {
+          if (data.value) {
+              latlngarray = data.value.split(",");
+              lat = parseFloat(latlngarray[0]);
+              lng = parseFloat(latlngarray[1]);
+              var newCenter = new google.maps.LatLng(lat, lng);
+              TNT.pointmap.startmarker.setPosition(newCenter);
+              TNT.pointmap.map.setCenter(TNT.pointmap.startmarker.getPosition());
+              TNT.pointmap.updateLatLngInputs(newCenter);
+          }
+          else {
+              TNT.pointmap.chooseStart();
+          }
+      });
 
-            zoomUrl = '/session/loadkv?key=map.zoom';
-            GDownloadUrl(zoomUrl,
-            function(data) {
-                if (data.value) {
-                    newZoom = parseInt(data.value);
-                    //alert(newZoom);
-                    TNT.pointmap.map.setZoom(newZoom);
-                }
-            });
+      zoomUrl = '/session/loadkv?key=map.zoom';
+      $.getJSON(zoomUrl,
+      function(data) {
+          if (data.value) {
+              newZoom = parseInt(data.value);
+              //alert(newZoom);
+              TNT.pointmap.map.setZoom(newZoom);
+          }
+      });
 
-			// begin adding peripheral trailheads for user knowledge
-			downloadurl = "/trailheads/near_coordinates.json?latitude=" +
-	        "37.887771" +
-	        "&longitude=" +
-	        "-122.256452" +
-	        "&distance=100";
-	        GDownloadUrl(downloadurl,
-	        function(data) {
-	            TNT.pointmap.loadTrailheads(data);
-	        });
-			// // end adding peripheral trailheads for user knowledge
-        }
-
-    }
+  // begin adding peripheral trailheads for user knowledge
+  downloadurl = "/trailheads/near_coordinates.json?latitude=" +
+    "37.887771" +
+    "&longitude=" +
+    "-122.256452" +
+    "&distance=100";
+  $.getJSON(downloadurl,
+    function(data) {
+        TNT.pointmap.loadTrailheads(data);
+    });
+// // end adding peripheral trailheads for user knowledge
+  }
+    
 }
 
 function findAddress(editMode) {
-    var address = TNT.pointmap.getStartingAddress();
-    if (!address) return null;
-    var geocoder = new GClientGeocoder();
-    if (geocoder) {
-        geocoder.getLatLng(address,
-            function(point) {
-                if (point) {
-                    TNT.pointmap.init(TNT.EntityType.TRAILHEAD, editMode, point);
-                    var downloadurl = "/trailheads/near_coordinates.json?latitude=" +
-                        point.lat() +
-                        "&longitude=" +
-                        point.lng() +
-                        "&distance=100";
-                    GDownloadUrl(downloadurl,
-                        function(data) {
-                            TNT.pointmap.loadTrailheads(data);
-                        });
-                }
-            })
+  var address = TNT.pointmap.getStartingAddress();
+  if (!address) return null;
+  TNT.pointmap.geocoder.geocode( { 'address': address}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      var point = results[0].geometry.location;
+      if (point) {
+        TNT.pointmap.init(TNT.EntityType.TRAILHEAD, editMode, point);
+        var downloadurl = "/trailheads/near_coordinates.json?latitude=" +
+          point.lat() +
+          "&longitude=" +
+          point.lng() +
+          "&distance=100";
+        $.getJSON(downloadurl,
+          function(data) {
+            TNT.pointmap.loadTrailheads(data);
+          });
+      }
     }
+  });    
 }

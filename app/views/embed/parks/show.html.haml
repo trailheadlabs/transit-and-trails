@@ -1,8 +1,6 @@
 - content_for :head do
   %meta{:content => "Transit & Trails : #{ @park.name } : Park Details", :property => "og:title"}/
-  %script{:src => "http://www.google.com/jsapi?key=ABQIAAAAO7OoKKBX03U3SrObYGQy0xTR3gcj-N9Qq4sdgfDbE45YeC9R7BTliGpItl3amRLTjNsmtJj-_SOQkw", :type => "text/javascript"}
-  %script
-    google.load("maps", "2.x");
+  = javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyCcUhpQftpOwXVSLJqHrvwYCqnhTy3bchE&sensor=false&libraries=places"
   = javascript_include_tag "legacy/markermanager"
   = render :partial => "/shared/partials/legacy_head"
   = stylesheet_link_tag "legacy/style"
@@ -48,7 +46,7 @@
             %img{:src => "/assets/legacy/progress-medium-blue.gif"}/
           %ul
       #find-map
-    %script{:src => "/assets/legacy/find.js", :type => "text/javascript"}
+    %script{:src => "/assets/legacy/park.js", :type => "text/javascript"}
     = javascript_include_tag "embed.js"
     
     %script
@@ -57,7 +55,7 @@
         trips = new Array();
         - @trips.each do |item|
           newTrip = new Object();
-          newTrip.latlng = new GLatLng(parseFloat(#{item.starting_trailhead.latitude}), parseFloat(#{ item.starting_trailhead.longitude }));
+          newTrip.latlng = new google.maps.LatLng(parseFloat(#{item.starting_trailhead.latitude}), parseFloat(#{ item.starting_trailhead.longitude }));
           newTrip.tripTitle = "#{ item.name }";
           newTrip.tripId = new Number(#{ item.id });
           trips.push(newTrip)
@@ -67,7 +65,7 @@
         - @campgrounds.each do |item|
           var campground = new Object;
           campground.id = '#{ item.id }';
-          campground.latlng = new GLatLng(#{ item.latitude }, #{ item.longitude });
+          campground.latlng = new google.maps.LatLng(#{ item.latitude }, #{ item.longitude });
           campground.pointTitle = "#{ item.name }";
           campground.pointId = new Number(#{ item.id });
           campgrounds.push(campground);
@@ -77,7 +75,7 @@
         - @trailheads.each do |item|
           var trailhead = new Object;
           trailhead.id = '#{ item.id }';
-          trailhead.latlng = new GLatLng(#{ item.latitude }, #{ item.longitude });
+          trailhead.latlng = new google.maps.LatLng(#{ item.latitude }, #{ item.longitude });
           trailhead.pointTitle = "#{ item.name }";
           trailhead.pointId = new Number(#{ item.id });
           trailheads.push(trailhead);
@@ -86,7 +84,7 @@
       - @polys.each do |poly|
         [
         - poly.each do |point|
-          new GLatLng(#{point[1]},#{point[0]}),
+          new google.maps.LatLng(#{point[1]},#{point[0]}),
         ],
       ];
       

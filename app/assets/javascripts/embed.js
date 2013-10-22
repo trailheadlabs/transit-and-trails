@@ -19,7 +19,7 @@ var autoFit = function(){
 $(function(){
   $(window).resize(function(){
     autoFit();
-    TNT.find.map.setCenter(TNT.parklatlngbounds.getCenter(), TNT.find.map.getBoundsZoomLevel(TNT.parklatlngbounds));
+    TNT.find.map.fitBounds(TNT.parklatlngbounds);
   });
   
   $('#more-desc-link').click(function(){

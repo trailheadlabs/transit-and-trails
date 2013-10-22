@@ -1,7 +1,8 @@
 - content_for :title do
   Transit & Trails : #{@trip.name}
 - content_for :head do
-  %script(src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCcUhpQftpOwXVSLJqHrvwYCqnhTy3bchE&sensor=false&libraries=drawing,geometry")
+  = javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyCcUhpQftpOwXVSLJqHrvwYCqnhTy3bchE&sensor=false&libraries=places"
+  = javascript_include_tag "legacy/markermanager"
 
   = javascript_include_tag "legacy/common"
 
