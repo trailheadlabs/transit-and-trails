@@ -96,7 +96,6 @@ TNT.pointmap = {
 
       this.startmarker = new google.maps.Marker(this.markerOptions);
 
-
       google.maps.event.addListener(this.startmarker, "dragend", this.moveStart);
 
       google.maps.event.addListener(this.map, "dblclick", this.saveMap);
@@ -109,18 +108,10 @@ TNT.pointmap = {
         }
       });
 
-      this.activeMarker = this.startmarker;
-
       if (editMode !== TNT.EditMode.READONLY) {
-          google.maps.event.addListener(this.map, 'click', this.showMarker);
+          google.maps.event.addListener(this.map, 'click', this.moveStart);
           google.maps.event.addListener(this.map, "dragend", this.moveMap);
-
       }
-
-      // if (editMode !== TNT.EditMode.NEW){
-      //     this.map.addOverlay(this.activeMarker);
-      // }
-
       
 
     },
@@ -128,12 +119,6 @@ TNT.pointmap = {
     saveMap: function() {
         saveKeyValueToSession('map.center', TNT.pointmap.map.getCenter().toUrlValue());
         saveKeyValueToSession('map.zoom', TNT.pointmap.map.getZoom());
-    },
-
-    showMarker: function(event) {
-      var latLng = event.latLng;
-      TNT.pointmap.activeMarker.setPosition(latLng);
-      TNT.pointmap.updateLatLngInputs(latLng);
     },
 
     moveStart: function(event) {
