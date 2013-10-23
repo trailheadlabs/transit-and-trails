@@ -66,20 +66,12 @@ TNT.pointmap = {
       var icon = null;
       var trailheadIcon = {}
 
-  		if (editMode != TNT.EditMode.UPDATE ) {
-  			trailheadIcon.url = "/assets/legacy/map/pin_s_trailhead_active.png";
-  		} else {
-  			trailheadIcon.url = "/assets/legacy/map/pin_s_trailhead.png";
-  		}
-
-      trailheadIcon.size = new google.maps.Size(34, 36);        
+      trailheadIcon.url = "/assets/legacy/map/pin_s_trailhead.png";
       trailheadIcon.anchor = new google.maps.Point(14, 30);        
 
       var campgroundIcon = {};
-      campgroundIcon.image = "/assets/legacy/map/pin_s_campground.png";
-      campgroundIcon.iconSize = new google.maps.Size(34, 36);
-      campgroundIcon.shadowSize = new google.maps.Size(38, 36);
-      campgroundIcon.iconAnchor = new google.maps.Point(14, 30);
+      campgroundIcon.url = "/assets/legacy/map/pin_s_campground.png";
+      campgroundIcon.anchor = new google.maps.Point(14, 30);
 
       if (entityType == TNT.EntityType.TRAILHEAD) {
           icon = trailheadIcon;
@@ -107,8 +99,6 @@ TNT.pointmap = {
 
       google.maps.event.addListener(this.startmarker, "dragend", this.moveStart);
 
-      google.maps.event.addListener(this.map, "dragend", this.moveMap);
-
       google.maps.event.addListener(this.map, "dblclick", this.saveMap);
       google.maps.event.addListener.bind(this.map, "zoomend", this.saveMap);
 	    
@@ -123,6 +113,8 @@ TNT.pointmap = {
 
       if (editMode !== TNT.EditMode.READONLY) {
           google.maps.event.addListener(this.map, 'click', this.showMarker);
+          google.maps.event.addListener(this.map, "dragend", this.moveMap);
+
       }
 
       // if (editMode !== TNT.EditMode.NEW){
