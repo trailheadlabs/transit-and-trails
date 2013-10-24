@@ -2,7 +2,7 @@ module Api
   module V1
     class TrailheadsController < Api::V1::ApiController
 
-      caches_action :index, :expires_in => 60, :cache_path => Proc.new { |c| c.params.except(:key) }
+      # caches_action :index, :expires_in => 60, :cache_path => Proc.new { |c| c.params.except(:key) }
 
       def index
         approved = true
