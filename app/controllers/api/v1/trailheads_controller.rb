@@ -5,7 +5,8 @@ module Api
       caches_action :index, :expires_in => 60, :cache_path => Proc.new { |c| c.params.except(:key) }
 
       def index
-        approved = (params[:approved] && (params[:approved] == 'true')) || true
+        approved = true
+        approved = false if params[:unapproved]         
         @trailheads = Trailhead.where(approved:approved).order("id").includes(:cached_park_by_bounds,:park)
         if params[:non_profit_partner_id]
           partner_id = params[:non_profit_partner_id].split(",")
