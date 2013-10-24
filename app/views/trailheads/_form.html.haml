@@ -59,7 +59,7 @@
               - if category.trailhead_features.count >= 5
                 %a.show-more{:href => "#"} + show more..
 
-      - if current_user.admin?
+      - if can? :approve, Trailhead
         %li
           = f.input :approved, :as => :boolean
       %li
