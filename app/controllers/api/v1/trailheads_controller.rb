@@ -12,7 +12,7 @@ module Api
           partner_id = params[:non_profit_partner_id].split(",")
           parks = Park.where(:non_profit_partner_id => partner_id)
           trailhead_ids = parks.collect{|p| p.trailheads }.flatten
-          trailhead_ids += Trailhead.select(:id).where(non_profit_partner_id: partner_id)
+          trailhead_ids += Trailhead.select(:id).where(approved:approved, non_profit_partner_id: partner_id)
           attribute_id = params[:attribute_id]
           if attribute_id
             @trailheads = TrailheadFeature.find(attribute_id).trailheads.where(id:trailhead_ids).order("id")
