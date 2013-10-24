@@ -1,6 +1,7 @@
 module Api
   module V1
     class TripsController < Api::V1::ApiController
+      caches_action :index, :expires_in => 60, :cache_path => Proc.new { |c| c.params.except(:key) }
       def index
         @trips = apply_limit_and_offset(params,Trip.order("id"))
         if(params[:latitude] && params[:longitude])
