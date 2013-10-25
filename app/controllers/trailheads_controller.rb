@@ -21,11 +21,31 @@ class TrailheadsController < ApplicationController
   end
 
   def upload_kml
+    require "zip/zip"
+
     @trailheads = []    
-    if params[:kml_file]
-      kml = params[:kml_file].read
-      puts kml
-      noko = Nokogiri::XML(kml)
+    if file = params[:kml_file]
+      if file.original_filename.end_with? ".kmz"
+        Zip::ZipFile.open_buffer file.open do |zip|
+          zip.each do |zip_file|            
+            if zip_file.name.end_with? ".kml"
+              puts "KML FILE FOUND!"
+              dir = file.original_filename
+              begin                                
+                zip_file.extract('tmp/'+zip_file.name)
+              rescue
+              end
+              @kml = File.open('tmp/'+zip_file.name,'rb').read
+              puts @kml
+              File.delete('tmp/'+zip_file.name)
+            end
+          end
+        end
+      else
+        @kml = params[:kml_file].read
+      end
+
+      noko = Nokogiri::XML(@kml)
       placemarks = noko.css('Placemark > Point')
       placemarks.each do |p|
         placemark = p.parent
@@ -41,7 +61,6 @@ class TrailheadsController < ApplicationController
           trailhead.approved = true
           trailhead.name = name
         end
-        trailhead.description = placemark.css('description').try(:text)
         trailhead.latitude = point[0]
         trailhead.longitude = point[1]
         trailhead.save                
