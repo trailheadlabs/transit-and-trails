@@ -50,6 +50,7 @@ class TrailheadsController < ApplicationController
         placemark = p.parent
         point = placemark.css('Point').css('coordinates').text.strip.split(',').slice(0,2).collect{|c| c.to_f}.reverse
         name = placemark.css('name').try(:text)
+        name = name.titleize
         trailhead = Trailhead.new
         if params[:update_existing]          
           trailhead = Trailhead.find_or_create_by_name(name)
