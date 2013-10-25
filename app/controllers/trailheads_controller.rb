@@ -60,6 +60,7 @@ class TrailheadsController < ApplicationController
           trailhead.approved = true
           trailhead.name = name
         end
+        trailhead.user_id = current_user.id
         trailhead.latitude = point[0]
         trailhead.longitude = point[1]
         trailhead.save                

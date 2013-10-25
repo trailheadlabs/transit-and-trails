@@ -73,6 +73,7 @@ class TripsController < ApplicationController
     @trip.approved = true
     # @trip.name = placemark.css('name').text
     # @trip.description = placemark.css('description').text
+    @trip.user_ud = current_user.id
     @trip.intensity = Intensity.first
     @trip.duration = Duration.first
     @start_id = params[:start_id]
