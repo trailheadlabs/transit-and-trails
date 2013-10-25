@@ -32,12 +32,12 @@ class TrailheadsController < ApplicationController
               puts "KML FILE FOUND!"
               dir = file.original_filename
               begin                                
-                zip_file.extract('tmp/'+zip_file.name)
+                zip_file.extract("#{RAILS_ROOT}/tmp/"+zip_file.name)
               rescue
               end
-              @kml = File.open('tmp/'+zip_file.name,'rb').read
+              @kml = File.open("#{RAILS_ROOT}/tmp/"+zip_file.name,'rb').read
               puts @kml
-              File.delete('tmp/'+zip_file.name)
+              File.delete("#{RAILS_ROOT}/tmp/"+zip_file.name)
             end
           end
         end
