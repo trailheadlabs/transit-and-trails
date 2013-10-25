@@ -29,15 +29,14 @@ class TrailheadsController < ApplicationController
         Zip::ZipFile.open_buffer file.open do |zip|
           zip.each do |zip_file|            
             if zip_file.name.end_with? ".kml"
-              puts "KML FILE FOUND!"
-              extract_path = Rails.root.join('tmp').join(zip_file.name).to_s
+              puts "KML FILE FOUND!"              
               begin                                
-                zip_file.extract(extract_path)
+                zip_file.extract
               rescue
               end
-              @kml = File.open(extract_path,'rb').read
+              @kml = File.open(zip_file.name,'rb').read
               puts @kml
-              File.delete(extract_path)
+              File.delete(zip_file.name)
             end
           end
         end
