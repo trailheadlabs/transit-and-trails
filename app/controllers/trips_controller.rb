@@ -41,15 +41,17 @@ class TripsController < ApplicationController
       @kml = nil
       if file.original_filename.end_with? ".kmz"
         Zip::ZipFile.open_buffer file.open do |zip|
-          zip.each do |file|            
-            if file.name.end_with? ".kml"
+          zip.each do |zip_file|            
+            if zip_file.name.end_with? ".kml"
               puts "KML FILE FOUND!"
-              begin
-                file.extract
+              dir = file.original_filename
+              begin                                
+                zip_file.extract('tmp/'+zip_file.name)
               rescue
               end
-              @kml = File.open(file.name,'rb').read
+              @kml = File.open('tmp/'+zip_file.name,'rb').read
               puts @kml
+              File.delete('tmp/'+zip_file.name)
             end
           end
         end
