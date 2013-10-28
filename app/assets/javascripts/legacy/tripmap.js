@@ -422,7 +422,7 @@ TNT.tripmap = {
         // var route = $.parseJSON($('#id_route').val())['coordinates'];
         
         if(trip_route.length > 0) {
-            var route = simplify(trip_route,0.0001);
+            var route = simplify(trip_route,0.00001);
             TNT.tripmap.tripLine.setMap(null);
             for (i in route) {
                 var newVertex = new google.maps.LatLng(route[i][0], route[i][1]);
