@@ -19,6 +19,11 @@
       %textarea(name="trip[description]" id="trip_description" rows="10" cols="40")
         #{@trip.description}
 
+    %label.text-attr-label Alerts
+    .editor
+      %textarea(name="trip[alerts]" id="trip_alerts" rows="10" cols="40")
+        #{@trip.alerts}
+
     .list
       = f.association :duration, :as => :radio_buttons, :include_blank => false
 
@@ -94,6 +99,8 @@
 :javascript
   $(function () {
       $('#trip_description').ckeditor({height: '130px'});
+
+      $('#trip_alerts').ckeditor({height: '130px'});
 
       editMode = #{  @trip.new_record? ? "TNT.EditMode.NEW;" : "TNT.EditMode.UPDATE;" }
 

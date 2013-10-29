@@ -20,7 +20,8 @@ class Trip < ActiveRecord::Base
                   :intensity_id,
                   :duration_id,
                   :trip_feature_ids,
-                  :user_id
+                  :user_id,
+                  :alerts
 
   before_save :update_bounds_min_max, :update_geometry, :update_coordinates
   after_save :refind_parks, :touch_parks

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131003180111) do
+ActiveRecord::Schema.define(:version => 20131029165702) do
 
   create_table "agencies", :force => true do |t|
     t.string   "name"
@@ -379,6 +379,7 @@ ActiveRecord::Schema.define(:version => 20131003180111) do
     t.boolean  "approved",              :default => true
     t.float    "latitude"
     t.float    "longitude"
+    t.text     "alerts"
   end
 
   add_index "trips", ["duration_id"], :name => "index_trips_on_duration_id"
