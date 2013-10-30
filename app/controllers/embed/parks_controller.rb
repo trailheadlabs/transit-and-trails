@@ -27,10 +27,10 @@ module Embed
       @campgrounds = []
       @campgroundnames = []
 
-      @agencies = @parks.collect{|p| p.agency}.uniq
+      @agencies = @parks.collect{|p| p.agency}.uniq.compact
 
       @parks.each do |park|
-        @acres += park.acres        
+        @acres += (park.acres || 0)
         @polys += park.polys
         @trips += park.trips
         @campgrounds += park.campgrounds

@@ -21,7 +21,8 @@ class Campground < ActiveRecord::Base
                   :name,
                   :campground_feature_ids,
                   :agency_id,
-                  :user_id
+                  :user_id,
+                  :cached_park_by_bounds_id
   reverse_geocoded_by :latitude, :longitude
 
   validates :name, :presence => true, :uniqueness => true

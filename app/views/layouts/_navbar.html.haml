@@ -48,6 +48,12 @@
                 - if can? :create, Campground
                   %li
                     = link_to "Campground", new_campground_path
+                - if can? :create, Park
+                  %li
+                    = link_to "Parks from KML", "#", id: "park-from-kml-link"
+                  %li
+                    = link_to "Update Parks from KML", "#", id: "update-park-from-kml-link"
+
           %li.dropdown
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
               = current_user.username
@@ -79,87 +85,111 @@
           / %li
           /   = link_to "Sign Up", new_user_registration_path
 
-#import-gpx-modal.modal.hide.fade  
-  .modal-header
-    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
-    %h3
-      Import Trip from GPX
-  = form_tag import_gpx_trips_path, :remote => true, :multipart => true, :id => "import-gpx-form" do
-    .modal-body
-      %br
-      %p
-        Just upload a GPX file to create a new trip.
-      %br
-      = link_to "Choose File", "#", class: "btn btn-success btn-block btn-large", id: "choose-file-button"
-      = file_field_tag "gpx_file", hidden: true, id: "gpx-file-field"
-    .modal-footer
-      %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
-  :javascript
-    $('#choose-file-button').click(function(){
-        $('#gpx-file-field').click();        
+- if can? :create, Trip
+  #import-gpx-modal.modal.hide.fade  
+    .modal-header
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+      %h3
+        Import Trip from GPX
+    = form_tag import_gpx_trips_path, :remote => true, :multipart => true, :id => "import-gpx-form" do
+      .modal-body
+        %br
+        %p
+          Just upload a GPX file to create a new trip.
+        %br
+        = link_to "Choose File", "#", class: "btn btn-success btn-block btn-large", id: "choose-file-button"
+        = file_field_tag "gpx_file", hidden: true, id: "gpx-file-field"
+      .modal-footer
+        %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
+    :javascript
+      $('#choose-file-button').click(function(){
+          $('#gpx-file-field').click();        
+          return false;
+        });
+      $('#gpx-file-field').change(function(){
+        $('#choose-file-button').prop('disabled', true);
+        $('#choose-file-button').css('opacity', 0.5);    
+        $('#choose-file-button').text('Uploading...');
+        
+        $('#import-gpx-form').submit();
         return false;
-      });
-    $('#gpx-file-field').change(function(){
-      $('#choose-file-button').prop('disabled', true);
-      $('#choose-file-button').css('opacity', 0.5);    
-      $('#choose-file-button').text('Uploading...');
-      
-      $('#import-gpx-form').submit();
-      return false;
-      });
+        });
 
-#import-kml-modal.modal.hide.fade  
-  .modal-header
-    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
-    %h3
-      Import Trip from KML
-  = form_tag import_kml_trips_path, :remote => true, :multipart => true, :id => "import-kml-form" do
-    .modal-body
-      %br
-      %p
-        Just upload a KML file to create a new trip.
-      %br
-      = link_to "Choose File", "#", class: "btn btn-success btn-block btn-large", id: "choose-kml-file-button"
-      = file_field_tag "kml_file", hidden: true, id: "kml-file-field"
-    .modal-footer
-      %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
-  :javascript
-    $('#choose-kml-file-button').click(function(){
-        $('#kml-file-field').click();        
+  #import-kml-modal.modal.hide.fade  
+    .modal-header
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+      %h3
+        Import Trip from KML
+    = form_tag import_kml_trips_path, :remote => true, :multipart => true, :id => "import-kml-form" do
+      .modal-body
+        %br
+        %p
+          Just upload a KML file to create a new trip.
+        %br
+        = link_to "Choose File", "#", class: "btn btn-success btn-block btn-large", id: "choose-kml-file-button"
+        = file_field_tag "kml_file", hidden: true, id: "kml-file-field"
+      .modal-footer
+        %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
+    :javascript
+      $('#choose-kml-file-button').click(function(){
+          $('#kml-file-field').click();        
+          return false;
+        });
+      $('#kml-file-field').change(function(){
+        $('#choose-kml-file-button').prop('disabled', true);
+        $('#choose-kml-file-button').css('opacity', 0.5);    
+        $('#choose-kml-file-button').text('Uploading...');
+        
+        $('#import-kml-form').submit();
         return false;
-      });
-    $('#kml-file-field').change(function(){
-      $('#choose-kml-file-button').prop('disabled', true);
-      $('#choose-kml-file-button').css('opacity', 0.5);    
-      $('#choose-kml-file-button').text('Uploading...');
-      
-      $('#import-kml-form').submit();
-      return false;
-      });
+        });
 
-#import-trailhead-kml
-  = form_tag upload_kml_trailheads_path, :method => :post, :multipart => true, :id => "import-trailhead-kml-form" do
-    = file_field_tag "kml_file", hidden: true, id: "trailhead-kml-file-field"
-  :javascript
-    $('#trailheads-from-kml-link').click(function(){
-        $('#trailhead-kml-file-field').click();        
-        return false;
-      });
-    $('#trailhead-kml-file-field').change(function(){
-      $('#import-trailhead-kml-form').submit();
-      return false;
-      });
+- if can? :create, Park
+  #import-park-kml
+    = form_tag upload_kml_parks_path, :method => :post, :multipart => true, :id => "import-park-kml-form" do
+      = file_field_tag "kml_file", hidden: true, id: "park-kml-file-field"
+      = hidden_field_tag "update_existing", "false"
+    :javascript
+      $('#park-from-kml-link').click(function(){
+          $('#park-kml-file-field').click();        
+          return false;
+        });
+      $('#update-park-from-kml-link').click(function(){
+          $('#import-park-kml-form #update_existing').val('true');
+          $('#park-kml-file-field').click();        
+          return false;
+        });
 
-  = form_tag upload_kml_trailheads_path, :method => :post, :multipart => true, :id => "update-trailhead-kml-form" do
-    = file_field_tag "kml_file", hidden: true, id: "update-trailhead-kml-file-field"
-    = hidden_field_tag "update_existing", "true"
-  :javascript
-    $('#update-trailheads-from-kml-link').click(function(){
-        $('#update-trailhead-kml-file-field').click();        
+      $('#park-kml-file-field').change(function(){
+        $('#import-park-kml-form').submit();
         return false;
-      });
-    $('#update-trailhead-kml-file-field').change(function(){
-      $('#update-trailhead-kml-form').submit();
-      return false;
-      });
+        });
+
+
+- if can? :create, Trailhead
+  #import-trailhead-kml
+    = form_tag upload_kml_trailheads_path, :method => :post, :multipart => true, :id => "import-trailhead-kml-form" do
+      = file_field_tag "kml_file", hidden: true, id: "trailhead-kml-file-field"
+    :javascript
+      $('#trailheads-from-kml-link').click(function(){
+          $('#trailhead-kml-file-field').click();        
+          return false;
+        });
+      $('#trailhead-kml-file-field').change(function(){
+        $('#import-trailhead-kml-form').submit();
+        return false;
+        });
+
+    = form_tag upload_kml_trailheads_path, :method => :post, :multipart => true, :id => "update-trailhead-kml-form" do
+      = file_field_tag "kml_file", hidden: true, id: "update-trailhead-kml-file-field"
+      = hidden_field_tag "update_existing", "true"
+    :javascript
+      $('#update-trailheads-from-kml-link').click(function(){
+          $('#update-trailhead-kml-file-field').click();        
+          return false;
+        });
+      $('#update-trailhead-kml-file-field').change(function(){
+        $('#update-trailhead-kml-form').submit();
+        return false;
+        });
 

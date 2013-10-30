@@ -6,6 +6,7 @@ class Park < ActiveRecord::Base
   attr_accessible :acres, :bounds, :county, :county_slug, :description, :name, :slug, :link,
     :min_longitude, :max_longitude, :min_latitude, :max_latitude, :non_profit_partner_id, :agency_id, :trailhead_ids
   before_save :update_bounds_min_max
+  # after_save :update_cached_points
   has_many :trailhead_overrides, :class_name => 'Trailhead', :inverse_of => :park
 
   has_paper_trail
@@ -53,7 +54,6 @@ class Park < ActiveRecord::Base
     ths = ((!cached_trailheads.empty? && cached_trailheads) || trailheads_in_bounds)
     overrides = trailhead_overrides.approved
     if users.any?
-      ths = ths.where(user_id:users)
       overrides = overrides.where(user_id:users)
     end
     ths + overrides
@@ -63,6 +63,10 @@ class Park < ActiveRecord::Base
     trailheads = Trailhead.approved.where("latitude > :min_latitude AND latitude < :max_latitude AND longitude > :min_longitude AND longitude < :max_longitude",
       :min_latitude => self.min_latitude, :min_longitude => self.min_longitude, :max_latitude => self.max_latitude,
         :max_longitude => self.max_longitude )
+
+    if(users.any?)
+      trailheads = trailheads.where(user_id:users)
+    end
 
     trailheads.select! do |t|
       self.contains_trailhead? t
@@ -87,10 +91,26 @@ class Park < ActiveRecord::Base
       :min_latitude => self.min_latitude, :min_longitude => self.min_longitude, :max_latitude => self.max_latitude,
         :max_longitude => self.max_longitude )
 
+    if(users.any?)
+      campgrounds = campgrounds.where(user_id:users)
+    end
+
     campgrounds.select! do |t|
       self.contains_trailhead? t
     end
     return campgrounds
+  end
+
+  def update_cached_points
+    puts "Updating cached points for #{self.id}"
+    Park.transaction do 
+      trailheads_in_bounds.each do |t|
+        t.update_attributes(cached_park_by_bounds_id:self.id)
+      end
+      campgrounds_in_bounds.each do |t|
+        t.update_attributes(cached_park_by_bounds_id:self.id)
+      end
+    end
   end
 
   def trips

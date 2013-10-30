@@ -32,7 +32,8 @@ class Trailhead < ActiveRecord::Base
                   :trailhead_feature_ids,
                   :agency_id,
                   :non_profit_partner_id,
-                  :non_profit_partner_name
+                  :non_profit_partner_name,
+                  :cached_park_by_bounds_id
 
   # attr_accessible :maps_attributes, :allow_destroy => true
   

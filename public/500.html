@@ -1,96 +1,159 @@
+
 <!DOCTYPE html>
-<html dir="ltr" lang="en" class="no-js">
-  <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
-    <meta name="viewport" content="width=device-width">
-    <title>
-      Transit &amp; Trails : 500 (Application Error)
-    </title>
-    <link rel="stylesheet" href="/assets/legacy/reset.css" media="screen" type="text/css">
-    <link rel="stylesheet" href="/assets/legacy/style.css" media="screen" type="text/css">
-    <link rel="stylesheet" href="/assets/legacy/common.css" media="screen" type="text/css">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-    <link rel="shortcut icon" type="image/x-icon" href="/media/favicon.ico">
-  </head>
-  <body>
-    <div id="wrap">
-      <div id="head">
-        <div id="login-box">
-        </div><a href="/" id="logo">Transit &amp; Trails</a>
-      </div><!-- e: head -->
-      <div id="content">
-        <div class="entry top static">
-          <div class="entry titleleft">
-            <h2>
-              Application Error (500)
-            </h2>
-          </div>
-          <div class="entry titleright">
-            <a id="back-to-map-link" href="/">Back to Map</a>
-          </div>
-          <div style="display:block;clear:both;padding-left:40px"></div>
-        </div>
-        <div class="entry static">
-          <h3>
-            We're sorry, but something went wrong!
-          </h3>
-          <div style="float:left;width:auto">
-            <img src="/assets/legacy/photos/404_lost.jpg">
-          </div>
-        </div>
-        <div class="entry bottom"></div>
-      </div><!-- e: content -->
-      <div id="cap">
-        <a href="http://openspacecouncil.org" id="foot-logo">Bay Area Open Space Council</a>
-        <ul>
-          <li>
-            <a href="http://twitter.com/transitandtrail" target="_blank" class="ci-twitter">Twitter</a>
-          </li>
-          <li>
-            <a href="http://facebook.com/transitandtrails" target="_blank" class="ci-facebook">Facebook</a>
-          </li>
-          <li>
-            <a href="http://openspacecouncil.us1.list-manage1.com/subscribe?u=d3b34e2adeb625081e6ae8d44&amp;id=63f0ca458a" target="_blank" class="ci-newsletter">Newsletter</a>
-          </li>
-          <li>
-            <a href="http://blog.transitandtrails.org" target="_blank" class="ci-blog">Blog</a>
-          </li>
-          <li>
-            <a href="http://itunes.apple.com/us/app/transit-trails-find-plan-share/id415996890?mt=8&amp;ign-mpt=uo%3D4" target="_blank" class="ci-iphone">iPhone App</a>
-          </li>
-          <li>
-            <a href="https://market.android.com/details?id=com.openspacecouncil.tnt&amp;feature=search_result#?t=W251bGwsMSwxLDEsImNvbS5vcGVuc3BhY2Vjb3VuY2lsLnRudCJd" target="_blank" class="ci-android">Android</a>
-          </li>
-          <li>
-            <a href="http://djangoproject.com" target="_blank" class="ci-django">django</a>
-          </li>
-        </ul>
-      </div><!-- e: cap -->
-    </div><!-- e: wrap -->
-    <div id="footer">
-      <ul class="foot-links">
-        <li>
-          <a href="/about">About</a>
-        </li>
-        <li>
-          <a href="/partners">Partners</a>
-        </li>
-        <li>
-          <a href="/contact">Contact</a>
-        </li>
-        <li>
-          <a href="http://blog.transitandtrails.org">Blog</a>
-        </li>
-      </ul>
-      <ul class="info-links">
-        <li>
-          <a href="/terms">Terms</a>
-        </li>
-        <li>
-          <a href="/api">API</a>
-        </li>
-      </ul>
-    </div><!-- site JS -->
-  </body>
+<html lang='en' xmlns:fb='https://www.facebook.com/2008/fbml' xmlns:og='http://ogp.me/ns#' xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<meta charset='utf-8'>
+<meta content='IE=Edge,chrome=1' http-equiv='X-UA-Compatible'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<title>Transit &amp; Trails : Find, Plan and Share Outdoor Adventures</title>
+<meta content="authenticity_token" name="csrf-param" />
+<meta content="GxPycSq3WC02k8/zH2z1HUoJtRyChFV7Au+dY0O0yck=" name="csrf-token" />
+<meta content='Transit &amp; Trails' property='og:title'>
+<meta content='website' property='og:type'>
+<meta content='http://localhost:3000/terms' property='og:url'>
+<meta content='http://localhost:3000/assets/square_logo.jpg' property='og:image'>
+<meta content='Transit &amp; Trails' property='og:site_name'>
+<meta content='Find, Plan &amp; Share Outdoor Adventures' property='og:description'>
+<meta content='136640165758' property='fb:app_id'>
+
+<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+<![endif]-->
+<script src="/assets/application.js?body=1" type="text/javascript"></script>
+<link href="/assets/application.css?body=1" media="all" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+<div id='wrap'>
+<header class='navbar navbar-fixed-top'>
+<div class='navbar-inner'>
+<div class='container'>
+<a class='brand' href='/'>
+<img alt="Navbar_logo" src="/assets/navbar_logo.png" />
+</a>
+<ul class='nav'>
+<li>
+<a href="/find/trips">Trips</a>
+</li>
+<li>
+<a href="/find/trailheads">Trailheads</a>
+</li>
+<li>
+<a href="/find/campgrounds">Campgrounds</a>
+</li>
+</ul>
+<ul class='nav pull-right'>
+<li>
+<a href="/users/sign_in"><i class='icon-signin'></i>
+Sign In
+</a></li>
+<!-- %li -->
+<!-- = link_to "|", "#" -->
+<!-- %li -->
+<!-- = link_to "Sign Up", new_user_registration_path -->
+</ul>
+</div>
+</div>
+</header>
+
+<div id='main'>
+<div class='container main'>
+<div class='messages'>
+</div>
+<h2 class='page-header'>Uh oh, we're off trail.</h2>
+<div class='legacy content'>
+<h3>But don't worry!</h3>
+<p>
+We're consulting our maps and will be back on track in no time.
+</p>
+<img src="/assets/legacy/photos/404_lost.jpg"/>
+</div>
+
+</div>
+</div>
+<div id='push'></div>
+</div>
+<div id='footer'>
+<div class='container'>
+<div class='row'>
+<div class='span3'>
+<h4 class='footer-header'>
+Transit & Trails
+</h4>
+<ul>
+<li>
+<a href="/about">About</a>
+</li>
+<li>
+<a href="/partners">Partners</a>
+</li>
+<li>
+<a href="/challenge">Challenge</a>
+</li>
+<li>
+<a href="/terms">Terms</a>
+</li>
+<li>
+<a href="/api">API</a>
+</li>
+</ul>
+</div>
+<div class='span2'>
+<h4 class='footer-header'>
+Community
+</h4>
+<ul>
+<li>
+<a href="http://blog.transitandtrails.org">Blog</a>
+</li>
+<li>
+<a href="http://twitter.com/transitandtrail">Twitter</a>
+</li>
+<li>
+<a href="http://facebook.com/transitandtrails">Facebook</a>
+</li>
+<li>
+<a href="http://flickr.com/transitandtrails">Flickr</a>
+</li>
+</ul>
+</div>
+<div class='span3'>
+<h4 class='footer-header'>
+Download Our Apps
+</h4>
+<ul>
+<li>
+<a href="http://itunes.apple.com/us/app/transit-trails-find-plan-share/id415996890?mt=8&amp;ign-mpt=uo%3D4">iOS</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id='subfooter'>
+<div class='container'>
+<div class='row'>
+<div class='span12'>
+<div class='pull-left text'>
+&copy; 2013 Transit & Trails. All rights reserved.
+</div>
+<div class='pull-right'>
+<div class='pull-left text'>
+Brought to you by:&nbsp;&nbsp;
+</div>
+<div class='pull-left'>
+<a class='pull-right' href='http://openspacecouncil.org'>
+<div class='openspacecouncil-logo image-link pull-right'></div>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Tracking will be here in production. -->
+
+</body>
 </html>

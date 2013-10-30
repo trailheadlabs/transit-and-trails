@@ -149,12 +149,17 @@ Transitandtrails::Application.routes.draw do
 
   match 'parks/autocomplete_park_name' => "parks#autocomplete_park_name", :as => :autocomplete_park_name_parks
   match 'parks(/:slug(/:county_slug))' => "parks#show"
-
-  resources :parks do
-    resources :maps, :only => [:index]
-    resources :photos, :only => [:index]
-    resources :trailheads, :only => [:index]
-    resources :campgrounds, :only => [:index]
+  
+  scope 'manage' do
+    resources :parks do
+      resources :maps, :only => [:index]
+      resources :photos, :only => [:index]
+      resources :trailheads, :only => [:index]
+      resources :campgrounds, :only => [:index]
+      collection do
+        post 'upload_kml'
+      end
+    end
   end
 
   resources :stories
@@ -170,8 +175,6 @@ Transitandtrails::Application.routes.draw do
       get 'autocomplete_non_profit_partner_name'
     end
   end
-
-  resources :parks, :only => [:show]
 
   resources :partners, :only => [:index]
 

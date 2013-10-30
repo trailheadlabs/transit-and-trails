@@ -1,0 +1,16 @@
+.content
+  %h3 Added #{@parks.count} Parks
+  %table.table
+    %thead
+      %tr
+        %th
+          ID
+        %th
+          Name        
+    %tbody
+      - @parks.each do |p|
+        %tr     
+          %td= p.id
+          %td= link_to p.name, p          
+          
+
