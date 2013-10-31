@@ -1,5 +1,4 @@
-class Park < ActiveRecord::Base
-  default_scope order('name')
+class Park < ActiveRecord::Base  
   belongs_to :agency, :inverse_of => :parks, :touch => true
   has_many :users, :through => :agency  
   belongs_to :non_profit_partner, :inverse_of => :parks

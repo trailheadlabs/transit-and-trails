@@ -2,7 +2,7 @@ class UserProfilesController < ApplicationController
   before_filter :authenticate_user!
 
   def my_parks
-    @parks = current_user.parks
+    @parks = current_user.parks.order('created_at desc')
   end
 
   def trailblazer_admin

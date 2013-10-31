@@ -4,6 +4,7 @@
     %thead
       %tr
         %th ID
+        %th Created
         %th Park
         %th Embed Code
         %th
@@ -11,6 +12,7 @@
       - @parks.each do |p|
         %tr
           %td= p.id
+          %td= time_tag p.created_at, :format => "%m/%d/%Y"
           %td= link_to p.name, p
           %td
             %pre
