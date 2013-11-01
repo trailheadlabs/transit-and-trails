@@ -1,7 +1,11 @@
 @import "variables";
 @import "bourbon";
 
-#import-trailhead-kml-form{
+.hidden{
+  display:none;
+}
+
+#import-park-kml-form, #import-trailhead-kml-form{
   display:none;
 }
 

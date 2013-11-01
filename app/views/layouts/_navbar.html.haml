@@ -145,7 +145,7 @@
         });
 
 - if can? :create, Park  
-  = form_tag upload_kml_parks_path, :method => :post, :multipart => true, :id => "import-park-kml-form" do
+  = form_tag upload_kml_parks_path, :method => :post, :multipart => true, :id => "import-park-kml-form", :class => "hide" do
     = file_field_tag "kml_file", hidden: true, id: "park-kml-file-field"
     = hidden_field_tag "update_existing", "false"
   :javascript
@@ -166,28 +166,29 @@
 
 
 - if can? :create, Trailhead  
-  = form_tag upload_kml_trailheads_path, :method => :post, :multipart => true, :id => "import-trailhead-kml-form" do
-    = file_field_tag "kml_file", hidden: true, id: "trailhead-kml-file-field"
-  :javascript
-    $('#trailheads-from-kml-link').click(function(){
-        $('#trailhead-kml-file-field').click();        
+  .hide
+    = form_tag upload_kml_trailheads_path, :method => :post, :multipart => true, :id => "import-trailhead-kml-form", :class => "hide" do
+      = file_field_tag "kml_file", hidden: true, id: "trailhead-kml-file-field"
+    :javascript
+      $('#trailheads-from-kml-link').click(function(){
+          $('#trailhead-kml-file-field').click();        
+          return false;
+        });
+      $('#trailhead-kml-file-field').change(function(){
+        $('#import-trailhead-kml-form').submit();
         return false;
-      });
-    $('#trailhead-kml-file-field').change(function(){
-      $('#import-trailhead-kml-form').submit();
-      return false;
-      });
+        });
 
-  = form_tag upload_kml_trailheads_path, :method => :post, :multipart => true, :id => "update-trailhead-kml-form" do
-    = file_field_tag "kml_file", hidden: true, id: "update-trailhead-kml-file-field"
-    = hidden_field_tag "update_existing", "true"
-  :javascript
-    $('#update-trailheads-from-kml-link').click(function(){
-        $('#update-trailhead-kml-file-field').click();        
+    = form_tag upload_kml_trailheads_path, :method => :post, :multipart => true, :id => "update-trailhead-kml-form" do
+      = file_field_tag "kml_file", hidden: true, id: "update-trailhead-kml-file-field"
+      = hidden_field_tag "update_existing", "true"
+    :javascript
+      $('#update-trailheads-from-kml-link').click(function(){
+          $('#update-trailhead-kml-file-field').click();        
+          return false;
+        });
+      $('#update-trailhead-kml-file-field').change(function(){
+        $('#update-trailhead-kml-form').submit();
         return false;
-      });
-    $('#update-trailhead-kml-file-field').change(function(){
-      $('#update-trailhead-kml-form').submit();
-      return false;
-      });
+        });
 
