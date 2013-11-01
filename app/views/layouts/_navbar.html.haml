@@ -145,49 +145,49 @@
         });
 
 - if can? :create, Park  
-    = form_tag upload_kml_parks_path, :method => :post, :multipart => true, :id => "import-park-kml-form" do
-      = file_field_tag "kml_file", hidden: true, id: "park-kml-file-field"
-      = hidden_field_tag "update_existing", "false"
-    :javascript
-      $('#park-from-kml-link').click(function(){
-          $('#park-kml-file-field').click();        
-          return false;
-        });
-      $('#update-park-from-kml-link').click(function(){
-          $('#import-park-kml-form #update_existing').val('true');
-          $('#park-kml-file-field').click();        
-          return false;
-        });
-
-      $('#park-kml-file-field').change(function(){
-        $('#import-park-kml-form').submit();
+  = form_tag upload_kml_parks_path, :method => :post, :multipart => true, :id => "import-park-kml-form" do
+    = file_field_tag "kml_file", hidden: true, id: "park-kml-file-field"
+    = hidden_field_tag "update_existing", "false"
+  :javascript
+    $('#park-from-kml-link').click(function(){
+        $('#park-kml-file-field').click();        
         return false;
-        });
+      });
+    $('#update-park-from-kml-link').click(function(){
+        $('#import-park-kml-form #update_existing').val('true');
+        $('#park-kml-file-field').click();        
+        return false;
+      });
+
+    $('#park-kml-file-field').change(function(){
+      $('#import-park-kml-form').submit();
+      return false;
+      });
 
 
 - if can? :create, Trailhead  
-    = form_tag upload_kml_trailheads_path, :method => :post, :multipart => true, :id => "import-trailhead-kml-form" do
-      = file_field_tag "kml_file", hidden: true, id: "trailhead-kml-file-field"
-    :javascript
-      $('#trailheads-from-kml-link').click(function(){
-          $('#trailhead-kml-file-field').click();        
-          return false;
-        });
-      $('#trailhead-kml-file-field').change(function(){
-        $('#import-trailhead-kml-form').submit();
+  = form_tag upload_kml_trailheads_path, :method => :post, :multipart => true, :id => "import-trailhead-kml-form" do
+    = file_field_tag "kml_file", hidden: true, id: "trailhead-kml-file-field"
+  :javascript
+    $('#trailheads-from-kml-link').click(function(){
+        $('#trailhead-kml-file-field').click();        
         return false;
-        });
+      });
+    $('#trailhead-kml-file-field').change(function(){
+      $('#import-trailhead-kml-form').submit();
+      return false;
+      });
 
-    = form_tag upload_kml_trailheads_path, :method => :post, :multipart => true, :id => "update-trailhead-kml-form" do
-      = file_field_tag "kml_file", hidden: true, id: "update-trailhead-kml-file-field"
-      = hidden_field_tag "update_existing", "true"
-    :javascript
-      $('#update-trailheads-from-kml-link').click(function(){
-          $('#update-trailhead-kml-file-field').click();        
-          return false;
-        });
-      $('#update-trailhead-kml-file-field').change(function(){
-        $('#update-trailhead-kml-form').submit();
+  = form_tag upload_kml_trailheads_path, :method => :post, :multipart => true, :id => "update-trailhead-kml-form" do
+    = file_field_tag "kml_file", hidden: true, id: "update-trailhead-kml-file-field"
+    = hidden_field_tag "update_existing", "true"
+  :javascript
+    $('#update-trailheads-from-kml-link').click(function(){
+        $('#update-trailhead-kml-file-field').click();        
         return false;
-        });
+      });
+    $('#update-trailhead-kml-file-field').change(function(){
+      $('#update-trailhead-kml-form').submit();
+      return false;
+      });
 
