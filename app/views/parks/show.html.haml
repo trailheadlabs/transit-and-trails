@@ -21,9 +21,10 @@
         %script{:src => "//platform.twitter.com/widgets.js", :type => "text/javascript"}
         %iframe{:allowTransparency => "true", :frameborder => "0", :scrolling => "no", :src => "//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.transitandtrails.org%2Fparks%2F#{ @park.slug }%2F#{@park.county_slug}&send=false&layout=button_count&width=450&show_faces=true&action=like&colorscheme=light&font&height=80&appId=173296509398219", :style => "display: inline-block; margin:10px 0; border:none; overflow:hidden; width:150px; height:20px;"}
       .attributes
-        %label.text-attr-label
-          Acres
-        #{ @acres.round(2) }
+        - if @acres > 0
+          %label.text-attr-label
+            Acres
+          #{ @acres.round(2) }
 
         - if @agencies
           %label.text-attr-label

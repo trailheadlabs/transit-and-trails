@@ -144,8 +144,7 @@
         return false;
         });
 
-- if can? :create, Park
-  #import-park-kml
+- if can? :create, Park  
     = form_tag upload_kml_parks_path, :method => :post, :multipart => true, :id => "import-park-kml-form" do
       = file_field_tag "kml_file", hidden: true, id: "park-kml-file-field"
       = hidden_field_tag "update_existing", "false"
@@ -166,8 +165,7 @@
         });
 
 
-- if can? :create, Trailhead
-  #import-trailhead-kml
+- if can? :create, Trailhead  
     = form_tag upload_kml_trailheads_path, :method => :post, :multipart => true, :id => "import-trailhead-kml-form" do
       = file_field_tag "kml_file", hidden: true, id: "trailhead-kml-file-field"
     :javascript
