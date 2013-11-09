@@ -55,7 +55,7 @@ class Park < ActiveRecord::Base
     if users.any?
       overrides = overrides.where(user_id:users)
     end
-    ths + overrides
+    ths | overrides
   end
 
   def trailheads_in_bounds
