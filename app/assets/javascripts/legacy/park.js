@@ -74,19 +74,19 @@ function initialize_park(id) {
     TNT.parklatlngbounds = new google.maps.LatLngBounds();
     
     var count = gpolys.length;
-    $(gpolys).each(function(index, item) {
-        var parkoverlay = new google.maps.Polygon(
-          {
-            paths: item, 
-            map: TNT.find.map,
-            fillColor: "#222", 
-            fillOpacity: 0.2,
-            strokeWeight: 2,
-            strokeColor: "#666"
+    var parkoverlay = new google.maps.Polygon(
+      {
+        paths: gpolys, 
+        map: TNT.find.map,
+        fillColor: "#222", 
+        fillOpacity: 0.2,
+        strokeWeight: 2,
+        strokeColor: "#666"
 
-          }
-        );
-        
+      }
+    );
+
+    $(gpolys).each(function(index, item) {    
         for(point in item){
           TNT.parklatlngbounds.extend(item[point]);
         }
