@@ -50,7 +50,7 @@ class Park < ActiveRecord::Base
   end
 
   def trailheads
-    ths = ((!cached_trailheads.empty? && cached_trailheads) || trailheads_in_bounds)
+    ths = trailheads_in_bounds
     overrides = trailhead_overrides.approved
     if users.any?
       overrides = overrides.where(user_id:users)
@@ -78,7 +78,7 @@ class Park < ActiveRecord::Base
   end
 
   def campgrounds
-    result = ((!cached_campgrounds.empty? && cached_campgrounds) || campgrounds_in_bounds)
+    result = campgrounds_in_bounds
     if users.any?
       result = result.where(user_id:users)
     end
