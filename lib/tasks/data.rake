@@ -58,7 +58,8 @@ namespace :data do
   desc "Cache parks on trailheads"
   task :cache_trailhead_parks => :environment do
     count = Trailhead.count
-    Trailhead.all.each_with_index do |t,i|
+    Trailhead.where(cached_park_by_bounds_id:nil).each_with_index do |t,i|
+      t.park_by_bounds
       t.save
       puts "#{i+1}/#{count}"
     end
