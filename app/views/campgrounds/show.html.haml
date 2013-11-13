@@ -22,9 +22,6 @@
 
 #page.trip-details.legacy
 
-  #trail-details.trail-details-overlay
-    != @campground.description
-
   #details-section
     #plan.alt.trailhead
       #page-head
@@ -50,8 +47,13 @@
         #trailhead-details
           - if @campground.description
             .description
-              != truncate_html(@campground.description, :length=> 300,  :omission => '...<br/><a class="trail-details-modal description-modal" rel="#trail-details" >Read more...</a>')
-            / e: entry
+              .short-description
+                != truncate_html(@campground.description, :length=> 400,  :omission => " ...<p><br/><a id='more-desc-link' class='read-more-less-link' href='#'>Read more &raquo;</a></p>")
+              .full-description
+                != @campground.description
+                %br
+                = link_to "#", id: "less-desc-link", class: "read-more-less-link" do
+                  &laquo; Read Less
           - else
             %div{:style => "height:10px"}
 
@@ -132,7 +134,6 @@
           });
       }
 
-      $("a.description-modal").overlay();
       $('thumbnail a[rel]').overlay();
 
       initCampgroundDetails(#{@campground.id}, false);

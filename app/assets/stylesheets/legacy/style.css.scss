@@ -1,5 +1,13 @@
 @import 'bourbon';
 
+.full-description{
+    display:none;
+}
+.read-more-less-link{
+  text-transform:uppercase;
+  font-weight:600;
+}
+
 body {
     font-size: 13px;
     margin: 0px;
