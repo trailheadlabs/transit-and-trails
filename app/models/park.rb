@@ -115,6 +115,8 @@ class Park < ActiveRecord::Base
   def trips
     if users.any?
       trailheads.collect{|t| t.trips_starting_at.approved.where(user_id:users) + t.trips_ending_at.approved.where(user_id:users) }.flatten
+      ids = trailheads.collect{|t|t.id}
+      Trip.find(id:ids,user_id:users)
     else
       trailheads.collect{|t| t.trips_starting_at.approved + t.trips_ending_at.approved }.flatten
     end
