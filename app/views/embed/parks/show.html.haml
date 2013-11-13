@@ -13,81 +13,80 @@
   = params[:title] || "Park"
 
 - content_for :page_content do  
-  - cache ['v7',@park] do
-    #plan.alt
+  #plan.alt
 
-      #park
+    #park
 
-        .header#park-header
-          %img.type-flag{:alt => "", :src => "/assets/legacy/park.png"}/
-          .trip-name
-            = @park.name
-          - if @agencies
-            - @agencies.each do |ag|
-              - unless ag.link == "no website"
-                %i
-                  %a{:href => "#{ ag.link }", :target => "_blank"} #{ag.name}
-                %br/
-              - else
-                %i #{ ag.name }
-                %br/
+      .header#park-header
+        %img.type-flag{:alt => "", :src => "/assets/legacy/park.png"}/
+        .trip-name
+          = @park.name
+        - if @agencies
+          - @agencies.each do |ag|
+            - unless ag.link == "no website"
+              %i
+                %a{:href => "#{ ag.link }", :target => "_blank"} #{ag.name}
+              %br/
+            - else
+              %i #{ ag.name }
+              %br/
 
 
-        / attributes
-        .legend
-          = image_tag "legacy/icon1.png"
-          Trips&nbsp;
-          = image_tag "legacy/icon2.png"
-          Trailheads&nbsp;
-          = image_tag "legacy/icon3.png"
-          Campgrounds&nbsp;
-        #trail-list
-          .trail-list-progress
-            %img{:src => "/assets/legacy/progress-medium-blue.gif"}/
-          %ul
-      #find-map
-    %script{:src => "/assets/legacy/park.js", :type => "text/javascript"}
-    = javascript_include_tag "embed.js"
+      / attributes
+      .legend
+        = image_tag "legacy/icon1.png"
+        Trips&nbsp;
+        = image_tag "legacy/icon2.png"
+        Trailheads&nbsp;
+        = image_tag "legacy/icon3.png"
+        Campgrounds&nbsp;
+      #trail-list
+        .trail-list-progress
+          %img{:src => "/assets/legacy/progress-medium-blue.gif"}/
+        %ul
+    #find-map
+  %script{:src => "/assets/legacy/park.js", :type => "text/javascript"}
+  = javascript_include_tag "embed.js"
+  
+  %script
+    $(function(){
+    - if @trips
+      trips = new Array();
+      - @trips.each do |item|
+        newTrip = new Object();
+        newTrip.latlng = new google.maps.LatLng(parseFloat(#{item.starting_trailhead.latitude}), parseFloat(#{ item.starting_trailhead.longitude }));
+        newTrip.tripTitle = "#{ item.name }";
+        newTrip.tripId = new Number(#{ item.id });
+        trips.push(newTrip)
+
+    - if @campgrounds
+      campgrounds = new Array();
+      - @campgrounds.each do |item|
+        var campground = new Object;
+        campground.id = '#{ item.id }';
+        campground.latlng = new google.maps.LatLng(#{ item.latitude }, #{ item.longitude });
+        campground.pointTitle = "#{ item.name }";
+        campground.pointId = new Number(#{ item.id });
+        campgrounds.push(campground);
+
+    - if @trailheads
+      trailheads = new Array();
+      - @trailheads.each do |item|
+        var trailhead = new Object;
+        trailhead.id = '#{ item.id }';
+        trailhead.latlng = new google.maps.LatLng(#{ item.latitude }, #{ item.longitude });
+        trailhead.pointTitle = "#{ item.name }";
+        trailhead.pointId = new Number(#{ item.id });
+        trailheads.push(trailhead);
+
+    gpolys = [
+    - @polys.each do |poly|
+      [
+      - poly.each do |point|
+        new google.maps.LatLng(#{point[1]},#{point[0]}),
+      ],
+    ];
     
-    %script
-      $(function(){
-      - if @trips
-        trips = new Array();
-        - @trips.each do |item|
-          newTrip = new Object();
-          newTrip.latlng = new google.maps.LatLng(parseFloat(#{item.starting_trailhead.latitude}), parseFloat(#{ item.starting_trailhead.longitude }));
-          newTrip.tripTitle = "#{ item.name }";
-          newTrip.tripId = new Number(#{ item.id });
-          trips.push(newTrip)
+    initialize_park(#{ @park.id });
 
-      - if @campgrounds
-        campgrounds = new Array();
-        - @campgrounds.each do |item|
-          var campground = new Object;
-          campground.id = '#{ item.id }';
-          campground.latlng = new google.maps.LatLng(#{ item.latitude }, #{ item.longitude });
-          campground.pointTitle = "#{ item.name }";
-          campground.pointId = new Number(#{ item.id });
-          campgrounds.push(campground);
-
-      - if @trailheads
-        trailheads = new Array();
-        - @trailheads.each do |item|
-          var trailhead = new Object;
-          trailhead.id = '#{ item.id }';
-          trailhead.latlng = new google.maps.LatLng(#{ item.latitude }, #{ item.longitude });
-          trailhead.pointTitle = "#{ item.name }";
-          trailhead.pointId = new Number(#{ item.id });
-          trailheads.push(trailhead);
-
-      gpolys = [
-      - @polys.each do |poly|
-        [
-        - poly.each do |point|
-          new google.maps.LatLng(#{point[1]},#{point[0]}),
-        ],
-      ];
-      
-      initialize_park(#{ @park.id });
-
-      });
+    });

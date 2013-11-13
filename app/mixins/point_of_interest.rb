@@ -43,7 +43,7 @@ module PointOfInterest
   end
 
   def default_park
-    @default_park ||= (park || cached_park_by_bounds)
+    @default_park ||= (park || cached_park_by_bounds || park_by_bounds)
   end
 
   def default_park_name
