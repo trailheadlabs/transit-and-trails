@@ -47,8 +47,8 @@
     #find-map
   %script{:src => "/assets/legacy/park.js", :type => "text/javascript"}
   = javascript_include_tag "embed.js"
-  
-  %script
+  - unless @park.id == 12023
+   %script
     $(function(){
     - if @trips
       trips = new Array();
@@ -78,7 +78,7 @@
         trailhead.pointTitle = "#{ item.name }";
         trailhead.pointId = new Number(#{ item.id });
         trailheads.push(trailhead);
-    - unless @park.id == 12023
+    
       gpolys = [
       = @polys.collect{|poly| "[" + poly.collect{|point| "new google.maps.LatLng(#{point[1]},#{point[0]})"}.join(",") + "]"}.join(',')
       ];
