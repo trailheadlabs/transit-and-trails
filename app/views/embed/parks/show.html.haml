@@ -57,7 +57,7 @@
         newTrip.latlng = new google.maps.LatLng(parseFloat(#{item.starting_trailhead.latitude}), parseFloat(#{ item.starting_trailhead.longitude }));
         newTrip.tripTitle = "#{ item.name }";
         newTrip.tripId = new Number(#{ item.id });
-        trips.push(newTrip)
+        trips.push(newTrip);
 
     - if @campgrounds
       campgrounds = new Array();
