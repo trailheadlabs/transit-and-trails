@@ -33,5 +33,5 @@
               %img{:src => "/assets/legacy/plan/small-logo.png"}/
 
       = yield :page_content
-
-    = render :partial => "/layouts/tracking"
+    - unless defined?(@park) && @park.id = 12023
+      = render :partial => "/layouts/tracking"
