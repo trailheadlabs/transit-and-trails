@@ -80,11 +80,7 @@
         trailheads.push(trailhead);
 
     gpolys = [
-    - @polys.each do |poly|
-      [
-      - poly.each do |point|
-        new google.maps.LatLng(#{point[1]},#{point[0]}),
-      ],
+    = @polys.collect{|poly| "[" + poly.collect{|point| "new google.maps.LatLng(#{point[1]},#{point[0]})"}.join(",") + "]"}.join(',')
     ];
     
     initialize_park(#{ @park.id });
