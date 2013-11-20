@@ -47,46 +47,42 @@
     #find-map
   %script{:src => "/assets/legacy/park.js", :type => "text/javascript"}
   = javascript_include_tag "embed.js"
+  %script
+    $(function(){
+    - if @trips
+      trips = new Array();
+      - @trips.each do |item|
+        newTrip = new Object();
+        newTrip.latlng = new google.maps.LatLng(parseFloat(#{item.starting_trailhead.latitude}), parseFloat(#{ item.starting_trailhead.longitude }));
+        newTrip.tripTitle = "#{ item.name }";
+        newTrip.tripId = new Number(#{ item.id });
+        trips.push(newTrip);
+
+    - if @campgrounds
+      campgrounds = new Array();
+      - @campgrounds.each do |item|
+        var campground = new Object;
+        campground.id = '#{ item.id }';
+        campground.latlng = new google.maps.LatLng(#{ item.latitude }, #{ item.longitude });
+        campground.pointTitle = "#{ item.name }";
+        campground.pointId = new Number(#{ item.id });
+        campgrounds.push(campground);
+
+    - if @trailheads
+      trailheads = new Array();
+      - @trailheads.each do |item|
+        var trailhead = new Object;
+        trailhead.id = '#{ item.id }';
+        trailhead.latlng = new google.maps.LatLng(#{ item.latitude }, #{ item.longitude });
+        trailhead.pointTitle = "#{ item.name }";
+        trailhead.pointId = new Number(#{ item.id });
+        trailheads.push(trailhead);
     
-  - unless @park.id == 12023
+      gpolys = [
+      = @polys.collect{|poly| "[" + poly.collect{|point| "new google.maps.LatLng(#{point[1]},#{point[0]})"}.join(",") + "]"}.join(',')
+      ];
 
-    %script
-      $(function(){
-      - if @trips
-        trips = new Array();
-        - @trips.each do |item|
-          newTrip = new Object();
-          newTrip.latlng = new google.maps.LatLng(parseFloat(#{item.starting_trailhead.latitude}), parseFloat(#{ item.starting_trailhead.longitude }));
-          newTrip.tripTitle = "#{ item.name }";
-          newTrip.tripId = new Number(#{ item.id });
-          trips.push(newTrip);
-
-      - if @campgrounds
-        campgrounds = new Array();
-        - @campgrounds.each do |item|
-          var campground = new Object;
-          campground.id = '#{ item.id }';
-          campground.latlng = new google.maps.LatLng(#{ item.latitude }, #{ item.longitude });
-          campground.pointTitle = "#{ item.name }";
-          campground.pointId = new Number(#{ item.id });
-          campgrounds.push(campground);
-
-      - if @trailheads
-        trailheads = new Array();
-        - @trailheads.each do |item|
-          var trailhead = new Object;
-          trailhead.id = '#{ item.id }';
-          trailhead.latlng = new google.maps.LatLng(#{ item.latitude }, #{ item.longitude });
-          trailhead.pointTitle = "#{ item.name }";
-          trailhead.pointId = new Number(#{ item.id });
-          trailheads.push(trailhead);
-      
-        gpolys = [
-        = @polys.collect{|poly| "[" + poly.collect{|point| "new google.maps.LatLng(#{point[1]},#{point[0]})"}.join(",") + "]"}.join(',')
-        ];
-      - else
-        gpolys = [];
-
+    - unless @park.id == 12023
       initialize_park(#{ @park.id });
 
-      });
+    });
