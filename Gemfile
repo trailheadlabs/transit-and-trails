@@ -36,7 +36,6 @@ gem 'simple_form'
 gem 'database_cleaner'
 gem 'cancan'
 gem 'truncate_html'
-gem 'newrelic_rpm'
 gem 'pony'
 gem 'recaptcha', :require => "recaptcha/rails"
 gem "rails_admin_map_field", :git => "git://github.com/jmoe/rails_admin_map_field.git"

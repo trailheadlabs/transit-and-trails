@@ -164,7 +164,6 @@ GEM
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-ssh (2.7.0)
-    newrelic_rpm (3.6.7.159)
     nokogiri (1.5.10)
     oauth (0.4.7)
     oauth2 (0.8.1)
@@ -355,7 +354,6 @@ DEPENDENCIES
   meta_request
   mini_magick
   multi_json
-  newrelic_rpm
   omniauth
   omniauth-facebook
   omniauth-twitter
