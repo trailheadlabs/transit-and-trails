@@ -8,47 +8,47 @@ $(function() {
         }
     });
 
-    // $('.trail-type-trailhead .details-link').live('mouseenter',
-    // function(event) {
-    //     id = parseInt($(event.target).attr('rel'));
-    //     TNT.find.highlightTrailheadMarker(id);
-    //     event.preventDefault();
-    // });
+    $('.trail-type-trailhead .details-link').live('mouseenter',
+    function(event) {
+        id = parseInt($(event.target).attr('rel'));
+        TNT.find.highlightTrailheadMarker(id);
+        event.preventDefault();
+    });
 
-    // $('.trail-type-trailhead .details-link').live('mouseleave',
-    // function(event) {
-    //     id = parseInt($(event.target).attr('rel'));
-    //     TNT.find.unhighlightTrailheadMarker(id)
-    //     event.preventDefault();
-    // });
+    $('.trail-type-trailhead .details-link').live('mouseleave',
+    function(event) {
+        id = parseInt($(event.target).attr('rel'));
+        TNT.find.unhighlightTrailheadMarker(id)
+        event.preventDefault();
+    });
 
-    // $('.trail-type-trip .details-link').live('mouseenter',
-    // function(event) {
-    //     id = parseInt($(event.target).attr('rel'));
-    //     TNT.find.highlightTripMarker(id);
-    //     event.preventDefault();
-    // });
+    $('.trail-type-trip .details-link').live('mouseenter',
+    function(event) {
+        id = parseInt($(event.target).attr('rel'));
+        TNT.find.highlightTripMarker(id);
+        event.preventDefault();
+    });
 
-    // $('.trail-type-trip .details-link').live('mouseleave',
-    // function(event) {
-    //     id = parseInt($(event.target).attr('rel'));
-    //     TNT.find.unhighlightTripMarker(id);
-    //     event.preventDefault();
-    // });
+    $('.trail-type-trip .details-link').live('mouseleave',
+    function(event) {
+        id = parseInt($(event.target).attr('rel'));
+        TNT.find.unhighlightTripMarker(id);
+        event.preventDefault();
+    });
 
-    // $('.trail-type-campground .details-link').live('mouseenter',
-    // function(event) {
-    //     id = parseInt($(event.target).attr('rel'));
-    //     TNT.find.highlightCampgroundMarker(id);
-    //     event.preventDefault();
-    // });
+    $('.trail-type-campground .details-link').live('mouseenter',
+    function(event) {
+        id = parseInt($(event.target).attr('rel'));
+        TNT.find.highlightCampgroundMarker(id);
+        event.preventDefault();
+    });
 
-    // $('.trail-type-campground .details-link').live('mouseleave',
-    // function(event) {
-    //     id = parseInt($(event.target).attr('rel'));
-    //     TNT.find.unhighlightCampgroundMarker(id);
-    //     event.preventDefault();
-    // });
+    $('.trail-type-campground .details-link').live('mouseleave',
+    function(event) {
+        id = parseInt($(event.target).attr('rel'));
+        TNT.find.unhighlightCampgroundMarker(id);
+        event.preventDefault();
+    });
 
     $('.trail-type-trip .details-link').live('click',
     function(event) {
@@ -68,6 +68,7 @@ $(function() {
         }
     });
 });
+
 function initialize_park(id) {
     TNT.find.init();    
     
@@ -147,20 +148,19 @@ TNT.find = {
       this.map = new google.maps.Map(document.getElementById("find-map"),
                 mapOptions);
 
+      this.overlay = new google.maps.OverlayView();
+      this.overlay.draw = function() {};
+      this.overlay.setMap(this.map);      
 
-      // this.overlay = new google.maps.OverlayView();
-      // this.overlay.draw = function() {};
-      // this.overlay.setMap(this.map);      
-
-      // //Define OSM map type pointing at the OpenStreetMap tile server
-      // this.map.mapTypes.set("OSM", new google.maps.ImageMapType({
-      //     getTileUrl: function(coord, zoom) {
-      //         return "http://tile.openstreetmap.org/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
-      //     },
-      //     tileSize: new google.maps.Size(256, 256),
-      //     name: "OSM",
-      //     maxZoom: 18
-      // }));
+      //Define OSM map type pointing at the OpenStreetMap tile server
+      this.map.mapTypes.set("OSM", new google.maps.ImageMapType({
+          getTileUrl: function(coord, zoom) {
+              return "http://tile.openstreetmap.org/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
+          },
+          tileSize: new google.maps.Size(256, 256),
+          name: "OSM",
+          maxZoom: 18
+      }));
 
       this.trailheadMarkerManager = new MarkerManager(this.map);
       this.tripMarkerManager = new MarkerManager(this.map);
