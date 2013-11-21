@@ -72,7 +72,7 @@
 function initialize_park(id) {
     TNT.find.init();    
     
-    // TNT.parklatlngbounds = new google.maps.LatLngBounds();
+    TNT.parklatlngbounds = new google.maps.LatLngBounds();
     
     var count = gpolys.length;
     var parkoverlay = new google.maps.Polygon(
