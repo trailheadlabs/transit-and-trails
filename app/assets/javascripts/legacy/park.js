@@ -1,78 +1,78 @@
-$(function() {
-    $('.trail-type-trailhead .details-link').live('click',
-    function(event) {
-        if(!$('.embed').hasClass('phone') && !$('.embed').hasClass('tablet')){
-            id = parseInt($(event.target).attr('rel'));
-            TNT.find.showTrailhead(id);
-            event.preventDefault();
-        }
-    });
+// $(function() {
+//     $('.trail-type-trailhead .details-link').live('click',
+//     function(event) {
+//         if(!$('.embed').hasClass('phone') && !$('.embed').hasClass('tablet')){
+//             id = parseInt($(event.target).attr('rel'));
+//             TNT.find.showTrailhead(id);
+//             event.preventDefault();
+//         }
+//     });
 
-    $('.trail-type-trailhead .details-link').live('mouseenter',
-    function(event) {
-        id = parseInt($(event.target).attr('rel'));
-        TNT.find.highlightTrailheadMarker(id);
-        event.preventDefault();
-    });
+//     $('.trail-type-trailhead .details-link').live('mouseenter',
+//     function(event) {
+//         id = parseInt($(event.target).attr('rel'));
+//         TNT.find.highlightTrailheadMarker(id);
+//         event.preventDefault();
+//     });
 
-    $('.trail-type-trailhead .details-link').live('mouseleave',
-    function(event) {
-        id = parseInt($(event.target).attr('rel'));
-        TNT.find.unhighlightTrailheadMarker(id)
-        event.preventDefault();
-    });
+//     $('.trail-type-trailhead .details-link').live('mouseleave',
+//     function(event) {
+//         id = parseInt($(event.target).attr('rel'));
+//         TNT.find.unhighlightTrailheadMarker(id)
+//         event.preventDefault();
+//     });
 
-    $('.trail-type-trip .details-link').live('mouseenter',
-    function(event) {
-        id = parseInt($(event.target).attr('rel'));
-        TNT.find.highlightTripMarker(id);
-        event.preventDefault();
-    });
+//     $('.trail-type-trip .details-link').live('mouseenter',
+//     function(event) {
+//         id = parseInt($(event.target).attr('rel'));
+//         TNT.find.highlightTripMarker(id);
+//         event.preventDefault();
+//     });
 
-    $('.trail-type-trip .details-link').live('mouseleave',
-    function(event) {
-        id = parseInt($(event.target).attr('rel'));
-        TNT.find.unhighlightTripMarker(id);
-        event.preventDefault();
-    });
+//     $('.trail-type-trip .details-link').live('mouseleave',
+//     function(event) {
+//         id = parseInt($(event.target).attr('rel'));
+//         TNT.find.unhighlightTripMarker(id);
+//         event.preventDefault();
+//     });
 
-    $('.trail-type-campground .details-link').live('mouseenter',
-    function(event) {
-        id = parseInt($(event.target).attr('rel'));
-        TNT.find.highlightCampgroundMarker(id);
-        event.preventDefault();
-    });
+//     $('.trail-type-campground .details-link').live('mouseenter',
+//     function(event) {
+//         id = parseInt($(event.target).attr('rel'));
+//         TNT.find.highlightCampgroundMarker(id);
+//         event.preventDefault();
+//     });
 
-    $('.trail-type-campground .details-link').live('mouseleave',
-    function(event) {
-        id = parseInt($(event.target).attr('rel'));
-        TNT.find.unhighlightCampgroundMarker(id);
-        event.preventDefault();
-    });
+//     $('.trail-type-campground .details-link').live('mouseleave',
+//     function(event) {
+//         id = parseInt($(event.target).attr('rel'));
+//         TNT.find.unhighlightCampgroundMarker(id);
+//         event.preventDefault();
+//     });
 
-    $('.trail-type-trip .details-link').live('click',
-    function(event) {
-        if(!$('.embed').hasClass('phone') && !$('.embed').hasClass('tablet')){
-            id = parseInt($(event.target).attr('rel'));
-            TNT.find.showTrip(id)
-            event.preventDefault();
-        }
-    });
+//     $('.trail-type-trip .details-link').live('click',
+//     function(event) {
+//         if(!$('.embed').hasClass('phone') && !$('.embed').hasClass('tablet')){
+//             id = parseInt($(event.target).attr('rel'));
+//             TNT.find.showTrip(id)
+//             event.preventDefault();
+//         }
+//     });
 
-    $('.trail-type-campground .details-link').live('click',
-    function(event) {
-        if(!$('.embed').hasClass('phone') && !$('.embed').hasClass('tablet')){
-            id = parseInt($(event.target).attr('rel'));
-            TNT.find.showCampground(id);
-            event.preventDefault();
-        }
-    });
-});
+//     $('.trail-type-campground .details-link').live('click',
+//     function(event) {
+//         if(!$('.embed').hasClass('phone') && !$('.embed').hasClass('tablet')){
+//             id = parseInt($(event.target).attr('rel'));
+//             TNT.find.showCampground(id);
+//             event.preventDefault();
+//         }
+//     });
+// });
 
 function initialize_park(id) {
     TNT.find.init();    
     
-    TNT.parklatlngbounds = new google.maps.LatLngBounds();
+    // TNT.parklatlngbounds = new google.maps.LatLngBounds();
     
     var count = gpolys.length;
     var parkoverlay = new google.maps.Polygon(
