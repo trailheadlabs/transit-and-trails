@@ -25,28 +25,28 @@ $(function() {
     $('.trail-type-trip .details-link').live('mouseenter',
     function(event) {
         id = parseInt($(event.target).attr('rel'));
-        TNT.find.highlightTripMarker(id)
+        TNT.find.highlightTripMarker(id);
         event.preventDefault();
     });
 
     $('.trail-type-trip .details-link').live('mouseleave',
     function(event) {
         id = parseInt($(event.target).attr('rel'));
-        TNT.find.unhighlightTripMarker(id)
+        TNT.find.unhighlightTripMarker(id);
         event.preventDefault();
     });
 
     $('.trail-type-campground .details-link').live('mouseenter',
     function(event) {
         id = parseInt($(event.target).attr('rel'));
-        TNT.find.highlightCampgroundMarker(id)
+        TNT.find.highlightCampgroundMarker(id);
         event.preventDefault();
     });
 
     $('.trail-type-campground .details-link').live('mouseleave',
     function(event) {
         id = parseInt($(event.target).attr('rel'));
-        TNT.find.unhighlightCampgroundMarker(id)
+        TNT.find.unhighlightCampgroundMarker(id);
         event.preventDefault();
     });
 
@@ -63,7 +63,7 @@ $(function() {
     function(event) {
         if(!$('.embed').hasClass('phone') && !$('.embed').hasClass('tablet')){
             id = parseInt($(event.target).attr('rel'));
-            TNT.find.showCampground(id)
+            TNT.find.showCampground(id);
             event.preventDefault();
         }
     });
@@ -148,19 +148,19 @@ TNT.find = {
                 mapOptions);
 
 
-      this.overlay = new google.maps.OverlayView();
-      this.overlay.draw = function() {};
-      this.overlay.setMap(this.map);      
+      // this.overlay = new google.maps.OverlayView();
+      // this.overlay.draw = function() {};
+      // this.overlay.setMap(this.map);      
 
-      //Define OSM map type pointing at the OpenStreetMap tile server
-      this.map.mapTypes.set("OSM", new google.maps.ImageMapType({
-          getTileUrl: function(coord, zoom) {
-              return "http://tile.openstreetmap.org/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
-          },
-          tileSize: new google.maps.Size(256, 256),
-          name: "OSM",
-          maxZoom: 18
-      }));
+      // //Define OSM map type pointing at the OpenStreetMap tile server
+      // this.map.mapTypes.set("OSM", new google.maps.ImageMapType({
+      //     getTileUrl: function(coord, zoom) {
+      //         return "http://tile.openstreetmap.org/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
+      //     },
+      //     tileSize: new google.maps.Size(256, 256),
+      //     name: "OSM",
+      //     maxZoom: 18
+      // }));
 
       this.trailheadMarkerManager = new MarkerManager(this.map);
       this.tripMarkerManager = new MarkerManager(this.map);
