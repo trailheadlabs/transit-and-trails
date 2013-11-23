@@ -1,7 +1,7 @@
 
-var TNT = {};
+window.TNT = {};
 
-TNT.find = {
+window.TNT.find = {
     currentTrailheads: null,
     currentCampgrounds: null,
     currentTrips: null,
@@ -374,7 +374,6 @@ function initialize_park(id) {
         for(var point in item){
           TNT.parklatlngbounds.extend(item[point]);
         }
-
     });
     
     TNT.find.map.fitBounds(TNT.parklatlngbounds);
