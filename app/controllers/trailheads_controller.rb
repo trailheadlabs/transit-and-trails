@@ -49,7 +49,11 @@ class TrailheadsController < ApplicationController
       placemarks.each do |p|
         placemark = p.parent
         point = placemark.css('Point').css('coordinates').text.strip.split(',').slice(0,2).collect{|c| c.to_f}.reverse
-        name = placemark.css('name').try(:text)
+        name = placemark.css('name').try(:text)      
+        if name.blank?
+          name = placemark.css('SimpleData[name="name"]').try(:text)
+          puts name
+        end
         name = name.titleize
         trailhead = Trailhead.new
         if params[:update_existing]          
