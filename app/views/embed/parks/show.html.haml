@@ -1,6 +1,6 @@
 - content_for :head do
   %meta{:content => "Transit & Trails : #{ @park.name } : Park Details", :property => "og:title"}/
-  = javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyCcUhpQftpOwXVSLJqHrvwYCqnhTy3bchE&sensor=false&libraries=places"
+  = javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyCcUhpQftpOwXVSLJqHrvwYCqnhTy3bchE&sensor=false"
   = javascript_include_tag "legacy/markermanager"
   = render :partial => "/shared/partials/legacy_head"
   = stylesheet_link_tag "legacy/style"

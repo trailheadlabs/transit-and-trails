@@ -15,40 +15,41 @@ window.TNT.find = {
 
     init: function() {
       var start = new google.maps.LatLng(37.887771, -122.256452);
+      // this.overlay = new google.maps.OverlayView();
+      // this.overlay.draw = function() {};
+      // this.overlay.setMap(this.map);      
+
+      //Define OSM map type pointing at the OpenStreetMap tile server
+      // this.map.mapTypes.set("OSM", new google.maps.ImageMapType({
+      //     getTileUrl: function(coord, zoom) {
+      //         return "http://tile.openstreetmap.org/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
+      //     },
+      //     tileSize: new google.maps.Size(256, 256),
+      //     name: "OSM",
+      //     maxZoom: 18
+      // }));
+
       var mapOptions = {
         center: new google.maps.LatLng(start.lat(),start.lng()),
         zoom: 17,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         mapTypeControl: true,
-        mapTypeControlOptions: {
-          mapTypeIds: [google.maps.MapTypeId.TERRAIN,google.maps.MapTypeId.SATELLITE,google.maps.MapTypeId.ROADMAP,'OSM'],
-          position: google.maps.ControlPosition.TOP_RIGHT,
-          style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
-        },
+        // mapTypeControlOptions: {
+        //   mapTypeIds: [google.maps.MapTypeId.TERRAIN,google.maps.MapTypeId.SATELLITE,google.maps.MapTypeId.ROADMAP,'OSM']
+        //   // position: google.maps.ControlPosition.TOP_RIGHT,
+        //   // style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+        // },
         zoomControl: true,
-        zoomControlOptions: {
-          position: google.maps.ControlPosition.TOP_RIGHT,
-          style: google.maps.ZoomControlStyle.SMALL
-        },
+        // zoomControlOptions: {
+        //   position: google.maps.ControlPosition.TOP_RIGHT,
+        //   style: google.maps.ZoomControlStyle.SMALL
+        // },
         panControl: false
       };
 
       this.map = new google.maps.Map(document.getElementById("find-map"),
                 mapOptions);
 
-      this.overlay = new google.maps.OverlayView();
-      this.overlay.draw = function() {};
-      this.overlay.setMap(this.map);      
-
-      //Define OSM map type pointing at the OpenStreetMap tile server
-      this.map.mapTypes.set("OSM", new google.maps.ImageMapType({
-          getTileUrl: function(coord, zoom) {
-              return "http://tile.openstreetmap.org/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
-          },
-          tileSize: new google.maps.Size(256, 256),
-          name: "OSM",
-          maxZoom: 18
-      }));
 
       this.trailheadMarkerManager = new MarkerManager(this.map);
       this.tripMarkerManager = new MarkerManager(this.map);
@@ -76,7 +77,7 @@ window.TNT.find = {
         $(this.currentTrips).each(function(index, value) {
             if (value != undefined) {
                 tripsArray.push(value);
-            }
+            };
         });
 
         this.tripMarkerManager.addMarkers(tripsArray, 0);
@@ -86,7 +87,7 @@ window.TNT.find = {
 
     createTrailheadMarker: function(pointId, pointTitle, latlng) {
         var that = this;
-        var tinyIcon = {}
+        var tinyIcon = {};
         tinyIcon.url = "/assets/legacy/map/pin_s_trailhead.png";
         tinyIcon.scaledSize = new google.maps.Size(34, 36);
         tinyIcon.shadowSize = new google.maps.Size(38, 36);
@@ -104,8 +105,8 @@ window.TNT.find = {
         var newMarker = new google.maps.Marker(pointMarkerOptions);
 
         google.maps.event.addListener(newMarker, "click",
-        function() {
-            that.showTrailhead(pointId);
+            function() {
+                that.showTrailhead(pointId);
         });
         return newMarker;
     },
@@ -465,4 +466,3 @@ $(function() {
     });
 });
 
-// ]]>
