@@ -28,7 +28,7 @@ module PointOfInterest
       end
     end
 
-    self.cached_park_by_bounds = parks.first
+    self.cached_park_by_bounds = parks.first if parks.any?
 
     return parks.first
   end

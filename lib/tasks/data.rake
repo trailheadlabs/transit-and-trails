@@ -66,6 +66,15 @@ namespace :data do
     puts "Done"
   end
 
+  desc "Update park cached trailheads"
+  task :update_cached_trailheads => :environment do
+    count = Park.count
+    Park.all.each_with_index do |p,i|
+      p.update_cached_trailheads      
+      puts "#{i+1}/#{count}"
+    end
+    puts "Done"
+  end
 
 
   desc "Approve trailheads"
