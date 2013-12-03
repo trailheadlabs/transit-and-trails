@@ -49,6 +49,12 @@ class Park < ActiveRecord::Base
     Trailhead.approved.where(cached_park_by_bounds_id: id)
   end
 
+  def update_cached_trailheads
+    trailheads_in_bounds.each do |t|
+      t.update_attributes(cached_park_by_bounds_id: id)
+    end
+  end
+  
   def trailheads
     ths = trailheads_in_bounds
     overrides = trailhead_overrides.approved
