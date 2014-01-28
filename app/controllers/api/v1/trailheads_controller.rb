@@ -28,7 +28,11 @@ module Api
 
         if(params[:user_id])
           @trailheads = @trailheads.where(user_id:params[:user_id].split(','))
-        end                
+        end        
+
+        if(params[:id])
+          @trailheads = @trailheads.where(id:params[:id].split(','))
+        end
 
         @trailheads = apply_limit_and_offset(params,@trailheads.approved.order('id'))
 
