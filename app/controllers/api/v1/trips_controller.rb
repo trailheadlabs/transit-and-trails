@@ -13,6 +13,10 @@ module Api
           @trips = @trips.where(user_id:params[:user_id].split(','))
         end
 
+        if(params[:id])
+          @trips = @trips.where(id:params[:id].split(','))
+        end
+
       end
 
       def show
