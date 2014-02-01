@@ -24,12 +24,14 @@
 #page
   #page-head
     %h2 Plan your Trip
-    %a{:href => "/"} Back to Map
     - if @trailhead
+      = link_to "Back to Map", find_trailheads_path
       %a.back-to-details{:href => "/trailheads/#{@trailhead.id}/"} Back to Details
     - elsif @trip
+      = link_to "Back to Map", find_trips_path
       %a.back-to-details{:href => "/trips/#{@trip.id}/"} Back to Details
     - elsif @campground
+      = link_to "Back to Map", find_campgrounds_path
       %a.back-to-details{:href => "/campgrounds/#{@campground.id}/"} Back to Details
   / e: page head
   #plan

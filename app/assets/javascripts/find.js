@@ -37,6 +37,13 @@ $(function(){
     Find.submitFilters();
     return false;
   });
+
+  $("#near-form").submit(function(event){
+    event.preventDefault();
+    // Find.submitFilters();
+    return false;
+  });
+  
   $('#scrolltop').click(function(){
     $("html, body").animate({ scrollTop: 0 },300);
     return false;
@@ -57,7 +64,7 @@ Find.init = function(){
   var mapOptions = {
     center: new google.maps.LatLng(starting_lat,starting_lng),
     zoom: starting_zoom,
-    mapTypeId: google.maps.MapTypeId.TERRAIN,
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
     mapTypeControl: true,
     mapTypeControlOptions: {
       mapTypeIds: [google.maps.MapTypeId.TERRAIN,google.maps.MapTypeId.SATELLITE,google.maps.MapTypeId.ROADMAP,'OSM'],
@@ -94,24 +101,9 @@ Find.init = function(){
   autocomplete.bindTo('bounds', Find.map);
 
   google.maps.event.addListener(autocomplete, 'place_changed', function() {
-    var place = autocomplete.getPlace();
-    if (!place.geometry) {
-      // Inform the user that a place was not found and return.
-      return;
-    }
-
-    // If the place has a geometry, then present it on a map.
-    if (place.geometry.viewport) {
-      // Use the viewport if it is provided.
-      Find.map.fitBounds(place.geometry.viewport);
-    } else {
-      // Otherwise use the location and set a chosen zoom level.
-      Find.map.setCenter(place.geometry.location);
-      Find.map.setZoom(20);
-    }
-    Find.currentSearchBounds = Find.map.getBounds();
-    Find.currentSearchCenter = Find.map.getCenter();
+    // Find.submitFilters();
   });
+
   google.maps.event.addListener(Find.map, 'idle', Find.mapIdle);
   Find.currentSearchBounds = Find.map.getBounds();
   Find.currentSearchCenter = Find.map.getCenter();
@@ -191,7 +183,6 @@ Find.addTripMarker = function(trip){
   var newMarker = new google.maps.Marker({
     position: myLatlng,
     map: Find.map,
-    animation: google.maps.Animation.DROP,
     title:trip.name,
     icon: {
       anchor: new google.maps.Point(15, 45),
@@ -233,7 +224,6 @@ Find.addTrailheadMarker = function(trailhead){
   var newMarker = new google.maps.Marker({
     position: myLatlng,
     map: Find.map,
-    animation: google.maps.Animation.DROP,
     title:trailhead.name,
     icon: {
       anchor: new google.maps.Point(15, 45),
@@ -274,7 +264,6 @@ Find.addCampgroundMarker = function(campground){
   var newMarker = new google.maps.Marker({
     position: myLatlng,
     map: Find.map,
-    animation: google.maps.Animation.DROP,
     title:campground.name,
     icon: {
       anchor: new google.maps.Point(15, 45),
@@ -350,11 +339,23 @@ Find.showItems = function(){
 Find.submitFilters = function(){
   var newNear = $("#find-location").val();
   if( newNear != "" && newNear != Find.currentNear){
-    Find.codeAddress($("#find-location").val());
-    Find.forceShowItems = true;
+    Find.geocoder.geocode( { 'address': newNear}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        Find.currentNear = results[0].formatted_address;
+        $("#find-location").val(Find.currentNear);
+        Find.map.setCenter(results[0].geometry.location);
+        Find.map.fitBounds(results[0].geometry.viewport);
+        Find.currentSearchBounds = Find.map.getBounds();
+        Find.currentSearchCenter = Find.map.getCenter();        
+        Find.showItems();
+      } else {
+        $("#find-location").val(Find.currentNear);
+        alert("Could not find location.");
+      }
+    });
+  } else {
+    Find.showItems();
   }
-  Find.showItems();
-
   return false;
 }
 
