@@ -24,7 +24,7 @@ class Trip < ActiveRecord::Base
                   :alerts
 
   before_save :update_bounds_min_max, :update_geometry, :update_coordinates
-  after_save :refind_parks, :touch_parks
+  after_save :touch_parks
 
   validates :name, :presence => true, :uniqueness => true
 
