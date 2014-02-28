@@ -26,39 +26,16 @@ TNT.pointmap = {
       var mapOptions = {
         center: new google.maps.LatLng(start.lat(),start.lng()),
         zoom: 17,
-        mapTypeId: google.maps.MapTypeId.TERRAIN,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
         mapTypeControl: true,
-        mapTypeControlOptions: {
-          mapTypeIds: [google.maps.MapTypeId.TERRAIN,google.maps.MapTypeId.SATELLITE,google.maps.MapTypeId.ROADMAP,'OSM'],
-          position: google.maps.ControlPosition.TOP_RIGHT,
-          style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
-        },
         zoomControl: true,
-        zoomControlOptions: {
-          position: google.maps.ControlPosition.TOP_RIGHT,
-          style: google.maps.ZoomControlStyle.SMALL
-        },
         panControl: false
       };
+
       this.map = new google.maps.Map(document.getElementById("plan-map"),
                 mapOptions);
 
-
-      this.overlay = new google.maps.OverlayView();
-      this.overlay.draw = function() {};
-      this.overlay.setMap(this.map);
-
       this.geocoder = new google.maps.Geocoder();
-
-      //Define OSM map type pointing at the OpenStreetMap tile server
-      this.map.mapTypes.set("OSM", new google.maps.ImageMapType({
-          getTileUrl: function(coord, zoom) {
-              return "http://tile.openstreetmap.org/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
-          },
-          tileSize: new google.maps.Size(256, 256),
-          name: "OSM",
-          maxZoom: 18
-      }));
 
       this.trailheadMarkerManager = new MarkerManager(this.map);
 
@@ -67,7 +44,7 @@ TNT.pointmap = {
       var trailheadIcon = {}
 
       trailheadIcon.url = "/assets/legacy/map/pin_s_trailhead.png";
-      trailheadIcon.anchor = new google.maps.Point(14, 30);        
+      trailheadIcon.anchor = new google.maps.Point(14, 30);
 
       var campgroundIcon = {};
       campgroundIcon.url = "/assets/legacy/map/pin_s_campground.png";
@@ -100,7 +77,7 @@ TNT.pointmap = {
 
       google.maps.event.addListener(this.map, "dblclick", this.saveMap);
       google.maps.event.addListener.bind(this.map, "zoomend", this.saveMap);
-	    
+
       loadKeyFromSession('map.zoom',function(data){
         if( data.value){
           var newZoom = Number(data.value);
@@ -112,7 +89,7 @@ TNT.pointmap = {
           google.maps.event.addListener(this.map, 'click', this.moveStart);
           google.maps.event.addListener(this.map, "dragend", this.moveMap);
       }
-      
+
 
     },
 
@@ -168,7 +145,7 @@ TNT.pointmap = {
         tinyIcon.url = "/assets/legacy/map/Map-Pins-Small.png";
         tinyIcon.size = new google.maps.Size(27, 28);
         //tinyIcon.shadowSize = new google.maps.Size(38, 36);
-        tinyIcon.anchor = new google.maps.Point(14, 30);        
+        tinyIcon.anchor = new google.maps.Point(14, 30);
 
         var pointMarkerOptions = {
             position: latlng,
@@ -211,7 +188,7 @@ TNT.pointmap = {
       var self = this;
       url = "/campgrounds/" + id + ".json";
       $.getJSON(url,
-        function(object) {            
+        function(object) {
           var startLatLng = new google.maps.LatLng(object.latitude, object.longitude);
           self.map.setCenter(startLatLng, 13);
           self.startmarker.setPosition(startLatLng);
@@ -280,7 +257,7 @@ function initEditing(entityType, editMode) {
 
   if (editMode == TNT.EditMode.UPDATE) {
       TNT.pointmap.startmarker.setPosition(new google.maps.LatLng(
-        parseFloat($('#trailhead_latitude').val()), 
+        parseFloat($('#trailhead_latitude').val()),
         parseFloat($('#trailhead_longitude').val())));
       TNT.pointmap.map.panTo(TNT.pointmap.startmarker.getPosition());
   } else {
@@ -324,7 +301,7 @@ function initEditing(entityType, editMode) {
     });
 // // end adding peripheral trailheads for user knowledge
   }
-    
+
 }
 
 function findAddress(editMode) {
@@ -346,5 +323,5 @@ function findAddress(editMode) {
           });
       }
     }
-  });    
+  });
 }

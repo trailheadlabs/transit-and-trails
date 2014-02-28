@@ -48,39 +48,22 @@ TNT.tripmap = {
 
         this.currentTrailheadsById = {};
 
-        var mapTypeIds = ["terrain", "OSM"]
-        for(var type in google.maps.MapTypeId) {
-            mapTypeIds.push(google.maps.MapTypeId[type]);
-        }
-
         var mapOptions = {
-            zoom: 11,
-            center: this.startPosition,
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
-            mapTypeControlOptions: {
-                mapTypeIds: mapTypeIds,
-                style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-                position: google.maps.ControlPosition.TOP_RIGHT
-            },
-            scaleControl: true,
-            streetViewControl: true,
-            overviewMapControl: true,
-            scrollwheel: false
-        }
+          center: this.startPosition,
+          zoom: 11,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          mapTypeControl: true,
+          zoomControl: true,
+          panControl: false
+        };
+
         if(this.editMode != TNT.EditMode.READONLY){
             mapOptions.draggableCursor = 'crosshair';
         }
-        // setup the map
+
+// setup the map
         this.map = new google.maps.Map(document.getElementById('plan-map'), mapOptions);
 
-        this.map.mapTypes.set("OSM", new google.maps.ImageMapType({
-            getTileUrl: function(coord, zoom) {
-                return "http://tile.openstreetmap.org/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
-            },
-            tileSize: new google.maps.Size(256, 256),
-            name: "OpenStreetMap",
-            maxZoom: 18
-        }));
 
         this.starting_trailhead_id = null;
         this.ending_trailhead_id = null;
@@ -222,13 +205,13 @@ TNT.tripmap = {
                 if (status == google.maps.DirectionsStatus.OK) {
                     var myRoute = result.routes[0].legs[0];
                     var newPath = []
-                    for (var i = 0; i < myRoute.steps.length; i++) {                    
-                        newPath = newPath.concat(myRoute.steps[i].path);                                    
+                    for (var i = 0; i < myRoute.steps.length; i++) {
+                        newPath = newPath.concat(myRoute.steps[i].path);
                     }
                     var currentPath = TNT.tripmap.tripLine.getPath().getArray();
                     var nextPath = newPath.concat(currentPath);
                     TNT.tripmap.tripLine.setPath(nextPath);
-                    addedTo += newPath.length;                        
+                    addedTo += newPath.length;
                     TNT.tripmap.lastAddedSegments.push([addedFrom,addedTo]);
                     TNT.tripmap.updateDistanceDiv();
                 }
@@ -321,7 +304,7 @@ TNT.tripmap = {
         $('#trip_starting_trailhead_id').val(id);
         $('#trip-editor-step-instruction').text("Now draw your trip. Click the ending trailhead when you are done.");
         TNT.tripmap.currentInfoWindow.close();
-        var markerLatLng = TNT.tripmap.currentTrailheadsById[id].getPosition();        
+        var markerLatLng = TNT.tripmap.currentTrailheadsById[id].getPosition();
         TNT.tripmap.currentTrailheadsById[id].setIcon(TNT.tripmap.tripStartIcon);
 
 
@@ -420,7 +403,7 @@ TNT.tripmap = {
     loadJSONRoute : function(){
         var bounds = new google.maps.LatLngBounds();
         // var route = $.parseJSON($('#id_route').val())['coordinates'];
-        
+
         if(trip_route.length > 0) {
             var route = simplify(trip_route,0.00001);
             TNT.tripmap.tripLine.setMap(null);

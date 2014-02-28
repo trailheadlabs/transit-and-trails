@@ -15,35 +15,13 @@ window.TNT.find = {
 
     init: function() {
       var start = new google.maps.LatLng(37.887771, -122.256452);
-      // this.overlay = new google.maps.OverlayView();
-      // this.overlay.draw = function() {};
-      // this.overlay.setMap(this.map);      
-
-      //Define OSM map type pointing at the OpenStreetMap tile server
-      // this.map.mapTypes.set("OSM", new google.maps.ImageMapType({
-      //     getTileUrl: function(coord, zoom) {
-      //         return "http://tile.openstreetmap.org/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
-      //     },
-      //     tileSize: new google.maps.Size(256, 256),
-      //     name: "OSM",
-      //     maxZoom: 18
-      // }));
 
       var mapOptions = {
         center: new google.maps.LatLng(start.lat(),start.lng()),
         zoom: 17,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         mapTypeControl: true,
-        // mapTypeControlOptions: {
-        //   mapTypeIds: [google.maps.MapTypeId.TERRAIN,google.maps.MapTypeId.SATELLITE,google.maps.MapTypeId.ROADMAP,'OSM']
-        //   // position: google.maps.ControlPosition.TOP_RIGHT,
-        //   // style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
-        // },
         zoomControl: true,
-        // zoomControlOptions: {
-        //   position: google.maps.ControlPosition.TOP_RIGHT,
-        //   style: google.maps.ZoomControlStyle.SMALL
-        // },
         panControl: false
       };
 
@@ -53,7 +31,7 @@ window.TNT.find = {
 
       this.trailheadMarkerManager = new MarkerManager(this.map);
       this.tripMarkerManager = new MarkerManager(this.map);
-      this.campgroundMarkerManager = new MarkerManager(this.map);      
+      this.campgroundMarkerManager = new MarkerManager(this.map);
     },
 
     loadTripsInline: function(data) {
@@ -175,7 +153,7 @@ window.TNT.find = {
         tinyIcon.url = "/assets/legacy/map/pin_s_campground.png";
         tinyIcon.scaledSize = new google.maps.Size(34, 36);
         tinyIcon.shadowSize = new google.maps.Size(38, 36);
-        tinyIcon.anchor = new google.maps.Point(14, 30);        
+        tinyIcon.anchor = new google.maps.Point(14, 30);
 
         var pointMarkerOptions = {
             map: TNT.find.map,
@@ -226,7 +204,7 @@ window.TNT.find = {
         tinyIcon.url = "/assets/legacy/map/pin_s_tripstart_active.png";
         tinyIcon.scaledSize = new google.maps.Size(34, 36);
         tinyIcon.shadowSize = new google.maps.Size(38, 36);
-        tinyIcon.anchor = new google.maps.Point(14, 30);        
+        tinyIcon.anchor = new google.maps.Point(14, 30);
 
         this.currentTrips[index].setIcon(tinyIcon);
 
@@ -234,11 +212,11 @@ window.TNT.find = {
 
     unhighlightTripMarker: function(index) {
         var tinyIcon = {};
-        
+
         tinyIcon.url = "/assets/legacy/map/pin_s_tripstart.png";
         tinyIcon.scaledSize = new google.maps.Size(34, 36);
         tinyIcon.shadowSize = new google.maps.Size(38, 36);
-        tinyIcon.anchor = new google.maps.Point(14, 30);        
+        tinyIcon.anchor = new google.maps.Point(14, 30);
 
         this.currentTrips[index].setIcon(tinyIcon);
     },
@@ -249,7 +227,7 @@ window.TNT.find = {
         tinyIcon.url = "/assets/legacy/map/pin_s_trailhead_active.png";
         tinyIcon.scaledSize = new google.maps.Size(34, 36);
         tinyIcon.shadowSize = new google.maps.Size(38, 36);
-        tinyIcon.anchor = new google.maps.Point(14, 30);        
+        tinyIcon.anchor = new google.maps.Point(14, 30);
 
         var marker = this.currentTrailheads[id];
         marker.setIcon(tinyIcon);
@@ -261,7 +239,7 @@ window.TNT.find = {
         tinyIcon.url = "/assets/legacy/map/pin_s_trailhead.png";
         tinyIcon.scaledSize = new google.maps.Size(34, 36);
         tinyIcon.shadowSize = new google.maps.Size(38, 36);
-        tinyIcon.anchor = new google.maps.Point(14, 30);        
+        tinyIcon.anchor = new google.maps.Point(14, 30);
 
 
         this.currentTrailheads[id].setIcon(tinyIcon);
@@ -273,7 +251,7 @@ window.TNT.find = {
         tinyIcon.url = "/assets/legacy/map/pin_s_campground_active.png";
         tinyIcon.scaledSize = new google.maps.Size(34, 36);
         tinyIcon.shadowSize = new google.maps.Size(38, 36);
-        tinyIcon.anchor = new google.maps.Point(14, 30);        
+        tinyIcon.anchor = new google.maps.Point(14, 30);
 
         var marker = this.currentCampgrounds[index];
         marker.setIcon(tinyIcon);
@@ -285,7 +263,7 @@ window.TNT.find = {
         tinyIcon.url = "/assets/legacy/map/pin_s_campground.png";
         tinyIcon.scaledSize = new google.maps.Size(34, 36);
         tinyIcon.shadowSize = new google.maps.Size(38, 36);
-        tinyIcon.anchor = new google.maps.Point(14, 30);        
+        tinyIcon.anchor = new google.maps.Point(14, 30);
 
         this.currentCampgrounds[index].setIcon(tinyIcon);
     },
@@ -302,8 +280,8 @@ window.TNT.find = {
             var infowindow = new google.maps.InfoWindow({
                 content: data
             });
-            TNT.currentInfowindow = infowindow;            
-            infowindow.open(TNT.find.map,that.currentTrailheads[id]);            
+            TNT.currentInfowindow = infowindow;
+            infowindow.open(TNT.find.map,that.currentTrailheads[id]);
         });
     },
 
@@ -318,8 +296,8 @@ window.TNT.find = {
             var infowindow = new google.maps.InfoWindow({
                 content: data
             });
-            TNT.currentInfowindow = infowindow;   
-            infowindow.open(TNT.find.map,that.currentCampgrounds[id]);                     
+            TNT.currentInfowindow = infowindow;
+            infowindow.open(TNT.find.map,that.currentCampgrounds[id]);
         });
     },
 
@@ -334,8 +312,8 @@ window.TNT.find = {
             var infowindow = new google.maps.InfoWindow({
                 content: data
             });
-            TNT.currentInfowindow = infowindow;   
-            infowindow.open(TNT.find.map,that.currentTrips[id])            
+            TNT.currentInfowindow = infowindow;
+            infowindow.open(TNT.find.map,that.currentTrips[id])
         });
     },
 
@@ -354,16 +332,16 @@ window.TNT.find = {
 };
 
 function initialize_park(id) {
-    window.TNT.find.init();    
-    
+    window.TNT.find.init();
+
     window.TNT.parklatlngbounds = new google.maps.LatLngBounds();
-    
+
     var count = gpolys.length;
     var parkoverlay = new google.maps.Polygon(
       {
-        paths: gpolys, 
+        paths: gpolys,
         map: TNT.find.map,
-        fillColor: "#222", 
+        fillColor: "#222",
         fillOpacity: 0.2,
         strokeWeight: 2,
         strokeColor: "#666"
@@ -371,12 +349,12 @@ function initialize_park(id) {
       }
     );
 
-    $(window.gpolys).each(function(index, item) {    
+    $(window.gpolys).each(function(index, item) {
         for(var point in item){
           TNT.parklatlngbounds.extend(item[point]);
         }
     });
-    
+
     TNT.find.map.fitBounds(TNT.parklatlngbounds);
 
     google.maps.event.addListenerOnce(TNT.find.map,'idle',function(){
@@ -465,4 +443,3 @@ $(function() {
         }
     });
 });
-

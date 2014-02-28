@@ -43,7 +43,7 @@ $(function(){
     // Find.submitFilters();
     return false;
   });
-  
+
   $('#scrolltop').click(function(){
     $("html, body").animate({ scrollTop: 0 },300);
     return false;
@@ -61,41 +61,20 @@ $(function(){
 });
 
 Find.init = function(){
+
   var mapOptions = {
     center: new google.maps.LatLng(starting_lat,starting_lng),
     zoom: starting_zoom,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     mapTypeControl: true,
-    mapTypeControlOptions: {
-      mapTypeIds: [google.maps.MapTypeId.TERRAIN,google.maps.MapTypeId.SATELLITE,google.maps.MapTypeId.ROADMAP,'OSM'],
-      position: google.maps.ControlPosition.TOP_RIGHT,
-      style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
-    },
     zoomControl: true,
-    zoomControlOptions: {
-      position: google.maps.ControlPosition.TOP_RIGHT,
-      style: google.maps.ZoomControlStyle.SMALL
-    },
     panControl: false
   };
+
   Find.map = new google.maps.Map(document.getElementById("find_map"),
             mapOptions);
 
-  Find.overlay = new google.maps.OverlayView();
-  Find.overlay.draw = function() {};
-  Find.overlay.setMap(Find.map);
-
   Find.geocoder = new google.maps.Geocoder();
-
-  //Define OSM map type pointing at the OpenStreetMap tile server
-  Find.map.mapTypes.set("OSM", new google.maps.ImageMapType({
-      getTileUrl: function(coord, zoom) {
-          return "http://tile.openstreetmap.org/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
-      },
-      tileSize: new google.maps.Size(256, 256),
-      name: "OSM",
-      maxZoom: 18
-  }));
 
   var autocomplete = new google.maps.places.Autocomplete($('#find-location')[0]);
   autocomplete.bindTo('bounds', Find.map);
@@ -169,7 +148,7 @@ Find.fitMarkerBounds = function(trip){
       //  And increase the bounds to take this point
       bounds.extend (Find.mapMarkers[i].getPosition());
     }
-    
+
     if(!$('#redo_search_in_map').is(':checked')){
       Find.map.fitBounds(bounds);
       Find.map.setCenter(bounds.getCenter());
@@ -346,7 +325,7 @@ Find.submitFilters = function(){
         Find.map.setCenter(results[0].geometry.location);
         Find.map.fitBounds(results[0].geometry.viewport);
         Find.currentSearchBounds = Find.map.getBounds();
-        Find.currentSearchCenter = Find.map.getCenter();        
+        Find.currentSearchCenter = Find.map.getCenter();
         Find.showItems();
       } else {
         $("#find-location").val(Find.currentNear);
@@ -412,4 +391,3 @@ Find.showTrailheads = function(){
 Find.showCampgrounds = function(){
   Find.loadItems('/find/campgrounds_within_bounds');
 }
-
