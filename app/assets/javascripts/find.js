@@ -61,15 +61,24 @@ $(function(){
 });
 
 Find.init = function(){
-
   var mapOptions = {
     center: new google.maps.LatLng(starting_lat,starting_lng),
     zoom: starting_zoom,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     mapTypeControl: true,
+    mapTypeControlOptions: {
+      mapTypeIds: [google.maps.MapTypeId.TERRAIN,google.maps.MapTypeId.SATELLITE,google.maps.MapTypeId.ROADMAP],
+      position: google.maps.ControlPosition.TOP_RIGHT,
+      style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+    },
     zoomControl: true,
+    zoomControlOptions: {
+      position: google.maps.ControlPosition.TOP_RIGHT,
+      style: google.maps.ZoomControlStyle.SMALL
+    },
     panControl: false
   };
+
 
   Find.map = new google.maps.Map(document.getElementById("find_map"),
             mapOptions);
