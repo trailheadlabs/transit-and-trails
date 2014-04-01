@@ -19,7 +19,12 @@ module Api
           else
             @trailheads = Trailhead.where(id:trailhead_ids).order("id")
           end
-        end
+        else          
+          if attribute_id = params[:attribute_id]
+            trailhead_ids = TrailheadFeature.find(attribute_id).trailheads.pluck(:id)          
+            @trailheads = Trailhead.where(id:trailhead_ids).order("id")
+          end
+        end 
 
         if(params[:latitude] && params[:longitude])
           distance = params[:distance] || 100

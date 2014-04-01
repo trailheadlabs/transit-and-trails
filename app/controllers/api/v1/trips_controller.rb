@@ -17,6 +17,11 @@ module Api
           @trips = @trips.where(id:params[:id].split(','))
         end
 
+        attribute_id = params[:attribute_id]
+        if attribute_id
+          trip_ids = TripFeature.find(attribute_id).trips.pluck(:id)          
+          @trips = @trips.where(id:trip_ids).order("id")
+        end
       end
 
       def show

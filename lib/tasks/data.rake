@@ -1,5 +1,5 @@
 namespace :data do
-
+  
   desc "Reset autoincrements"
   task :reset_all_autoincrements, [:value] => [:environment] do |t, args|
     [
