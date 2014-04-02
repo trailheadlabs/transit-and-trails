@@ -20,7 +20,6 @@ gem 'rails_admin'
 gem "fog", "~> 1.3.1"
 gem 'carrierwave'
 gem 'mini_magick'
-gem 'simple_form'
 gem 'rabl'
 gem 'multi_json'
 gem 'yajl-ruby'
