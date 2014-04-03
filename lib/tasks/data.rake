@@ -4,7 +4,7 @@ namespace :data do
   task :import_otds_stewards => :environment do
     response = Excon.get('http://www.outerspatial.com/otds/stewards.json')
     json = JSON.parse(response.body)
-    json['features'].each do |item|
+    json['stewards'].each do |item|
       agency = Agency.find_or_create_by_otds_id(item['properties']['id'])
       agency.update_attributes(
         name:item['properties']['name'],
