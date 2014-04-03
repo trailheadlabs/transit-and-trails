@@ -8,7 +8,7 @@ namespace :data do
       agency = Agency.find_or_create_by_otds_id(item['id'])
       agency.update_attributes(
         name:item['name'],
-        url:item['website'],
+        link:item['url'],
         description:"Address:\n#{item['address'].join('\n')}\n\nPhone:\n#{item['phone']}")        
       puts "Updated Agency ---"
       puts agency.to_json
@@ -22,14 +22,27 @@ namespace :data do
     json = JSON.parse(response.body)
     json['features'].each do |item|
       properties = item['properties']
-      park = Park.find_or_create_by_name("#{properties['parkName']}, Ohio")
+      park = nil
+      agency = nil
+      agency_id = nil
       user_id = 1
+      park_id = nil
+      if properties['parkName'].present?
+        park = Park.find_or_create_by_name("#{properties['parkName']}, Ohio")
+        park_id = park.id
+      end
+      
       if item['properties']['stewardId'].any?
         sid = item['properties']['stewardId'][0]
-        steward = Agency.find_by_otds_id(sid)
-        park.update_attributes(agency_id:steward.id)
-        if park.users.any?
-          user_id = park.users.first.id
+        agency = Agency.find_by_otds_id(sid)
+        
+        if park
+          park.update_attributes(agency_id:agency.id)
+          if park.users.any?
+            # user_id = park.users.first.id
+          end
+        else
+          agency_id = agency.id
         end
       end
 
@@ -37,7 +50,8 @@ namespace :data do
       trailhead.update_attributes(
         user_id:user_id,
         approved:true,
-        park_id:park.id,
+        park_id:park_id,
+        agency_id:agency_id,
         name:properties['name'],
         longitude:item['geometry']['coordinates'][0],
         latitude:item['geometry']['coordinates'][1])
