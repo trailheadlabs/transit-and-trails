@@ -20,7 +20,7 @@
         = trailhead.name
     %p.park-name
       = trailhead.default_park_name
-    = render :partial => "object_user_label", :locals => { :object => trailhead }
+    / = render :partial => "object_user_label", :locals => { :object => trailhead }
     = render :partial => "/shared/partials/agency", :locals => { :object => trailhead }
     %p.description
       = truncate_html(strip_tags(trailhead.description),:length=>300)
