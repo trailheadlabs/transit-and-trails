@@ -1,5 +1,44 @@
 namespace :data do
   
+  desc "Import OTDS Stewards"
+  task :import_otds_stewards => :environment do
+    response = Excon.get('http://www.outerspatial.com/stewards.json')
+    json = JSON.parse(response.body)
+    json['features'].each do |item|
+      agency = Agency.find_or_create_by_otds_id(item['properties']['id'])
+      agency.update_attributes(
+        name:item['properties']['name'],
+        link:item['properties']['website'],
+        description:"Address:\n#{item['properties']['address']}\n\nPhone:\n#{item['properties']['phone']}")        
+      puts "Updated Agency ---"
+      puts JSON.pretty_generate(agency.to_json)
+    end
+  end
+
+
+  desc "Import OTDS Trailheads"
+  task :import_otds_trailheads => :environment do
+    response = Excon.get('http://www.outerspatial.com/trailheads.json')
+    json = JSON.parse(response.body)
+    json['features'].each do |item|
+      properties = item['properties']
+      park = Park.find_or_create_by_name(properties['parkName'])
+      if item['properties']['stewardId'].any?
+        park.update_attributes(agency_id:item['properties']['stewardId'][0])
+      end
+      trailhead = Trailhead.find_or_create_by_otds_id(properties['id'])
+      trailhead.update_attributes(
+        park_id:park.id,
+        name:properties['name'],
+        longitude:item['geometry']['coordinates'][0],
+        latitude:item['geometry']['coordinates'][1])
+      puts "Updated Park ---"
+      puts JSON.pretty_generate(park.to_json)
+      puts "Updated Trailead ---"
+      puts JSON.pretty_generate(trailhead.to_json)
+    end
+  end
+
   desc "Reset autoincrements"
   task :reset_all_autoincrements, [:value] => [:environment] do |t, args|
     [

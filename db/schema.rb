@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131029165702) do
+ActiveRecord::Schema.define(:version => 20140403175350) do
 
   create_table "agencies", :force => true do |t|
     t.string   "name"
@@ -20,7 +20,10 @@ ActiveRecord::Schema.define(:version => 20131029165702) do
     t.string   "logo"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "otds_id"
   end
+
+  add_index "agencies", ["otds_id"], :name => "index_agencies_on_otds_id"
 
   create_table "agencies_users", :id => false, :force => true do |t|
     t.integer "user_id"
@@ -307,8 +310,10 @@ ActiveRecord::Schema.define(:version => 20131029165702) do
     t.integer  "cached_park_by_bounds_id"
     t.integer  "agency_id"
     t.integer  "non_profit_partner_id"
+    t.integer  "otds_id"
   end
 
+  add_index "trailheads", ["otds_id"], :name => "index_trailheads_on_otds_id"
   add_index "trailheads", ["user_id"], :name => "index_trailheads_on_user_id"
 
   create_table "transit_agencies", :force => true do |t|
