@@ -5,13 +5,13 @@ namespace :data do
     response = Excon.get('http://www.outerspatial.com/otds/stewards.json')
     json = JSON.parse(response.body)
     json['stewards'].each do |item|
-      agency = Agency.find_or_create_by_otds_id(item['properties']['id'])
+      agency = Agency.find_or_create_by_otds_id(item['id'])
       agency.update_attributes(
-        name:item['properties']['name'],
-        link:item['properties']['website'],
-        description:"Address:\n#{item['properties']['address']}\n\nPhone:\n#{item['properties']['phone']}")        
+        name:item['name'],
+        url:item['website'],
+        description:"Address:\n#{item['address'].join('\n')}\n\nPhone:\n#{item['phone']}")        
       puts "Updated Agency ---"
-      puts JSON.pretty_generate(agency.to_json)
+      puts agency.to_json
     end
   end
 
@@ -22,20 +22,29 @@ namespace :data do
     json = JSON.parse(response.body)
     json['features'].each do |item|
       properties = item['properties']
-      park = Park.find_or_create_by_name(properties['parkName'])
+      park = Park.find_or_create_by_name("#{properties['parkName']}, Ohio")
+      user_id = 1
       if item['properties']['stewardId'].any?
-        park.update_attributes(agency_id:item['properties']['stewardId'][0])
+        sid = item['properties']['stewardId'][0]
+        steward = Agency.find_by_otds_id(sid)
+        park.update_attributes(agency_id:steward.id)
+        if park.users.any?
+          user_id = park.users.first.id
+        end
       end
+
       trailhead = Trailhead.find_or_create_by_otds_id(properties['id'])
       trailhead.update_attributes(
+        user_id:user_id,
+        approved:true,
         park_id:park.id,
         name:properties['name'],
         longitude:item['geometry']['coordinates'][0],
         latitude:item['geometry']['coordinates'][1])
       puts "Updated Park ---"
-      puts JSON.pretty_generate(park.to_json)
+      puts park.to_json
       puts "Updated Trailead ---"
-      puts JSON.pretty_generate(trailhead.to_json)
+      puts trailhead.to_json
     end
   end
 

@@ -59,7 +59,7 @@ class FindController < ApplicationController
 
 
     @near = "#{params[:near]}" || "San Francisco, CA"
-
+    
     unless(params[:user_query].blank?)
       q = "%#{params[:user_query]}%"
       @users = User.where("username ILIKE ?",q)
