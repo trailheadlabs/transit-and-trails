@@ -2,7 +2,7 @@ namespace :data do
   
   desc "Import OTDS Stewards"
   task :import_otds_stewards => :environment do
-    response = Excon.get('http://www.outerspatial.com/stewards.json')
+    response = Excon.get('http://www.outerspatial.com/otds/stewards.json')
     json = JSON.parse(response.body)
     json['features'].each do |item|
       agency = Agency.find_or_create_by_otds_id(item['properties']['id'])
@@ -18,7 +18,7 @@ namespace :data do
 
   desc "Import OTDS Trailheads"
   task :import_otds_trailheads => :environment do
-    response = Excon.get('http://www.outerspatial.com/trailheads.json')
+    response = Excon.get('http://www.outerspatial.com/otds/trailheads.json')
     json = JSON.parse(response.body)
     json['features'].each do |item|
       properties = item['properties']
