@@ -1,16 +1,16 @@
 - if object.respond_to?(:agency) && object.agency
   .agency
-    - if object.agency.logo.file && object.agency.link
-      .logo
-        %a{:href => "#{object.agency.link}", :target => "_blank"}
-          %img{:src => "#{object.agency.logo}"}/
-    - elsif object.agency.logo.file
-      .logo
-        %img{:src => "#{object.agency.logo}"}/
     .text
       .managed_by_label
         Managed by
-      .name
+      - if object.agency.logo.file && object.agency.link
+        .logo
+          %a{:href => "#{object.agency.link}", :target => "_blank"}
+            %img.avatar{:src => "#{object.agency.logo}"}/
+      - elsif object.agency.logo.file
+        .logo
+          %img.avatar{:src => "#{object.agency.logo}"}/
+      %span.name
         - if object.agency.link
           %a{:href => "#{object.agency.link}", :target => "_blank"}
             #{object.agency.name}

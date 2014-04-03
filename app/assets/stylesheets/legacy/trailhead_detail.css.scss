@@ -1,6 +1,43 @@
 
+.container.main #plan .agency{
+  height:inherit;
+}
 
 #page{
+
+    .trailhead {
+      .agency{
+        .text{
+          width:100%;
+        }
+        .logo{
+          height:inherit;
+          line-height:20px;
+          width:30px;
+          height:30px;
+        }
+        .managed_by_label{
+          text-transform:uppercase;
+          font-size:11px;
+          color:#666;
+          font-weight:600;
+          margin-bottom:6px;
+        }
+        margin-bottom:6px;
+        .name{
+          line-height:20px;
+          width:100%;
+          font-size:14px;
+          line-height:28px;
+        }
+      }
+      img.avatar{
+        height:30px;
+        width:30px;
+        margin-right:10px
+      }
+    }
+
     .label-feature {
       background-color: #a3aaaf;
       padding: 4px 8px;
@@ -39,7 +76,6 @@
         display: inline-block;
         float: left;
         margin: 2px 10px;
-        width: 20px;
     }
     #plan.trailhead div.agency div.logo img { margin: 0; }
 
