@@ -43,11 +43,3 @@ test:
   password:
   host: localhost
   port: 5432
-
-production:
-  adapter: postgresql
-  encoding: unicode
-  database: transitandtrails_production
-  pool: 5
-  username: transitandtrails
-  password:
