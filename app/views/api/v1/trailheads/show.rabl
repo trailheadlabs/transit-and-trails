@@ -1,5 +1,5 @@
 object @trailhead
-cache ['v1',@trailhead]
+cache ['v2',@trailhead]
 attributes :id, :name, :description, :longitude, :latitude, :distance 
 node :non_profit_partner_id do |t|
   t.non_profit_partner && t.non_profit_partner_id
