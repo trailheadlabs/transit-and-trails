@@ -50,6 +50,7 @@ gem 'rollbar'
 gem 'georuby', :require => "geo_ruby"
 gem 'rubyzip'
 gem 'excon'
+gem 'puma'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -58,8 +59,6 @@ group :assets do
   gem 'coffee-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'therubyracer', :platforms => :ruby
-  gem 'closure-compiler'
   gem 'yui-compressor'
   gem 'uglifier', '>= 1.0.3'
 end
