@@ -44,7 +44,6 @@ gem 'rack-iframe'
 gem 'figaro'
 gem 'memcachier'
 gem 'dalli'
-gem 'unicorn'
 gem 'rails_12factor'
 gem 'rollbar'
 gem 'georuby', :require => "geo_ruby"
