@@ -1,7 +1,7 @@
 object @user
 attributes :id
 glue :user_profile do
-  attributes :organization_name => :organization_name, :firstname => :first_name, :lastname => :last_name, :website_address => :website_url
+  attributes :organization_name => :organization_name, :firstname => :first_name, :lastname => :last_name, :website_address => :website_url, :email
   glue :avatar do
     attributes :url => :avatar_url
     glue :thumbnail do
