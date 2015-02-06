@@ -1,5 +1,5 @@
 collection @photos
-attributes :flickr_id => :id
+attributes :flickr_id => :id, :user_id => :user_id
 node :flickr_url do |p|
   p.flickr_url
 end
