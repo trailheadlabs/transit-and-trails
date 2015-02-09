@@ -14,6 +14,5 @@ glue :user_profile do
       attributes :url => :organization_avatar_thumbnail_url
     end
   end
-
 end
 attributes :username
