@@ -49,6 +49,7 @@ gem 'rollbar'
 gem 'georuby', :require => "geo_ruby"
 gem 'rubyzip'
 gem 'excon'
+gem 'newrelic_rpm'
 gem 'puma'
 
 # Gems used only for assets and not required
