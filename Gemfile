@@ -8,49 +8,74 @@ gem 'rails', '3.2.11'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
+
+# Auth
 gem 'devise'
-gem 'haml-rails'
-gem "httparty"
-gem 'hpricot'
-gem 'ruby_parser'
+gem 'cancan'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
-gem 'rails_admin'
-gem "fog", "~> 1.3.1"
-gem 'carrierwave'
-gem 'mini_magick'
-gem 'rabl'
-gem 'multi_json'
-gem 'yajl-ruby'
-gem 'flickraw-cached'
-gem 'geocoder'
-gem 'rgeo'
-gem 'paper_trail', '~> 2'
+
+# Frontend Stuff
+gem 'haml-rails'
 gem 'jquery-rails', '~> 2.1.4'
 gem 'bourbon'
 gem 'high_voltage'
-gem 'simple_form_fancy_uploads'
-gem 'simple_form'
-gem 'database_cleaner'
-gem 'cancan'
-gem 'truncate_html'
-gem 'pony'
 gem 'recaptcha', :require => "recaptcha/rails"
 gem "rails_admin_map_field", :git => "git://github.com/jmoe/rails_admin_map_field.git"
 gem 'rails3-jquery-autocomplete'
 gem 'kaminari'
 gem 'rack-iframe'
+gem 'truncate_html'
+gem 'simple_form_fancy_uploads'
+gem 'simple_form'
+gem 'rails_admin'
+
+# HTTPS
+gem "httparty"
+gem 'hpricot'
+gem 'excon'
+gem 'ruby_parser'
+
+# Attachments
+gem "fog", "~> 1.3.1"
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'flickraw-cached'
+
+# JSON
+gem 'rabl'
+gem 'multi_json'
+gem 'yajl-ruby'
+
+# Geo
+gem 'geocoder'
+gem 'rgeo'
+gem 'georuby', :require => "geo_ruby"
+
+# Versions
+gem 'paper_trail', '~> 2'
+
+# Testing helper
+gem 'database_cleaner'
+
+# Simple Mailer
+gem 'pony'
+
+# Addons
 gem 'figaro'
 gem 'memcachier'
 gem 'dalli'
-gem 'rails_12factor'
-gem 'rollbar'
-gem 'georuby', :require => "geo_ruby"
-gem 'rubyzip'
-gem 'excon'
+gem 'bugsnag'
 gem 'newrelic_rpm'
+
+# Zipfiles
+gem 'rubyzip'
+
+# Webserver
 gem 'puma'
+
+gem 'rails_12factor', group: :production
 
 # Gems used only for assets and not required
 # in production environments by default.
