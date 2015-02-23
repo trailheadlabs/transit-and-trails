@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   has_many :trailheads, :inverse_of => :user
 
   has_many :campgrounds, :inverse_of => :user
-  
+
   has_many :trips, :inverse_of => :user
 
   has_many :identities, :inverse_of => :user, :dependent => :destroy
@@ -24,8 +24,6 @@ class User < ActiveRecord::Base
   has_many :favorites, :dependent => :destroy
 
   has_and_belongs_to_many :roles
-
-  has_paper_trail
 
   before_create :populate_user_profile
 
