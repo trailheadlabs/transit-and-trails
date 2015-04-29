@@ -15,6 +15,7 @@ gem 'cancan'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
+gem 'omniauth-openstreetmap'
 
 # Frontend Stuff
 gem 'haml-rails'

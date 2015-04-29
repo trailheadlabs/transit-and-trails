@@ -122,7 +122,7 @@ Transitandtrails::Application.routes.draw do
     end
     member do
       post 'approve'
-      post 'unapprove'      
+      post 'unapprove'
       get 'info_window'
     end
   end
@@ -140,7 +140,7 @@ Transitandtrails::Application.routes.draw do
     end
     member do
       post 'approve'
-      post 'unapprove'      
+      post 'unapprove'
       get 'info_window'
       get 'trip_editor_info_window'
       get 'transit_routers'
@@ -149,7 +149,7 @@ Transitandtrails::Application.routes.draw do
 
   match 'parks/autocomplete_park_name' => "parks#autocomplete_park_name", :as => :autocomplete_park_name_parks
   match 'parks(/:slug(/:county_slug))' => "parks#show"
-  
+
   scope 'manage' do
     resources :parks do
       resources :maps, :only => [:index]
@@ -183,9 +183,9 @@ Transitandtrails::Application.routes.draw do
   # match 'send_contact' => "application#send_contact", :via => :post, :as => :send_contact
 
   resources :user_profiles do
-    collection do 
+    collection do
       get 'trailblazer_admin'
-      get 'my_parks'      
+      get 'my_parks'
     end
     member do
       post 'reset_api_key'

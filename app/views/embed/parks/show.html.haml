@@ -1,18 +1,18 @@
 - content_for :head do
   %meta{:content => "Transit & Trails : #{ @park.name } : Park Details", :property => "og:title"}/
-  = javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyCcUhpQftpOwXVSLJqHrvwYCqnhTy3bchE&sensor=false"
+  = javascript_include_tag "//maps.googleapis.com/maps/api/js?key=AIzaSyCcUhpQftpOwXVSLJqHrvwYCqnhTy3bchE&sensor=false"
   = javascript_include_tag "legacy/markermanager"
   = render :partial => "/shared/partials/legacy_head"
   = stylesheet_link_tag "legacy/style"
   = stylesheet_link_tag "legacy/park"
   = stylesheet_link_tag "legacy/reset"
   = stylesheet_link_tag "embed/parks"
-  
+
 
 - content_for :page_title do
   = params[:title] || "Park"
 
-- content_for :page_content do  
+- content_for :page_content do
   #plan.alt
 
     #park
@@ -77,7 +77,7 @@
         trailhead.pointTitle = "#{ item.name }";
         trailhead.pointId = new Number(#{ item.id });
         trailheads.push(trailhead);
-    
+
       gpolys = [
       = @polys.collect{|poly| "[" + poly.collect{|point| "new google.maps.LatLng(#{point[1]},#{point[0]})"}.join(",") + "]"}.join(',')
       ];

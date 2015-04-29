@@ -82,7 +82,7 @@
         = render :partial => "/shared/partials/photo_carousel", :locals => {:object=>@trip}
 
     - if @show.include? 'map'
-      %script(src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCcUhpQftpOwXVSLJqHrvwYCqnhTy3bchE&sensor=false&libraries=drawing,geometry")
+      %script(src="//maps.googleapis.com/maps/api/js?key=AIzaSyCcUhpQftpOwXVSLJqHrvwYCqnhTy3bchE&sensor=false&libraries=drawing,geometry")
 
       %script{:src => "/assets/legacy/tripmap.js", :type => "text/javascript"}
 
@@ -150,9 +150,9 @@
       = link_to "View this Trip at Transit & Trails", trip_url(@trip,:host=>"www.transitandtrails.org"), :target => "_blank"
 
   / = javascript_include_tag "embed_plan"
-  
+
   = javascript_include_tag "embed"
-  
+
   :javascript
     $(function(){
       $('a.trailhead').attr('target','_blank');

@@ -2,7 +2,7 @@
   = stylesheet_link_tag "application"
   = stylesheet_link_tag "legacy/trip"
   = stylesheet_link_tag "embed/trips"
-  = javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyCcUhpQftpOwXVSLJqHrvwYCqnhTy3bchE&sensor=false&libraries=drawing,geometry"
+  = javascript_include_tag "//maps.googleapis.com/maps/api/js?key=AIzaSyCcUhpQftpOwXVSLJqHrvwYCqnhTy3bchE&sensor=false&libraries=drawing,geometry"
 - content_for :page_title do
   Trip Editor : #{truncate(@trip.name,:length=>40)}
 

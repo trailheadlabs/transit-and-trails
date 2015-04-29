@@ -8,7 +8,9 @@ class Trip < ActiveRecord::Base
   has_many :stories, :as => :storytellable, :dependent => :destroy
   has_many :photos, :as => :photoable, :dependent => :destroy
   has_many :maps, :as => :mapable, :dependent => :destroy
+
   has_paper_trail
+
   attr_accessible :approved,
                   :description,
                   :ending_trailhead_id,
@@ -65,7 +67,7 @@ class Trip < ActiveRecord::Base
     end
     parks.each do |p|
       p.touch
-    end    
+    end
   end
 
   def find_parks

@@ -2,7 +2,7 @@
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
   config.secret_key = 'aa855b18ed33a4efd79413656604b64e572420e558a23bd66f449c750cca67694d245634e9aed97a389e34333359b1b858f9165bdb452b5264db69e7057c7c0c'
-  
+
   config.allow_insecure_token_lookup = true
   config.allow_insecure_sign_in_after_confirmation = true
   # ==> Mailer Configuration
@@ -211,8 +211,9 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
 
-  config.omniauth :facebook, ENV['FACEBOOK_APP_KEY'], ENV['FACEBOOK_APP_SECRET']
+  # config.omniauth :facebook, ENV['FACEBOOK_APP_KEY'], ENV['FACEBOOK_APP_SECRET']
 
+  config.omniauth :openstreetmap, ENV['OSM_OAUTH_KEY'], ENV['OSM_OAUTH_SECRET']
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
