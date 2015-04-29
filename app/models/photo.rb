@@ -59,7 +59,7 @@ class Photo < ActiveRecord::Base
       fetch_flickr_sizes
       save
     end
-    flickr_urls[size]
+    flickr_urls[size].gsub(/http:/,'')
   rescue
     nil
   end
