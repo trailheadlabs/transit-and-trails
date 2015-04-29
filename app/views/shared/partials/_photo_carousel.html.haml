@@ -10,11 +10,11 @@
     - object.photos.each_with_index do |photo,index|
       - if index == 0
         .active.item
-          %a{:href => "http://flickr.com/photos/transitandtrails/#{photo.flickr_id}", :target => "_blank"}
+          %a{:href => "//flickr.com/photos/transitandtrails/#{photo.flickr_id}", :target => "_blank"}
             %img{:src => "#{photo.flickr_medium_url}"}/
       - else
         .item
-          %a{:href => "http://flickr.com/photos/transitandtrails/#{photo.flickr_id}", :target => "_blank"}
+          %a{:href => "//flickr.com/photos/transitandtrails/#{photo.flickr_id}", :target => "_blank"}
             %img{:src => "#{photo.flickr_medium_url}"}/
 
   / Carousel nav
