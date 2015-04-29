@@ -1,7 +1,7 @@
 / - content_for :head do
 /   = javascript_include_tag "legacy/common"
 /   = javascript_include_tag "legacy/date"
-/   = javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyCcUhpQftpOwXVSLJqHrvwYCqnhTy3bchE&sensor=false&libraries=places"
+/   = javascript_include_tag "//maps.googleapis.com/maps/api/js?key=AIzaSyCcUhpQftpOwXVSLJqHrvwYCqnhTy3bchE&sensor=false&libraries=places"
 
 - content_for :page_title do
   = params[:title] || "Trip"

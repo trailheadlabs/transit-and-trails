@@ -1,7 +1,7 @@
 - content_for :title do
   Transit & Trails : #{@trailhead.name}
 - content_for :head do
-  = javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyCcUhpQftpOwXVSLJqHrvwYCqnhTy3bchE&sensor=false&libraries=places"
+  = javascript_include_tag "//maps.googleapis.com/maps/api/js?key=AIzaSyCcUhpQftpOwXVSLJqHrvwYCqnhTy3bchE&sensor=false&libraries=places"
   = javascript_include_tag "legacy/markermanager"
 
   %script{:src => "/assets/legacy/galleria/galleria-1.2.7.min.js"}
@@ -141,7 +141,7 @@
 
           });
       }
-      
+
       $('thumbnail a[rel]').overlay();
 
       initTrailheadDetails(#{@trailhead.id}, false);
