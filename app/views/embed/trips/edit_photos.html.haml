@@ -26,7 +26,7 @@
               - if @trip.photos.count > 5
                 %div{:style => "clear:both"}
                 %div{:style => "text-align:right;display:inline-block;float:right;position:relative;top:-20px;"}
-                  %a{:href => "http://flickr.com/photos/transitandtrails/tags/#{@trip.class.name.downcase}id#{@trip.id}/"} More...
+                  %a{:href => "//flickr.com/photos/transitandtrails/tags/#{@trip.class.name.downcase}id#{@trip.id}/"} More...
               %br/
               #photo-upload
                 %form{:action => "#{polymorphic_path([@trip,:photos])}", :enctype => "multipart/form-data", :method => "POST", :id=>"upload-photo-form"}

@@ -7,7 +7,7 @@
     = javascript_include_tag "legacy/jquery/js/jquery-ui-1.7.2.custom.min"
     / = javascript_include_tag "legacy/plugins"
 
-    = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+    = stylesheet_link_tag "//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
     = stylesheet_link_tag "legacy/jquery/css/ui-lightness/jquery-ui-1.7.2.custom"
     = stylesheet_link_tag "legacy/legacy"
     = stylesheet_link_tag "editors"
@@ -26,7 +26,7 @@
             = yield :page_title
           .logo
             POWERED BY
-            %a{:href => "http://transitandtrails.org", :target => "_blank"}
+            %a{:href => "//transitandtrails.org", :target => "_blank"}
               %img{:src => "/assets/legacy/plan/small-logo.png"}/
           .nav
             - if current_user
