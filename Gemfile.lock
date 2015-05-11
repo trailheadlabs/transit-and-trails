@@ -123,6 +123,7 @@ GEM
     hashie (2.0.5)
     high_voltage (1.2.4)
     hike (1.2.3)
+    hirefire-resource (0.3.4)
     hpricot (0.8.6)
     httparty (0.11.0)
       multi_json (~> 1.0)
@@ -336,6 +337,7 @@ DEPENDENCIES
   georuby
   haml-rails
   high_voltage
+  hirefire-resource
   hpricot
   httparty
   jquery-rails (~> 2.1.4)
