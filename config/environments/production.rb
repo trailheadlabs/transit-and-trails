@@ -27,7 +27,7 @@ Transitandtrails::Application.configure do
   # Compress JavaScripts and CSS
   config.assets.compress = true
 
-  config.assets.cache_store = :dalli_store
+  config.assets.cache_store = :redis_store, ENV['REDIS_URL']
 
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
