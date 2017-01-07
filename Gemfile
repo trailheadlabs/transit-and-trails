@@ -9,6 +9,8 @@ gem 'rails', '~>3.2'
 
 gem 'pg'
 
+gem 'redis-rails'
+
 # Auth
 gem 'devise'
 gem 'cancan'
@@ -64,9 +66,6 @@ gem 'pony'
 
 # Addons
 gem 'figaro'
-gem 'memcachier'
-gem 'dalli'
-gem 'bugsnag'
 gem 'newrelic_rpm'
 
 # Zipfiles

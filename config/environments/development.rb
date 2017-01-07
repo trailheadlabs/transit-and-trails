@@ -40,5 +40,5 @@ Transitandtrails::Application.configure do
   # devise mailer
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
-  config.cache_store = :dalli_store
+  config.cache_store = :redis_store, ENV['REDIS_URL']
 end

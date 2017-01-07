@@ -49,8 +49,6 @@ GEM
     bourbon (3.1.8)
       sass (>= 3.2.0)
       thor
-    bugsnag (2.7.1)
-      multi_json (~> 1.0)
     builder (3.0.4)
     callsite (0.0.11)
     cancan (1.6.10)
@@ -72,7 +70,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
-    dalli (2.6.4)
     database_cleaner (1.1.1)
     debug_inspector (0.0.2)
     devise (3.1.1)
@@ -148,7 +145,6 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    memcachier (0.0.2)
     meta_request (0.2.8)
       callsite
       rack-contrib
@@ -253,6 +249,23 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     recaptcha (0.3.5)
+    redis (3.3.2)
+    redis-actionpack (3.2.4)
+      actionpack (~> 3.2.0)
+      redis-rack (~> 1.4.4)
+      redis-store (~> 1.1.4)
+    redis-activesupport (3.2.5)
+      activesupport (~> 3.2.0)
+      redis-store (~> 1.1.0)
+    redis-rack (1.4.4)
+      rack (~> 1.4.0)
+      redis-store (~> 1.1.4)
+    redis-rails (3.2.4)
+      redis-actionpack (~> 3.2.4)
+      redis-activesupport (~> 3.2.4)
+      redis-store (~> 1.1.4)
+    redis-store (1.1.7)
+      redis (>= 2.2)
     remotipart (1.2.1)
     rgeo (0.3.20)
     rspec-core (2.14.5)
@@ -320,12 +333,10 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bourbon
-  bugsnag
   cancan
   capybara
   carrierwave
   coffee-rails
-  dalli
   database_cleaner
   devise
   excon
@@ -343,7 +354,6 @@ DEPENDENCIES
   jquery-rails (~> 2.1.4)
   kaminari
   launchy
-  memcachier
   meta_request
   mini_magick
   multi_json
@@ -363,6 +373,7 @@ DEPENDENCIES
   rails_admin
   rails_admin_map_field!
   recaptcha
+  redis-rails
   rgeo
   rspec-rails (~> 2.0)
   ruby_parser
@@ -375,3 +386,9 @@ DEPENDENCIES
   uglifier (>= 1.0.3)
   yajl-ruby
   yui-compressor
+
+RUBY VERSION
+   ruby 2.0.0p598
+
+BUNDLED WITH
+   1.13.6
