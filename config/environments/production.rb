@@ -27,7 +27,7 @@ Transitandtrails::Application.configure do
   # Compress JavaScripts and CSS
   config.assets.compress = true
 
-  config.assets.cache_store = :redis_store, ENV['REDIS_URL']
+  # config.assets.cache_store = :redis_store, ENV['REDIS_URL']
 
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
@@ -49,7 +49,16 @@ Transitandtrails::Application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
   # Use a different cache store in production
-  config.cache_store = :redis_store, ENV['REDIS_URL']
+  config.cache_store = :dalli_store,
+                  (ENV["MEMCACHIER_SERVERS"] || "").split(","),
+                  {:username => ENV["MEMCACHIER_USERNAME"],
+                   :password => ENV["MEMCACHIER_PASSWORD"],
+                   :failover => true,
+                   :socket_timeout => 1.5,
+                   :socket_failure_delay => 0.2,
+                   :down_retry_delay => 60
+                  }
+
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
