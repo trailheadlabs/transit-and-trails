@@ -11,6 +11,8 @@ gem 'pg'
 
 gem 'redis-rails'
 
+gem "dalli"
+
 # Auth
 gem 'devise'
 gem 'cancan'
