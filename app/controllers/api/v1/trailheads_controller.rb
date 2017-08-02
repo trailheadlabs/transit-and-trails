@@ -6,7 +6,7 @@ module Api
 
       def index
         approved = true
-        approved = false if params[:unapproved]         
+        approved = false if params[:unapproved]
         @trailheads = Trailhead.order("id").includes(:cached_park_by_bounds,:park)
         if params[:non_profit_partner_id]
           partner_id = params[:non_profit_partner_id].split(",")
@@ -19,21 +19,23 @@ module Api
           else
             @trailheads = Trailhead.where(id:trailhead_ids).order("id")
           end
-        else          
+        else
           if attribute_id = params[:attribute_id]
-            trailhead_ids = TrailheadFeature.find(attribute_id).trailheads.pluck(:id)          
+            trailhead_ids = TrailheadFeature.find(attribute_id).trailheads.pluck(:id)
             @trailheads = Trailhead.where(id:trailhead_ids).order("id")
           end
-        end 
+        end
 
         if(params[:latitude] && params[:longitude])
           distance = params[:distance] || 100
-          @trailheads = @trailheads.near([params[:latitude],params[:longitude]],distance)
+          if distance < 100
+            @trailheads = @trailheads.near([params[:latitude],params[:longitude]],distance)
+          end
         end
 
         if(params[:user_id])
           @trailheads = @trailheads.where(user_id:params[:user_id].split(','))
-        end        
+        end
 
         if(params[:id])
           @trailheads = @trailheads.where(id:params[:id].split(','))

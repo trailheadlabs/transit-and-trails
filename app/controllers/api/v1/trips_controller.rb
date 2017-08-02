@@ -6,7 +6,9 @@ module Api
         @trips = apply_limit_and_offset(params,Trip.order("id"))
         if(params[:latitude] && params[:longitude])
           distance = params[:distance] || 100
-          @trips = @trips.near([params[:latitude],params[:longitude]],distance)
+          if distance < 100
+            @trips = @trips.near([params[:latitude],params[:longitude]],distance)
+          end
         end
 
         if(params[:user_id])
@@ -19,7 +21,7 @@ module Api
 
         attribute_id = params[:attribute_id]
         if attribute_id
-          trip_ids = TripFeature.find(attribute_id).trips.pluck(:id)          
+          trip_ids = TripFeature.find(attribute_id).trips.pluck(:id)
           @trips = @trips.where(id:trip_ids).order("id")
         end
       end

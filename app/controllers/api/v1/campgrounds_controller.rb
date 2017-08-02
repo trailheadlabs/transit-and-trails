@@ -10,7 +10,7 @@ module Api
           partner_id = params[:non_profit_partner_id]
           parks = Park.where(:non_profit_partner_id => partner_id)
           campground_ids = parks.collect{|p| p.campgrounds }.flatten
-          
+
           attribute_id = params[:attribute_id]
           if attribute_id
             @campgrounds = CampgroundFeature.find(attribute_id).campgrounds.where(id:campground_ids).order("id")
@@ -21,14 +21,16 @@ module Api
 
         if(params[:latitude] && params[:longitude])
           distance = params[:distance] || 100
-          @campgrounds = @campgrounds.near([params[:latitude],params[:longitude]],distance)
+          if distance < 100
+            @campgrounds = @campgrounds.near([params[:latitude],params[:longitude]],distance)
+          end
         end
 
         if(params[:user_id])
           @campgrounds = @campgrounds.where(user_id:params[:user_id].split(','))
         end
 
-        
+
         @campgrounds = apply_limit_and_offset(params,@campgrounds.order('id'))
       end
 
