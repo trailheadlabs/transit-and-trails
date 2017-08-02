@@ -28,7 +28,7 @@ module Api
 
         if(params[:latitude] && params[:longitude])
           distance = params[:distance] || 100
-          if distance < 100
+          if distance.to_i < 100
             @trailheads = @trailheads.near([params[:latitude],params[:longitude]],distance)
           end
         end
