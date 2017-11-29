@@ -50,7 +50,7 @@ gem 'flickraw-cached'
 # JSON
 gem 'rabl'
 gem 'multi_json'
-gem 'yajl-ruby'
+gem 'yajl-ruby', '~> 1.3.1'
 
 # Geo
 gem 'geocoder'
