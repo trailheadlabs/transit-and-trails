@@ -2,9 +2,6 @@
   = link_to current_user.username, edit_user_registration_path
   |
   = link_to 'Profile', profile_path
-  - if current_user.admin?
-    |
-    = link_to 'Admin', rails_admin_path
   |
   - unless current_user.parks.empty?
     = link_to "My Parks", my_parks_user_profiles_path

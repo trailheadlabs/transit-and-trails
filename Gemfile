@@ -26,14 +26,12 @@ gem 'jquery-rails', '~> 2.1.4'
 gem 'bourbon'
 gem 'high_voltage'
 gem 'recaptcha', :require => "recaptcha/rails"
-gem "rails_admin_map_field", :git => "git://github.com/jmoe/rails_admin_map_field.git"
 gem 'rails3-jquery-autocomplete'
 gem 'kaminari'
 gem 'rack-iframe'
 gem 'truncate_html'
 gem 'simple_form_fancy_uploads'
 gem 'simple_form'
-gem 'rails_admin'
 
 # HTTPS
 gem "httparty"

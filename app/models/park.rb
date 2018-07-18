@@ -1,6 +1,6 @@
-class Park < ActiveRecord::Base  
+class Park < ActiveRecord::Base
   belongs_to :agency, :inverse_of => :parks, :touch => true
-  has_many :users, :through => :agency  
+  has_many :users, :through => :agency
   belongs_to :non_profit_partner, :inverse_of => :parks
   attr_accessible :acres, :bounds, :county, :county_slug, :description, :name, :slug, :link,
     :min_longitude, :max_longitude, :min_latitude, :max_latitude, :non_profit_partner_id, :agency_id, :trailhead_ids
@@ -9,31 +9,6 @@ class Park < ActiveRecord::Base
   has_many :trailhead_overrides, :class_name => 'Trailhead', :inverse_of => :park
 
   has_paper_trail
-
-  rails_admin do
-    field :name do
-      searchable true
-    end
-    field :description do
-      searchable false
-    end
-    field :county do
-      searchable false
-    end
-    field :county_slug do
-      searchable false
-    end
-    field :bounds do
-      searchable false
-    end
-    field :slug do
-      searchable false
-    end
-    field :link do
-      searchable false
-    end
-    include_all_fields
-  end
 
   def update_bounds_min_max
     if !bounds.blank? && (self.bounds_changed? || min_longitude.nil?)
@@ -45,7 +20,7 @@ class Park < ActiveRecord::Base
     end
   end
 
-  def cached_trailheads    
+  def cached_trailheads
     Trailhead.approved.where(cached_park_by_bounds_id: id)
   end
 
@@ -108,7 +83,7 @@ class Park < ActiveRecord::Base
 
   def update_cached_points
     puts "Updating cached points for #{self.id}"
-    Park.transaction do 
+    Park.transaction do
       trailheads_in_bounds.each do |t|
         t.update_attributes(cached_park_by_bounds_id:self.id)
       end

@@ -65,11 +65,7 @@
                 = link_to 'Profile', profile_path
               - unless current_user.parks.empty?
                 %li
-                  = link_to "My Parks", my_parks_user_profiles_path                  
-              - if current_user.admin?
-                %li.divider
-                %li
-                  = link_to 'Admin', rails_admin_path
+                  = link_to "My Parks", my_parks_user_profiles_path
               %li.divider
               %li
                 = link_to destroy_user_session_path, method: :delete do
@@ -84,7 +80,7 @@
           /   = link_to "Sign Up", new_user_registration_path
 
 - if can? :create, Trip
-  #import-gpx-modal.modal.hide.fade  
+  #import-gpx-modal.modal.hide.fade
     .modal-header
       %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
       %h3
@@ -101,19 +97,19 @@
         %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
     :javascript
       $('#choose-file-button').click(function(){
-          $('#gpx-file-field').click();        
+          $('#gpx-file-field').click();
           return false;
         });
       $('#gpx-file-field').change(function(){
         $('#choose-file-button').prop('disabled', true);
-        $('#choose-file-button').css('opacity', 0.5);    
+        $('#choose-file-button').css('opacity', 0.5);
         $('#choose-file-button').text('Uploading...');
-        
+
         $('#import-gpx-form').submit();
         return false;
         });
 
-  #import-kml-modal.modal.hide.fade  
+  #import-kml-modal.modal.hide.fade
     .modal-header
       %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
       %h3
@@ -130,30 +126,30 @@
         %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
     :javascript
       $('#choose-kml-file-button').click(function(){
-          $('#kml-file-field').click();        
+          $('#kml-file-field').click();
           return false;
         });
       $('#kml-file-field').change(function(){
         $('#choose-kml-file-button').prop('disabled', true);
-        $('#choose-kml-file-button').css('opacity', 0.5);    
+        $('#choose-kml-file-button').css('opacity', 0.5);
         $('#choose-kml-file-button').text('Uploading...');
-        
+
         $('#import-kml-form').submit();
         return false;
         });
 
-- if can? :create, Park  
+- if can? :create, Park
   = form_tag upload_kml_parks_path, :method => :post, :multipart => true, :id => "import-park-kml-form", :class => "hide" do
     = file_field_tag "kml_file", hidden: true, id: "park-kml-file-field"
     = hidden_field_tag "update_existing", "false"
   :javascript
     $('#park-from-kml-link').click(function(){
-        $('#park-kml-file-field').click();        
+        $('#park-kml-file-field').click();
         return false;
       });
     $('#update-park-from-kml-link').click(function(){
         $('#import-park-kml-form #update_existing').val('true');
-        $('#park-kml-file-field').click();        
+        $('#park-kml-file-field').click();
         return false;
       });
 
@@ -163,13 +159,13 @@
       });
 
 
-- if can? :create, Trailhead  
+- if can? :create, Trailhead
   .hide
     = form_tag upload_kml_trailheads_path, :method => :post, :multipart => true, :id => "import-trailhead-kml-form", :class => "hide" do
       = file_field_tag "kml_file", hidden: true, id: "trailhead-kml-file-field"
     :javascript
       $('#trailheads-from-kml-link').click(function(){
-          $('#trailhead-kml-file-field').click();        
+          $('#trailhead-kml-file-field').click();
           return false;
         });
       $('#trailhead-kml-file-field').change(function(){
@@ -182,11 +178,10 @@
       = hidden_field_tag "update_existing", "true"
     :javascript
       $('#update-trailheads-from-kml-link').click(function(){
-          $('#update-trailhead-kml-file-field').click();        
+          $('#update-trailhead-kml-file-field').click();
           return false;
         });
       $('#update-trailhead-kml-file-field').change(function(){
         $('#update-trailhead-kml-form').submit();
         return false;
         });
-
