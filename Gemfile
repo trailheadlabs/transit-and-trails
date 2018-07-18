@@ -22,6 +22,7 @@ gem 'omniauth-twitter'
 
 # Frontend Stuff
 gem 'haml-rails'
+gem "bootstrap-sass", '~>2.3.2.2'
 gem 'jquery-rails', '~> 2.1.4'
 gem 'bourbon'
 gem 'high_voltage'
